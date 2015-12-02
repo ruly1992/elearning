@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "732c5a7807076286a844939d0fd4f78c",
-    "content-hash": "f9fd7c2f41b11c567a01a481e3a9cc5c",
+    "hash": "2e0378da5296b2e266a5825539724f4c",
+    "content-hash": "01510035e78d9ab21248d93453108ab0",
     "packages": [
         {
             "name": "cartalyst/sentinel",
@@ -1067,16 +1067,16 @@
         },
         {
             "name": "robmorgan/phinx",
-            "version": "v0.4.6",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/robmorgan/phinx.git",
-                "reference": "1351ca36dd2419d7de02afd1aaa415929112d7f1"
+                "reference": "df8933786806848fbf330f88d69998f29c29d8c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/1351ca36dd2419d7de02afd1aaa415929112d7f1",
-                "reference": "1351ca36dd2419d7de02afd1aaa415929112d7f1",
+                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/df8933786806848fbf330f88d69998f29c29d8c4",
+                "reference": "df8933786806848fbf330f88d69998f29c29d8c4",
                 "shasum": ""
             },
             "require": {
@@ -1125,7 +1125,7 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2015-09-11 15:44:41"
+            "time": "2015-11-30 15:21:12"
         },
         {
             "name": "sofa/laravel-global-scope",
