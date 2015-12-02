@@ -1,7 +1,10 @@
 <?php
 
 return array(
-    'paths'         => array('migrations' => $_SERVER['PHINX_MIGRATION_PATH']),
+    'paths'         => array(
+        'migrations'    => isset($_SERVER['PHINX_MIGRATION_PATH']) ? $_SERVER['PHINX_MIGRATION_PATH'] : '%%PHINX_CONFIG_DIR%%/database/migrations',
+        'seeds'         => isset($_SERVER['PHINX_SEEDER_PATH']) ? $_SERVER['PHINX_SEEDER_PATH'] : '%%PHINX_CONFIG_DIR%%/database/seeds',
+    ),
     'environments'  => array(
         'production'   => array(
             'adapter'       => 'mysql',
