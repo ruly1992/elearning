@@ -18,7 +18,9 @@
         "fzaninotto/faker": "^1.5",
         "illuminate/pagination": "^5.1",
         "symfony/http-foundation": "^2.7",
-        "sofa/laravel-global-scope": "^0.2.0"
+        "sofa/laravel-global-scope": "^0.2.0",
+        "cartalyst/sentinel": "2.0.*",
+        "illuminate/events": "^5.1"
     },
     "autoload": {
         "psr-4": {
