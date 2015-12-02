@@ -1599,26 +1599,6 @@ header {
 				border-top-right-radius: 6px;
 			}
 		}
-		.content-articles-heading-view {
-			margin-top: $margin-top - 52px;
-			position: absolute;
-			right: 20px;
-			font-size: 12px;
-			a {
-				text-decoration: none;
-				color: $green;
-				@include transition(0.3s);
-				&:hover,
-				&:focus,
-				&:active {
-					color: $green-black;
-					@include transition(0.3s);
-				}
-				i.fa {
-					margin-left: $margin-left;
-				}
-			}
-		}
 		.content-articles-main {
 		}
 		.articles-box {
@@ -2226,26 +2206,7 @@ header {
 				border-top-right-radius: 6px;
 			}
 		}
-		.content-articles-heading-view {
-			margin-top: $margin-top - 52px;
-			position: absolute;
-			right: 20px;
-			font-size: 12px;
-			a {
-				text-decoration: none;
-				color: $green;
-				@include transition(0.3s);
-				&:hover,
-				&:focus,
-				&:active {
-					color: $green-black;
-					@include transition(0.3s);
-				}
-				i.fa {
-					margin-left: $margin-left;
-				}
-			}
-		}
+		
 		.articles-box {
 			margin-bottom: $margin-bottom + 5px;
 			.col-md-8 {
