@@ -1298,26 +1298,6 @@ header {
         background-color: #1c9c57;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px; }
-    .content .content-articles .content-articles-heading-view {
-      margin-top: -47px;
-      position: absolute;
-      right: 20px;
-      font-size: 12px; }
-      .content .content-articles .content-articles-heading-view a {
-        text-decoration: none;
-        color: #1c9c57;
-        transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out; }
-        .content .content-articles .content-articles-heading-view a:hover, .content .content-articles .content-articles-heading-view a:focus, .content .content-articles .content-articles-heading-view a:active {
-          color: #128a4a;
-          transition: all 0.3s ease-in-out;
-          -webkit-transition: all 0.3s ease-in-out;
-          -moz-transition: all 0.3s ease-in-out;
-          -o-transition: all 0.3s ease-in-out; }
-        .content .content-articles .content-articles-heading-view a i.fa {
-          margin-left: 5px; }
     .content .content-articles .articles-box {
       margin-bottom: 7px; }
       .content .content-articles .articles-box .articles-box-img {
@@ -1838,26 +1818,6 @@ header {
         background-color: #1c9c57;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px; }
-    .content-dashboard .content-articles .content-articles-heading-view {
-      margin-top: -47px;
-      position: absolute;
-      right: 20px;
-      font-size: 12px; }
-      .content-dashboard .content-articles .content-articles-heading-view a {
-        text-decoration: none;
-        color: #1c9c57;
-        transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out; }
-        .content-dashboard .content-articles .content-articles-heading-view a:hover, .content-dashboard .content-articles .content-articles-heading-view a:focus, .content-dashboard .content-articles .content-articles-heading-view a:active {
-          color: #128a4a;
-          transition: all 0.3s ease-in-out;
-          -webkit-transition: all 0.3s ease-in-out;
-          -moz-transition: all 0.3s ease-in-out;
-          -o-transition: all 0.3s ease-in-out; }
-        .content-dashboard .content-articles .content-articles-heading-view a i.fa {
-          margin-left: 5px; }
     .content-dashboard .content-articles .articles-box {
       margin-bottom: 10px; }
       .content-dashboard .content-articles .articles-box .col-md-8 {
