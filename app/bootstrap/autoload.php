@@ -3,7 +3,7 @@
 require __DIR__.'/../../vendor/autoload.php';
 require 'path.php';
 
-$dotenv = new Dotenv\Dotenv(dirname(__DIR__));
+$dotenv = new Dotenv\Dotenv(dirname(dirname(__DIR__)));
 $dotenv->load();
 
 date_default_timezone_set(getenv('DATE_TIMEZONE') ?: 'Asia/Jakarta');
