@@ -1,9 +1,14 @@
 <?php
 
+if (!function_exists('flash_messages')) {
+    function flash_messages() {
+        return new \Plasticbrain\FlashMessages\FlashMessages;
+    }
+}
+
 if (!function_exists('set_message')) {
     function set_message($text, $type = 'success') {
-        $CI =& get_instance();
-        $CI->messages->add($text, $type);
+        flash_messages()->add($text, $type);
     }
 }
 
@@ -26,17 +31,21 @@ if (!function_exists('set_message_warning')) {
 }
 
 if (!function_exists('keepValidationErrors')) {
-    function keepValidationErrors() {
-        $CI =& get_instance();
+    function keepValidationErrors() {        
+        if (FALSE === ($OBJ =& _get_validation_object())) {
+            // No action
+        } else {
+            $errors = $OBJ->error_array();
 
-        $CI->messages->keepValidationErrors();
+            foreach ($errors as $error) {
+                set_message_error($error);
+            }
+        }
     }
 }
 
 if (!function_exists('show_message')) {
     function show_message($type = null) {
-        $CI =& get_instance();
-
-        return $CI->messages->show($type);
+        return flash_messages()->display($type);
     }
 }
