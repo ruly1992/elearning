@@ -1,7 +1,6 @@
 <?php
 
 use Phinx\Seed\AbstractSeed;
-use Cartalyst\Sentinel\Native\Facades\Sentinel;
 
 class RoleSeeder extends AbstractSeed
 {
@@ -17,7 +16,7 @@ class RoleSeeder extends AbstractSeed
     {
         $this->execute('DELETE FROM role_users');
 
-        $role   = Sentinel::getRoleRepository()->createModel();
+        $role   = sentinel()->getRoleRepository()->createModel();
         $role->truncate();
 
         $roles = [
