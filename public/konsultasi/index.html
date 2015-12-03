@@ -5,11 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 		    <title>Konsultasi - Kemendesa</title>
-		    <!-- start:stylesheet -->
-	      <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-	      <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+		<!-- start:stylesheet -->
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="../stylesheets/app.css">
         <link rel="stylesheet" href="../stylesheets/responsive.css">
+        <!-- switch -->
+        <link rel="stylesheet" href="../plugins/bootstrap-switch/css/bootstrap-switch.css">
+        <!-- end switch -->
 	    <!-- end:stylesheet -->
 	</head>
 	<body id="page-top" data-spy="scroll" data-target="#navbar-main">
@@ -94,7 +97,6 @@
             <!-- end:navbar main -->
         </header>
         <!-- end:header -->
-
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-konsultasi">
             <section id="content">
@@ -124,7 +126,7 @@
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                                 <div class="content-konsultasi-heading-right pull-right">
-                                    <a href="#" class="btn btn-open-tiket">Buka Konsultasi</a>
+                                    <a href="#" class="btn btn-open-tiket">Mulai Konsultasi</a>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +137,7 @@
                             <thead>
                                 <tr>
                                   <th>#</th>
-                                  <th>Divisi</th>
+                                  <th>Kategori</th>
                                   <th>Konsultasi Title</th>
                                   <th>Tanggal Konsultasi</th>
                                   <th>Update Terakhir</th>
@@ -146,92 +148,92 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
-                                    <th>Divisi Humas</th>
+                                    <th>Kategori Humas</th>
                                     <td>Konsutasi Masalah Pendanaan Desa</td>
                                     <td>09/12/2015</td>
                                     <td>20/12/2015</td>
-                                    <td><p class="label label-primary">Active</p></td>
+                                    <td><p><input id="switch-size" type="checkbox" checked data-size="mini" name="my-checkbox"></p></td>
                                     <td><a href="#">Lihat Konsultasi</a></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
-                                    <th>Divisi Humas</th>
+                                    <th>Kategori Humas</th>
                                     <td>Konsutasi Masalah Pendanaan Desa</td>
                                     <td>09/12/2015</td>
                                     <td>20/12/2015</td>
-                                    <td><p class="label label-primary">Active</p></td>
+                                    <td><p><input id="switch-size" type="checkbox" checked data-size="mini" name="my-checkbox"></p></td>
                                     <td><a href="#">Lihat Konsultasi</a></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
-                                    <th>Divisi Humas</th>
+                                    <th>Kategori Humas</th>
                                     <td>Konsutasi Masalah Pendanaan Desa</td>
                                     <td>09/12/2015</td>
                                     <td>20/12/2015</td>
-                                    <td><p class="label label-default">Close</p></td>
+                                    <td><p><input id="switch-size" type="checkbox" data-size="mini" name="my-checkbox"></p></td>
                                     <td><a href="#">Lihat Konsultasi</a></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">4</th>
-                                    <th>Divisi Humas</th>
+                                    <th>Kategori Humas</th>
                                     <td>Konsutasi Masalah Pendanaan Desa</td>
                                     <td>09/12/2015</td>
                                     <td>20/12/2015</td>
-                                    <td><p class="label label-default">Close</p></td>
+                                    <td><p><input id="switch-size" type="checkbox" data-size="mini" name="my-checkbox"></p></td>
                                     <td><a href="#">Lihat Konsultasi</a></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">5</th>
-                                    <th>Divisi Humas</th>
+                                    <th>Kategori Humas</th>
                                     <td>Konsutasi Masalah Pendanaan Desa</td>
                                     <td>09/12/2015</td>
                                     <td>20/12/2015</td>
-                                    <td><p class="label label-default">Close</p></td>
+                                    <td><p><input id="switch-size" type="checkbox" data-size="mini" name="my-checkbox"></p></td>
                                     <td><a href="#">Lihat Konsultasi</a></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">6</th>
-                                    <th>Divisi Humas</th>
+                                    <th>Kategori Humas</th>
                                     <td>Konsutasi Masalah Pendanaan Desa</td>
                                     <td>09/12/2015</td>
                                     <td>20/12/2015</td>
-                                    <td><p class="label label-default">Close</p></td>
+                                    <td><p><input id="switch-size" type="checkbox" data-size="mini" name="my-checkbox"></p></td>
                                     <td><a href="#">Lihat Konsultasi</a></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">7</th>
-                                    <th>Divisi Humas</th>
+                                    <th>Kategori Humas</th>
                                     <td>Konsutasi Masalah Pendanaan Desa</td>
                                     <td>09/12/2015</td>
                                     <td>20/12/2015</td>
-                                    <td><p class="label label-default">Close</p></td>
+                                    <td><p><input id="switch-size" type="checkbox" data-size="mini" name="my-checkbox"></p></td>
                                     <td><a href="#">Lihat Konsultasi</a></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">8</th>
-                                    <th>Divisi Humas</th>
+                                    <th>Kategori Humas</th>
                                     <td>Konsutasi Masalah Pendanaan Desa</td>
                                     <td>09/12/2015</td>
                                     <td>20/12/2015</td>
-                                    <td><p class="label label-default">Close</p></td>
+                                    <td><p><input id="switch-size" type="checkbox" data-size="mini" name="my-checkbox"></p></td>
                                     <td><a href="#">Lihat Konsultasi</a></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">9</th>
-                                    <th>Divisi Humas</th>
+                                    <th>Kategori Humas</th>
                                     <td>Konsutasi Masalah Pendanaan Desa</td>
                                     <td>09/12/2015</td>
                                     <td>20/12/2015</td>
-                                    <td><p class="label label-default">Close</p></td>
+                                    <td><p><input id="switch-size" type="checkbox" data-size="mini" name="my-checkbox"></p></td>
                                     <td><a href="#">Lihat Konsultasi</a></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">10</th>
-                                    <th>Divisi Humas</th>
+                                    <th>Kategori Humas</th>
                                     <td>Konsutasi Masalah Pendanaan Desa</td>
                                     <td>09/12/2015</td>
                                     <td>20/12/2015</td>
-                                    <td><p class="label label-default">Close</p></td>
+                                    <td><p><input id="switch-size" type="checkbox" data-size="mini" name="my-checkbox"></p></td>
                                     <td><a href="#">Lihat Konsultasi</a></td>
                                 </tr>
                             </tbody>
@@ -321,10 +323,14 @@
 
 		<!-- start:javascript -->
 	    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-	    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="../javascript/jquery.sticky.js"></script>
         <script src="../javascript/app.js"></script>
+        <!-- start:switch -->
+        <script src="../plugins/bootstrap-switch/js/highlight.js"></script>
+        <script src="../plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+        <script src="../plugins/bootstrap-switch/js/main.js"></script>
+        <!-- end:switch -->
 	    <!-- end:javascript -->
-
 	</body>
 </html>
