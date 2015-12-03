@@ -97,55 +97,114 @@
         <!-- end:header -->
 
         <!-- start:main content -->
-        <div class="container content content-dashboard content-single">
-
-            <!-- start:content -->
+        <div class="container content content-dashboard content-single"> 
+        <!-- Oprek SCSS pada baris ke 1927 -->
+            <!-- start: content atas -->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!-- start:content sidebar -->
+                    <div class="content-dashboard-articles-main">
+                      <div class="container">
+                         <div class="row">
+                            <ul class="nav nav-tabs" role="tablist">
+                              <li class="nav-item">
+                                <a class="nav-link active" href="#article" role="tab" data-toggle="tab">Sumbit Articles</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="#elibrary" role="tab" data-toggle="tab">Submit Elibary</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="#konsultasi" role="tab" data-toggle="tab">Submit Konsultasi</a>
+                              </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                              <div role="tabpanel" class="tab-pane active" id="article">
+                                <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        ini buat tinymce
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="content-sidebar">
+                                            <div class="widget">
+                                                <div class="widget-heading">
+                                                    <h3>Category</h3>
+                                                </div>
+                                                <div class="widget-content">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                              </div>
+                              <div role="tabpanel" class="tab-pane" id="elibrary">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        ini buat tinymce
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="content-sidebar">
+                                            <div class="widget">
+                                                <div class="widget-heading">
+                                                    <h3>Category</h3>
+                                                </div>
+                                                <div class="widget-content">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                              <div role="tabpanel" class="tab-pane" id="konsultasi">
+                                  <div class="row">
+                                    <div class="col-md-8">
+                                        ini buat tinymce
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="content-sidebar">
+                                            <div class="widget">
+                                                <div class="widget-heading">
+                                                    <h3>Category</h3>
+                                                </div>
+                                                <div class="widget-content">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>                          
+                         </div><!--/.row -->
+                      </div><!--/.container -->      
+                    </div>
+                </div>
+            </div>
+            <!-- end: content atas -->
+
+            <!-- start:content tengah-->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- start: content atas -->
                     <div class="content-dashboard-articles-main">
                       <div class="container">
 				         <div class="row">
-				            <!-- <ul class="nav nav-tabs">
-							  <li class="nav-item">
-							    <a href="#" class="nav-link active">Buat Artikel</a>
-							  </li>
-							  <li class="nav-item">
-							    <a href="#" class="nav-link">Artikel Submit</a>
-							  </li>
-							  <li class="nav-item">
-							    <a href="#" class="nav-link">Artikel Draft</a>
-							  </li>
-							  <li class="nav-item">
-							    <a href="#" class="nav-link">Upload Libary</a>
-							  </li>
-							  <li class="nav-item">
-							    <a href="#" class="nav-link">Profil</a>
-							  </li>
-							</ul> -->
-							<!-- Nav tabs -->
 							<ul class="nav nav-tabs" role="tablist">
 							  <li class="nav-item">
-							    <a class="nav-link active" href="#home" role="tab" data-toggle="tab">Buat Artikel</a>
+							    <a class="nav-link active" href="#submit-approve" role="tab" data-toggle="tab">Articles Approve</a>
 							  </li>
 							  <li class="nav-item">
-							    <a class="nav-link" href="#profile" role="tab" data-toggle="tab">Artikel Submit</a>
-							  </li>
-							  <li class="nav-item">
-							    <a class="nav-link" href="#messages" role="tab" data-toggle="tab">Artikel Draft</a>
-							  </li>
-							  <li class="nav-item">
-							    <a class="nav-link" href="#settings" role="tab" data-toggle="tab">Profil</a>
-							  </li>
-							  <li class="nav-item">
-							    <a class="nav-link" href="#settings" role="tab" data-toggle="tab">Upload Library</a>
+							    <a class="nav-link" href="#submit-draft" role="tab" data-toggle="tab">Articles Draft</a>
 							  </li>
 							</ul>
 
 							<!-- Tab panes -->
 							<div class="tab-content">
-							  <div role="tabpanel" class="tab-pane active" id="home">
-							  	
+							  <div role="tabpanel" class="tab-pane active" id="submit-approve">
 							  	<div class="container">
 							  	<div class="row">
 								  	<div class="col-md-8">
@@ -166,17 +225,65 @@
 							  	</div>
 							  </div>
 							  </div>
-							  <div role="tabpanel" class="tab-pane" id="profile">Mau liat profil bisa di mari</div>
-							  <div role="tabpanel" class="tab-pane" id="messages">Artikel yang berhasil di submit</div>
-							  <div role="tabpanel" class="tab-pane" id="settings">Artikel masih di draft gaes</div>
+							  <div role="tabpanel" class="tab-pane" id="submit-draft">Mau liat profil bisa di mari</div>
 							</div>			            	
 				         </div><!--/.row -->
 				      </div><!--/.container -->      
                     </div>
-                    <!-- end:content sidebar -->
                 </div>
             </div>
-            <!-- end:content -->
+            <!-- end:content tengah-->
+
+            <!-- start:content bawah-->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- start: content atas -->
+                    <div class="content-dashboard-articles-main">
+                      <div class="container">
+                         <div class="row">
+                            <ul class="nav nav-tabs" role="tablist">
+                              <li class="nav-item">
+                                <a class="nav-link active" href="#statistic-user" role="tab" data-toggle="tab">Statistic User</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="#statistic-elibrary" role="tab" data-toggle="tab">Statistic Elibrary</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="#statistic-konsultasi" role="tab" data-toggle="tab">Statistic Konsultasi</a>
+                              </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                              <div role="tabpanel" class="tab-pane active" id="submit-approve">
+                                <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        ini buat tinymce
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="content-sidebar">
+                                            <div class="widget">
+                                                <div class="widget-heading">
+                                                    <h3>Category</h3>
+                                                </div>
+                                                <div class="widget-content">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                              </div>
+                              <div role="tabpanel" class="tab-pane" id="submit-draft">Mau liat profil bisa di mari</div>
+                            </div>                          
+                         </div><!--/.row -->
+                      </div><!--/.container -->      
+                    </div>
+                </div>
+            </div>
+            <!-- end:content bawah-->
         </div>
         <!-- end:main content -->
 
