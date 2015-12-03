@@ -23,14 +23,14 @@ if (!function_exists('home_base_url')) {
 if (!function_exists('login_url')) {
     function login_url()
     {
-        return home_url('login');
+        return home_url('auth/login');
     }
 }
 
 if (!function_exists('logout_url')) {
     function logout_url()
     {
-        return home_url('logout');
+        return home_url('auth/logout');
     }
 }
 
