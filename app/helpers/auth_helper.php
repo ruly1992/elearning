@@ -10,7 +10,9 @@ if (!function_exists('auth')) {
 if (!function_exists('sentinel')) {
     function sentinel()
     {
-        return Cartalyst\Sentinel\Native\Facades\Sentinel::instance()->getSentinel();
+        $config = new Library\Sentinel\SentinelBootstrapper(__DIR__.'/../config/sentinel.php');
+
+        return Cartalyst\Sentinel\Native\Facades\Sentinel::instance($config)->getSentinel();
     }
 }
 
