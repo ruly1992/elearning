@@ -1319,7 +1319,8 @@ header {
         .content .content-articles .content-articles-heading-view a i.fa {
           margin-left: 5px; }
     .content .content-articles .articles-box {
-      margin-bottom: 7px; }
+      margin-bottom: 8px;
+      border-bottom: 1px solid #dddddd; }
       .content .content-articles .articles-box .articles-box-img {
         border-radius: 4px;
         -webkit-border-radius: 4px;
@@ -1422,7 +1423,8 @@ header {
         font-size: 8px;
         margin-bottom: 0px; }
       .content .content-articles .box-articles-latest .box-articles-latest-title h4 {
-        font-size: 12px; }
+        font-size: 16px;
+        font-weight: 550; }
         .content .content-articles .box-articles-latest .box-articles-latest-title h4 a {
           color: #263238;
           text-decoration: none;
@@ -1838,26 +1840,6 @@ header {
         background-color: #1c9c57;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px; }
-    .content-dashboard .content-articles .content-articles-heading-view {
-      margin-top: -47px;
-      position: absolute;
-      right: 20px;
-      font-size: 12px; }
-      .content-dashboard .content-articles .content-articles-heading-view a {
-        text-decoration: none;
-        color: #1c9c57;
-        transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out; }
-        .content-dashboard .content-articles .content-articles-heading-view a:hover, .content-dashboard .content-articles .content-articles-heading-view a:focus, .content-dashboard .content-articles .content-articles-heading-view a:active {
-          color: #128a4a;
-          transition: all 0.3s ease-in-out;
-          -webkit-transition: all 0.3s ease-in-out;
-          -moz-transition: all 0.3s ease-in-out;
-          -o-transition: all 0.3s ease-in-out; }
-        .content-dashboard .content-articles .content-articles-heading-view a i.fa {
-          margin-left: 5px; }
     .content-dashboard .content-articles .articles-box {
       margin-bottom: 10px; }
       .content-dashboard .content-articles .articles-box .col-md-8 {
@@ -2390,6 +2372,7 @@ header {
   padding-top: 145px;
   padding-bottom: 85px; }
   .login .login-logo {
+    text-align: center;
     margin-bottom: 25px; }
     .login .login-logo img {
       width: 200px; }
