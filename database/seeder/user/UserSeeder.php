@@ -1,7 +1,6 @@
 <?php
 
 use Phinx\Seed\AbstractSeed;
-use Cartalyst\Sentinel\Native\Facades\Sentinel;
 
 class UserSeeder extends AbstractSeed
 {
@@ -15,10 +14,11 @@ class UserSeeder extends AbstractSeed
      */
     public function run()
     {
-        $user   = Sentinel::getUserRepository()->createModel();
+        $user   = sentinel()->getUserRepository()->createModel();
 
         Model\Activation::truncate();
         Model\Throttle::truncate();
+        Model\Profile::truncate();
 
         $user->truncate();
 
@@ -37,15 +37,19 @@ class UserSeeder extends AbstractSeed
         ];
 
         foreach ($users as $role_slug => $usernames) {
-            $role = Sentinel::findRoleBySlug($role_slug);
+            $role = sentinel()->findRoleBySlug($role_slug);
 
             foreach ($usernames as $username) {
-                $user = Sentinel::registerAndActivate([
+                $user = sentinel()->registerAndActivate([
                     'email'     => $username . '@kaderdesa.id',
                     'password'  => '123',
                 ]);
 
                 $role->users()->attach($user);
+
+                $user->profile()->update([
+                    'first_name'    => $role->name
+                ]);
             }
         }            
     }
