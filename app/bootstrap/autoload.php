@@ -35,9 +35,12 @@ foreach (glob(__DIR__ . '/db_*.php') as $filedb) {
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
+// Session
+use Symfony\Component\HttpFoundation\Session\Session;
+
 // Autentikasi user dan role
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
 
-$config = new Cartalyst\Sentinel\Native\SentinelBootstrapper('app/config/sentinel.php');
+$config = new Library\Sentinel\SentinelBootstrapper(__DIR__.'/../config/sentinel.php');
 
 Sentinel::instance($config);
