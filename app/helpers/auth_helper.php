@@ -1,32 +1,29 @@
 <?php
 
 if (!function_exists('auth')) {
-    function auth($user = null)
+    function auth()
     {
-        return new Library\Auth\Auth($user);
+        return sentinel();
     }
 }
 
-if (!function_exists('ion_auth')) {
-    function ion_auth()
+if (!function_exists('sentinel')) {
+    function sentinel()
     {
-        $CI =& get_instance();
-
-        $CI->load->library('ion_auth');
-
-        return $CI->ion_auth;
+        return Cartalyst\Sentinel\Native\Facades\Sentinel::instance()->getSentinel();
     }
 }
 
 if (!function_exists('user')) {
-    function user($id = 0)
+    function user($user = null)
     {
-        if ($id > 0) {
-            $user = Model\User::findOrFail($id);
-
-            return $user;
-        } else {
-            return auth()->user();
-        }
+        if ($user == null)
+            return sentinel()->getUser();
+        elseif ($user instanceof \Cartalyst\Sentinel\Users\UserInterface)
+            return sentinel()->findById($user->id);
+        elseif (is_numeric($user))
+            return sentinel()->findById($user);
+        else
+            return null;
     }
 }
