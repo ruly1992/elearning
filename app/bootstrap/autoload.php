@@ -32,15 +32,10 @@ foreach (glob(__DIR__ . '/db_*.php') as $filedb) {
 	include $filedb;
 }
 
+use Illuminate\Events\Dispatcher;
+use Illuminate\Container\Container;
+
+$capsule->setEventDispatcher(new Dispatcher(new Container));
+
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
-
-// Session
-use Symfony\Component\HttpFoundation\Session\Session;
-
-// Autentikasi user dan role
-use Cartalyst\Sentinel\Native\Facades\Sentinel;
-
-$config = new Library\Sentinel\SentinelBootstrapper(__DIR__.'/../config/sentinel.php');
-
-Sentinel::instance($config);
