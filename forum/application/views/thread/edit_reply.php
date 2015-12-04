@@ -105,41 +105,14 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li class="active">Edit Thread</li>
+                                <li class="active">Edit Reply</li>
                             </ol>
 
                             <div class="forum-main">
                                 <div class="card">
                                     <div class="card-block">
                                        
-									   <?php echo form_open('thread/updateThread/'.$id_thread); ?>
-                                        <!--<form action="">-->
-                                            <div class="form-group">
-                                                <label for="">Pilih Kategori :</label>
-                                                <select class="c-select form-control" required name="kategori">
-                                                    <?php 
-														foreach($category as $cat){
-															if($cat->id==$kategori){$selected='selected';}else{$selected='';}
-															echo '<option value="'.$cat->id.'" '.$selected.'>'.$cat->category_name.'</option>';
-														}
-													?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Pilih Type Thread :</label>
-                                                <div>
-                                                    <label class="c-input c-radio">
-                                                        <input id="radio1" name="radio" value="close" <?php if($type=='close'){echo 'checked';} ?> type="radio">
-                                                        <span class="c-indicator"></span>
-                                                        Close
-                                                    </label>
-                                                    <label class="c-input c-radio">
-                                                        <input id="radio2" name="radio" value="public" <?php if($type=='public'){echo 'checked';} ?> type="radio">
-                                                        <span class="c-indicator"></span>
-                                                        Public
-                                                    </label>
-                                                </div>
-                                            </div>
+									   <?php echo form_open('thread/updateReply/'.$idThread.'/'.$idReply); ?>
                                             <div class="form-group">
                                                 <label for="">Title</label>
                                                 <input type="text" class="form-control" value="<?php echo $title;?>" required name="title" placeholder="type your title">
@@ -149,7 +122,7 @@
                                                 <textarea name="message" id="" cols="30" rows="10" required class="form-control" placeholder="type your message"><?php echo $message; ?></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-post">UPDATE THREAD</button>
+                                                <button type="submit" class="btn btn-post">UPDATE REPLY</button>
                                             </div>
                                         </form>
                                     </div>

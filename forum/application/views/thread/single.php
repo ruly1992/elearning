@@ -105,9 +105,9 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">General</a></li>
-                                <li class="active">Sharing Cara budidaya ternak ikan lele</li>
+                                <li><a href="<?php echo site_url(); ?>">Home</a></li>
+                                <li><a href="#"><?php echo $category; ?></a></li>
+                                <li class="active"><?php echo $title; ?></li>
                             </ol>
 
                             <div class="forum-main">
@@ -123,7 +123,7 @@
                                             <div class="col-sm-9">
                                                 <div class="card-header-meta pull-right">
                                                     <p><?php echo $tanggal; ?> <i class="fa fa-calendar"></i></p>
-                                                    <p>201 <i class="fa fa-comments"></i></p>
+                                                    <p><?php echo $countReply; ?> <i class="fa fa-comments"></i></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -139,7 +139,10 @@
                                         <a href="#" class="btn btn-sm btn-reply">Reply Post</a>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <?php 
+                                    foreach($reply as $r){
+                                ?>
+                                <div class="card" id="<?php echo $r->id; ?>">
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-sm-3">
@@ -150,28 +153,29 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="card-header-meta pull-right">
-                                                    <p>09 December 2015 <i class="fa fa-calendar"></i></p>
-                                                    <p>201 <i class="fa fa-comments"></i></p>
+                                                    <p><?php echo $r->created_at; ?> <i class="fa fa-calendar"></i></p>
+                                                    <!--<p>201 <i class="fa fa-comments"></i></p>-->
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-block">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem repudiandae enim repellendus, atque molestiae earum eius sunt quaerat sapiente minus vel perspiciatis, doloremque a magnam accusantium non maxime tempora sint.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt architecto sint incidunt, hic optio ipsam, exercitationem dolorem reprehenderit consequatur nobis? Tenetur voluptates quia inventore labore sapiente nisi, ullam eius? Aut!</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit alias nisi libero debitis natus rem possimus cumque accusamus sapiente saepe esse, aliquam blanditiis sed quo nostrum, ex doloribus repudiandae, maxime!</p>
+                                        <p><?php echo $r->message ;?></p>
                                     </div>
                                     <div class="card-footer">
                                         <a href="#" class="btn btn-sm btn-reply">Quote Reply</a>
                                     </div>
                                 </div>
+                                <?php      
+                                    }
+                                ?>
                                 <div class="card">
                                     <div class="card-header">
                                          <p>in reply to : <a href="#"><?php echo $title; ?></a></p>
                                     </div>
                                     <div class="card-block">
                                        
-                                        <?php echo form_open('thread/reply/'.$id); ?>
+                                        <?php echo form_open('thread/replyThread/'.$id); ?>
                                             <div class="form-group">
                                                 <label for="">Title</label>
                                                 <input type="text" class="form-control" required name="title" required placeholder="type your title">
