@@ -48,7 +48,7 @@ class Article extends Admin {
 
     public function add()
     {
-        $user = auth()->user();
+        $user = auth()->getUser();
 
         $this->form_validation->set_rules('title', 'Title', 'trim|required');
         $this->form_validation->set_rules('content', 'Content', 'required');
@@ -142,7 +142,7 @@ class Article extends Admin {
             $article = Model\Portal\Article::withDrafts()->find($id);
 
             if ($article->status == 'draft' && $article->editor_id == 0)
-                $artikel['editor_id'] = auth()->user()->id;
+                $artikel['editor_id'] = auth()->getUser()->id;
 
             if (set_value('with_schedule', 0)) {
                 $artikel['published'] = set_value('published');

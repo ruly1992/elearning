@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Sebagai</label>
-                    <p class="text-static"><?php echo $user->groups->implode('name') ?></p>
+                    <p class="text-static"><?php echo $user->roles->implode('name', ', ') ?></p>
                </div>
             </div>
         </div>
