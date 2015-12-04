@@ -25,18 +25,18 @@ class Article extends Admin {
     {
 
         $request    = Request::createFromGlobals();
-        $articles   = Model\Article::published()->latest('date')->get();
+        $articles   = Model\Portal\Article::published()->latest('date')->get();
         $status     = 'publish';
 
         if ($request->query->has('status')) {
             $status = $request->query->get('status');
             
             if ($status === 'draft') {
-                $articles   = Model\Article::withDrafts()->status($status)->latest('date')->get();            
+                $articles   = Model\Portal\Article::withDrafts()->status($status)->latest('date')->get();            
             } elseif ($status === 'schedule') {
-                $articles   = Model\Article::withDrafts()->scheduled()->latest('date')->get();
+                $articles   = Model\Portal\Article::withDrafts()->scheduled()->latest('date')->get();
             } elseif ($status === 'all') {
-                $articles   = Model\Article::latest('date')->get();
+                $articles   = Model\Portal\Article::latest('date')->get();
             }
         }        
 
@@ -139,7 +139,7 @@ class Article extends Admin {
                 'featured_image'    => set_value('featured', ''),
             );
 
-            $article = Model\Article::withDrafts()->find($id);
+            $article = Model\Portal\Article::withDrafts()->find($id);
 
             if ($article->status == 'draft' && $article->editor_id == 0)
                 $artikel['editor_id'] = auth()->user()->id;
