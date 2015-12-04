@@ -23,7 +23,7 @@ class Profile extends Admin
 
     public function index()
     {
-        $id = auth()->user()->id;
+        $id = auth()->getUser()->id;
 
         $this->form_validation->set_rules('email', 'Email','required|valid_email');
         $this->form_validation->set_rules('first_name', 'First Name','required');
@@ -82,7 +82,7 @@ class Profile extends Admin
 
     public function changepassword()
     {
-        $user_id = auth()->user()->id;
+        $user_id = auth()->getUser()->id;
 
         $this->form_validation->set_rules('password', 'New Password', 'required|min_length[6]');
         $this->form_validation->set_rules('password_confirmation', 'New Password Confirmation', 'required|min_length[6]|matches[password]');
