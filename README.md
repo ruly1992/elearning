@@ -1,25 +1,59 @@
-# elearning
+# eLearning Desa Membangun
 
-Pastikan database khusus untuk user sudah dibuat di mysql (cek di .env), kemudian lakukan perintah dibawah:
+### System Requirements
+ - PHP >= 5.6
+ - MySQL Server
+ - PHP short-tag enabled
+ - Composer
+ - NodeJS
+ - NPM
+ - Git 
 
-<pre>composer update
-./phinx migrate -c phinx_user.php
-./phinx seed:run -c phinx_user.php
-</pre>
+### Fresh Install
 
-Untuk mendapatkan table profile dan master data daerah, lakukan perintah diatas.
+ - Instalasi PHP dependencies dengan Composer
+    ```
+    $ composer install
+    ```
+ - Instalasi asset dependencies (jQuery, Bootstrap, Font Awesome, and more...) dengan npm
+    ```
+    $ cd public
+    $ npm install
+    ```
+ - Beberapa direktori harus diubah permission menjadi writable
+    ```
+    $ chmod 775 -R public/user/avatar public/portal-content public/kelas-content app/files
+    ```
+ - Setelah itu ubah group menjadi `apache` (untuk CentOS) atau `www-data` (untuk Ubuntu)
+    ```
+    $ chown :apache -R public/user/avatar public/portal-content public/kelas-content app/files
+    ```
+ - Konfigurasi environment dengan cara mengopy file `.env.example` menjadi `.env`
+    ```
+    $ cp .env.example .env
+    ```
+ - Ubah konfigurasi setiap modul punya database sendiri-sendiri
+    ```
+    $ nano .env
+    ```
+    > Pastikan semua host, user, password, dan nama database sudah sesuai di konfigurasi .env
+ - Membangun database
+    - Ubah phinx agar menjadi executable
+        ```
+        $ chmod +x phinx vendor/robmorgan/phinx/bin/phinx
+        ```
+    - User dan Data Daerah
+        ```
+        $ ./phinx migrate -c phinx_user.php
+        $ ./phinx seed:run -c phinx_user.php
+        ```
+    - Portal
+        ```
+        $ ./phinx migrate -c phinx_portal.php
+        $ ./phinx seed:run -c phinx_portal.php
+        ```
 
-Helper untuk menggunakan Modul Login:
+License
+----
 
-<pre>login_url();
-logout_url();</pre>
-
-untuk cek sudah login atau belum:
-
-<pre>if ($user = sentinel()->check()) {
-    // sudah login
-}</pre>
-
-Untuk dokumentasi lengkap, bisa dilihat di Sentinel https://cartalyst.com/manual/sentinel/2.0#native
-
-
+Apache
