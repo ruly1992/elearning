@@ -36,7 +36,7 @@
     <pre>
     $ nano .env
     </pre>
-    > Pastikan semua host, user, password, dan nama database sudah sesuai di konfigurasi .env
+    Pastikan semua host, user, password, dan nama database sudah sesuai di konfigurasi .env
  - Membangun database
     - Ubah phinx agar menjadi executable
         <pre>
