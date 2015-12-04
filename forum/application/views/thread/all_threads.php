@@ -128,7 +128,7 @@
 											<tr>
                                                 <td>
                                                     <div class="thread-list-title">
-                                                        <h4><?php echo anchor('thread/viewThread/'.$t->id,$t->title); ?> 
+                                                        <h4><?php echo anchor('thread/view/'.$t->id,$t->title); ?> 
 															<?php if($t->type=='close'){echo '<small class="label label-default"><i class="fa fa-lock"></i> Close Group</small>';} ?>
 														</h4>
                                                     </div>
