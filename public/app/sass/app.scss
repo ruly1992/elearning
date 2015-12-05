@@ -3588,7 +3588,6 @@ a {
 .label-primary{
 	background-color: $green;
 }
-
 .btn-konsul {
     padding-top: $padding-top - 4;
     padding-right: $padding-right;
@@ -3597,4 +3596,10 @@ a {
     font-size: 12px;
     line-height: 1.5;
     @include border-radius(3px);
+}
+.alert {
+    padding: 9px;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
 }
