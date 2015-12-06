@@ -3597,39 +3597,15 @@ a {
 /* 
 =================================
 	DASHBOARD PORTAL 
-	CREATE BY : FAJAR EKO SUSILO
 =================================
 */
-// END SCSS Create by : Fajar Eko Susilo 
+// END SCSS : Fajar Eko Susilo 
 .photo {
     margin-bottom: $margin-bottom;
     color: #9A9A9A;
     font-size: 12px;
     line-height: 1.3;
     font-weight: 400;
-}
-/* PANEL */
-.panel {
-    border: none;
-    box-shadow: none;
-}
-
-.panel-heading {
-    border-color:#eff2f7 ;
-    font-size: 13px;
-    font-weight: 400;
-    background: #fafafa;
-    text-transform: uppercase;
-    padding: $padding + 10px;
-}
-
-.panel-title {
-    color: #32323A;
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: $margin-bottom - 5;
-    margin-top: $margin-top - 5;
-    font-family: 'Open Sans', sans-serif;
 }
 .fade{
     opacity: 0;
@@ -3642,10 +3618,7 @@ a {
 	opacity: 1;
 	display: block;
 }
-
-.panel-primary .tools a {
-    color: #fff;
-}
+// END Fajar Eko Susilo
 
 /* DASHBOARD FOR SUMBIT ARTICLES */
 .articles-dashboard {
@@ -3790,4 +3763,4 @@ a {
 		}
 	}
 }
-// END SCSS Create by : Fajar Eko Susilo
+// END SCSS
