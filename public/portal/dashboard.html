@@ -10,8 +10,10 @@
         <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="../stylesheets/app.css">
         <link rel="stylesheet" href="../stylesheets/responsive.css">
-        <link rel="stylesheet" href="../stylesheets/dashboard.css">
+        <link rel="stylesheet" href="../plugins/datatables/css/dataTables.bootstrap.css">
+        <!-- <link rel="stylesheet" href="../plugins/datatables/css/jquery.dataTables.min.css"> -->
         <!-- end:stylesheet -->
+
     </head>
     <body id="page-top" data-spy="scroll" data-target="#navbar-main">
 
@@ -96,270 +98,253 @@
         <!-- end:header -->
 
         <!-- start:main content -->
-        <div class="container content content-dashboard content-single"> 
-        <!-- Oprek SCSS pada baris ke 1927 -->
+        <div class="container content-dashboard-user articles-dashboard content-single"> 
             <!-- start: content atas -->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="content-dashboard-articles-main">
-                      <div class="container">
-                         <div class="row">
-                            <ul class="nav nav-tabs" role="tablist">
-                              <li class="nav-item">
-                                <a class="nav-link active" href="#article" role="tab" data-toggle="tab">Sumbit Articles</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" href="#elibrary" role="tab" data-toggle="tab">Submit Elibary</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" href="#konsultasi" role="tab" data-toggle="tab">Submit Konsultasi</a>
-                              </li>
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                              <div role="tabpanel" class="tab-pane active" id="article">
-                                <div class="container">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        ini buat tinymce
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="content-sidebar">
-                                            <div class="widget">
-                                                <div class="widget-heading">
-                                                    <h3>Category</h3>
+                    <section class="content-articles">
+                        <div class="content-articles-heading">
+                            <h3>Dashboard Create Articles</h3>
+                        </div>
+                    </section>
+                    <div class="container content-submit">
+                        <div class="submit">
+                            <div class="submit-heading">
+                                <ul class="nav nav-tabs" id="myTabSubmit" role="tablist">
+                                    <li class="nav-item">
+                                         <a class="nav-link active" data-toggle="tab" href="#submit-article" role="tab" aria-controls="article-post" aria-expanded="true">Submit article</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#submit-elibrary" role="tab" aria-controls="library-post" aria-expanded="false">Submit Elibrary</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#submit-konsultasi" role="tab" aria-controls="konsultasis-post" aria-expanded="false">Submit Konsultasi</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <div class="submit-content">
+                                            <div class="tab-content" id="myTabSubmitContent">
+                                                <div role="tabpanel" class="tab-pane fade active in" id="submit-article" aria-labelledby="article-post" aria-expanded="true">
+                                                <form>
+                                                    <fieldset class="form-group">
+                                                        <label for="exampleInputArtikel">Judul Artikel</label>
+                                                        <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
+                                                        <small class="text-muted">Masukkan judul artikel disini</small>
+                                                    </fieldset>
+                                                    <fieldset class="form-group">
+                                                        <label for="exampleInputKonten">Konten Artikel</label>
+                                                        <textarea class="editor"></textarea>
+                                                    </fieldset>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </form>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
+                                                <form>
+                                                    <fieldset class="form-group">
+                                                        <label for="exampleInputArtikel">Judul Elibrary</label>
+                                                        <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
+                                                        <small class="text-muted">Masukkan judul elibrary disini</small>
+                                                    </fieldset>
+                                                    <fieldset class="form-group">
+                                                        <label for="exampleInputKonten">Konten Artikel</label>
+                                                        <textarea class="editor"></textarea>
+                                                    </fieldset>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </form>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="submit-konsultasi" aria-labelledby="" aria-expanded="false">
+                                                <form>
+                                                    <fieldset class="form-group">
+                                                        <label for="exampleInputArtikel">Judul Konsultasi</label>
+                                                        <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
+                                                        <small class="text-muted">Masukkan judul konsultasi disini</small>
+                                                    </fieldset>
+                                                    <fieldset class="form-group">
+                                                        <label for="exampleInputKonten">Konten Artikel</label>
+                                                        <textarea class="editor"></textarea>
+                                                    </fieldset>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </form>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                </div>
-                              </div>
-                              <div role="tabpanel" class="tab-pane" id="elibrary">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        ini buat tinymce
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="content-sidebar">
-                                            <div class="widget">
-                                                <div class="widget-heading">
-                                                    <h3>Category</h3>
-                                                </div>
-                                                <div class="widget-content">
-                                                    
-                                                </div>
-                                            </div>
+                                 </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <div class="submit">
+                                        <div class="submit-sidebar-heading">
+                                            <h3>Category</h3>
+                                        </div>
+                                        <div class="submit-sidebar-content">
+                                            <a href="#" class="list-group-item active">
+                                                <span class="label label-default label-pill pull-right">14</span> All Categories
+                                            </a>
+                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
+                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
+                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
                                         </div>
                                     </div>
                                 </div>
-                              </div>
-                              <div role="tabpanel" class="tab-pane" id="konsultasi">
-                                  <div class="row">
-                                    <div class="col-md-8">
-                                        ini buat tinymce
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="content-sidebar">
-                                            <div class="widget">
-                                                <div class="widget-heading">
-                                                    <h3>Category</h3>
-                                                </div>
-                                                <div class="widget-content">
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                              </div>
-                            </div>                          
-                         </div><!--/.row -->
-                      </div><!--/.container -->      
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> 
             <!-- end: content atas -->
-            <hr>
+
             <!-- start:content tengah-->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!-- start: content atas -->
-                    <div class="content-dashboard-articles-main">
-                      <div class="container">
-				         <div class="row">
-							<ul class="nav nav-tabs" role="tablist">
-							  <li class="nav-item">
-							    <a class="nav-link active" href="#submit-approve" role="tab" data-toggle="tab">Articles Approve</a>
-							  </li>
-							  <li class="nav-item">
-							    <a class="nav-link" href="#submit-draft" role="tab" data-toggle="tab">Articles Draft</a>
-							  </li>
-							</ul>
-
-							<!-- Tab panes -->
-							<div class="tab-content">
-							  <div role="tabpanel" class="tab-pane active" id="submit-approve">
-							  	<div class="container">
-    							  	<div class="row">
-                                        <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                      <th>#</th>
-                                                      <th>Judul</th>
-                                                      <th>Status</th>
-                                                      <th>Waktu Terbit</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Kembangkan Teknologi Perdesaan, Kementerian Desa Minta Bantuan Dewan Riset Nasional</td>
-                                                        <td><div class="label label-success">Publish</div></td>
-                                                        <td>09/12/2015</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Kembangkan Teknologi Perdesaan, Kementerian Desa Minta Bantuan Dewan Riset Nasional</td>
-                                                        <td><div class="label label-success">Publish</div></td>
-                                                        <td>09/12/2015</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">4</th>
-                                                        <td>Kembangkan Teknologi Perdesaan, Kementerian Desa Minta Bantuan Dewan Riset Nasional</td>
-                                                        <td><div class="label label-success">Publish</div></td>
-                                                        <td>09/12/2015</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">5</th>
-                                                        <td>Kembangkan Teknologi Perdesaan, Kementerian Desa Minta Bantuan Dewan Riset Nasional</td>
-                                                        <td><div class="label label-success">Publish</div></td>
-                                                        <td>09/12/2015</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">6</th>
-                                                        <td>Kembangkan Teknologi Perdesaan, Kementerian Desa Minta Bantuan Dewan Riset Nasional</td>
-                                                        <td><div class="label label-success">Publish</div></td>
-                                                        <td>09/12/2015</td>
-                                                    </tr>
-                                                </tbody>
+                    <section class="content-articles">
+                        <div class="content-articles-heading">
+                            <h3>Dashboard Post Articles</h3>
+                        </div>
+                    </section>
+                    <div class="container content-submit">
+                        <div class="submit">
+                            <div class="submit-heading">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                         <a class="nav-link active" id="#" data-toggle="tab" href="#article-submit" role="tab" aria-controls="article-approve" aria-expanded="true">Artikel Submit</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="#" data-toggle="tab" href="#article-draft" role="tab" aria-controls="article-draft" aria-expanded="false">Artikel Draft</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="submit-content">
+                                <div class="tab-content" id="myTabTableContent">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="article-submit" aria-expanded="true">
+                                        <table id="publish" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Judul</th>
+                                                    <th>Status</th>
+                                                    <th>Waktu Terbit</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Kembangkan Teknologi Perdesaan, Kementerian Desa Minta Bantuan Dewan Riset Nasional</td>
+                                                    <td><div class="label label-success">Publish</div></td>
+                                                    <td>2015-11-27 09:47:07</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Karut Marut Proses Perekrutan Pendamping UU No. 6 Tahun 2014 Tentang Desa</td>
+                                                    <td><div class="label label-success">Publish</div></td>
+                                                    <td>2015-11-27 09:47:07</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Warga Serbu Stand Kemendesa PDTT di Sail Tomini</td>
+                                                    <td><div class="label label-success">Publish</div></td>
+                                                    <td>2015-11-27 09:47:07</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
-                                        <select class="c-select">
-                                                <option selected>Hasil perhalaman</option>
-                                                <option value="1">5</option>
-                                                <option value="2">10</option>
-                                                <option value="3">50</option>
-                                                <option value="4">100</option>
-                                                <option value="5">Tidak terbatas</option>
-                                        </select>
-                                        <nav>
-                                                <ul class="pager">
-                                                    <li><a href="#">Sebelumnya</a></li>
-                                                    <li><a href="#">Berikutnya</a></li>
-                                                </ul>
-                                        </nav>
                                     </div>
-    							</div>
-							  </div>
-							  <div role="tabpanel" class="tab-pane" id="submit-draft">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="container">
-                                    <div class="row">
-                                        <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                      <th>#</th>
-                                                      <th>Judul</th>
-                                                      <th>Status</th>
-                                                      <th>Waktu Terbit</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Kembangkan Teknologi Perdesaan, Kementerian Desa Minta Bantuan Dewan Riset Nasional</td>
-                                                        <td><div class="label label-warning">Publish</div></td>
-                                                        <td>09/12/2015</td>
-                                                    </tr>
-                                                </tbody>
+                                    <div role="tabpanel" class="tab-pane fade" id="article-draft"  aria-expanded="false">
+                                        <table id="draft" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Judul</th>
+                                                    <th>Status</th>
+                                                    <th>Waktu Terbit</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Kembangkan Teknologi Perdesaan, Kementerian Desa Minta Bantuan Dewan Riset Nasional</td>
+                                                    <td><div class="label label-warning">Publish</div></td>
+                                                    <td>2015-11-27 09:47:07</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
-                                        <select class="c-select">
-                                                <option selected>Hasil perhalaman</option>
-                                                <option value="1">5</option>
-                                                <option value="2">10</option>
-                                                <option value="3">50</option>
-                                                <option value="4">100</option>
-                                                <option value="5">Tidak terbatas</option>
-                                        </select>
-                                        <nav>
-                                                <ul class="pager">
-                                                    <li><a href="#">Sebelumnya</a></li>
-                                                    <li><a href="#">Berikutnya</a></li>
-                                                </ul>
-                                        </nav>
                                     </div>
                                 </div>
-                                </div>
-                              </div>
-							</div>			            	
-				         </div><!--/.row -->
-				      </div><!--/.container -->      
+                            </div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
             <!-- end:content tengah-->
-            <hr>
+
             <!-- start:content bawah-->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!-- start: content atas -->
-                    <div class="content-dashboard-articles-main">
-                      <div class="container">
-                         <div class="row">
-                            <ul class="nav nav-tabs" role="tablist">
-                              <li class="nav-item">
-                                <a class="nav-link active" href="#statistic-user" role="tab" data-toggle="tab">Statistic User</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" href="#statistic-elibrary" role="tab" data-toggle="tab">Statistic Elibrary</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" href="#statistic-konsultasi" role="tab" data-toggle="tab">Statistic Konsultasi</a>
-                              </li>
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                              <div role="tabpanel" class="tab-pane active" id="submit-approve">
-                                <div class="container">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        ini buat tinymce
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="content-sidebar">
-                                            <div class="widget">
-                                                <div class="widget-heading">
-                                                    <h3>Category</h3>
+                    <section class="content-articles">
+                        <div class="content-articles-heading">
+                            <h3>Dashboard Statictic</h3>
+                        </div>
+                    </section>
+                    <div class="container content-submit">
+                        <div class="submit">
+                            <div class="submit-heading">
+                                <ul class="nav nav-tabs" id="myTabStatistic" role="tablist">
+                                    <li class="nav-item">
+                                         <a class="nav-link active" data-toggle="tab" href="#statistic-article" role="tab" aria-controls="article-statistic" aria-expanded="true">Statistik User</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#statistic-elibrary" role="tab" aria-controls="library-statistic" aria-expanded="false">Statistik Elibrary</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#statistic-konsultasi" role="tab" aria-controls="konsultasis-statistic" aria-expanded="false">Konsultasi</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="container">
+                            <div class="row">
+                                <div class="submit-content">
+                                    <div class="tab-content" id="myTabStatisticContent">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="statistic-article" aria-labelledby="article-post" aria-expanded="true">
+                                             <section class="panel">
+                                                <header class="panel-heading">
+                                                   Statistik User
+                                                </header>
+                                                <div class="panel-body">
+                                                    <div id="visitors-chart">
+                                                        <div id="visitors-container" style="width: 100%;height:300px; text-align: center; margin:0 auto;">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="widget-content">
-                                                    
+                                             </section>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="statistic-elibrary" aria-labelledby="article-post" aria-expanded="false">
+                                             <section class="panel">
+                                                <header class="panel-heading">
+                                                   Statistik Elibrary
+                                                </header>
+                                                <div class="panel-body">
+                                                   <div id="elib-chart">
+                                                        <div id="elib-container" style="width: 100%;height:300px; text-align: center; margin:0 auto;">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </section>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="statistic-konsultasi" aria-labelledby="article-post" aria-expanded="false">
+                                             <section class="panel">
+                                                <header class="panel-heading">
+                                                   Statistik Konsultasi
+                                                </header>
+                                                <div class="panel-body">
+                                                    Content Konsultasi 
+                                                </div>
+                                            </section>
                                         </div>
                                     </div>
                                 </div>
-                              </div>
-                              </div>
-                              <div role="tabpanel" class="tab-pane" id="submit-draft">Mau liat profil bisa di mari</div>
-                            </div>                          
-                         </div><!--/.row -->
-                      </div><!--/.container -->      
-                    </div>
-                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>  
+                 </div>  
             </div>
             <!-- end:content bawah-->
         </div>
@@ -430,7 +415,35 @@
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="../javascript/jquery.sticky.js"></script>
-        <script src="../javascript/app.js"></script>
+        <script src="../javascript/app.js"></script>   
+        <script src="../plugins/tinymce/tinymce.min.js"></script>
+        <script src="../javascript/custom-tiny.js"></script>
+        <!-- jQuery Flot Chart-->
+        <script src="../plugins/flot-chart/jquery.flot.js"></script>
+        <script src="../plugins/flot-chart/jquery.flot.tooltip.min.js"></script>
+        <script src="../plugins/flot-chart/jquery.flot.resize.js"></script>
+        <script src="../plugins/flot-chart/jquery.flot.pie.resize.js"></script>
+        <script src="../plugins/flot-chart/jquery.flot.selection.js"></script>
+        <script src="../plugins/flot-chart/jquery.flot.stack.js"></script>
+        <script src="../plugins/flot-chart/jquery.flot.time.js"></script>
+        <script src="../javascript/flot.chart.init.js"></script>
+        <script src="../plugins/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="../plugins/datatables/js/dataTables.bootstrap.js"></script>
+        <script>
+        $(document).ready(function(){
+            $('#publish').DataTable();
+        });
+        $(document).ready(function(){
+            $('#draft').DataTable();
+            
+            // {
+            //     "oLanguage": {
+            //          "sSearch": "",
+            //          'sLengthMenu': "_MENU_"
+            //        }
+            // });
+        });
+        </script>
         <!-- end:javascript -->
     </body>
 </html>
