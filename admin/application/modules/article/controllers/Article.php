@@ -23,24 +23,27 @@ class Article extends Admin {
 
     public function index()
     {
-
         $request    = Request::createFromGlobals();
-        $articles   = Model\Portal\Article::published()->latest('date')->get();
+        $articles   = Model\Portal\Article::published()->latest('date');
         $status     = 'publish';
 
         if ($request->query->has('status')) {
             $status = $request->query->get('status');
             
             if ($status === 'draft') {
-                $articles   = Model\Portal\Article::withDrafts()->status($status)->latest('date')->get();            
+                $articles   = Model\Portal\Article::withDrafts()->status($status)->latest('date');            
             } elseif ($status === 'schedule') {
-                $articles   = Model\Portal\Article::withDrafts()->scheduled()->latest('date')->get();
+                $articles   = Model\Portal\Article::withDrafts()->scheduled()->latest('date');
             } elseif ($status === 'all') {
-                $articles   = Model\Portal\Article::latest('date')->get();
+                $articles   = Model\Portal\Article::latest('date');
             }
-        }        
+        }
 
-        $data['artikel']    = $articles;
+        if (sentinel()->inRole(['edt'])) {
+            $articles = $articles->onlyAllowEditor();
+        }
+
+        $data['artikel']    = $articles->get();
         $data['status']     = $status;
 
        $this->template->build('index', $data);
