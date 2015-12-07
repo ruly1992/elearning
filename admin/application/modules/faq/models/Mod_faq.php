@@ -17,6 +17,25 @@ class Mod_faq extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	public function getById($faq_id)
+	{
+		$this->db->where('id', $faq_id);
+
+		$query = $this->db->get('faqs');
+
+		return $query->num_rows() ? $query->row() : FALSE;
+	}
+
+	public function update($faq_id, $data)
+	{
+		$this->db->set($data);
+        $this->db->where('id', $faq_id);
+
+        $query = $this->db->update('faqs');
+
+        return $query;
+	}
+
 }
 
 /* End of file Mod_faq.php */
