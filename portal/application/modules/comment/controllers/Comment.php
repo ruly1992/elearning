@@ -15,9 +15,9 @@ class Comment extends CI_Controller {
         $this->query    = $this->request->query;
 
         if ($this->query->has('article_id'))
-            $this->article  = Model\Article::findOrFail($this->query->get('article_id'));
+            $this->article  = Model\Portal\Article::findOrFail($this->query->get('article_id'));
         else
-            $this->article  = new Model\Article;
+            $this->article  = new Model\Portal\Article;
     }
 
     public function show()
@@ -38,7 +38,7 @@ class Comment extends CI_Controller {
 
     public function store()
     {
-        $article = Model\Article::findOrFail(set_value('article_id'));
+        $article = Model\Portal\Article::findOrFail(set_value('article_id'));
 
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -56,7 +56,7 @@ class Comment extends CI_Controller {
             } else {
                 keepValidationErrors();
                 
-                redirect($article->link . '#comment-title', 'refresh');
+                redirect($article->link . '#comments', 'refresh');
             }
         } else {
             $data = array(
@@ -65,13 +65,20 @@ class Comment extends CI_Controller {
                 'email'         => set_value('email'),
                 'artikel_id'    => set_value('article_id'),
                 'parent'        => set_value('parent', 0),
+                'status'        => 'draft',
                 'date'          => Carbon::now(),
             );
 
-            $comment = Model\Comment::create($data);
+            $comment = Model\Portal\Comment::create($data);
 
-            if (auth()->loginCheck()) {
-                $comment->user()->associate(auth()->user()->id);
+            if ($user = auth()->check()) {
+                $comment->user()->associate($user->id);
+
+                if ($user->inRole(['su', 'adm', 'edt', 'ins', 'mdr']))
+                    $comment->status    = 'publish';
+                else
+                    $comment->status    = 'draft';
+
                 $comment->save();
             }
 
@@ -83,7 +90,15 @@ class Comment extends CI_Controller {
                 ]));
                 $response->headers->set('Content-Type', 'application/json');
             } else {
-                redirect($article->link . '#comment-' . $comment->id, 'refresh');
+                if ($comment->status == 'publish') {
+                    set_message_success('Komentar Anda sudah ditampilkan.');
+
+                    redirect($article->link . '#comment-' . $comment->id, 'refresh');
+                } else {
+                    set_message_success('Komentar Anda akan tampil setelah dimoderasi.');
+
+                    redirect($article->link . '#comments', 'refresh');
+                }
             }
         }
     }

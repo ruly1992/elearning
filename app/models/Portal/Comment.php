@@ -2,11 +2,14 @@
 
 namespace Model\Portal;
 
+use Model\User;
 use Model\Scopes\HasArticle;
+use Model\Scopes\Published;
 
 class Comment extends Model
 {
     use HasArticle;
+    use Published;
     
     protected $table = 'komentar';
     protected $dates = ['date'];
@@ -63,5 +66,12 @@ class Comment extends Model
                         ->get();
 
         return $comments;
+    }
+
+    public function scopePublished($query)
+    {
+        $query = $query->where('status', 'publish');
+
+        return $query;
     }
 }
