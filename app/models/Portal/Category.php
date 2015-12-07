@@ -2,6 +2,8 @@
 
 namespace Model\Portal;
 
+use Model\User;
+
 class Category extends Model
 {
     protected $table = 'kategori';
@@ -26,7 +28,9 @@ class Category extends Model
 
     public function editors()
     {
-        return $this->belongsToMany(User::class, 'editor_kategori', 'kategori_id', 'user_id');
+        $database = $this->getConnection()->getDatabaseName();
+
+        return $this->belongsToMany(User::class, $database.'.kategori_moderator', 'category_id', 'user_id');
     }
 
     public function articles()
@@ -56,5 +60,12 @@ class Category extends Model
                 $this->updateFromNestable($nest->children, $nest->id);
             }
         }
+    }
+
+    public function scopeOnlyAllowEditor($query, $user_id = 0)
+    {
+        $user = $user_id ? Model\User::find($user_id) : sentinel()->getUser();
+
+        return $query->whereIn('id', $user->editorcategory->pluck('id')->toArray());;
     }
 }
