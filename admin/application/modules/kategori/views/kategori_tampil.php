@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label for="parent">Editor</label>
-                    <?php echo form_dropdown('editor', $users, '', array('class' => 'form-control select2')); ?>
+                    <?php echo form_multiselect('editor[]', $users, '', array('class' => 'form-control select2')); ?>
                 </div>
             </div>
             <div class="panel-footer">
@@ -38,6 +38,9 @@
                 <div class="dd" id="nestable-category">
                     <?php echo $this->model->generateNested() ?>
                 </div>
+                <?php if (empty($this->model->generateNested())): ?>
+                    <p class="alert alert-warning">Tidak ada kategori yang ditampilkan.</p>
+                <?php endif ?>
             </div>
         </div>
     </div>
