@@ -59,17 +59,24 @@ class Faq extends CI_Controller {
 
 			if ($data == TRUE) {
 
-               set_message_success('Link Informasi Desa Berhasi di Ubah');
+               set_message_success('FAQ Berhasi di Ubah');
 
                redirect('faq');
            } else {
 
-                set_message_error('Link Informasi Desa Gagal di Ubah');
+                set_message_error('FAQ Gagal di Ubah');
 
                 redirect('faq/update');
 
            }
 		}
+	}
+
+	public function delete($faq_id)
+	{
+		$data = $this->Mod_faq->delete($faq_id);
+
+		redirect('faq','refresh');
 	}
 
 }
