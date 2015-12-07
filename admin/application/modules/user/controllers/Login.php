@@ -19,12 +19,11 @@ class Login extends CI_Controller {
             $this->template->set_layout('login');
             $this->template->build('login');
         } else {
-            $email      = set_value('email');
-            $password   = set_value('password');
+            $email          = set_value('email');
+            $password       = set_value('password');
+            $credentials    = compact('email', 'password');
 
-            $login = $this->ion_auth->login($email, $password);
-
-            if ($login) {
+            if (sentinel()->authenticate($credentials)) {
                 redirect('/', 'refresh');
             } else {
                 set_message_error('Username atau password salah.');
