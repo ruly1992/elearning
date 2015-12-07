@@ -10,6 +10,13 @@ class Mod_faq extends CI_Model {
 		return $query->result();
 	}
 
+	public function create($data)
+	{
+		$query = $this->db->insert('faqs', $data);
+
+		return $this->db->insert_id();
+	}
+
 }
 
 /* End of file Mod_faq.php */

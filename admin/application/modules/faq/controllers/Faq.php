@@ -16,6 +16,26 @@ class Faq extends CI_Controller {
 		$this->template->build('index', $data);
 	}
 
+	public function create()
+	{
+		$this->form_validation->set_rules('pertanyaan', 'pertanyaan', 'trim|required');
+
+		if ($this->form_validation->run() == FALSE) {
+			
+			$this->template->build('create');
+
+		} else {
+			$data['pertanyaan']			= set_value('pertanyaan');
+			$data['jawaban']			= set_value('jawaban');
+
+			$this->Mod_faq->create($data);
+
+            set_message_success('FAQ berhasil ditambahkan.');
+
+            redirect('faq/index');
+		}
+	}
+
 }
 
 /* End of file Faq.php */
