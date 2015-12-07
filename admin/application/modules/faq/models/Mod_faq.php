@@ -36,6 +36,14 @@ class Mod_faq extends CI_Model {
         return $query;
 	}
 
+	public function delete($faq_id)
+	{
+		$this->db->where('id', $faq_id);
+		$this->db->delete('faqs');
+
+		
+	}
+
 }
 
 /* End of file Mod_faq.php */
