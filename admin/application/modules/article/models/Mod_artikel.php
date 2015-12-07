@@ -94,11 +94,14 @@ class Mod_artikel extends CI_Model {
     public function setFeaturedImage($article_id, $featured_image = null)
     {
         if ($featured_image) {
+            $hashids    = new Hashids\Hashids(HASHIDS_SALT);
+            $id         = $hashids->encode($article_id);
+
             $source     = $featured_image['tmp_name'];
-            $filename   = $featured_image['name'];
+            $filename   = 'article_' . $id . '_' . $featured_image['name'];
 
             $manager    = new ImageManager;
-            $upload_dir = BASEPATH . '../assets/upload/featured/';
+            $upload_dir = PATH_PORTAL_CONTENT . '/featured/';
             $image      = $manager->make($source);
 
             $image->save($upload_dir . $filename, 90);
@@ -123,11 +126,14 @@ class Mod_artikel extends CI_Model {
     public function setCarouselImage($article_id, $slider = null)
     {
         if ($slider) {
+            $hashids    = new Hashids\Hashids(HASHIDS_SALT);
+            $id         = $hashids->encode($article_id);
+
             $source     = $slider['tmp_name'];
-            $filename   = $slider['name'];
+            $filename   = 'article_' . $id . '_' .$slider['name'];
 
             $manager    = new ImageManager;
-            $upload_dir = BASEPATH . '../assets/upload/slider/';
+            $upload_dir = PATH_PORTAL_CONTENT . '/slider/';
             $image      = $manager->make($source);
 
             $image->save($upload_dir . $filename, 90);
