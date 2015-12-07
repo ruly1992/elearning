@@ -6,7 +6,7 @@
         <table class="table table-hover table-bordered" id="">
             <thead>
                 <tr>
-                    <th>#</th>
+                    
                     <th>Pertanyaan</th>
                     <th>Jawaban</th>
                     <th>&nbsp;</th>
@@ -14,12 +14,12 @@
             </thead>
             <tbody>
                 <?php 
-                $no=1;
+                
                 foreach ($list_faq as $row):
-                    $no++;
+                   
                  ?>
                 <tr>
-                    <td><?php echo $no; ?></td>
+                    
                     <td><?php echo $row->pertanyaan ?></td>
                     <td><?php echo $row->jawaban ?></td>
                     <td>
