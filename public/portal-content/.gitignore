@@ -1,2 +1,4 @@
 *
 !.gitignore
+!/featured
+!/slider

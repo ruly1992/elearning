@@ -98,16 +98,19 @@ class Mod_sendarticle extends CI_Model {
 	public function setFeaturedImage($article_id, $featured_image = null)
     {
         if ($featured_image) {
+            $hashids    = new Hashids\Hashids(HASHIDS_SALT);
+            $id         = $hashids->encode($article_id);
+
             $source     = $featured_image['tmp_name'];
-            $filename   = $featured_image['name'];
+            $filename   = 'article_' . $id . '_' . $featured_image['name'];
 
             $manager    = new ImageManager;
-            $upload_dir = ASSET_MEDIA . 'featured/';
+            $upload_dir = PATH_PORTAL_CONTENT . '/featured/';
             $image      = $manager->make($source);
 
             $image->save($upload_dir . $filename, 90);
 
-            $data['featured_image'] = asset('media/featured/' . $filename);
+            $data['featured_image'] = $filename;
             
             $this->db->where('id', $article_id);        
             $this->db->update('artikel', $data);
