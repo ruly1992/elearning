@@ -102,7 +102,7 @@ class Mod_sendarticle extends CI_Model {
             $filename   = $featured_image['name'];
 
             $manager    = new ImageManager;
-            $upload_dir = ASSET_MEDIA . 'featured/';
+            $upload_dir = PATH_PORTAL_CONTENT . '/featured/';
             $image      = $manager->make($source);
 
             $image->save($upload_dir . $filename, 90);
