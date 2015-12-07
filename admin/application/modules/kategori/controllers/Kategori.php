@@ -2,18 +2,20 @@
 
 use Symfony\Component\HttpFoundation\Request;
 
-class Kategori extends Admin {
+class Kategori extends Admin
+{
+    protected $roles = ['su', 'adm', 'edt'];
 
     public function __construct()
     {
-
         parent::__construct();
-        $this->load->model('M_kategori','model');
+
+        $this->load->model('M_kategori', 'model');
     }
 
     public function index()
     {
-        $group = Model\Group::where('name', 'edt')->first();
+        $group  = sentinel()->findRoleBySlug('edt');
 
         $data['kategori']   = $this->model->read();
         $data['parent']     = $this->model->getLists();
@@ -24,7 +26,7 @@ class Kategori extends Admin {
 
     public function add()
     {
-        $this->form_validation->set_rules('name', 'Kategori', 'required');
+        $this->form_validation->set_rules('name', 'Kategori', 'required|is_unique[kategori.name]');
 
         if ($this->form_validation->run() == FALSE) {
             $data['kategori'] = $this->model->getLists();
@@ -36,13 +38,12 @@ class Kategori extends Admin {
             $kategori['name']           = set_value('name');
             $kategori['description']    = set_value('description');
             $kategori['parent']         = $this->input->post('parent');
-            $editor                     = set_value('editor', 0);
+            $editor                     = set_value('editor', []);
             
-            $category = Model\Category::create($kategori);
+            $category = Model\Portal\Category::create($kategori);
 
             if ($editor) {
-                $user = Model\User::find($editor);
-                $user->editorcategory()->attach($category);
+                $category->editors()->attach($editor);
             }
 
             set_message_success('Kategori berhasil ditambahkan.');
@@ -56,17 +57,23 @@ class Kategori extends Admin {
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
 
         if ($this->form_validation->run() == FALSE) {
-            $param                  = $this->model->getById($id);
-            $data['kategori']       = $param->row();
+            $group  = sentinel()->findRoleBySlug('edt');
+
+            $data['kategori']       = Model\Portal\Category::findOrFail($id);
             $data['kategori_lists'] = $this->model->getLists($id);
+            $data['users']          = $group->users->pluck('email', 'id')->toArray();
 
             $this->template->build('kategori_edit',$data);
         } else {
             $kategori['name']           = $this->input->post('name');
             $kategori['description']    = $this->input->post('description');
             $kategori['parent']         = $this->input->post('parent');
-            
-            $res = $this->model->update($id, $kategori);
+            $editor                     = set_value('editor', []);
+
+            $category   = Model\Portal\Category::findOrFail($id);
+            $category->update($kategori);
+
+            $category->editors()->sync($editor);
 
             if ($res==TRUE) {
                 set_message_success('Kategori berhasil diperbarui.');
@@ -93,10 +100,21 @@ class Kategori extends Admin {
 
     public function delete($id)
     {
-        $data = $this->model->delete($id);
+        $delete     = $this->input->post('delete', 0);
+        $category   = Model\Portal\Category::findOrFail($id);
 
-        set_message_success('Kategori berhasil dihapus.');
+        if (!$delete) {
+            $data['category']   = $category;
 
-        redirect('kategori');
+            $this->template->build('kategori_delete', $data);
+        } else {
+            $category->editors()->detach();
+            $category->articles()->delete();
+            $category->delete();
+
+            set_message_success('Kategori berhasil dihapus.');
+
+            redirect('kategori');
+        }
     }
 }

@@ -157,6 +157,15 @@ class Article extends Model
         });
     }
 
+    public function scopeOnlyAllowEditor($query, $user_id = 0)
+    {
+        $user = $user_id ? Model\User::find($user_id) : sentinel()->getUser();
+
+        return $query->whereHas('categories', function ($query) use ($user) {
+            return $query->whereIn($query->getModel()->getTable().'.id', $user->editorcategory->pluck('id')->toArray());
+        });
+    }
+
     public function scopeCategoryId($query, $category_id)
     {
         return $query->whereHas('categories', function ($query) use ($category_id) {
