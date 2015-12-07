@@ -105,71 +105,51 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li class="active">Your Topics</li>
+                                <li class="active">Edit Topic</li>
                             </ol>
-                            <?php 
-                                if(isset($failed)){
-                                    echo '<div class="alert alert-danger">';
-                                        echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
-                                        echo '<strong>Warning!</strong> '.$failed;
-                                    echo '</div>';
-                                }elseif(isset($success)){
-                                    echo '<div class="alert alert-info">';
-                                        echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
-                                        echo '<strong>Success!</strong> '.$success;
-                                    echo '</div>';
-                                }
-                            ?>
                             <div class="forum-main">
                                 <div class="card">
                                     <div class="card-block">
-                                       <table class="table table-bordered table-responsive">
-                                            <thead>
-                                                <tr>
-                                                  <th>#</th>
-                                                  <th>Topic</th>
-                                                  <th>Category</th>
-                                                  <th>Daerah</th>
-                                                  <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <?php 
-                                                $no=1;
-                                                foreach($topics as $t){
-                                            ?>
-                                                    <tr>
-                                                        <th scope="row"><?php echo $no; ?></th>
-                                                        <td><?php echo $t->topic ?></td>
-                                                        <td><?php echo $t->category_name; ?></td>
-                                                        <td><?php echo $t->daerah; ?></td>
-                                                        <td align="center">
-                                                            <p>
-                                                              <?php echo anchor('topic/edit/'.$t->id,'Edit','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
-                                                              <?php echo anchor('topic/delete/'.$t->id,'Delete','class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                            <?php 
-                                                    $no++;
-                                                } 
-                                            ?>
-                                            </tbody>
-                                        </table>
-                                        <select class="c-select">
-                                            <option selected>Hasil perhalaman</option>
-                                            <option value="1">5</option>
-                                            <option value="2">10</option>
-                                            <option value="3">50</option>
-                                            <option value="4">100</option>
-                                            <option value="5">Tidak terbatas</option>
-                                        </select>
-                                        <nav>
-                                            <ul class="pager">
-                                                <li><a href="#">Sebelumnya</a></li>
-                                                <li><a href="#">Berikutnya</a></li>
-                                            </ul>
-                                        </nav>
+                                       
+                                        <?php echo form_open('topic/update/'.$idTopic); ?>
+                                            <div class="form-group">
+                                                <label for="">Kategori :</label>
+                                                <select class="c-select form-control" name="kategori">
+                                                    <?php 
+                                                        foreach($categories as $cat){
+                                                            if($cat->id==$kategori){
+                                                                $selected="selected";
+                                                            }else{
+                                                                $selected="";
+                                                            }
+                                                            echo '<option value="'.$cat->id.'" '.$selected.'>'.$cat->category_name.'</option>';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Topic</label>
+                                                <input type="text" name="topic" class="form-control" value="<?php echo $topic; ?>" placeholder="type your title">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Pilih Daerah :</label>
+                                                <select class="c-select form-control" name="daerah">
+                                                    <?php
+                                                        foreach($provinsi as $kode=>$nama){
+                                                            if($kode==$daerah){
+                                                                $selected="selected";
+                                                            }else{
+                                                                $selected="";
+                                                            }
+                                                            echo '<option '.$selected.' value="'.$kode.'">'.$nama.'</option>';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-post">UPDATE TOPIC</button>
+                                            </div>
+                                        <?php echo form_close(); ?>
                                     </div>
                                 </div>
                             </div>

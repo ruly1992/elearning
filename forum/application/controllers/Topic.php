@@ -13,6 +13,19 @@ class Topic extends CI_Controller
         $this->load->library('WilayahIndonesia', null, 'wilayah');
     }
 
+    public function getWilayah(){
+        $hostname = getenv('AUTH_DB_HOST') ?: 'localhost';
+        $username = getenv('AUTH_DB_USERNAME') ?: 'root';
+        $password = getenv('AUTH_DB_PASSWORD') ?: '';
+        $database = getenv('AUTH_DB_DATABASE') ?: 'portal_learning';
+
+        $source = new DatabaseSource($hostname, $username, $password, $database);
+        $this->wilayah->setSource($source);
+
+        $source = $this->wilayah->getSource();
+        return $source->getAllProvinsi();
+    }
+
     public function index(){
         if($this->session->flashdata('success')){
             $data['success'] = $this->session->flashdata('success');
@@ -25,23 +38,13 @@ class Topic extends CI_Controller
 
     public function create()
     {
-        $hostname = getenv('AUTH_DB_HOST') ?: 'localhost';
-        $username = getenv('AUTH_DB_USERNAME') ?: 'root';
-        $password = getenv('AUTH_DB_PASSWORD') ?: '';
-        $database = getenv('AUTH_DB_DATABASE') ?: 'portal_learning';
-
-        $source = new DatabaseSource($hostname, $username, $password, $database);
-        $this->wilayah->setSource($source);
-
-        $source = $this->wilayah->getSource();
-
         if($this->session->flashdata('success')){
             $data['success'] = $this->session->flashdata('success');
         }elseif($this->session->flashdata('failed')){
             $data['failed'] = $this->session->flashdata('failed');
         }
         $data['categories'] = $this->model_topic->get_categories();
-        $data['provinsi']   = $source->getAllProvinsi();
+        $data['provinsi']   = $this->getWilayah();
 
     	$this->load->view('topic/create', $data);
     }
@@ -60,23 +63,67 @@ class Topic extends CI_Controller
             );
             $save = $this->model_topic->save($data);
             if($save==TRUE){
-                $this->session->set_flashdata('success','Topic berhasil dibuat.');
+                $this->session->set_flashdata('success','New topic has successfully created.');
             }else{
-                $this->session->set_flashdata('failed','Topic tidak berhasil dibuat.');
+                $this->session->set_flashdata('failed','New topic was failed to be created.');
             }
-            redirect('topic/create');
+            redirect('topic/');
         }else{
             $this->session->set_flashdata('failed',validation_error());
             rediect('topic/');
         }
     }
 
+    public function edit($id){
+        $getTopic = $this->model_topic->selectTopic($id);
+        foreach($getTopic as $t){
+            $data = array(
+                'idTopic'  => $t->id,
+                'kategori' => $t->category,
+                'topic'    => $t->topic,
+                'daerah'   => $t->daerah
+            );
+        }
+
+        $data['categories'] = $this->model_topic->get_categories();
+        $data['provinsi']   = $this->getWilayah();
+
+        $this->load->view('topic/edit',$data);
+    }
+
+    public function update($id){
+        $this->form_validation->set_rules('kategori','Kategori','required');
+        $this->form_validation->set_rules('topic','Topic','required');
+        $this->form_validation->set_rules('daerah','Daerah','required');
+
+        if($this->form_validation->run()==TRUE){
+            $data = array(
+                'tenaga_ahli' => '1',
+                'category'    => set_value('kategori'),
+                'topic'       => set_value('topic'),
+                'daerah'      => set_value('daerah')
+            );
+
+            $update = $this->model_topic->update($id,$data);
+            
+            if($update==TRUE){
+                $this->session->set_flashdata('success','Topic was successfully updated.');
+            }else{
+                $this->session->set_flashdata('failed','Topic was failed to be updated.');
+            }
+            redirect('topic/');
+        }else{
+            $this->session->set_flashdata('success',validation_error());
+            redirect('topic/');
+        }
+    }
+
     public function delete($id){
         $delete = $this->model_topic->delete($id);
         if($delete==TRUE){
-            $this->session->set_flashdata('success','Topic berhasil dihapus.');
+            $this->session->set_flashdata('success','Topic was successfully deleted.');
         }else{
-            $this->session->set_flashdata('failed','Topic tidak berhasil dihapus.');
+            $this->session->set_flashdata('failed','Topic was failed to be deleted.');
         }
         redirect('topic/');
     }
