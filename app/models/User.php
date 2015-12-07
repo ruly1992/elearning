@@ -42,6 +42,11 @@ class User extends \Cartalyst\Sentinel\Users\EloquentUser
         return $this->hasOne(Profile::class);
     }
 
+    public function editorcategory()
+    {
+        return $this->belongsToMany(Portal\Category::class, 'kategori_moderator', 'user_id', 'category_id');
+    }
+
     public function inRole($role)
     {
         $roled = $this->roles->filter(function ($instance) use ($role) {
