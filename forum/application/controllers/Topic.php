@@ -11,6 +11,10 @@ class Topic extends CI_Controller
         $this->load->database();
         $this->load->model('model_topic');
         $this->load->library('WilayahIndonesia', null, 'wilayah');
+
+        if(!sentinel()->check()) {
+            redirect(login_url());
+        }
     }
 
     public function getWilayah(){
@@ -32,6 +36,8 @@ class Topic extends CI_Controller
         }elseif($this->session->flashdata('failed')){
             $data['failed'] = $this->session->flashdata('failed');
         }
+
+        $data['provinsi']   = $this->getWilayah();
         $data['topics'] = $this->model_topic->get_topics();
         $this->load->view('topic/view',$data);
     }
@@ -43,6 +49,7 @@ class Topic extends CI_Controller
         }elseif($this->session->flashdata('failed')){
             $data['failed'] = $this->session->flashdata('failed');
         }
+
         $data['categories'] = $this->model_topic->get_categories();
         $data['provinsi']   = $this->getWilayah();
 
@@ -55,13 +62,17 @@ class Topic extends CI_Controller
         $this->form_validation->set_rules('daerah','Daerah','required');
 
         if($this->form_validation->run()==TRUE){
+            $user = sentinel()->getUser();
+
             $data = array(
-                'tenaga_ahli' => '1', 
+                'tenaga_ahli' => $user->id, 
                 'category'    => set_value('kategori'),
                 'topic'       => set_value('topic'),
                 'daerah'      => set_value('daerah')
             );
+
             $save = $this->model_topic->save($data);
+
             if($save==TRUE){
                 $this->session->set_flashdata('success','New topic has successfully created.');
             }else{
@@ -97,8 +108,10 @@ class Topic extends CI_Controller
         $this->form_validation->set_rules('daerah','Daerah','required');
 
         if($this->form_validation->run()==TRUE){
+            $user = sentinel()->getUser();
+
             $data = array(
-                'tenaga_ahli' => '1',
+                'tenaga_ahli' => $user->id,
                 'category'    => set_value('kategori'),
                 'topic'       => set_value('topic'),
                 'daerah'      => set_value('daerah')
