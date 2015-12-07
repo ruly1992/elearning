@@ -7,13 +7,11 @@ class Thread extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        $this->load->helper(array('form', 'url'));
-        $this->load->library(array('form_validation','session','pagination'));
         $this->load->model('model_thread');
 
-        if(!sentinel()->check()) {
+        /*if(!sentinel()->check()) {
             redirect(login_url());
-        }
+        }*/
     }
     
     public function index()
