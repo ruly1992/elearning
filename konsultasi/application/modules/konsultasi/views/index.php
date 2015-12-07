@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                         <div class="content-konsultasi-heading-right pull-right">
-                            <a href="<?php echo base_url('konsultasi/index.php/konsultasi/create') ?>" class="btn btn-open-tiket">Buka Konsultasi</a>
+                            <a href="<?php echo base_url('konsultasi/index.php/konsultasi/create') ?>" class="btn btn-open-tiket">Mulai Konsultasi</a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                             <td><?php echo $row->subjek ?></td>
                             <td><?php echo $row->created_at ?></td>
                             <td><?php echo $row->updated_at ?></td>
-                            <td><p class="label label-primary"><?php echo $row->status ?></p></td>
+                            <td><p><input id="switch-size" type="checkbox" data-size="mini" name="my-checkbox"></p></td>
                             <td><a href="<?php echo base_url('konsultasi/index.php/konsultasi/detail/'. $row->id) ?>">Lihat Konsultasi</a></td>
                         </tr>
                         <?php endforeach ?>

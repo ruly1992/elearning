@@ -65,6 +65,11 @@
         <script src="<?php echo base_url('public/javascript/jquery.sticky.js') ?>"></script>
 	    <script src="<?php echo base_url('public/javascript/app.js') ?>"></script>
 	    <!-- end:javascript -->
+        <!-- start:switch -->
+        <script src="<?php echo base_url('public/plugins/bootstrap-switch/js/highlight.js') ?>"></script>
+        <script src="<?php echo base_url('public/plugins/bootstrap-switch/js/bootstrap-switch.js') ?>"></script>
+        <script src="<?php echo base_url('public/plugins/bootstrap-switch/js/main.js') ?>"></script>
+        <!-- end:switch -->
 
 	</body>
 </html>

@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="<?php echo base_url('public/node_modules/font-awesome/css/font-awesome.min.css') ?>">
         <link rel="stylesheet" href="<?php echo base_url('public/stylesheets/app.css') ?>">
         <link rel="stylesheet" href="<?php echo base_url('public/stylesheets/responsive.css') ?>">
+        <link rel="stylesheet" href="<?php echo base_url('public/plugins/bootstrap-switch/css/bootstrap-switch.css') ?>">
+
     <!-- end:stylesheet -->
 </head>
 <body id="page-top" data-spy="scroll" data-target="#navbar-main">
