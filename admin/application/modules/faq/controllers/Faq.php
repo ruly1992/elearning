@@ -36,6 +36,49 @@ class Faq extends CI_Controller {
 		}
 	}
 
+	
+
+	public function update($faq_id)
+	{
+		$this->form_validation->set_rules('pertanyaan', 'pertanyaan', 'trim|required');
+
+		if ($this->form_validation->run() == FALSE) {
+            
+            $data['data'] = $this->Mod_faq->getById($faq_id);
+
+            $this->template->build('update', $data);
+			
+		} else {
+			
+			$data = array(
+				'pertanyaan'			=> set_value('pertanyaan'),
+				'jawaban'				=> set_value('jawaban'),
+			);
+
+			$links = $this->Mod_faq->update($faq_id, $data);
+
+			if ($data == TRUE) {
+
+               set_message_success('FAQ Berhasi di Ubah');
+
+               redirect('faq');
+           } else {
+
+                set_message_error('FAQ Gagal di Ubah');
+
+                redirect('faq/update');
+
+           }
+		}
+	}
+
+	public function delete($faq_id)
+	{
+		$data = $this->Mod_faq->delete($faq_id);
+
+		redirect('faq','refresh');
+	}
+
 }
 
 /* End of file Faq.php */
