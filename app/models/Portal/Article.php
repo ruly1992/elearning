@@ -57,7 +57,7 @@ class Article extends Model
         } else {
             $this->has_featured_image = true;
 
-            return $featured_image;
+            return asset('portal-content/featured/' . $featured_image);
         }
     }
 
