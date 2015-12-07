@@ -1,4 +1,4 @@
 /vendor
 .env
 .sass-cache
-
+npm-debug.log
