@@ -142,7 +142,15 @@
                                                         <th scope="row"><?php echo $no; ?></th>
                                                         <td><?php echo $t->topic ?></td>
                                                         <td><?php echo $t->category_name; ?></td>
-                                                        <td><?php echo $t->daerah; ?></td>
+                                                        <td>
+                                                            <?php 
+                                                                foreach($provinsi as $kode=>$nama){
+                                                                    if($t->daerah==$kode){
+                                                                        echo $nama;
+                                                                    }
+                                                                }
+                                                            ?>
+                                                        </td>
                                                         <td align="center">
                                                             <p>
                                                               <?php echo anchor('topic/edit/'.$t->id,'Edit','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>

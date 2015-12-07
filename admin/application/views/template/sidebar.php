@@ -52,6 +52,7 @@
 				<li><a href="<?php echo site_url('user') ?>"><i class="icon-users"></i><span class="text">Pengguna</span></a></li>
 				<li><a href="<?php echo site_url('link') ?>"><i class="fa fa-link"></i><span class="text">Link Informasi Desa</span></a></li>
 				<li><a href="<?php echo site_url('settings') ?>"><i class="icon-settings"></i><span class="text">Setting</span></a></li>
+				<li><a href="<?php echo site_url('faq') ?>"><i class="icon-calculator"></i><span class="text">FAQ</span></a></li>
 
 			</ul>
 		</div>					
