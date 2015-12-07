@@ -10,3 +10,5 @@ define('PATH_ELIBRARY_UPLOAD',          PATH_ROOT.'/'.getenv('PATH_ELIBRARY_UPLO
 define('PATH_FORUM_ATTACHMENT',         PATH_ROOT.'/'.getenv('PATH_FORUM_ATTACHMENT')       ?: 'app/files/forum-attachment');
 define('PATH_KONSULTASI_ATTACHMENT',    PATH_ROOT.'/'.getenv('PATH_KONSULTASI_ATTACHMENT')  ?: 'app/files/konsultasi-attachment');
 define('PATH_KELASONLINE_ATTACHMENT',   PATH_ROOT.'/'.getenv('PATH_KELASONLINE_ATTACHMENT') ?: 'app/files/kelas-online');
+
+define('HASHIDS_SALT',   				getenv('HASHIDS_SALT') ?: 'yogyakarta');
