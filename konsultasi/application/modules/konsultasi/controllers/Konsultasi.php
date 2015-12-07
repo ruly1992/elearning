@@ -55,7 +55,40 @@ class Konsultasi extends CI_Controller {
 
             redirect('../konsultasi/index.php/konsultasi/','refresh');
         }
-        
+    }
+
+    public function detail($id)
+    {
+        $this->form_validation->set_rules('isi', 'Isi', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            
+            $detail['konsultasi']       = $this->M_konsultasi->getByIdKonsultasi($id);
+            $detail['kategori']         = $this->M_konsultasi->getKatByKons($id);
+            $detail['reply']            = $this->M_konsultasi->getReply($id);
+
+            $this->load->view('header'); 
+            $this->load->view('detail', $detail);
+            $this->load->view('footer');
+
+        } else {
+
+            $replay = array(
+                'attachment'    => set_value('attachment'),
+                'isi'           => set_value('isi'),
+                'id_konsultasi' => $id,
+                'id_user'       => set_value('id_user', 1),
+            );
+
+            $id_konsultasi      = set_value('id_konsultasi');
+
+            $save             = $this->M_konsultasi->sendReplay($replay, $id_konsultasi);
+            $updateKonsultasi = $this->M_konsultasi->update($id);
+
+            redirect('../konsultasi/index.php/konsultasi/detail/'.$id);
+
+        }
+
     }
 
 }
