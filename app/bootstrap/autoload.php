@@ -2,11 +2,13 @@
 
 // Vendor autoload
 require __DIR__.'/../../vendor/autoload.php';
-require 'path.php';
 
 // Loading konfigurasi dengan file .env
 $dotenv = new Dotenv\Dotenv(dirname(dirname(__DIR__)));
 $dotenv->load();
+
+// Require path constant
+require 'path.php';
 
 // Merubah default timezone waktu sesuai dengan konfigurasi di .env
 date_default_timezone_set(getenv('DATE_TIMEZONE') ?: 'Asia/Jakarta');
