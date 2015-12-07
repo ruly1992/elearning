@@ -32,9 +32,14 @@ class Model_topic extends CI_Model
         return FALSE;
     }
     
+    function selectTopic($id){
+        $get = $this->db->get_where('topics',array('id'=>$id));
+        return $get->result();
+    }
+
     function get_topics(){
         $data = array('categories.category_name','topics.*');
-        $get = $this->db->select($data)->from('topics')->join('categories','categories.id=topics.category')->get();
+        $get = $this->db->select($data)->from('topics')->join('categories','categories.id=topics.category')->order_by('topics.id','desc')->get();
         return $get->result();
     }
 
