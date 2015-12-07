@@ -76,7 +76,7 @@
             <div class="panel-body">
                 <div class="slidercarousel thumbnail" style="max-width: 200px; ">
                     <img class="featured-preview" src="" width="100%" style="display: none;">
-                    <img class="featured-preview-default" src="<?php echo base_url('assets/admin/img/default_avatar_male.jpg') ?>">
+                    <img class="featured-preview-default" src="<?php echo asset('images/portal/img-carousel-default.jpg') ?>">
                 </div>
                 <div>
                     <a href="<?php echo base_url('filemanager/dialog.php?type=0&field_id=slidercarousel_url') ?>" class="btn btn-default iframe-btn" type="button">Open Filemanager</a>
@@ -93,7 +93,7 @@
             <div class="panel-body">
                 <div class="featured thumbnail" style="max-width: 200px;">
                     <img class="featured-preview" src="" width="100%" style="display: none;">
-                    <img class="featured-preview-default" src="<?php echo base_url('assets/admin/img/default_avatar_male.jpg') ?>">
+                    <img class="featured-preview-default" src="<?php echo asset('images/portal/img-default.jpg') ?>">
                 </div>
                 <div>
                     <a href="<?php echo base_url('filemanager/dialog.php?type=0&field_id=featured_url') ?>" class="btn btn-default iframe-btn" type="button">Open Filemanager</a>

@@ -19,7 +19,7 @@ class Comment extends Admin {
     {         
         $status         = 'Approve';
 
-        $data['result'] = Model\Comment::latest('date')->get();
+        $data['result'] = Model\Portal\Comment::latest('date')->get();
         $data['status'] = $status;
         
         $this->template->build('index', $data);

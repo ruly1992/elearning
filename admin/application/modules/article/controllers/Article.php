@@ -112,7 +112,7 @@ class Article extends Admin {
         $this->form_validation->set_rules('content', 'Content', 'required');
 
         if ($this->form_validation->run() == FALSE) {   
-            $artikel = $this->Mod_artikel->getById($id);
+            $artikel = Model\Portal\Article::findOrFail($id);
 
             $cat_ids = array_map(function ($cat) {
                 return $cat->kategori_id;

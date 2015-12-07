@@ -89,10 +89,10 @@
                 <div class="slidercarousel thumbnail" style="max-width: 200px;">
                     <?php if ($artikel->slider): ?>
                         <img class="featured-preview" src="<?php echo $artikel->slider ?>" width="100%">
-                        <img class="featured-preview-default" src="<?php echo asset('images/default_avatar_male.jpg') ?>" style="display: none;">
+                        <img class="featured-preview-default" src="<?php echo asset('images/portal/img-carousel-default.jpg') ?>" style="display: none;">
                     <?php else: ?>
                         <img class="featured-preview" src="" width="100%" style="display: none;">
-                        <img class="featured-preview-default" src="<?php echo asset('images/default_avatar_male.jpg') ?>">
+                        <img class="featured-preview-default" src="<?php echo asset('images/portal/img-carousel-default.jpg') ?>">
                     <?php endif ?>
                 </div>
                 <div>
@@ -111,10 +111,10 @@
                 <div class="featured thumbnail" style="max-width: 200px;">
                     <?php if ($artikel->featured_image): ?>
                         <img class="featured-preview" src="<?php echo $artikel->featured_image ?>" width="100%">
-                        <img class="featured-preview-default" src="<?php echo asset('images/default_avatar_male.jpg') ?>" style="display: none;">
+                        <img class="featured-preview-default" src="<?php echo asset('images/portal/img-default.jpg') ?>" style="display: none;">
                     <?php else: ?>
                         <img class="featured-preview" src="" width="100%" style="display: none;">
-                        <img class="featured-preview-default" src="<?php echo asset('images/default_avatar_male.jpg') ?>">
+                        <img class="featured-preview-default" src="<?php echo asset('images/portal/img-default.jpg') ?>">
                     <?php endif ?>
                 </div>
                 <div>
