@@ -24,6 +24,13 @@ class M_konsultasi extends CI_Model {
         return $query->result();
     }
 
+    public function getListKat($kategori_id)
+    {
+        $data = array('konsultasi.*','konsultasi_kategori.name');
+        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->where('konsultasi_kategori.id',$kategori_id)->get();
+        return $get->result();
+    }
+
     public function create($data, $categories, $status = 'open')
     {
         $default = array(
