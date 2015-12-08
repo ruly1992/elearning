@@ -163,7 +163,7 @@
                                         </div>
                                     </div>
                                     <div class="card-block">
-                                        <p><?php echo $r->message ;?></p>
+                                        <p><?php echo BBCodeParser($r->message);?></p>
                                     </div>
                                     <div class="card-footer">
                                         <a href="#" class="btn btn-sm btn-reply">Quote Reply</a>
