@@ -57,7 +57,7 @@ class Konsultasi extends CI_Controller {
 
             $save = $this->M_konsultasi->create($data, $categories, $status);
 
-            redirect('../konsultasi/index.php/konsultasi/','refresh');
+            redirect('konsultasi/','refresh');
         }
     }
 
@@ -89,21 +89,11 @@ class Konsultasi extends CI_Controller {
             $save             = $this->M_konsultasi->sendReplay($replay, $id_konsultasi);
             $updateKonsultasi = $this->M_konsultasi->update($id);
 
-            redirect('../konsultasi/index.php/konsultasi/detail/'.$id);
+            redirect('konsultasi/detail/'.$id);
 
         }
 
     }
-
-    public function kategori($kategori_id)
-    {
-    	$data['konsultasi'] = $this->M_konsultasi->getListKat($kategori_id);
-
-        $this->load->view('header'); 
-        $this->load->view('index', $data);
-        $this->load->view('footer');
-    }
-
 }
 
 /* End of file Konsultasi.php */
