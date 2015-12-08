@@ -13,13 +13,23 @@ class Submitarticle extends CI_Controller {
         $this->template->set('railnews', FALSE);
         $this->template->set('sidebar', FALSE); 
         $this->template->set('single', TRUE);
+
+        $this->template->add_stylesheet('stylesheets/custom.home.css');
+        $this->template->add_script('node_modules/cropit/dist/jquery.cropit.js');
         $this->template->add_script('plugins/tinymce/tinymce.jquery.min.js');
         $this->template->add_script('javascript/custom.home.js');
     }
 
     public function index()
     {
-        $data = array('links' => $this->Mod_link->read());
+        $data = array(
+            'links'         => $this->Mod_link->read(),
+            'desa_lists'    => [
+                'Wilayah 1',
+                'Wilayah 2',
+                'Wilayah 3',
+            ]
+        );
 
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('email', 'Alamat Email', 'required|valid_email');
@@ -32,23 +42,21 @@ class Submitarticle extends CI_Controller {
             $this->template->build('create', $data);
         } else {
             $data = array(
-                'nama'          => set_value('nama'),
-                'email'         => set_value('email'),
                 'title'         => set_value('title'),
                 'content'       => set_value('content', '', FALSE),
             );
 
-            if (isset($_FILES['featured']) && $_FILES['featured']['tmp_name']) {
-                $featured_image = $_FILES['featured'];
-            } else {
-                $featured_image = null;
-            }
-
-            $id = $this->Mod_sendarticle->send($data, 'draft', 'public', $featured_image, []);
-
-            // $this->Mod_sendarticle->send($data);
+            $article = new Library\Article\Article;
+            $article->submit(
+                $data,
+                set_value('nama'),
+                set_value('email'),
+                set_value('desa'),
+                $this->input->post('featured'),
+                $this->input->post('custom_avatar')
+            );
             
-            set_message_success('Artikel Anda sudah diterima dan akan dilakukan review terlebih dahulu.');
+            set_message_success('Artikel Anda sudah diterima dan akan dilakukan moderasi terlebih dahulu.');
 
             redirect('submitarticle',  'refresh');
         }
