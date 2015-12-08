@@ -22,7 +22,7 @@
     </pre>
  - Beberapa direktori harus diubah permission menjadi writable
     <pre>
-    $ chmod 775 -R public/user/avatar public/portal-content public/kelas-content app/files
+    $ chmod -R 775 public/user/avatar public/portal-content public/kelas-content app/files
     </pre>
  - Setelah itu ubah group menjadi `apache` (untuk CentOS) atau `www-data` (untuk Ubuntu)
     <pre>
