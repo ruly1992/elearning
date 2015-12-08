@@ -10,6 +10,7 @@
 	    <link rel="stylesheet" href="<?php echo asset('node_modules/font-awesome/css/font-awesome.min.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('stylesheets/app.css'); ?>">
         <link rel="stylesheet" href="<?php echo asset('stylesheets/responsive.css'); ?>">
+        <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
 	    <!-- end:stylesheet -->
 	</head>
 	<body id="page-top" data-spy="scroll" data-target="#navbar-main">
@@ -133,7 +134,9 @@
                                             <h4><?php echo $title; ?></h4>
                                         </div>
 											<img src="<?php echo asset('images/portal/img-carousel.jpg');?>" class="img-fluid" alt="">
-											<p><?php echo $message; ?></p>
+											<p>
+                                                <?php echo $message; ?>
+                                            </p>
                                     </div>
                                     <div class="card-footer">
                                         <a href="#" class="btn btn-sm btn-reply">Reply Post</a>
@@ -289,6 +292,17 @@
 	    <script src="<?php echo asset('node_modules/bootstrap/dist/js/bootstrap.min.js');?>"></script>
         <script src="<?php echo asset('javascript/jquery.sticky.js');?>"></script>
         <script src="<?php echo asset('javascript/app.js');?>"></script>
+        <script src="<?php echo asset('plugins/sceditor/development/jquery.sceditor.bbcode.js'); ?>"></script>
+        <script>
+            $(function() {
+                $("textarea").sceditor({
+                    plugins: "bbcode",
+                    style: "<?php echo asset('plugins/sceditor/minified/jquery.sceditor.default.min.css'); ?>" ,
+                    emoticonsCompat: true,
+                    emoticonsRoot : "<?php echo asset('plugins/sceditor//'); ?>"
+                });
+            });
+        </script>
 	    <!-- end:javascript -->
 
 	</body>
