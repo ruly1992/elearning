@@ -33,7 +33,8 @@
                                     <blockquote class="card-blockquote">
                                         <p><strong>Kategori</strong></p>
                                         <hr>
-                                        <p><?php foreach ($kategori as $kat) {$kat->name;}?></p>
+                                        <p><?php foreach ($kategori as $kat) {echo $kat->name;}
+                                        ?></p>
                                     </blockquote>
                                 </div>
                             </div>
@@ -105,7 +106,7 @@
                                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                                 <label for="">Attachments</label>
                                                                 <label class="file">
-                                                                    <input type="file" id="file" name="attachment">
+                                                                    <input type="file" id="file" name="file">
                                                                     <span class="file-custom"></span>
                                                                 </label>
                                                                 <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt) </small>

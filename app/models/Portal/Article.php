@@ -30,6 +30,29 @@ class Article extends Model
         ],
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        Article::creating(function ($article) {
+            if (!property_exists($article, 'slug')) {
+                $article->slug = $article->generateSlug($article->title);
+            }
+        });
+    }
+
+    public function generateSlug($title, $i = 0)
+    {
+        try {
+            $slugged    = \Illuminate\Support\Str::slug($title . ($i ? '-' . $i : ''), '-');
+            $article    = Article::withDrafts()->slug($slugged);
+
+            return $this->generateSlug($title, ++$i);
+        } catch (\Exception $e) {
+            return $slugged;
+        }
+    }
+
     public function getLinkAttribute()
     {
         return home_url('/article/' . $this->slug);
@@ -115,6 +138,8 @@ class Article extends Model
     {
         if ($this->contributor_id != 0) {
             return $this->contributor->avatar;
+        } elseif ($this->custom_avatar) {
+            return asset('portal-content/custom-avatar/'.$this->custom_avatar);
         } else {
             return asset('images/default_avatar_male.jpg');
         }
