@@ -252,13 +252,13 @@
 	    <script src="<?php echo asset('node_modules/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
         <script src="<?php echo asset('javascript/jquery.sticky.js'); ?>"></script>
         <script src="<?php echo asset('javascript/app.js'); ?>"></script>
-        <script src="<?php echo asset('plugins/sceditor/minified/jquery.sceditor.bbcode.min.js'); ?>"></script>
+        <script src="<?php echo asset('plugins/sceditor/development/jquery.sceditor.bbcode.js'); ?>"></script>
         <script>
             $(function() {
                 $("textarea").sceditor({
                     plugins: "bbcode",
-                    style: "minified/jquery.sceditor.default.min.css",
-                    emoticonsRoot: "<?php echo asset('plugins/sceditor/emoticons/'); ?>"
+                    style: "<?php echo asset('plugins/sceditor/minified/jquery.sceditor.default.min.css'); ?>" ,
+                    emoticonsRoot : "<?php echo asset('plugins/sceditor//'); ?>"
                 });
             });
         </script>
