@@ -72,7 +72,7 @@ class Konsultasi extends CI_Controller {
             $this->load->view('footer');
 
         } else {
-
+        	
             $replay = array(
                 'attachment'    => set_value('attachment'),
                 'isi'           => set_value('isi'),
@@ -89,6 +89,24 @@ class Konsultasi extends CI_Controller {
 
         }
 
+    }
+
+    public function tenagaahli()
+    {
+    	$data['categories']     = $this->M_konsultasi->getKatByUser();
+
+        $this->load->view('header'); 
+        $this->load->view('kategori', $data);
+        $this->load->view('footer');
+    }
+
+    public function kategori($kategori_id)
+    {
+    	$data['konsultasi'] = $this->M_konsultasi->getListKat($kategori_id);
+
+        $this->load->view('header'); 
+        $this->load->view('index', $data);
+        $this->load->view('footer');
     }
 
 }

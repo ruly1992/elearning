@@ -10,6 +10,7 @@
 	    <link rel="stylesheet" href="<?php echo asset('node_modules/font-awesome/css/font-awesome.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo asset('stylesheets/app.css'); ?>">
         <link rel="stylesheet" href="<?php echo asset('stylesheets/responsive.css'); ?>">
+        <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
 	    <!-- end:stylesheet -->
 	</head>
 	<body id="page-top" data-spy="scroll" data-target="#navbar-main">
@@ -150,7 +151,7 @@
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-post">CREATE NEW THREAD</button>
                                             </div>
-                                        </form>
+                                        <?php echo form_close(); ?>
                                     </div>
                                 </div>
                             </div>
@@ -251,6 +252,16 @@
 	    <script src="<?php echo asset('node_modules/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
         <script src="<?php echo asset('javascript/jquery.sticky.js'); ?>"></script>
         <script src="<?php echo asset('javascript/app.js'); ?>"></script>
+        <script src="<?php echo asset('plugins/sceditor/minified/jquery.sceditor.bbcode.min.js'); ?>"></script>
+        <script>
+            $(function() {
+                $("textarea").sceditor({
+                    plugins: "bbcode",
+                    style: "minified/jquery.sceditor.default.min.css",
+                    emoticonsRoot: "<?php echo asset('plugins/sceditor/emoticons/'); ?>"
+                });
+            });
+        </script>
 	    <!-- end:javascript -->
 
 	</body>

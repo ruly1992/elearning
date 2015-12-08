@@ -8,10 +8,11 @@ class Thread extends CI_Controller
         parent::__construct();
         $this->load->database();
         $this->load->model('model_thread');
+        $this->load->helper('BBCodeParser');
 
-        /*if(!sentinel()->check()) {
+        if(!sentinel()->check()) {
             redirect(login_url());
-        }*/
+        }
     }
     
     public function index()
@@ -68,13 +69,14 @@ class Thread extends CI_Controller
     public function view($id)
     {
         $get_thread = $this->model_thread->get_thread($id);
+
         foreach($get_thread as $t){
             $data = array(
-                'category' => $t->category_name,
-                'user'     => $t->author,
-                'tanggal'  => $t->created_at,
-                'title'    => $t->title,
-                'message'  => $t->message
+                'category'  => $t->category_name,
+                'user'      => $t->author,
+                'tanggal'   => $t->created_at,
+                'title'     => $t->title,
+                'message'   => BBCodeParser($t->message)
             );
         }
 
