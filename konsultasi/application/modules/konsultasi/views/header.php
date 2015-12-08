@@ -80,12 +80,12 @@
                         <ul class="nav navbar-nav pull-right">
                             <div class="dropdown dropdown-people">
                                 <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="../images/portal/people-2.png" alt="">
+                                    <img src="<?php echo base_url('public/images/portal/people-2.png') ?>" alt="">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
                                     <button class="dropdown-item" type="button">Action</button>
                                     <button class="dropdown-item" type="button">Another action</button>
-                                    <button class="dropdown-item" type="button">Something else here</button>
+                                    <button class="dropdown-item" type="button">Logout</button>
                                 </div>
                             </div>
                         </ul>

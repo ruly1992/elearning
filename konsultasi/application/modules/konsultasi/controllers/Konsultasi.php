@@ -100,9 +100,9 @@ class Konsultasi extends CI_Controller {
         $this->load->view('footer');
     }
 
-    public function kategori($id)
+    public function kategori($kategori_id)
     {
-    	$data['konsultasi'] = $this->M_konsultasi->getKatByKons($id);
+    	$data['konsultasi'] = $this->M_konsultasi->getListKat($kategori_id);
 
         $this->load->view('header'); 
         $this->load->view('index', $data);

@@ -33,7 +33,8 @@
                                     <blockquote class="card-blockquote">
                                         <p><strong>Kategori</strong></p>
                                         <hr>
-                                        <p><?php foreach ($kategori as $kat) {$kat->name;}?></p>
+                                        <p><?php foreach ($kategori as $kat) {echo $kat->name;}
+                                        ?></p>
                                     </blockquote>
                                 </div>
                             </div>
