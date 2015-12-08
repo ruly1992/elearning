@@ -10,6 +10,7 @@
 	    <link rel="stylesheet" href="<?php echo asset('node_modules/font-awesome/css/font-awesome.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo asset('stylesheets/app.css'); ?>">
         <link rel="stylesheet" href="<?php echo asset('stylesheets/responsive.css'); ?>">
+        <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
 	    <!-- end:stylesheet -->
 	</head>
 	<body id="page-top" data-spy="scroll" data-target="#navbar-main">
@@ -252,6 +253,16 @@
 	    <script src="<?php echo asset('node_modules/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
         <script src="<?php echo asset('javascript/jquery.sticky.js'); ?>"></script>
         <script src="<?php echo asset('javascript/app.js'); ?>"></script>
+        <script src="<?php echo asset('plugins/sceditor/development/jquery.sceditor.bbcode.js'); ?>"></script>
+        <script>
+            $(function() {
+                $("textarea").sceditor({
+                    plugins: "bbcode",
+                    style: "<?php echo asset('plugins/sceditor/minified/jquery.sceditor.default.min.css'); ?>" ,
+                    emoticonsRoot : "<?php echo asset('plugins/sceditor//'); ?>"
+                });
+            });
+        </script>
 	    <!-- end:javascript -->
 
 	</body>
