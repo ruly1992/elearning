@@ -3610,3 +3610,38 @@ a {
 			width: 250px !important;
 		}
 	}
+/* Dashboard Faq */
+.dashboard-faq {
+	padding-top: $padding-top;
+	background-color: $white;
+	margin-top: $margin-top - 10;
+	margin-bottom: $margin-bottom - 47;
+	border: 2px solid $black;
+	width: 100%;
+	h3 {
+		color: $green;
+		font-size: 16px;
+		font-weight: 600;
+		@include fonts('open_sansbold');
+		padding-left: $padding-left + 10px;
+		padding-right: $padding-right + 10px;
+		padding-top: $padding-top + 5px;
+		padding-bottom: $padding-bottom + 3px;
+		display: inline-block;
+	}
+}
+.content-faq {
+	background-color: $white;
+	@include border-radius(4px);
+	margin-top: $margin-top - 5;
+	padding-bottom: $padding-bottom + 60px;
+	p {
+		font-size: 12px;
+	}
+}
+.content-main-faq {
+	background-color: $white;
+	@include border-radius(4px);
+	margin-top: $margin-top + 12;
+	padding-bottom: $padding-bottom + 60px;
+}
