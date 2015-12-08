@@ -6,13 +6,20 @@ class M_konsultasi extends CI_Model {
 	public function readKonsultasi()
     {
         $data = array('konsultasi.*','konsultasi_kategori.name');
-        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->order_by('konsultasi.created_at', 'DESC')->get();
+        $get  = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->order_by('konsultasi.created_at', 'DESC')->get();
         return $get->result();
     }
 
     public function getKategori()
     {
-        $query = $this->db->get('konsultasi_kategori'); 
+        $query = $this->db->get_where('konsultasi_kategori', array('id_tenaga_ahli' => 1)); 
+
+        return $query->result();
+    }
+
+    public function getKatByUser()
+    {
+    	$query = $this->db->get('konsultasi_kategori'); 
 
         return $query->result();
     }
@@ -24,7 +31,7 @@ class M_konsultasi extends CI_Model {
             'status'     => $status,
         );
 
-        $data           = array_merge($default, $data);
+        $data  = array_merge($default, $data);
 
         $this->db->set($data);
         $this->db->insert('konsultasi');
@@ -54,7 +61,7 @@ class M_konsultasi extends CI_Model {
     public function getKatByKons($id)
     {
         $data = array('konsultasi.*','konsultasi_kategori.name');
-        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->where('konsultasi.id',$id)->get();
+        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->where('konsultasi_kategori.id',$id)->get();
         return $get->result();
     }
 
@@ -64,7 +71,7 @@ class M_konsultasi extends CI_Model {
             'updated_at' => date('Y-m-d H:i:s'),
         );  
 
-        $data           = array_merge($default);
+        $data = array_merge($default);
 
         $this->db->set($data);
         $this->db->where('id', $id);        
@@ -84,7 +91,7 @@ class M_konsultasi extends CI_Model {
             'created_at' => date('Y-m-d H:i:s'),
         );  
 
-        $data           = array_merge($default, $replay);
+        $data = array_merge($default, $replay);
 
         $this->db->set($data);
         $this->db->insert('reply');
