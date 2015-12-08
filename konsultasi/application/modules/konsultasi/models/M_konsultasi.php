@@ -61,7 +61,7 @@ class M_konsultasi extends CI_Model {
     public function getKatByKons($id)
     {
         $data = array('konsultasi.*','konsultasi_kategori.name');
-        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->where('konsultasi_kategori.id',$id)->get();
+        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->where('konsultasi.id',$id)->get();
         return $get->result();
     }
 

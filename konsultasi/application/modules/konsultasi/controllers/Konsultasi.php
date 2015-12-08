@@ -66,7 +66,7 @@ class Konsultasi extends CI_Controller {
             $detail['konsultasi']       = $this->M_konsultasi->getByIdKonsultasi($id);
             $detail['kategori']         = $this->M_konsultasi->getKatByKons($id);
             $detail['reply']            = $this->M_konsultasi->getReply($id);
-
+            
             $this->load->view('header'); 
             $this->load->view('detail', $detail);
             $this->load->view('footer');
