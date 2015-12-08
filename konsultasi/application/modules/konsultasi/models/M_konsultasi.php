@@ -12,14 +12,14 @@ class M_konsultasi extends CI_Model {
 
     public function getKategori()
     {
-        $query = $this->db->get_where('konsultasi_kategori', array('id_tenaga_ahli' => 1)); 
+        $query = $this->db->get('konsultasi_kategori'); 
 
         return $query->result();
     }
 
     public function getKatByUser()
     {
-    	$query = $this->db->get('konsultasi_kategori'); 
+    	$query = $this->db->get_where('konsultasi_kategori', array('id_tenaga_ahli' => 1)); 
 
         return $query->result();
     }

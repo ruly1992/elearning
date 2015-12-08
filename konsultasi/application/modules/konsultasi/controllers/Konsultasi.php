@@ -93,7 +93,7 @@ class Konsultasi extends CI_Controller {
 
     public function tenagaahli()
     {
-    	$data['categories']     = $this->M_konsultasi->getKategori();
+    	$data['categories']     = $this->M_konsultasi->getKatByUser();
 
         $this->load->view('header'); 
         $this->load->view('kategori', $data);
