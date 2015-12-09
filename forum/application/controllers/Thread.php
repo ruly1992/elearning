@@ -166,6 +166,7 @@ class Thread extends CI_Controller
                 $category = $t->category;
                 $topic    = $t->topic;
                 $type     = $t->type;
+                $comments = $t->comments;
             }
 
             $data=array(
@@ -179,8 +180,12 @@ class Thread extends CI_Controller
                 'status'    => '1',
                 'created_at'=> date('Y-m-d').' '.date('G:i:s')
             );
-
             $post_reply = $this->model_thread->save_thread($data);
+
+            $addComments = array(
+                'comments' => $comments+1
+            );
+            $this->model_thread->add_comments($id,$addComments);
 
             if($post_reply==TRUE){
                 $this->session->set_flashdata('hasil','Reply was sent');
