@@ -41,7 +41,7 @@ class Konsultasi extends CI_Controller {
         } else {
 
             $config['upload_path'] = '../app/files/konsultasi-attachment';
-            $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt';
             $config['max_size'] = '5000';
 
             $this->load->library('upload', $config);
@@ -92,14 +92,33 @@ class Konsultasi extends CI_Controller {
             $this->template->build('detail', $detail);
 
         } else {
-        	
-            $replay = array(
-                'attachment'    => set_value('attachment'),
-                'isi'           => set_value('isi'),
-                'id_konsultasi' => $id,
-                'id_user'       => sentinel()->getUser()->id,
-            );
 
+            $config['upload_path'] = '../app/files/konsultasi-attachment';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt|ppt|pptx';
+            $config['max_size'] = '5000';
+
+            $this->load->library('upload', $config);
+
+            if (! $this->upload->do_upload('file')) {
+                
+                $replay = array(
+                    'isi'           => set_value('isi'),
+                    'id_konsultasi' => $id,
+                    'id_user'       => sentinel()->getUser()->id,
+                );
+
+            } else {
+
+                $file_data = $this->upload->data();
+
+                $replay = array(
+                    'attachment'    => $file_data['file_name'],
+                    'isi'           => set_value('isi'),
+                    'id_konsultasi' => $id,
+                    'id_user'       => sentinel()->getUser()->id,
+                );
+            }
+            
             $id_konsultasi      = set_value('id_konsultasi');
 
             $save             = $this->M_konsultasi->sendReplay($replay, $id_konsultasi);
