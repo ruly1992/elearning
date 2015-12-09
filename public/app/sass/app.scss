@@ -3582,7 +3582,240 @@ a {
     line-height: 1.3;
     font-weight: 400;
 }
+.fade{
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+    display: none;  
+}
+// .in{
+// 	opacity: 1;
+// 	display: flex;
+// 	flex-direction: column;
+// }
 
+// END Fajar Eko Susilo
+
+/* DASHBOARD FOR SUMBIT ARTICLES */
+.articles-dashboard {
+	background-color: $white;
+	.content-articles {
+		margin-top: $margin-top + 20px;
+		margin-bottom: $margin-bottom + 35px;
+		.content-articles-heading {
+			display: block;
+			border-bottom: 3px solid $green;
+			margin-bottom: $margin-bottom + 15px;
+			h3 {
+				color: $white;
+				font-size: 10px;
+				font-weight: 200;
+				text-transform: uppercase;
+				@include fonts('open_sansbold');
+				padding-left: $padding-left + 10px;
+				padding-right: $padding-right + 10px;
+				padding-top: $padding-top + 5px;
+				padding-bottom: $padding-bottom + 3px;
+				margin-bottom: $margin-bottom - 5px;
+				display: inline-block;
+				border-bottom: 3px solid $green;
+				background-color: $green;
+				border-top-left-radius: 6px;
+				border-top-right-radius: 6px;
+			}
+		}
+		.content-artcles-content{
+			margin-top: $margin-top + 20px;
+			margin-bottom: $margin-bottom + 35px;
+		}
+	}
+	.sidebar-article{
+		margin-top: $margin-top - 5;
+		.widget {
+			margin-bottom: $margin-bottom + 30px;
+			.widget-categories {
+				.widget-categories-heading {
+					display: block;
+					border-bottom: 3px solid $red;
+					margin-bottom: $margin-bottom + 15px;
+					h4 {
+						display: inline-block;
+						margin-top: $margin-top - 5px;
+						margin-bottom: $margin-bottom - 5px;
+						padding-top: $padding-top + 5px;
+						padding-bottom: $padding-bottom + 5px;
+						border-top-left-radius: 4px;
+						border-top-right-radius: 4px;
+						font-size: 14px;
+						@include fonts('open_sansbold');
+						background-color: $red;
+						padding-left: $padding-left + 15px;
+						padding-right: $padding-right + 15px;
+						color: $white;
+					}
+				}
+				.widget-categories-content {
+					.list-group {
+						@include border-radius(0);
+						.list-group-item {
+							font-size: 14px;
+							&.active {
+								background-color: $green;
+								border: 1px solid $green;
+								font-size: 14px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/* DASHBOARD FOR END USER */
+.content-dashboard-user {
+	background-color: $white;
+	.content-submit {
+		margin-top: $margin-top + 20px;
+		.submit {
+			.submit-heading {
+				display: block;
+				margin-bottom: $margin-bottom + 10px;
+				@include fonts('open_sansbold');
+				.nav-item {
+					.nav-link {
+						font-size: 12px;
+						color: #B0B0B7;
+						text-transform: uppercase;
+						@include fonts('open_sansbold');
+						&.active {
+							background-color: $white;
+							color: $green;
+							text-transform: uppercase;
+							@include fonts('open_sansbold');
+							font-size: 12px;
+						}
+						&:hover {
+							border-top: 1px solid #B0B0B7;
+							border-right: 1px solid #B0B0B7;
+							border-left: 1px solid #B0B0B7;
+						}
+					}
+				}
+			}
+			.submit-sidebar-heading {
+				border-bottom: 3px solid $red;
+				display: block;
+				margin-bottom: $margin-bottom + 10px;
+				@include fonts('open_sansbold');
+				h3 {
+					background-color: $red;
+					display: inline-block;
+					font-size: 12px;
+					text-transform: uppercase;
+					@include fonts('open_sansbold');
+					padding-top: $padding-top + 5px;
+					padding-bottom: $padding-bottom + 5px;
+					padding-left: $padding-left + 15px;
+					padding-right: $padding-right + 15px;
+					margin-bottom: $margin-bottom - 5px;
+					border-top-left-radius: 4px;
+					border-top-right-radius: 4px;
+					color: $white;
+				}
+			}
+			.submit-sidebar-content{
+				.list-group-item {
+					font-size: 13px;
+					&.active {
+						background-color: $green;
+						border: 1px solid $green;
+						font-size: 13px;
+					}
+				}
+			}
+			.submit-content {
+				margin-bottom: $margin-bottom + 20px;
+			}
+		}
+	}
+
+}
+
+/* Landing FAQ
+   Fajar Eko Susilo
+*/
+.header-landing-faq {
+	background-color: $grey-black;
+	height: auto;
+	#header-faq {
+	padding-top: $padding-top + 20px;
+	padding-bottom: $padding-bottom + 35px;
+		.header-main-box {
+			width: 100%;
+			height: auto;
+			background-color: rgba(76,176,80, 1.0);
+			@include border-radius(0);
+			.header-main-box-content {
+				padding-top: $padding-top + 30px;
+				padding-bottom: $padding-bottom + 15px;
+				padding-left: $padding-left + 20px;
+				padding-right: $padding-right + 20px;
+				.box-header{
+					background-color: $green;
+					width: 100%;
+					height: auto;
+					color: $white;
+					h3{
+						font-size: 18px;
+						@include fonts('open_sansbold');
+						// padding-bottom: $padding-bottom + 15px;
+						padding-top: $padding-top + 15px;
+						margin-left: $margin-left + 10px;
+						margin-right: $margin-right + 10px;
+					}
+					p{
+						font-size: 14px;
+						padding-bottom: $padding-bottom + 15px;
+						padding-top: $padding-top + 15px;
+						margin-left: $margin-left + 10px;
+						margin-right: $margin-right + 10px;
+					}
+				}
+			}
+		}
+	}
+}
+.landing-content-faq {
+	margin-top: $margin-top - 5px;
+	padding-bottom: $padding-bottom + 60px;
+	background-color: $white;
+	.faq-content{
+		margin-bottom: $margin-bottom + 5px;
+		.faq-content-question {
+			background-color: rgba(76,176,80, 1.0);
+			padding: $padding;
+			h3 {
+				font-size: 16px;
+				@include fonts('open_sansbold');
+				color: $white;
+				margin-bottom: $margin-bottom + 5px;
+				margin-top: $margin-top + 5px;
+			}
+		}
+		.faq-content-answer{
+			background-color: $white;
+			padding: $padding + 10px;
+			p{
+				color: $black;
+				font-size: 14px;
+				margin-top: $margin-top + 5px;
+				margin-bottom: $margin-bottom + 5px;
+
+			}
+		}
+	}
+}
 // Dashboard
 // Create by: Singgih Saputro //
 
