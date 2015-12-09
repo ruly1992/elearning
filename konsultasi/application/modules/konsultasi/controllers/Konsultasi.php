@@ -40,13 +40,35 @@ class Konsultasi extends CI_Controller {
 
         } else {
 
-            $data = array(
-                'subjek'                        => set_value('subjek'),
-                'pesan'                         => set_value('pesan'),
-                'prioritas'                     => set_value('prioritas'),
-                'id_kategori'                   => set_value('id_konsultasi_kategori'),
-                'user_id'                       => sentinel()->getUser()->id,
-            );
+            $config['upload_path'] = '../app/files/konsultasi-attachment';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf';
+            $config['max_size'] = '5000';
+
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('file')) {
+                
+                $data = array(
+                    'subjek'                        => set_value('subjek'),
+                    'pesan'                         => set_value('pesan'),
+                    'prioritas'                     => set_value('prioritas'),
+                    'id_kategori'                   => set_value('id_konsultasi_kategori'),
+                    'user_id'                       => sentinel()->getUser()->id,
+                );
+
+            } else {
+
+                $file_data = $this->upload->data();
+
+                $data = array(
+                        'attachment'     => $file_data['file_name'],
+                        'subjek'         => set_value('subjek'),
+                        'pesan'          => set_value('pesan'),
+                        'prioritas'      => set_value('prioritas'),
+                        'id_kategori'    => set_value('id_konsultasi_kategori'),
+                        'user_id'        => sentinel()->getUser()->id,
+                );
+            }
 
             $categories     = set_value('id_konsultasi_kategori');
             $status         = set_value('status', 'open');
@@ -88,6 +110,7 @@ class Konsultasi extends CI_Controller {
         }
 
     }
+                                    
 }
 
 /* End of file Konsultasi.php */

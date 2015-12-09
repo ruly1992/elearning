@@ -15,8 +15,14 @@
                 <h5><?php echo $konsultasi->subjek ?></h5>
                 <hr>
                 <div class="content-konsultasi-table">
-                    <h5><?php echo $konsultasi->pesan ?></h5>
+                   <?php echo $konsultasi->pesan ?>
                 </div>
+                <hr>
+                <div class="content-konsultasi-table">
+                    <h5><a href="<?php echo home_url('app/files/konsultasi-attachment/').'/'.$konsultasi->attachment ?>"><?php echo $konsultasi->attachment ?></a></h5>
+                </div>
+                <hr>
+
                 <div class="content-konsultasi-table-details">
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-12">
