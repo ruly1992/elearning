@@ -92,13 +92,13 @@ class M_konsultasi extends CI_Model {
         return $get->result();
     }
 
-    public function sendReplay($replay, $id_konsultasi)
+    public function sendReply($reply, $id_konsultasi)
     {
         $default = array(
             'created_at' => date('Y-m-d H:i:s'),
         );  
 
-        $data = array_merge($default, $replay);
+        $data = array_merge($default, $reply);
 
         $this->db->set($data);
         $this->db->insert('reply');

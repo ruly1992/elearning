@@ -101,7 +101,7 @@ class Konsultasi extends CI_Controller {
 
             if (! $this->upload->do_upload('file')) {
                 
-                $replay = array(
+                $reply = array(
                     'isi'           => set_value('isi'),
                     'id_konsultasi' => $id,
                     'id_user'       => sentinel()->getUser()->id,
@@ -111,7 +111,7 @@ class Konsultasi extends CI_Controller {
 
                 $file_data = $this->upload->data();
 
-                $replay = array(
+                $reply = array(
                     'attachment'    => $file_data['file_name'],
                     'isi'           => set_value('isi'),
                     'id_konsultasi' => $id,
@@ -121,7 +121,7 @@ class Konsultasi extends CI_Controller {
             
             $id_konsultasi      = set_value('id_konsultasi');
 
-            $save             = $this->M_konsultasi->sendReplay($replay, $id_konsultasi);
+            $save             = $this->M_konsultasi->sendReply($reply, $id_konsultasi);
             $updateKonsultasi = $this->M_konsultasi->update($id);
 
             redirect('konsultasi/detail/'.$id);

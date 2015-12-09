@@ -66,7 +66,7 @@ class Dashboard extends CI_Controller {
             
             $id_konsultasi      = set_value('id_konsultasi');
 
-            $save             = $this->M_konsultasi->sendReplay($replay, $id_konsultasi);
+            $save             = $this->M_konsultasi->sendReply($reply, $id_konsultasi);
             $updateKonsultasi = $this->M_konsultasi->update($id);
 
             redirect('dashboard/detail/'.$id);
