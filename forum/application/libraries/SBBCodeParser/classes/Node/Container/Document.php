@@ -424,7 +424,7 @@ class Node_Container_Document extends Node_Container
 			new BBCode('*', '<li>%content%</li>', BBCode::BLOCK_TAG, false,
 				array('*', 'li', 'ul', 'li', 'ol', '/list')),
 
-			new BBCode('table', '<table>%content%</table>', BBCode::BLOCK_TAG,
+			new BBCode('table', '<table class="table table-bordered">%content%</table>', BBCode::BLOCK_TAG,
 				false, array(), array('table', 'th', 'h', 'tr', 'row', 'r', 'td', 'col', 'c')),
 			new BBCode('th', '<th>%content%</th>'),
 			new BBCode('h', '<th>%content%</th>'),
