@@ -1,4 +1,7 @@
 <?php
+
+require __DIR__.'/../app/bootstrap/autoload.php';
+
 /**
  * CodeIgniter
  *
