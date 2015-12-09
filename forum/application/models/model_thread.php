@@ -57,11 +57,21 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    public function get_reply($id)
+    function get_reply($id)
     {
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')->join('categories','categories.id=threads.category')->where('reply_to',$id)->get();
         return $get->result();
+    }
+
+    function update_viewer($idThread,$data){
+        $this->db->where('id',$idThread);
+        $update = $this->db->update('threads',$data);
+        if($update){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
     }
 
 }
