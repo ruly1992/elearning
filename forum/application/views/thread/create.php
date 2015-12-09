@@ -257,8 +257,8 @@
             $(function() {
                 $("textarea").sceditor({
                     plugins: "bbcode",
-                    style: "<?php echo asset('plugins/sceditor/minified/jquery.sceditor.default.min.css'); ?>" ,
-                    emoticonsRoot : "<?php echo asset('plugins/sceditor//'); ?>"
+                    style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.min.css'); ?>" ,
+                    emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
                 });
             });
         </script>
