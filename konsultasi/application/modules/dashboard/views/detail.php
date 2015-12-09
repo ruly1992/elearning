@@ -14,6 +14,9 @@
             <div class="content-konsultasi-table">
                 <h5><?php echo $konsultasi->subjek ?></h5>
                 <hr>
+                <div class="content-konsultasi-table">
+                    <h5><?php echo $konsultasi->pesan ?></h5>
+                </div>
                 <div class="content-konsultasi-table-details">
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-12">
@@ -87,7 +90,7 @@
                                                 </h4>
                                             </div>
                                             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                <form method="POST" action="<?php echo base_url('konsultasi/index.php/konsultasi/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
+                                                <form method="POST" action="<?php echo site_url('dashboard/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col-md-8">
