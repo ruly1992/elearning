@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="content-konsultasi-table">
-                <form method="POST" action="<?php echo base_url('konsultasi/index.php/konsultasi/create') ?>" enctype="multipart/form-data">
+                <form method="POST" action="<?php echo site_url('konsultasi/create') ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-8 col-sm-8 col-xs-12">
