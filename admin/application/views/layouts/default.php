@@ -62,7 +62,7 @@
     </head>
     <body>
 
-        <?php echo $this->template->load_view('template/navbar'); ?> 
+        <?php echo $this->template->load_view('template/navbar'); ?>
 
         <?php echo $this->template->load_view('template/sidebar'); ?>
             
