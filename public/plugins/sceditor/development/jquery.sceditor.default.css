@@ -32,7 +32,8 @@ ul, ol {
 }
 
 table, td {
-	border: 1px dotted #000;
+	/*border: 1px dotted #000;*/
+	border: 1px solid #000;
 	empty-cells: show;
 }
 
