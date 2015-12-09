@@ -8,7 +8,12 @@ class Login extends CI_Controller
         parent::__construct();
 
         if (sentinel()->check()) {
-            redirect(dashboard_url(), 'refresh');
+            $redirect_url = dashboard_url();
+
+            if (sentinel()->inRole(['su', 'adm', 'edt', 'pus', 'ins', 'pcp']))
+                $redirect_url = admin_url();
+            
+            redirect($redirect_url, 'refresh');
         }
     }
 
@@ -30,6 +35,9 @@ class Login extends CI_Controller
 
     		if (sentinel()->authenticate($credentials)) {
                 $redirect_url = dashboard_url();
+
+                if (sentinel()->inRole(['su', 'adm', 'edt', 'pus', 'ins', 'pcp']))
+                    $redirect_url = admin_url();
 
     			redirect($redirect_url, 'refresh');
     		} else {
