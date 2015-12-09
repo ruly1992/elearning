@@ -138,7 +138,7 @@
                                                                 <?php echo $t->views; ?> Views
                                                             </li>
                                                             <li>
-                                                                0 Comments
+                                                                <?php echo $t->comments; ?> Comments
                                                             </li>
                                                             <li>
                                                                 Started by <a href="#"><?php echo $t->author; ?></a>
