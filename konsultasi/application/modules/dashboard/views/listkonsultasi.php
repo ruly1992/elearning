@@ -31,7 +31,7 @@
                             <th scope="row"><?php echo $row->id ?></th>
                             <td><?php echo $row->created_at ?></td>
                             <td><?php echo $row->subjek ?></td>
-                            <td><?php echo $row->user_id ?></td>
+                            <td><?php echo user($row->user_id)->full_name ?></td>
                             <td><?php echo $row->status ?></td>
                             <td align="center">
                                 <p>
