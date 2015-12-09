@@ -67,6 +67,18 @@ class Model_thread extends CI_Model
     function update_viewer($idThread,$data){
         $this->db->where('id',$idThread);
         $update = $this->db->update('threads',$data);
+       
+        if($update){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    function add_comments($id,$data){
+        $this->db->where('id',$id);
+        $update = $this->db->update('threads',$data);
+
         if($update){
             return TRUE;
         }else{
