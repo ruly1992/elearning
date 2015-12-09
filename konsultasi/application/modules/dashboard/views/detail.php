@@ -90,7 +90,7 @@
                                                 </h4>
                                             </div>
                                             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                <form method="POST" action="<?php echo site_url('konsultasi/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
+                                                <form method="POST" action="<?php echo site_url('dashboard/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col-md-8">

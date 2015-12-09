@@ -13,15 +13,17 @@ class Konsultasi extends CI_Controller {
 			'open'	=> 'Open',
 			'close'	=> 'Close',
 		);
+
+		if (sentinel()->inRole(array('ta'))) {
+			redirect('dashboard','refresh');
+		}
 	}
 
 	public function index()
 	{
 		$data['konsultasi'] = $this->M_konsultasi->readKonsultasi();
 
-        $this->load->view('header'); 
-        $this->load->view('index', $data);
-        $this->load->view('footer');
+        $this->template->build('index', $data);
 	}
 
 	public function create()
@@ -34,9 +36,7 @@ class Konsultasi extends CI_Controller {
             $data['status']         = $this->status;
             $data['categories']     = $this->M_konsultasi->getKategori();
 
-            $this->load->view('header'); 
-            $this->load->view('create', $data); 
-            $this->load->view('footer');
+            $this->template->build('create', $data); 
 
         } else {
 
@@ -45,7 +45,7 @@ class Konsultasi extends CI_Controller {
                 'pesan'                         => set_value('pesan'),
                 'prioritas'                     => set_value('prioritas'),
                 'id_kategori'                   => set_value('id_konsultasi_kategori'),
-                'user_id'                       => set_value('user_id', 1),
+                'user_id'                       => sentinel()->getUser()->id,
             );
 
             $categories     = set_value('id_konsultasi_kategori');
@@ -53,7 +53,7 @@ class Konsultasi extends CI_Controller {
 
             $save = $this->M_konsultasi->create($data, $categories, $status);
 
-            redirect('../konsultasi/index.php/konsultasi/','refresh');
+            redirect('konsultasi/','refresh');
         }
     }
 
@@ -67,9 +67,7 @@ class Konsultasi extends CI_Controller {
             $detail['kategori']         = $this->M_konsultasi->getKatByKons($id);
             $detail['reply']            = $this->M_konsultasi->getReply($id);
 
-            $this->load->view('header'); 
-            $this->load->view('detail', $detail);
-            $this->load->view('footer');
+            $this->template->build('detail', $detail);
 
         } else {
         	
@@ -77,7 +75,7 @@ class Konsultasi extends CI_Controller {
                 'attachment'    => set_value('attachment'),
                 'isi'           => set_value('isi'),
                 'id_konsultasi' => $id,
-                'id_user'       => set_value('id_user', 1),
+                'id_user'       => sentinel()->getUser()->id,
             );
 
             $id_konsultasi      = set_value('id_konsultasi');
@@ -85,30 +83,11 @@ class Konsultasi extends CI_Controller {
             $save             = $this->M_konsultasi->sendReplay($replay, $id_konsultasi);
             $updateKonsultasi = $this->M_konsultasi->update($id);
 
-            redirect('../konsultasi/index.php/konsultasi/detail/'.$id);
+            redirect('konsultasi/detail/'.$id);
 
         }
 
     }
-
-    public function tenagaahli()
-    {
-    	$data['categories']     = $this->M_konsultasi->getKatByUser();
-
-        $this->load->view('header'); 
-        $this->load->view('kategori', $data);
-        $this->load->view('footer');
-    }
-
-    public function kategori($kategori_id)
-    {
-    	$data['konsultasi'] = $this->M_konsultasi->getListKat($kategori_id);
-
-        $this->load->view('header'); 
-        $this->load->view('index', $data);
-        $this->load->view('footer');
-    }
-
 }
 
 /* End of file Konsultasi.php */

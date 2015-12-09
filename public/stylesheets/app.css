@@ -284,7 +284,7 @@ header {
               -moz-transition: all 0.5s ease-in-out;
               -o-transition: all 0.5s ease-in-out; }
           header #header-main .header-main-box .header-main-box-content form .form-group .form-control[placeholder] {
-            font-size: 10px; }
+            font-size: 12px; }
           header #header-main .header-main-box .header-main-box-content form .form-group .btn-login {
             background-color: #1c9c57;
             color: #fff;
@@ -2530,7 +2530,7 @@ footer {
     width: auto; }
 
 .news2 .articles-box-img {
-  height: 100px;
+  height: 120px;
   overflow: hidden; }
   .news2 .articles-box-img img {
     width: auto; }
@@ -2925,6 +2925,192 @@ a {
   font-size: 12px;
   line-height: 1.3;
   font-weight: 400; }
+
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity .15s linear;
+  -o-transition: opacity .15s linear;
+  transition: opacity .15s linear;
+  display: none; }
+
+/* DASHBOARD FOR SUMBIT ARTICLES */
+.articles-dashboard {
+  background-color: #fff; }
+  .articles-dashboard .content-articles {
+    margin-top: 25px;
+    margin-bottom: 40px; }
+    .articles-dashboard .content-articles .content-articles-heading {
+      display: block;
+      border-bottom: 3px solid #1c9c57;
+      margin-bottom: 20px; }
+      .articles-dashboard .content-articles .content-articles-heading h3 {
+        color: #fff;
+        font-size: 10px;
+        font-weight: 200;
+        text-transform: uppercase;
+        font-family: "open_sansbold", sans-serif;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        margin-bottom: 0px;
+        display: inline-block;
+        border-bottom: 3px solid #1c9c57;
+        background-color: #1c9c57;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px; }
+    .articles-dashboard .content-articles .content-artcles-content {
+      margin-top: 25px;
+      margin-bottom: 40px; }
+  .articles-dashboard .sidebar-article {
+    margin-top: 0px; }
+    .articles-dashboard .sidebar-article .widget {
+      margin-bottom: 35px; }
+      .articles-dashboard .sidebar-article .widget .widget-categories .widget-categories-heading {
+        display: block;
+        border-bottom: 3px solid #d41d2a;
+        margin-bottom: 20px; }
+        .articles-dashboard .sidebar-article .widget .widget-categories .widget-categories-heading h4 {
+          display: inline-block;
+          margin-top: 0px;
+          margin-bottom: 0px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+          font-size: 14px;
+          font-family: "open_sansbold", sans-serif;
+          background-color: #d41d2a;
+          padding-left: 20px;
+          padding-right: 20px;
+          color: #fff; }
+      .articles-dashboard .sidebar-article .widget .widget-categories .widget-categories-content .list-group {
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -o-border-radius: 0; }
+        .articles-dashboard .sidebar-article .widget .widget-categories .widget-categories-content .list-group .list-group-item {
+          font-size: 14px; }
+          .articles-dashboard .sidebar-article .widget .widget-categories .widget-categories-content .list-group .list-group-item.active {
+            background-color: #1c9c57;
+            border: 1px solid #1c9c57;
+            font-size: 14px; }
+
+/* DASHBOARD FOR END USER */
+.content-dashboard-user {
+  background-color: #fff; }
+  .content-dashboard-user .content-submit {
+    margin-top: 25px; }
+    .content-dashboard-user .content-submit .submit .submit-heading {
+      display: block;
+      margin-bottom: 15px;
+      font-family: "open_sansbold", sans-serif; }
+      .content-dashboard-user .content-submit .submit .submit-heading .nav-item .nav-link {
+        font-size: 12px;
+        color: #B0B0B7;
+        text-transform: uppercase;
+        font-family: "open_sansbold", sans-serif; }
+        .content-dashboard-user .content-submit .submit .submit-heading .nav-item .nav-link.active {
+          background-color: #fff;
+          color: #1c9c57;
+          text-transform: uppercase;
+          font-family: "open_sansbold", sans-serif;
+          font-size: 12px; }
+        .content-dashboard-user .content-submit .submit .submit-heading .nav-item .nav-link:hover {
+          border-top: 1px solid #B0B0B7;
+          border-right: 1px solid #B0B0B7;
+          border-left: 1px solid #B0B0B7; }
+    .content-dashboard-user .content-submit .submit .submit-sidebar-heading {
+      border-bottom: 3px solid #d41d2a;
+      display: block;
+      margin-bottom: 15px;
+      font-family: "open_sansbold", sans-serif; }
+      .content-dashboard-user .content-submit .submit .submit-sidebar-heading h3 {
+        background-color: #d41d2a;
+        display: inline-block;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-family: "open_sansbold", sans-serif;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 0px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        color: #fff; }
+    .content-dashboard-user .content-submit .submit .submit-sidebar-content .list-group-item {
+      font-size: 13px; }
+      .content-dashboard-user .content-submit .submit .submit-sidebar-content .list-group-item.active {
+        background-color: #1c9c57;
+        border: 1px solid #1c9c57;
+        font-size: 13px; }
+    .content-dashboard-user .content-submit .submit .submit-content {
+      margin-bottom: 25px; }
+
+/* Landing FAQ
+   Fajar Eko Susilo
+*/
+.header-landing-faq {
+  background-color: #dddddd;
+  height: auto; }
+  .header-landing-faq #header-faq {
+    padding-top: 25px;
+    padding-bottom: 40px; }
+    .header-landing-faq #header-faq .header-main-box {
+      width: 100%;
+      height: auto;
+      background-color: #4cb050;
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -o-border-radius: 0; }
+      .header-landing-faq #header-faq .header-main-box .header-main-box-content {
+        padding-top: 35px;
+        padding-bottom: 20px;
+        padding-left: 25px;
+        padding-right: 25px; }
+        .header-landing-faq #header-faq .header-main-box .header-main-box-content .box-header {
+          background-color: #1c9c57;
+          width: 100%;
+          height: auto;
+          color: #fff; }
+          .header-landing-faq #header-faq .header-main-box .header-main-box-content .box-header h3 {
+            font-size: 18px;
+            font-family: "open_sansbold", sans-serif;
+            padding-top: 20px;
+            margin-left: 15px;
+            margin-right: 15px; }
+          .header-landing-faq #header-faq .header-main-box .header-main-box-content .box-header p {
+            font-size: 14px;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            margin-left: 15px;
+            margin-right: 15px; }
+
+.landing-content-faq {
+  margin-top: 0px;
+  padding-bottom: 65px;
+  background-color: #fff; }
+  .landing-content-faq .faq-content {
+    margin-bottom: 10px; }
+    .landing-content-faq .faq-content .faq-content-question {
+      background-color: #4cb050;
+      padding: 5px; }
+      .landing-content-faq .faq-content .faq-content-question h3 {
+        font-size: 16px;
+        font-family: "open_sansbold", sans-serif;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 10px; }
+    .landing-content-faq .faq-content .faq-content-answer {
+      background-color: #fff;
+      padding: 15px; }
+      .landing-content-faq .faq-content .faq-content-answer p {
+        color: #000;
+        font-size: 14px;
+        margin-top: 10px;
+        margin-bottom: 10px; }
 
 .label-primary {
   background-color: #1c9c57; }
