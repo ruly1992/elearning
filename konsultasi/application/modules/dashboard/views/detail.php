@@ -70,7 +70,7 @@
                             <div class="card">
                                 <?php foreach ($reply as $data) { ?>
                                 <div class="card-block">
-                                    <p><strong>From : <?php echo $data->first_name.''.$data->last_name ?></strong> <span class="pull-right"><?php echo $data->created_at ?></span></p>
+                                    <p><strong>From : <?php echo user($data->id_user)->full_name ?></strong> <span class="pull-right"><?php echo $data->created_at ?></span></p>
                                 </div>
                                 <hr>
                                 <div class="card-block">
