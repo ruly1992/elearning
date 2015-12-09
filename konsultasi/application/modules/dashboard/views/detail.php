@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="content-konsultasi-table">
-                    <a href="<?php echo home_url('app/files/konsultasi-attachment').'/'.$konsultasi->attachment ?>"><?php echo $konsultasi->attachment ?></a>
+                    <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$konsultasi->attachment) ?>"><?php echo $konsultasi->attachment ?></a>
                 </div>
                 <hr>
 
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="card-block">
                                     <p class="card-text">
-                                       <a href="<?php echo home_url('app/files/konsultasi-attachment').'/'.$data->attachment ?>"><?php echo $data->attachment ?></a>
+                                       <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$data->attachment) ?>"><?php echo $data->attachment ?></a>
                                     </p>
                                 </div>
                             </div>
