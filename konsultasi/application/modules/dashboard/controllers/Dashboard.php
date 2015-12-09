@@ -46,7 +46,7 @@ class Dashboard extends CI_Controller {
 
             if (! $this->upload->do_upload('file')) {
                 
-                $replay = array(
+                $reply = array(
                     'isi'           => set_value('isi'),
                     'id_konsultasi' => $id,
                     'id_user'       => sentinel()->getUser()->id,
@@ -56,7 +56,7 @@ class Dashboard extends CI_Controller {
 
                 $file_data = $this->upload->data();
 
-                $replay = array(
+                $reply = array(
                     'attachment'    => $file_data['file_name'],
                     'isi'           => set_value('isi'),
                     'id_konsultasi' => $id,
