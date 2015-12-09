@@ -3846,13 +3846,12 @@ a {
 /* Dashboard Faq */
 .dashboard-faq {
 	padding-top: $padding-top;
-	background-color: $white;
+	background-color: $green;
 	margin-top: $margin-top - 10;
 	margin-bottom: $margin-bottom - 47;
-	border: 2px solid $black;
 	width: 100%;
 	h3 {
-		color: $green;
+		color: $white;
 		font-size: 16px;
 		font-weight: 600;
 		@include fonts('open_sansbold');

@@ -3140,13 +3140,12 @@ a {
 /* Dashboard Faq */
 .dashboard-faq {
   padding-top: 5px;
-  background-color: #fff;
+  background-color: #1c9c57;
   margin-top: -5px;
   margin-bottom: -42px;
-  border: 2px solid #000;
   width: 100%; }
   .dashboard-faq h3 {
-    color: #1c9c57;
+    color: #fff;
     font-size: 16px;
     font-weight: 600;
     font-family: "open_sansbold", sans-serif;
