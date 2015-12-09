@@ -41,6 +41,13 @@ if (!function_exists('dashboard_url')) {
     }
 }
 
+if (!function_exists('admin_url')) {
+    function admin_url($uri = '')
+    {
+        return home_url('admin/' . $uri);
+    }
+}
+
 if (!function_exists('portal_url')) {
     function portal_url($uri = '')
     {

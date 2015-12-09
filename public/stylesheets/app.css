@@ -284,7 +284,7 @@ header {
               -moz-transition: all 0.5s ease-in-out;
               -o-transition: all 0.5s ease-in-out; }
           header #header-main .header-main-box .header-main-box-content form .form-group .form-control[placeholder] {
-            font-size: 10px; }
+            font-size: 12px; }
           header #header-main .header-main-box .header-main-box-content form .form-group .btn-login {
             background-color: #1c9c57;
             color: #fff;
@@ -2530,7 +2530,7 @@ footer {
     width: auto; }
 
 .news2 .articles-box-img {
-  height: 100px;
+  height: 120px;
   overflow: hidden; }
   .news2 .articles-box-img img {
     width: auto; }
@@ -3140,13 +3140,12 @@ a {
 /* Dashboard Faq */
 .dashboard-faq {
   padding-top: 5px;
-  background-color: #fff;
+  background-color: #1c9c57;
   margin-top: -5px;
   margin-bottom: -42px;
-  border: 2px solid #000;
   width: 100%; }
   .dashboard-faq h3 {
-    color: #1c9c57;
+    color: #fff;
     font-size: 16px;
     font-weight: 600;
     font-family: "open_sansbold", sans-serif;

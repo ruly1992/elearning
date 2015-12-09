@@ -163,7 +163,7 @@
                                         </div>
                                     </div>
                                     <div class="card-block">
-                                        <p><?php echo BBCodeParser($r->message);?></p>
+                                        <p><?php echo BBCodeParser($r->message); ?></p>
                                     </div>
                                     <div class="card-footer">
                                         <a href="#" class="btn btn-sm btn-reply">Quote Reply</a>
@@ -297,9 +297,9 @@
             $(function() {
                 $("textarea").sceditor({
                     plugins: "bbcode",
-                    style: "<?php echo asset('plugins/sceditor/minified/jquery.sceditor.default.min.css'); ?>" ,
+                    style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.css'); ?>" ,
                     emoticonsCompat: true,
-                    emoticonsRoot : "<?php echo asset('plugins/sceditor//'); ?>"
+                    emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
                 });
             });
         </script>
