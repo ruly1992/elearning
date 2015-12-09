@@ -4,6 +4,8 @@ $(document).ready(function () {
         tokenSeparators: [',']
     })
 
+    $('.select2').select2()
+
     $('.btn-visit-home').on('click', function (e) {
         e.preventDefault(); 
         var url = $(this).data('href'); 
