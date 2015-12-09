@@ -22,7 +22,7 @@
 					<strong>Settings</strong>
 				</li>
 				<li><a href="<?php echo site_url('profile') ?>"><i class="fa fa-user"></i> Profile</a></li>
-				<li><a href="<?php echo site_url('user/logout') ?>"><i class="fa fa-lock"></i> Logout</a></li>	
+				<li><a href="<?php echo logout_url() ?>"><i class="fa fa-lock"></i> Logout</a></li>	
     		</ul>
   		</li>
 	</ul>
