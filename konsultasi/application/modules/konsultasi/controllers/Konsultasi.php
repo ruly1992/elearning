@@ -23,9 +23,7 @@ class Konsultasi extends CI_Controller {
 	{
 		$data['konsultasi'] = $this->M_konsultasi->readKonsultasi();
 
-        $this->load->view('header'); 
-        $this->load->view('index', $data);
-        $this->load->view('footer');
+        $this->template->build('index', $data);
 	}
 
 	public function create()
@@ -38,9 +36,7 @@ class Konsultasi extends CI_Controller {
             $data['status']         = $this->status;
             $data['categories']     = $this->M_konsultasi->getKategori();
 
-            $this->load->view('header'); 
-            $this->load->view('create', $data); 
-            $this->load->view('footer');
+            $this->template->build('create', $data); 
 
         } else {
 
@@ -71,9 +67,7 @@ class Konsultasi extends CI_Controller {
             $detail['kategori']         = $this->M_konsultasi->getKatByKons($id);
             $detail['reply']            = $this->M_konsultasi->getReply($id);
 
-            $this->load->view('header'); 
-            $this->load->view('detail', $detail);
-            $this->load->view('footer');
+            $this->template->build('detail', $detail);
 
         } else {
         	
