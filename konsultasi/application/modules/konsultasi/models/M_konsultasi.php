@@ -87,8 +87,8 @@ class M_konsultasi extends CI_Model {
 
     public function getReply($id)
     {
-        $data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment', 'p.first_name', 'p.last_name');
-        $get   = $this->db->select($data)->from('konsultasi')->join('reply AS rp','rp.id_konsultasi=konsultasi.id')->join('profile AS p', 'p.id=rp.id_user')->where('konsultasi.id',$id)->order_by('rp.created_at', 'DESC')->get();
+        $data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment');
+        $get   = $this->db->select($data)->from('konsultasi')->join('reply AS rp','rp.id_konsultasi=konsultasi.id')->where('konsultasi.id',$id)->order_by('rp.created_at', 'DESC')->get();
         return $get->result();
     }
 
