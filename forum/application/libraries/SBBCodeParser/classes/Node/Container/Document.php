@@ -101,7 +101,7 @@ class Node_Container_Document extends Node_Container
 				if(substr($content, 0, 23) === 'http://www.youtube.com/')
 					$uri = $content;
 				else
-					$uri = 'http://www.youtube.com/v/' . $content;
+					$uri = 'http://www.youtube.com/embed/' . $content;
 
 				return '<iframe width="480" height="390" src="' . $uri . '" frameborder="0"></iframe>';
 			}, BBCode::BLOCK_TAG, false, array(), array('text_node'), BBCode::AUTO_DETECT_EXCLUDE_ALL),
