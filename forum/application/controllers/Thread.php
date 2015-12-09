@@ -78,7 +78,13 @@ class Thread extends CI_Controller
                 'title'     => $t->title,
                 'message'   => BBCodeParser($t->message)
             );
+
+            $viewer = array(
+                'views'     => $t->views+1
+            );
         }
+
+        $addViewer = $this->model_thread->update_viewer($id,$viewer);
 
         $data['reply']     = $this->model_thread->get_reply($id);
         $data['countReply']= count($data['reply']);
