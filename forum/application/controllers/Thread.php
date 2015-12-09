@@ -17,7 +17,8 @@ class Thread extends CI_Controller
     
     public function index()
     {
-        $data['threads'] = $this->model_thread->get_all_threads();
+        $data['comments'] = $this->model_thread->get_count_reply(); 
+        $data['threads']  = $this->model_thread->get_all_threads();
         $this->load->view('thread/all_threads',$data);
     }
     
@@ -84,7 +85,7 @@ class Thread extends CI_Controller
             );
         }
 
-        $addViewer = $this->model_thread->update_viewer($id,$viewer);
+        $addViewer = $this->model_thread->update_thread($id,$viewer);
 
         $data['reply']     = $this->model_thread->get_reply($id);
         $data['countReply']= count($data['reply']);
@@ -100,8 +101,10 @@ class Thread extends CI_Controller
     
     public function deleteThread($id)
     {
-        $delete=$this->model_thread->delete_thread($id);
+        $delete = $this->model_thread->delete_thread($id);
+
         if($delete==TRUE){
+            $this->model_thread->delete_replies($id);
             $this->session->set_flashdata('hasil','Thread was successfully deleted');
         }else{
             $this->session->set_flashdata('hasil','Thread has failed to delete');
@@ -182,11 +185,6 @@ class Thread extends CI_Controller
             );
             $post_reply = $this->model_thread->save_thread($data);
 
-            $addComments = array(
-                'comments' => $comments+1
-            );
-            $this->model_thread->add_comments($id,$addComments);
-
             if($post_reply==TRUE){
                 $this->session->set_flashdata('hasil','Reply was sent');
             }else{
@@ -238,7 +236,7 @@ class Thread extends CI_Controller
     }
 
     public function deleteReply($idThread,$idReply){
-         $delete=$this->model_thread->delete_thread($idReply);
+        $delete=$this->model_thread->delete_thread($idReply);
         if($delete==TRUE){
             $this->session->set_flashdata('hasil','Comment was successfully deleted');
         }else{
