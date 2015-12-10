@@ -100,7 +100,7 @@
                                             <div class="panel-heading" role="tab" id="headingOne">
                                                 <h4 class="panel-title">
                                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        Bales
+                                                        Balas
                                                     </a>
                                                 </h4>
                                             </div>

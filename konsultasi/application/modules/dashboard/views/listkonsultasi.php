@@ -43,9 +43,9 @@
                                 <p>                                   
                                     <?php if ($row->status == "open"): ?>
                                         <a href="<?php echo site_url('dashboard/detail/'. $row->id) ?>" class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Reply">Reply</a>
-                                        <a href="<?php echo site_url('dashboard/status/open/'. $row->id) ?>" class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Close">Close</a>
+                                        <a href="<?php echo site_url('dashboard/status/open/'.$id_kategori.'/'.$row->id) ?>" class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Close">Close</a>
                                     <?php else : ?>
-                                        <a href="<?php echo site_url('dashboard/status/close/'. $row->id) ?>" class="btn btn-success btn-konsul" data-toggle="tooltip" data-placement="top" title="Reopen">Reopen</a>
+                                        <a href="<?php echo site_url('dashboard/status/close/'.$id_kategori.'/'. $row->id) ?>" class="btn btn-success btn-konsul" data-toggle="tooltip" data-placement="top" title="Reopen">Reopen</a>
                                     <?php endif ?>    
 
                                 </p>

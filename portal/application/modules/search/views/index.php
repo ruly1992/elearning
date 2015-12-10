@@ -18,7 +18,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="articles-box-meta">
                                 <ul>
-                                    <li><i class="fa fa-user"></i> <?php echo $article->contributor->full_name ?></li>
+                                    <li><i class="fa fa-user"></i> <?php echo $article->author_name ?></li>
                                     <li>/</li>
                                     <li><i class="fa fa-calendar"></i> <?php echo $article->date->format('d F Y') ?></li>
                                 </ul>

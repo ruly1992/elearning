@@ -79,7 +79,7 @@ if (!function_exists('kelas_url')) {
 if (!function_exists('vicon_url')) {
     function vicon_url($uri = '')
     {
-        return home_url('vicon/' . $uri);
+        return 'http://122.200.145.155/'.$uri;
     }
 }
 

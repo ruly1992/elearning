@@ -121,3 +121,15 @@
         </section>        
     </div>
 </div>
+
+<?php custom_script() ?>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#article').DataTable();
+        } );
+
+        $(document).ready(function() {
+            $('#publish').DataTable();
+        } );
+    </script>
+<?php endcustom_script() ?>

@@ -19,7 +19,8 @@ class Dashboard extends CI_Controller {
 
     public function kategori($kategori_id)
     {
-    	$data['konsultasi'] = $this->M_konsultasi->getListKat($kategori_id);
+    	$data['konsultasi']  = $this->M_konsultasi->getListKat($kategori_id);
+        $data['id_kategori'] = $kategori_id;
 
         $this->template->build('listkonsultasi', $data);
     }
@@ -74,11 +75,11 @@ class Dashboard extends CI_Controller {
 
     }
 
-    public function status($open,$id)
+    public function status($open, $kategoriId, $id)
     {
         $update = $this->M_konsultasi->status($id, $open);
 
-        redirect('','refresh');
+        redirect('dashboard/kategori/'.$kategoriId,'refresh');
 
     }
 

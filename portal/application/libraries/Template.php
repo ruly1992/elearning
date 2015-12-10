@@ -161,6 +161,10 @@ class Template
 	 */
 	public function set($name, $value = NULL)
 	{
+		global ${$name};
+
+		${$name} = $value;
+
 		// Lots of things! Set them all
 		if (is_array($name) OR is_object($name))
 		{
@@ -438,6 +442,13 @@ class Template
 	 */
 	public function inject_partial($name, $string, $data = array())
 	{
+		global $custom_script, $custom_stylesheet;
+
+		if ($name == 'stylesheet')
+			$custom_stylesheet = $string;
+		elseif ($name == 'script')
+			$custom_script = $string;
+
 		$this->_partials[$name] = array('string' => $string, 'data' => $data);
 		return $this;
 	}

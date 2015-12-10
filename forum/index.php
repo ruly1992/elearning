@@ -1,4 +1,6 @@
 <?php
+
+require __DIR__.'/../app/bootstrap/autoload.php';
 /**
  * CodeIgniter
  *
@@ -289,5 +291,4 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
-require '../app/bootstrap/autoload.php';
 require_once BASEPATH.'core/CodeIgniter.php';

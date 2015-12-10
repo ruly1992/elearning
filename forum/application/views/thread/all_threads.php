@@ -135,7 +135,15 @@
                                                     <div class="thread-list-meta">
                                                         <ul>
                                                             <li>
-                                                                <?php echo $t->views; ?> Views
+                                                                <?php   
+                                                                    $views = 0;
+                                                                    foreach ($visitors as $v) {
+                                                                        if($v->thread == $t->id){
+                                                                            $views = $views+1;
+                                                                        }
+                                                                    }
+                                                                ?>
+                                                                <?php echo $views.' Views'; ?>
                                                             </li>
                                                             <li>
                                                                 <?php 
@@ -149,7 +157,7 @@
                                                                 <?php echo $sum_comments; ?> Comments
                                                             </li>
                                                             <li>
-                                                                Started by <a href="#"><?php echo $t->author; ?></a>
+                                                                Started by <a href="#"><?php echo user($t->author)->full_name; ?></a>
                                                             </li>
                                                             <li>
                                                                 <?php echo $t->created_at; ?>
