@@ -7,8 +7,8 @@ class Thread extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model('model_thread');
-        $this->load->helper('BBCodeParser');
+        $this->load->model(array('model_thread','model_visitor'));
+        $this->load->helper(array('BBCodeParser','visitor'));
 
         if(!sentinel()->check()) {
             redirect(login_url());
@@ -18,6 +18,7 @@ class Thread extends CI_Controller
     public function index()
     {
         $data['comments'] = $this->model_thread->get_count_reply(); 
+        $data['visitors'] = $this->model_visitor->get_visitors();
         $data['threads']  = $this->model_thread->get_all_threads();
         $this->load->view('thread/all_threads',$data);
     }
@@ -79,13 +80,11 @@ class Thread extends CI_Controller
                 'title'     => $t->title,
                 'message'   => BBCodeParser($t->message)
             );
-
-            $viewer = array(
-                'views'     => $t->views+1
-            );
         }
 
-        $addViewer = $this->model_thread->update_thread($id,$viewer);
+        $user = sentinel()->getUser();
+        $visitorIdentity = visitorIdentity($user->id,$id);
+        $this->model_visitor->saveVisitor($visitorIdentity);
 
         $data['reply']     = $this->model_thread->get_reply($id);
         $data['countReply']= count($data['reply']);
