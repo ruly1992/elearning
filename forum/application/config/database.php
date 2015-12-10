@@ -75,12 +75,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'elearning_forum',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'hostname' => getenv('FORUM_DB_HOST') ?: 'localhost',
+	'username' => getenv('FORUM_DB_USERNAME') ?: 'root',
+	'password' => getenv('FORUM_DB_PASSWORD') ?: '',
+	'database' => getenv('FORUM_DB_DATABASE') ?: 'elearning_forum',
+	'dbdriver' => getenv('FORUM_DB_DRIVER') ?: 'mysqli',
+	'dbprefix' => getenv('FORUM_DB_PREFIX') ?: '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,

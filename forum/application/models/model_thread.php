@@ -23,8 +23,8 @@ class Model_thread extends CI_Model
     
     function update_thread($id,$data)
     {
-        $where="id = '".$id."'"; 
-        $update = $this->db->update('threads', $data, $where); 
+        $this->db->where('id',$id);
+        $update = $this->db->update('threads', $data); 
         
         if($update){
             return TRUE;
@@ -53,7 +53,11 @@ class Model_thread extends CI_Model
     function get_all_threads()
     {
         $items = array('threads.*','categories.category_name');
-        $get   = $this->db->select($items)->from('threads')->join('categories','categories.id=threads.category')->where('reply_to','0')->order_by('created_at','desc')->get();
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories','categories.id=threads.category')
+                ->where('reply_to','0')
+                ->order_by('created_at','desc')
+                ->get();
         return $get->result();
     }
 
@@ -64,22 +68,14 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function update_viewer($idThread,$data){
-        $this->db->where('id',$idThread);
-        $update = $this->db->update('threads',$data);
-       
-        if($update){
-            return TRUE;
-        }else{
-            return FALSE;
-        }
+    function get_count_reply(){
+        $get = $this->db->select(array('id','reply_to'))->from('threads')->where_not_in('reply_to','0')->get();
+        return $get->result();
     }
-
-    function add_comments($id,$data){
-        $this->db->where('id',$id);
-        $update = $this->db->update('threads',$data);
-
-        if($update){
+    function delete_replies($id){
+        $this->db->where('reply_to', $id);
+        $delete = $this->db->delete('threads');
+        if($delete){
             return TRUE;
         }else{
             return FALSE;
