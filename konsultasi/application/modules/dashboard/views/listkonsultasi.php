@@ -30,7 +30,7 @@
                         <tr>
                             <th scope="row"><?php echo $row->id ?></th>
                             <td><?php echo $row->created_at ?></td>
-                            <td><?php echo $row->subjek ?></td>
+                            <td><a href="<?php echo site_url('dashboard/detail/'.$row->id) ?>"><?php echo $row->subjek ?></a></td>
                             <td><?php echo user($row->user_id)->full_name ?></td>
                             <td>
                             <?php if ($row->status == "open"): ?>
