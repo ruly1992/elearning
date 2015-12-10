@@ -49,14 +49,9 @@ $(document).ready(function () {
             }
         })
     })
-
-    // $('.fileinput').on('clear.bs.fileinput', function () {
-    //     // $(this).find('input[type=hidden]').val('')
-    // })
     
-    // $('.fileinput').on('change.bs.fileinput', function () {
-    //     // $(this).find($('[name="remove_featured_image"]')).remove()
-    // })
+    $('#article').DataTable();
+    $('#publish').DataTable();
 
     $('.iframe-btn').fancybox({ 
         'width'     : 900,
@@ -101,22 +96,6 @@ $(document).ready(function () {
             }
         })
     })
-
-    // $('.switch-input.ajax').on('change', function(){
-    //     var id      = $(this).val();
-    //     var status    = this.checked ? 'unapprove' : 'approve';
-
-    //     $.ajax({
-    //         url: siteurl + '/comment/comment_json/status',
-    //         data: {
-    //             id: id,
-    //             status: status,
-    //         },
-    //         success: function (response){
-
-    //         }
-    //     })
-    // })
 
     $('.open-schedule').on('click', function () {
         var input_schedule = $('.input-schedule');

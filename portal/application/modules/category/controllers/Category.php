@@ -9,7 +9,7 @@ class Category extends CI_Controller {
 
         
 		$name 				= urldecode($name);
-		$category 			= Model\Category::whereName($name)->firstOrFail();
+		$category 			= Model\Portal\Category::whereName($name)->firstOrFail();
         $paginate 			= pagination($category->articles, 15, 'category/show/' . $name);
         $data['category']	= $category;
 		$data['articles']	= $paginate;
