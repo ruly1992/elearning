@@ -73,8 +73,8 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="card">
-                                <?php foreach ($reply as $data) { ?>
+                            <?php foreach ($reply as $data) { ?>
+                            <div class="card">    
                                 <div class="card-block">
                                     <p><strong>From : <?php echo user($data->id_user)->full_name ?></strong> <span class="pull-right"><?php echo $data->created_at ?></span></p>
                                 </div>
@@ -83,12 +83,16 @@
                                     <p class="card-text">
                                        <?php echo $data->isi ?>
                                     </p>
-                                    <hr>
+                                </div>
+                                <div class="card-block">
                                     <p class="card-text">
-                                        <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$data->attachment) ?>"><?php echo $data->attachment ?></a>
+                                       <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$data->attachment) ?>"><?php echo $data->attachment ?></a>
                                     </p>
                                 </div>
-                                <?php } ?>
+                            </div>
+                            <?php } ?>                           
+                            
+                            <?php if ($konsultasi->status == 'open'): ?>
                                 <div class="card-block">
                                     <div id="accordion" role="tablist" aria-multiselectable="true">
                                         <div class="panel panel-default">
@@ -100,7 +104,7 @@
                                                 </h4>
                                             </div>
                                             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                <form method="POST" action="<?php echo site_url('konsultasi/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
+                                                <form method="POST" action="<?php echo site_url('dashboard/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col-md-8">
@@ -133,8 +137,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                </div>                            
+                            <?php else: ?>
+                                <p class="alert alert-warning">Konsultasi telah di tutup anda tidak dapat mengirim kan balasan.</p>
+                            <?php endif ?>
                         </div>
                     </div>
                 </div>
