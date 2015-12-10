@@ -3819,6 +3819,12 @@ a {
 // Dashboard
 // Create by: Singgih Saputro //
 
+/* Header */
+.flex-container {
+	display: flex;
+	flex-direction: column;
+}
+
 .label-primary{
 	background-color: $green;
 }
