@@ -53,7 +53,11 @@ class Model_thread extends CI_Model
     function get_all_threads()
     {
         $items = array('threads.*','categories.category_name');
-        $get   = $this->db->select($items)->from('threads')->join('categories','categories.id=threads.category')->where('reply_to','0')->order_by('created_at','desc')->get();
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories','categories.id=threads.category')
+                ->where('reply_to','0')
+                ->order_by('created_at','desc')
+                ->get();
         return $get->result();
     }
 
