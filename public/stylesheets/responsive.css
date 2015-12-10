@@ -29,6 +29,14 @@
         flex-direction: row;
         width: 100%; }
 
+  .nav {
+    padding-top: 10px; }
+
+  .navbar-logo-mobile {
+    margin-top: 7px; }
+    .navbar-logo-mobile img {
+      width: 150px; }
+
   #header .header-top-left {
     display: none; }
   #header .header-top-right .form-control {
