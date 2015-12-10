@@ -40,7 +40,9 @@
       padding-bottom: 10px;
       .navbar-nav {
         li {
-          display: block !important;
+          // display: flex;
+          flex-direction: row;
+          width: 100%;
         }
       }
     }

@@ -26,7 +26,8 @@
       padding-top: 5px;
       padding-bottom: 10px; }
       #navbar-main .container .navbar-nav li {
-        display: block !important; }
+        flex-direction: row;
+        width: 100%; }
 
   #header .header-top-left {
     display: none; }
