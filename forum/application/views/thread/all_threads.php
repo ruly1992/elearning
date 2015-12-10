@@ -138,7 +138,15 @@
                                                                 <?php echo $t->views; ?> Views
                                                             </li>
                                                             <li>
-                                                                <?php echo $t->comments; ?> Comments
+                                                                <?php 
+                                                                    $sum_comments = 0;
+                                                                    foreach($comments as $c){
+                                                                        if($c->reply_to == $t->id){
+                                                                            $sum_comments = $sum_comments+1;
+                                                                        }
+                                                                    }
+                                                                ?>
+                                                                <?php echo $sum_comments; ?> Comments
                                                             </li>
                                                             <li>
                                                                 Started by <a href="#"><?php echo $t->author; ?></a>
