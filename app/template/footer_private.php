@@ -80,11 +80,27 @@
 
     <script src="<?php echo asset('node_modules/jquery/dist/jquery.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+    <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>
+    <script src="<?php echo asset('node_modules/moment/moment.js') ?>"></script>
+    <script src="<?php echo asset('node_modules/select2/dist/js/select2.min.js') ?>"></script>
+    <script src="<?php echo asset('node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') ?>"></script>
+    <script src="<?php echo asset('node_modules/fancybox/dist/js/jquery.fancybox.pack.js') ?>"></script>
+    <script src="<?php echo asset('node_modules/bootstrap-daterangepicker/daterangepicker.js') ?>"></script>
+
+    <script src="<?php echo asset('plugins/tinymce/tinymce.jquery.min.js') ?>"></script>
     <script src="<?php echo asset('javascript/jquery.easing.min.js"') ?>"></script>
     <script src="<?php echo asset('javascript/scrolling-nav.js') ?>"></script>
+    <script src="<?php echo asset('javascript/jquery.nestable.js') ?>"></script>
     <script src="<?php echo asset('javascript/jquery.sticky.js') ?>"></script>
     <script src="<?php echo asset('javascript/app.js') ?>"></script>
+    <script src="<?php echo asset('javascript/analytic.js') ?>"></script>
+
+    <script src="<?php echo asset('admin/js/jquery.dataTables.min.js') ?>"></script>
+    <script src="<?php echo asset('plugins/datatables/js/dataTables.bootstrap.min.js') ?>"></script>
+
     <?php echo $custom_script ?>
+    
+    <script src="<?php echo asset('javascript/custom.js') ?>"></script>
     <!-- end:javascript -->
 </body>
 </html>
