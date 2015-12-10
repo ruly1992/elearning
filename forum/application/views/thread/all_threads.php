@@ -157,7 +157,7 @@
                                                                 <?php echo $sum_comments; ?> Comments
                                                             </li>
                                                             <li>
-                                                                Started by <a href="#"><?php echo $t->author; ?></a>
+                                                                Started by <a href="#"><?php echo user($t->author)->full_name; ?></a>
                                                             </li>
                                                             <li>
                                                                 <?php echo $t->created_at; ?>
