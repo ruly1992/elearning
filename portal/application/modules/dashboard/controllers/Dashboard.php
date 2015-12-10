@@ -16,6 +16,9 @@ class Dashboard extends Admin {
         $this->load->model('Mod_sendarticle');
         $this->load->model('category/Mod_category');
 
+        $this->template->set('active', 'dashboard');
+        $this->template->add_script('javascript/custom-tiny.js');
+
         $this->status = array(
             'publish'   => 'Publish',
             'draft'     => 'Draft',
@@ -129,7 +132,7 @@ class Dashboard extends Admin {
             $data['categories_checkbox']    = $this->Mod_category->generateCheckbox();
             $data['status'] = $this->status;
 
-            $this->template->set('sidebar');            
+            $this->template->set('sidebar');
             $this->template->set_layout('privatepage');
             $this->template->build('create', $data);
         } else {
