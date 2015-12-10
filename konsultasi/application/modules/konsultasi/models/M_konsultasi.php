@@ -103,6 +103,15 @@ class M_konsultasi extends CI_Model {
         $this->db->set($data);
         $this->db->insert('reply');
     }
+
+    public function status($id, $open)
+    {
+        if ($open == 'open') {
+            $this->db->update('konsultasi', array('status'=>'close'), array('id'=> $id));
+        } else {
+            $this->db->update('konsultasi', array('status'=>'open'), array('id'=> $id));
+        }
+    }
 }
 
 /* End of file M_konsultasi.php */
