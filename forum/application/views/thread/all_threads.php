@@ -135,7 +135,15 @@
                                                     <div class="thread-list-meta">
                                                         <ul>
                                                             <li>
-                                                                <?php echo $t->views; ?> Views
+                                                                <?php   
+                                                                    $views = 0;
+                                                                    foreach ($visitors as $v) {
+                                                                        if($v->thread == $t->id){
+                                                                            $views = $views+1;
+                                                                        }
+                                                                    }
+                                                                ?>
+                                                                <?php echo $views.' Views'; ?>
                                                             </li>
                                                             <li>
                                                                 <?php 
