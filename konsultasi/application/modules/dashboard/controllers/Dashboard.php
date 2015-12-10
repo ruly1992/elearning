@@ -7,7 +7,7 @@ class Dashboard extends CI_Controller {
 	{
 		parent::__construct();
 		
-		$this->load->model('konsultasi/M_konsultasi');
+        $this->load->model('konsultasi/M_konsultasi');
 	}
 
     public function index()
@@ -71,6 +71,14 @@ class Dashboard extends CI_Controller {
 
             redirect('dashboard/detail/'.$id);
         }
+
+    }
+
+    public function status($open,$id)
+    {
+        $update = $this->M_konsultasi->status($id, $open);
+
+        redirect('','refresh');
 
     }
 

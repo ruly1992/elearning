@@ -30,13 +30,24 @@
                         <tr>
                             <th scope="row"><?php echo $row->id ?></th>
                             <td><?php echo $row->created_at ?></td>
-                            <td><?php echo $row->subjek ?></td>
+                            <td><a href="<?php echo site_url('dashboard/detail/'.$row->id) ?>"><?php echo $row->subjek ?></a></td>
                             <td><?php echo user($row->user_id)->full_name ?></td>
-                            <td><?php echo $row->status ?></td>
+                            <td>
+                            <?php if ($row->status == "open"): ?>
+                                <p class="label label-primary">Active</p>
+                            <?php else :?>
+                                <p class="label label-default">Close</p>
+                            <?php endif ?>
+                            </td>
                             <td align="center">
-                                <p>
-                                  <a href="<?php echo site_url('dashboard/detail/'. $row->id) ?>" class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Reply">Reply</a>
-                                  <a href="<?php echo site_url('dashboard/detail/'. $row->id) ?>" class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Close">Close</a>
+                                <p>                                   
+                                    <?php if ($row->status == "open"): ?>
+                                        <a href="<?php echo site_url('dashboard/detail/'. $row->id) ?>" class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Reply">Reply</a>
+                                        <a href="<?php echo site_url('dashboard/status/open/'. $row->id) ?>" class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Close">Close</a>
+                                    <?php else : ?>
+                                        <a href="<?php echo site_url('dashboard/status/close/'. $row->id) ?>" class="btn btn-success btn-konsul" data-toggle="tooltip" data-placement="top" title="Reopen">Reopen</a>
+                                    <?php endif ?>    
+
                                 </p>
                             </td>
                         </tr>
