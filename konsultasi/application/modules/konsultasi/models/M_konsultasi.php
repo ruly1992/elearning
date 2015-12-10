@@ -19,7 +19,8 @@ class M_konsultasi extends CI_Model {
 
     public function getKatByUser()
     {
-    	$query = $this->db->get_where('konsultasi_kategori', array('id_tenaga_ahli' => 1)); 
+        $user_id = sentinel()->getUser()->id;
+    	$query = $this->db->get_where('konsultasi_kategori', array('id_tenaga_ahli' => $user_id)); 
 
         return $query->result();
     }
