@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => getenv('FAQ_DB_HOST'),
+	'hostname' => getenv('FAQ_DB_HOST') ?: 'localhost',
 	'username' => getenv('FAQ_DB_USERNAME'),
 	'password' => getenv('FAQ_DB_PASSWORD'),
 	'database' => getenv('FAQ_DB_DATABASE'),
-	'dbdriver' => getenv('FAQ_DB_DRIVER'),
+	'dbdriver' => getenv('FAQ_DB_DRIVER') ?: 'mysqli',
 	'dbprefix' => getenv('FAQ_DB_PREFIX'),
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
