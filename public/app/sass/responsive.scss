@@ -32,17 +32,27 @@
     }
   }
   #navbar-main {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
     .container {
       background-color: #fff !important;
       padding-top: 5px;
       padding-bottom: 10px;
       .navbar-nav {
         li {
-          display: block !important;
+          flex-direction: row;
+          width: 100%;
         }
       }
+    }
+  }
+  .nav{
+    padding-top: 10px;
+  }
+  .navbar-logo-mobile{
+    margin-top: 7px;
+    img{
+      width: 150px;
     }
   }
   #header {

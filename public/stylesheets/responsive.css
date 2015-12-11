@@ -19,14 +19,23 @@
       font-size: 14px !important; }
 
   #navbar-main {
-    padding-left: 0 !important;
-    padding-right: 0 !important; }
+    padding-left: 0;
+    padding-right: 0; }
     #navbar-main .container {
       background-color: #fff !important;
       padding-top: 5px;
       padding-bottom: 10px; }
       #navbar-main .container .navbar-nav li {
-        display: block !important; }
+        flex-direction: row;
+        width: 100%; }
+
+  .nav {
+    padding-top: 10px; }
+
+  .navbar-logo-mobile {
+    margin-top: 7px; }
+    .navbar-logo-mobile img {
+      width: 150px; }
 
   #header .header-top-left {
     display: none; }
