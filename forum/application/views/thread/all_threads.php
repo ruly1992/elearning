@@ -108,6 +108,20 @@
                                 <li><a href="#">Home</a></li>
                                 <li class="active">General</li>
                             </ol>
+                            
+                            <?php 
+                                if(isset($failed)){
+                                    echo '<div class="alert alert-danger">';
+                                        echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                                        echo '<strong>Warning!</strong> '.$failed;
+                                    echo '</div>';
+                                }elseif(isset($success)){
+                                    echo '<div class="alert alert-info">';
+                                        echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                                        echo '<strong>Success!</strong> '.$success;
+                                    echo '</div>';
+                                }
+                            ?>
 
                             <div class="forum-heading">
                                 <h3>General</h3>
