@@ -39,7 +39,7 @@ class Faq extends CI_Controller
     			'title'	     => set_value('title'),
     			'question' => set_value('pertanyaan'),
     			'answer'	 => set_value('jawaban'),
-    			'created_at' => date('Y-m-d').' '.date('G:i:s')
+    			'created_at' => date('Y-m-d H:i:s')
     		);
 
     		$save = $this->model_faq->save($data);
@@ -82,7 +82,7 @@ class Faq extends CI_Controller
                 'title'      => set_value('title'),
                 'question'   => set_value('pertanyaan'),
                 'answer'     => set_value('jawaban'),
-                'updated_at' => date('Y-m-d').' '.date('G:i:s')
+                'updated_at' => date('Y-m-d H:i:s')
             );
             $update = $this->model_faq->update($id,$data);
 

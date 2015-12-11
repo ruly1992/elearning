@@ -58,7 +58,7 @@ class Thread extends CI_Controller
                 'reply_to'  => '0',
                 'author'    => $user->id,
                 'status'    => '0',
-                'created_at'=> date('Y-m-d').' '.date('G:i:s')
+                'created_at'=> date('Y-m-d H:i:s')
             );
             $data = $this->security->xss_clean($data); //xss clean
             $save = $this->model_thread->save_thread($data);
@@ -147,7 +147,7 @@ class Thread extends CI_Controller
                 'title'     => set_value('title'),
                 'message'   => set_value('message'),
                 'author'    => '1',
-                'updated_at'=> date('Y-m-d').' '.date('G:i:s')
+                'updated_at'=> date('Y-m-d H:i:s')
             );
             $data = $this->security->xss_clean($data); //xss clean
             $save = $this->model_thread->update_thread($id,$data);
