@@ -3813,6 +3813,10 @@ a {
 				margin-bottom: $margin-bottom + 5px;
 
 			}
+			li{
+				display: inline-block;
+				margin-bottom: $margin-bottom;
+			}
 		}
 	}
 }

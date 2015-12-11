@@ -3111,6 +3111,9 @@ a {
         font-size: 14px;
         margin-top: 10px;
         margin-bottom: 10px; }
+      .landing-content-faq .faq-content .faq-content-answer li {
+        display: inline-block;
+        margin-bottom: 5px; }
 
 /* Header */
 .flex-container {
