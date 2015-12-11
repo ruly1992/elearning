@@ -17,6 +17,12 @@ class Thread extends CI_Controller
     
     public function index()
     {
+        if($this->session->flashdata('success')){
+            $data['success'] = $this->session->flashdata('success');
+        }elseif($this->session->flashdata('failed')){
+            $data['failed'] = $this->session->flashdata('failed');
+        }
+
         $data['comments'] = $this->model_thread->get_count_reply(); 
         $data['visitors'] = $this->model_visitor->get_visitors();
         $data['threads']  = $this->model_thread->get_all_threads();
@@ -57,13 +63,13 @@ class Thread extends CI_Controller
             $data = $this->security->xss_clean($data); //xss clean
             $save = $this->model_thread->save_thread($data);
             if($save==TRUE){
-                $this->session->set_flashdata('hasil','Thread has been posted');
+                $this->session->set_flashdata('success','Thread baru berhasil dibuat');
             }else{
-                $this->session->set_flashdata('hasil','Thread failed to be posted');
+                $this->session->set_flashdata('failed','Thread baru tidak berhasil dibuat');
             }
             redirect('thread/');
         }else{
-            $this->session->set_flashdata('hasil',validation_errors());
+            $this->session->set_flashdata('failed',validation_errors());
             redirect('thread/');
         }
     }
@@ -71,7 +77,6 @@ class Thread extends CI_Controller
     public function view($id)
     {
         $get_thread = $this->model_thread->get_thread($id);
-
         foreach($get_thread as $t){
             $data = array(
                 'category'  => $t->category_name,
@@ -87,15 +92,17 @@ class Thread extends CI_Controller
         $this->model_visitor->saveVisitor($visitorIdentity);
 
         $data['reply']     = $this->model_thread->get_reply($id);
-        $data['countReply']= count($data['reply']);
+        $data['countReply'] = count($data['reply']);
         $data['id'] = $id;
-
-        if($this->session->flashdata('idReply')){
-            $idReply = $this->session->flashdata('idReply');
-            $this->load->view('thread/single',$data);
-        }else{
-            $this->load->view('thread/single',$data);
+        
+        if($this->session->flashdata('success')){
+            $data['success'] = $this->session->flashdata('success');
+        }elseif($this->session->flashdata('failed')){
+            $data['failed'] = $this->session->flashdata('failed');
         }
+
+        $this->load->view('thread/single',$data);
+        
     }
     
     public function deleteThread($id)
@@ -104,9 +111,9 @@ class Thread extends CI_Controller
 
         if($delete==TRUE){
             $this->model_thread->delete_replies($id);
-            $this->session->set_flashdata('hasil','Thread was successfully deleted');
+            $this->session->set_flashdata('success','Thread berhasil dihapus');
         }else{
-            $this->session->set_flashdata('hasil','Thread has failed to delete');
+            $this->session->set_flashdata('failed','Thread tidak berhasil dihapus');
         }
         redirect('thread/');
     }
@@ -145,13 +152,13 @@ class Thread extends CI_Controller
             $data = $this->security->xss_clean($data); //xss clean
             $save = $this->model_thread->update_thread($id,$data);
             if($save==TRUE){
-                $this->session->set_flashdata('hasil','Thread was successfully updated');
+                $this->session->set_flashdata('success','Thread berhasil diperbarui');
             }else{
-                $this->session->set_flashdata('hasil','Thread has failed to update');
+                $this->session->set_flashdata('failed','Thread tidak berhasil diperbarui');
             }
             redirect('thread/');
         }else{
-            $this->session->set_flashdata('hasil',validation_errors());
+            $this->session->set_flashdata('failed',validation_errors());
             redirect('thread/');
         }
     }
@@ -185,13 +192,13 @@ class Thread extends CI_Controller
             $post_reply = $this->model_thread->save_thread($data);
 
             if($post_reply==TRUE){
-                $this->session->set_flashdata('hasil','Reply was sent');
+                $this->session->set_flashdata('success', 'Komentar anda berhasil dikirim');
             }else{
-                $this->session->set_flashdata('hasil','Reply was unable to send');
+                $this->session->set_flashdata('failed', 'Komentar anda tidak berhasil dikirim');
             }
             redirect('thread/view/'.$id);
         }else{
-            $this->session->set_flashdata('hasil',validation_errors());
+            $this->session->set_flashdata('failed',validation_errors());
             redirect('thread/view/'.$id);
         }
     }
@@ -223,9 +230,9 @@ class Thread extends CI_Controller
 
             $update = $this->model_thread->update_thread($idReply,$data);
             if($update==TRUE){
-                $this->session->set_flashdata('hasil','Comment was successfully udpated');
+                $this->session->set_flashdata('success', 'Komentar berhasil diperbarui');
             }else{
-                $this->session->set_flashdata('hasil','Comment unable to update');
+                $this->session->set_flashdata('failed', 'Komentar tidak berhasil diperbarui');
             }
 
             redirect('thread/view/'.$idThread.'#'.$idReply);
@@ -237,9 +244,9 @@ class Thread extends CI_Controller
     public function deleteReply($idThread,$idReply){
         $delete=$this->model_thread->delete_thread($idReply);
         if($delete==TRUE){
-            $this->session->set_flashdata('hasil','Comment was successfully deleted');
+            $this->session->set_flashdata('success', 'Komentar berhasil dihapus');
         }else{
-            $this->session->set_flashdata('hasil','Comment has failed to delete');
+            $this->session->set_flashdata('failed', 'Komentar tidak berhasil dihapus');
         }
         redirect('thread/view/'.$idThread);
     }
