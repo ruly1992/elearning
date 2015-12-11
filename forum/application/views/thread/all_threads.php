@@ -108,6 +108,20 @@
                                 <li><a href="#">Home</a></li>
                                 <li class="active">General</li>
                             </ol>
+                            
+                            <?php 
+                                if(isset($failed)){
+                                    echo '<div class="alert alert-danger">';
+                                        echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                                        echo '<strong>Warning!</strong> '.$failed;
+                                    echo '</div>';
+                                }elseif(isset($success)){
+                                    echo '<div class="alert alert-info">';
+                                        echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                                        echo '<strong>Success!</strong> '.$success;
+                                    echo '</div>';
+                                }
+                            ?>
 
                             <div class="forum-heading">
                                 <h3>General</h3>
@@ -135,26 +149,10 @@
                                                     <div class="thread-list-meta">
                                                         <ul>
                                                             <li>
-                                                                <?php   
-                                                                    $views = 0;
-                                                                    foreach ($visitors as $v) {
-                                                                        if($v->thread == $t->id){
-                                                                            $views = $views+1;
-                                                                        }
-                                                                    }
-                                                                ?>
-                                                                <?php echo $views.' Views'; ?>
+                                                                <?php echo countViewer($visitors, $t->id); ?> Views
                                                             </li>
                                                             <li>
-                                                                <?php 
-                                                                    $sum_comments = 0;
-                                                                    foreach($comments as $c){
-                                                                        if($c->reply_to == $t->id){
-                                                                            $sum_comments = $sum_comments+1;
-                                                                        }
-                                                                    }
-                                                                ?>
-                                                                <?php echo $sum_comments; ?> Comments
+                                                                <?php echo countComments($comments, $t->id); ?> Comments
                                                             </li>
                                                             <li>
                                                                 Started by <a href="#"><?php echo user($t->author)->full_name; ?></a>
