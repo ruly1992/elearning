@@ -68,7 +68,8 @@ class Topic extends CI_Controller
                 'tenaga_ahli' => $user->id, 
                 'category'    => set_value('kategori'),
                 'topic'       => set_value('topic'),
-                'daerah'      => set_value('daerah')
+                'daerah'      => set_value('daerah'),
+                'created_at'  => date('Y-m-d').' '.date('G:i:s')
             );
 
             $save = $this->model_topic->save($data);
@@ -114,7 +115,8 @@ class Topic extends CI_Controller
                 'tenaga_ahli' => $user->id,
                 'category'    => set_value('kategori'),
                 'topic'       => set_value('topic'),
-                'daerah'      => set_value('daerah')
+                'daerah'      => set_value('daerah'),
+                'updated_at'  => date('Y-m-d').' '.date('G:i:s')
             );
 
             $update = $this->model_topic->update($id,$data);
