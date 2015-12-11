@@ -75,12 +75,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'elearning_faq',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'hostname' => getenv('FAQ_DB_HOST'),
+	'username' => getenv('FAQ_DB_USERNAME'),
+	'password' => getenv('FAQ_DB_PASSWORD'),
+	'database' => getenv('FAQ_DB_DATABASE'),
+	'dbdriver' => getenv('FAQ_DB_DRIVER'),
+	'dbprefix' => getenv('FAQ_DB_PREFIX'),
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
