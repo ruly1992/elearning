@@ -69,7 +69,7 @@ class Topic extends CI_Controller
                 'category'    => set_value('kategori'),
                 'topic'       => set_value('topic'),
                 'daerah'      => set_value('daerah'),
-                'created_at'  => date('Y-m-d').' '.date('G:i:s')
+                'created_at'  => date('Y-m-d H:i:s')
             );
 
             $save = $this->model_topic->save($data);
@@ -116,7 +116,7 @@ class Topic extends CI_Controller
                 'category'    => set_value('kategori'),
                 'topic'       => set_value('topic'),
                 'daerah'      => set_value('daerah'),
-                'updated_at'  => date('Y-m-d').' '.date('G:i:s')
+                'updated_at'  => date('Y-m-d H:i:s')
             );
 
             $update = $this->model_topic->update($id,$data);
