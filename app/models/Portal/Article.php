@@ -254,6 +254,16 @@ class Article extends Model
         return $query->where('type', 'private');
     }
 
+    public function choice()
+    {
+        return $this->belongsTo(User::class, 'editor_choice');
+    }
+
+    public function scopeEditorChoice($query)
+    {
+        return $query->where('editor_choice', '>', 0);
+    }
+
     public function resolveVisitorUnique()
     {
         $user = auth()->getUser();
