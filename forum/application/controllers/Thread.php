@@ -8,7 +8,7 @@ class Thread extends CI_Controller
         parent::__construct();
         $this->load->database();
         $this->load->model(array('model_thread','model_visitor'));
-        $this->load->helper(array('BBCodeParser','visitor'));
+        $this->load->helper(array('BBCodeParser','visitor','thread'));
 
         if(!sentinel()->check()) {
             redirect(login_url());
