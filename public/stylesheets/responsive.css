@@ -19,8 +19,8 @@
       font-size: 14px !important; }
 
   #navbar-main {
-    padding-left: 0 !important;
-    padding-right: 0 !important; }
+    padding-left: 0;
+    padding-right: 0; }
     #navbar-main .container {
       background-color: #fff !important;
       padding-top: 5px;

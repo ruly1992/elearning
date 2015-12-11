@@ -32,15 +32,14 @@
     }
   }
   #navbar-main {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
     .container {
       background-color: #fff !important;
       padding-top: 5px;
       padding-bottom: 10px;
       .navbar-nav {
         li {
-          // display: flex;
           flex-direction: row;
           width: 100%;
         }
