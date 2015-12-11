@@ -1,9 +1,15 @@
 # eLearning Desa Membangun
 
 ### System Requirements
- - PHP >= 5.6
+ - Apache 2.0
+   - mod_rewrite
+ - PHP 5.6
+   - PHP short-tag enabled
+   - PHP PDO
+   - PHP MYSQLI
+   - PHP GD
+   - Fileinfo extension
  - MySQL Server
- - PHP short-tag enabled
  - Composer
  - NodeJS
  - NPM
@@ -14,7 +20,7 @@
  - Instalasi PHP dependencies dengan Composer
     <pre>
     $ composer install
-    </pre>
+    </pre>    
  - Instalasi asset dependencies (jQuery, Bootstrap, Font Awesome, and more...) dengan npm
     <pre>
     $ cd public
@@ -38,6 +44,16 @@
     </pre>
     Pastikan semua host, user, password, dan nama database sudah sesuai di konfigurasi .env
  - Membangun database
+    - Database yang dibutuhkan
+        <pre>
+        elearning_user
+        elearning_portal
+        elearning_forum
+        elearning_konsultasi
+        elearning_faq
+        elearning_kelas
+        elearning_elibrary
+        </pre>
     - Ubah phinx agar menjadi executable
         <pre>
         $ chmod +x phinx vendor/robmorgan/phinx/bin/phinx
@@ -51,6 +67,14 @@
         <pre>
         $ ./phinx migrate -c phinx_portal.php
         $ ./phinx seed:run -c phinx_portal.php
+        </pre>
+    - Forum
+        <pre>
+        $ ./phinx migrate -c phinx_forum.php
+        </pre>
+    - FAQ
+        <pre>
+        $ ./phinx migrate -c phinx_faq.php
         </pre>
 
 License
