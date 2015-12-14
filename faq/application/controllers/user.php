@@ -13,6 +13,6 @@ class User extends CI_Controller
 
     public function index(){
         $data['faq'] = $this->model_faq->getFAQs();
-        $this->load->view('landing_faq', $data);
+        $this->load->view('user_faq', $data);
     }
 }
