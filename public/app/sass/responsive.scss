@@ -446,15 +446,19 @@
   .nav{
     padding-top: 10px;
   }
+  .navbar-logo-mobile{
+    margin-top: 5px;
+    img{
+      width: 150px;
+    }
+  }
   .tablet {
     margin-top: 7px;
     left: 40%;
     right: 60%;
     position: absolute;
-    img {
-      width: 150px;
     }
-  }
+  
   .dropdown-people{
     .dropdown-toggle{
       img{

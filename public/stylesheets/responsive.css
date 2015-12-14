@@ -278,13 +278,16 @@
   .nav {
     padding-top: 10px; }
 
+  .navbar-logo-mobile {
+    margin-top: 5px; }
+    .navbar-logo-mobile img {
+      width: 150px; }
+
   .tablet {
     margin-top: 7px;
     left: 40%;
     right: 60%;
     position: absolute; }
-    .tablet img {
-      width: 150px; }
 
   .dropdown-people .dropdown-toggle img {
     margin-top: -5px;
