@@ -42,7 +42,8 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-post">CREATE NEW TOPIC</button>
+                                                <button type="submit" class="btn btn-primary">CREATE NEW TOPIC</button>
+                                                <?php echo anchor('topic/', 'Cancel', 'class="btn btn-secondary"'); ?>
                                             </div>
                                         <?php echo form_close(); ?>
                                     </div>
