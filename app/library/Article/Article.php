@@ -12,12 +12,16 @@ class Article
     protected $model;
     protected $imageManager;
     protected $user;
+    protected $categories;
+    protected $tags;
 
     public function __construct()
     {
         $this->model            = new Model\Portal\Article;
         $this->imageManager     = new ImageManager;
         $this->user             = sentinel()->check();
+        $this->categories       = [];
+        $this->tags             = [];
     }
 
     public function submit($article, $name, $email, $desa = 0, $featured = null, $custom_avatar = null)
@@ -37,36 +41,52 @@ class Article
             $this->setCustomAvatar($custom_avatar);
     }
 
-    public function set($article)
+    public function set($article, $categories = [], $tags = [])
     {
-        $this->model->fill($article);
+        if ($article instanceof Model\Portal\Article) {
+            $this->model        = $article;
+            $this->categories   = $article->categories->pluck('id')->toArray();
+            $this->tags         = $article->categories->pluck('id')->toArray();
+        } elseif (is_numeric($article)) {
+            $this->model = $this->model->findOrFail($article);
+        } else {
+            $this->model->fill($article);
+        }
+
+        $this->categories   = $categories;
+        $this->tags         = $tags;
 
         return $this;
     }
 
     public function setFeaturedImage($imageData)
     {
-        $image = $this->imageManager->make($imageData);
-
-        if ($image->mime == 'image/jpeg')
-            $extension = '.jpg';
-        elseif ($image->mime == 'image/png')
-            $extension = '.png';
-        elseif ($image->mime == 'image/gif')
-            $extension = '.gif';
-        else
-            $extension = '';
-
-        $filename = 'article_' . $this->getHashids() . '_' . $this->model->slug . $extension;
-
-        $image->save(PATH_PORTAL_CONTENT.'/featured/'.$filename);
+        $filename = $this->setImage($imageData, 'featured');
 
         $this->model->update(['featured_image' => $filename]);
 
         return $this;
     }
 
+    public function setSliderImage($imageData)
+    {
+        $filename = $this->setImage($imageData, 'slider');
+
+        $this->model->update(['slider' => $filename]);
+
+        return $this;
+    }
+
     public function setCustomAvatar($imageData)
+    {
+        $filename = $this->setImage($imageData, 'custom-avatar', 'customavatar');
+
+        $this->model->update(['custom_avatar' => $filename]);
+
+        return $this;
+    }
+
+    public function setImage($imageData, $subfolder = 'featured', $prefix = 'article_')
     {
         $image = $this->imageManager->make($imageData);
 
@@ -79,13 +99,12 @@ class Article
         else
             $extension = '';
 
-        $filename = 'custavatar_' . $this->getHashids() . $extension;
+        $subfolder  = $subfolder ? trim($subfolder, '\\/') . '/' : '';
+        $filename   = $prefix . $this->getHashids() . '_' . $this->model->slug . $extension;
 
-        $image->save(PATH_PORTAL_CONTENT.'/custom-avatar/'.$filename);
+        $image->save(PATH_PORTAL_CONTENT.'/'.$subfolder.$filename);
 
-        $this->model->update(['custom_avatar' => $filename]);
-
-        return $this;
+        return $filename;
     }
 
     public function getHashids()
@@ -94,6 +113,48 @@ class Article
         $id         = $hashids->encode($this->model->id);
 
         return $id;
+    }
+
+    public function removeFeaturedImage()
+    {
+        $filename   = $this->model->featured_image_original;
+
+        $this->removeImage($filename, 'featured');
+
+        $this->model->update(['featured_image' => '']);
+
+        return $this;
+    }
+
+    public function removeSliderImage()
+    {
+        $filename   = $this->model->slider;
+
+        $this->removeImage($filename, 'slider');
+
+        $this->model->update(['slider' => '']);
+
+        return $this;
+    }
+
+    public function removeCustomAvatar()
+    {
+        $filename   = $this->model->custom_avatar;
+
+        $this->removeImage($filename, 'custom-avatar');
+
+        $this->model->update(['custom_avatar' => '']);
+
+        return $this;
+    }
+
+    public function removeImage($filename, $subfolder = 'featured')
+    {
+        $subfolder  = $subfolder ? trim($subfolder, '\\/') . '/' : '';
+        $filepath   = PATH_PORTAL_CONTENT.'/'.$subfolder.$filename;
+
+        if (is_file($filepath))
+            unlink($filepath);
     }
 
     public function setPrivate()
@@ -125,6 +186,9 @@ class Article
             $this->model->date      = Carbon::now();
         
         $this->model->save();
+
+        $this->model->categories()->sync($this->categories);
+        $this->model->tags()->sync($this->tags);
 
         return $this->model;
     }

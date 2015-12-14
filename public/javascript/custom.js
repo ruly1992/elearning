@@ -4,10 +4,10 @@ $(document).ready(function () {
         tokenSeparators: [',']
     })
 
-    $('.select2').select2()
+    $('select.select2').select2()
 
     $('.btn-visit-home').on('click', function (e) {
-        e.preventDefault(); 
+        e.preventDefault();
         var url = $(this).data('href'); 
         window.open(url, '_blank');
     })
@@ -76,7 +76,7 @@ $(document).ready(function () {
            
         external_filemanager_path:baseurl+"filemanager/",
         filemanager_title:"Responsive Filemanager" ,
-        external_plugins: { "filemanager" : "./../../../admin/filemanager/plugin.min.js"},
+        external_plugins: { "filemanager" : "/../responsivefilemanager/plugin.min.js"},
         relative_urls: false,
         remove_script_host : false
     });

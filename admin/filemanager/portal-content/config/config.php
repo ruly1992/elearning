@@ -1,4 +1,6 @@
 <?php
+include __DIR__.'/../../../../app/bootstrap/autoload.php';
+
 session_start();
 mb_internal_encoding('UTF-8');
 date_default_timezone_set('Asia/Jakarta');
@@ -56,7 +58,7 @@ $config = array(
 	|
 	*/
 
-	'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . str_replace('\\', '/', rtrim(dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))), '\\/')),
+	'base_url' => rtrim(home_url(), '/'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -67,7 +69,7 @@ $config = array(
 	|
 	*/
 	// 'upload_dir' => '/public/images/portal/featured',
-	'upload_dir' => '/public/media/',
+	'upload_dir' => '/public/portal-content/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +80,7 @@ $config = array(
 	|
 	*/
 	// 'current_path' => '../public/images/portal',
-	'current_path' => '../../public/media/',
+	'current_path' => '../../../public/portal-content/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -90,7 +92,7 @@ $config = array(
 	|
 	*/
 	// 'thumbs_base_path' => '/../public/images/portal/thumbs',
-	'thumbs_base_path' => '../../public/thumbs/',
+	'thumbs_base_path' => '../../../public/portal-content-thumbs/',
 
 	/*
 	|--------------------------------------------------------------------------
