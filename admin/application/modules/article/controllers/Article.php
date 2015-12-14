@@ -31,7 +31,9 @@ class Article extends Admin {
             $status = $request->query->get('status');
             
             if ($status === 'draft') {
-                $articles   = Model\Portal\Article::withDrafts()->status($status)->latest('date');            
+                $this->indexDraft();
+
+                return;
             } elseif ($status === 'schedule') {
                 $articles   = Model\Portal\Article::withDrafts()->scheduled()->latest('date');
             } elseif ($status === 'all') {
@@ -46,7 +48,22 @@ class Article extends Admin {
         $data['artikel']    = $articles->get();
         $data['status']     = $status;
 
-       $this->template->build('index', $data);
+        $this->template->build('index', $data);
+    }
+
+    protected function indexDraft()
+    {
+        $status     = 'draft';
+        $articles   = Model\Portal\Article::withDrafts()->status($status)->latest('date');
+
+        if (sentinel()->inRole(['edt'])) {
+            $articles = $articles->onlyAllowEditor();
+        }
+
+        $data['artikel']    = $articles->get();
+        $data['status']     = $status;
+
+       $this->template->build('index_draft', $data);
     }
 
     public function add()
@@ -77,18 +94,6 @@ class Article extends Admin {
             $tags       = set_value('tags', array());
             $status     = set_value('status', 'publish');
 
-            if (isset($_FILES['featured_image']) && $_FILES['featured_image']['tmp_name']) {
-                $featured_image = $_FILES['featured_image'];
-            } else {
-                $featured_image = null;
-            }
-
-            if (isset($_FILES['slider']) && $_FILES['slider']['tmp_name']) {
-                $slider = $_FILES['slider'];
-            } else {
-                $slider = null;
-            }
-
             if (set_value('private', 0)) {
                 $artikel['type'] = 'private';
             } else {
@@ -103,6 +108,15 @@ class Article extends Admin {
 
             $id = $this->Mod_artikel->create($artikel, $categories, $tags, $status, $featured_image, $slider);
 
+            $repo_library = new Library\Article\Article;
+            $repo_library->set($id);
+
+            if ($this->input->post('featured'))
+                $repo_library->setFeaturedImage($this->input->post('featured'));
+
+            if ($this->input->post('slidercarousel'))
+                $repo_library->setSliderImage($this->input->post('slidercarousel'));
+
             set_message_success('Artikel berhasil dibuat.');
 
             redirect('article/edit/'.$id, 'refresh');
@@ -115,7 +129,7 @@ class Article extends Admin {
         $this->form_validation->set_rules('content', 'Content', 'required');
 
         if ($this->form_validation->run() == FALSE) {   
-            $artikel = Model\Portal\Article::findOrFail($id);
+            $artikel = Model\Portal\Article::withDrafts()->findOrFail($id);
 
             $cat_ids = array_map(function ($cat) {
                 return $cat->kategori_id;
@@ -138,8 +152,6 @@ class Article extends Admin {
                 'title'             => set_value('title'),
                 'content'           => set_value('content', '', FALSE),
                 'status'            => set_value('status'),
-                'slider'            => set_value('slidercarousel', ''),
-                'featured_image'    => set_value('featured', ''),
             );
 
             $article = Model\Portal\Article::withDrafts()->find($id);
@@ -156,19 +168,20 @@ class Article extends Admin {
             $categories = set_value('categories', array());
             $tags       = set_value('tags', array());
 
-            if (isset($_FILES['featured_image']) && $_FILES['featured_image']['tmp_name']) {
-                $featured_image = $_FILES['featured_image'];
-            } else {
-                $featured_image = null;
-            }
+            $repo_library = new Library\Article\Article;
+            $repo_library->set($article);
 
-            if (isset($_FILES['slider']) && $_FILES['slider']['tmp_name']) {
-                $slider = $_FILES['slider'];
-            } else {
-                $slider = null; 
-            }
+            if ($this->input->post('featured'))
+                $repo_library->setFeaturedImage($this->input->post('featured'));
+            else
+                $repo_library->removeFeaturedImage();
 
-            $id = $this->Mod_artikel->update($id, $artikel, $categories, $tags, $featured_image, $slider);
+            if ($this->input->post('slidercarousel'))
+                $repo_library->setSliderImage($this->input->post('slidercarousel'));
+            else
+                $repo_library->removeSliderImage();
+
+            $id = $this->Mod_artikel->update($id, $artikel, $categories, $tags);
 
             set_message_success('Artikel berhasil diperbarui.');
 
@@ -187,6 +200,26 @@ class Article extends Admin {
         }
 
         redirect('article', 'refresh');
+    }
+
+    public function choice($id)
+    {
+        $article = Model\Portal\Article::findOrFail($id);
+        $article->setEditorChoice(sentinel()->getUser());
+
+        set_message_success('Artikel berhasil diperbarui sebagai Pilihan Editor.');
+
+        redirect('article/edit/'.$article->id, 'refresh');
+    }
+
+    public function unchoice($id)
+    {
+        $article = Model\Portal\Article::findOrFail($id);
+        $article->removeEditorChoice();
+
+        set_message_success('Artikel berhasil diperbarui.');
+
+        redirect('article/edit/'.$article->id, 'refresh');
     }
 }
 
