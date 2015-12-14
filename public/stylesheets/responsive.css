@@ -282,7 +282,7 @@
     margin-top: 7px;
     left: 40%;
     right: 60%;
-    position: fixed; }
+    position: absolute; }
     .tablet img {
       width: 150px; }
 
