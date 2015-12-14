@@ -32,6 +32,10 @@ class Homepage extends CI_Controller {
         $homepage_category_4_title      = Model\Portal\Category::find($cat_4);
         $homepage_category_4            = Model\Portal\Article::categoryId($cat_4);
 
+        $choices     = Model\Portal\Article::editorChoice()
+                        ->latest('date')
+                        ->get();
+
         $data = array(
             'homepage_category_1_title' => $homepage_category_1_title ? $homepage_category_1_title->name : 'No Category',
             'homepage_category_1'       => $homepage_category_1->count() ? $homepage_category_1->take(10)->latest('date')->get() : collect([]),
@@ -52,6 +56,7 @@ class Homepage extends CI_Controller {
             
             'links'                     => $this->Mod_link->read(),
             'latest'                    => Model\Portal\Article::latest('date')->limit(10)->get(),
+            'choices'                   => $choices,
         );
 
         $this->template->set('slider', true);
