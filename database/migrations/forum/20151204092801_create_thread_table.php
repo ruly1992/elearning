@@ -59,7 +59,12 @@ class CreateThreadTable extends AbstractMigration
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
             ->create();
+
+        $table = $this->table('categories');
+        $table->addColumn('category_name', 'string', array('limit' => 50))
+            ->create();
     }
+
 
     public function down()
     {
