@@ -39,6 +39,7 @@
         <link href="<?php echo asset('admin/css/add-ons.min.css') ?>" rel="stylesheet" id="main-style">
         <link href="<?php echo asset('admin/css/font-awesome.css') ?>" rel="stylesheet" id="main-style">
         <link href="<?php echo asset('admin/css/social.css') ?>" rel="stylesheet" id="main-style">
+        <link href="<?php echo asset('admin/plugins/modal/css/component.css') ?>" rel="stylesheet">
                 
         <!-- Remove following comment to add Right to Left Support or add class rtl to body -->
         <!-- <link href="assets/css/style.rtl.min.css" rel="stylesheet"> -->
@@ -57,6 +58,8 @@
         <link rel="stylesheet" href="<?php echo asset('node_modules/fancybox/dist/css/jquery.fancybox.css') ?>">
 
         <?php echo isset($template['partials']['stylesheet']) ? $template['partials']['stylesheet'] : ''; ?>
+
+        <link href="<?php echo asset('admin/css/custom.css') ?>" rel="stylesheet">
 
         <script src="<?php echo asset('node_modules/jquery/dist/jquery.min.js') ?>"></script>
     </head>
@@ -78,6 +81,7 @@
         <script>
             var baseurl = '<?php echo base_url(); ?>';
             var siteurl = '<?php echo site_url(); ?>';
+            var homeurl = '<?php echo home_url(); ?>';
         </script>
 
         <script src="<?php echo asset('node_modules/jasny-bootstrap/dist/js/jasny-bootstrap.min.js') ?>"></script>
@@ -147,15 +151,16 @@
         <script src="<?php echo asset('admin/js/jquery.mmenu.min.js') ?>"></script>
         <script src="<?php echo asset('admin/js/core.min.js') ?>"></script>
 
-
         <!-- inline scripts related to this page -->
         <script src="<?php echo asset('admin/plugins/jquery-cookie/jquery.cookie.min.js') ?>"></script>
         <script src="<?php echo asset('admin/js/demo.min.js') ?>"></script>
+        <script src="<?php echo asset('admin/plugins/modal/js/jquery.modalEffects.js') ?>"></script>
         <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>
         <script src="<?php echo asset('node_modules/fancybox/dist/js/jquery.fancybox.pack.js') ?>"></script>
+        <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
         <!-- end: JavaScript-->
         <script src="<?php echo asset('javascript/analytic.js') ?>"></script>
-        <script src="<?php echo asset('javascript/custom.js') ?>"></script>
+        <script src="<?php echo asset('admin/js/custom.js') ?>"></script>
         <?php echo isset($template['partials']['script']) ? $template['partials']['script'] : ''; ?>
     </body>
 </html>
