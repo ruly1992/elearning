@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     $('.cropit-featured').cropit({
         imageState: {
-            src: baseurl + '/public/images/portal/img-carousel-default.jpg',
+            src: homeurl + '/public/images/portal/img-carousel-default.jpg',
         },
         onOffsetChange: function (offset) {
             var inputImagedata  = $('input.cropit-featured-imagedata')

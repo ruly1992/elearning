@@ -65,7 +65,15 @@ class Article extends Model
 
     public function hasFeaturedImage()
     {
-        if ($this->has_featured_image)
+        if ($this->attributes['featured_image'])
+            return true;
+        else
+            return false;
+    }
+
+    public function hasSliderImage()
+    {
+        if ($this->slider)
             return true;
         else
             return false;
@@ -73,15 +81,23 @@ class Article extends Model
 
     public function getFeaturedImageAttribute($featured_image)
     {
-        if (!$featured_image) {
-            $this->has_featured_image = false;
-
+        if (!$featured_image)
             return asset('images/portal/img-default.jpg');
-        } else {
-            $this->has_featured_image = true;
-
+        else
             return asset('portal-content/featured/' . $featured_image);
-        }
+    }
+
+    public function getFeaturedImageOriginalAttribute()
+    {
+        return $this->attributes['featured_image'];
+    }
+
+    public function getSliderImageAttribute()
+    {
+        if (!$this->slider)
+            return asset('images/portal/img-carousel-default.jpg');
+        else
+            return asset('portal-content/slider/' . $this->slider);
     }
 
     public function getExcerpt($max = 100, $trailing = '...')
@@ -252,6 +268,32 @@ class Article extends Model
     public function scopeRegistered($query)
     {
         return $query->where('type', 'private');
+    }
+
+    public function isPublished()
+    {
+        if ($this->status == 'publish') {
+            if ($this->published == '0000-00-00 00:00:00' || $this->published <= Carbon::now()) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    public function isEditorChoice()
+    {
+        return (bool) $this->editor_choice ? true : false;
+    }
+
+    public function setEditorChoice(User $user)
+    {
+        $this->update(['editor_choice' => $user->id]);
+    }
+
+    public function removeEditorChoice()
+    {
+        $this->update(['editor_choice' => 0]);
     }
 
     public function choice()

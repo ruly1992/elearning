@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="form-group">
-                    <?php echo form_textarea('content', set_value('content', '', FALSE), array('class' => 'form-control editor')); ?>
+                    <?php echo form_textarea('content', set_value('content', '', FALSE), array('class' => 'form-control editor-portal')); ?>
                 </div>
             </div>
         </div>
@@ -74,15 +74,7 @@
                 <h4 class="panel-title">Carousel Slider</h4>
             </div>
             <div class="panel-body">
-                <div class="slidercarousel thumbnail" style="max-width: 200px; ">
-                    <img class="featured-preview" src="" width="100%" style="display: none;">
-                    <img class="featured-preview-default" src="<?php echo asset('images/portal/img-carousel-default.jpg') ?>">
-                </div>
-                <div>
-                    <a href="<?php echo base_url('filemanager/dialog.php?type=0&field_id=slidercarousel_url') ?>" class="btn btn-default iframe-btn" type="button">Open Filemanager</a>
-                    <a href="#" class="btn btn-default btn-remove" data-dismiss="fileinput">Remove</a>
-                    <input type="hidden" name="slidercarousel" id="slidercarousel_url" value="">
-                </div>
+                <button style="margin-bottom:10px;" class="btn btn-default md-trigger-slider" data-modal="modal-1">Pengaturan Slider</button>
             </div>
         </div>
 
@@ -91,44 +83,89 @@
                 <h4 class="panel-title">Featured Image</h4>
             </div>
             <div class="panel-body">
-                <div class="featured thumbnail" style="max-width: 200px;">
-                    <img class="featured-preview" src="" width="100%" style="display: none;">
-                    <img class="featured-preview-default" src="<?php echo asset('images/portal/img-default.jpg') ?>">
+                <div class="cropit-featured cropit-disabled">
+                    <div class="cropit-image-preview-container">
+                        <div class="cropit-image-preview"
+                            style="width: <?php echo getenv('SIZE_FEATURED_WIDTH') ?>; height: <?php echo getenv('SIZE_FEATURED_HEIGHT') ?>;"
+                            data-cropit-preload="<?php echo asset('images/portal/img-default.jpg') ?>">
+                        </div>
+                    </div>
+
+                    <div class="image-size-label">
+                        Resize image
+                    </div>
+                    <input type="range" class="cropit-image-zoom-input">
+
+                    <br>
+
+                    <?php echo form_input([
+                        'type'  => 'hidden',
+                        'name'  => 'featured',
+                        'id'    => 'featured',
+                        'class' => 'cropit-featured-imagedata'
+                    ]) ?>
                 </div>
                 <div>
-                    <a href="<?php echo base_url('filemanager/dialog.php?type=0&field_id=featured_url') ?>" class="btn btn-default iframe-btn" type="button">Open Filemanager</a>
-                    <a href="#" class="btn btn-default btn-remove">Remove</a>
-                    <input type="hidden" name="featured" id="featured_url" value="">
+                    <a href="<?php echo base_url('filemanager/portal-content/dialog.php?type=0&field_id=featured') ?>" class="btn btn-default iframe-btn" type="button">Open Filemanager</a>
+                    <a href="#" class="btn btn-default btn-remove-featured">Remove</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<?php echo form_close(); ?>
+<div class="md-modal md-effect-2" id="modal-1">
+    <div class="modal-dialog md-content modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Pengaturan Gambar Slider</h4>
+            </div>
+            <div class="modal-body">
+                <p>Jika pengaturan ini diaktifkan, makan artikel ini akan ditampilkan pada tayangan artikel bergerak di halaman utama.</p>             
+                <div class="cropit-slider cropit-disabled">
+                    <div class="cropit-image-preview-container">
+                        <div class="cropit-image-preview"
+                            style="width: <?php echo getenv('SIZE_SLIDER_WIDTH') ?>; height: <?php echo getenv('SIZE_SLIDER_HEIGHT') ?>;"
+                            data-cropit-preload="<?php echo asset('images/portal/img-carousel-default.jpg') ?>">
+                        </div>
+                    </div>
 
+                    <div class="image-size-label">
+                        Resize image
+                    </div>
+                    <input type="range" class="cropit-image-zoom-input">
+
+                    <br>
+
+                    <?php echo form_input([
+                        'type'  => 'hidden',
+                        'name'  => 'slidercarousel',
+                        'id'    => 'slider',
+                        'class' => 'cropit-slider-imagedata'
+                    ]) ?>
+                </div>
+                <div>
+                    <a href="<?php echo base_url('filemanager/portal-content/dialog.php?type=0&field_id=slider') ?>" class="btn btn-default iframe-btn" type="button">Open Filemanager</a>
+                    <a href="#" class="btn btn-default btn-remove-slider" data-dismiss="fileinput">Remove</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-flat md-close" data-dismiss="modal">Simpan</button>
+            </div>
+        </div>  
+    </div>  
+</div>
+
+<?php echo form_close(); ?>
 
 <script>
     function responsive_filemanager_callback (field_id) {
         var field   = jQuery('#'+field_id);
         var url     = field.val();
-        var img     = jQuery('<img>', {id: 'featured-preview', width: '100%', src: url});
+        var fpath   = url.replace(/\\/g, '/');
+        var fname   = fpath.substr(fpath.lastIndexOf('/')+1)
 
-        var featured_default  = field.parents('.panel-body').find('.featured-preview-default');
-        var featured          = field.parents('.panel-body').find('.featured-preview');
-        
-        featured_default.hide()
-        featured.attr('src', url).show()
+        field.trigger('change')
     }
-
-    jQuery('.btn-remove').on('click', function () {
-        field = $(this).parent().find('[type=hidden]')
-        field.val('')
-
-        var featured_default  = field.parents('.panel-body').find('.featured-preview-default');
-        var featured          = field.parents('.panel-body').find('.featured-preview');
-
-        featured.hide()
-        featured_default.show()
-    })
 </script>
