@@ -59,9 +59,27 @@ $(document).ready(function () {
         autoSize: false,
         autoDimensions: false,
     });
-    
+
+    $('.btn-visit-home').on('click', function (e) {
+        e.preventDefault(); 
+        var url = $(this).data('href'); 
+        window.open(url, '_blank');
+    })
+
     tinymce.init({
         selector:'.editor',
+        plugins: [
+                "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+                "table contextmenu directionality emoticons paste textcolor"
+        ],
+        toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+        toolbar2: " link unlink anchor | image media | forecolor backcolor  | print preview code ",
+        image_advtab: true ,
+    });
+    
+    tinymce.init({
+        selector:'.editor-portal',
         plugins: [
                 "advlist autolink link image lists charmap print preview hr anchor pagebreak",
                 "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
@@ -71,9 +89,9 @@ $(document).ready(function () {
         toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
         image_advtab: true ,
            
-        external_filemanager_path:baseurl+"filemanager/",
+        external_filemanager_path:baseurl+"filemanager/portal-content/",
         filemanager_title:"Responsive Filemanager" ,
-        external_plugins: { "filemanager" : "./../../../filemanager/plugin.min.js"},
+        external_plugins: { "filemanager" : "./../../plugins/filemanager/plugin.min.js"},
         relative_urls: false,
         remove_script_host : false
     });
@@ -124,5 +142,100 @@ $(document).ready(function () {
         input_schedule.hide('slow')
 
         return false;
+    })
+
+    var $cropit_featured;
+    var $cropit_featured_imagedata;
+
+    $cropit_featured_imagedata = $('input.cropit-featured-imagedata')
+    $cropit_featured = $('.cropit-featured').cropit({
+        onOffsetChange: function (offset) {
+            if ($cropit_featured_imagedata.val()) {
+                var imageData       = $('.cropit-featured').cropit('export')
+
+                $cropit_featured_imagedata.val(imageData)
+            }
+        }
+    });
+
+    $cropit_featured.cropit('imageSrc', $cropit_featured.find('.cropit-image-preview').data('cropit-preload'))
+    $cropit_featured_imagedata.val($cropit_featured.cropit('export'))
+
+    if ($cropit_featured.hasClass('cropit-disabled')) {
+        $cropit_featured_imagedata.val('')
+        $cropit_featured.cropit('disable');
+    }
+
+    $('#featured').on('change', function () {
+        var url = $(this).val()
+        $cropit_featured.cropit('imageSrc', url)
+        $cropit_featured.cropit('reenable');
+    })
+
+    $('.btn-remove-featured').on('click', function () {
+        var url = homeurl + 'public/images/portal/img-carousel-default.jpg'
+
+        $cropit_featured.cropit('imageSrc', url);
+        $cropit_featured_imagedata.val('')
+        $cropit_featured.cropit('disable');
+
+        return false
+    })
+
+    var $cropit_slider;
+    var $cropit_slider_imagedata;
+
+    $cropit_slider_imagedata = $('input.cropit-slider-imagedata')
+    $cropit_slider = $('.cropit-slider').cropit({
+        onOffsetChange: function (offset) {
+            // 
+        }
+    });
+
+    $cropit_slider.cropit('imageSrc', $cropit_slider.find('.cropit-image-preview').data('cropit-preload'))
+
+    $('.md-trigger-slider').modalEffects({
+        afterClose: function (button, modal) {
+            if ($cropit_slider_imagedata.val()) {
+                var imageData = $cropit_slider.cropit('export')
+
+                $cropit_slider_imagedata.val(imageData)
+            }
+        }
+    });
+    $('.md-trigger-slider').on('click', function () {
+        return false
+    });
+
+    if ($cropit_slider.hasClass('cropit-disabled')) {
+        $cropit_slider_imagedata.val('')
+        $cropit_slider.cropit('disable');
+        console.log('disabled')
+    } else {
+        var imageData = $cropit_slider.cropit('export')
+
+        console.log($cropit_slider.cropit('export'))
+
+        $cropit_slider_imagedata.val(imageData)
+    }
+
+    $('#slider').on('change', function () {
+        var url = $(this).val()
+        $cropit_slider.cropit('imageSrc', url)
+        $cropit_slider.cropit('reenable');
+    })
+
+    $('.btn-remove-slider').on('click', function () {
+        var url = homeurl + 'public/images/portal/img-carousel-default.jpg'
+
+        $cropit_slider.cropit('imageSrc', url);
+        $cropit_slider_imagedata.val('')
+        $cropit_slider.cropit('disable');
+
+        return false
+    })
+
+    $('#modal-1').on('hide.bs.modal', function (event) {
+        
     })
 })
