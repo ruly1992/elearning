@@ -129,6 +129,14 @@ class Konsultasi extends CI_Controller {
         }
 
     }
+
+    public function check()
+    {
+        $id       = $this->input->get('id');
+        $status   = $this->input->get('status');
+
+        $this->M_konsultasi->setStatus($id, $status);
+    }
                                     
 }
 

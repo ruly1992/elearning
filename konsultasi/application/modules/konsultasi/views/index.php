@@ -55,8 +55,9 @@
                             <td><?php echo $row->created_at ?></td>
                             <td><?php echo $row->updated_at ?></td>
                             <td>
-                                <?php  $checked = ($row->status == "open") ? 'checked="open"' : ''; ?>
-                                <p><input id="switch-size" type="checkbox" <?php echo $checked?> data-size="mini" name="my-checkbox" onclick="check"></p>
+                            	<?php  $checked = ($row->status == "open") ? 'checked' : ''; ?>
+		                        <p><input id="switch-size" type="checkbox" <?php echo $checked?> data-size="mini" data-taskid="<?php echo $row->id; ?>" name="my-checkbox" class="switch-status"></p>                         
+                            	<input id="result" type="hidden">
                             </td>
                             <td><a href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>">Lihat Konsultasi</a></td>
                         </tr>
@@ -82,5 +83,38 @@
         <!-- end:content -->
 
     </section>
+
 </div>
 <!-- emd:content -->
+<?php custom_stylesheet() ?>
+	<link rel="stylesheet" href="<?php echo asset('plugins/bootstrap-switch/css/bootstrap-switch.css') ?>">
+<?php endcustom_stylesheet() ?>
+
+<?php custom_script() ?>
+<!-- start:switch -->
+    <script src="<?php echo asset('plugins/bootstrap-switch/js/highlight.js') ?>"></script>
+    <script src="<?php echo asset('plugins/bootstrap-switch/js/bootstrap-switch.js') ?>"></script>
+    <script src="<?php echo asset('plugins/bootstrap-switch/js/main.js') ?>"></script>
+<!-- end:switch -->
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('.switch-status').on('change', function () {
+			var id = $(this).attr("data-taskid")
+			var status = this.checked ? "open" : "close"
+
+			$.ajax({
+                url: '<?php echo site_url("konsultasi/check"); ?>',
+                data: {
+                    id: id,
+                    status: status,
+                },
+                success: function (response) {
+                    alert('id: '+id+' status:'+status)
+                }
+            });
+		})
+	})
+</script>
+
+<?php endcustom_script() ?>
