@@ -3,20 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        if (sentinel()->check()) {
-            $redirect_url = dashboard_url();
-
-            if (sentinel()->inRole(['su', 'adm', 'edt', 'pus', 'ins', 'pcp']))
-                $redirect_url = admin_url();
-            
-            redirect($redirect_url, 'refresh');
-        }
-    }
-
     public function index()
     {
     	$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -47,7 +33,6 @@ class Login extends CI_Controller
     		}
     	}
     }
-
 }
 
 /* End of file Login.php */
