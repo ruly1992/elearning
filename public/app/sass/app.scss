@@ -2518,7 +2518,7 @@ header {
 		.single-article-title {
 			margin-bottom: $margin-bottom + 20px;
 			h1 {
-				font-size: 34px;
+				font-size: 25px;
 				line-height: normal;
 			}
 		}
@@ -3815,7 +3815,7 @@ a {
 			}
 			li{
 				display: inline-block;
-				margin-bottom: $margin-bottom;
+				margin-bottom: $margin-bottom + 5px;
 			}
 		}
 	}
