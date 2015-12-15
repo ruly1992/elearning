@@ -8,6 +8,22 @@ class Mod_kons_kategori extends CI_Model {
 		$query = $this->db->get('konsultasi_kategori');
 		return $query->result();
 	}
+
+	public function getKategoriList()
+	{
+		$return[''] = 'Silahkan Pilih Kategori';
+	    $query  = $this->db->get('konsultasi_kategori');
+
+	    foreach($query->result_array() as $row){
+	        $return[$row['id']] = $row['name'];
+	    }
+	    return $return;
+	}
+
+	public function getKategori()
+	{
+		$query = $this->db->get('konsultasi_kategori');
+	}
 	
 	public function getByIdKategori($id_kategori)
 	{
@@ -19,14 +35,6 @@ class Mod_kons_kategori extends CI_Model {
 	{
 		$konsultasi_kategori = $this->db->insert('konsultasi_kategori', $data);
         $kategori = $this->db->insert_id();
-
-
-		// foreach ($tenaga_ahli as $user_id) {
-		// 	$relation['user_id']	 		= $user_id;
-		// 	$relation['id_kategori']		= $kategori;
-
-		// 	$this->db->insert('user_kategori', $relation);
-		// }
 		 
         return $konsultasi_kategori;
 	}
@@ -43,22 +51,42 @@ class Mod_kons_kategori extends CI_Model {
 		$this->db->delete('konsultasi_kategori');
 	}
 
-	public function getByUser($user_id=0)
+	public function getAllGroupByUser()
 	{
-		$query = $this->db->where('user_id',$user_id)->get('profile');
-		return $query;	
+
+		$query = $this->db->group_by('user_id')->get('konsultasi_user_has_kategori');
+
+		$grouped = array();
+
+		foreach ($query->result() as $user) {
+			$user_categories = $this->getUserKategori($user->user_id);
+
+			$grouped[] = array(
+				'user'			=> user($user->user_id),
+				'categories'	=> $user_categories->result(),
+				'count'			=> $user_categories->num_rows(),
+			);
+		}
+
+  		return $grouped;
 	}
 
-	public function getUserGroups()
+	public function getUserKategori($user_id)
 	{
-		$this->db->select('profile.*');
-		$this->db->from('users_groups');
-		$this->db->join('users', 'users_groups.user_id = users.id');
-		$this->db->join('profile', 'profile.user_id = users.id');
-		$this->db->where('users_groups.group_id', 10);
+		$data = array('konsultasi_kategori.*', 'konsultasi_user_has_kategori.*');
+		$get  = $this->db->select($data)
+				->from('konsultasi_kategori')
+				->join('konsultasi_user_has_kategori', 'konsultasi_kategori.id=konsultasi_user_has_kategori.id_kategori')
+				->where('konsultasi_user_has_kategori.user_id', $user_id)
+				->get();
 
-		$query = $this->db->get();
-  		return $query->result();
+		return $get;
+	}
+
+	public function addPengampu($data=NULL)
+	{
+        $this->db->insert('konsultasi_user_has_kategori', $data);
+        return $this->db->insert_id();		
 	}
 }
 

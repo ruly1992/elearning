@@ -14,9 +14,14 @@ class Konsultasi extends CI_Controller {
 			'close'	=> 'Close',
 		);
 
-		if (sentinel()->inRole(array('ta'))) {
-			redirect('dashboard','refresh');
-		}
+        if(!sentinel()->check()) {
+            redirect(login_url());
+        }
+        
+        if (sentinel()->inRole(array('ta'))) {
+            redirect('dashboard','refresh');
+        }
+
 	}
 
 	public function index()
@@ -128,6 +133,21 @@ class Konsultasi extends CI_Controller {
 
         }
 
+    }
+
+    public function check()
+    {
+        $id       = $this->input->get('id');
+        $status   = $this->input->get('status');
+
+        $this->M_konsultasi->setStatus($id, $status);
+    }
+
+    public function search()
+    {
+        $search_term        =   $this->input->post('search');
+        $data['results']    =   $this->M_konsultasi->search($search_term);
+        $this->template->build('search',$data);
     }
                                     
 }

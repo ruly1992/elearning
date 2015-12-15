@@ -46,10 +46,8 @@ class Konsultasi extends Admin {
 
 	public function kategori()
 	{
-		$group_name = 19;
 		$data['kategori'] 		= $this->model->readKategori();
         $data['tenaga_ahli'] 	= $this->Mod_user->getAll();
-        $data['users'] 			= $this->model->getUserGroups();
 
 		$this->template->build('kons_kategori_tampil', $data);
 	}
@@ -66,8 +64,6 @@ class Konsultasi extends Admin {
 		} else {
 			$konsKategori['name']				= set_value('name');
 			$konsKategori['description']		= set_value('description');
-
-			// $tenaga_ahli['user_id']				= set_value('user_id', array());
 
 			$id = $this->model->addKategori($konsKategori);
 
@@ -89,7 +85,6 @@ class Konsultasi extends Admin {
         } else {
             $konsKategori['name']           	  = $this->input->post('name');
             $konsKategori['description']    	  = $this->input->post('description');
-            $konsKategori['id_tenaga_ahli']         = $this->input->post('id_tenaga_ahli');
             
             $res = $this->model->updateKategori($id_kategori, $konsKategori);
 
@@ -114,28 +109,44 @@ class Konsultasi extends Admin {
 		redirect('konsultasi/kategori');
 	}
 
-	function pengampu()
+	public function pengampu()
 	{
-		$this->template->build('pengampu');
+        $data['users']      	= sentinel()->findRoleBySlug('ta')->users->pluck('email', 'id')->toArray();       
+        $data['getKategori']    = $this->model->getAllGroupByUser();        
+        // $data['getUser']    	= $this->model->getByUser();        
+		$data['kategori_list'] 	= $this->model->getKategoriList();
+
+		$this->template->build('pengampu', $data);
 	}
 
-	function pengampu_tambah($id)
-	{       
-		$post=$this->input->post('data');
-		if(empty($post)){
-		$this->template->build('pengampu_tambah');
-		}else{
-			$data=$this->db->get_where('users_groups',array('user_id'=>$post['user_id']))->result();
-			foreach ($data as $d) {$post['group_id']=$d->group_id;}
-			$this->db->insert('user_kategori',$post);
-			redirect('konsultasi/pengampu');
-		}
+	public function pengampu_tambah()
+	{   
+		$this->form_validation->set_rules('user_id', 'Tenaga Ahli', 'trim|required');
 
+		if ($this->form_validation->run() == FALSE) {
+            keepValidationErrors();
+
+        } else {
+        	
+        	$users 			= $this->input->post('user_id');
+        	$kategori_list 	= $this->input->post('id_kategori');
+
+        	$data = array(
+        		'user_id' 		=> $users,
+        		'id_kategori'	=> $kategori_list,
+        	);
+
+            $save = $this->model->addPengampu($data);
+
+            set_message_success('data berhasil ditambahkan.');
+
+            redirect('konsultasi/pengampu', 'refresh');
+        }
 	}
 
-	function pengampu_kategori_hapus($id)
+	function deletePengampu($id)
 	{
-		$this->db->delete('user_kategori',array('id'=>$id));
+		$this->db->delete('konsultasi_user_has_kategori',array('id'=>$id));
 		redirect('konsultasi/pengampu');	
 	}
 
