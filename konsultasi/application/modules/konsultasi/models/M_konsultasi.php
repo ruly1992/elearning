@@ -125,6 +125,14 @@ class M_konsultasi extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update('konsultasi', $data);
     }
+
+    public function search($search_term)
+    {
+        $this->db->like('subjek',$search_term);
+
+        $query  =   $this->db->get('konsultasi');
+        return $query->result();
+    }
 }
 
 /* End of file M_konsultasi.php */

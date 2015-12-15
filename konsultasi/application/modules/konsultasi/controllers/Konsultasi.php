@@ -137,6 +137,13 @@ class Konsultasi extends CI_Controller {
 
         $this->M_konsultasi->setStatus($id, $status);
     }
+
+    public function search()
+    {
+        $search_term        =   $this->input->post('search');
+        $data['results']    =   $this->M_konsultasi->search($search_term);
+        $this->template->build('search',$data);
+    }
                                     
 }
 
