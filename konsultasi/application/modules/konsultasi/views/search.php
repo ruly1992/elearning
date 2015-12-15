@@ -38,8 +38,8 @@
                     <thead>
                         <tr>
                           <th>#</th>
-                          <th>Konsultasi Title</th>
                           <th>Kategori</th>
+                          <th>Konsultasi Title</th>
                           <th>Tanggal Konsultasi</th>
                           <th>Update Terakhir</th>
                           <th>Status</th>
