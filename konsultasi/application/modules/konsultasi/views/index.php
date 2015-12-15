@@ -19,7 +19,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for..." name="search">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-secondary" type="submit" value="cari">Search</button>
+                                        <button class="btn btn-primary" type="submit" value="cari">Search</button>
                                     </span>
                                 </div>
                             </form>
