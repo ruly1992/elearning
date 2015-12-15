@@ -13,7 +13,6 @@
                                 <li><a href="#">Home</a></li>
                                 <li class="active">General</li>
                             </ol>
-                            
                             <?php 
                                 if(isset($failed)){
                                     echo '<div class="alert alert-danger">';
@@ -27,7 +26,6 @@
                                     echo '</div>';
                                 }
                             ?>
-
                             <div class="forum-heading">
                                 <h3>General</h3>
                             </div>
