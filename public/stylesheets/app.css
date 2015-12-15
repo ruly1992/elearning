@@ -2077,7 +2077,7 @@ header {
   .content-single article .single-article-title {
     margin-bottom: 25px; }
     .content-single article .single-article-title h1 {
-      font-size: 34px;
+      font-size: 25px;
       line-height: normal; }
   .content-single article .single-article-img {
     margin-bottom: 5px; }
@@ -3110,6 +3110,9 @@ a {
         color: #000;
         font-size: 14px;
         margin-top: 10px;
+        margin-bottom: 10px; }
+      .landing-content-faq .faq-content .faq-content-answer li {
+        display: inline-block;
         margin-bottom: 10px; }
 
 /* Header */

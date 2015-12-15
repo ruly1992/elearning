@@ -75,12 +75,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'sandiahsan',
-	'database' => 'portal_learning',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'hostname' => getenv('KONSULTASI_DB_HOST') ?: 'localhost',
+	'username' => getenv('KONSULTASI_DB_USERNAME') ?: 'root',
+	'password' => getenv('KONSULTASI_DB_PASSWORD') ?: '',
+	'database' => getenv('KONSULTASI_DB_DATABASE') ?: 'portal_learning',
+	'dbdriver' => getenv('KONSULTASI_DB_DRIVER') ?: 'mysqli',
+	'dbprefix' => getenv('KONSULTASI_DB_PREFIX') ?: '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,

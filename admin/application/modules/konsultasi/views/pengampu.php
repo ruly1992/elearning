@@ -1,52 +1,62 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-4">
+        <?php echo form_open('konsultasi/pengampu_tambah'); ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2><strong>Daftar Konsultasi</strong></h2>
+                <h2><strong>Tambah Data Pengampu</strong></h2>
             </div>
-            <div class="panel-body"> 
-            <?php 
-                $row=$this->db->query('select a.id,a.email,d.first_name,d.last_name
-                                        from users a,users_groups b,groups c,profile d
-                                         where a.id=b.user_id and b.group_id=c.id and d.user_id=a.id
-                                         and c.id=10
-                                     ')->result();
-            ?>
-
-                <table class="table table-hover table-bordered" id="article">
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="name">Tenaga Ahli</label>
+                    <?php echo form_dropdown('user_id', $users, '', array('class' => 'form-control select2')); ?>
+                </div>
+                <div class="form-group">
+                    <label for="description">Kategori</label>
+                   <?php echo form_dropdown('id_kategori', $kategori_list, '', array('class' => 'form-control select2')); ?>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <?php echo button_save() ?>
+            </div>
+        </div>
+        <?php echo form_close(); ?>
+    </div>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2><strong>Daftar Pengampu</strong></h2>
+            </div>
+            <div class="panel-body">     
+                <table class="table table-hover table-bordered" id="konsultasi">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Nama lengkap</th>
-                            <th>email</th>
+                            <th>Tenaga</th>
                             <th>Kategori</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i=1;foreach ($row as $r): ?>
-                        <tr>
-                            <td><?php echo $i++;?></td>
-                            <td><?php echo $r->first_name.' '.$r->last_name;?> </td>
-                            <td><?php echo $r->email;?></td>
-                            <td>
-                            <?php 
-                                $data=$this->db->query('select b.id,a.name 
-                                                        from konsultasi_kategori a,user_kategori b
-                                                        where a.id=b.id_kategori and 
-                                                        b.user_id='.$r->id.''
-                                                        )->result();
-                                foreach($data as $d){ ?>
+                        <?php foreach ($getKategori as $row): ?>
+                            <?php
+                            $i = 0;
 
-                            <?php echo $d->name;?> <a href="<?php echo site_url().'/konsultasi/pengampu_kategori_hapus/'.$d->id;?>"><i class="fa fa-trash-o"></i></a>
-                              <br>
-                              <?php  } ?>
-                            </td>
-                            <td>
-                                <a href="<?php echo site_url('konsultasi/pengampu_tambah/') ?>" ></a>
-                                <a href="<?php echo site_url('konsultasi/pengampu_tambah/').'/'. $r->id ?>" class="btn btn-success">Tambah Kategori</a>
-                            </td>
-                        </tr>
+                            foreach ($row['categories'] as $category):
+                                if ($i == 0):
+                            ?>
+                                <tr>
+                                    <td rowspan="<?php echo $row['count'] ?>"><?php echo $row['user']->full_name ?><br><small><?php echo $row['user']->email ?></small></th>
+                                    <td><?php echo $category->name ?></td>
+                                    <td> <?php echo button_delete('konsultasi/deletePengampu/' . $category->id) ?></td>
+                                </tr>
+                            <?php else: ?>
+                                <tr>
+                                    <td><?php echo $category->name ?></td>
+                                    <td> <?php echo button_delete('konsultasi/deletePengampu/' . $category->id) ?></td>
+                                </tr>
+                            <?php endif; ?>
+
+
+                            <?php $i++; endforeach; ?>
                     <?php endforeach ?>
                     </tbody>
                 </table>
@@ -56,8 +66,6 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#article').DataTable(
-            {"ordering": false}
-        );
+        //$('#konsultasi').DataTable();
     } );
 </script>

@@ -27,10 +27,40 @@ class CreateThreadTable extends AbstractMigration
      */
     public function up()
     {
-        $query = file_get_contents(__DIR__.'/../../elearning_forum.sql');
+        $table = $this->table('threads');
+        $table->addColumn('category', 'integer', array('limit' => 1))
+            ->addColumn('topic', 'integer')
+            ->addColumn('type', 'string', array('limit' => 6)) 
+            ->addColumn('title','text')
+            ->addColumn('message','text')
+            ->addColumn('reply_to', 'integer')
+            ->addColumn('author', 'integer')
+            ->addColumn('status', 'integer', array('limit' => 1))
+            ->addColumn('created_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
+            ->create();
 
-        $this->execute($query);
+        $table = $this->table('topics');
+        $table->addColumn('tenaga_ahli', 'integer')
+            ->addColumn('category', 'integer')
+            ->addColumn('topic', 'string', array('limit' => 100))
+            ->addColumn('daerah', 'string', array('limit' => 50))
+            ->addColumn('created_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
+            ->create();
+
+        $table = $this->table('visitors');
+        $table->addColumn('thread', 'integer')
+            ->addColumn('ip_address', 'string', array('limit' => 64))
+            ->addColumn('access_url', 'string')
+            ->addColumn('user_agent', 'string')
+            ->addColumn('times', 'integer')
+            ->addColumn('user_id', 'integer')
+            ->addColumn('created_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
+            ->create();
     }
+
 
     public function down()
     {
