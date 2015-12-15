@@ -10,7 +10,7 @@
                         <!-- start:content main -->
                         <div class="content-main-faq">
 							<div class="form-group">
-                                <?php echo anchor('faq/create','<i class="fa fa-plus"></i> FAQ Baru','class="btn btn-primary btn-sm"'); ?>
+                                <?php echo anchor('dashboard/create','<i class="fa fa-plus"></i> FAQ Baru','class="btn btn-primary btn-sm"'); ?>
                             </div>
                             <?php 
                                 if(isset($failed)){
@@ -48,8 +48,8 @@
                                         <td><p><?php echo $f->answer; ?></p></td>
                                         <td><p><?php echo $f->created_at; ?></p></td>
                                         <td align="center">
-                                            <?php echo anchor('faq/edit/'.$f->id, 'Edit', 'class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
-                                            <?php echo anchor('faq/delete/'.$f->id, 'Delete', 'class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Hapus"'); ?>
+                                            <?php echo anchor('dashboard/edit/'.$f->id, 'Edit', 'class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
+                                            <?php echo anchor('dashboard/delete/'.$f->id, 'Delete', 'class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Hapus"'); ?>
                                         </td>
                                     </tr>
                                 <?php
