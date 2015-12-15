@@ -20,9 +20,13 @@ class M_konsultasi extends CI_Model {
     public function getKatByUser()
     {
         $user_id = sentinel()->getUser()->id;
-    	$query = $this->db->get_where('konsultasi_kategori', array('id_tenaga_ahli' => $user_id)); 
-
-        return $query->result();
+        $data = array('konsultasi_kategori.name', 'konsultasi_kategori.description', 'konsultasi_user_has_kategori.*');
+        $get  = $this->db->select($data)
+                ->from('konsultasi_user_has_kategori')
+                ->join('konsultasi_kategori','konsultasi_user_has_kategori.id_kategori=konsultasi_kategori.id')
+                ->where('konsultasi_user_has_kategori.user_id', $user_id)->get();
+        
+        return $get->result();
     }
 
     public function getListKat($kategori_id)
@@ -112,6 +116,22 @@ class M_konsultasi extends CI_Model {
         } else {
             $this->db->update('konsultasi', array('status'=>'open'), array('id'=> $id));
         }
+    }
+
+    public function setStatus($id, $status)
+    {
+        $data['status'] = $status;
+
+        $this->db->where('id', $id);
+        $this->db->update('konsultasi', $data);
+    }
+
+    public function search($search_term)
+    {
+        $this->db->like('subjek',$search_term);
+
+        $query  =   $this->db->get('konsultasi');
+        return $query->result();
     }
 }
 

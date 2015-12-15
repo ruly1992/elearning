@@ -90,6 +90,23 @@ $config['menus'] = [
         'icon'  => 'fa fa-upload',
         'link'  => site_url('konsultasi'),
         'roles' => ['su', 'adm'],
+        'child' => [
+            [
+                'name'  => 'Konsultasi',
+                'icon'  => 'fa fa-book',
+                'link'  => site_url('konsultasi'),
+            ],
+            [
+                'name'  => 'Kategori',
+                'icon'  => 'icon-calculator',
+                'link'  => site_url('konsultasi/kategori'),
+            ],
+            [
+                'name'  => 'Pengampu',
+                'icon'  => 'icon-users',
+                'link'  => site_url('konsultasi/pengampu'),
+            ]
+        ],
     ],
 
     // Forum
