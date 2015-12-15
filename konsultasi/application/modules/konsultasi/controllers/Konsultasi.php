@@ -14,9 +14,14 @@ class Konsultasi extends CI_Controller {
 			'close'	=> 'Close',
 		);
 
-		if (sentinel()->inRole(array('ta'))) {
-			redirect('dashboard','refresh');
-		}
+        if(!sentinel()->check()) {
+            redirect(login_url());
+        }
+        
+        if (sentinel()->inRole(array('ta'))) {
+            redirect('dashboard','refresh');
+        }
+
 	}
 
 	public function index()
