@@ -38,7 +38,6 @@
                     <thead>
                         <tr>
                           <th>#</th>
-                          <th>Kategori</th>
                           <th>Konsultasi Title</th>
                           <th>Tanggal Konsultasi</th>
                           <th>Update Terakhir</th>
@@ -47,10 +46,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($konsultasi as $row) : ?>
+                        <?php foreach ($results as $row) : ?>
                         <tr>
                             <th scope="row"><?php echo $row->id ?></th>
-                            <td><?php echo $row->name ?></td>
                             <td><?php echo $row->subjek ?></td>
                             <td><?php echo $row->created_at ?></td>
                             <td><?php echo $row->updated_at ?></td>
@@ -99,9 +97,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		$('.switch-status').on('switchChange.bootstrapSwitch', function (event, state) {
+		$('.switch-status').on('change', function () {
 			var id = $(this).attr("data-taskid")
-			var status = state ? "open" : "close"
+			var status = this.checked ? "open" : "close"
 
 			$.ajax({
                 url: '<?php echo site_url("konsultasi/check"); ?>',
