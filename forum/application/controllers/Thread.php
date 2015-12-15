@@ -25,7 +25,10 @@ class Thread extends CI_Controller
 
         $data['comments'] = $this->model_thread->get_count_reply(); 
         $data['visitors'] = $this->model_visitor->get_visitors();
-        $data['threads']  = $this->model_thread->get_all_threads();
+
+        $threads            = collect($this->model_thread->get_all_threads());
+        $data['threads']    = pagination($threads, 2, 'thread');
+
         $this->load->view('thread/all_threads',$data);
     }
     

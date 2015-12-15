@@ -49,12 +49,12 @@ class Dashboard extends CI_Controller
     		}else{
     			$this->session->set_flashdata('failed','FAQ baru tidak berhasil disimpan');
     		}
-    		redirect('faq/');
+    		redirect('dashboard/');
 
     	}else{
 
     		$this->session->set_flashdata('failed',validation_error());
-    		redirect('faq/');
+    		redirect('dashboard/');
 
     	}
     }
@@ -91,10 +91,10 @@ class Dashboard extends CI_Controller
             }else{
                 $this->session->set_flashdata('failed', 'FAQ tidak berhasil diperbarui');
             }
-            redirect('faq/');
+            redirect('dashboard/');
         }else{
             $this->session->set_flashdata('failed',validation_error());
-            redirect('faq/');
+            redirect('dashboard/');
         }
     }
 
@@ -105,6 +105,6 @@ class Dashboard extends CI_Controller
     	}else{
     		$this->session->set_flashdata('failed','FAQ tidak berhasil dihapus');
     	}
-    	redirect('faq/');
+    	redirect('dashboard/');
     }
 }
