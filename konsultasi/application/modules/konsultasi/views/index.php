@@ -15,11 +15,11 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="content-konsultasi-heading-left">
-                            <form action="">
+                            <form action="<?php echo site_url('konsultasi/search') ?>">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for...">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-secondary" type="button">Search</button>
+                                        <button class="btn btn-secondary" type="submit" value="cari">Search</button>
                                     </span>
                                 </div>
                             </form>
@@ -86,16 +86,9 @@
 
 </div>
 <!-- emd:content -->
-<?php custom_stylesheet() ?>
-	<link rel="stylesheet" href="<?php echo asset('plugins/bootstrap-switch/css/bootstrap-switch.css') ?>">
-<?php endcustom_stylesheet() ?>
+
 
 <?php custom_script() ?>
-<!-- start:switch -->
-    <script src="<?php echo asset('plugins/bootstrap-switch/js/highlight.js') ?>"></script>
-    <script src="<?php echo asset('plugins/bootstrap-switch/js/bootstrap-switch.js') ?>"></script>
-    <script src="<?php echo asset('plugins/bootstrap-switch/js/main.js') ?>"></script>
-<!-- end:switch -->
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -110,7 +103,7 @@
                     status: status,
                 },
                 success: function (response) {
-                    alert('id: '+id+' status:'+status)
+                    alert('konsultasi telah di '+status)
                 }
             });
 		})
