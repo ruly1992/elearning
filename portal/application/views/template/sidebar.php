@@ -3,6 +3,35 @@
 <div class="content-sidebar">
     <div class="widget">
         <div class="widget-heading">
+            <h3>ARTIKEL PILIHAN</h3>
+        </div>
+        <div class="widget-content news4">
+            <?php
+            $choices = Model\Portal\Article::editorChoice()->latest('date')->get();
+
+            foreach ($choices->slice(0, 5) as $article): ?>
+                <div class="box-articles-widget">
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-6">
+                            <div class="box-articles-widget-img">
+                                <a href="<?php echo $article->link ?>"><img src="<?php echo $article->featured_image ?>"></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-xs-6">
+                            <div class="box-articles-widget-meta">
+                                <p><i class="fa fa-calendar"></i> <?php echo $article->date->format('d F Y') ?></p>
+                            </div>
+                            <div class="box-articles-widget-title">
+                                <h4><a href="<?php echo $article->link ?>"><?php echo $article->title ?></a></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </div>
+    </div>
+    <div class="widget">
+        <div class="widget-heading">
             <ul class="nav nav-tabs" id="myTabSidebar" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="popular-post-tab" data-toggle="tab" href="#popular-post" role="tab" aria-controls="popular-post" aria-expanded="true">TERPOPULER</a>

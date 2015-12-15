@@ -1,3 +1,4 @@
+<?php global $active, $slider, $custom_stylesheet, $custom_script; ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -56,8 +57,10 @@
         <link rel="stylesheet" href="<?php echo asset('node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker-standalone.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/fancybox/dist/css/jquery.fancybox.css') ?>">
+        <link rel="stylesheet" href="<?php echo asset('node_modules/bootstrap-dialog/dist/css/bootstrap-dialog.min.css') ?>">
 
         <?php echo isset($template['partials']['stylesheet']) ? $template['partials']['stylesheet'] : ''; ?>
+        <?php echo $custom_stylesheet ?>
 
         <link href="<?php echo asset('admin/css/custom.css') ?>" rel="stylesheet">
 
@@ -157,11 +160,13 @@
         <script src="<?php echo asset('admin/plugins/modal/js/jquery.modalEffects.js') ?>"></script>
         <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>
         <script src="<?php echo asset('node_modules/fancybox/dist/js/jquery.fancybox.pack.js') ?>"></script>
+        <script src="<?php echo asset('node_modules/bootstrap-dialog/dist/js/bootstrap-dialog.min.js') ?>"></script>
         <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
         <!-- end: JavaScript-->
         <script src="<?php echo asset('javascript/analytic.js') ?>"></script>
         <script src="<?php echo asset('admin/js/custom.js') ?>"></script>
         <?php echo isset($template['partials']['script']) ? $template['partials']['script'] : ''; ?>
+        <?php echo $custom_script ?>
     </body>
 </html>
   

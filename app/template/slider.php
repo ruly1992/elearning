@@ -21,7 +21,7 @@ $sliders = Model\Portal\Article::latest('date')->slider()->take(3)->get();
                         <?php $i = 1; foreach ($sliders as $slider): ?>                            
                             <div class="carousel-item <?php echo $i == 1 ? 'active' : '' ?>">
                                 <a href="<?php echo $slider->link ?>">
-                                    <img src="<?php echo $slider->slider ?>">
+                                    <img src="<?php echo $slider->slider_image ?>">
                                 </a>
                                 <div class="carousel-caption">
                                     <span class="btn btn-sm btn-category"><?php echo $slider->categories->first()->name ?></span>

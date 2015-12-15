@@ -127,9 +127,12 @@ class Article extends Admin {
     {
         $this->form_validation->set_rules('title', 'Title', 'trim|required');
         $this->form_validation->set_rules('content', 'Content', 'required');
+        $this->form_validation->set_rules('categories[]', 'Category', 'required');
 
         if ($this->form_validation->run() == FALSE) {   
             $artikel = Model\Portal\Article::withDrafts()->findOrFail($id);
+
+            keepValidationErrors();
 
             $cat_ids = array_map(function ($cat) {
                 return $cat->kategori_id;
@@ -171,15 +174,12 @@ class Article extends Admin {
             $repo_library = new Library\Article\Article;
             $repo_library->set($article);
 
+
             if ($this->input->post('featured'))
                 $repo_library->setFeaturedImage($this->input->post('featured'));
-            else
-                $repo_library->removeFeaturedImage();
 
             if ($this->input->post('slidercarousel'))
                 $repo_library->setSliderImage($this->input->post('slidercarousel'));
-            else
-                $repo_library->removeSliderImage();
 
             $id = $this->Mod_artikel->update($id, $artikel, $categories, $tags);
 
