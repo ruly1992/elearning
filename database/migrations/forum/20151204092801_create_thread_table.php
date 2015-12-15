@@ -61,6 +61,7 @@ class CreateThreadTable extends AbstractMigration
             ->create();
     }
 
+
     public function down()
     {
 
