@@ -129,9 +129,11 @@ class M_konsultasi extends CI_Model {
     public function search($search_term)
     {
         $this->db->like('subjek',$search_term);
+        $this->db->or_like('konsultasi_kategori.name',$search_term);
 
-        $query  =   $this->db->get('konsultasi');
-        return $query->result();
+        $data = array('konsultasi.*','konsultasi_kategori.name');
+        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->get();
+        return $get->result();
     }
 }
 
