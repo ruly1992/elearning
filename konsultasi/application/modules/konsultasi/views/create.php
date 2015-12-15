@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <label for="">Pesan Anda</label>
-                                <?php echo form_textarea('pesan', set_value('pesan', '', FALSE), array('class' => 'form-control editor')); ?>
+                                <?php echo form_textarea('pesan', set_value('pesan', '', FALSE), array('class' => 'form-control')); ?>
                             </div>
                         </div>
                     </div>
