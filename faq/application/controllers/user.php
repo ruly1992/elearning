@@ -9,6 +9,10 @@ class User extends CI_Controller
         parent::__construct();
         $this->load->database();
         $this->load->model('model_faq');
+        
+        if(!sentinel()->check()) {
+            redirect(login_url());
+        }
     }
 
     public function index(){
