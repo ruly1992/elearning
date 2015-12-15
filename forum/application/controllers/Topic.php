@@ -44,6 +44,11 @@ class Topic extends CI_Controller
 
     public function create()
     {
+        if($this->checkRole()==FALSE){
+            $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
+            redirect('topic/');
+        }
+
         if($this->session->flashdata('success')){
             $data['success'] = $this->session->flashdata('success');
         }elseif($this->session->flashdata('failed')){
@@ -57,6 +62,11 @@ class Topic extends CI_Controller
     }
 
     public function save(){
+        if($this->checkRole()==FALSE){
+            $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
+            redirect('topic/');
+        }
+
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
         $this->form_validation->set_rules('daerah','Daerah','required');
@@ -87,6 +97,11 @@ class Topic extends CI_Controller
     }
 
     public function edit($id){
+        if($this->checkRole()==FALSE){
+            $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
+            redirect('topic/');
+        }
+
         $getTopic = $this->model_topic->selectTopic($id);
         foreach($getTopic as $t){
             $data = array(
@@ -104,6 +119,11 @@ class Topic extends CI_Controller
     }
 
     public function update($id){
+        if($this->checkRole()==FALSE){
+            $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
+            redirect('topic/');
+        }
+
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
         $this->form_validation->set_rules('daerah','Daerah','required');
@@ -134,6 +154,11 @@ class Topic extends CI_Controller
     }
 
     public function delete($id){
+        if($this->checkRole()==FALSE){
+            $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
+            redirect('topic/');
+        }
+        
         $delete = $this->model_topic->delete($id);
         if($delete==TRUE){
             $this->session->set_flashdata('success','Topic was successfully deleted.');
@@ -141,5 +166,14 @@ class Topic extends CI_Controller
             $this->session->set_flashdata('failed','Topic was failed to be deleted.');
         }
         redirect('topic/');
+    }
+
+    public function checkRole()
+    {
+        if (sentinel()->inRole('ta')) {
+            return TRUE;
+        }else{
+            return FALSE;
+        }
     }
 }
