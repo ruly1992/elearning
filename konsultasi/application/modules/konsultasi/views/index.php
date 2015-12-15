@@ -15,9 +15,9 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="content-konsultasi-heading-left">
-                            <form action="<?php echo site_url('konsultasi/search') ?>">
+                            <form action="<?php echo site_url('konsultasi/search') ?>" method="POST">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <input type="text" class="form-control" placeholder="Search for..." name="search">
                                     <span class="input-group-btn">
                                         <button class="btn btn-secondary" type="submit" value="cari">Search</button>
                                     </span>
@@ -86,15 +86,22 @@
 
 </div>
 <!-- emd:content -->
-
+<?php custom_stylesheet() ?>
+	<link rel="stylesheet" href="<?php echo asset('plugins/bootstrap-switch/css/bootstrap-switch.css') ?>">
+<?php endcustom_stylesheet() ?>
 
 <?php custom_script() ?>
+<!-- start:switch -->
+    <script src="<?php echo asset('plugins/bootstrap-switch/js/highlight.js') ?>"></script>
+    <script src="<?php echo asset('plugins/bootstrap-switch/js/bootstrap-switch.js') ?>"></script>
+    <script src="<?php echo asset('plugins/bootstrap-switch/js/main.js') ?>"></script>
+<!-- end:switch -->
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		$('.switch-status').on('change', function () {
+		$('.switch-status').on('switchChange.bootstrapSwitch', function (event, state) {
 			var id = $(this).attr("data-taskid")
-			var status = this.checked ? "open" : "close"
+			var status = state ? "open" : "close"
 
 			$.ajax({
                 url: '<?php echo site_url("konsultasi/check"); ?>',
