@@ -19,7 +19,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for..." name="search">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-secondary" type="submit" value="cari">Search</button>
+                                        <button class="btn btn-primary" type="submit" value="cari">Search</button>
                                     </span>
                                 </div>
                             </form>
@@ -38,6 +38,7 @@
                     <thead>
                         <tr>
                           <th>#</th>
+                          <th>Kategori</th>
                           <th>Konsultasi Title</th>
                           <th>Tanggal Konsultasi</th>
                           <th>Update Terakhir</th>
@@ -49,6 +50,7 @@
                         <?php foreach ($results as $row) : ?>
                         <tr>
                             <th scope="row"><?php echo $row->id ?></th>
+                            <td><?php echo $row->name ?></td>
                             <td><?php echo $row->subjek ?></td>
                             <td><?php echo $row->created_at ?></td>
                             <td><?php echo $row->updated_at ?></td>
@@ -97,9 +99,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		$('.switch-status').on('change', function () {
+		$('.switch-status').on('switchChange.bootstrapSwitch', function (event, state) {
 			var id = $(this).attr("data-taskid")
-			var status = this.checked ? "open" : "close"
+			var status = state ? "open" : "close"
 
 			$.ajax({
                 url: '<?php echo site_url("konsultasi/check"); ?>',
