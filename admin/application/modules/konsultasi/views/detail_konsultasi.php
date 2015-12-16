@@ -20,7 +20,7 @@
 					<strong><?php echo $konsultasi->subjek ?> </strong>
 				</div>
 				<div>
-					Pembuat : <?php foreach($user_id as $user){ echo $user->first_name.' '.$user->last_name; }?>
+					Pembuat : <?php echo user($konsultasi->user_id)->full_name ?>
 				</div>
 				<div>
 					
@@ -30,7 +30,7 @@
 		    	<?php echo $konsultasi->pesan ?>
 		  	</div>
 		  	<div class="panel-body">
-				Lampiran : <strong><a href="<?php echo home_url('konsultasi/uploads/'.$konsultasi->attachment) ?>"><?php echo $konsultasi->attachment ?></a></strong>		  		
+				Lampiran : <strong><a href="<?php echo konsultasi_attachment($konsultasi->attachment) ?>"><?php echo $konsultasi->attachment ?></a></strong>		  		
 		  	</div>
 		</div>
     </div>

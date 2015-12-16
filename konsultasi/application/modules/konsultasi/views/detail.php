@@ -122,10 +122,7 @@
                                                         <div class="row">
                                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                                 <label for="">Attachments</label>
-                                                                <label class="file">
-                                                                    <input type="file" id="file" name="file">
-                                                                    <span class="file-custom"></span>
-                                                                </label>
+                                                                <input type="file" name="files" id="filer_input">
                                                                 <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt) </small>
                                                             </div>
                                                         </div>
@@ -151,3 +148,16 @@
     </section>
 </div>
 <!-- emd:content -->
+<?php custom_stylesheet() ?>
+
+    <link href="<?php echo asset('/plugins/jQuery.filer-1.0.5/css/jquery.filer.css') ?>" type="text/css" rel="stylesheet" />
+    <link href="<?php echo asset('/plugins/jQuery.filer-1.0.5/css/themes/jquery.filer-dragdropbox-theme.css') ?>" type="text/css" rel="stylesheet" />
+
+<?php endcustom_stylesheet() ?>
+
+<?php custom_script() ?>
+    <!--jQuery-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/custom.js?v=1.0.5') ?>"></script>
+<?php endcustom_script() ?>

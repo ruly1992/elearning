@@ -7,7 +7,7 @@ class Thread extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model(array('model_thread','model_visitor'));
+        $this->load->model(array('model_thread','model_visitor','model_topic'));
         $this->load->helper(array('BBCodeParser','visitor','thread'));
 
         if(!sentinel()->check()) {
@@ -23,11 +23,34 @@ class Thread extends CI_Controller
             $data['failed'] = $this->session->flashdata('failed');
         }
 
-        $data['comments'] = $this->model_thread->get_count_reply(); 
-        $data['visitors'] = $this->model_visitor->get_visitors();
+        $data['comments']   = $this->model_thread->get_count_reply(); 
+        $data['visitors']   = $this->model_visitor->get_visitors();
+        $data['categoriesHead'] = $this->model_thread->get_categories();
+        $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['topics']     = $this->model_topic->get_topics();
+        $data['threadSide'] = $this->model_thread->get_all_threads();
 
         $threads            = collect($this->model_thread->get_all_threads());
-        $data['threads']    = pagination($threads, 2, 'thread');
+        $data['threads']    = pagination($threads, 10, 'thread');
+
+        $this->load->view('thread/all_threads',$data);
+    }
+
+    public function viewAt($idCategory){
+        $getCategory        = $this->model_thread->getCategory($idCategory);
+        foreach($getCategory as $cat){
+            $data['category'] = $cat->category_name;
+        }
+
+        $data['comments']   = $this->model_thread->get_count_reply(); 
+        $data['visitors']   = $this->model_visitor->get_visitors();
+        $data['categoriesHead'] = $getCategory;
+        $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['topics']     = $this->model_topic->get_topics();
+        $data['threadSide'] = $this->model_thread->get_all_threads();
+
+        $threads            = collect($this->model_thread->getThreadsCategory($idCategory));
+        $data['threads']    = pagination($threads, 10, 'thread');
 
         $this->load->view('thread/all_threads',$data);
     }
@@ -39,14 +62,19 @@ class Thread extends CI_Controller
         }else{
             $data['breadcrumb'] = 'Post New Thread';
         }
-        $data['category']       = $this->model_thread->get_category();
+
+        $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['topics']         = $this->model_topic->get_topics();
+        $data['categories']     = $this->model_thread->get_categories();
         $this->load->view('thread/create',$data);
     }
     
     public function post()
     {
         $this->form_validation->set_rules('kategori','Kategori','required');
-        $this->form_validation->set_rules('radio','Radio','required');
+        $this->form_validation->set_rules('topic','Topic','required');
+        $this->form_validation->set_rules('type','Type','required');
         $this->form_validation->set_rules('title','Title','required');
         $this->form_validation->set_rules('message','Message','required');
         
@@ -55,7 +83,8 @@ class Thread extends CI_Controller
 
             $data=array(
                 'category'  => set_value('kategori'),
-                'type'      => set_value('radio'),
+                'type'      => set_value('type'),
+                'topic'     => set_value('topic'),
                 'title'     => set_value('title'),
                 'message'   => set_value('message'),
                 'reply_to'  => '0',
@@ -82,6 +111,7 @@ class Thread extends CI_Controller
         $get_thread = $this->model_thread->get_thread($id);
         foreach($get_thread as $t){
             $data = array(
+                'idCategory'=> $t->category,
                 'category'  => $t->category_name,
                 'user'      => $t->author,
                 'tanggal'   => $t->created_at,
@@ -94,6 +124,8 @@ class Thread extends CI_Controller
         $visitorIdentity = visitorIdentity($user->id,$id);
         $this->model_visitor->saveVisitor($visitorIdentity);
 
+        $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['reply']     = $this->model_thread->get_reply($id);
         $data['countReply'] = count($data['reply']);
         $data['id'] = $id;
@@ -127,26 +159,33 @@ class Thread extends CI_Controller
         foreach($thread as $t){
             $data=array(
                 'kategori'=> $t->category,
+                'topic'   => $t->topic,
                 'type'    => $t->type,
                 'title'   => $t->title,
                 'message' => $t->message,
             );
         }
+
+        $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['topics']         = $this->model_topic->get_topics();
         $data['id_thread'] = $id;
-        $data['category']  = $this->model_thread->get_category();
+        $data['categories']  = $this->model_thread->get_categories();
         $this->load->view('thread/edit_thread',$data);
     }
     
     public function updateThread($id){
         $this->form_validation->set_rules('kategori','Kategori','required');
-        $this->form_validation->set_rules('radio','Radio','required');
+        $this->form_validation->set_rules('topic','Topic','required');
+        $this->form_validation->set_rules('type','type','required');
         $this->form_validation->set_rules('title','Title','required');
         $this->form_validation->set_rules('message','Message','required');
         
         if($this->form_validation->run()==TRUE){    
             $data=array(
                 'category'  => set_value('kategori'),
-                'type'      => set_value('radio'),
+                'topic'     => set_value('topic'),
+                'type'      => set_value('type'),
                 'title'     => set_value('title'),
                 'message'   => set_value('message'),
                 'author'    => '1',
@@ -217,6 +256,9 @@ class Thread extends CI_Controller
                 'message' => $t->message,
             );
         }
+        
+        $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['threadSide']     = $this->model_thread->get_all_threads();
         $this->load->view('thread/edit_reply',$data);
     }
 
