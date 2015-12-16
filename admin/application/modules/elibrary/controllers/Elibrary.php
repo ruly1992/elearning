@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Elibrary extends CI_Controller
+class Elibrary extends Admin
 {
     public function __construct()
     {
