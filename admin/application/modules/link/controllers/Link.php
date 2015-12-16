@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Link extends CI_Controller {
+class Link extends Admin {
 
 	public function __construct()
 	{
