@@ -12,9 +12,11 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($konsultasi as $row): ?>
+                <?php
+                    $no = 1; 
+                    foreach ($konsultasi as $row): ?>
                 <tr>
-                    <td><?php echo $row->id ?></td>
+                    <td><?php echo $no ?></td>
                     <td><?php echo $row->subjek ?></td>
                     <td>
                         <?php if ($row->status == 'open'){?>
@@ -27,7 +29,7 @@
                        <a class="btn btn-sm btn-success" href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>">Lihat selengkapnya</a>
                     </td>
                 </tr>
-            <?php endforeach ?>
+            <?php $no++; endforeach; ?>
             </tbody>
         </table>
     </div>

@@ -47,9 +47,9 @@ class User extends \Cartalyst\Sentinel\Users\EloquentUser
         return $this->belongsToMany(Portal\Category::class, 'kategori_moderator', 'user_id', 'category_id');
     }
 
-    public function inRole($role)
+    public function inRole($role = [])
     {
-        if (empty($this->roles))
+        if (empty($role))
             return true;
         
         $roled = $this->roles->filter(function ($instance) use ($role) {
@@ -74,6 +74,6 @@ class User extends \Cartalyst\Sentinel\Users\EloquentUser
             return false;
         });
 
-        return $roled->count();
+        return (bool) $roled->count();
     }
 }
