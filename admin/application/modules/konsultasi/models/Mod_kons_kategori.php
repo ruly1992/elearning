@@ -95,6 +95,12 @@ class Mod_kons_kategori extends CI_Model {
         $this->db->insert('konsultasi_user_has_kategori', $data);
         return $this->db->insert_id();		
 	}
+
+	public function deletePengampu($id)
+	{
+		$this->db->delete('konsultasi_user_has_kategori',array('id'=>$id));
+		redirect('konsultasi/pengampu');	
+	}
 }
 
 /* End of file Mod_kons_kategori.php */
