@@ -96,22 +96,6 @@ $(document).ready(function () {
         remove_script_host : false
     });
 
-    $('.switch-input.ajax').on('change', function () {
-        var id      = $(this).val();
-        var type    = this.checked ? 'private' : 'public';
-
-        $.ajax({
-            url: siteurl + '/article/json/type',
-            data: {
-                id: id,
-                type: type,
-            },
-            success: function (response) {
-                
-            }
-        })
-    })
-
     // $('.switch-input.ajax').on('change', function(){
     //     var id      = $(this).val();
     //     var status    = this.checked ? 'unapprove' : 'approve';
@@ -146,9 +130,12 @@ $(document).ready(function () {
 
     var $cropit_featured;
     var $cropit_featured_imagedata;
+    var $cropit_featured_action;
 
     $cropit_featured_imagedata = $('input.cropit-featured-imagedata')
+    $cropit_featured_action = $('input#featured_action')
     $cropit_featured = $('.cropit-featured').cropit({
+        exportZoom: 2,
         onOffsetChange: function (offset) {
             if ($cropit_featured_imagedata.val()) {
                 var imageData       = $('.cropit-featured').cropit('export')
@@ -159,25 +146,40 @@ $(document).ready(function () {
     });
 
     $cropit_featured.cropit('imageSrc', $cropit_featured.find('.cropit-image-preview').data('cropit-preload'))
-    $cropit_featured_imagedata.val($cropit_featured.cropit('export'))
 
     if ($cropit_featured.hasClass('cropit-disabled')) {
         $cropit_featured_imagedata.val('')
         $cropit_featured.cropit('disable');
     }
 
+    $('.md-trigger-featured').modalEffects({
+        afterClose: function (button, modal) {
+            if ($cropit_featured_imagedata.val()) {
+                var imageData = $cropit_featured.cropit('export')
+
+                $cropit_featured_imagedata.val(imageData)
+            }
+        }
+    });
+
+    $('.md-trigger-featured').on('click', function (ev) {
+       return false
+    });
+
     $('#featured').on('change', function () {
         var url = $(this).val()
         $cropit_featured.cropit('imageSrc', url)
         $cropit_featured.cropit('reenable');
+        $cropit_featured_action.val('change')
     })
 
     $('.btn-remove-featured').on('click', function () {
         var url = homeurl + 'public/images/portal/img-carousel-default.jpg'
 
         $cropit_featured.cropit('imageSrc', url);
-        $cropit_featured_imagedata.val('')
+        $cropit_featured_action.val('remove')
         $cropit_featured.cropit('disable');
+        $cropit_featured_action.val('remove')
 
         return false
     })
@@ -196,7 +198,9 @@ $(document).ready(function () {
 
     $('.md-trigger-slider').modalEffects({
         afterClose: function (button, modal) {
-            if ($cropit_slider_imagedata.val()) {
+            var val = $cropit_slider_imagedata.val()
+
+            if (val && val != 'remove') {
                 var imageData = $cropit_slider.cropit('export')
 
                 $cropit_slider_imagedata.val(imageData)
@@ -210,11 +214,8 @@ $(document).ready(function () {
     if ($cropit_slider.hasClass('cropit-disabled')) {
         $cropit_slider_imagedata.val('')
         $cropit_slider.cropit('disable');
-        console.log('disabled')
     } else {
         var imageData = $cropit_slider.cropit('export')
-
-        console.log($cropit_slider.cropit('export'))
 
         $cropit_slider_imagedata.val(imageData)
     }
@@ -229,7 +230,7 @@ $(document).ready(function () {
         var url = homeurl + 'public/images/portal/img-carousel-default.jpg'
 
         $cropit_slider.cropit('imageSrc', url);
-        $cropit_slider_imagedata.val('')
+        $cropit_slider_imagedata.val('remove')
         $cropit_slider.cropit('disable');
 
         return false

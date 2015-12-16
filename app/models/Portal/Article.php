@@ -161,6 +161,14 @@ class Article extends Model
         }
     }
 
+    public function getCategoryNameFirstAttribute()
+    {
+        if ($this->categories->count())
+            return $this->categories->first()->name;
+        else
+            return 'No Category';
+    }
+
     public function contributor()
     {
         return $this->belongsTo(User::class, 'contributor_id');

@@ -13,7 +13,7 @@
                                 <div class="forum-main">
                                     <div class="card">
                                         <div class="card-block">                                           
-                                            <?php echo form_open('/faq/update/'.$id); ?>
+                                            <?php echo form_open('/dashboard/update/'.$id); ?>
                                                 <div class="form-group">
                                                     <label for="">Title :</label>
                                                     <input type="text" required value="<?php echo $title; ?>" name="title" class="form-control" placeholder="type your title">
@@ -28,7 +28,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-primary">Update</button>
-                                                    <?php echo anchor('faq/','Cancel','class="btn btn-default"'); ?>
+                                                    <?php echo anchor('dashboard/','Cancel','class="btn btn-default"'); ?>
                                                 </div>
                                             <?php echo form_close(); ?>
                                         </div>
