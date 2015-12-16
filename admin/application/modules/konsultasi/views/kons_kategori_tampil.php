@@ -37,9 +37,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($kategori as $row): ?>
+                        <?php $no = 1; foreach ($kategori as $row): ?>
                         <tr>
-                            <td><?php echo $row->id ?></td>
+                            <td><?php echo $no ?></td>
                             <td><?php echo $row->name ?></td>
                             <td><?php echo $row->description ?></td>
                             <td>
@@ -47,7 +47,7 @@
                                 <?php echo button_delete('konsultasi/deleteKategori/' . $row->id) ?>
                             </td>
                         </tr>
-                    <?php endforeach ?>
+                    <?php $no++; endforeach; ?>
                     </tbody>
                 </table>
             </div>

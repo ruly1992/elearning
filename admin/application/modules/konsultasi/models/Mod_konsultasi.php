@@ -52,15 +52,13 @@ class Mod_konsultasi extends CI_Model {
   		return $query->result();
 	}
 
-	public function getUserKonsul($id)
-	{
-		$this->db->select('*');
-		$this->db->from('profile');
-		$this->db->join('konsultasi AS kons', 'kons.user_id = profile.user_id');
-		$this->db->where('kons.id', $id);
-
-		$query = $this->db->get();
-  		return $query->result();
+	public function changeStatus($open,$close)
+	{	
+		if ($open == 'open') {
+			$this->db->update('konsultasi', array('status'=>'close'), array('id'=> $close));
+		} else {
+			$this->db->update('konsultasi', array('status'=>'open'), array('id'=> $close));
+		}
 	}
 }
 
