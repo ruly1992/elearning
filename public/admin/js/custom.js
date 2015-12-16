@@ -96,22 +96,6 @@ $(document).ready(function () {
         remove_script_host : false
     });
 
-    $('.switch-input.ajax').on('change', function () {
-        var id      = $(this).val();
-        var type    = this.checked ? 'private' : 'public';
-
-        $.ajax({
-            url: siteurl + '/article/json/type',
-            data: {
-                id: id,
-                type: type,
-            },
-            success: function (response) {
-                
-            }
-        })
-    })
-
     // $('.switch-input.ajax').on('change', function(){
     //     var id      = $(this).val();
     //     var status    = this.checked ? 'unapprove' : 'approve';

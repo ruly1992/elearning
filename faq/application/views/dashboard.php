@@ -1,4 +1,4 @@
-<?php get_header('private'); ?>
+<?php get_header('faq'); ?>
 
         <!-- start:main content -->
         <div class="container content-faq">

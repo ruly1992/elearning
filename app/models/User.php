@@ -49,6 +49,9 @@ class User extends \Cartalyst\Sentinel\Users\EloquentUser
 
     public function inRole($role)
     {
+        if (empty($this->roles))
+            return true;
+        
         $roled = $this->roles->filter(function ($instance) use ($role) {
             if (is_array($role)) {
                 foreach ($role as $slug_or_name) {
