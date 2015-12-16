@@ -23,14 +23,9 @@ class Konsultasi extends Admin {
 		$this->template->build('index', $data);
 	}
 
-	function status($open,$close)
+	public function status($open,$close)
 	{
-		if ($open == 'open') {
-			$this->db->update('konsultasi', array('status'=>'close'), array('id'=> $close));
-		} else {
-			$this->db->update('konsultasi', array('status'=>'open'), array('id'=> $close));
-		}
-
+		$this->Mod_konsultasi->changeStatus($open,$close);
 		redirect('konsultasi');
 	}
 
