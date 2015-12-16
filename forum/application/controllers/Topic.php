@@ -36,6 +36,10 @@ class Topic extends CI_Controller
         }elseif($this->session->flashdata('failed')){
             $data['failed'] = $this->session->flashdata('failed');
         }
+        if($this->checkRole()==FALSE){
+            $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
+            redirect('topic/');
+        }
 
         $data['provinsi']   = $this->getWilayah();
         $data['topics'] = $this->model_topic->get_topics();
