@@ -26,22 +26,32 @@
                                                 <label for="">Pilih Kategori :</label>
                                                 <select class="c-select form-control" required name="kategori">
                                                     <?php 
-														foreach($category as $cat){
+														foreach($categories as $cat){
 															echo '<option value="'.$cat->id.'" >'.$cat->category_name.'</option>';
 														}
 													?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
+                                                <label for="">Pilih Topic :</label>
+                                                <select class="c-select form-control" required name="topic">
+                                                    <?php 
+                                                        foreach($topics as $top){
+                                                            echo '<option value="'.$top->id.'" >'.$top->topic.'</option>';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="">Pilih Type Thread :</label>
                                                 <div>
                                                     <label class="c-input c-radio">
-                                                        <input id="radio1" name="radio" value="close" type="radio">
+                                                        <input id="radio1" name="type" value="close" type="radio">
                                                         <span class="c-indicator"></span>
                                                         Close
                                                     </label>
                                                     <label class="c-input c-radio">
-                                                        <input id="radio2" name="radio" value="public" checked type="radio">
+                                                        <input id="radio2" name="type" value="public" checked type="radio">
                                                         <span class="c-indicator"></span>
                                                         Public
                                                     </label>
@@ -75,12 +85,14 @@
                                     </div>
                                     <div class="widget-categories-content">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item active">
-                                                <span class="label label-default label-pill pull-right">14</span> All Categories
-                                            </a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
+                                            <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
+                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php 
+                                                foreach($categoriesSide as $c){
+                                                    if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
+                                                    echo anchor('thread/viewAt/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
