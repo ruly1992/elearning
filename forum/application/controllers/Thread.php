@@ -39,7 +39,8 @@ class Thread extends CI_Controller
         $this->load->view('thread/all_threads',$data);
     }
 
-    public function viewAt($idCategory){
+    public function viewAt($idCategory)
+    {
         $getCategory        = $this->model_thread->getCategory($idCategory);
         foreach($getCategory as $cat){
             $data['category'] = $cat->category_name;
@@ -140,7 +141,6 @@ class Thread extends CI_Controller
         }
 
         $this->load->view('thread/single',$data);
-        
     }
     
     public function deleteThread($id)
@@ -177,7 +177,8 @@ class Thread extends CI_Controller
         $this->load->view('thread/edit_thread',$data);
     }
     
-    public function updateThread($id){
+    public function updateThread($id)
+    {
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
         $this->form_validation->set_rules('type','type','required');
@@ -289,7 +290,8 @@ class Thread extends CI_Controller
         }
     }
 
-    public function deleteReply($idThread,$idReply){
+    public function deleteReply($idThread,$idReply)
+    {
         $delete=$this->model_thread->delete_thread($idReply);
         if($delete==TRUE){
             $this->session->set_flashdata('success', 'Komentar berhasil dihapus');
