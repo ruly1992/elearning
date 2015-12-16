@@ -220,5 +220,26 @@
 
         field.trigger('change')
     }
+
+    $(document).ready(function () {        
+        $('.switch-input.ajax').on('change', function () {
+            var id      = $(this).val();
+            var type    = this.checked ? 'private' : 'public';
+
+            $.ajax({
+                url: siteurl + '/article/json/type',
+                data: {
+                    id: id,
+                    type: type,
+                },
+                success: function (response) {
+                    alert('Artikel telah diperbarui visibilitas menjadi '+type)
+                },
+                error: function (response) {
+                    //
+                }
+            })
+        })
+    })
 </script>
 <?php endcustom_script() ?>

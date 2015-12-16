@@ -29,7 +29,7 @@
                     <td><?php echo $row->title ?></td>
                     <td>
                         <label class="switch switch-danger">
-                            <?php echo form_checkbox('status['.$row->id.']', $row->id, $row->type == 'private', array('class' => 'switch-input')); ?>
+                            <?php echo form_checkbox('status['.$row->id.']', $row->id, $row->type == 'private', array('class' => 'switch-input ajax')); ?>
                             <span class="switch-label" data-on="Yes" data-off="No"></span>
                             <span class="switch-handle"></span>
                         </label>
@@ -47,10 +47,31 @@
     </div>
 </div>
 
+<?php custom_script() ?>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#article').DataTable({
             'order': [[4, 'desc']]
         });
-    } );
+
+        $('.switch-input.ajax').on('change', function () {
+            var id      = $(this).val();
+            var type    = this.checked ? 'private' : 'public';
+
+            $.ajax({
+                url: siteurl + '/article/json/type',
+                data: {
+                    id: id,
+                    type: type,
+                },
+                success: function (response) {
+                    alert('Artikel telah diperbarui visibilitas menjadi '+type)
+                },
+                error: function (response) {
+                    //
+                }
+            })
+        })
+    });
 </script>
+<?php endcustom_script() ?>
