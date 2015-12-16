@@ -22,6 +22,9 @@ class Thread extends CI_Controller
         }elseif($this->session->flashdata('failed')){
             $data['failed'] = $this->session->flashdata('failed');
         }
+        if ($this->checkTA()==TRUE){
+            $data['addTopic'] = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
+        }
 
         $data['comments']   = $this->model_thread->get_count_reply(); 
         $data['visitors']   = $this->model_visitor->get_visitors();
@@ -296,10 +299,12 @@ class Thread extends CI_Controller
         redirect('thread/view/'.$idThread);
     }
 
-    public function management()
+    public function checkTA()
     {
-        if (sentinel()->inRole('ins')) {
-            // dia sebagaiinstructor
+        if (sentinel()->inRole('ta')) {
+            return TRUE;
+        }else{
+            return FALSE;
         }
     }
 }
