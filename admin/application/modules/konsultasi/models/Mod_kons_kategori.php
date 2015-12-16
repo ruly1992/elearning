@@ -99,7 +99,6 @@ class Mod_kons_kategori extends CI_Model {
 	public function deletePengampu($id)
 	{
 		$this->db->delete('konsultasi_user_has_kategori',array('id'=>$id));
-		redirect('konsultasi/pengampu');	
 	}
 }
 

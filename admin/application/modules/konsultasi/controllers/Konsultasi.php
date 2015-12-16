@@ -37,7 +37,6 @@ class Konsultasi extends Admin {
 	public function detail($id)
 	{
 		$detail['konsultasi'] 		= $this->Mod_konsultasi->getByIdKonsultasi($id);
-		$detail['user_id']    		= $this->Mod_konsultasi->getUserKonsul($id);
 		$detail['kategori']    		= $this->Mod_konsultasi->getByKategori($id);
 
 
