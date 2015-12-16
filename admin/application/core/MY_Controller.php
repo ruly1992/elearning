@@ -5,7 +5,7 @@ class MY_Controller extends CI_Controller {}
 
 class Admin extends CI_Controller
 {
-    protected $roles = array('su', 'adm', 'edt', 'ctr', 'lnr', 'pus');
+    protected $roles = array('su', 'adm', 'edt', 'ctr', 'pus');
 
     public function __construct()
     {
@@ -22,9 +22,7 @@ class Admin extends CI_Controller
         }
 
         if (!sentinel()->inRole($this->roles)) {
-            set_message_error('Anda tidak mempunyai hak akses.');
-
-            redirect('login', 'refresh');
+            redirect(dashboard_url(), 'refresh');
         }
     }
 
