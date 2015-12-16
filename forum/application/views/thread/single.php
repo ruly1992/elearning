@@ -14,7 +14,7 @@
                         <div class="content-main">
                             <ol class="breadcrumb">
                                 <li><a href="<?php echo site_url(); ?>">Home</a></li>
-                                <li><a href="#"><?php echo $category; ?></a></li>
+                                <li><?php echo anchor('thread/viewAt/'.$idCategory, $category); ?></li>
                                 <li class="active"><?php echo $title; ?></li>
                             </ol>
 
@@ -39,7 +39,7 @@
                                             <div class="col-sm-3">
                                                 <div class="card-header-img">
                                                     <img src="<?php echo asset('images/portal/people-1.png'); ?>" alt="">
-                                                    <p><small><a href="#">@chanchandrue <?php echo $user; ?></a></small></p>
+                                                    <p><small><a href="#"><?php echo user($user)->full_name; ?></a></small></p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-9">
@@ -128,12 +128,14 @@
                                     </div>
                                     <div class="widget-categories-content">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item active">
-                                                <span class="label label-default label-pill pull-right">14</span> All Categories
-                                            </a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
+                                            <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
+                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php 
+                                                foreach($categoriesSide as $c){
+                                                    if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
+                                                    echo anchor('thread/viewAt/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>

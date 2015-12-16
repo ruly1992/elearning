@@ -44,7 +44,7 @@ class Model_thread extends CI_Model
         return $get->result();
     }
     
-    function get_category()
+    function get_categories()
     {
         $get = $this->db->get('categories');
         return $get->result();
@@ -56,6 +56,16 @@ class Model_thread extends CI_Model
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories','categories.id=threads.category')
                 ->where('reply_to','0')
+                ->order_by('created_at','desc')
+                ->get();
+        return $get->result();
+    }
+
+    function getThreadsCategory($idCategory){
+        $items = array('threads.*','categories.category_name');
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories','categories.id=threads.category')
+                ->where(array('reply_to'=>'0', 'threads.category'=>$idCategory))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();
@@ -80,6 +90,11 @@ class Model_thread extends CI_Model
         }else{
             return FALSE;
         }
+    }
+
+    function getCategory($idCategory){
+        $get = $this->db->get_where('categories', array('id'=>$idCategory));
+        return $get->result();
     }
 
 }
