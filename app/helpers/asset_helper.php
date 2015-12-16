@@ -16,3 +16,24 @@ if (!function_exists('asset')) {
 		return asset('node_modules/' . trim($path, '/'));
 	}
 }
+
+if (!function_exists('attachment')) {
+	function attachment($path = '')
+	{
+		return home_url('app/files/'.trim($path, '\\/'));
+	}
+}
+
+if (!function_exists('forum_attachment')) {
+	function forum_attachment($path = '')
+	{
+		return home_url('app/files/forum-attachment/'.trim($path, '\\/'));
+	}
+}
+
+if (!function_exists('konsultasi_attachment')) {
+	function konsultasi_attachment($path = '')
+	{
+		return home_url('app/files/konsultasi-attachment/'.trim($path, '\\/'));
+	}
+}
