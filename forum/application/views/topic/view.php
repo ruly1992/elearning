@@ -120,4 +120,4 @@
         </div>
         <!-- emd:content -->
 
-<?php get_header('private'); ?>
+<?php get_footer('private'); ?>
