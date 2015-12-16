@@ -9,6 +9,8 @@ class Mod_konsultasi extends CI_Model {
 	{
 		parent::__construct();
 
+		$this->db = $this->load->database('konsultasi', TRUE);
+
 		$config = array(
             'table'         => 'konsultasi',
             'id'            => 'id',

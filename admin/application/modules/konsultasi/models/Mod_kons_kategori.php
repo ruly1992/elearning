@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mod_kons_kategori extends CI_Model {
 
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->db = $this->load->database('konsultasi', TRUE);		
+	}
+
 	public function readKategori()
 	{
 		$query = $this->db->get('konsultasi_kategori');
