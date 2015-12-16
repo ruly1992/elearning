@@ -4,7 +4,7 @@ namespace Library\Media;
 
 class Media
 {
-    protected $basepath = 'assets/upload/media/';
+    protected $basepath = 'media/';
     protected $category;
     protected $media;
     protected $hidden_metadata;
@@ -96,7 +96,7 @@ class Media
 
     public function basepathCategory($name)
     {
-        return FCPATH_ELIB . trim($this->basepath, '/\\') . '/' . trim($name, '/\\');
+        return PATH_ELIBRARY_UPLOAD . '/' . trim($this->basepath, '/\\') . '/' . trim($name, '/\\');
     }
 
     public function updateCategory($category_id, $attributes = [])
