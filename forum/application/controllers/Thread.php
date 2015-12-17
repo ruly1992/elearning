@@ -22,6 +22,9 @@ class Thread extends CI_Controller
         }elseif($this->session->flashdata('failed')){
             $data['failed'] = $this->session->flashdata('failed');
         }
+        if ($this->checkTA()==TRUE){
+            $data['addTopic'] = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
+        }
 
         $data['comments']   = $this->model_thread->get_count_reply(); 
         $data['visitors']   = $this->model_visitor->get_visitors();
@@ -36,7 +39,8 @@ class Thread extends CI_Controller
         $this->load->view('thread/all_threads',$data);
     }
 
-    public function viewAt($idCategory){
+    public function viewAt($idCategory)
+    {
         $getCategory        = $this->model_thread->getCategory($idCategory);
         foreach($getCategory as $cat){
             $data['category'] = $cat->category_name;
@@ -137,7 +141,6 @@ class Thread extends CI_Controller
         }
 
         $this->load->view('thread/single',$data);
-        
     }
     
     public function deleteThread($id)
@@ -174,7 +177,8 @@ class Thread extends CI_Controller
         $this->load->view('thread/edit_thread',$data);
     }
     
-    public function updateThread($id){
+    public function updateThread($id)
+    {
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
         $this->form_validation->set_rules('type','type','required');
@@ -286,7 +290,8 @@ class Thread extends CI_Controller
         }
     }
 
-    public function deleteReply($idThread,$idReply){
+    public function deleteReply($idThread,$idReply)
+    {
         $delete=$this->model_thread->delete_thread($idReply);
         if($delete==TRUE){
             $this->session->set_flashdata('success', 'Komentar berhasil dihapus');
@@ -296,10 +301,12 @@ class Thread extends CI_Controller
         redirect('thread/view/'.$idThread);
     }
 
-    public function management()
+    public function checkTA()
     {
-        if (sentinel()->inRole('ins')) {
-            // dia sebagaiinstructor
+        if (sentinel()->inRole('ta')) {
+            return TRUE;
+        }else{
+            return FALSE;
         }
     }
 }
