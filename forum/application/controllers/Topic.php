@@ -9,8 +9,9 @@ class Topic extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model('model_topic');
+        $this->load->model(array('model_topic', 'model_thread'));
         $this->load->library('WilayahIndonesia', null, 'wilayah');
+        $this->load->helper('thread');
 
         if(!sentinel()->check()) {
             redirect(login_url());
@@ -41,8 +42,13 @@ class Topic extends CI_Controller
             redirect('thread/');
         }
 
+        $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['threadSide']     = $this->model_thread->get_all_threads();
+
+        $user               = sentinel()->getUser();
         $data['provinsi']   = $this->getWilayah();
-        $data['topics'] = $this->model_topic->get_topics();
+        $topics             = collect($this->model_topic->get_topics_from_id($user->id));
+        $data['topics']     = pagination($topics, 10, 'topic');
         $this->load->view('topic/view',$data);
     }
 
@@ -59,8 +65,10 @@ class Topic extends CI_Controller
             $data['failed'] = $this->session->flashdata('failed');
         }
 
-        $data['categories'] = $this->model_topic->get_categories();
-        $data['provinsi']   = $this->getWilayah();
+        $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['categories']     = $this->model_topic->get_categories();
+        $data['provinsi']       = $this->getWilayah();
 
     	$this->load->view('topic/create', $data);
     }
@@ -116,8 +124,10 @@ class Topic extends CI_Controller
             );
         }
 
-        $data['categories'] = $this->model_topic->get_categories();
-        $data['provinsi']   = $this->getWilayah();
+        $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['categories']     = $this->model_topic->get_categories();
+        $data['provinsi']       = $this->getWilayah();
 
         $this->load->view('topic/edit',$data);
     }
