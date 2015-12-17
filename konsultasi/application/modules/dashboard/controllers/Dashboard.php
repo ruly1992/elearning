@@ -8,6 +8,7 @@ class Dashboard extends CI_Controller
         parent::__construct();
         
         $this->load->model('konsultasi/M_konsultasi');
+        $this->load->helper('konsultasi');
     }
 
     public function index()
@@ -20,6 +21,8 @@ class Dashboard extends CI_Controller
     public function kategori($kategori_id)
     {
         $data['id_kategori']    = $kategori_id;
+        $data['listKategori']   = $this->M_konsultasi->getKategori();   
+        $data['allKonsultasi']  = $this->M_konsultasi->readKonsultasi();    
         $categories             = collect($this->M_konsultasi->getListKat($kategori_id));
         $data['konsultasi']     = pagination($categories, 10, 'dashboard/kategori/'.$kategori_id);
 
