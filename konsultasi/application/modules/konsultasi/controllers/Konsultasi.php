@@ -26,7 +26,8 @@ class Konsultasi extends CI_Controller {
 
 	public function index()
 	{
-		$data['konsultasi'] = $this->M_konsultasi->readKonsultasi();
+		$konsultasi             = collect($this->M_konsultasi->readKonsultasi());
+        $data['konsultasi']     = pagination($konsultasi, 10, 'konsultasi');
 
         $this->template->build('index', $data);
 	}
@@ -152,8 +153,9 @@ class Konsultasi extends CI_Controller {
 
     public function setLimit()
     {
-        $limitData = $this->input->post('limit');
-        $data['konsultasi'] = $this->M_konsultasi->setLimit($limitData);
+        $limitData          = $this->input->post('limit');
+        $konsultasi         = collect($this->M_konsultasi->setLimit($limitData));
+        $data['konsultasi'] = pagination($konsultasi, $limitData, 'konsultasi') ;
 
         $this->template->build('index', $data);
     }

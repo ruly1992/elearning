@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="content-konsultasi-table">
-                <p>10 Data ditemukan, Halaman 1 dari 1</p>
+                <p><?php echo count($konsultasi) ?> Data ditemukan</p>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -76,8 +76,7 @@
                 </form>
                 <nav>
                     <ul class="pager">
-                        <li><a href="#">Sebelumnya</a></li>
-                        <li><a href="#">Berikutnya</a></li>
+                        <?php echo $konsultasi->render() ?>
                     </ul>
                 </nav>
             </div>
