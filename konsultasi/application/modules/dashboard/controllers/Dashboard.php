@@ -19,8 +19,9 @@ class Dashboard extends CI_Controller
 
     public function kategori($kategori_id)
     {
-        $data['konsultasi']  = $this->M_konsultasi->getListKat($kategori_id);
-        $data['id_kategori'] = $kategori_id;
+        $data['id_kategori']    = $kategori_id;
+        $categories             = collect($this->M_konsultasi->getListKat($kategori_id));
+        $data['konsultasi']     = pagination($categories, 10, 'dashboard/kategori/'.$kategori_id);
 
         $this->template->build('listkonsultasi', $data);
     }
@@ -73,9 +74,7 @@ class Dashboard extends CI_Controller
         $update = $this->M_konsultasi->status($id, $open);
 
         redirect('dashboard/kategori/'.$kategoriId,'refresh');
-
     }
-
 }
 
 /* End of file Dashboard.php */
