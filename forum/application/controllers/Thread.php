@@ -301,6 +301,15 @@ class Thread extends CI_Controller
         redirect('thread/view/'.$idThread);
     }
 
+    public function get_topics(){
+        $idCategory = $this->input->post('idCategory');
+        $getTopics = $this->model_topic->getTopics_by_Category($idCategory);
+        foreach($getTopics as $top){
+            $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
+        }
+        echo $topics;
+    }
+
     public function checkTA()
     {
         if (sentinel()->inRole('ta')) {
