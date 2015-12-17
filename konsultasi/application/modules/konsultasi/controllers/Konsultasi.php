@@ -149,6 +149,14 @@ class Konsultasi extends CI_Controller {
         $data['results']    =   $this->M_konsultasi->search($search_term);
         $this->template->build('search',$data);
     }
+
+    public function setLimit()
+    {
+        $limitData = $this->input->post('limit');
+        $data['konsultasi'] = $this->M_konsultasi->setLimit($limitData);
+
+        $this->template->build('index', $data);
+    }
                                     
 }
 

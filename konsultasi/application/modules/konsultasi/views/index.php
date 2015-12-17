@@ -47,9 +47,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($konsultasi as $row) : ?>
+                        <?php $no = 1;  foreach ($konsultasi as $row) : ?>
                         <tr>
-                            <th scope="row"><?php echo $row->id ?></th>
+                            <th scope="row"><?php echo $no ?></th>
                             <td><?php echo $row->name ?></td>
                             <td><?php echo $row->subjek ?></td>
                             <td><?php echo $row->created_at ?></td>
@@ -61,17 +61,19 @@
                             </td>
                             <td><a href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>">Lihat Konsultasi</a></td>
                         </tr>
-                        <?php endforeach ?>
+                        <?php $no++; endforeach; ?>
                     </tbody>
                 </table>
-                <select class="c-select">
-                    <option selected>Hasil perhalaman</option>
-                    <option value="1">5</option>
-                    <option value="2">10</option>
-                    <option value="3">50</option>
-                    <option value="4">100</option>
-                    <option value="5">Tidak terbatas</option>
-                </select>
+                <form method="POST" action="<?php echo site_url('konsultasi/setLimit') ?>">
+                    <select class="c-select" name="limit" onchange="this.form.submit()">
+                        <option selected>Hasil perhalaman</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="">Tidak terbatas</option>
+                    </select>
+                </form>
                 <nav>
                     <ul class="pager">
                         <li><a href="#">Sebelumnya</a></li>

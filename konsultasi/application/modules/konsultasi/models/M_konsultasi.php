@@ -135,6 +135,18 @@ class M_konsultasi extends CI_Model {
         $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->get();
         return $get->result();
     }
+
+    public function setLimit($limitData)
+    {
+        $this->db->limit($limitData);
+        $data = array('konsultasi.*','konsultasi_kategori.name');
+        $get   = $this->db->select($data)->from('konsultasi')
+                    ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                    ->order_by('konsultasi.created_at', 'DESC')
+                    ->get();
+        
+        return $get->result();
+    }
 }
 
 /* End of file M_konsultasi.php */
