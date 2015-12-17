@@ -32,7 +32,11 @@ class M_konsultasi extends CI_Model {
     public function getListKat($kategori_id)
     {
         $data = array('konsultasi.*','konsultasi_kategori.name');
-        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->where('konsultasi_kategori.id',$kategori_id)->get();
+        $get   = $this->db->select($data)->from('konsultasi')
+                      ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                      ->where('konsultasi_kategori.id',$kategori_id)
+                      ->order_by('konsultasi.created_at', 'DESC')
+                      ->get();
         return $get->result();
     }
 
@@ -133,6 +137,18 @@ class M_konsultasi extends CI_Model {
 
         $data = array('konsultasi.*','konsultasi_kategori.name');
         $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->get();
+        return $get->result();
+    }
+
+    public function setLimit($limitData)
+    {
+        $this->db->limit($limitData);
+        $data = array('konsultasi.*','konsultasi_kategori.name');
+        $get   = $this->db->select($data)->from('konsultasi')
+                    ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                    ->order_by('konsultasi.created_at', 'DESC')
+                    ->get();
+        
         return $get->result();
     }
 }
