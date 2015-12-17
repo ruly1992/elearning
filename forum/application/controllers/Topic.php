@@ -38,7 +38,7 @@ class Topic extends CI_Controller
         }
         if($this->checkRole()==FALSE){
             $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
-            redirect('topic/');
+            redirect('thread/');
         }
 
         $data['provinsi']   = $this->getWilayah();

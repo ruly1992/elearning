@@ -3062,6 +3062,18 @@ footer {
 	}
 }
 
+.news-latest {
+	.articles-box-img {
+		height: 120px;
+		overflow: hidden;
+		img {
+			width: auto;
+		}
+	}
+	.col-sm-8 {
+		padding-left: $padding-left - 5px;
+	}
+}
 .news1 {
 	.articles-box.news1-top {
 		.articles-box-img {
@@ -3631,7 +3643,7 @@ a {
 		}
 	}
 	.sidebar-article{
-		margin-top: $margin-top - 5;
+		margin-top: $margin-top + 25px;
 		.widget {
 			margin-bottom: $margin-bottom + 30px;
 			.widget-categories {

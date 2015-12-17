@@ -272,7 +272,7 @@ class Media extends Model
 
         return $query
             ->select($this->getTable() . '.*')
-            ->addSelect(DB::raw("COUNT({$prefix}vm.id) AS visitor"))
+            ->addSelect(DB::connection($this->connection)->raw("COUNT({$prefix}vm.id) AS visitor"))
             ->join('visitor_media AS vm', 'vm.media_id', '=', $this->getTable() . '.id')
             ->groupBy($this->getTable() . '.id')
             ->orderBy('visitor', 'desc');

@@ -66,7 +66,7 @@
                                 <img src="<?php echo config('site_logo', asset('images/logo.png')) ?>" alt="">
                             </a>
                             <ul class="nav navbar-nav">
-                                <li class="nav-item <?php echo $active == 'home' ? 'active' : '' ?>">
+                                <li class="nav-item <?php echo $active == 'home' || empty($active) ? 'active' : '' ?>">
                                     <a class="nav-link" href="<?php echo home_url() ?>">HOME <span class="sr-only">(current)</span></a>
                                 </li>
                                 <?php
