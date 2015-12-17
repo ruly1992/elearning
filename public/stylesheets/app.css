@@ -2518,6 +2518,14 @@ footer {
   #carousel-news .news-box .news-box-img img {
     width: auto; }
 
+.news-latest .articles-box-img {
+  height: 120px;
+  overflow: hidden; }
+  .news-latest .articles-box-img img {
+    width: auto; }
+.news-latest .col-sm-8 {
+  padding-left: 0px; }
+
 .news1 .articles-box.news1-top .articles-box-img {
   height: 160px;
   overflow: hidden; }
@@ -2963,7 +2971,7 @@ a {
       margin-top: 25px;
       margin-bottom: 40px; }
   .articles-dashboard .sidebar-article {
-    margin-top: 0px; }
+    margin-top: 30px; }
     .articles-dashboard .sidebar-article .widget {
       margin-bottom: 35px; }
       .articles-dashboard .sidebar-article .widget .widget-categories .widget-categories-heading {

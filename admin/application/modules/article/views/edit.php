@@ -100,7 +100,7 @@
             <div class="panel-heading">
                 <h4 class="panel-title">Carousel Slider</h4>
             </div>
-            <div class="panel-body">   
+            <div class="panel-body">
                 <button style="margin-bottom:10px;" class="btn btn-default md-trigger-slider" data-modal="modal-1">Pengaturan Slider</button>
             </div>
         </div>
@@ -110,32 +110,7 @@
                 <h4 class="panel-title">Featured Image</h4>
             </div>
             <div class="panel-body">
-                <div class="cropit-featured <?php echo $artikel->hasFeaturedImage() ? '' : 'cropit-disabled' ?>">
-                    <div class="cropit-image-preview-container">
-                        <div class="cropit-image-preview"
-                            style="width: <?php echo getenv('SIZE_FEATURED_WIDTH') ?>; height: <?php echo getenv('SIZE_FEATURED_HEIGHT') ?>;"
-                            data-cropit-preload="<?php echo $artikel->featured_image ?>">
-                        </div>
-                    </div>
-
-                    <div class="image-size-label">
-                        Resize image
-                    </div>
-                    <input type="range" class="cropit-image-zoom-input">
-
-                    <br>
-
-                    <?php echo form_input([
-                        'type'  => 'hidden',
-                        'name'  => 'featured',
-                        'id'    => 'featured',
-                        'class' => 'cropit-featured-imagedata'
-                    ]) ?>
-                </div>
-                <div>
-                    <a href="<?php echo base_url('filemanager/portal-content/dialog.php?type=0&field_id=featured') ?>" class="btn btn-default iframe-btn" type="button">Open Filemanager</a>
-                    <a href="#" class="btn btn-default btn-remove-featured">Remove</a>
-                </div>
+                <button style="margin-bottom:10px;" class="btn btn-default md-trigger-featured" data-modal="modal-2">Pengaturan Featured</button>
             </div>
         </div>
     </div>
@@ -184,8 +159,58 @@
     </div>  
 </div>
 
+<div class="md-modal md-effect-2" id="modal-2">
+    <div class="modal-dialog md-content modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close md-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Pengaturan Gambar Featured</h4>
+            </div>
+            <div class="modal-body">
+                <p>Pengaturan ini akan menampilkan gambar atau foto fitur utama yang mewakili pada setiap artikel.</p>             
+                <div class="cropit-featured <?php echo $artikel->hasFeaturedImage() ? '' : 'cropit-disabled' ?>">
+                    <div class="cropit-image-preview-container">
+                        <div class="cropit-image-preview"
+                            style="width: <?php echo getenv('SIZE_FEATURED_WIDTH') ?>; height: <?php echo getenv('SIZE_FEATURED_HEIGHT') ?>;"
+                            data-cropit-preload="<?php echo $artikel->slider_image ?>">
+                        </div>
+                    </div>
+
+                    <div class="image-size-label">
+                        Resize image
+                    </div>
+                    <input type="range" class="cropit-image-zoom-input">
+
+                    <br>
+
+                    <?php echo form_input([
+                        'type'  => 'hidden',
+                        'name'  => 'featured',
+                        'id'    => 'featured',
+                        'class' => 'cropit-featured-imagedata'
+                    ]) ?>
+                    <?php echo form_input([
+                        'type'  => 'hidden',
+                        'name'  => 'featured_action',
+                        'id'    => 'featured_action',
+                        'value' => 'keep',
+                    ]) ?>
+                </div>
+                <div>
+                    <a href="<?php echo base_url('filemanager/portal-content/dialog.php?type=0&field_id=featured') ?>" class="btn btn-default iframe-btn" type="button">Open Filemanager</a>
+                    <a href="#" class="btn btn-default btn-remove-featured" data-dismiss="fileinput">Remove</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-flat md-close" data-dismiss="modal">Simpan</button>
+            </div>
+        </div>  
+    </div>  
+</div>
+
 <?php echo form_close(); ?>
 
+<?php custom_script() ?>
 <script>
     function responsive_filemanager_callback (field_id) {
         var field   = jQuery('#'+field_id);
@@ -195,4 +220,26 @@
 
         field.trigger('change')
     }
+
+    $(document).ready(function () {        
+        $('.switch-input.ajax').on('change', function () {
+            var id      = $(this).val();
+            var type    = this.checked ? 'private' : 'public';
+
+            $.ajax({
+                url: siteurl + '/article/json/type',
+                data: {
+                    id: id,
+                    type: type,
+                },
+                success: function (response) {
+                    alert('Artikel telah diperbarui visibilitas menjadi '+type)
+                },
+                error: function (response) {
+                    //
+                }
+            })
+        })
+    })
 </script>
+<?php endcustom_script() ?>

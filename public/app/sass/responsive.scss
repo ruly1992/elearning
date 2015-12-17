@@ -132,7 +132,7 @@
         background-color: #ddd;
         padding: 5px 10px 5px 30px;
         .articles-box-img {
-          display: none;
+          // display: none;
         }
         .articles-box-meta {
           margin-top: 5px;
@@ -318,6 +318,37 @@
               font-size: 16px;
             }
           }
+        }
+      }
+    }
+    //add responsive for latest
+    .news-latest {
+      .articles-box {
+        background-color: #fff;
+        padding: 5px 10px 5px 30px;
+        .articles-box-img {
+          margin-left: -15px;
+          height: 200px !important;
+        }
+        .articles-box-meta {
+          margin-top: 5px;
+          margin-bottom: 10px;
+          ul {
+            li {
+              font-size: 12px !important;
+            }
+          }
+        }
+        .articles-box-title {
+          h3 {
+            line-height: 25px !important;
+            a {
+              font-size: 18px !important;
+            }
+          }
+        }
+        .articles-box-content {
+          display: none;
         }
       }
     }

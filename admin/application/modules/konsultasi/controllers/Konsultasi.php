@@ -23,21 +23,15 @@ class Konsultasi extends Admin {
 		$this->template->build('index', $data);
 	}
 
-	function status($open,$close)
+	public function status($open,$close)
 	{
-		if ($open == 'open') {
-			$this->db->update('konsultasi', array('status'=>'close'), array('id'=> $close));
-		} else {
-			$this->db->update('konsultasi', array('status'=>'open'), array('id'=> $close));
-		}
-
+		$this->Mod_konsultasi->changeStatus($open,$close);
 		redirect('konsultasi');
 	}
 
 	public function detail($id)
 	{
 		$detail['konsultasi'] 		= $this->Mod_konsultasi->getByIdKonsultasi($id);
-		$detail['user_id']    		= $this->Mod_konsultasi->getUserKonsul($id);
 		$detail['kategori']    		= $this->Mod_konsultasi->getByKategori($id);
 
 
@@ -146,8 +140,11 @@ class Konsultasi extends Admin {
 
 	function deletePengampu($id)
 	{
-		$this->db->delete('konsultasi_user_has_kategori',array('id'=>$id));
-		redirect('konsultasi/pengampu');	
+		$data = $this->model->deletePengampu($id);
+
+		set_message_success('Kategori Konsultasi berhasi dihapus');
+
+		redirect('konsultasi/pengampu');
 	}
 
 }

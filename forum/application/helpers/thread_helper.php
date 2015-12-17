@@ -19,3 +19,13 @@
 	        }
         return $sum_comments;
 	}
+
+	function countThreadCategories($threads, $category){
+		$sum_categories = 0;
+			foreach($threads as $t){
+				if($t->category == $category){
+					$sum_categories = $sum_categories+1;
+				}
+			}
+		return $sum_categories;
+	}

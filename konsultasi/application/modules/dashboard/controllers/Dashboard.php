@@ -45,7 +45,7 @@ class Dashboard extends CI_Controller {
 
             $this->load->library('upload', $config);
 
-            if (! $this->upload->do_upload('file')) {
+            if (! $this->upload->do_upload('files')) {
                 
                 $reply = array(
                     'isi'           => set_value('isi'),
