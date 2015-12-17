@@ -43,11 +43,11 @@
                                             </thead>
                                             <tbody>
                                             <?php 
-                                                $no=1;
+                                                //$no=1;
                                                 foreach($topics as $t){
                                             ?>
                                                     <tr>
-                                                        <th scope="row"><?php echo $no; ?></th>
+                                                        <th scope="row"><?php echo $t->id; ?></th>
                                                         <td><?php echo $t->topic ?></td>
                                                         <td><?php echo $t->category_name; ?></td>
                                                         <td>
@@ -67,23 +67,14 @@
                                                         </td>
                                                     </tr>
                                             <?php 
-                                                    $no++;
+                                                    //$no++;
                                                 } 
                                             ?>
                                             </tbody>
                                         </table>
-                                        <select class="c-select">
-                                            <option selected>Hasil perhalaman</option>
-                                            <option value="1">5</option>
-                                            <option value="2">10</option>
-                                            <option value="3">50</option>
-                                            <option value="4">100</option>
-                                            <option value="5">Tidak terbatas</option>
-                                        </select>
                                         <nav>
                                             <ul class="pager">
-                                                <li><a href="#">Sebelumnya</a></li>
-                                                <li><a href="#">Berikutnya</a></li>
+                                                <?php echo $topics->render() ?>
                                             </ul>
                                         </nav>
                                     </div>
