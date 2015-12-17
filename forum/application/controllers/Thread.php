@@ -69,7 +69,7 @@ class Thread extends CI_Controller
 
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
-        $data['topics']         = $this->model_topic->get_topics();
+        //$data['topics']         = $this->model_topic->get_topics();
         $data['categories']     = $this->model_thread->get_categories();
         $this->load->view('thread/create',$data);
     }
@@ -167,11 +167,12 @@ class Thread extends CI_Controller
                 'title'   => $t->title,
                 'message' => $t->message,
             );
+            $idCategory = $t->idCategory;
         }
 
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->getTopics_by_Category($idCategory);
         $data['id_thread'] = $id;
         $data['categories']  = $this->model_thread->get_categories();
         $this->load->view('thread/edit_thread',$data);
