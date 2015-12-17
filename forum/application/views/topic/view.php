@@ -101,12 +101,14 @@
                                     </div>
                                     <div class="widget-categories-content">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item active">
-                                                <span class="label label-default label-pill pull-right">14</span> All Categories
-                                            </a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
+                                            <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
+                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php 
+                                                foreach($categoriesSide as $c){
+                                                    if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
+                                                    echo anchor('thread/viewAt/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
