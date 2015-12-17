@@ -37,9 +37,16 @@ class CreateElibraryDb extends AbstractMigration
             ->create();
 
         $table = $this->table('media');
-        $table->addColumn('file_name', '')
-            ->addColumn('file_type', '')
-            ->addColumn('file_size', '')
+        $table->addColumn('file_name', 'string')
+            ->addColumn('file_type', 'string')
+            ->addColumn('file_size', 'integer')
+            ->addColumn('title', 'string')
+            ->addColumn('description', 'string')
+            ->addColumn('full_description', 'text')
+            ->addColumn('type', 'string', array('limit' => 50, 'default' => 'public'))
+            ->addColumn('status', 'string', array('default' => 'publish'))
+            ->addColumn('category_id', 'integer')
+            ->addColumn('user_id', 'integer')
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
             ->addColumn('deleted_at', 'datetime')
@@ -69,6 +76,14 @@ class CreateElibraryDb extends AbstractMigration
 
         $table = $this->table('tags');
         $table->addColumn('name', 'string')
+            ->create();
+
+        $table = $this->table('visitor_media');
+        $table->addColumn('ip_address', 'string', array('limit' => 50))
+            ->addColumn('media_id', 'integer')
+            ->addColumn('user_id', 'integer')
+            ->addColumn('created_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
             ->create();
     }
 }

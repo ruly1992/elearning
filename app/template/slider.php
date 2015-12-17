@@ -24,7 +24,7 @@ $sliders = Model\Portal\Article::latest('date')->slider()->take(3)->get();
                                     <img src="<?php echo $slider->slider_image ?>">
                                 </a>
                                 <div class="carousel-caption">
-                                    <span class="btn btn-sm btn-category"><?php echo $slider->categories->first()->name ?></span>
+                                    <span class="btn btn-sm btn-category"><?php echo $slider->category_name_first ?></span>
                                     <a href="<?php echo $slider->link ?>"><h3><?php echo $slider->title ?></h3></a>
                                 </div>
                             </div>
