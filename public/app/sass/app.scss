@@ -3910,3 +3910,40 @@ a {
 	margin-top: $margin-top + 12;
 	padding-bottom: $padding-bottom + 60px;
 }
+
+/* Forum Thread */
+.content-forum {
+	.content-main {
+		.forum-main {
+			.thread-list-title {
+				@include fonts('open_sansbold');
+				h4 {
+					@include transition(0.3s);
+					margin-bottom: $margin-bottom - 5px;
+					font-size: 15px;
+					a {
+						@include transition(0.3s);
+						color: $black;
+						&:hover,
+						&:focus {
+							color: $green;
+							@include transition(0.3s);
+						}
+					}
+					small {
+						margin-right: $margin-right + 38;
+					}
+				}
+			}
+			.btn-thread {
+				padding-top: $padding-top - 4;
+			    padding-right: $padding-right;
+			    padding-bottom: $padding-bottom - 4;
+			    padding-left: $padding-left;
+			    font-size: 10px;
+			    line-height: 1.5;
+			    @include border-radius(5px);
+			}
+		}
+	}
+}
