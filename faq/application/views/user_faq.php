@@ -15,7 +15,7 @@
                                     <h3><em><?php echo $f->question; ?></em></h3>
                                 </div>
                                 <div class="faq-content-answer">
-                                    <?php echo $f->answer; ?>
+                                    <?php echo html_entity_decode($f->answer); ?>
                                 </div>
                             </div>
                         <?php
@@ -29,5 +29,4 @@
             </section>
         </div>
         <!-- end:main content -->
-
 <?php get_footer('private'); ?>

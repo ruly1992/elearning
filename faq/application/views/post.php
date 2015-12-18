@@ -24,7 +24,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Jawaban :</label>
-                                                    <textarea type="text" class="jawaban" required name="jawaban" rows="5" placeholder="Jawaban"></textarea>
+                                                    <textarea type="text" class="jawaban" name="jawaban" rows="5" placeholder="Jawaban"></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-primary">Create</button>
