@@ -10,6 +10,18 @@ class M_konsultasi extends CI_Model {
         return $get->result();
     }
 
+    public function getKonsultasiLearner()
+    {
+        $user_id = sentinel()->getUser()->id; 
+
+        $data = array('konsultasi.*','konsultasi_kategori.name');
+        $get  = $this->db->select($data)->from('konsultasi')
+                ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                ->where('konsultasi.user_id', $user_id)
+                ->order_by('konsultasi.created_at', 'DESC')->get();
+        return $get->result();
+    }
+
     public function getKategori()
     {
         $query = $this->db->get('konsultasi_kategori'); 
@@ -20,11 +32,13 @@ class M_konsultasi extends CI_Model {
     public function getKatByUser()
     {
         $user_id = sentinel()->getUser()->id;
+
         $data = array('konsultasi_kategori.name', 'konsultasi_kategori.description', 'konsultasi_user_has_kategori.*');
         $get  = $this->db->select($data)
                 ->from('konsultasi_user_has_kategori')
                 ->join('konsultasi_kategori','konsultasi_user_has_kategori.id_kategori=konsultasi_kategori.id')
-                ->where('konsultasi_user_has_kategori.user_id', $user_id)->get();
+                ->where('konsultasi_user_has_kategori.user_id', $user_id)
+                ->get();
         
         return $get->result();
     }
@@ -136,17 +150,22 @@ class M_konsultasi extends CI_Model {
         $this->db->or_like('konsultasi_kategori.name',$search_term);
 
         $data = array('konsultasi.*','konsultasi_kategori.name');
-        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->get();
+        $get   = $this->db->select($data)->from('konsultasi')
+                    ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                    ->get();
         return $get->result();
     }
 
     public function setLimit($limitData)
     {
+        $user_id = sentinel()->getUser()->id; 
+
         $this->db->limit($limitData);
-        $data = array('konsultasi.*','konsultasi_kategori.name');
+        $data  = array('konsultasi.*','konsultasi_kategori.name');
         $get   = $this->db->select($data)->from('konsultasi')
                     ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
                     ->order_by('konsultasi.created_at', 'DESC')
+                    ->where('konsultasi.user_id', $user_id)                    
                     ->get();
         
         return $get->result();
