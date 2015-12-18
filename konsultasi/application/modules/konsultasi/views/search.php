@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="content-konsultasi-heading-left">
-                            <form action="<?php echo site_url('konsultasi/search') ?>" method="POST">
+                            <form action="<?php echo site_url('konsultasi/search') ?>" method="GET">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for..." name="search">
                                     <span class="input-group-btn">
@@ -64,18 +64,19 @@
                         <?php endforeach ?>
                     </tbody>
                 </table>
-                <select class="c-select">
-                    <option selected>Hasil perhalaman</option>
-                    <option value="1">5</option>
-                    <option value="2">10</option>
-                    <option value="3">50</option>
-                    <option value="4">100</option>
-                    <option value="5">Tidak terbatas</option>
-                </select>
+                <form method="post" action="<?php echo site_url('konsultasi/setLimit') ?>">
+                    <select class="c-select" name="limit" onchange="this.form.submit()">
+                        <option selected>Hasil perhalaman</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="">Tidak terbatas</option>
+                    </select>
+                </form>
                 <nav>
                     <ul class="pager">
-                        <li><a href="#">Sebelumnya</a></li>
-                        <li><a href="#">Berikutnya</a></li>
+                        <?php echo $results->render() ?>
                     </ul>
                 </nav>
             </div>

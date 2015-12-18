@@ -26,7 +26,8 @@ class Konsultasi extends CI_Controller {
 
 	public function index()
 	{
-		$data['konsultasi'] = $this->M_konsultasi->readKonsultasi();
+		$konsultasi             = collect($this->M_konsultasi->readKonsultasi());
+        $data['konsultasi']     = pagination($konsultasi, 10, 'konsultasi');
 
         $this->template->build('index', $data);
 	}
@@ -145,9 +146,19 @@ class Konsultasi extends CI_Controller {
 
     public function search()
     {
-        $search_term        =   $this->input->post('search');
-        $data['results']    =   $this->M_konsultasi->search($search_term);
+        $search_term        = $this->input->get('search');
+        $result             = collect($this->M_konsultasi->search($search_term));
+        $data['results']    = pagination($result, 2, 'konsultasi/search')->appends(array('search' => $search_term));
         $this->template->build('search',$data);
+    }
+
+    public function setLimit()
+    {
+        $limitData          = $this->input->post('limit');
+        $konsultasi         = collect($this->M_konsultasi->setLimit($limitData));
+        $data['konsultasi'] = pagination($konsultasi, $limitData, 'konsultasi') ;
+
+        $this->template->build('index', $data);
     }
                                     
 }
