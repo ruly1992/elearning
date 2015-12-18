@@ -24,7 +24,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Jawaban :</label>
-                                                    <textarea type="text" required name="jawaban" class="form-control" rows="5" placeholder="Jawaban"><?php echo $jawaban; ?></textarea>
+                                                    <textarea type="text" required name="jawaban" class="jawaban" rows="5" placeholder="Jawaban"><?php echo $jawaban; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-primary">Update</button>
@@ -46,5 +46,22 @@
             </section>
         </div>
         <!-- end:main content -->
-
+<?php custom_script(); ?>
+        <script src="<?php echo asset('plugins/tinymce/tinymce.min.js'); ?>"></script>
+        <script>
+                tinymce.init({
+                    selector:'.jawaban',
+                    plugins: [
+                            "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                            "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+                            "table contextmenu directionality emoticons paste textcolor responsivefilemanager"
+                    ],
+                    toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+                    toolbar2: "| link unlink anchor | image media | forecolor backcolor  | print preview code ",
+                    image_advtab: true ,
+                    relative_urls: false,
+                    remove_script_host : false
+                });
+        </script>
+<?php endcustom_script(); ?>
 <?php get_footer('private'); ?>

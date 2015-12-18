@@ -24,7 +24,8 @@
                                         <!--<form action="">-->
                                             <div class="form-group">
                                                 <label for="">Pilih Kategori :</label>
-                                                <select class="c-select form-control" required name="kategori">
+                                                <select class="c-select form-control" id="category" required name="kategori">
+                                                    <option value="">Pilih kategori</option>
                                                     <?php 
 														foreach($categories as $cat){
 															echo '<option value="'.$cat->id.'" >'.$cat->category_name.'</option>';
@@ -34,12 +35,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Pilih Topic :</label>
-                                                <select class="c-select form-control" required name="topic">
-                                                    <?php 
-                                                        foreach($topics as $top){
-                                                            echo '<option value="'.$top->id.'" >'.$top->topic.'</option>';
-                                                        }
-                                                    ?>
+                                                <select class="c-select form-control" id="topic" required name="topic">
+                                                    <option value=""></option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -115,6 +112,25 @@
                 style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.min.css'); ?>" ,
                 emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
             });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#category').change(function(){
+                var category_id = $('#category').val();
+                if (category_id != ""){
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo site_url('/thread/get_topics'); ?>",
+                        data :"idCategory="+category_id,
+                        success: function( data ) {
+                            $( '#topic' ).html(data);
+                        }
+                    }); 
+                } else {
+                    $('#topic').empty();
+                }
+            }); 
         });
     </script>
 <?php endcustom_script() ?>

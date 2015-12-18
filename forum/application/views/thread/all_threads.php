@@ -44,6 +44,7 @@
                                         <div class="forum-list">
                                             <?php 
                                                 foreach($topics as $top){
+                                                    if($top->category == $cat->id){
                                             ?>
                                                     <table class="table table-striped">
                                                         <thead class="thead-inverse">
@@ -104,6 +105,7 @@
                                                         </tbody>
                                                     </table>
                                             <?php
+                                                    }
                                                 }
                                             ?>
                                             

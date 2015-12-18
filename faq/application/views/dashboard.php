@@ -69,5 +69,4 @@
             </section>
         </div>
         <!-- end:main content -->
-
-       <?php get_footer('private'); ?>
+<?php get_footer('private'); ?>
