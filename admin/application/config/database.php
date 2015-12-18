@@ -138,3 +138,25 @@ $db['konsultasi'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$db['faq'] = array(
+	'dsn'	=> '',
+	'hostname' => getenv('FAQ_DB_HOST') ?: 'localhost',
+	'username' => getenv('FAQ_DB_USERNAME') ?: 'root',
+	'password' => getenv('FAQ_DB_PASSWORD') ?: '',
+	'database' => getenv('FAQ_DB_DATABASE') ?: 'portal_learning',
+	'dbdriver' => getenv('FAQ_DB_DRIVER') ?: 'mysqli',
+	'dbprefix' => getenv('FAQ_DB_PREFIX') ?: '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
