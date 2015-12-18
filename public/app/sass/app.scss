@@ -77,6 +77,15 @@ body {
 .container {
 	max-width: 980px;
 }
+.button-add {
+	margin-bottom: $margin-bottom + 5px;
+	margin-top: $margin-top;
+}
+.btn-update-custom {
+	color: $black;
+	background-color: $white;
+	border-color: $grey-black;
+}
 
 /* HEADER */
 
@@ -3585,8 +3594,7 @@ a {
 	}
 }
 
-// DASHBOARD PORTAL  
-// Create by : Fajar Eko Susilo
+/* DASHBOARD PORTAL */ 
 .photo {
     margin-bottom: $margin-bottom;
     color: #9A9A9A;
@@ -3601,13 +3609,6 @@ a {
     transition: opacity .15s linear;
     display: none;  
 }
-// .in{
-// 	opacity: 1;
-// 	display: flex;
-// 	flex-direction: column;
-// }
-
-// END Fajar Eko Susilo
 
 /* DASHBOARD FOR SUMBIT ARTICLES */
 .articles-dashboard {
@@ -3751,7 +3752,14 @@ a {
 			}
 		}
 	}
-
+}
+/* DASHBOARD KELAS ONLINE */
+/* create : fajar eko susilo*/
+.dashboard-kelas-onlie {
+	background-color: white;
+	.content-dashboard-kelas-online {
+		margin-top: $margin-top + 10px;
+	}
 }
 
 /* Landing FAQ
@@ -3833,7 +3841,7 @@ a {
 	}
 }
 // Dashboard
-// Create by: Singgih Saputro //
+/* Create by: Singgih Saputro */
 
 /* Header */
 .flex-container {
@@ -3853,6 +3861,9 @@ a {
     line-height: 1.5;
     @include border-radius(3px);
 }
+
+/* button add */
+
 .alert {
     padding: 9px;
     margin-bottom: 1rem;

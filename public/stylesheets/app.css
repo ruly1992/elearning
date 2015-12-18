@@ -21,6 +21,15 @@ body {
 .container {
   max-width: 980px; }
 
+.button-add {
+  margin-bottom: 10px;
+  margin-top: 5px; }
+
+.btn-update-custom {
+  color: #000;
+  background-color: #fff;
+  border-color: #dddddd; }
+
 /* HEADER */
 header {
   background-color: #dddddd;
@@ -2927,6 +2936,7 @@ a {
     color: #1c9c57;
     border-right: 4px solid #1c9c57; }
 
+/* DASHBOARD PORTAL */
 .photo {
   margin-bottom: 5px;
   color: #9A9A9A;
@@ -3056,6 +3066,13 @@ a {
     .content-dashboard-user .content-submit .submit .submit-content {
       margin-bottom: 25px; }
 
+/* DASHBOARD KELAS ONLINE */
+/* create : fajar eko susilo*/
+.dashboard-kelas-onlie {
+  background-color: white; }
+  .dashboard-kelas-onlie .content-dashboard-kelas-online {
+    margin-top: 15px; }
+
 /* Landing FAQ
    Fajar Eko Susilo
 */
@@ -3123,6 +3140,7 @@ a {
         display: inline-block;
         margin-bottom: 10px; }
 
+/* Create by: Singgih Saputro */
 /* Header */
 .flex-container {
   display: flex;
@@ -3143,6 +3161,7 @@ a {
   -moz-border-radius: 3px;
   -o-border-radius: 3px; }
 
+/* button add */
 .alert {
   padding: 9px;
   margin-bottom: 1rem;

@@ -18,15 +18,15 @@ class Faq extends Admin {
 
 	public function create()
 	{
-		$this->form_validation->set_rules('pertanyaan', 'pertanyaan', 'trim|required');
+		$this->form_validation->set_rules('question', 'pertanyaan', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE) {
 			
 			$this->template->build('create');
 
 		} else {
-			$data['pertanyaan']			= set_value('pertanyaan');
-			$data['jawaban']			= set_value('jawaban');
+			$data['question']		= set_value('question');
+			$data['answer']			= set_value('answer', '', FALSE);
 
 			$this->Mod_faq->create($data);
 
@@ -40,7 +40,7 @@ class Faq extends Admin {
 
 	public function update($faq_id)
 	{
-		$this->form_validation->set_rules('pertanyaan', 'pertanyaan', 'trim|required');
+		$this->form_validation->set_rules('question', 'pertanyaan', 'trim|required');
 
 		if ($this->form_validation->run() == FALSE) {
             
@@ -51,8 +51,8 @@ class Faq extends Admin {
 		} else {
 			
 			$data = array(
-				'pertanyaan'			=> set_value('pertanyaan'),
-				'jawaban'				=> set_value('jawaban'),
+				'question'			=> set_value('question'),
+				'answer'			=> set_value('answer', '', FALSE),
 			);
 
 			$links = $this->Mod_faq->update($faq_id, $data);

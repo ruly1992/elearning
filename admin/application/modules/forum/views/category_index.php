@@ -3,7 +3,7 @@
         <?php echo form_open('forum/category/create'); ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4 class="panel-title">Create Category</h4>
+                <h4 class="panel-title">Tambah Kategori Forum</h4>
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -25,22 +25,30 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-body">
-                <table class="table table-hover">
+                <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Jumlah Tenaga Ahli</th>
+                            <th>Tenaga Ahli</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if ($categories->count()): ?>
                             <?php foreach ($categories as $category): ?>
-                            <tr>
-                                <td><?php echo $category->name ?></td>
-                                <td><?php echo $category->users->count() ?></td>
-                                <td><?php echo button_edit('forum/category/edit/'.$category->id) ?> <?php echo button_delete('forum/category/delete/'.$category->id) ?></td>
-                            </tr>
+                                <?php $i = 0; foreach ($category->users as $tenagaahli): ?>
+                                    <tr>
+                                        <?php if ($i == 0): ?>
+                                            <td rowspan="<?php echo $category->users->count() ?>"><?php echo $category->name ?></td>
+                                            <td><?php echo $tenagaahli->full_name ?><br>
+                                            <small><?php echo $tenagaahli->email ?></small></td>
+                                            <td rowspan="<?php echo $category->users->count() ?>"><?php echo button_edit('forum/category/edit/'.$category->id) ?> <?php echo button_delete('forum/category/delete/'.$category->id) ?></td>
+                                        <?php else: ?>
+                                            <td><?php echo $tenagaahli->full_name ?><br>
+                                            <small><?php echo $tenagaahli->email ?></small></td>
+                                        <?php endif ?>
+                                    </tr>
+                                <?php $i++; endforeach ?>
                             <?php endforeach ?>
                         <?php else: ?>
                             <tr class="warning">
@@ -53,3 +61,11 @@
         </div>
     </div>
 </div>
+
+<?php custom_script() ?>
+    <script>
+    $(document).ready(function () {
+        $('select.select2').select2()
+    })
+    </script>
+<?php endcustom_script() ?>

@@ -24,7 +24,7 @@
                                         <!--<form action="">-->
                                             <div class="form-group">
                                                 <label for="">Pilih Kategori :</label>
-                                                <select class="c-select form-control" required name="kategori">
+                                                <select class="c-select form-control" id="category" required name="kategori">
                                                     <?php 
 														foreach($categories as $cat){
 															if($cat->id==$kategori){$selected='selected';}else{$selected='';}
@@ -35,7 +35,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Pilih Topic :</label>
-                                                <select class="c-select form-control" required name="topic">
+                                                <select class="c-select form-control" id="topic" required name="topic">
                                                     <?php 
                                                         foreach($topics as $top){
                                                             if($top->id==$topic){$selected='selected';}else{$selected='';}
@@ -117,6 +117,25 @@
                 style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.min.css'); ?>" ,
                 emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
             });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#category').change(function(){
+                var category_id = $('#category').val();
+                if (category_id != ""){
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo site_url('/thread/get_topics'); ?>",
+                        data :"idCategory="+category_id,
+                        success: function( data ) {
+                            $( '#topic' ).html(data);
+                        }
+                    }); 
+                } else {
+                    $('#topic').empty();
+                }
+            }); 
         });
     </script>
 <?php endcustom_script() ?>

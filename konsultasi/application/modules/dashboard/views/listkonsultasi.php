@@ -26,9 +26,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($konsultasi as $row) : ?>
+                        <?php $no = 1; foreach ($konsultasi as $row) : ?>
                         <tr>
-                            <th scope="row"><?php echo $row->id ?></th>
+                            <th scope="row"><?php echo $no ?></th>
                             <td><?php echo $row->created_at ?></td>
                             <td><a href="<?php echo site_url('dashboard/detail/'.$row->id) ?>"><?php echo $row->subjek ?></a></td>
                             <td><?php echo user($row->user_id)->full_name ?></td>
@@ -51,21 +51,12 @@
                                 </p>
                             </td>
                         </tr>
-                        <?php endforeach ?>                        
+                        <?php $no++; endforeach; ?>                        
                     </tbody>
                 </table>
-                <select class="c-select">
-                    <option selected>Hasil perhalaman</option>
-                    <option value="1">5</option>
-                    <option value="2">10</option>
-                    <option value="3">50</option>
-                    <option value="4">100</option>
-                    <option value="5">Tidak terbatas</option>
-                </select>
                 <nav>
                     <ul class="pager">
-                        <li><a href="#">Sebelumnya</a></li>
-                        <li><a href="#">Berikutnya</a></li>
+                        <?php echo $konsultasi->render() ?>
                     </ul>
                 </nav>
             </div>
@@ -82,11 +73,11 @@
                             <div class="widget-categories-content">
                                 <div class="list-group">
                                     <a href="#" class="list-group-item active">
-                                        <span class="label label-default label-pill pull-right">14</span> All Categories
+                                        <span class="label label-default label-pill pull-right"><?php echo count($allKonsultasi); ?></span> All Categories
                                     </a>
-                                    <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
-                                    <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
-                                    <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
+                                    <?php foreach ($listKategori as $cat): ?>                                        
+                                        <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right"><?php echo countKonsultasiKategori($allKonsultasi, $cat->id); ?></span><?php echo $cat->name ?></a>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                         </div>
