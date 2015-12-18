@@ -12,7 +12,7 @@
                </div>
                <div class="form-group">
                     <label for="">Jawaban</label>
-                    <?php echo form_textarea('answer', set_value('answer', $data->answer), array('class' => 'form-control')); ?>
+                    <?php echo form_textarea('answer', set_value('answer', $data->answer), array('class' => 'form-control editor')); ?>
                </div>
             </div>
             <div class="panel-footer">
