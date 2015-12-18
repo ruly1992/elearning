@@ -23,3 +23,11 @@
     </div>
 </div>
 <?php echo form_close(); ?>
+
+<?php custom_script() ?>
+    <script>
+    $(document).ready(function () {
+        $('select.select2').select2()
+    })
+    </script>
+<?php endcustom_script() ?>
