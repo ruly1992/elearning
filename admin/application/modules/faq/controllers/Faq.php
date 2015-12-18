@@ -26,7 +26,7 @@ class Faq extends Admin {
 
 		} else {
 			$data['question']		= set_value('question');
-			$data['answer']			= set_value('answer');
+			$data['answer']			= set_value('answer', '', FALSE);
 
 			$this->Mod_faq->create($data);
 
@@ -52,7 +52,7 @@ class Faq extends Admin {
 			
 			$data = array(
 				'question'			=> set_value('question'),
-				'answer'			=> set_value('answer'),
+				'answer'			=> set_value('answer', '', FALSE),
 			);
 
 			$links = $this->Mod_faq->update($faq_id, $data);
