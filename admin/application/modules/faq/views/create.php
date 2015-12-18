@@ -6,12 +6,12 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label>Pertanyaan</label>
-                    <input type="text" name="pertanyaan" value="<?php echo set_value('pertanyaan') ?>" class="form-control"><?php echo form_error('pertanyaan') ?>
+                    <input type="text" name="question" value="<?php echo set_value('question') ?>" class="form-control"><?php echo form_error('question') ?>
                 </div>
 
                 <div class="form-group">
                     <label>Jawaban</label>
-                    <textarea name="jawaban" rows="4" class="form-control"><?php echo set_value('jawaban') ?></textarea><?php echo form_error('jawaban') ?> 
+                    <textarea name="answer" rows="4" class="form-control"><?php echo set_value('answer') ?></textarea><?php echo form_error('answer') ?> 
                 </div>                
                 <div class="panel-body">
                     <button type="submit" class="btn btn-success btn-md"><i class="fa fa-save"></i> Save FAQ</button>
