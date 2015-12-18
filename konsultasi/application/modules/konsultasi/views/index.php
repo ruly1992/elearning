@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="content-konsultasi-heading-left">
-                            <form action="<?php echo site_url('konsultasi/search') ?>" method="POST">
+                            <form action="<?php echo site_url('konsultasi/search') ?>" method="GET">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for..." name="search">
                                     <span class="input-group-btn">
