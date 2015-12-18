@@ -1,7 +1,7 @@
 <?php custom_stylesheet(); ?>
 <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
 <?php endcustom_stylesheet(); ?>
-<?php get_header(); ?>
+<?php get_header('private'); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
