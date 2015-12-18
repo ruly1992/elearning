@@ -15,7 +15,7 @@
                                     <h3><em><?php echo $f->question; ?></em></h3>
                                 </div>
                                 <div class="faq-content-answer">
-                                    <?php echo html_entity_decode($f->answer); ?>
+                                    <?php echo $f->answer; ?>
                                 </div>
                             </div>
                         <?php

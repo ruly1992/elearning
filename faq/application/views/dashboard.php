@@ -45,7 +45,7 @@
                                         <th scope="row"><?php echo $no; ?></th>
                                         <th><?php echo $f->title; ?></th>
                                         <td><p><?php echo $f->question; ?></p></td>
-                                        <td><p><?php echo html_entity_decode($f->answer); ?></p></td>
+                                        <td><p><?php echo $f->answer; ?></p></td>
                                         <td><p><?php echo $f->created_at; ?></p></td>
                                         <td align="center">
                                             <?php echo anchor('dashboard/edit/'.$f->id, 'Edit', 'class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
