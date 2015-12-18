@@ -3210,4 +3210,40 @@ a {
   margin-top: 17px;
   padding-bottom: 65px; }
 
+/* Forum Thread */
+.content-forum .content-main .forum-main .thread-list-title {
+  font-family: "open_sansbold", sans-serif; }
+  .content-forum .content-main .forum-main .thread-list-title h4 {
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    margin-bottom: 0px;
+    font-size: 15px; }
+    .content-forum .content-main .forum-main .thread-list-title h4 a {
+      transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      color: #000; }
+      .content-forum .content-main .forum-main .thread-list-title h4 a:hover, .content-forum .content-main .forum-main .thread-list-title h4 a:focus {
+        color: #1c9c57;
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out; }
+    .content-forum .content-main .forum-main .thread-list-title h4 small {
+      margin-right: 43px; }
+.content-forum .content-main .forum-main .btn-thread {
+  padding-top: 1px;
+  padding-right: 5px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  font-size: 10px;
+  line-height: 1.5;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px; }
+
 /*# sourceMappingURL=app.css.map */
