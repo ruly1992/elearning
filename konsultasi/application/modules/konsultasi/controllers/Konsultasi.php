@@ -26,7 +26,7 @@ class Konsultasi extends CI_Controller {
 
 	public function index()
 	{
-		$konsultasi             = collect($this->M_konsultasi->readKonsultasi());
+		$konsultasi             = collect($this->M_konsultasi->getKonsultasiLearner());
         $data['konsultasi']     = pagination($konsultasi, 10, 'konsultasi');
 
         $this->template->build('index', $data);
