@@ -38,7 +38,7 @@ class Dashboard extends CI_Controller
     		$data = array(
     			'title'	     => set_value('title'),
     			'question' => set_value('pertanyaan'),
-    			'answer'	 => set_value('jawaban'),
+    			'answer'	 => set_value('jawaban', '', FALSE),
     			'created_at' => date('Y-m-d H:i:s')
     		);
 
@@ -81,7 +81,7 @@ class Dashboard extends CI_Controller
             $data = array(
                 'title'      => set_value('title'),
                 'question'   => set_value('pertanyaan'),
-                'answer'     => set_value('jawaban'),
+                'answer'     => set_value('jawaban', '', FALSE),
                 'updated_at' => date('Y-m-d H:i:s')
             );
             $update = $this->model_faq->update($id,$data);
