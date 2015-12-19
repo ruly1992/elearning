@@ -13,8 +13,13 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li><a href="<?php echo site_url(); ?>">Home</a></li>
-                                <li><?php echo anchor('thread/viewAt/'.$idCategory, $category); ?></li>
+                                <li><a href="<?php if(isset($author)){ echo site_url('author/threads'); }else{ echo site_url(); } ?>">Home</a></li>
+                                <li>
+                                    <?php 
+                                        if(isset($author)){ $controller='author'; }else{ $controller='thread'; }
+                                        echo anchor( $controller.'/category/'.$idCategory, $category); 
+                                    ?>
+                                </li>
                                 <li class="active"><?php echo $title; ?></li>
                             </ol>
 
