@@ -55,13 +55,56 @@ class Model_thread extends CI_Model
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories','categories.id=threads.category')
-                ->where('reply_to','0')
+                ->where(array('reply_to'=>'0', 'status'=>'1'))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();
     }
 
-    function getThreadsCategory($idCategory){
+    function get_all_drafts()
+    {
+        $items = array('threads.*','categories.category_name');
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories','categories.id=threads.category')
+                ->where(array('reply_to'=>'0', 'status'=>'0'))
+                ->order_by('created_at','desc')
+                ->get();
+        return $get->result();
+    }
+
+    function get_draft_threads(){
+        $items = array('threads.*', 'categories.category_name', 'topics.topic AS topic_name');
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories', 'categories.id=threads.category')
+                ->join('topics', 'topics.id=threads.topic')
+                ->where(array('reply_to'=>'0', 'status'=>'0'))
+                ->order_by('created_at','desc')
+                ->get();
+        return $get->result();
+    }
+
+    function get_draft_threads_by_category($id){
+        $items = array('threads.*', 'categories.category_name', 'topics.topic AS topic_name');
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories', 'categories.id=threads.category')
+                ->join('topics', 'topics.id=threads.topic')
+                ->where(array('reply_to'=>'0', 'status'=>'0', 'threads.category'=>$id))
+                ->order_by('created_at','desc')
+                ->get();
+        return $get->result();
+    }
+
+    function get_thread_from_author($id){
+        $items = array('threads.*', 'categories.category_name');
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories', 'categories.id=threads.category')
+                ->where('author', $id)
+                ->order_by('created_at','desc')
+                ->get();
+        return $get->result();
+    }
+
+    function get_threads_category($idCategory){
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories','categories.id=threads.category')
@@ -92,7 +135,7 @@ class Model_thread extends CI_Model
         }
     }
 
-    function getCategory($idCategory){
+    function get_category($idCategory){
         $get = $this->db->get_where('categories', array('id'=>$idCategory));
         return $get->result();
     }
