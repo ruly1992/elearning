@@ -3199,7 +3199,12 @@ a {
   margin-top: 0px;
   padding-bottom: 65px; }
   .content-faq p {
-    font-size: 12px; }
+    font-size: 14px; }
+  .content-faq ol {
+    font-size: 14px; }
+  .content-faq li {
+    font-size: 14px;
+    margin-left: -26px; }
 
 .content-main-faq {
   background-color: #fff;
