@@ -10,16 +10,11 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li><a href="#">Home</a></li>
+                                <li><?php echo anchor('thread/', 'Home'); ?></li>
                                 <li class="active">
-                                    <?php 
-                                        if(isset($category)){
-                                            echo $category;
-                                        }else{
-                                            echo 'General';
-                                        } 
-                                    ?>
+                                    <?php if(isset($category)){ echo anchor( 'author/threads', 'Your Threads'); }else{ echo 'Your Threads'; } ?>
                                 </li>
+                                <?php if(isset($category)){ echo '<li class="active"> '.$category.'</li>'; } ?>
                             </ol>
                             <?php 
                                 if(isset($failed)){
@@ -70,7 +65,7 @@
                                                                         <tr>
                                                                             <td>
                                                                                 <div class="thread-list-title">
-                                                                                    <h4><?php echo anchor('thread/view/'.$thr->id, $thr->title); ?> 
+                                                                                    <h4><?php echo anchor('author/view/'.$thr->id, $thr->title); ?> 
                                                                                         <?php if($thr->type=='close'){echo '<small class="label label-default"><i class="fa fa-lock"></i> Close Group</small>';} ?>
                                                                                     </h4>
                                                                                 </div>
@@ -90,6 +85,10 @@
                                                                                         </li>
                                                                                         <li>
                                                                                             in <a href="#"><?php echo $thr->category_name; ?></a>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            Status 
+                                                                                            <?php if($thr->status=='0'){ echo anchor('#', 'Waiting'); }else{ echo anchor('#', 'Approved'); } ?>
                                                                                         </li>
                                                                                     </ul>
                                                                                 </div>
@@ -141,11 +140,11 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php echo anchor('author/threads', '<span class="label label-default label-pill pull-right"> '.count($authorSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('author/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($authorSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                         </div>
@@ -162,11 +161,11 @@
                                         <div class="list-group">
                                             <?php 
                                                 if(isset($addTopic)){ 
-                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftThreads).'</span> Draft Threads', 'class="list-group-item"');
+                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
                                                 }
                                             ?>
                                             <?php 
-                                                echo anchor('author/threads', '<span class="label label-default label-pill pull-right">'.count($authorThreads).'</span> Your Threads', 'class="list-group-item '.$active.'"');
+                                                echo anchor('author/threads', '<span class="label label-default label-pill pull-right">'.count($threads).'</span> Your Threads', 'class="list-group-item active"');
                                             ?>
                                         </div>
                                     </div>

@@ -10,7 +10,8 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li><a href="#">Home</a></li>
+                                <li><?php echo anchor('thread/', 'Home'); ?></li>
+                                <li class="active">Draft Threads</li>
                                 <li class="active">
                                     <?php 
                                         if(isset($category)){
@@ -57,13 +58,13 @@
                                                     <table class="table table-striped">
                                                         <thead class="thead-inverse">
                                                             <tr>
-                                                              <th>Topic : <?php echo $top->topic ?></th>
+                                                              <th colspan="2">Topic : <?php echo $top->topic ?></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php 
                                                                 $isThread = false;
-                                                                foreach($threads as $thr){
+                                                                foreach($draftThreads as $thr){
                                                                     if($cat->id == $thr->category AND $top->id == $thr->topic){
                                                                         $isThread = true;
                                                             ?>
@@ -94,6 +95,11 @@
                                                                                     </ul>
                                                                                 </div>
                                                                             </td>
+                                                                            <td align="center" width="80px">    
+                                                                                <button class="btn btn-primary btn-thread">Aprove</button>
+                                                                                <button class="btn btn-primary-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o"></i></button>
+                                                                                <button class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o"></i></button>
+                                                                            </td>
                                                                         </tr>
                                                             <?php
                                                                     }
@@ -120,7 +126,7 @@
                                         </div>
                                         <div class="forum-pagination">
                                             <nav>
-                                                <?php echo $threads->render() ?>
+                                                <?php echo $draftThreads->render() ?>
                                             </nav>
                                         </div>
                                     </div>
@@ -141,11 +147,11 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php echo anchor('draft/', '<span class="label label-default label-pill pull-right"> '.count($draftSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('draft/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($draftSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                         </div>
@@ -162,11 +168,12 @@
                                         <div class="list-group">
                                             <?php 
                                                 if(isset($addTopic)){ 
-                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftThreads).'</span> Draft Threads', 'class="list-group-item"');
+                                                    if(isset($draftThreads)){$active='active';}else{$active='';}
+                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftThreads).'</span> Draft Threads', 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                             <?php 
-                                                echo anchor('author/threads', '<span class="label label-default label-pill pull-right">'.count($authorThreads).'</span> Your Threads', 'class="list-group-item '.$active.'"');
+                                                echo anchor('author/threads', '<span class="label label-default label-pill pull-right">'.count($authorThreads).'</span> Your Threads', 'class="list-group-item"');
                                             ?>
                                         </div>
                                     </div>
