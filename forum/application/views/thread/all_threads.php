@@ -161,12 +161,12 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php 
-                                                if(isset($addTopic)){ 
-                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftThreads).'</span> Draft Threads', 'class="list-group-item"');
+                                                if(isset($tenagaAhli)){ 
+                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
                                                 }
                                             ?>
                                             <?php 
-                                                echo anchor('author/threads', '<span class="label label-default label-pill pull-right">'.count($authorThreads).'</span> Your Threads', 'class="list-group-item '.$active.'"');
+                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item"');
                                             ?>
                                         </div>
                                     </div>

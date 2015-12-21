@@ -11,16 +11,8 @@
                         <div class="content-main">
                             <ol class="breadcrumb">
                                 <li><?php echo anchor('thread/', 'Home'); ?></li>
-                                <li class="active">Draft Threads</li>
-                                <li class="active">
-                                    <?php 
-                                        if(isset($category)){
-                                            echo $category;
-                                        }else{
-                                            echo 'General';
-                                        } 
-                                    ?>
-                                </li>
+                                <li class="active"><?php if(isset($category)){ echo anchor('draft/', 'Draft Threads'); }else{ echo 'Draft Threads'; } ?></li>
+                                <?php if(isset($category)){ echo '<li class="active">'.$category.'</li>'; } ?>
                             </ol>
                             <?php 
                                 if(isset($failed)){
@@ -71,7 +63,7 @@
                                                                         <tr>
                                                                             <td>
                                                                                 <div class="thread-list-title">
-                                                                                    <h4><?php echo anchor('thread/view/'.$thr->id, $thr->title); ?> 
+                                                                                    <h4><?php echo anchor('draft/view/'.$thr->id, $thr->title); ?> 
                                                                                         <?php if($thr->type=='close'){echo '<small class="label label-default"><i class="fa fa-lock"></i> Close Group</small>';} ?>
                                                                                     </h4>
                                                                                 </div>
@@ -95,10 +87,10 @@
                                                                                     </ul>
                                                                                 </div>
                                                                             </td>
-                                                                            <td align="center" width="80px">    
-                                                                                <button class="btn btn-primary btn-thread">Aprove</button>
-                                                                                <button class="btn btn-primary-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o"></i></button>
-                                                                                <button class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o"></i></button>
+                                                                            <td align="center" width="80px">   
+                                                                                <?php echo anchor('draft/approve/'.$thr->id, 'Approve', 'class="btn btn-primary btn-thread"'); ?> 
+                                                                                <?php echo anchor('draft/edit/'.$thr->id, '<i class="fa fa-pencil-square-o"></i>', 'class="btn btn-primary-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
+                                                                                <?php echo anchor('draft/delete/'.$thr->id, '<i class="fa fa-trash-o"></i>', 'class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
                                                                             </td>
                                                                         </tr>
                                                             <?php
@@ -167,13 +159,13 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php 
-                                                if(isset($addTopic)){ 
+                                                if(isset($tenagaAhli)){ 
                                                     if(isset($draftThreads)){$active='active';}else{$active='';}
-                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftThreads).'</span> Draft Threads', 'class="list-group-item '.$active.'"');
+                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                             <?php 
-                                                echo anchor('author/threads', '<span class="label label-default label-pill pull-right">'.count($authorThreads).'</span> Your Threads', 'class="list-group-item"');
+                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item"');
                                             ?>
                                         </div>
                                     </div>

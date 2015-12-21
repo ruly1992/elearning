@@ -12,7 +12,7 @@
                             <ol class="breadcrumb">
                                 <li><?php echo anchor('thread/', 'Home'); ?></li>
                                 <li class="active">
-                                    <?php if(isset($category)){ echo anchor( 'author/threads', 'Your Threads'); }else{ echo 'Your Threads'; } ?>
+                                    <?php if(isset($category)){ echo anchor( 'author/', 'Your Threads'); }else{ echo 'Your Threads'; } ?>
                                 </li>
                                 <?php if(isset($category)){ echo '<li class="active"> '.$category.'</li>'; } ?>
                             </ol>
@@ -52,7 +52,7 @@
                                                     <table class="table table-striped">
                                                         <thead class="thead-inverse">
                                                             <tr>
-                                                              <th>Topic : <?php echo $top->topic ?></th>
+                                                              <th colspan="2">Topic : <?php echo $top->topic ?></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -92,6 +92,10 @@
                                                                                         </li>
                                                                                     </ul>
                                                                                 </div>
+                                                                            </td>
+                                                                            <td align="center" width="80px">   
+                                                                                <?php echo anchor('author/edit/'.$thr->id, '<i class="fa fa-pencil-square-o"></i>', 'class="btn btn-primary-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
+                                                                                <?php echo anchor('author/delete/'.$thr->id, '<i class="fa fa-trash-o"></i>', 'class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
                                                                             </td>
                                                                         </tr>
                                                             <?php
@@ -140,7 +144,7 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('author/threads', '<span class="label label-default label-pill pull-right"> '.count($authorSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php echo anchor('author/', '<span class="label label-default label-pill pull-right"> '.count($authorSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
@@ -160,12 +164,12 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php 
-                                                if(isset($addTopic)){ 
+                                                if(isset($tenagaAhli)){ 
                                                     echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
                                                 }
                                             ?>
                                             <?php 
-                                                echo anchor('author/threads', '<span class="label label-default label-pill pull-right">'.count($threads).'</span> Your Threads', 'class="list-group-item active"');
+                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item active"');
                                             ?>
                                         </div>
                                     </div>

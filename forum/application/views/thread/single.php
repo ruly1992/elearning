@@ -13,10 +13,10 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li><a href="<?php if(isset($author)){ echo site_url('author/threads'); }else{ echo site_url(); } ?>">Home</a></li>
+                                <li><a href="<?php if(isset($home)){ echo $home; }else{ echo site_url(); } ?>">Home</a></li>
                                 <li>
                                     <?php 
-                                        if(isset($author)){ $controller='author'; }else{ $controller='thread'; }
+                                        if(isset($home)){ $controller=$home; }else{ $controller='thread'; }
                                         echo anchor( $controller.'/category/'.$idCategory, $category); 
                                     ?>
                                 </li>
@@ -65,12 +65,10 @@
                                             </p>
                                     </div>
                                     <div class="card-footer">
-                                        <a href="#" class="btn btn-sm btn-reply">Reply Post</a>
+                                        <?php if($status=='1'){ echo '<a href="#" class="btn btn-sm btn-reply">Reply Post</a>'; } ?>
                                     </div>
                                 </div>
-                                <?php 
-                                    foreach($reply as $r){
-                                ?>
+                                <?php foreach($reply as $r){ ?>
                                 <div class="card" id="<?php echo $r->id; ?>">
                                     <div class="card-header">
                                         <div class="row">
@@ -95,31 +93,31 @@
                                         <a href="#" class="btn btn-sm btn-reply">Quote Reply</a>
                                     </div>
                                 </div>
-                                <?php      
-                                    }
-                                ?>
-                                <div class="card">
-                                    <div class="card-header">
-                                         <p>in reply to : <a href="#"><?php echo $title; ?></a></p>
-                                    </div>
-                                    <div class="card-block">
-                                       
-                                        <?php echo form_open('thread/replyThread/'.$id); ?>
-                                            <div class="form-group">
-                                                <label for="">Title</label>
-                                                <input type="text" class="form-control" required name="title" required placeholder="type your title">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Message</label>
-                                                <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-post">POST REPLY</button>
-                                            </div>
-                                        <?php echo form_close(); ?>
+                                <?php } ?>
+                                <?php if($status=='1'){ ?>
+                                    <div class="card">
+                                        <div class="card-header">
+                                             <p>in reply to : <a href="#"><?php echo $title; ?></a></p>
+                                        </div>
+                                        <div class="card-block">
+                                           
+                                            <?php echo form_open('thread/replyThread/'.$id); ?>
+                                                <div class="form-group">
+                                                    <label for="">Title</label>
+                                                    <input type="text" class="form-control" required name="title" required placeholder="type your title">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Message</label>
+                                                    <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-post">POST REPLY</button>
+                                                </div>
+                                            <?php echo form_close(); ?>
 
+                                        </div>
                                     </div>
-                                </div>
+                                <?php } ?>
                             </div>
                         </div>
                         <!-- end:content main -->
@@ -133,13 +131,36 @@
                                     </div>
                                     <div class="widget-categories-content">
                                         <div class="list-group">
-                                            <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php 
+                                                if(isset($category)){$activeSide='';}else{ $activeSide='active';} 
+                                                echo anchor( $controller.'/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/viewAt/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor($controller.'/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget">
+                                <div class="widget-categories">
+                                    <div class="widget-categories-heading">
+                                        <h4>Threads</h4>
+                                    </div>
+                                    <div class="widget-categories-content">
+                                        <div class="list-group">
+                                            <?php 
+                                                if(isset($tenagaAhli) OR isset($draft)){ 
+                                                    if(isset($draftThreads)){$active='active';}else{$active='';}
+                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item '.$active.'"');
+                                                }
+                                            ?>
+                                            <?php 
+                                                if(isset($author)){ $active='active'; }else{ $active=''; }
+                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item '.$active.'"');
                                             ?>
                                         </div>
                                     </div>
