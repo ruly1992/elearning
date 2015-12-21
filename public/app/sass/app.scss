@@ -3827,15 +3827,14 @@ a {
 			background-color: $white;
 			padding: $padding + 10px;
 			p{
-				color: $black;
-				font-size: 14px;
+				font-size: 16px;
 				margin-top: $margin-top + 5px;
 				margin-bottom: $margin-bottom + 5px;
 
 			}
 			li{
-				display: inline-block;
 				margin-bottom: $margin-bottom + 5px;
+				margin-left: $margin-left - 25;
 			}
 		}
 	}
