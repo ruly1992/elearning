@@ -136,7 +136,7 @@
         $(function() {
             $("textarea").sceditor({
                 plugins: "bbcode",
-                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.min.css'); ?>" ,
+                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.css'); ?>" ,
                 emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
             });
         });

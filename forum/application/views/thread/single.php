@@ -65,9 +65,33 @@
                                             </p>
                                     </div>
                                     <div class="card-footer">
-                                        <?php if($status=='1'){ echo '<a href="#" class="btn btn-sm btn-reply">Reply Post</a>'; } ?>
+                                        <?php if($status=='1'){ ?>
+                                            <a href="#replyThread" class="btn btn-sm btn-reply" data-toggle="collapse" >Reply Post</a>
+                                            <p></p>
+                                            <div class="card collapse" id="replyThread">
+                                                <div class="card-header">
+                                                     <p>in reply to : <a href="#"><?php echo $title; ?></a></p>
+                                                </div>
+                                                <div class="card-block">
+                                                   
+                                                    <?php echo form_open('thread/replyThread/'.$id); ?>
+                                                        <div class="form-group">
+                                                            <label for="">Message</label>
+                                                            <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-post">POST REPLY</button>
+                                                        </div>
+                                                    <?php echo form_close(); ?>
+
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
+                                <?php if($status=='1'){ ?>
+                                        
+                                <?php } ?>
                                 <?php foreach($reply as $r){ ?>
                                 <div class="card" id="<?php echo $r->id; ?>">
                                     <div class="card-header">
@@ -90,34 +114,30 @@
                                         <p><?php echo BBCodeParser($r->message); ?></p>
                                     </div>
                                     <div class="card-footer">
-                                        <a href="#" class="btn btn-sm btn-reply">Quote Reply</a>
+                                        <a href="#reply<?php echo $r->id; ?>" class="btn btn-sm btn-reply" data-toggle="collapse">Quote Reply</a>
+                                        <p></p>
+                                            <div class="card collapse" id="reply<?php echo $r->id; ?>">
+                                                <div class="card-header">
+                                                     <p>in reply to : <a href="#"><?php echo $r->title; ?></a></p>
+                                                </div>
+                                                <div class="card-block">
+                                                   
+                                                    <?php echo form_open('thread/replyThread/'.$id); ?>
+                                                        <div class="form-group">
+                                                            <label for="">Message</label>
+                                                            <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"><?php echo '[quote=Quote Reply]'.$r->message.'[/quote]'; ?></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-post">POST REPLY</button>
+                                                        </div>
+                                                    <?php echo form_close(); ?>
+
+                                                </div>
+                                            </div>
                                     </div>
                                 </div>
                                 <?php } ?>
-                                <?php if($status=='1'){ ?>
-                                    <div class="card">
-                                        <div class="card-header">
-                                             <p>in reply to : <a href="#"><?php echo $title; ?></a></p>
-                                        </div>
-                                        <div class="card-block">
-                                           
-                                            <?php echo form_open('thread/replyThread/'.$id); ?>
-                                                <div class="form-group">
-                                                    <label for="">Title</label>
-                                                    <input type="text" class="form-control" required name="title" required placeholder="type your title">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Message</label>
-                                                    <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-post">POST REPLY</button>
-                                                </div>
-                                            <?php echo form_close(); ?>
-
-                                        </div>
-                                    </div>
-                                <?php } ?>
+                                
                             </div>
                         </div>
                         <!-- end:content main -->
@@ -181,8 +201,10 @@
         $(function() {
             $("textarea").sceditor({
                 plugins: "bbcode",
-                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.min.css'); ?>" ,
-                emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
+                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.css'); ?>" ,
+                emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>",
+                width:500,
+                height:300,
             });
         });
     </script>
