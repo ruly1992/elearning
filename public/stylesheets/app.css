@@ -3132,13 +3132,12 @@ a {
       background-color: #fff;
       padding: 15px; }
       .landing-content-faq .faq-content .faq-content-answer p {
-        color: #000;
-        font-size: 14px;
+        font-size: 16px;
         margin-top: 10px;
         margin-bottom: 10px; }
       .landing-content-faq .faq-content .faq-content-answer li {
-        display: inline-block;
-        margin-bottom: 10px; }
+        margin-bottom: 10px;
+        margin-left: -20px; }
 
 /* Create by: Singgih Saputro */
 /* Header */
