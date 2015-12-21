@@ -23,7 +23,7 @@
 									   <?php echo form_open('thread/updateReply/'.$idThread.'/'.$idReply); ?>
                                             <div class="form-group">
                                                 <label for="">Title</label>
-                                                <input type="text" class="form-control" value="<?php echo $title;?>" required name="title" placeholder="type your title">
+                                                <input type="text" class="form-control" disabled value="<?php echo $title;?>" required name="title" placeholder="type your title">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Message</label>
@@ -76,7 +76,7 @@
         $(function() {
             $("textarea").sceditor({
                 plugins: "bbcode",
-                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.min.css'); ?>" ,
+                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.css'); ?>" ,
                 emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
             });
         });
