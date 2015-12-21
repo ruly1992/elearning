@@ -137,6 +137,7 @@ class Thread extends CI_Controller
                 'user'      => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,
+                'status'    => $t->status,
                 'message'   => BBCodeParser($t->message)
             );
         }
