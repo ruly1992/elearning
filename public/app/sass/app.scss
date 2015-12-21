@@ -1693,7 +1693,7 @@ header {
 				margin-bottom: $margin-bottom;
 				p {
 					margin-bottom: $margin-bottom - 5px;
-					font-size: 8px;
+					font-size: 12px;
 				}
 			}
 			.box-articles-sm-title {
@@ -3145,17 +3145,25 @@ footer {
       width: 100%;
     }
   }
+  .box-title {
+  	overflow: hidden;
+  }
   .box-articles-widget-title {
-    margin-top: $margin-top - 45px; 
+    margin-top: $margin-top - 135; 
     background-color: rgba(0,0,0, 0.5);
-    margin-left: $margin-left;
-    margin-right: $margin-right;
-
+	padding: $padding;
+	width: auto;
+	height: 38px;
     h4 {
       font-size: 14px;
     }
     a {
       color: $white;
+      &:hover,
+      &:active,
+      &:focus {
+      	color: $green;
+      }
     }
   }
 }
