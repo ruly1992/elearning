@@ -212,7 +212,6 @@ class Thread extends CI_Controller
 
     public function replyThread($id)
     {
-        $this->form_validation->set_rules('title','Title','required');
         $this->form_validation->set_rules('message','Message','required');
 
         if($this->form_validation->run()==TRUE){
@@ -225,14 +224,15 @@ class Thread extends CI_Controller
                 $comments = $t->comments;
             }
 
+            $user = sentinel()->getUser();
             $data=array(
                 'category'  => $category,
                 'topic'     => $topic,
                 'type'      => $type,
-                'title'     => set_value('title'),
+                'title'     => 'Thread Reply',
                 'message'   => set_value('message'),
                 'reply_to'  => $id,
-                'author'    => '0',
+                'author'    => $user->id,
                 'status'    => '1',
                 'created_at'=> date('Y-m-d').' '.date('G:i:s')
             );
@@ -269,12 +269,10 @@ class Thread extends CI_Controller
 
     public function updateReply($idThread,$idReply)
     {
-        $this->form_validation->set_rules('title','Title','required');
         $this->form_validation->set_rules('message','Message','required');
 
         if($this->form_validation->run()==TRUE){
             $data = array(
-                'title'   => set_value('title'),
                 'message' => set_value('message')
             );
 
