@@ -166,7 +166,7 @@
                                                 }
                                             ?>
                                             <?php 
-                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item '.$active.'"');
+                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item"');
                                             ?>
                                         </div>
                                     </div>
