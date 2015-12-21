@@ -72,7 +72,8 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_draft_threads(){
+    function get_draft_threads()
+    {
         $items = array('threads.*', 'categories.category_name', 'topics.topic AS topic_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories', 'categories.id=threads.category')
@@ -83,7 +84,8 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_draft_threads_by_category($id){
+    function get_draft_threads_by_category($id)
+    {
         $items = array('threads.*', 'categories.category_name', 'topics.topic AS topic_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories', 'categories.id=threads.category')
@@ -94,7 +96,8 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_thread_from_author($id){
+    function get_thread_from_author($id)
+    {
         $items = array('threads.*', 'categories.category_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories', 'categories.id=threads.category')
@@ -104,7 +107,8 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_threads_category($idCategory){
+    function get_threads_category($idCategory)
+    {
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories','categories.id=threads.category')
@@ -121,11 +125,14 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_count_reply(){
+    function get_count_reply()
+    {
         $get = $this->db->select(array('id','reply_to'))->from('threads')->where_not_in('reply_to','0')->get();
         return $get->result();
     }
-    function delete_replies($id){
+
+    function delete_replies($id)
+    {
         $this->db->where('reply_to', $id);
         $delete = $this->db->delete('threads');
         if($delete){
@@ -135,9 +142,21 @@ class Model_thread extends CI_Model
         }
     }
 
-    function get_category($idCategory){
+    function get_category($idCategory)
+    {
         $get = $this->db->get_where('categories', array('id'=>$idCategory));
         return $get->result();
+    }
+
+    function approve_thread($data, $id)
+    {   
+        $this->db->where('id', $id);
+        $update = $this->db->update('threads', $data);
+        if($update){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
     }
 
 }

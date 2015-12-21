@@ -141,11 +141,11 @@
             </div>
             <div class="modal-body">
                 <p>Pengaturan ini akan menampilkan gambar atau foto fitur utama yang mewakili pada setiap artikel.</p>             
-                <div class="cropit-featured <?php echo $artikel->hasFeaturedImage() ? '' : 'cropit-disabled' ?>">
+                <div class="cropit-featured cropit-disabled">
                     <div class="cropit-image-preview-container">
                         <div class="cropit-image-preview"
                             style="width: <?php echo getenv('SIZE_FEATURED_WIDTH') ?>; height: <?php echo getenv('SIZE_FEATURED_HEIGHT') ?>;"
-                            data-cropit-preload="<?php echo $artikel->slider_image ?>">
+                            data-cropit-preload="<?php echo asset('images/portal/img-carousel-default.jpg') ?>">
                         </div>
                     </div>
 
