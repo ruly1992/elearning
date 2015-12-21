@@ -45,17 +45,17 @@ class Thread extends CI_Controller
 
     public function category($idCategory)
     {
-        if ($this->checkTA()==TRUE){
-            $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
-            $data['draftSide']  = $this->model_thread->get_draft_threads();
-        }
         $getCategory            = $this->model_thread->get_category($idCategory);
         foreach($getCategory as $cat){
             $data['category']   = $cat->category_name;
         }
 
         $user = sentinel()->getUser();
-        $data['tenagaAhli']     = $user->id;
+        if ($this->checkTA()==TRUE){
+            $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
+            $data['draftSide']  = $this->model_thread->get_draft_threads();
+            $data['tenagaAhli'] = $user->id;
+        }
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
         $data['visitors']       = $this->model_visitor->get_visitors();
