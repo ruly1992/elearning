@@ -2566,6 +2566,21 @@ footer {
   .news4 .box-articles-widget-img img {
     width: auto; }
 
+.favorit .box-articles-widget-img {
+  height: 130px;
+  overflow: hidden; }
+  .favorit .box-articles-widget-img img {
+    width: 100%; }
+.favorit .box-articles-widget-title {
+  margin-top: -40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-left: 5px;
+  margin-right: 5px; }
+  .favorit .box-articles-widget-title h4 {
+    font-size: 14px; }
+  .favorit .box-articles-widget-title a {
+    color: #fff; }
+
 .dropdown-people .dropdown-toggle {
   cursor: pointer;
   text-decoration: none;
