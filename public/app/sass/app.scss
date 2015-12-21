@@ -3137,6 +3137,29 @@ footer {
 	}
 }
 
+.favorit {
+  .box-articles-widget-img {
+    height: 130px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+  .box-articles-widget-title {
+    margin-top: $margin-top - 45px; 
+    background-color: rgba(0,0,0, 0.5);
+    margin-left: $margin-left;
+    margin-right: $margin-right;
+
+    h4 {
+      font-size: 14px;
+    }
+    a {
+      color: $white;
+    }
+  }
+}
+
 .dropdown-people {
 	.dropdown-toggle {
 		cursor: pointer;
