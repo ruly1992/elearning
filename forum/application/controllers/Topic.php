@@ -46,7 +46,15 @@ class Topic extends CI_Controller
         $data['threadSide']     = $this->model_thread->get_all_threads();
 
         $user               = sentinel()->getUser();
+        $data['tenagaAhli'] = $user->id;
         $data['provinsi']   = $this->getWilayah();
+        $userCategories     = $this->model_topic->get_categories_by_ta($user->id);
+        foreach($userCategories as $cat){
+            $getTopicByCategory     = $this->model_topic->getTopics_by_Category($cat->id); 
+            foreach($getTopicByCategory as $top){
+                $data['topicsOther'][] = $top->id;
+            }
+        }
         $topics             = collect($this->model_topic->get_topics_from_id($user->id));
         $data['topics']     = pagination($topics, 10, 'topic');
         $this->load->view('topic/view',$data);
@@ -84,14 +92,25 @@ class Topic extends CI_Controller
         $this->form_validation->set_rules('daerah','Daerah','required');
 
         if($this->form_validation->run()==TRUE){
-            $user = sentinel()->getUser();
+            $category           = set_value('kategori'); 
+            $getUsersCategory   = $this->model_topic->get_userID_by_category($category);
+            $user               = sentinel()->getUser();
+
+            foreach($getUsersCategory AS $u){
+                if($u->user_id == $user->id){
+                    $status = '1';
+                }else{
+                    $status = '0';
+                }
+            }
 
             $data = array(
                 'tenaga_ahli' => $user->id, 
-                'category'    => set_value('kategori'),
+                'category'    => $category,
                 'topic'       => set_value('topic'),
                 'daerah'      => set_value('daerah'),
-                'created_at'  => date('Y-m-d H:i:s')
+                'created_at'  => date('Y-m-d H:i:s'),
+                'status'      => $status
             );
 
             $save = $this->model_topic->save($data);
@@ -175,9 +194,27 @@ class Topic extends CI_Controller
         
         $delete = $this->model_topic->delete($id);
         if($delete==TRUE){
+            $deleteThread = $this->model_thread->delete_thread_by_topic($id);
             $this->session->set_flashdata('success','Topic was successfully deleted.');
         }else{
             $this->session->set_flashdata('failed','Topic was failed to be deleted.');
+        }
+        redirect('topic/');
+    }
+
+    public function approve($id)
+    {
+        $getTopic = $this->model_topic->selectTopic($id);
+        foreach($getTopic as $top){
+            $topic = $top->topic;
+        }
+
+        $data = array('status' => '1');
+        $approve = $this->model_topic->approve_topic($id, $data);
+        if($approve == TRUE){
+            $this->session->set_flashdata('success', 'Topic '.$topic.' sudah disetujui');
+        }else{
+            $this->session->set_flashdata('failed', 'Topic '.$topic.' tidak berhasil disetujui');
         }
         redirect('topic/');
     }
