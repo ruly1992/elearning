@@ -3792,6 +3792,24 @@ a {
 		margin-top: $margin-top + 10px;
 	}
 }
+.panel-default {
+	margin-bottom: $margin-bottom;
+	@include border-radius(3px);
+	border-color: #ddd;
+	border: 1px solid #ddd;
+	.panel-heading {
+		padding: $padding + 5px;
+		color: #333;
+		background-color: #f5f5f5;
+		border-color: #ddd;
+		h5 {
+			font-size: 16px;
+		}
+		a {
+			color: $aspalt-light;
+		}
+	}
+}
 
 /* Landing FAQ
    Fajar Eko Susilo
@@ -3983,4 +4001,35 @@ a {
 			}
 		}
 	}
+}
+
+/* STEPY KELAS ONLINE */ 
+.content-chapter {
+	border: 1px solid #ddd;
+    padding-top: $padding-top + 5px;
+    padding-bottom: $padding-bottom + 5px;
+    margin: $margin + 5px;
+    background: #ddd;
+    @include border-radius(3px);
+    .content-chapter-main {
+    	margin-bottom: $margin-bottom;
+    }
+    .border-chapter {
+    	border-top : 1px solid $aspalt;
+    	margin-left: $margin-left + 5px;
+    	margin-right: $margin-right + 5px;
+    	margin-bottom: $margin-bottom;
+    	margin-top: $margin-top;
+    }
+
+    .content-chapter-quiz { 
+    }
+    .btn-custom-chapter {
+    	padding: 3px 5px;
+		font-size: 12px;
+		line-height: 1.5;
+		color: $white;
+		@include border-radius(3px);
+		background-color: $aspalt;
+    }
 }
