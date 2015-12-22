@@ -13,7 +13,17 @@ class Model_thread extends CI_Model
     
     function delete_thread($id)
     {
-        $delete = $this->db->delete('threads',array('id'=>$id));
+        $delete = $this->db->delete('threads', array('id'=>$id));
+        if($delete){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    function delete_thread_by_topic($idTopic)
+    {
+        $delete = $this->db->delete('threads', array('topic'=>$idTopic));
         if($delete){
             return TRUE;
         }else{
@@ -78,7 +88,7 @@ class Model_thread extends CI_Model
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories', 'categories.id=threads.category')
                 ->join('topics', 'topics.id=threads.topic')
-                ->where(array('reply_to'=>'0', 'status'=>'0'))
+                ->where(array('reply_to'=>'0', 'threads.status'=>'0'))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();
@@ -90,7 +100,7 @@ class Model_thread extends CI_Model
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories', 'categories.id=threads.category')
                 ->join('topics', 'topics.id=threads.topic')
-                ->where(array('reply_to'=>'0', 'status'=>'0', 'threads.category'=>$id))
+                ->where(array('reply_to'=>'0', 'thread.status'=>'0', 'threads.category'=>$id))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();

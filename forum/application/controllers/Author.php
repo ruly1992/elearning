@@ -26,6 +26,7 @@ class Author extends CI_Controller
         $user = sentinel()->getUser();
         if ($this->checkTA()==TRUE){
             $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
+            $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['tenagaAhli'] = $user->id;
         }
 
@@ -62,7 +63,6 @@ class Author extends CI_Controller
 
         $user = sentinel()->getUser();
         if ($this->checkTA()==TRUE){
-            $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
             $data['tenagaAhli'] = $user->id;
         }
         $data['author']         = user($user->id)->full_name;
@@ -94,6 +94,7 @@ class Author extends CI_Controller
         $user = sentinel()->getUser();
         if ($this->checkTA()==TRUE){
             $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
+            $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['tenagaAhli'] = $user->id;
         }
         $data['addTopic']       = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
@@ -128,7 +129,6 @@ class Author extends CI_Controller
 
         $user = sentinel()->getUser();
         if ($this->checkTA()==TRUE){
-            $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
             $data['tenagaAhli'] = $user->id;
         }
         $data['controller']     = 'author';
