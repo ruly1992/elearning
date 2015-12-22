@@ -87,8 +87,7 @@
     <script src="<?php echo asset('node_modules/fancybox/dist/js/jquery.fancybox.pack.js') ?>"></script>
     <script src="<?php echo asset('node_modules/bootstrap-daterangepicker/daterangepicker.js') ?>"></script>
 
-    <script src="<?php echo asset('plugins/tinymce/tinymce.jquery.min.js') ?>"></script>
-    <script src="<?php echo asset('javascript/jquery.easing.min.js"') ?>"></script>
+    <script src="<?php echo asset('javascript/jquery.easing.min.js') ?>"></script>
     <script src="<?php echo asset('javascript/scrolling-nav.js') ?>"></script>
     <script src="<?php echo asset('javascript/jquery.nestable.js') ?>"></script>
     <script src="<?php echo asset('javascript/jquery.sticky.js') ?>"></script>
