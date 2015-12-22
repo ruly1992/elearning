@@ -3093,6 +3093,24 @@ a {
   .dashboard-kelas-onlie .content-dashboard-kelas-online {
     margin-top: 15px; }
 
+.panel-default {
+  margin-bottom: 5px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-color: #ddd;
+  border: 1px solid #ddd; }
+  .panel-default .panel-heading {
+    padding: 10px;
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd; }
+    .panel-default .panel-heading h5 {
+      font-size: 16px; }
+    .panel-default .panel-heading a {
+      color: #37474f; }
+
 /* Landing FAQ
    Fajar Eko Susilo
 */
@@ -3269,5 +3287,35 @@ a {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -o-border-radius: 5px; }
+
+/* STEPY KELAS ONLINE */
+.content-chapter {
+  border: 1px solid #ddd;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 10px;
+  background: #ddd;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px; }
+  .content-chapter .content-chapter-main {
+    margin-bottom: 5px; }
+  .content-chapter .border-chapter {
+    border-top: 1px solid #263238;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px; }
+  .content-chapter .btn-custom-chapter {
+    padding: 3px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #fff;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    background-color: #263238; }
 
 /*# sourceMappingURL=app.css.map */
