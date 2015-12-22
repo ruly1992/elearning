@@ -3,6 +3,7 @@
 namespace Model\Portal;
 
 use Model\Scopes\Published;
+use Model\Scopes\Publicable;
 use Model\User;
 
 use Carbon\Carbon;
@@ -13,6 +14,7 @@ class Article extends Model
 {
     use SearchableTrait;
     use Published;
+    use Publicable;
 
     protected $table = 'artikel';
     protected $hidden = ['password'];
