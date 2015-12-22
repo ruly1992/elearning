@@ -26,6 +26,7 @@ class Thread extends CI_Controller
         $user = sentinel()->getUser();
         if ($this->checkTA()==TRUE){
             $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
+            $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['draftSide']  = $this->model_thread->get_draft_threads();
             $data['tenagaAhli'] = $user->id;
         }

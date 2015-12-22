@@ -10,7 +10,8 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li class="active">Your Topics</li>
+                                <li><?php echo anchor('thread/', 'Home'); ?></li>
+                                <li class="active">Topics</li>
                             </ol>
                             <div class="form-group">
                                 <?php echo anchor('topic/create','<i class="fa fa-plus"></i> Topic Baru','class="btn btn-primary btn-sm"'); ?>
@@ -38,6 +39,7 @@
                                                   <th>Topic</th>
                                                   <th>Category</th>
                                                   <th>Daerah</th>
+                                                  <th>Status</th>
                                                   <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -59,10 +61,24 @@
                                                                 }
                                                             ?>
                                                         </td>
+                                                        <td>
+                                                            <?php
+                                                                if($t->status=='1'){
+                                                                    echo 'Approved';
+                                                                }else{
+                                                                    echo 'Waiting';
+                                                                }
+                                                            ?>
+                                                        </td>
                                                         <td align="center">
                                                             <p>
-                                                              <?php echo anchor('topic/edit/'.$t->id,'Edit','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
-                                                              <?php echo anchor('topic/delete/'.$t->id,'Delete','class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
+                                                                <?php 
+                                                                    if($t->tenaga_ahli!=$tenagaAhli AND $t->status=='0'){
+                                                                        echo anchor('topic/approve/'.$t->id, 'Approve', 'class="btn btn-primary btn-konsul" data-toggle="tooltip" data-placement="top" title="Approve"');
+                                                                    }
+                                                                ?>
+                                                                <?php echo anchor('topic/edit/'.$t->id,'Edit','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
+                                                                <?php echo anchor('topic/delete/'.$t->id,'Delete','class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
                                                             </p>
                                                         </td>
                                                     </tr>

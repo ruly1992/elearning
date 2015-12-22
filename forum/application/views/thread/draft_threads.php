@@ -30,8 +30,8 @@
                             <div class="form-group">
                                 <?php echo anchor('thread/create', '<i class="fa fa-plus"></i> Thread Baru','class="btn btn-primary btn-sm"'); ?>
                                 <?php 
-                                    if(isset($addTopic)){
-                                        echo $addTopic;
+                                    if(isset($tenagaAhli)){
+                                        echo $addTopic.' '.$dashTopic;
                                     }
                                 ?>
                             </div>
