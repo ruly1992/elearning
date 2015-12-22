@@ -41,7 +41,7 @@ class UserSeeder extends AbstractSeed
 
             foreach ($usernames as $username) {
                 $user = sentinel()->registerAndActivate([
-                    'email'     => $username . '@kaderdesa.id',
+                    'email'     => $username . '@desamembangun.go.id',
                     'password'  => '123',
                 ]);
 
