@@ -2611,23 +2611,7 @@ header {
 			}
 		}
 		.single-article-share {
-			margin-top: $margin-top - 20px;
-			margin-bottom: $margin-bottom;
-			img {
-				width: 30px;
-				height: 30px;
-			}
-			.share {
-				border: 1px solid $grey;
-				padding: $padding - 3px;
-				margin-left: $margin-left;
-				@include border-radius(3px);
-				h6 {
-					font-size: 14px;
-					padding-top: $padding-top - 1px;
-					margin-bottom: $margin-bottom;
-				}
-			}
+			margin-top: $margin-top - 25px;
 		}
 	}
 	#comments {
