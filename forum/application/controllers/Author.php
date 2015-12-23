@@ -28,6 +28,7 @@ class Author extends CI_Controller
             $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
             $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['tenagaAhli'] = $user->id;
+            $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
         }
 
         $data['authorThreads']  = $this->model_thread->get_thread_from_author($user->id);
@@ -37,7 +38,6 @@ class Author extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_topics();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
-        $data['draftSide']	    = $this->model_thread->get_draft_threads();
         $data['breadcrumb']		= 'Your Threads';
 
         $threads                = collect($this->model_thread->get_thread_from_author($user->id));
@@ -64,13 +64,13 @@ class Author extends CI_Controller
         $user = sentinel()->getUser();
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
+            $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         }
         $data['author']         = user($user->id)->full_name;
         $data['home']           = site_url('author/');
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
-        $data['draftSide']      = $this->model_thread->get_draft_threads();
         $data['reply']          = $this->model_thread->get_reply($id);
         $data['countReply']     = count($data['reply']);
         $data['id']             = $id;
@@ -96,6 +96,7 @@ class Author extends CI_Controller
             $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
             $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['tenagaAhli'] = $user->id;
+            $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         }
         $data['addTopic']       = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
         $data['authorThreads']  = $this->model_thread->get_thread_from_author($user->id);
@@ -105,7 +106,6 @@ class Author extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_topics();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
-        $data['draftSide']      = $this->model_thread->get_all_drafts();
 
         $threads           = collect($this->model_thread->get_thread_from_author($user->id));
         $data['threads']   = pagination($threads, 10, 'thread');
@@ -130,6 +130,7 @@ class Author extends CI_Controller
         $user = sentinel()->getUser();
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
+            $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         }
         $data['controller']     = 'author';
         $data['categoriesSide'] = $this->model_thread->get_categories();
@@ -138,7 +139,6 @@ class Author extends CI_Controller
         $data['id_thread']      = $id;
         $data['categories']     = $this->model_thread->get_categories();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
-        $data['draftSide']      = $this->model_thread->get_all_drafts();
         $this->load->view('thread/edit_thread',$data);
     }
 
