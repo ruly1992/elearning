@@ -32,14 +32,15 @@ class Draft extends CI_Controller
         $data['dashTopic']      = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
         $data['tenagaAhli']     = $user->id;
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
-        $data['draftSide']      = $this->model_thread->get_all_drafts();
+        $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $this->model_thread->get_categories();
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_topics();
+        $data['categoryUsers']  = $this->model_thread->get_category_users($user->id);
 
-        $draftThreads           = collect($this->model_thread->get_draft_threads());
+        $draftThreads           = collect($this->model_thread->get_all_drafts($user->id));
         $data['draftThreads']   = pagination($draftThreads, 10, 'thread');
 
         $this->load->view('thread/draft_threads',$data);
@@ -65,9 +66,9 @@ class Draft extends CI_Controller
         $data['home']           = site_url('draft/');
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_drafts();
-        $data['authorSide']  = $this->model_thread->get_thread_from_author($user->id);
-        $data['draftSide']      = $this->model_thread->get_draft_threads();
-        $data['draftThreads']   = $this->model_thread->get_draft_threads();
+        $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
+        $data['draftThreads']   = $this->model_thread->get_all_drafts($user->id);
         $data['reply']          = $this->model_thread->get_reply($id);
         $data['countReply']     = count($data['reply']);
         $data['id']             = $id;
@@ -97,14 +98,15 @@ class Draft extends CI_Controller
         $data['dashTopic']      = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
         $data['tenagaAhli']     = $user->id;
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
-        $data['draftSide']      = $this->model_thread->get_all_drafts();
+        $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $getCategory;
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_topics();
+        $data['categoryUsers']  = $this->model_thread->get_category_users($user->id);
 
-        $draftThreads           = collect($this->model_thread->get_draft_threads_by_category($idCategory));
+        $draftThreads           = collect($this->model_thread->get_draft_threads_by_category($user->id, $idCategory));
         $data['draftThreads']   = pagination($draftThreads, 10, 'thread');
 
         $this->load->view('thread/draft_threads',$data);
@@ -151,7 +153,7 @@ class Draft extends CI_Controller
         $data['id_thread']      = $id;
         $data['categories']     = $this->model_thread->get_categories();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
-        $data['draftSide']      = $this->model_thread->get_all_drafts();
+        $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $this->load->view('thread/edit_thread',$data);
     }
 
