@@ -81,6 +81,15 @@ header {
       border: 1px solid #fff; }
       header #header-top .header-top-right .btn:hover, header #header-top .header-top-right .btn:focus, header #header-top .header-top-right .btn:active {
         background-color: #fff; }
+  header #header-content {
+    padding-top: 7px;
+    padding-bottom: 7px; }
+    header #header-content .navbar-brand {
+      width: 150px; }
+      header #header-content .navbar-brand img {
+        width: 100%; }
+    header #header-content .header-top-right {
+      margin-top: 2px; }
   header #navbar-main {
     z-index: 99; }
     header #navbar-main .navbar {
@@ -2148,6 +2157,21 @@ header {
   .content-single article .single-article-share {
     margin-top: -20px;
     margin-bottom: 5px; }
+    .content-single article .single-article-share img {
+      width: 30px;
+      height: 30px; }
+    .content-single article .single-article-share .share {
+      border: 1px solid #f5f5f5;
+      padding: 2px;
+      margin-left: 5px;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -o-border-radius: 3px; }
+      .content-single article .single-article-share .share h6 {
+        font-size: 14px;
+        padding-top: 4px;
+        margin-bottom: 5px; }
   .content-single #comments .comments-form .comments-title {
     margin-bottom: 15px; }
     .content-single #comments .comments-form .comments-title h3 {
@@ -3042,31 +3066,31 @@ a {
   background-color: #fff; }
   .content-dashboard-user .content-submit {
     margin-top: 25px; }
-    .content-dashboard-user .content-submit .submit .submit-heading {
+    .content-dashboard-user .content-submit .widget .widget-heading {
       display: block;
       margin-bottom: 15px;
       font-family: "open_sansbold", sans-serif; }
-      .content-dashboard-user .content-submit .submit .submit-heading .nav-item .nav-link {
+      .content-dashboard-user .content-submit .widget .widget-heading .nav-item .nav-link {
         font-size: 12px;
         color: #B0B0B7;
         text-transform: uppercase;
         font-family: "open_sansbold", sans-serif; }
-        .content-dashboard-user .content-submit .submit .submit-heading .nav-item .nav-link.active {
+        .content-dashboard-user .content-submit .widget .widget-heading .nav-item .nav-link.active {
           background-color: #fff;
           color: #1c9c57;
           text-transform: uppercase;
           font-family: "open_sansbold", sans-serif;
           font-size: 12px; }
-        .content-dashboard-user .content-submit .submit .submit-heading .nav-item .nav-link:hover {
+        .content-dashboard-user .content-submit .widget .widget-heading .nav-item .nav-link:hover {
           border-top: 1px solid #B0B0B7;
           border-right: 1px solid #B0B0B7;
           border-left: 1px solid #B0B0B7; }
-    .content-dashboard-user .content-submit .submit .submit-sidebar-heading {
+    .content-dashboard-user .content-submit .widget .widget-sidebar-heading {
       border-bottom: 3px solid #d41d2a;
       display: block;
       margin-bottom: 15px;
       font-family: "open_sansbold", sans-serif; }
-      .content-dashboard-user .content-submit .submit .submit-sidebar-heading h3 {
+      .content-dashboard-user .content-submit .widget .widget-sidebar-heading h3 {
         background-color: #d41d2a;
         display: inline-block;
         font-size: 12px;
@@ -3080,13 +3104,46 @@ a {
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         color: #fff; }
-    .content-dashboard-user .content-submit .submit .submit-sidebar-content .list-group-item {
-      font-size: 13px; }
-      .content-dashboard-user .content-submit .submit .submit-sidebar-content .list-group-item.active {
+    .content-dashboard-user .content-submit .widget .widget-sidebar-content {
+      margin-bottom: 10px;
+      border: 1px solid #f5f5f5;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -o-border-radius: 3px; }
+      .content-dashboard-user .content-submit .widget .widget-sidebar-content .list-group-item {
+        font-size: 13px;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -o-border-radius: 3px; }
+        .content-dashboard-user .content-submit .widget .widget-sidebar-content .list-group-item.active {
+          background-color: #1c9c57;
+          border: 1px solid #1c9c57;
+          font-size: inherit; }
+        .content-dashboard-user .content-submit .widget .widget-sidebar-content .list-group-item .child {
+          margin-top: 10px;
+          margin-left: 15px;
+          padding: 5px; }
+      .content-dashboard-user .content-submit .widget .widget-sidebar-content .c-input > input:checked ~ .c-indicator {
         background-color: #1c9c57;
-        border: 1px solid #1c9c57;
-        font-size: 13px; }
-    .content-dashboard-user .content-submit .submit .submit-content {
+        border: 1px solid #1c9c57; }
+      .content-dashboard-user .content-submit .widget .widget-sidebar-content .c-input > input:focus ~ .c-indicator {
+        -webkit-box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.2rem #1c9c57;
+        box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.2rem #1c9c57; }
+      .content-dashboard-user .content-submit .widget .widget-sidebar-content .c-input.c-checkbox {
+        font-size: 14px; }
+        .content-dashboard-user .content-submit .widget .widget-sidebar-content .c-input.c-checkbox .c-indicator {
+          background-color: #dddddd;
+          border: 1px solid #999;
+          width: 0.8rem;
+          height: 0.8rem; }
+      .content-dashboard-user .content-submit .widget .widget-sidebar-content .image-preview {
+        margin-bottom: 5px; }
+        .content-dashboard-user .content-submit .widget .widget-sidebar-content .image-preview img {
+          width: 285px;
+          height: 150px; }
+    .content-dashboard-user .content-submit .widget .submit-content {
       margin-bottom: 25px; }
 
 /* DASHBOARD KELAS ONLINE */
