@@ -22,9 +22,9 @@
                         </div>
                         <input type="range" class="cropit-image-zoom-input">
 
-                        <button class="btn btn-primary file-btn">
+                        <input type="file" class="cropit-image-input custom-avatar hide">
+                        <button type="button" class="btn btn-primary file-btn">
                             <span>Browse</span>
-                            <input type="file" class="cropit-image-input">
                         </button>
                         <?php echo form_input([
                             'type'  => 'hidden',
@@ -78,9 +78,9 @@
 
                 <br>
 
-                <button class="btn btn-primary file-btn">
+                <input type="file" class="cropit-image-input featured hide">
+                <button type="button" class="btn btn-primary file-btn">
                     <span>Browse</span>
-                    <input type="file" class="cropit-image-input">
                 </button>
                 <?php echo form_input([
                     'type'  => 'hidden',

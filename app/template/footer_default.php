@@ -80,7 +80,7 @@
 
     <script src="<?php echo asset('node_modules/jquery/dist/jquery.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
-    <script src="<?php echo asset('javascript/jquery.easing.min.js"') ?>"></script>
+    <script src="<?php echo asset('javascript/jquery.easing.min.js') ?>"></script>
     <script src="<?php echo asset('javascript/scrolling-nav.js') ?>"></script>
     <script src="<?php echo asset('javascript/jquery.sticky.js') ?>"></script>
     <script src="<?php echo asset('javascript/app.js') ?>"></script>
