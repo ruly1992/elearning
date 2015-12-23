@@ -81,6 +81,15 @@ header {
       border: 1px solid #fff; }
       header #header-top .header-top-right .btn:hover, header #header-top .header-top-right .btn:focus, header #header-top .header-top-right .btn:active {
         background-color: #fff; }
+  header #header-content {
+    margin-top: 7px;
+    margin-bottom: 7px; }
+    header #header-content .navbar-brand {
+      width: 150px; }
+      header #header-content .navbar-brand img {
+        width: 100%; }
+    header #header-content .header-top-right {
+      margin-top: 2px; }
   header #navbar-main {
     z-index: 99; }
     header #navbar-main .navbar {

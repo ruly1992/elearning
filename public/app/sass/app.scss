@@ -146,6 +146,19 @@ header {
 			}
 		}
 	}
+	#header-content {
+		margin-top: $margin-top + 2px;
+		margin-bottom: $margin-bottom + 2px;
+		.navbar-brand {
+			width: 150px;
+			img {
+				width: 100%;
+			}
+		}
+		.header-top-right {
+			margin-top: $margin-top - 3px;
+		}
+	}
 	#navbar-main {
 		z-index: 99;
 		.navbar {
