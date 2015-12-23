@@ -150,7 +150,9 @@ class Dashboard extends Admin {
 
             $articleLib = new Library\Article\Article;
             $articleLib->set($id);
-            $articleLib->setFeaturedImage(set_value('featured'));
+
+            if ($featured_image = set_value('featured'))
+                $articleLib->setFeaturedImage($featured_image);
 
             set_message_success('Artikel berhasil dibuat.');
 
