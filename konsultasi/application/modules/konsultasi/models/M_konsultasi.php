@@ -29,6 +29,14 @@ class M_konsultasi extends CI_Model {
         return $query->result();
     }
 
+    public function getKategoriById($kategori_id)
+    {
+        $this->db->where('konsultasi_kategori.id', $kategori_id);
+        $query = $this->db->get('konsultasi_kategori');
+
+        return $query->num_rows() ? $query->row() : FALSE;
+    }
+
     public function getKatByUser()
     {
         $user_id = sentinel()->getUser()->id;

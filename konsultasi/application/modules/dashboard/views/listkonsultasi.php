@@ -8,9 +8,9 @@
                 <!-- start:content main -->
                 <div class="content-main">
                     <ol class="breadcrumb">
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Konsultasi</a></li>
-                        <li class="active">Tenaga Ahli</li>
+                        <li><a href="<?php echo site_url() ?>">Dashboard</a></li>
+                        <li>Konsultasi</li>
+                        <li class="active"><?php echo $kategoriById->name ?></li>
                     </ol>
 
                     <div class="content-konsultasi-table">
