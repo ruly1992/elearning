@@ -124,8 +124,8 @@
                         </div>
                     </section>
                     <div class="container content-submit">
-                        <div class="submit">
-                            <div class="submit-heading">
+                        <div class="widget">
+                            <div class="widget-heading">
                                 <ul class="nav nav-tabs" id="myTabSubmit" role="tablist">
                                     <li class="nav-item">
                                          <a class="nav-link active" data-toggle="tab" href="#submit-article" role="tab" aria-controls="article-post" aria-expanded="true">Submit article</a>
@@ -139,10 +139,10 @@
                                 </ul>
                             </div>
                             <div class="row">
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <div class="submit-content">
-                                            <div class="tab-content" id="myTabSubmitContent">
-                                                <div role="tabpanel" class="tab-pane fade active in" id="submit-article" aria-labelledby="article-post" aria-expanded="true">
+                                <div class="widget-content">
+                                    <div class="tab-content" id="myTabSubmitContent">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="submit-article" aria-labelledby="article-post" aria-expanded="true">
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                                 <form>
                                                     <fieldset class="form-group">
                                                         <label for="exampleInputArtikel">Judul Artikel</label>
@@ -155,8 +155,25 @@
                                                     </fieldset>
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 </form>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                <div class="widget">
+                                                    <div class="widget-sidebar-heading">
+                                                        <h3>Category</h3>
+                                                    </div>
+                                                    <div class="widget-sidebar-content">
+                                                        <a href="#" class="list-group-item active">
+                                                            <span class="label label-default label-pill pull-right">14</span> All Categories
+                                                        </a>
+                                                        <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
+                                                        <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
+                                                        <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
+                                                    </div>
                                                 </div>
-                                                <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                                 <form>
                                                     <fieldset class="form-group">
                                                         <label for="exampleInputArtikel">Judul Elibrary</label>
@@ -169,36 +186,46 @@
                                                     </fieldset>
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 </form>
-                                                </div>
-                                                <div role="tabpanel" class="tab-pane fade" id="submit-konsultasi" aria-labelledby="" aria-expanded="false">
-                                                <form>
-                                                    <fieldset class="form-group">
-                                                        <label for="exampleInputArtikel">Judul Konsultasi</label>
-                                                        <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
-                                                        <small class="text-muted">Masukkan judul konsultasi disini</small>
-                                                    </fieldset>
-                                                    <fieldset class="form-group">
-                                                        <label for="exampleInputKonten">Konten Artikel</label>
-                                                        <textarea class="editor"></textarea>
-                                                    </fieldset>
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                </form>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                <div class="widget">
+                                                    <div class="widget-sidebar-heading">
+                                                        <h3>Category</h3>
+                                                    </div>
+                                                    <div class="widget-sidebar-content">
+                                                        <label class="c-input c-checkbox">
+                                                            <input type="checkbox">
+                                                            <span class="c-indicator"></span>
+                                                            <span>Kekinian</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="widget-sidebar-heading">
+                                                        <h3>Image</h3>
+                                                    </div>
+                                                    <div class="widget-sidebar-content">
+                                                        <a href="#" class="list-group-item active">
+                                                            <span class="label label-default label-pill pull-right">14</span> All Categories
+                                                        </a>
+                                                        <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
+                                                        <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
+                                                        <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <div class="submit">
-                                        <div class="submit-sidebar-heading">
-                                            <h3>Category</h3>
-                                        </div>
-                                        <div class="submit-sidebar-content">
-                                            <a href="#" class="list-group-item active">
-                                                <span class="label label-default label-pill pull-right">14</span> All Categories
-                                            </a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
+                                        <div role="tabpanel" class="tab-pane fade" id="submit-konsultasi" aria-labelledby="" aria-expanded="false">
+                                            <form>
+                                                <fieldset class="form-group">
+                                                    <label for="exampleInputArtikel">Judul Konsultasi</label>
+                                                    <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
+                                                    <small class="text-muted">Masukkan judul konsultasi disini</small>
+                                                </fieldset>
+                                                <fieldset class="form-group">
+                                                    <label for="exampleInputKonten">Konten Artikel</label>
+                                                    <textarea class="editor"></textarea>
+                                                </fieldset>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
