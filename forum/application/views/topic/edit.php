@@ -39,19 +39,20 @@
                                                 <input type="text" name="topic" class="form-control" value="<?php echo $topic; ?>" placeholder="type your title">
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Pilih Daerah :</label>
-                                                <select class="c-select form-control" name="daerah">
-                                                    <?php
-                                                        foreach($provinsi as $kode=>$nama){
-                                                            if($kode==$daerah){
-                                                                $selected="selected";
-                                                            }else{
-                                                                $selected="";
-                                                            }
-                                                            echo '<option '.$selected.' value="'.$kode.'">'.$nama.'</option>';
-                                                        }
-                                                    ?>
-                                                </select>
+                                                <label for="provinsi">Provinsi</label>
+                                                <?php echo $this->wilayah->generateSelectProvinsi($provinsi) ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kota">City/Kota</label>
+                                                <?php echo $this->wilayah->generateSelectKota($provinsi, $kabkota) ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kecamatan">Kecamatan</label>
+                                                <?php echo $this->wilayah->generateSelectKecamatan($provinsi, $kabkota, $kecamatan) ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="desa">Desa</label>
+                                                <?php echo $this->wilayah->generateSelectDesa($provinsi, $kabkota, $kecamatan, $desa) ?>
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">UPDATE TOPIC</button>
@@ -112,4 +113,8 @@
         </div>
         <!-- emd:content -->
 
+<?php custom_script(); ?>
+    <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js'); ?>"></script>
+    <?php echo $this->wilayah->script(site_url('topic/wilayah')); ?>
+<?php endcustom_script() ?>
 <?php get_footer('private'); ?>

@@ -56,7 +56,9 @@
                                                         <td>
                                                             <?php 
                                                                 foreach($provinsi as $kode=>$nama){
-                                                                    if($t->daerah==$kode){
+                                                                    $prov = explode('.', $kode);
+                                                                    $daerah   = explode('.', $t->daerah);
+                                                                    if($prov[0]==$daerah[0]){
                                                                         echo $nama;
                                                                     }
                                                                 }

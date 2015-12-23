@@ -1,6 +1,3 @@
-<?php custom_stylesheet(); ?>
-<link rel="stylesheet" href="<?php echo base_url('plugins/multipleselect/multiple-select.css'); ?>" type="text/css" media="all" />
-<?php endcustom_stylesheet(); ?>
 <?php get_header('private'); ?>
 
         <!-- start:content -->
@@ -37,25 +34,21 @@
                                                 <input type="text" required name="topic" class="form-control" placeholder="type your title">
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Pilih Daerah :</label>
-                                                <select class="c-select form-control" name="daerah">
-                                                    <?php
-                                                        foreach($provinsi as $kode=>$nama){
-                                                            echo '<option value="'.$kode.'">'.$nama.'</option>';
-                                                        }
-                                                    ?>
-                                                </select>
+                                                <label for="provinsi">Provinsi</label>
+                                                <?php echo $this->wilayah->generateSelectProvinsi() ?>
                                             </div>
-                                            <!-- <div class="form-group">
-                                                <label>Multiple</label>
-                                                <select id="ms" multiple="multiple" class="c-select form-control">
-                                                    <?php 
-                                                        foreach($provinsi as $kode=>$nama){
-                                                            echo '<option value="'.$kode.'">'.$nama.'</option>';
-                                                        }
-                                                    ?>
-                                                </select>
-                                            </div> -->
+                                            <div class="form-group">
+                                                <label for="kota">City/Kota</label>
+                                                <?php echo $this->wilayah->generateSelectKota() ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kecamatan">Kecamatan</label>
+                                                <?php echo $this->wilayah->generateSelectKecamatan() ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="desa">Desa</label>
+                                                <?php echo $this->wilayah->generateSelectDesa() ?>
+                                            </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">CREATE NEW TOPIC</button>
                                                 <?php echo anchor('topic/', 'Cancel', 'class="btn btn-secondary"'); ?>
@@ -115,15 +108,7 @@
         <!-- emd:content -->
 
 <?php custom_script(); ?>
-    <script src="<?php echo base_url('plugins/multipleselect/multiple-select.js'); ?>"></script>
-    <script>
-        // $(function() {
-        //     $('#ms').change(function() {
-        //         console.log($(this).val());
-        //     }).multipleSelect({
-        //         width: '100%'
-        //     });
-        // });
-    </script>
+    <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js'); ?>"></script>
+    <?php echo $this->wilayah->script(site_url('topic/wilayah')); ?>
 <?php endcustom_script() ?>
 <?php get_footer(); ?>
