@@ -1,7 +1,11 @@
 <!-- start:content -->
 <div class="container content content-single content-dashboard content-konsultasi">
     <section id="content">
-
+        <ol class="breadcrumb">
+            <li><a href="<?php echo site_url() ?>">Home</a></li>
+            <li>Konsulitasi</li>
+            <li class="active"><?php echo $konsultasi->subjek ?></li>
+        </ol>
         <!-- start:content -->
         <div class="content-konsultasi-main">
             <div class="content-konsultasi-title">
