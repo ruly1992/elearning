@@ -142,6 +142,9 @@ $(document).ready(function () {
 
                 $cropit_featured_imagedata.val(imageData)
             }
+        },
+        onImageError: function (error, code, msg) {
+            console.log(error)
         }
     });
 
