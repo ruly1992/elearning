@@ -23,7 +23,7 @@
                             <div class="box-dashboard-articles-meta">
                                 <ul>
                                     <li><i class="fa fa-calendar"></i> <?php echo $artikel->date->format('d F Y') ?></li>
-                                    <li><i class="fa fa-user"></i> <?php echo $artikel->contributor->full_name ?></li>
+                                    <li><i class="fa fa-user"></i> <?php echo $artikel->author_name ?></li>
                                 </ul>
                             </div>
                             <div class="box-dashboard-articles-title">

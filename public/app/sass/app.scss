@@ -3797,10 +3797,11 @@ a {
 	@include border-radius(3px);
 	border-color: #ddd;
 	border: 1px solid #ddd;
+	background: $white;
 	.panel-heading {
 		padding: $padding + 5px;
 		color: #333;
-		background-color: #f5f5f5;
+		background-color: $white;
 		border-color: #ddd;
 		h5 {
 			font-size: 16px;
@@ -4009,13 +4010,13 @@ a {
     padding-top: $padding-top + 5px;
     padding-bottom: $padding-bottom + 5px;
     margin: $margin + 5px;
-    background: #ddd;
+    background: #F5F5F5;
     @include border-radius(3px);
     .content-chapter-main {
     	margin-bottom: $margin-bottom;
     }
     .border-chapter {
-    	border-top : 1px solid $aspalt;
+    	border-top : 1px solid #ddd;
     	margin-left: $margin-left + 5px;
     	margin-right: $margin-right + 5px;
     	margin-bottom: $margin-bottom;
@@ -4030,6 +4031,6 @@ a {
 		line-height: 1.5;
 		color: $white;
 		@include border-radius(3px);
-		background-color: $aspalt;
+		background-color: $aspalt-light;
     }
 }

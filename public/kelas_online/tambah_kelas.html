@@ -133,11 +133,57 @@
                                     <div id="wizard">
                                         <h2>Overview</h2>
                                         <section>
-                                            tst
+                                           <div class="card card-block">
+                                                <form>
+                                                  <div class="form-group row">
+                                                    <label for="judul" class="col-sm-2 form-control-label">Judul</label>
+                                                    <div class="col-sm-10">
+                                                      <input type="text" class="form-control" id="judul" placeholder="Judul">
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group row">
+                                                    <label for="kategori" class="col-sm-2 form-control-label">Kategori</label>
+                                                    <div class="col-sm-10">
+                                                      <select class="form-control" id="kategori">
+                                                      <option></option>
+                                                      <option>Kategori 1</option>
+                                                      <option>Kategori 2</option>
+                                                      <option>Kategori 3</option>
+                                                      <option>Kategori 4</option>
+                                                    </select>
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group row">
+                                                    <label for="kategori" class="col-sm-2 form-control-label">Kategori</label>
+                                                    <div class="col-sm-10">
+                                                      <select class="form-control" id="kategori">
+                                                      <option></option>
+                                                      <option>Kategori 1</option>
+                                                      <option>Kategori 2</option>
+                                                      <option>Kategori 3</option>
+                                                      <option>Kategori 4</option>
+                                                    </select>
+                                                    </div>
+                                                  </div>
+                                                  <div class="checkbox">
+                                                    <label>
+                                                      <input type="checkbox"> Check me out
+                                                    </label>
+                                                  </div>
+                                                </form>
+
+                                           </div>
                                         </section>
                                         <h2>Images</h2>
                                         <section>
-                                            Images 
+                                            <div class="card card-block">
+                                                <form action="">
+                                                    <fieldset class="form-group">
+                                                        <label for="">File Images</label>
+                                                        <input type="file" name="files[]" id="filer_input_images" multiple="multipel">
+                                                    </fieldset>  
+                                                </form>                                           
+                                            </div>
                                         </section>
                                         <h2>Chapter and Quiz</h2>
                                         <section>
@@ -190,11 +236,12 @@
                                                 <div class="panel-default">
                                                     <div class="panel-heading">
                                                         <h5 class="panel-title">
-                                                            <button class="btn btn-primary" data-toggle="modal" data-target=".add_chapter">Add Chapter</button>
+                                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".add_chapter">Add Chapter</button>
                                                         </h5>
                                                     </div>
                                                 </div>
                                             </div>  
+
                                         </section>
                                         
                                         <h2>Exam</h2>
@@ -300,7 +347,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <div class="btn btn-primary pull-right">Save</div>
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-sm">Save</button>
                     </div>
                 </div>
             </div>
@@ -325,7 +373,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <div class="btn btn-primary pull-right">Save</div>
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-sm">Save</button>
                     </div>
                 </div>
               </div>
@@ -345,41 +394,63 @@
                     <div class="modal-body">
                         <form action="">
                             <fieldset class="form-group">
-                                <label for="">Pertanyaan</label>
+                                <label for="">Pertanyaan :</label>
                                 <textarea class="editor" cols="30" rows="10"></textarea>
                             </fieldset>
+                            <div class="col-sm-12">
+                                <label for="">Jawaban :</label>
+                              <div class="row">
+                                <div class="col-xs-6 col-sm-6">
+                                    <fieldset class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">A</div>
+                                            <input type="text" class="form-control" id="answer_a">
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">B</div>
+                                            <input type="text" class="form-control" id="answer_b">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-xs-6 col-sm-6">
+                                    <fieldset class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">C</div>
+                                            <input type="text" class="form-control" id="answer_c">
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">D</div>
+                                            <input type="text" class="form-control" id="answer_d">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                              </div>
+                            </div>                            
+                            <div class="col-sm-12">
+                                <label for="">Jawaban Benar :</label>
+                            </div>
                             <fieldset class="form-group">
-                                <label for="">Jawaban</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">A</div>
-                                    <input type="text" class="form-control" id="answer_a">
+                                <div class="col-xs-6 col-sm-6">
+                                    <fieldset class="form-group">
+                                        <select class="form-control" id="exampleSelect1">
+                                          <option></option>
+                                          <option>A</option>
+                                          <option>B</option>
+                                          <option>C</option>
+                                          <option>D</option>
+                                        </select>
+                                    </fieldset>
                                 </div>
-                            </fieldset>
-                            <fieldset>
-                                <div class="input-group">
-                                    <div class="input-group-addon">B</div>
-                                    <input type="text" class="form-control" id="answer_b">
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <div class="input-group">
-                                    <div class="input-group-addon">C</div>
-                                    <input type="text" class="form-control" id="answer_c">
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <div class="input-group">
-                                    <div class="input-group-addon">D</div>
-                                    <input type="text" class="form-control" id="answer_d">
-                                </div>
-                            </fieldset>
-                            <fieldset class="form-group">
-                                <label for="">Jawaban benar</label>
                             </fieldset>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <div class="btn btn-primary pull-right">Save</div>
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-sm">Save</button>
                     </div>
                 </div>
             </div>
