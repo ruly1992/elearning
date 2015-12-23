@@ -48,7 +48,7 @@ class Article
             $this->categories   = $article->categories->pluck('id')->toArray();
             $this->tags         = $article->categories->pluck('id')->toArray();
         } elseif (is_numeric($article)) {
-            $this->model = $this->model->findOrFail($article);
+            $this->model = $this->model->withDrafts()->withDrafts()->findOrFail($article);
         } else {
             $this->model->fill($article);
         }
@@ -79,7 +79,7 @@ class Article
 
     public function setCustomAvatar($imageData)
     {
-        $filename = $this->setImage($imageData, 'custom-avatar', 'customavatar');
+        $filename = $this->setImage($imageData, 'custom-avatar', 'customavatar_');
 
         $this->model->update(['custom_avatar' => $filename]);
 

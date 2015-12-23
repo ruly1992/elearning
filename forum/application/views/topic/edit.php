@@ -10,6 +10,8 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
+                                <li><?php echo anchor('thread/', 'Home') ?></li>
+                                <li><?php echo anchor('topic/', 'Topics'); ?></li>
                                 <li class="active">Edit Topic</li>
                             </ol>
                             <div class="forum-main">

@@ -1,11 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Category extends Admin {
+class Category extends Admin
+{
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->kelas = new Library\Kelas\Kelas;
+	}
 
 	public function index()
 	{
-		$data['categories'] = Model\Kelas\Category::orderBy('category', 'asc')->get();
+		$data['categories'] = Model\Kelas\Category::orderBy('name', 'asc')->get();
 
 		$this->template->build('category_index', $data);
 	}
@@ -17,13 +24,12 @@ class Category extends Admin {
 		if ($this->form_validation->run() == FALSE) {
 			redirect('kelasonline/category','refresh');
 		} else {
-			$category = Model\Kelas\Category::create([
-				'category' => set_value('name')
-			]);
+			$name		= set_value('name');
+			$category	= $this->kelas->createCategory($name);
 
 			set_message_success('Kategori berhasil ditambahkan');
 
-			redirect('kelasonline/category','refresh');
+			redirect('kelasonline/category', 'refresh');
 		}
 	}
 
@@ -39,7 +45,7 @@ class Category extends Admin {
 			$this->template->build('category_edit', $data);
 		} else {
 			$category->update([
-				'category' => set_value('name')
+				'name' => set_value('name')
 			]);
 
 			set_message_success('Kategori berhasil diperbarui.');

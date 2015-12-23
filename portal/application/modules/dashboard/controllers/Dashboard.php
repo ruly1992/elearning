@@ -17,7 +17,6 @@ class Dashboard extends Admin {
         $this->load->model('category/Mod_category');
 
         $this->template->set('active', 'dashboard');
-        $this->template->add_script('javascript/custom-tiny.js');
 
         $this->status = array(
             'publish'   => 'Publish',
@@ -54,6 +53,7 @@ class Dashboard extends Admin {
                         ->latest('date')
                         ->get();
 
+        $data['categories_checkbox']    = $this->Mod_category->generateCheckbox();
         $data['artikel']    = pagination($articles, 4, 'dashboard');
         $data['drafts']     = pagination($drafts, 4, 'dashboard');
         $data['links']      = $this->Mod_link->read();
@@ -119,7 +119,7 @@ class Dashboard extends Admin {
         $data['latest']     = $latests;
         $this->template->set('active', 'artikel');
         $this->template->set('sidebar', FALSE);
-        $this->template->set_layout('privatepage');            
+        $this->template->set_layout('article');    
         $this->template->build('articlePrivate', $data);
     }
 
@@ -146,13 +146,11 @@ class Dashboard extends Admin {
             $status     = set_value('status', 'draft');
             $type       = set_value('type', 'private');
 
-            if (isset($_FILES['featured']) && $_FILES['featured']['tmp_name']) {
-                $featured_image = $_FILES['featured'];
-            } else {
-                $featured_image = null;
-            }
+            $id = $this->Mod_sendarticle->send($data, $status, $type, null, $categories);
 
-            $id = $this->Mod_sendarticle->send($data, $status, $type, $featured_image, $categories);
+            $articleLib = new Library\Article\Article;
+            $articleLib->set($id);
+            $articleLib->setFeaturedImage(set_value('featured'));
 
             set_message_success('Artikel berhasil dibuat.');
 

@@ -60,8 +60,9 @@ $(document).ready(function() {
         },
     });
 
-    $('#filer_input_update').filer({
-    showThumbs: true,
+    $('#filer_input_images').filer({
+        limit : 1,
+        showThumbs: true,
         templates: {
             box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
             item: '<li class="jFiler-item">\
@@ -76,7 +77,9 @@ $(document).ready(function() {
                                     {{fi-image}}\
                                 </div>\
                                 <div class="jFiler-item-assets jFiler-row">\
-                                    <ul class="list-inline pull-left"></ul>\
+                                    <ul class="list-inline pull-left">\
+                                        <li>{{fi-progressBar}}</li>\
+                                    </ul>\
                                     <ul class="list-inline pull-right">\
                                         <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>\
                                     </ul>\
@@ -106,24 +109,15 @@ $(document).ready(function() {
                                 </div>\
                             </div>\
                         </li>',
+            progressBar: '<div class="bar"></div>',
             itemAppendToEnd: false,
             removeConfirmation: true,
             _selectors: {
                 list: '.jFiler-items-list',
                 item: '.jFiler-item',
+                progressBar: '.bar',
                 remove: '.jFiler-item-trash-action'
             }
         },
-        addMore: true,
-        files: [
-            {
-                // id: $(this).attr("idKonsultasi"),
-                url: "<?php site_url(konsultasi/update) ?>",
-                name: "appended_file.jpg",
-                size: 5453,
-                type: "image/jpg",
-                file: "/path/to/file.jpg"
-            },
-        ]
     });
 });
