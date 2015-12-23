@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Sebagai</label>
-                    <?php echo form_dropdown('role', $role_lists, $user->groups->pluck('id'), array('class' => 'form-control')); ?>
+                    <?php echo form_dropdown('role', $role_lists, $user->roles->pluck('id')->toArray(), array('class' => 'form-control')); ?>
                </div>
             </div>
         </div>
@@ -88,9 +88,6 @@
                     <label for="">Alamat</label>
                     <?php echo form_input('address', set_value('address', $profile->address), array('class' => 'form-control', 'placeholder' => 'Address')); ?>
                </div>
-               <pre>
-               <?php var_dump($user->wilayah['kota']) ?>
-               </pre>
                <div class="form-group">
                     <label for="provinsi">Propinsi</label>
                     <?php echo $this->wilayah->generateSelectProvinsi($user->wilayah['provinsi']) ?>
@@ -114,11 +111,9 @@
         </div>
     </div>
 </div>
-<?php
-echo form_close();
+<?php echo form_close(); ?>
 
-?>
-
+<?php custom_script() ?>
 <script>
     var avatar_default  = jQuery('#avatar-preview-default');
     var avatar          = jQuery('#avatar-preview');
@@ -138,3 +133,4 @@ echo form_close();
         avatar_default.show()
     })
 </script>
+<?php endcustom_script() ?>

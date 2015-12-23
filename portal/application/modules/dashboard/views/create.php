@@ -62,6 +62,7 @@
 <?php echo form_close(); ?>
 
 <?php custom_script() ?>
+<script src="<?php echo asset('plugins/tinymce/tinymce.jquery.min.js') ?>"></script>
 <script>
     $(document).ready(function () {
         tinymce.init({

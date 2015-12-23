@@ -4,7 +4,8 @@ class Model_thread extends CI_Model
 {
     function save_thread($data)
     {
-        if($this->db->insert('threads',$data)){
+        $this->db->insert('threads',$data);
+        if($this->db->affected_rows() == '1'){
           return TRUE;
         } else {
           return FALSE;
@@ -14,7 +15,7 @@ class Model_thread extends CI_Model
     function delete_thread($id)
     {
         $delete = $this->db->delete('threads', array('id'=>$id));
-        if($delete){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;
@@ -24,7 +25,7 @@ class Model_thread extends CI_Model
     function delete_thread_by_topic($idTopic)
     {
         $delete = $this->db->delete('threads', array('topic'=>$idTopic));
-        if($delete){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;
@@ -36,7 +37,7 @@ class Model_thread extends CI_Model
         $this->db->where('id',$id);
         $update = $this->db->update('threads', $data); 
         
-        if($update){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }
         return FALSE;
@@ -145,7 +146,7 @@ class Model_thread extends CI_Model
     {
         $this->db->where('reply_to', $id);
         $delete = $this->db->delete('threads');
-        if($delete){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;
@@ -162,7 +163,7 @@ class Model_thread extends CI_Model
     {   
         $this->db->where('id', $id);
         $update = $this->db->update('threads', $data);
-        if($update){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;
