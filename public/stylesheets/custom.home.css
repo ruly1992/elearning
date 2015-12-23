@@ -2,6 +2,10 @@
 	position: relative;
 }
 
+input[type="file"].hide {
+	display: none;
+}
+
 .file-btn input[type="file"] {
 	position: absolute;
     top: 0;
