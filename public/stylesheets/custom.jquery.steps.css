@@ -28,7 +28,7 @@ Version: 1.0
     display: block;
     width: auto;
     margin: 0 0.5em 0.5em;
-    padding: 10px;
+    padding: 10px !important;
     text-decoration: none;
 
     -webkit-border-radius: 5px;
@@ -53,14 +53,14 @@ Version: 1.0
 .wizard > .actions > ul > li
 {
     float: left;
-    font-size: 14px;
+    font-size: 14px !important;
 }
 
 .wizard > .steps .disabled a,
 .wizard > .steps .disabled a:hover,
 .wizard > .steps .disabled a:active
 {
-    background: #F5F5F5;
+    background: #F5F5F5 !important;
     color: #aaa;
     cursor: default;
 }
@@ -77,7 +77,7 @@ Version: 1.0
 .wizard > .actions a:hover,
 .wizard > .actions a:active
 {
-    background: #37474F;
+    background: #37474F !important;
     color: #fff;
     display: block;
     padding: 0.5em 1em;
@@ -88,9 +88,17 @@ Version: 1.0
     border-radius: 5px;
 }
 
+.wizard > .actions .disabled a,
+.wizard > .actions .disabled a:hover,
+.wizard > .actions .disabled a:active
+{
+    background: #eee !important;
+    color: #aaa;
+}
+
 .wizard > .content
 {
-    background: #F5F5F5;
+    background: #F5F5F5 !important;
     display: block;
     margin: 0.5em;
     min-height: 35em;
@@ -107,7 +115,7 @@ Version: 1.0
 {
     float: left;
     position: absolute;
-    width: 100%;
+    width: 100% !important;
     height: 95%;
     padding: 2.5%;
 }
