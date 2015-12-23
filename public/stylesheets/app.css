@@ -2146,7 +2146,8 @@ header {
       font-size: 12px;
       color: #37474f; }
   .content-single article .single-article-share {
-    margin-top: -20px; }
+    margin-top: -20px;
+    margin-bottom: 5px; }
   .content-single #comments .comments-form .comments-title {
     margin-bottom: 15px; }
     .content-single #comments .comments-form .comments-title h3 {
