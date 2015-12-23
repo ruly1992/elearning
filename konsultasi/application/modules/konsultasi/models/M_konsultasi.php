@@ -95,17 +95,11 @@ class M_konsultasi extends CI_Model {
         return $get->result();
     }
 
-    public function update($id)
+    public function update($id, $data)
     {
-        $default = array(
-            'updated_at' => date('Y-m-d H:i:s'),
-        );  
-
-        $data = array_merge($default);
-
         $this->db->set($data);
         $this->db->where('id', $id);        
-        $this->db->update('konsultasi');
+        $this->db->update('konsultasi', $data);
     }
 
     public function getReply($id)
