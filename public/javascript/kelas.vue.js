@@ -1,4 +1,15 @@
 $(document).ready(function () {
+    var STORAGE_KEY = 'vue-kelas-app';
+
+    var store = {
+        fetch: function () {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY || '[]'))
+        },
+        save: function (course) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(course));
+        }
+    }
+
     new Vue({
         el: '#kelas-app',
         data: {
@@ -9,8 +20,7 @@ $(document).ready(function () {
                     description: 'Nantinya akan diajari dengan pensil',
                     quiz: [
                         {
-                            id: 0,
-                            
+
                         }
                     ]
                 },
