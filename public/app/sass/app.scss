@@ -147,8 +147,9 @@ header {
 		}
 	}
 	#header-content {
-		margin-top: $margin-top + 2px;
-		margin-bottom: $margin-bottom + 2px;
+		padding-top: $padding-top + 2px;
+		padding-bottom: $padding-bottom + 2px;
+		background-color: $grey;
 		.navbar-brand {
 			width: 150px;
 			img {
@@ -3752,8 +3753,8 @@ a {
 	background-color: $white;
 	.content-submit {
 		margin-top: $margin-top + 20px;
-		.submit {
-			.submit-heading {
+		.widget {
+			.widget-heading {
 				display: block;
 				margin-bottom: $margin-bottom + 10px;
 				@include fonts('open_sansbold');
@@ -3778,7 +3779,7 @@ a {
 					}
 				}
 			}
-			.submit-sidebar-heading {
+			.widget-sidebar-heading {
 				border-bottom: 3px solid $red;
 				display: block;
 				margin-bottom: $margin-bottom + 10px;
@@ -3799,13 +3800,31 @@ a {
 					color: $white;
 				}
 			}
-			.submit-sidebar-content{
+			.widget-sidebar-content{
+				margin-bottom: $margin-bottom + 5px;
 				.list-group-item {
 					font-size: 13px;
 					&.active {
 						background-color: $green;
 						border: 1px solid $green;
 						font-size: 13px;
+					}
+				}
+				.c-input>input:checked~.c-indicator {
+					background-color: $green;
+					border: 1px solid $green;
+				}
+				.c-input>input:focus~.c-indicator {
+					-webkit-box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
+					box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
+				}
+				.c-input.c-checkbox {
+					font-size: 14px;
+					.c-indicator {
+						background-color: $grey-black;
+						border: 1px solid #999;
+						width: 0.8rem;
+						height: 0.8rem;
 					}
 				}
 			}
@@ -4034,7 +4053,6 @@ a {
 		}
 	}
 }
-
 /* STEPY KELAS ONLINE */ 
 .content-chapter {
 	border: 1px solid #ddd;
