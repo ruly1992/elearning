@@ -196,6 +196,11 @@ class Article extends Model
         return $this->hasMany(VisitorArticle::class, 'artikel_id');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'artikel_has_tags', 'tags_id', 'artikel_id');
+    }
+
     public function getCountVisitor()
     {
         return $this->visitors->count();
@@ -212,9 +217,15 @@ class Article extends Model
     {
         $user = $user_id ? Model\User::find($user_id) : sentinel()->getUser();
 
-        return $query->whereHas('categories', function ($query) use ($user) {
-            return $query->whereIn($query->getModel()->getTable().'.id', $user->editorcategory->pluck('id')->toArray());
-        });
+        if ($this->editor_id != 0)
+            $query->where('editor_id', $user->id);
+
+        if ($this->categories->count())
+            return $query->whereHas('categories', function ($query) use ($user) {
+                return $query->whereIn($query->getModel()->getTable().'.id', $user->editorcategory->pluck('id')->toArray());
+            });
+        else
+            return $query;
     }
 
     public function scopeCategoryId($query, $category_id)

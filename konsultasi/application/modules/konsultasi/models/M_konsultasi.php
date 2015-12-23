@@ -29,6 +29,14 @@ class M_konsultasi extends CI_Model {
         return $query->result();
     }
 
+    public function getKategoriById($kategori_id)
+    {
+        $this->db->where('konsultasi_kategori.id', $kategori_id);
+        $query = $this->db->get('konsultasi_kategori');
+
+        return $query->num_rows() ? $query->row() : FALSE;
+    }
+
     public function getKatByUser()
     {
         $user_id = sentinel()->getUser()->id;
@@ -95,17 +103,11 @@ class M_konsultasi extends CI_Model {
         return $get->result();
     }
 
-    public function update($id)
+    public function update($id, $data)
     {
-        $default = array(
-            'updated_at' => date('Y-m-d H:i:s'),
-        );  
-
-        $data = array_merge($default);
-
         $this->db->set($data);
         $this->db->where('id', $id);        
-        $this->db->update('konsultasi');
+        $this->db->update('konsultasi', $data);
     }
 
     public function getReply($id)

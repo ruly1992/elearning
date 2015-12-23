@@ -22,9 +22,9 @@
                         </div>
                         <input type="range" class="cropit-image-zoom-input">
 
-                        <button class="btn btn-primary file-btn">
+                        <input type="file" class="cropit-image-input custom-avatar hide">
+                        <button type="button" class="btn btn-primary file-btn">
                             <span>Browse</span>
-                            <input type="file" class="cropit-image-input">
                         </button>
                         <?php echo form_input([
                             'type'  => 'hidden',
@@ -66,7 +66,7 @@
             <div class="cropit-featured">
                 <div class="cropit-image-preview-container">
                     <div class="cropit-image-preview"
-                        style="width: 261px; height: 120px;"
+                        style="width: <?php echo getenv('SIZE_FEATURED_WIDTH') ?>; height: <?php echo getenv('SIZE_FEATURED_HEIGHT') ?>;"
                         data-cropit-preload="<?php echo asset('images/portal/img-carousel-default.jpg') ?>">
                     </div>
                 </div>
@@ -78,9 +78,9 @@
 
                 <br>
 
-                <button class="btn btn-primary file-btn">
+                <input type="file" class="cropit-image-input featured hide">
+                <button type="button" class="btn btn-primary file-btn">
                     <span>Browse</span>
-                    <input type="file" class="cropit-image-input">
                 </button>
                 <?php echo form_input([
                     'type'  => 'hidden',

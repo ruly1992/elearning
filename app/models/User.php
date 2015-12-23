@@ -34,7 +34,7 @@ class User extends \Cartalyst\Sentinel\Users\EloquentUser
 
     public function getAvatarAttribute()
     {
-        return $this->profile->avatar ? home_url(PATH_AVATAR.'/'.$this->profile->avatar) : asset('images/default_avatar_male.jpg');
+        return $this->profile->avatar ? home_url(getenv('PATH_AVATAR').'/'.trim($this->profile->avatar, '\\/')) : asset('images/default_avatar_male.jpg');
     }
 
     public function profile()

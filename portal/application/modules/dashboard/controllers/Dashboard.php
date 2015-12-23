@@ -146,13 +146,13 @@ class Dashboard extends Admin {
             $status     = set_value('status', 'draft');
             $type       = set_value('type', 'private');
 
-            if (isset($_FILES['featured']) && $_FILES['featured']['tmp_name']) {
-                $featured_image = $_FILES['featured'];
-            } else {
-                $featured_image = null;
-            }
+            $id = $this->Mod_sendarticle->send($data, $status, $type, null, $categories);
 
-            $id = $this->Mod_sendarticle->send($data, $status, $type, $featured_image, $categories);
+            $articleLib = new Library\Article\Article;
+            $articleLib->set($id);
+
+            if ($featured_image = set_value('featured'))
+                $articleLib->setFeaturedImage($featured_image);
 
             set_message_success('Artikel berhasil dibuat.');
 
