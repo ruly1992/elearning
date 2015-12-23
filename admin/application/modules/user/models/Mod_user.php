@@ -228,11 +228,11 @@ class Mod_user extends CI_Model {
 
 	public function getRoleLists()
 	{
-		$groups = $this->ion_auth->groups()->result();
+		$groups = sentinel()->getRoleRepository()->createModel()->all();
 		$lists	= array();
 
 		foreach ($groups as $group) {
-			$lists[$group->id] = $group->description;
+			$lists[$group->id] = $group->name;
 		}
 
 		return $lists;
