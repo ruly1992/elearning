@@ -22,7 +22,7 @@ class Login extends CI_Controller
     		if (sentinel()->authenticate($credentials)) {
                 $redirect_url = dashboard_url();
 
-                if (sentinel()->inRole(['su', 'adm', 'edt', 'pus', 'ins', 'pcp']))
+                if (sentinel()->inRole(['su', 'adm', 'edt', 'pus', 'pcp']))
                     $redirect_url = admin_url();
 
     			redirect($redirect_url, 'refresh');
