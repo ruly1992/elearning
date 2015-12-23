@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    
-    //Example 1
     $('#filer_input').filer({
         limit : 1,
         showThumbs: true,
@@ -61,7 +59,7 @@ $(document).ready(function() {
             }
         },
     });
-    
+
     $('#filer_input_images').filer({
         limit : 1,
         showThumbs: true,
