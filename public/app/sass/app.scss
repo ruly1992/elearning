@@ -3802,12 +3802,20 @@ a {
 			}
 			.widget-sidebar-content{
 				margin-bottom: $margin-bottom + 5px;
+				border: 1px solid $grey;
+				@include border-radius(3px);
 				.list-group-item {
 					font-size: 13px;
+					@include border-radius(3px);
 					&.active {
 						background-color: $green;
 						border: 1px solid $green;
-						font-size: 13px;
+						font-size: inherit;
+					}
+					.child {
+						margin-top: $margin-top + 5px;
+						margin-left: $margin-left + 10px;
+						padding: $padding;
 					}
 				}
 				.c-input>input:checked~.c-indicator {
@@ -3825,6 +3833,13 @@ a {
 						border: 1px solid #999;
 						width: 0.8rem;
 						height: 0.8rem;
+					}
+				}
+				.image-preview {
+					margin-bottom: $margin-bottom;
+					img {
+						width: 285px;
+						height: 150px;
 					}
 				}
 			}
