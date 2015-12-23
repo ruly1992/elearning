@@ -48,13 +48,7 @@ class Topic extends CI_Controller
         $user               = sentinel()->getUser();
         $data['tenagaAhli'] = $user->id;
         $data['provinsi']   = $this->getWilayah();
-        $userCategories     = $this->model_topic->get_categories_by_ta($user->id);
-        foreach($userCategories as $cat){
-            $getTopicByCategory     = $this->model_topic->getTopics_by_Category($cat->id); 
-            foreach($getTopicByCategory as $top){
-                $data['topicsOther'][] = $top->id;
-            }
-        }
+
         $topics             = collect($this->model_topic->get_topics_from_id($user->id));
         $data['topics']     = pagination($topics, 10, 'topic');
         $this->load->view('topic/view',$data);
@@ -73,6 +67,8 @@ class Topic extends CI_Controller
             $data['failed'] = $this->session->flashdata('failed');
         }
 
+        $user                   = sentinel()->getUser();
+        $data['topics']         = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['categories']     = $this->model_topic->get_categories();
@@ -143,6 +139,8 @@ class Topic extends CI_Controller
             );
         }
 
+        $user                   = sentinel()->getUser();
+        $data['topics']         = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['categories']     = $this->model_topic->get_categories();
