@@ -81,16 +81,20 @@ class M_kategori extends CI_Model{
     }
 
     public function onlyAllowEditor()
-    {        
+    {
         if (sentinel()->inRole('edt')) {
             $user           = sentinel()->getUser();
             $allowed_ids    = $user->editorcategory->pluck('id')->toArray();
 
-            $this->db
-                ->group_start()
-                    ->where_in('id', $allowed_ids)
-                    ->or_where_in('parent', $allowed_ids)
-                ->group_end();
+            if ($allowed_ids) {
+                $this->db
+                    ->group_start()
+                        ->where_in('id', $allowed_ids)
+                        ->or_where_in('parent', $allowed_ids)
+                    ->group_end();
+            } else {
+                $this->db->where('id', -1);
+            }
         }
 
         return $this;
