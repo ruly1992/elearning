@@ -22,6 +22,7 @@ class Dashboard extends CI_Controller
     {
         $data['id_kategori']    = $kategori_id;
         $data['listKategori']   = $this->M_konsultasi->getKategori();   
+        $data['kategoriById']   = $this->M_konsultasi->getKategoriById($kategori_id);   
         $data['allKonsultasi']  = $this->M_konsultasi->readKonsultasi();    
         $categories             = collect($this->M_konsultasi->getListKat($kategori_id));
         $data['konsultasi']     = pagination($categories, 10, 'dashboard/kategori/'.$kategori_id);
