@@ -4034,3 +4034,14 @@ a {
 		background-color: $aspalt-light;
     }
 }
+
+.card-header {
+	.btn-exam {
+		padding: 3px 5px;
+		font-size: 12px;
+		line-height: 1.5;
+		color: $white;
+		@include border-radius(3px);
+		background-color: $aspalt-light;
+	}
+}
