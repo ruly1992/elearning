@@ -21,8 +21,18 @@ $(document).ready(function () {
             var imageData       = $('.cropit-custom-avatar').cropit('export')
 
             inputImagedata.val(imageData)
+        },
+        onImageError: function (error, code, message) {
+            if (error.code == 1)
+                alert(error.message)
         }
     });
+
+    var fileBtn = $('.cropit-custom-avatar').find('.file-btn');
+    fileBtn.on('click', function () {
+        $('input.custom-avatar').trigger('click')
+        return false;
+    })
 
     $('.cropit-featured').cropit({
         exportZoom: 2,
@@ -31,8 +41,18 @@ $(document).ready(function () {
             var imageData       = $('.cropit-featured').cropit('export')
 
             inputImagedata.val(imageData)
+        },
+        onImageError: function (error, code, message) {
+            if (error.code == 1)
+                alert(error.message)
         }
     });
+
+    var fileBtn = $('.cropit-featured').find('.file-btn');
+    fileBtn.on('click', function () {
+        $('input.featured').trigger('click')
+        return false;
+    })
 
     $('.cropit-export').on('click', function () {
         var cropitSelector  = $(this).data('cropit-element')
