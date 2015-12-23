@@ -1,3 +1,6 @@
+<?php custom_stylesheet(); ?>
+<link rel="stylesheet" href="<?php echo base_url('plugins/multipleselect/multiple-select.css'); ?>" type="text/css" media="all" />
+<?php endcustom_stylesheet(); ?>
 <?php get_header('private'); ?>
 
         <!-- start:content -->
@@ -43,6 +46,16 @@
                                                     ?>
                                                 </select>
                                             </div>
+                                            <!-- <div class="form-group">
+                                                <label>Multiple</label>
+                                                <select id="ms" multiple="multiple" class="c-select form-control">
+                                                    <?php 
+                                                        foreach($provinsi as $kode=>$nama){
+                                                            echo '<option value="'.$kode.'">'.$nama.'</option>';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div> -->
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">CREATE NEW TOPIC</button>
                                                 <?php echo anchor('topic/', 'Cancel', 'class="btn btn-secondary"'); ?>
@@ -68,7 +81,24 @@
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/viewAt/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget">
+                                <div class="widget-categories">
+                                    <div class="widget-categories-heading">
+                                        <h4>Your Topics</h4>
+                                    </div>
+                                    <div class="widget-categories-content">
+                                        <div class="list-group">
+                                            <?php 
+                                                foreach($topics as $top){
+                                                    echo anchor('#', $top->topic, 'class="list-group-item"');
                                                 }
                                             ?>
                                         </div>
@@ -84,4 +114,16 @@
         </div>
         <!-- emd:content -->
 
+<?php custom_script(); ?>
+    <script src="<?php echo base_url('plugins/multipleselect/multiple-select.js'); ?>"></script>
+    <script>
+        // $(function() {
+        //     $('#ms').change(function() {
+        //         console.log($(this).val());
+        //     }).multipleSelect({
+        //         width: '100%'
+        //     });
+        // });
+    </script>
+<?php endcustom_script() ?>
 <?php get_footer(); ?>

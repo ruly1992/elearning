@@ -39,6 +39,7 @@
                                                   <th>Topic</th>
                                                   <th>Category</th>
                                                   <th>Daerah</th>
+                                                  <th>Topic Maker</th>
                                                   <th>Status</th>
                                                   <th>Action</th>
                                                 </tr>
@@ -60,6 +61,9 @@
                                                                     }
                                                                 }
                                                             ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo user($t->tenaga_ahli)->full_name; ?>
                                                         </td>
                                                         <td>
                                                             <?php
@@ -113,7 +117,7 @@
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/viewAt/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                         </div>
