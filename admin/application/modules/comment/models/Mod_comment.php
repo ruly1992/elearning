@@ -51,11 +51,10 @@ class Mod_comment extends CI_Model {
         return $query;
     }
 
-    public function delete($comment_id, $data)
+    public function delete($comment_id)
     {
         $this->db->where('id', $comment_id);
-
-        $this->db->delete('komentar', $data);
+        $this->db->delete('komentar');
 
         return TRUE;
     }
