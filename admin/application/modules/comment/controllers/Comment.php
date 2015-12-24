@@ -16,10 +16,24 @@ class Comment extends Admin {
     }
 
     public function index()
-    {         
-        $status         = 'Approve';
+    {
+        $status = $this->input->get('status') ?: 'publish';
 
-        $data['result'] = Model\Portal\Comment::latest('date')->get();
+        if ($status == 'draft') {
+            $this->indexDraft();
+        } else {
+            $data['result'] = Model\Portal\Comment::latest('date')->get();
+            $data['status'] = $status;
+            
+            $this->template->build('index', $data);
+        }
+    }
+
+    public function indexDraft()
+    {
+        $status         = 'Draft';
+
+        $data['result'] = Model\Portal\Comment::onlyDrafts()->latest('date')->get();
         $data['status'] = $status;
         
         $this->template->build('index', $data);
@@ -43,20 +57,20 @@ class Comment extends Admin {
                 'content'       => set_value('content'),
             );
 
-           $comment = $this->Mod_comment->update($comment_id, $data);
+            if ($this->input->post('publish'))
+                $data['status'] = 'publish';
 
-           if ($data == TRUE) {
+            $comment = $this->Mod_comment->update($comment_id, $data);
 
+            if ($data == TRUE) {
                set_message_success('Komentar Berhasi di Ubah');
 
                redirect('comment');
-           } else {
-
+            } else {
                 set_message_error('Kateogri Gagal di Ubah');
 
                 redirect('comment/update');
-
-           }
+            }
         }
     }
 
