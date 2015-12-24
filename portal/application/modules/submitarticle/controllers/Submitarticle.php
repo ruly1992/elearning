@@ -62,6 +62,7 @@ class Submitarticle extends CI_Controller {
                 set_value('nama'),
                 set_value('email'),
                 set_value('desa'),
+                set_value('categories[]'),
                 $this->input->post('featured[src]'),
                 $this->input->post('customavatar[src]')
             );
