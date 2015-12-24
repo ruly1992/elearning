@@ -28,9 +28,9 @@ class Article
     {
         $this->set($article);
 
-        $this->model->nama  = $name;
-        $this->model->email = $email;
-        // $this->model->desa()->associate($desa);
+        $this->model->nama      = $name;
+        $this->model->email     = $email;
+        $this->model->desa_id   = $desa;
 
         $this->saveToDraft();
 
