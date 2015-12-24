@@ -22,7 +22,7 @@ class Admin extends CI_Controller
         }
 
         if (!sentinel()->inRole($this->roles)) {
-            redirect(dashboard_url(), 'refresh');
+            redirect('/', 'refresh');
         }
     }
 
@@ -50,6 +50,26 @@ class Admin extends CI_Controller
             } else {
                 return false;
             }
+        });
+
+        $filtered   = $filtered->map(function ($menu, $index) use ($role) {
+            if (array_key_exists('child', $menu)) {
+                $child      = collect($menu['child']);
+                $filtered   = $child->filter(function ($menu) use ($role) {
+                    if (array_key_exists('roles', $menu)) {
+                        if (in_array('all', $menu['roles']))
+                            return true;
+
+                        return !array_diff($role, $menu['roles']);
+                    } else {
+                        return true;
+                    }
+                });
+
+                $menu['child']  = $filtered->toArray();
+            }
+
+            return $menu;
         });
 
         return $filtered;
