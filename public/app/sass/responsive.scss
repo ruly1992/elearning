@@ -178,6 +178,12 @@
       }
     }
   }
+  .float-center {
+      float: right;
+      left: -30%;
+      position: relative;
+      text-align: left;
+  }
   footer {
     .footer-top {
       display: none;
@@ -254,6 +260,12 @@
     img {
       width: 150px;
     }
+  }
+  .float-center {
+      float: right;
+      left: -30%;
+      position: relative;
+      text-align: left;
   }
   .dropdown-people{
     .dropdown-toggle{

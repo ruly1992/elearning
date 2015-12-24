@@ -105,6 +105,12 @@
           .content .news3 .box-articles-sm .box-articles-sm-title h4 a {
             font-size: 16px !important; }
 
+  .float-center {
+    float: right;
+    left: -30%;
+    position: relative;
+    text-align: left; }
+
   footer .footer-top {
     display: none; }
   footer .footer-logo {
@@ -156,6 +162,12 @@
     margin-left: 20px; }
     .navbar-logo-mobile img {
       width: 150px; }
+
+  .float-center {
+    float: right;
+    left: -30%;
+    position: relative;
+    text-align: left; }
 
   .dropdown-people .dropdown-toggle img {
     margin-top: -5px;
