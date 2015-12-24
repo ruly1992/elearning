@@ -4,7 +4,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class Kategori extends Admin
 {
-    protected $roles = ['su', 'adm', 'edt'];
+    protected $roles = ['su', 'adm'];
 
     public function __construct()
     {
