@@ -2,6 +2,7 @@ $(document).ready(function () {
     $("#wizard").steps({
         headerTag: "h2",
         bodyTag: "section",
-        transitionEffect: "slideLeft"
+        transitionEffect: "slideLeft",
+        enableAllSteps: true
     });
 })
