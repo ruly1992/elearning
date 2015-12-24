@@ -3168,36 +3168,37 @@ footer {
 		}
 	}
 }
-
+// add fajar eko 
 .favorit {
-  .box-articles-widget-img {
-    height: 130px;
-    overflow: hidden;
-    img {
-      width: 100%;
-    }
-  }
-  .box-title {
-  	overflow: hidden;
-  }
-  .box-articles-widget-title {
-    margin-top: $margin-top - 135; 
-    background-color: rgba(0,0,0, 0.5);
-	padding: $padding;
-	width: auto;
-	height: 38px;
-    h4 {
-      font-size: 14px;
-    }
-    a {
-      color: $white;
-      &:hover,
-      &:active,
-      &:focus {
-      	color: $green;
-      }
-    }
-  }
+	a {
+    	text-decoration: none !important;
+    	color: $black;
+		.box-border-1 {
+			border-left: 10px solid $green-black;
+			border-bottom: 1px solid #ddd;
+		    height: 45px;
+		    overflow: hidden;
+		    h6 {
+		    	color: $black;
+		    	@include fonts('open_sansbold');
+		    	font-size: 14px;
+		    	margin-left: $margin-left + 2px;
+		    	margin-bottom: $margin-bottom - 5px;
+		    }
+		}
+		.box-border-2 {
+			border-left: 10px solid $green;
+			border-bottom: 1px solid #ddd;
+		    height: 45px;
+		    overflow: hidden;
+		    h6 {
+		    	color: $black;
+		    	@include fonts('open_sansbold');
+		    	font-size: 14px;
+		    	margin-left: $margin-left + 2px;
+		    }
+		}
+	}
 }
 
 .dropdown-people {
