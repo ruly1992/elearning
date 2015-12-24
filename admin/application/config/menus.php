@@ -31,6 +31,7 @@ $config['menus'] = [
                 'name'  => 'Kategori',
                 'icon'  => 'icon-calculator',
                 'link'  => site_url('kategori'),
+                'roles' => ['su', 'adm'],
             ],
         ],
     ],
