@@ -50,6 +50,20 @@ $config['menus'] = [
         'icon'  => 'fa fa-comment',
         'link'  => site_url('comment'),
         'roles' => ['su', 'adm', 'edt'],
+        'child' => [
+            [
+                'name'  => 'Approve',
+                'icon'  => 'fa fa-comment',
+                'link'  => site_url('comment'),
+                'roles' => ['su', 'adm', 'edt'],
+            ],
+            [
+                'name'  => 'Draft',
+                'icon'  => 'fa fa-comment',
+                'link'  => site_url('comment?status=draft'),
+                'roles' => ['su', 'adm', 'edt'],
+            ]
+        ]
     ],
 
     // Media
