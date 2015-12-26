@@ -102,11 +102,19 @@ class Thread extends CI_Controller
         
         if($this->form_validation->run()==TRUE){ 
             $user = sentinel()->getUser();
+            $idCategory = set_value('kategori');
+
             if ($this->checkTA()==TRUE){
-                $status = '1';
+                $categoryUser = $this->model_thread->get_category_users($user->id);
+                if(checkTA($idCategory, $categoryUser) == TRUE){
+                    $status = '1';
+                }else{
+                    $status = '0';
+                }
             }else{
                 $status = '0';
             }
+
             $data=array(
                 'category'  => set_value('kategori'),
                 'type'      => set_value('type'),

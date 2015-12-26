@@ -89,11 +89,9 @@
                                                                             </td>
                                                                             <td align="center" width="80px">   
                                                                                 <?php 
-                                                                                    if(checkTA($thr->category, $categoryUsers) == TRUE){
                                                                                         echo anchor('draft/approve/'.$thr->id, 'Approve', 'class="btn btn-primary btn-thread"');
                                                                                         echo anchor('draft/edit/'.$thr->id, '<i class="fa fa-pencil-square-o"></i>', 'class="btn btn-primary-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Edit"');
                                                                                         echo anchor('draft/delete/'.$thr->id, '<i class="fa fa-trash-o"></i>', 'class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"');
-                                                                                    }
                                                                                 ?>
                                                                             </td>
                                                                         </tr>
