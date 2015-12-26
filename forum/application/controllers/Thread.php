@@ -86,7 +86,6 @@ class Thread extends CI_Controller
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
         }
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
-        $data['draftSide']      = $this->model_thread->get_all_drafts();
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['categories']     = $this->model_thread->get_categories();
@@ -103,6 +102,18 @@ class Thread extends CI_Controller
         
         if($this->form_validation->run()==TRUE){ 
             $user = sentinel()->getUser();
+            $idCategory = set_value('kategori');
+
+            if ($this->checkTA()==TRUE){
+                $categoryUser = $this->model_thread->get_category_users($user->id);
+                if(checkTA($idCategory, $categoryUser) == TRUE){
+                    $status = '1';
+                }else{
+                    $status = '0';
+                }
+            }else{
+                $status = '0';
+            }
 
             $data=array(
                 'category'  => set_value('kategori'),
@@ -112,7 +123,7 @@ class Thread extends CI_Controller
                 'message'   => set_value('message'),
                 'reply_to'  => '0',
                 'author'    => $user->id,
-                'status'    => '0',
+                'status'    => $status,
                 'created_at'=> date('Y-m-d H:i:s')
             );
             $data = $this->security->xss_clean($data); //xss clean
