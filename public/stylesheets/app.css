@@ -3275,6 +3275,18 @@ a {
       font-size: 16px; }
     .panel-default .panel-heading a {
       color: #37474f; }
+  .panel-default .btn-kelas {
+    padding-top: 1px;
+    padding-right: 5px;
+    padding-bottom: 1px;
+    padding-left: 5px;
+    margin-top: -25px;
+    font-size: 10px;
+    line-height: 1.5;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px; }
 
 /* Landing FAQ
    Fajar Eko Susilo
@@ -3493,5 +3505,133 @@ a {
   -moz-border-radius: 3px;
   -o-border-radius: 3px;
   background-color: #37474f; }
+
+/* Content Kelas Online
+Create: Singgih Saputro */
+.content-kelas-online .content-main {
+  margin-top: 35px; }
+  .content-kelas-online .content-main .breadcrumb {
+    margin-bottom: 25px; }
+    .content-kelas-online .content-main .breadcrumb li {
+      font-size: 12px; }
+      .content-kelas-online .content-main .breadcrumb li a {
+        color: #1c9c57;
+        font-size: 12px; }
+  .content-kelas-online .content-main .kelas-main .thead-inverse {
+    background-color: #f5f5f5 !important;
+    font-size: 14px; }
+  .content-kelas-online .content-main .kelas-main .thread-list-title {
+    font-family: "open_sansbold", sans-serif; }
+    .content-kelas-online .content-main .kelas-main .thread-list-title h4 {
+      transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      margin-bottom: 0px;
+      font-size: 15px; }
+      .content-kelas-online .content-main .kelas-main .thread-list-title h4 a {
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        color: #000; }
+        .content-kelas-online .content-main .kelas-main .thread-list-title h4 a:hover, .content-kelas-online .content-main .kelas-main .thread-list-title h4 a:focus {
+          color: #1c9c57;
+          transition: all 0.3s ease-in-out;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out; }
+      .content-kelas-online .content-main .kelas-main .thread-list-title h4 small {
+        margin-left: 15px;
+        font-size: 9px; }
+  .content-kelas-online .content-main .kelas-main .thread-list-meta ul {
+    list-style: none;
+    padding-left: 0px;
+    margin-bottom: 0px; }
+    .content-kelas-online .content-main .kelas-main .thread-list-meta ul li {
+      display: inline-block;
+      margin-right: 20px;
+      font-size: 11px; }
+      .content-kelas-online .content-main .kelas-main .thread-list-meta ul li a {
+        color: #1c9c57; }
+  .content-kelas-online .content-main .card .card-header .card-header-img {
+    text-align: center; }
+    .content-kelas-online .content-main .card .card-header .card-header-img img {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      -o-border-radius: 100%;
+      margin-bottom: 5px; }
+    .content-kelas-online .content-main .card .card-header .card-header-img p {
+      margin-bottom: 0px; }
+  .content-kelas-online .content-main .card .card-header .card-header-meta p {
+    margin-bottom: 0px;
+    font-size: 14px;
+    text-align: right; }
+    .content-kelas-online .content-main .card .card-header .card-header-meta p i.fa {
+      margin-left: 5px; }
+  .content-kelas-online .content-main .card .card-header p {
+    margin-bottom: 0px; }
+    .content-kelas-online .content-main .card .card-header p a {
+      color: #1c9c57; }
+  .content-kelas-online .content-main .card .card-block .card-block-title {
+    margin-bottom: 25px; }
+    .content-kelas-online .content-main .card .card-block .card-block-title h4 {
+      border-bottom: 1px solid #dddddd;
+      padding-bottom: 15px; }
+  .content-kelas-online .content-main .card .card-block img {
+    margin-bottom: 10px; }
+  .content-kelas-online .content-main .card .card-block .btn-post {
+    background-color: #1c9c57;
+    color: #fff; }
+  .content-kelas-online .content-main .card .card-footer .btn-reply {
+    background-color: #dddddd;
+    color: #37474f;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out; }
+    .content-kelas-online .content-main .card .card-footer .btn-reply:hover, .content-kelas-online .content-main .card .card-footer .btn-reply:focus {
+      background-color: #1c9c57;
+      color: #fff;
+      transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out; }
+.content-kelas-online .sidebar-kelas-online {
+  margin-top: 35px; }
+  .content-kelas-online .sidebar-kelas-online .widget {
+    margin-bottom: 35px; }
+    .content-kelas-online .sidebar-kelas-online .widget .widget-categories .widget-categories-heading {
+      display: block;
+      border-bottom: 3px solid #d41d2a;
+      margin-bottom: 20px; }
+      .content-kelas-online .sidebar-kelas-online .widget .widget-categories .widget-categories-heading h4 {
+        display: inline-block;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        font-size: 14px;
+        font-family: "open_sansbold", sans-serif;
+        background-color: #d41d2a;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: #fff; }
+    .content-kelas-online .sidebar-kelas-online .widget .widget-categories .widget-categories-content .list-group {
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -o-border-radius: 0; }
+      .content-kelas-online .sidebar-kelas-online .widget .widget-categories .widget-categories-content .list-group .list-group-item {
+        font-size: 14px; }
+        .content-kelas-online .sidebar-kelas-online .widget .widget-categories .widget-categories-content .list-group .list-group-item.active {
+          background-color: #1c9c57;
+          border: 1px solid #1c9c57;
+          font-size: 14px; }
 
 /*# sourceMappingURL=app.css.map */
