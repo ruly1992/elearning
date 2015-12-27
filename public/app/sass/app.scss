@@ -127,9 +127,21 @@ header {
 			padding-right: $padding-right + 20px ;
 			font-size: 14px;
 		}
+	}
+	#header-content {
+		padding-top: $padding-top + 15px;
+		padding-bottom: $padding-bottom + 15px;
+		.navbar-brand {
+			width: 220px;
+			img {
+				width: 100%;
+			}
+		}
+		//edited
 		.header-top-right {
+			margin-top: $margin-top + 5px;
 			.form-control {
-				height: 25px;
+				height: 30px;
 				font-size: 10px;
 				width: 150px;
 				float: right;
@@ -141,7 +153,7 @@ header {
 				}
 			}
 			.btn {
-				height: 25px;
+				height: 30px;
 				font-size: 10px;
 				padding-top: $padding-top - 2px;
 				border: 1px solid $white;
@@ -152,27 +164,45 @@ header {
 				}
 			}
 		}
-	}
-	#header-content {
-		padding-top: $padding-top + 2px;
-		padding-bottom: $padding-bottom + 2px;
-		.navbar-brand {
-			width: 150px;
-			img {
-				width: 100%;
-			}
-		}
-		.header-top-right {
-			margin-top: $margin-top - 3px;
+		//edited
+		.search-navbar {
+				margin-top: $margin-top + 2px;
+				input {
+					width: 65px;
+					height:45px;
+					@include transition(0.5s);
+					border: 1px solid white;
+					color: $grey-black;
+				}
+				input[placeholder] {
+					color: $grey-black;
+					font-size: 13px;
+					height: 45px;
+				}
+				input:focus {
+					width: 130px;
+					@include transition(0.5s);
+					float: right;
+				}
+				.btn {
+					height: 45px;
+					border: 1px solid $white;
+					&:hover,
+					&:focus,
+					&:active {
+						background-color: $white;
+					}
+					i.fa {
+						color: $grey-black;
+					}
+				}
 		}
 	}
 	#navbar-main {
 		z-index: 99;
 		.navbar {
-			//@include box-shadow( 0px 6px 12px -5px rgba(0,0,0,0.75));
 			height: 60px;
 			@include border-radius(0);
-			border-top: 4px solid $green;
 			background-color: $grey;
 			padding-top: $padding-top - 5px;
 			padding-bottom: $padding-bottom - 5px;
@@ -197,7 +227,7 @@ header {
 						}
 					}
 					> a {
-						height: 56px;
+						height: 60px;
 						padding-left: $padding-left + 10px;
 						padding-right: $padding-right + 10px;
 						padding-top: $padding-top + 15px;
@@ -211,6 +241,7 @@ header {
 					}
 				}
 			}
+			//edited
 			.search-navbar {
 				margin-top: $margin-top + 2px;
 				input {
@@ -268,6 +299,33 @@ header {
 					a.nav-link {
 						padding-top: 14px;
 					}
+				}
+			}
+		}
+		.header-top-right {
+			.form-control {
+				margin-top: $margin-top + 10px;
+				height: 30px;
+				font-size: 10px;
+				width: 150px;
+				float: right;
+				border: 1px solid $white;
+				@include transition(0.3s);
+				&:focus {
+					width: 100%;
+					@include transition(0.3s);
+				}
+			}
+			.btn {
+				margin-top: $margin-top + 10px;
+				height: 30px;
+				font-size: 10px;
+				padding-top: $padding-top - 2px;
+				border: 1px solid $white;
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: $white;
 				}
 			}
 		}
