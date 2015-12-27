@@ -30,6 +30,12 @@ body {
   background-color: #fff;
   border-color: #dddddd; }
 
+.custom-dropdown-login {
+  width: 255px;
+  height: auto; }
+  .custom-dropdown-login .menu-login {
+    padding: 5px; }
+
 /* HEADER */
 header {
   background-color: #dddddd;
