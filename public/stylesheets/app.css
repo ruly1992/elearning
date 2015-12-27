@@ -2615,7 +2615,7 @@ footer {
       margin-left: 7px;
       margin-bottom: 0px;
       line-height: 1.5; }
-      .favorit a .box-border-1 h6:hover, .favorit a .box-border-1 h6:focus {
+      .favorit a .box-border-1 h6:hover, .favorit a .box-border-1 h6:active, .favorit a .box-border-1 h6:focus {
         color: #1c9c57;
         transition: all 0.2s ease-in-out;
         -webkit-transition: all 0.2s ease-in-out;

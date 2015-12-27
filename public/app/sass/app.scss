@@ -3194,6 +3194,7 @@ footer {
 		    	margin-bottom: $margin-bottom - 5px;
 		    	line-height: 1.5;
 		    	&:hover,
+		    	&:active,
 				&:focus {
 					color: $green;
 					@include transition(0.2s);
