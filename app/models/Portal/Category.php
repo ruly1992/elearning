@@ -84,13 +84,10 @@ class Category extends Model
                 $is_checked = in_array($category->id, $checked);
                 $html .= form_checkbox('categories[]', $category->id, $is_checked) . ' <span class="c-indicator"></span> ';
 
-                for ($i = 0; $i < $level; $i++) { 
-                    $html .= '&mdash;';
-                }
-
                 $html .= ' ' . $category->name;
-                $html .= '</label></div>';
+                $html .= '</label>';
                 $html .= $this->generateCheckbox($category->id, $checked, ++$level);
+                $html .= '</div>';
             }
         } else {
             return '';

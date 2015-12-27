@@ -86,13 +86,6 @@ body {
 	background-color: $white;
 	border-color: $grey-black;
 }
-.custom-dropdown-login {
-	width: 255px;
-	height: auto;
-	.menu-login {
-		padding: 5px;
-	}
-}
 
 /* HEADER */
 
@@ -3373,6 +3366,24 @@ a {
 
 .alert-info {
   background-color: $green !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
+.alert-thread {
+  background-color: #5CB85C !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
+.alert-topic {
+  background-color: $green !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
+.alert-ytopic {
+  background-color: #5BC0DE !important;
   opacity: 0.7;
   color: $white !important;
 }

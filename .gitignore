@@ -1,4 +1,5 @@
 /vendor
+/.idea
 .env
 .sass-cache
 npm-debug.log

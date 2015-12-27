@@ -30,12 +30,6 @@ body {
   background-color: #fff;
   border-color: #dddddd; }
 
-.custom-dropdown-login {
-  width: 255px;
-  height: auto; }
-  .custom-dropdown-login .menu-login {
-    padding: 5px; }
-
 /* HEADER */
 header {
   background-color: #dddddd;
@@ -2765,6 +2759,21 @@ a {
 
 .alert-info {
   background-color: #1c9c57 !important;
+  opacity: 0.7;
+  color: #fff !important; }
+
+.alert-thread {
+  background-color: #5CB85C !important;
+  opacity: 0.7;
+  color: #fff !important; }
+
+.alert-topic {
+  background-color: #1c9c57 !important;
+  opacity: 0.7;
+  color: #fff !important; }
+
+.alert-ytopic {
+  background-color: #5BC0DE !important;
   opacity: 0.7;
   color: #fff !important; }
 

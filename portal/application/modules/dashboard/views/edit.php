@@ -1,64 +1,62 @@
-<?php echo form_open_multipart('dashboard/editArticle/' . $artikel->id); ?>
+<?php custom_stylesheet() ?>
+    <link rel="stylesheet" href="<?php echo asset('stylesheets/cropit.css') ?>">
+<?php endcustom_stylesheet() ?>
 
+<?php echo form_open('dashboard/editArticle/' . $artikel->id); ?>
 <?php echo show_message() ?>
-
-<div class="row">
-    <div class="col-md-8">
-        <div class="panel panel-default">        
-            <div class="panel-heading">
-                <h4 class="panel-title">Artikel</h4>
+<div class="row" id="app-cropit">
+    <div class="container content-submit">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <fieldset class="form-group">
+                <label for="title">Judul Artikel</label>
+                <input name="title" type="text" class="form-control" id="title" placeholder="" value="<?php echo $artikel->title ?>">
+                <small class="text-muted">Masukkan judul artikel disini</small>
+            </fieldset>
+            <fieldset class="form-group">
+                <textarea name="content" class="editor"><?php echo $artikel->content ?></textarea>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <!-- begin: category -->
+            <div class="widget">
+                <div class="widget-sidebar-heading">
+                    <h3>Category</h3>
+                </div>
+                <div class="widget-sidebar-content">
+                    <?php echo $categories_checkbox ?>
+                </div>
             </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <?php echo form_input('title', set_value('title', $artikel->title), array('class' => 'form-control input-lg', 'placeholder' => 'Title')); ?>
+            <!-- end: category -->
+            <!-- begin: image preview -->
+            <div class="widget">
+                <div class="widget-sidebar-heading">
+                    <h3>Gambar Fitur</h3>
                 </div>
-
-                <div class="form-group">
-                    <p class="text-static">
-                        Link : <a href="<?php echo getLinkArticle($artikel) ?>" target="_blank"><?php echo getLinkArticle($artikel) ?></a>
-                    </p>
-                </div>
-                <div class="form-group">
-                    <?php echo form_textarea('content', set_value('content', $artikel->content, FALSE), array('class' => 'form-control editor')); ?>
+                <div class="widget-sidebar-content">
+                    <cropit-preview name="featured" image-src="<?php echo $artikel->featured_image ?>"></cropit-preview>
+                    <cropit-result name="featured"></cropit-result>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">Category</h4>
-            </div>
-            <div class="panel-body">
-                <?php echo $categories_checkbox ?>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">Featured Image</h4>
-            </div>
-            <div class="panel-body">
-                <div class="featured thumbnail" style="max-width: 200px;">
-                    <?php if ($artikel->featured_image): ?>
-                        <img class="featured-preview" src="<?php echo base_url("portal/assets/upload/featured/"."$artikel->featured_image") ?>" width="100%">
-                        <img class="featured-preview-default" src="<?php echo base_url('assets/admin/img/default_avatar_male.jpg') ?>" style="display: none;">
-                    <?php else: ?>
-                        <img class="featured-preview" src="" width="100%" style="display: none;">
-                        <img class="featured-preview-default" src="<?php echo base_url('index.php/assets/admin/img/default_avatar_male.jpg') ?>">
-                    <?php endif ?>
-                    <input type="hidden" name="featured" value="<?php echo $artikel->featured_image ?>">
-                </div> 
-            </div>
-            <div class="form-group">
-                <input type="file" name="featured" value=""></input>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Update</button>
-        <?php echo button_delete('dashboard/delete/'.$artikel->id, 'sm') ?>
-    </div>
-    
+    <?php $this->load->view('modal/featured'); ?>
 </div>
-
 <?php echo form_close(); ?>
+
+<?php custom_script() ?>
+<?php $this->load->view('template/vue_cropit'); ?>
+
+<script src="<?php echo asset('plugins/tinymce/tinymce.min.js') ?>"></script>
+<script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
+<script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
+<script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        tinymce.init({
+            selector: '.editor'
+        })
+    });
+</script>
+<?php endcustom_script() ?>

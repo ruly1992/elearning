@@ -53,10 +53,10 @@ class Dashboard extends Admin {
                         ->latest('date')
                         ->get();
 
-        $data['categories_checkbox']    = $this->Mod_category->generateCheckbox();
-        $data['artikel']    = pagination($articles, 4, 'dashboard');
-        $data['drafts']     = pagination($drafts, 4, 'dashboard');
-        $data['links']      = $this->Mod_link->read();
+        $data['categories_checkbox']    = (new Model\Portal\Category)->generateCheckbox();
+        $data['artikel']                = pagination($articles, 4, 'dashboard');
+        $data['drafts']                 = pagination($drafts, 4, 'dashboard');
+        $data['links']                  = $this->Mod_link->read();
         
         $this->template->set('sidebar');
         $this->template->set_layout('privatepage');              
@@ -151,7 +151,7 @@ class Dashboard extends Admin {
             $articleLib = new Library\Article\Article;
             $articleLib->set($id);
 
-            if ($featured_image = set_value('featured'))
+            if ($featured_image = set_value('featured[src]'))
                 $articleLib->setFeaturedImage($featured_image);
 
             set_message_success('Artikel berhasil dibuat.');
@@ -166,14 +166,14 @@ class Dashboard extends Admin {
         $this->form_validation->set_rules('content', 'Content', 'trim|required');
 
         if ($this->form_validation->run() == FALSE) {
-            $artikel = $this->Mod_sendarticle->getById($id);
+            $artikel = Model\Portal\Article::withDrafts()->findOrFail($id);
 
             $cat_ids = array_map(function ($cat){
                 return $cat->kategori_id;
             }, $this->Mod_category->getByArticle($id));
 
             $data['artikel']                = $artikel;
-            $data['categories_checkbox']    = $this->Mod_category->generateCheckbox(0, $cat_ids);
+            $data['categories_checkbox']    = (new Model\Portal\Category)->generateCheckbox(0, $cat_ids);
             $data['status']                 = $this->status;
 
             $this->template->set('sidebar');            
@@ -181,21 +181,32 @@ class Dashboard extends Admin {
             $this->template->build('edit', $data);
         } else {
             $artikel    = array(
-                'title'             => set_value('title'),
-                'content'           => set_value('content', '', FALSE),
-                'featured_image'    => set_value('featured', ''),
+                'title'     => set_value('title'),
+                'content'   => set_value('content', '', FALSE)
             );
 
             $categories = set_value('categories', array());
             $status     = set_value('status', 'draft');
 
-            if (isset($_FILES['featured']) && $_FILES['featured']['tmp_name']) {
-                $featured_image = $_FILES['featured'];
-            } else {
-                $featured_image = null;
-            }
+            $id = $this->Mod_sendarticle->edit($id, $artikel, $categories);
 
-            $id = $this->Mod_sendarticle->edit($id, $artikel, $categories, $featured_image);
+            $articleLib = new Library\Article\Article;
+            $articleLib->set($id);
+
+            $featured_action = $this->input->post('featured[action]');
+
+            switch ($featured_action) {
+                case 'upload':
+                    $featured_image = $this->input->post('featured[src]');
+                    $articleLib->setFeaturedImage($featured_image);
+                    break;
+
+                case 'remove':
+                    $articleLib->removeFeaturedImage();
+                
+                default:
+                    break;
+            }
 
             set_message_success('Artikel berhasil diperbarui.');
 
