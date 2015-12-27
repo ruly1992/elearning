@@ -3176,26 +3176,40 @@ footer {
 		.box-border-1 {
 			border-left: 10px solid $green-black;
 			border-bottom: 1px solid #ddd;
-		    height: 45px;
+		    height: 40px;
 		    overflow: hidden;
 		    h6 {
 		    	color: $black;
+		    	padding: $padding + 1px;
 		    	@include fonts('open_sansbold');
 		    	font-size: 14px;
 		    	margin-left: $margin-left + 2px;
 		    	margin-bottom: $margin-bottom - 5px;
+		    	line-height: 1.5;
+		    	&:hover,
+				&:focus {
+					color: $green;
+					@include transition(0.2s);
+				}
 		    }
 		}
 		.box-border-2 {
 			border-left: 10px solid $green;
 			border-bottom: 1px solid #ddd;
-		    height: 45px;
+		    height: 40px;
 		    overflow: hidden;
 		    h6 {
 		    	color: $black;
+		    	padding: $padding + 1px;
 		    	@include fonts('open_sansbold');
 		    	font-size: 14px;
 		    	margin-left: $margin-left + 2px;
+		    	line-height: 1.5;
+		    	&:hover,
+				&:focus {
+					color: $green;
+					@include transition(0.2s);
+				}
 		    }
 		}
 	}
