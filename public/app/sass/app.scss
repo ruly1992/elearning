@@ -86,13 +86,6 @@ body {
 	background-color: $white;
 	border-color: $grey-black;
 }
-.custom-dropdown-login {
-	width: 255px;
-	height: auto;
-	.menu-login {
-		padding: 5px;
-	}
-}
 
 /* HEADER */
 
@@ -2985,6 +2978,13 @@ header {
 				margin-top: $margin-top - 15px;
 			}
 		}
+	}
+}
+.custom-dropdown-login {
+	width: 255px;
+	height: auto;
+	.menu-login {
+		padding: 5px;
 	}
 }
 
