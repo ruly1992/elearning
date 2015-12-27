@@ -16,4 +16,9 @@
     .top-nav-collapse {
         padding: 0;
     }
+    .border {
+    	border-top: 4px solid #1c9c57;
+    }
 }
+	
+
