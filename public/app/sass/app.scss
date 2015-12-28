@@ -98,6 +98,31 @@ header {
 		padding-right: $padding-right - 2px;
 		padding-bottom: $padding-bottom - 7px;
 		padding-left: $padding-left -2px;
+		.header-top-right {
+			.form-control {
+				height: 30px;
+				font-size: 10px;
+				width: 150px;
+				float: right;
+				border: 1px solid $white;
+				@include transition(0.3s);
+				&:focus {
+					width: 100%;
+					@include transition(0.3s);
+				}
+			}
+			.btn {
+				height: 30px;
+				font-size: 10px;
+				padding-top: $padding-top - 2px;
+				border: 1px solid $white;
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: $white;
+				}
+			}
+		}
 		.header-top-left,
 		.header-top-right {
 			ul {
@@ -121,6 +146,7 @@ header {
 			font-size: 14px;
 		}
 	}
+	// ADD FAJAR EKO S
 	#header-content {
 		padding-top: $padding-top + 15px;
 		padding-bottom: $padding-bottom + 15px;
@@ -191,6 +217,7 @@ header {
 				}
 		}
 	}
+	// End content create fajar eko s
 	#navbar-main {
 		z-index: 99;
 		.navbar {
