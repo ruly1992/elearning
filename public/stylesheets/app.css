@@ -2715,6 +2715,21 @@ a {
   opacity: 0.7;
   color: #fff !important; }
 
+.alert-thread {
+  background-color: #5CB85C !important;
+  opacity: 0.7;
+  color: #fff !important; }
+
+.alert-topic {
+  background-color: #1c9c57 !important;
+  opacity: 0.7;
+  color: #fff !important; }
+
+.alert-ytopic {
+  background-color: #5BC0DE !important;
+  opacity: 0.7;
+  color: #fff !important; }
+
 .preview-media {
   overflow-y: hidden;
   width: 700px; }
