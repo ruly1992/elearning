@@ -26,6 +26,12 @@ class Konsultasi extends CI_Controller {
 
 	public function index()
 	{
+        if($this->session->flashdata('success')){
+            $data['success'] = $this->session->flashdata('success');
+        }elseif($this->session->flashdata('failed')){
+            $data['failed'] = $this->session->flashdata('failed');
+        }
+
 		$konsultasi             = collect($this->M_konsultasi->getKonsultasiLearner());
         $data['konsultasi']     = pagination($konsultasi, 10, 'konsultasi');
 
@@ -77,12 +83,23 @@ class Konsultasi extends CI_Controller {
 
             $save = $this->M_konsultasi->create($data, $categories, $status);
 
+            if($save==TRUE){
+                $this->session->set_flashdata('success','Konsultasi baru berhasil dibuat');
+            }else{
+                $this->session->set_flashdata('failed','Konsultasi baru tidak berhasil dibuat');
+            }
             redirect('konsultasi/','refresh');
         }
     }
 
     public function detail($id)
     {
+        if($this->session->flashdata('success')){
+            $data['success'] = $this->session->flashdata('success');
+        }elseif($this->session->flashdata('failed')){
+            $data['failed'] = $this->session->flashdata('failed');
+        }
+
         $this->form_validation->set_rules('isi', 'Isi', 'required');
 
         if ($this->form_validation->run() == FALSE) {            
@@ -118,10 +135,14 @@ class Konsultasi extends CI_Controller {
             $id_konsultasi      = set_value('id_konsultasi');
 
             $save             = $this->M_konsultasi->sendReply($reply, $id_konsultasi);
-            $updateKonsultasi = $this->M_konsultasi->update($id);
+
+            if($save==TRUE){
+                $this->session->set_flashdata('success','Anda berhasil Mereply Konsultasi');
+            }else{
+                $this->session->set_flashdata('failed','Anda Tidak Berhasil Mereply Konsultasi');
+            }
 
             redirect('konsultasi/detail/'.$id);
-
         }
     }
 
