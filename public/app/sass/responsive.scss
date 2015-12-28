@@ -1,8 +1,44 @@
+@import url('../../fonts/opensans/style.css');
+
+$white: #fff;
+$black: #000;
+$grey: #f5f5f5;
+$red: #d41d2a;
+$grey-black: #dddddd;
+$green: #1c9c57;
+$green-black: #128a4a;
+$yellow: #ffeb3b;
+$aspalt: #263238;
+$aspalt-light: #37474f;
+
+$margin: 5px;
+$margin-top: 5px;
+$margin-right: 5px;
+$margin-bottom: 5px;
+$margin-left: 5px;
+
+$padding: 5px;
+$padding-top: 5px;
+$padding-right: 5px;
+$padding-bottom: 5px;
+$padding-left: 5px;
+
+@mixin fonts($fonts){
+  font-family: $fonts, sans-serif;
+}
+
 @mixin border-radius($border-radius) {
   border-radius: $border-radius;
   -webkit-border-radius: $border-radius;
      -moz-border-radius: $border-radius;
        -o-border-radius: $border-radius;
+}
+
+@mixin transition($transition) {
+  transition: all $transition ease-in-out;
+  -webkit-transition: all $transition ease-in-out;
+     -moz-transition: all $transition ease-in-out;
+       -o-transition: all $transition ease-in-out;
 }
 
 @media (min-width: 320px) and (max-width: 360px) {
@@ -261,12 +297,6 @@
       width: 150px;
     }
   }
-  .float-center {
-      float: right;
-      left: -30%;
-      position: relative;
-      text-align: left;
-  }
   .dropdown-people{
     .dropdown-toggle{
       img{
@@ -276,7 +306,86 @@
       }
     }
   }
- 
+  .custom-login-mobile {
+    width: 255px;
+    height: auto;
+    .menu-login {
+      padding: 5px;
+      .form-login {
+        border-bottom: 1px solid $grey-black;
+        margin-bottom: $margin-bottom + 7px;
+      }
+      padding: $padding + 15px;
+      > p {
+        font-size: 12px;
+        line-height: normal;
+        margin-bottom: $margin-bottom + 5px;
+      }
+      .c-input>input:checked~.c-indicator {
+        background-color: $green;
+        border: 1px solid $green;
+      }
+      .c-input>input:focus~.c-indicator {
+        -webkit-box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
+        box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
+      }
+      .c-input.c-checkbox {
+        font-size: 10px;
+        .c-indicator {
+          background-color: $grey-black;
+          border: 1px solid #999;
+          width: 0.8rem;
+          height: 0.8rem;
+        }
+      }
+      label {
+        margin-top: $margin-top - 20px;
+        a {
+          font-size: 10px;
+          color: $green;
+          &:hover,
+          &:active,
+          &:focus {
+            color: $white;
+          }
+        }
+      }
+      form {
+        .form-group {
+          margin-bottom: $margin-bottom;
+          .form-control {
+            border: 2px solid $grey-black;
+            height: 30px;
+            background-color: transparent;
+            @include transition(0.5s);
+            &:focus {
+              border: 2px solid $green;
+              @include transition(0.5s);
+            }
+          }
+          .form-control[placeholder] {
+            font-size: 12px;
+          }
+          .btn-login {
+            background-color: $green;
+            color: $white;
+            @include fonts('open_sanssemibold');
+            margin-top: $margin-top + 5px;
+          }
+          .btn-submit-artikel {
+            background-color: $aspalt-light;
+            color: $grey;
+            &:hover,
+            &:focus,
+            &:active {
+              background: $aspalt;
+              color: $grey-black;
+            }
+          }
+        }
+      }
+    }
+  }
   #header {
     .header-top-left {
       display: none;
