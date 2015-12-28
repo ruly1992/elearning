@@ -24,13 +24,13 @@ class Article
         $this->tags             = [];
     }
 
-    public function submit($article, $name, $email, $desa = 0, $featured = null, $custom_avatar = null)
+    public function submit($article, $name, $email, $desa = 0, $categories = [], $featured = null, $custom_avatar = null)
     {
-        $this->set($article);
+        $this->set($article, $categories);
 
-        $this->model->nama  = $name;
-        $this->model->email = $email;
-        // $this->model->desa()->associate($desa);
+        $this->model->nama      = $name;
+        $this->model->email     = $email;
+        $this->model->desa_id   = $desa;
 
         $this->saveToDraft();
 

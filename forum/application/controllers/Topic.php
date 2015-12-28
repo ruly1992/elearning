@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Symfony\Component\HttpFoundation\Request;
 use Nurmanhabib\WilayahIndonesia\Sources\DatabaseSource;
 
 class Topic extends CI_Controller 
@@ -16,9 +17,7 @@ class Topic extends CI_Controller
         if(!sentinel()->check()) {
             redirect(login_url());
         }
-    }
 
-    public function getWilayah(){
         $hostname = getenv('AUTH_DB_HOST') ?: 'localhost';
         $username = getenv('AUTH_DB_USERNAME') ?: 'root';
         $password = getenv('AUTH_DB_PASSWORD') ?: '';
@@ -26,6 +25,20 @@ class Topic extends CI_Controller
 
         $source = new DatabaseSource($hostname, $username, $password, $database);
         $this->wilayah->setSource($source);
+    }
+
+    public function wilayah(){
+        echo $this->wilayah->ajax();
+    }
+
+    public function getWilayah(){
+        // $hostname = getenv('AUTH_DB_HOST') ?: 'localhost';
+        // $username = getenv('AUTH_DB_USERNAME') ?: 'root';
+        // $password = getenv('AUTH_DB_PASSWORD') ?: '';
+        // $database = getenv('AUTH_DB_DATABASE') ?: 'portal_learning';
+
+        // $source = new DatabaseSource($hostname, $username, $password, $database);
+        // $this->wilayah->setSource($source);
 
         $source = $this->wilayah->getSource();
         return $source->getAllProvinsi();
@@ -72,7 +85,6 @@ class Topic extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['categories']     = $this->model_topic->get_categories();
-        $data['provinsi']       = $this->getWilayah();
 
     	$this->load->view('topic/create', $data);
     }
@@ -85,7 +97,7 @@ class Topic extends CI_Controller
 
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
-        $this->form_validation->set_rules('daerah','Daerah','required');
+        $this->form_validation->set_rules('desa','Daerah','required');
 
         if($this->form_validation->run()==TRUE){
             $category           = set_value('kategori'); 
@@ -104,7 +116,7 @@ class Topic extends CI_Controller
                 'tenaga_ahli' => $user->id, 
                 'category'    => $category,
                 'topic'       => set_value('topic'),
-                'daerah'      => set_value('daerah'),
+                'daerah'      => set_value('desa'),
                 'created_at'  => date('Y-m-d H:i:s'),
                 'status'      => $status
             );
@@ -131,11 +143,15 @@ class Topic extends CI_Controller
 
         $getTopic = $this->model_topic->selectTopic($id);
         foreach($getTopic as $t){
+            $daerah = explode('.', $t->daerah);
             $data = array(
                 'idTopic'  => $t->id,
                 'kategori' => $t->category,
                 'topic'    => $t->topic,
-                'daerah'   => $t->daerah
+                'provinsi' => $daerah[0].'.00.00.0000',
+                'kabkota'  => $daerah[0].'.'.$daerah[1].'.00.0000',
+                'kecamatan'=> $daerah[0].'.'.$daerah[1].'.'.$daerah[2].'.0000',
+                'desa'     => $t->daerah
             );
         }
 
@@ -144,7 +160,7 @@ class Topic extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['categories']     = $this->model_topic->get_categories();
-        $data['provinsi']       = $this->getWilayah();
+        //$data['provinsi']       = $this->getWilayah();
 
         $this->load->view('topic/edit',$data);
     }
@@ -157,7 +173,7 @@ class Topic extends CI_Controller
 
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
-        $this->form_validation->set_rules('daerah','Daerah','required');
+        $this->form_validation->set_rules('desa','Daerah','required');
 
         if($this->form_validation->run()==TRUE){
             $user = sentinel()->getUser();
@@ -166,7 +182,7 @@ class Topic extends CI_Controller
                 'tenaga_ahli' => $user->id,
                 'category'    => set_value('kategori'),
                 'topic'       => set_value('topic'),
-                'daerah'      => set_value('daerah'),
+                'daerah'      => set_value('desa'),
                 'updated_at'  => date('Y-m-d H:i:s')
             );
 
