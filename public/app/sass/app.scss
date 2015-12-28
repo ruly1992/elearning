@@ -3319,6 +3319,24 @@ a {
   color: $white !important;
 }
 
+.alert-thread {
+  background-color: #5CB85C !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
+.alert-topic {
+  background-color: $green !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
+.alert-ytopic {
+  background-color: #5BC0DE !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
 .preview-media {
   overflow-y: hidden;
   width: 700px;
