@@ -58,38 +58,67 @@ header {
     header #header-top .header-top-left li {
       padding-right: 25px;
       font-size: 14px; }
-    header #header-top .header-top-right .form-control {
-      height: 25px;
-      font-size: 10px;
-      width: 150px;
-      float: right;
-      border: 1px solid #fff;
-      transition: all 0.3s ease-in-out;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out; }
-      header #header-top .header-top-right .form-control:focus {
-        width: 100%;
+  header #header-content {
+    padding-top: 20px;
+    padding-bottom: 20px; }
+    header #header-content .navbar-brand {
+      width: 220px; }
+      header #header-content .navbar-brand img {
+        width: 100%; }
+    header #header-content .header-top-right {
+      margin-top: 10px; }
+      header #header-content .header-top-right .form-control {
+        height: 30px;
+        font-size: 10px;
+        width: 150px;
+        float: right;
+        border: 1px solid #fff;
         transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out; }
-    header #header-top .header-top-right .btn {
-      height: 25px;
-      font-size: 10px;
-      padding-top: 3px;
-      border: 1px solid #fff; }
-      header #header-top .header-top-right .btn:hover, header #header-top .header-top-right .btn:focus, header #header-top .header-top-right .btn:active {
-        background-color: #fff; }
-  header #header-content {
-    padding-top: 7px;
-    padding-bottom: 7px; }
-    header #header-content .navbar-brand {
-      width: 150px; }
-      header #header-content .navbar-brand img {
-        width: 100%; }
-    header #header-content .header-top-right {
-      margin-top: 2px; }
+        header #header-content .header-top-right .form-control:focus {
+          width: 100%;
+          transition: all 0.3s ease-in-out;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out; }
+      header #header-content .header-top-right .btn {
+        height: 30px;
+        font-size: 10px;
+        padding-top: 3px;
+        border: 1px solid #fff; }
+        header #header-content .header-top-right .btn:hover, header #header-content .header-top-right .btn:focus, header #header-content .header-top-right .btn:active {
+          background-color: #fff; }
+    header #header-content .search-navbar {
+      margin-top: 7px; }
+      header #header-content .search-navbar input {
+        width: 65px;
+        height: 45px;
+        transition: all 0.5s ease-in-out;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        border: 1px solid white;
+        color: #dddddd; }
+      header #header-content .search-navbar input[placeholder] {
+        color: #dddddd;
+        font-size: 13px;
+        height: 45px; }
+      header #header-content .search-navbar input:focus {
+        width: 130px;
+        transition: all 0.5s ease-in-out;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        float: right; }
+      header #header-content .search-navbar .btn {
+        height: 45px;
+        border: 1px solid #fff; }
+        header #header-content .search-navbar .btn:hover, header #header-content .search-navbar .btn:focus, header #header-content .search-navbar .btn:active {
+          background-color: #fff; }
+        header #header-content .search-navbar .btn i.fa {
+          color: #dddddd; }
   header #navbar-main {
     z-index: 99; }
     header #navbar-main .navbar {
@@ -98,7 +127,6 @@ header {
       -webkit-border-radius: 0;
       -moz-border-radius: 0;
       -o-border-radius: 0;
-      border-top: 4px solid #1c9c57;
       background-color: #f5f5f5;
       padding-top: 0px;
       padding-bottom: 0px; }
@@ -120,7 +148,7 @@ header {
           -moz-transition: all 0.3s ease-in-out;
           -o-transition: all 0.3s ease-in-out; }
         header #navbar-main .navbar .navbar-nav > li > a {
-          height: 56px;
+          height: 60px;
           padding-left: 15px;
           padding-right: 15px;
           padding-top: 20px;
@@ -182,6 +210,31 @@ header {
         float: right; }
       header #navbar-main .navbar-dashboard .navbar-nav .dropdown a.nav-link {
         padding-top: 14px; }
+    header #navbar-main .header-top-right .form-control {
+      margin-top: 15px;
+      height: 30px;
+      font-size: 10px;
+      width: 150px;
+      float: right;
+      border: 1px solid #fff;
+      transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out; }
+      header #navbar-main .header-top-right .form-control:focus {
+        width: 100%;
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out; }
+    header #navbar-main .header-top-right .btn {
+      margin-top: 15px;
+      height: 30px;
+      font-size: 10px;
+      padding-top: 3px;
+      border: 1px solid #fff; }
+      header #navbar-main .header-top-right .btn:hover, header #navbar-main .header-top-right .btn:focus, header #navbar-main .header-top-right .btn:active {
+        background-color: #fff; }
   header .dropdown-menu a {
     font-size: 14px;
     color: #37474f;
