@@ -59,7 +59,7 @@ class Konsultasi extends CI_Controller {
             if ( ! $this->upload->do_upload('files')) {                
                 $data = array(
                     'subjek'                        => set_value('subjek'),
-                    'pesan'                         => set_value('pesan'),
+                    'pesan'                         => set_value('pesan', '', FALSE),
                     'prioritas'                     => set_value('prioritas'),
                     'id_kategori'                   => set_value('id_konsultasi_kategori'),
                     'user_id'                       => sentinel()->getUser()->id,
@@ -71,7 +71,7 @@ class Konsultasi extends CI_Controller {
                 $data = array(
                         'attachment'     => $file_data['file_name'],
                         'subjek'         => set_value('subjek'),
-                        'pesan'          => set_value('pesan'),
+                        'pesan'          => set_value('pesan', '', FALSE),
                         'prioritas'      => set_value('prioritas'),
                         'id_kategori'    => set_value('id_konsultasi_kategori'),
                         'user_id'        => sentinel()->getUser()->id,
@@ -118,7 +118,7 @@ class Konsultasi extends CI_Controller {
 
             if (! $this->upload->do_upload('files')) {                
                 $reply = array(
-                    'isi'           => set_value('isi'),
+                    'isi'           => set_value('isi', '', FALSE),
                     'id_konsultasi' => $id,
                     'id_user'       => sentinel()->getUser()->id,
                 );
@@ -127,7 +127,7 @@ class Konsultasi extends CI_Controller {
 
                 $reply = array(
                     'attachment'    => $file_data['file_name'],
-                    'isi'           => set_value('isi'),
+                    'isi'           => set_value('isi', '', FALSE),
                     'id_konsultasi' => $id,
                     'id_user'       => sentinel()->getUser()->id,
                 );
