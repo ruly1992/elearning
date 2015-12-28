@@ -82,9 +82,8 @@ class User extends Admin {
     public function updateProfile($id)
     {
         $source = $this->wilayah->getSource();
-        $auth   = new Library\Auth\Auth;
 
-        $user               = $auth->getById($id);
+        $user               = sentinel()->findById($id);
         $user->wilayah      = $source->getParentByDesa($user->profile->desa_id);
         
         $data['user']       = $user;
@@ -112,13 +111,18 @@ class User extends Admin {
             'avatar'             => set_value('avatar'),
         );
         
-        $res = $this->model->update($id, $user, $profile);
+        $userModel = sentinel()->findById($id);
+        $userModel->fill($user);
+        $userModel->save();
+        $userModel->profile()->update($profile);
 
-        if (isset($_FILES['avatar']) && $_FILES['avatar']['tmp_name']) {
-            $this->model->setAvatar($id, $_FILES['avatar']);
-        }
+        // $res = $this->model->update($id, $user, $profile);
 
-        if ($res==TRUE) {
+        // if (isset($_FILES['avatar']) && $_FILES['avatar']['tmp_name']) {
+        //     $this->model->setAvatar($id, $_FILES['avatar']);
+        // }
+
+        if ($userModel->id) {
             set_message_success('User berhasil diperbarui.');
 
             redirect('user/updateProfile/'.$id);
@@ -136,7 +140,7 @@ class User extends Admin {
         $this->form_validation->set_rules('password_old', 'Old Password', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['user'] = auth()->getById($user_id);
+            $data['user'] = auth()->findById($user_id);
 
             $this->template->build('formChangePass', $data);
         } else {

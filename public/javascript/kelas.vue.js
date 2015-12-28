@@ -13,11 +13,6 @@ $(document).ready(function () {
                             
                         }
                     ]
-                },
-                {
-                    id: 2,
-                    name: 'Belajar Dengan Bolpoin',
-                    description: 'Jangan lupa bawa bolpoin'
                 }
             ]
         },

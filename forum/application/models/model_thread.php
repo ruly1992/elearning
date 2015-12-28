@@ -4,7 +4,8 @@ class Model_thread extends CI_Model
 {
     function save_thread($data)
     {
-        if($this->db->insert('threads',$data)){
+        $this->db->insert('threads',$data);
+        if($this->db->affected_rows() == '1'){
           return TRUE;
         } else {
           return FALSE;
@@ -14,7 +15,7 @@ class Model_thread extends CI_Model
     function delete_thread($id)
     {
         $delete = $this->db->delete('threads', array('id'=>$id));
-        if($delete){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;
@@ -24,7 +25,7 @@ class Model_thread extends CI_Model
     function delete_thread_by_topic($idTopic)
     {
         $delete = $this->db->delete('threads', array('topic'=>$idTopic));
-        if($delete){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;
@@ -36,7 +37,7 @@ class Model_thread extends CI_Model
         $this->db->where('id',$id);
         $update = $this->db->update('threads', $data); 
         
-        if($update){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }
         return FALSE;
@@ -50,7 +51,11 @@ class Model_thread extends CI_Model
     function get_thread($id)
     {
         $items = array('threads.*', 'categories.category_name', 'categories.id AS idCategory');
-        $get   = $this->db->select($items)->from('threads')->join('categories','categories.id=threads.category')->where('threads.id',$id)->get();
+        $get   = $this->db->select($items)
+                        ->from('threads')
+                        ->join('categories','categories.id=threads.category')
+                        ->where('threads.id',$id)
+                        ->get();
         return $get->result();
     }
     
@@ -71,12 +76,14 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_all_drafts()
+    function get_all_drafts($id)
     {
-        $items = array('threads.*','categories.category_name');
+        $items = array('threads.*', 'categories.category_name', 'topics.topic AS topic_name');
         $get   = $this->db->select($items)->from('threads')
-                ->join('categories','categories.id=threads.category')
-                ->where(array('reply_to'=>'0', 'status'=>'0'))
+                ->join('categories', 'categories.id=threads.category')
+                ->join('topics', 'topics.id=threads.topic')
+                ->join('category_user', 'category_user.category_id=threads.category')
+                ->where(array('reply_to'=>'0', 'threads.status'=>'0', 'category_user.user_id'=>$id))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();
@@ -94,13 +101,14 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_draft_threads_by_category($id)
+    function get_draft_threads_by_category($idTA, $idCategory)
     {
         $items = array('threads.*', 'categories.category_name', 'topics.topic AS topic_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories', 'categories.id=threads.category')
                 ->join('topics', 'topics.id=threads.topic')
-                ->where(array('reply_to'=>'0', 'thread.status'=>'0', 'threads.category'=>$id))
+                ->join('category_user', 'category_user.category_id=threads.category')
+                ->where(array('reply_to'=>'0', 'threads.status'=>'0', 'category_user.user_id'=>$idTA, 'threads.category'=>$idCategory))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();
@@ -131,7 +139,11 @@ class Model_thread extends CI_Model
     function get_reply($id)
     {
         $items = array('threads.*','categories.category_name');
-        $get   = $this->db->select($items)->from('threads')->join('categories','categories.id=threads.category')->where('reply_to',$id)->get();
+        $get   = $this->db->select($items)
+                        ->from('threads')
+                        ->join('categories','categories.id=threads.category')
+                        ->where('reply_to',$id)
+                        ->get();
         return $get->result();
     }
 
@@ -145,7 +157,7 @@ class Model_thread extends CI_Model
     {
         $this->db->where('reply_to', $id);
         $delete = $this->db->delete('threads');
-        if($delete){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;
@@ -158,11 +170,16 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
+    function get_category_users($id){
+        $get = $this->db->get_where('category_user', array('user_id'=>$id));
+        return $get->result();
+    }
+
     function approve_thread($data, $id)
     {   
         $this->db->where('id', $id);
         $update = $this->db->update('threads', $data);
-        if($update){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;

@@ -146,6 +146,19 @@ header {
 			}
 		}
 	}
+	#header-content {
+		padding-top: $padding-top + 2px;
+		padding-bottom: $padding-bottom + 2px;
+		.navbar-brand {
+			width: 150px;
+			img {
+				width: 100%;
+			}
+		}
+		.header-top-right {
+			margin-top: $margin-top - 3px;
+		}
+	}
 	#navbar-main {
 		z-index: 99;
 		.navbar {
@@ -2610,6 +2623,25 @@ header {
 				}
 			}
 		}
+		.single-article-share {
+			margin-top: $margin-top - 25px;
+			img {
+				width: 30px;
+				height: 30px;
+			}
+			.share {
+				border: 1px solid $grey;
+				padding: $padding - 3px;
+				margin-left: $margin-left;
+				@include border-radius(3px);
+				h6 {
+					font-size: 14px;
+					padding-top: $padding-top - 1px;
+					margin-bottom: $margin-bottom;
+				}
+			}
+			margin-bottom: $margin-bottom;
+		}
 	}
 	#comments {
 		.comments-form {
@@ -3136,36 +3168,37 @@ footer {
 		}
 	}
 }
-
+// add fajar eko 
 .favorit {
-  .box-articles-widget-img {
-    height: 130px;
-    overflow: hidden;
-    img {
-      width: 100%;
-    }
-  }
-  .box-title {
-  	overflow: hidden;
-  }
-  .box-articles-widget-title {
-    margin-top: $margin-top - 135; 
-    background-color: rgba(0,0,0, 0.5);
-	padding: $padding;
-	width: auto;
-	height: 38px;
-    h4 {
-      font-size: 14px;
-    }
-    a {
-      color: $white;
-      &:hover,
-      &:active,
-      &:focus {
-      	color: $green;
-      }
-    }
-  }
+	a {
+    	text-decoration: none !important;
+    	color: $black;
+		.box-border-1 {
+			border-left: 10px solid $green-black;
+			border-bottom: 1px solid #ddd;
+		    height: 45px;
+		    overflow: hidden;
+		    h6 {
+		    	color: $black;
+		    	@include fonts('open_sansbold');
+		    	font-size: 14px;
+		    	margin-left: $margin-left + 2px;
+		    	margin-bottom: $margin-bottom - 5px;
+		    }
+		}
+		.box-border-2 {
+			border-left: 10px solid $green;
+			border-bottom: 1px solid #ddd;
+		    height: 45px;
+		    overflow: hidden;
+		    h6 {
+		    	color: $black;
+		    	@include fonts('open_sansbold');
+		    	font-size: 14px;
+		    	margin-left: $margin-left + 2px;
+		    }
+		}
+	}
 }
 
 .dropdown-people {
@@ -3721,8 +3754,8 @@ a {
 	background-color: $white;
 	.content-submit {
 		margin-top: $margin-top + 20px;
-		.submit {
-			.submit-heading {
+		.widget {
+			.widget-heading {
 				display: block;
 				margin-bottom: $margin-bottom + 10px;
 				@include fonts('open_sansbold');
@@ -3747,7 +3780,7 @@ a {
 					}
 				}
 			}
-			.submit-sidebar-heading {
+			.widget-sidebar-heading {
 				border-bottom: 3px solid $red;
 				display: block;
 				margin-bottom: $margin-bottom + 10px;
@@ -3768,13 +3801,46 @@ a {
 					color: $white;
 				}
 			}
-			.submit-sidebar-content{
+			.widget-sidebar-content{
+				margin-bottom: $margin-bottom + 5px;
+				border: 1px solid $grey;
+				@include border-radius(3px);
 				.list-group-item {
 					font-size: 13px;
+					@include border-radius(3px);
 					&.active {
 						background-color: $green;
 						border: 1px solid $green;
-						font-size: 13px;
+						font-size: inherit;
+					}
+					.child {
+						margin-top: $margin-top + 5px;
+						margin-left: $margin-left + 10px;
+						padding: $padding;
+					}
+				}
+				.c-input>input:checked~.c-indicator {
+					background-color: $green;
+					border: 1px solid $green;
+				}
+				.c-input>input:focus~.c-indicator {
+					-webkit-box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
+					box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
+				}
+				.c-input.c-checkbox {
+					font-size: 14px;
+					.c-indicator {
+						background-color: $grey-black;
+						border: 1px solid #999;
+						width: 0.8rem;
+						height: 0.8rem;
+					}
+				}
+				.image-preview {
+					margin-bottom: $margin-bottom;
+					img {
+						width: 285px;
+						height: 150px;
 					}
 				}
 			}
@@ -4003,7 +4069,6 @@ a {
 		}
 	}
 }
-
 /* STEPY KELAS ONLINE */ 
 .content-chapter {
 	border: 1px solid #ddd;
@@ -4033,4 +4098,15 @@ a {
 		@include border-radius(3px);
 		background-color: $aspalt-light;
     }
+}
+
+.card-header {
+	.btn-exam {
+		padding: 3px 5px;
+		font-size: 12px;
+		line-height: 1.5;
+		color: $white;
+		@include border-radius(3px);
+		background-color: $aspalt-light;
+	}
 }

@@ -4,7 +4,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class Kategori extends Admin
 {
-    protected $roles = ['su', 'adm', 'edt'];
+    protected $roles = ['su', 'adm'];
 
     public function __construct()
     {
@@ -71,18 +71,18 @@ class Kategori extends Admin
             $editor                     = set_value('editor', []);
 
             $category   = Model\Portal\Category::findOrFail($id);
-            $category->update($kategori);
+            $updated    = $category->update($kategori);
 
             $category->editors()->sync($editor);
 
-            if ($res==TRUE) {
+            if ($updated) {
                 set_message_success('Kategori berhasil diperbarui.');
 
                 redirect('kategori');
             } else {
                 set_message_error('Kategori gagal diperbarui.');
 
-                redirect('kategori/update');    
+                redirect('kategori/update/'.$id);    
             }
         }
     }

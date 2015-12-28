@@ -29,3 +29,13 @@
 			}
 		return $sum_categories;
 	}
+
+	function checkTA($idCategory, $categoryUser){
+		foreach($categoryUser as $cu){
+			if($idCategory == $cu->category_id){
+				return TRUE;
+			}else{
+				return FALSE;
+			}
+		}
+	}
