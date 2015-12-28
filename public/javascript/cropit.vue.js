@@ -57,6 +57,10 @@ $(document).ready(function () {
                 if (this.name == name)
                     this.remove();
             }
+        },
+        ready: function () {
+            if (this.imageSrc == "")
+                this.imageSrc = this.imageEmpty;
         }
     })
 
