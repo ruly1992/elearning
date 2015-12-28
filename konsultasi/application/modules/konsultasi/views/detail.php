@@ -6,6 +6,19 @@
             <li>Konsulitasi</li>
             <li class="active"><?php echo $konsultasi->subjek ?></li>
         </ol>
+        <?php 
+            if(isset($failed)){
+                echo '<div class="alert alert-danger">';
+                    echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                    echo '<strong>Warning!</strong> '.$failed;
+                echo '</div>';
+            }elseif(isset($success)){
+                echo '<div class="alert alert-info">';
+                    echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                    echo '<strong>Success!</strong> '.$success;
+                echo '</div>';
+            }
+        ?>
         <!-- start:content -->
         <div class="content-konsultasi-main">
             <div class="content-konsultasi-title">
@@ -108,7 +121,7 @@
                                                 </h4>
                                             </div>
                                             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                <form method="POST" action="<?php echo site_url('dashboard/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
+                                                <form method="POST" action="<?php echo site_url('konsultasi/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col-md-8">
