@@ -151,19 +151,54 @@ class Media extends Admin
             $mediaFiles[$i] = $this->media_model->getFileData($name, $created_at, $userId, $status);
         }
 
-            $this->template->add_stylesheet('node_modules/awesomplete/awesomplete.css');
-            $this->template->add_stylesheet('node_modules/video.js/dist/video-js.min.css');
+            // $this->template->add_stylesheet('node_modules/awesomplete/awesomplete.css');
+            // $this->template->add_stylesheet('node_modules/video.js/dist/video-js.min.css');
 
-            $this->template->add_script('node_modules/vue/dist/vue.min.js');        
-            $this->template->add_script('node_modules/awesomplete/awesomplete.min.js');
-            $this->template->add_script('node_modules/video.js/dist/video.min.js');
-            $this->template->add_script('javascript/elib.multi.vue.js');
-            $this->template->add_script('javascript/elib.vue.js');
-            $this->template->add_script('javascript/elib.js');
+            // $this->template->add_script('node_modules/vue/dist/vue.min.js');        
+            // $this->template->add_script('node_modules/awesomplete/awesomplete.min.js');
+            // $this->template->add_script('node_modules/video.js/dist/video.min.js');
+            // $this->template->add_script('javascript/elib.multi.vue.js');
+            // $this->template->add_script('javascript/elib.vue.js');
+            // $this->template->add_script('javascript/elib.js');
 
         $data['files']  = $mediaFiles;
         //$this->load->view('upload_single', $data);
         $this->template->build('upload_single', $data);
+    }
+
+    public function addMeta($jumlah){
+        for($i=0; $i<$jumlah; $i++){
+            $this->form_validation->set_rules('id'.$i, 'Id'.$i, 'required');
+            $this->form_validation->set_rules('title'.$i, 'Title'.$i, 'required');
+            $this->form_validation->set_rules('description'.$i, 'Description'.$i, 'required');
+            $this->form_validation->set_rules('meta'.$i, 'Meta'.$i);
+
+            if($this->form_validation->run()==TRUE){
+                $id             = set_value('id'.$i);
+                $metadata[$i]   = set_value('meta'.$i);
+                $dataFile = array(
+                    'title'         => set_value('title'.$i),
+                    'description'   => set_value('description'.$i)
+                );
+                $this->media_model->update($id, $dataFile);
+                foreach($metadata[$i] AS $key => $value){
+                    $cek = $this->media_model->cekMeta($id, $key, $value);
+                    if($cek == FALSE){
+                        $dataMeta = array(
+                            'key'       => $key,
+                            'value'     => $value,
+                            'media_id'  => $id
+                        );
+                        $this->media_model->addMeta($dataMeta);
+                    }
+                }
+                redirect(site_url());
+            }else{
+                //redirect('media/upload
+                echo validation_errors();            
+            }
+        }
+
     }
 
     public function uploadsingle($media)
