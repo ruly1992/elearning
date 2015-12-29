@@ -141,6 +141,7 @@ class Media extends Admin
     }
 
     public function fillMeta($files){
+
         $mediaFiles = array();
         for($i=0; $i<count($files); $i++){
             $name       = $files[$i]['file_name'];
@@ -151,18 +152,8 @@ class Media extends Admin
             $mediaFiles[$i] = $this->media_model->getFileData($name, $created_at, $userId, $status);
         }
 
-            // $this->template->add_stylesheet('node_modules/awesomplete/awesomplete.css');
-            // $this->template->add_stylesheet('node_modules/video.js/dist/video-js.min.css');
-
-            // $this->template->add_script('node_modules/vue/dist/vue.min.js');        
-            // $this->template->add_script('node_modules/awesomplete/awesomplete.min.js');
-            // $this->template->add_script('node_modules/video.js/dist/video.min.js');
-            // $this->template->add_script('javascript/elib.multi.vue.js');
-            // $this->template->add_script('javascript/elib.vue.js');
-            // $this->template->add_script('javascript/elib.js');
-
         $data['files']  = $mediaFiles;
-        //$this->load->view('upload_single', $data);
+
         $this->template->build('upload_single', $data);
     }
 
@@ -194,7 +185,7 @@ class Media extends Admin
                 }
                 redirect(site_url());
             }else{
-                //redirect('media/upload
+                //redirect('media/upload');
                 echo validation_errors();            
             }
         }
@@ -213,18 +204,13 @@ class Media extends Admin
     {
         try {
             $user       = sentinel()->getUser();
-            $media      = Model\Elib\Media::withDrafts()->userId($user->id)->findOrFail($media);
+            $user       = sentinel()->getUser();
+            $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($media);
             $category   = $media->category;
+            $data['media']      = $media;
+            $data['category']   = $category;
 
-            $this->template->add_stylesheet('node_modules/awesomplete/awesomplete.css');
-            $this->template->add_stylesheet('node_modules/jquery-file-upload/css/uploadfile.css');
-            $this->template->add_script('node_modules/jquery-file-upload/js/jquery.uploadfile.min.js');
-            $this->template->add_script('node_modules/awesomplete/awesomplete.min.js');
-            $this->template->add_script('node_modules/vue/dist/vue.min.js');
-            $this->template->add_script('javascript/elib.vue.js');
-            $this->template->add_script('javascript/elib.fileupload.js');
-
-            $this->template->build('edit', compact('media', 'category'));
+            $this->template->build('edit', $data);
         } catch (\Exception $e) {
             set_message_error('Media tidak tersedia.');
 
@@ -251,7 +237,7 @@ class Media extends Admin
     {
         try {
             $user       = sentinel()->getUser();
-            $media      = Model\Elib\Media::withDrafts()->userId($user->id)->findOrFail($media_id);
+            $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($media_id);
             
             $this->medialib->setMedia($media);
 
