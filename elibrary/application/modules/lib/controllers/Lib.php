@@ -6,6 +6,8 @@ class Lib extends Admin {
     public function show($category, $id, $name)
     {
         $this->medialib = new Library\Media\Media;
+        $modelMedia = new Library\Media\Model\Media;
+        $user = sentinel()->getUser();
 
         $name   = urldecode($name);
         $media  = $this->medialib->getMedia()->where('file_name', 'like', $name . '%')->findOrFail($id);
@@ -14,7 +16,9 @@ class Lib extends Admin {
             'media'     => $media,
         ];
 
-        $media->resolveVisitorUnique();
+        // echo 'Media id = '.$media->id.'<br>';
+        // echo 'User id  = '.$user->id;
+        $modelMedia->resolveVisitorUnique($user, $media->id);
 
         $this->template->build('single', $data);
     }
