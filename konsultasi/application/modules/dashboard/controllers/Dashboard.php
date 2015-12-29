@@ -49,7 +49,7 @@ class Dashboard extends CI_Controller
 
             if (! $this->upload->do_upload('files')) {                
                 $reply = array(
-                    'isi'           => set_value('isi'),
+                    'isi'           => set_value('isi', '', FALSE),
                     'id_konsultasi' => $id,
                     'id_user'       => sentinel()->getUser()->id,
                 );
@@ -58,7 +58,7 @@ class Dashboard extends CI_Controller
 
                 $reply = array(
                     'attachment'    => $file_data['file_name'],
-                    'isi'           => set_value('isi'),
+                    'isi'           => set_value('isi', '', FALSE),
                     'id_konsultasi' => $id,
                     'id_user'       => sentinel()->getUser()->id,
                 );
@@ -66,7 +66,6 @@ class Dashboard extends CI_Controller
             
             $id_konsultasi      = set_value('id_konsultasi');
             $save               = $this->M_konsultasi->sendReply($reply, $id_konsultasi);
-            $updateKonsultasi   = $this->M_konsultasi->update($id);
 
             redirect('dashboard/detail/'.$id);
         }

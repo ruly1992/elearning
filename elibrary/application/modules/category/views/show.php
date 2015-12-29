@@ -1,5 +1,13 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="elib-content-single">
+            <div class="elib-single-breadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="<?php echo site_url() ?>">Home</a></li>
+                    <li><?php echo $category->name ?></li>
+                </ol>
+            </div>
+        </div>
         <div class="elib-content-left">
             <div class="elib-content-left-heading">
                 <h4>Library <?php echo $category->name ?></h4>

@@ -1,13 +1,17 @@
-<div class="elib-sidebar">
-    <div class="elib-sidebar-heading">
-        <h3>Kategori:</h3>
-    </div>
-    <ul class="nav nav-pills nav-stacked">
-        <?php $medialib = new Library\Media\Media; ?>
-        <?php foreach ($medialib->getCategories() as $category): ?>
-        <li class="nav-item">
-            <a class="nav-link" href="<?php echo $category->link ?>"><?php echo $category->name ?></a>
-        </li>
-        <?php endforeach ?>
-    </ul>
-</div>
+                    <div class="content-widget">
+                       <div class="widget">
+                            <div class="widget-categories">
+                                <div class="widget-categories-heading">
+                                    <h4>Categories</h4>
+                                </div>
+                                <div class="widget-categories-content">
+                                    <div class="list-group">
+                                        <?php $medialib = new Library\Media\Media; ?>
+                                        <?php foreach ($medialib->getCategories() as $category): ?>
+                                            <a href="<?php echo $category->link ?>" class="list-group-item"><?php echo $category->name ?></a>
+                                        <?php endforeach ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

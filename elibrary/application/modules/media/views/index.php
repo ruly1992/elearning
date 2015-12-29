@@ -1,4 +1,5 @@
-<p class="alert alert-info">Silahkan memilih kategori terlebih dahulu.</p>
+
+    <a href="<?php echo site_url('media/upload/') ?>" class="btn btn-primary"><i class="fa fa-upload"></i> Upload Media</a>
 
 <table class="table table-hover table-bordered">
 	<thead>
