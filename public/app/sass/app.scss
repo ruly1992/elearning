@@ -120,9 +120,21 @@ header {
 			padding-right: $padding-right + 20px ;
 			font-size: 14px;
 		}
+	}
+	#header-content {
+		padding-top: $padding-top + 15px;
+		padding-bottom: $padding-bottom + 15px;
+		.navbar-brand {
+			width: 220px;
+			img {
+				width: 100%;
+			}
+		}
+		//edited
 		.header-top-right {
+			margin-top: $margin-top + 5px;
 			.form-control {
-				height: 25px;
+				height: 30px;
 				font-size: 10px;
 				width: 150px;
 				float: right;
@@ -134,7 +146,7 @@ header {
 				}
 			}
 			.btn {
-				height: 25px;
+				height: 30px;
 				font-size: 10px;
 				padding-top: $padding-top - 2px;
 				border: 1px solid $white;
@@ -145,27 +157,45 @@ header {
 				}
 			}
 		}
-	}
-	#header-content {
-		padding-top: $padding-top + 2px;
-		padding-bottom: $padding-bottom + 2px;
-		.navbar-brand {
-			width: 150px;
-			img {
-				width: 100%;
-			}
-		}
-		.header-top-right {
-			margin-top: $margin-top - 3px;
+		//edited
+		.search-navbar {
+				margin-top: $margin-top + 2px;
+				input {
+					width: 65px;
+					height:45px;
+					@include transition(0.5s);
+					border: 1px solid white;
+					color: $grey-black;
+				}
+				input[placeholder] {
+					color: $grey-black;
+					font-size: 13px;
+					height: 45px;
+				}
+				input:focus {
+					width: 130px;
+					@include transition(0.5s);
+					float: right;
+				}
+				.btn {
+					height: 45px;
+					border: 1px solid $white;
+					&:hover,
+					&:focus,
+					&:active {
+						background-color: $white;
+					}
+					i.fa {
+						color: $grey-black;
+					}
+				}
 		}
 	}
 	#navbar-main {
 		z-index: 99;
 		.navbar {
-			//@include box-shadow( 0px 6px 12px -5px rgba(0,0,0,0.75));
 			height: 60px;
 			@include border-radius(0);
-			border-top: 4px solid $green;
 			background-color: $grey;
 			padding-top: $padding-top - 5px;
 			padding-bottom: $padding-bottom - 5px;
@@ -190,7 +220,7 @@ header {
 						}
 					}
 					> a {
-						height: 56px;
+						height: 60px;
 						padding-left: $padding-left + 10px;
 						padding-right: $padding-right + 10px;
 						padding-top: $padding-top + 15px;
@@ -204,6 +234,7 @@ header {
 					}
 				}
 			}
+			//edited
 			.search-navbar {
 				margin-top: $margin-top + 2px;
 				input {
@@ -261,6 +292,33 @@ header {
 					a.nav-link {
 						padding-top: 14px;
 					}
+				}
+			}
+		}
+		.header-top-right {
+			.form-control {
+				margin-top: $margin-top + 10px;
+				height: 30px;
+				font-size: 10px;
+				width: 150px;
+				float: right;
+				border: 1px solid $white;
+				@include transition(0.3s);
+				&:focus {
+					width: 100%;
+					@include transition(0.3s);
+				}
+			}
+			.btn {
+				margin-top: $margin-top + 10px;
+				height: 30px;
+				font-size: 10px;
+				padding-top: $padding-top - 2px;
+				border: 1px solid $white;
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: $white;
 				}
 			}
 		}
@@ -3312,6 +3370,24 @@ a {
   color: $white !important;
 }
 
+.alert-thread {
+  background-color: #5CB85C !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
+.alert-topic {
+  background-color: $green !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
+.alert-ytopic {
+  background-color: #5BC0DE !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
 .preview-media {
   overflow-y: hidden;
   width: 700px;
@@ -3876,7 +3952,18 @@ a {
 			color: $aspalt-light;
 		}
 	}
+	.btn-kelas {
+	    padding-top: $padding-top - 4;
+	    padding-right: $padding-right;
+	    padding-bottom: $padding-bottom - 4;
+	    padding-left: $padding-left;
+	    margin-top: $margin-top - 30;
+	    font-size: 10px;
+	    line-height: 1.5;
+	    @include border-radius(3px);
+	}
 }
+
 
 /* Landing FAQ
    Fajar Eko Susilo
@@ -4108,5 +4195,167 @@ a {
 		color: $white;
 		@include border-radius(3px);
 		background-color: $aspalt-light;
+	}
+}
+
+/* Content Kelas Online
+Create: Singgih Saputro */
+.content-kelas-online {
+	.content-main {
+		margin-top: $margin-top + 30px;
+		.breadcrumb {
+			margin-bottom: $margin-bottom + 20px;
+			li {
+				font-size: 12px;
+				a {
+					color: $green;
+					font-size: 12px;
+				}
+			}
+		}
+		.kelas-main {
+			.thead-inverse {
+				background-color: $grey !important;
+				font-size: 14px;
+			}
+			.thread-list-title {
+				@include fonts('open_sansbold');
+				h4 {
+					@include transition(0.3s);
+					margin-bottom: $margin-bottom - 5px;
+					font-size: 15px;
+					a {
+						@include transition(0.3s);
+						color: $black;
+						&:hover,
+						&:focus {
+							color: $green;
+							@include transition(0.3s);
+						}
+					}
+					small {
+						margin-left: $margin-left + 10px;
+						font-size: 9px;
+					}
+				}
+			}
+			.thread-list-meta {
+				ul {
+					list-style: none;
+					padding-left: $padding-left - 5px;
+					margin-bottom: $margin-bottom - 5px;
+					li {
+						display: inline-block;
+						margin-right: $margin-right + 15px;
+						font-size: 11px;
+						a {
+							color: $green;
+						}
+					}
+				}
+			}
+		}
+		.card {
+			.card-header {
+				.card-header-img {
+					text-align: center;
+					img {
+						width: 40px;
+						height: 40px;
+						@include border-radius(100%);
+						margin-bottom: $margin-bottom;
+					}
+					p {
+						margin-bottom: $margin-bottom - 5px;
+					}
+				}
+				.card-header-meta {
+					p {
+						margin-bottom: $margin-bottom - 5px;
+						font-size: 14px;
+						text-align: right;
+						i.fa {
+							margin-left: $margin-left;
+						}
+					}
+				}
+				p {
+					margin-bottom: $margin-bottom - 5px;
+					a {
+						color: $green;
+					}
+				}
+			}
+			.card-block {
+				.card-block-title {
+					margin-bottom: $margin-bottom + 20px;
+					h4 {
+						border-bottom: 1px solid $grey-black;
+						padding-bottom: $padding-bottom + 10px;
+					}
+				}
+				img {
+					margin-bottom: $margin-bottom + 5px;
+				}
+				.btn-post {
+					background-color: $green;
+					color: $white;
+				}
+			}
+			.card-footer {
+				.btn-reply {
+					background-color: $grey-black;
+					color: $aspalt-light;
+					@include transition(0.3s);
+					&:hover,
+					&:focus {
+						background-color: $green;
+						color: $white;
+						@include transition(0.3s);
+					}
+				}
+			}
+		}
+	}
+	.sidebar-kelas-online {
+		margin-top: $margin-top + 30px;
+		.widget {
+			margin-bottom: $margin-bottom + 30px;
+			.widget-categories {
+				.widget-categories-heading {
+					display: block;
+					border-bottom: 3px solid $red;
+					margin-bottom: $margin-bottom + 15px;
+					h4 {
+						display: inline-block;
+						margin-top: $margin-top - 5px;
+						margin-bottom: $margin-bottom - 5px;
+						padding-top: $padding-top + 5px;
+						padding-bottom: $padding-bottom + 5px;
+						border-top-left-radius: 4px;
+						border-top-right-radius: 4px;
+						font-size: 14px;
+						@include fonts('open_sansbold');
+						background-color: $red;
+						padding-left: $padding-left + 15px;
+						padding-right: $padding-right + 15px;
+						color: $white;
+					}
+				}
+				.widget-categories-content {
+					.list-group {
+						@include border-radius(0);
+						.list-group-item {
+							font-size: 14px;
+							&.active {
+								background-color: $green;
+								border: 1px solid $green;
+								font-size: 14px;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

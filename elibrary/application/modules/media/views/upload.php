@@ -2,18 +2,31 @@
     <div class="elib-single-breadcrumb">
         <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
-            <li><a href="<?php echo $category->link ?>"><?php echo $category->name ?></a></li>
+            <li><a href="#">Media</a></li>
             <li class="active">Upload</li>
         </ol>
     </div>
     <div class="title">
-        <h1>Upload</h1>
-            <input type="file" name="files[]" id="filer_input_media" multiple="multiple">
+        <?php echo form_open_multipart('media/submit'); ?>
+            <div class="form-group">
+                <label>Kategori</label>
+                <select class="form-control" name="kategori">
+                    <?php 
+                        foreach($categories AS $cat){
+                            echo '<option value="'.$cat->id.'">'.$cat->name.'</option>';
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
+            </div>
+            <button class="btn btn-danger" id="extrabutton">Start</button>
+        <?php echo form_close(); ?>
     </div>
     <div class="description-meta">
-        <div id="fileuploader" data-url="<?php echo site_url('media/submit/' . $category->id) ?>" data-category-id="<?php echo $category->id ?>">Upload</div>
+        <!-- <div id="fileuploader" data-url="<?php echo site_url('media/submit/') ?>" data-category-id="<?php //echo $category->id ?>">Upload</div> -->
     
-        <button class="btn btn-danger" id="extrabutton">Start</button>
     </div>
 </div>
 
