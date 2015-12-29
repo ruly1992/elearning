@@ -2705,30 +2705,57 @@ footer {
   .news4 .box-articles-widget-img img {
     width: auto; }
 
-.favorit a {
-  text-decoration: none !important;
-  color: #000; }
-  .favorit a .box-border-1 {
-    border-left: 10px solid #128a4a;
-    border-bottom: 1px solid #ddd;
-    height: 45px;
-    overflow: hidden; }
-    .favorit a .box-border-1 h6 {
-      color: #000;
-      font-family: "open_sansbold", sans-serif;
+.favorit {
+  margin-bottom: 25px; }
+  .favorit .widget-heading {
+    width: 100%;
+    height: 40px;
+    background-color: #37474f;
+    color: #fff;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    margin-bottom: 20px; }
+    .favorit .widget-heading h3 {
       font-size: 14px;
-      margin-left: 7px;
-      margin-bottom: 0px; }
-  .favorit a .box-border-2 {
-    border-left: 10px solid #1c9c57;
-    border-bottom: 1px solid #ddd;
-    height: 45px;
-    overflow: hidden; }
-    .favorit a .box-border-2 h6 {
-      color: #000;
       font-family: "open_sansbold", sans-serif;
-      font-size: 14px;
-      margin-left: 7px; }
+      text-transform: uppercase;
+      font-weight: 200;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 10px;
+      margin-bottom: -2px;
+      padding-bottom: 10px;
+      display: inline-block;
+      border-bottom: 5px solid #d41d2a; }
+  .favorit .widget-content .article {
+    display: block;
+    margin-left: -40px; }
+    .favorit .widget-content .article .list-article {
+      margin: 2px;
+      padding: 3px;
+      list-style: none;
+      border-bottom: 2px solid #dddddd; }
+      .favorit .widget-content .article .list-article a {
+        color: #000;
+        text-decoration: none; }
+        .favorit .widget-content .article .list-article a .list-numb {
+          color: #d41d2a;
+          font-size: 18px;
+          font-weight: 600;
+          float: left;
+          margin-left: 5px;
+          margin-right: 10px; }
+        .favorit .widget-content .article .list-article a .list-title {
+          line-height: normal;
+          padding-top: 5px; }
+          .favorit .widget-content .article .list-article a .list-title h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-left: 30px; }
+            .favorit .widget-content .article .list-article a .list-title h3 span {
+              color: #000; }
+              .favorit .widget-content .article .list-article a .list-title h3 span:hover, .favorit .widget-content .article .list-article a .list-title h3 span:focus, .favorit .widget-content .article .list-article a .list-title h3 span:active {
+                color: #1c9c57; }
 
 .dropdown-people .dropdown-toggle {
   cursor: pointer;

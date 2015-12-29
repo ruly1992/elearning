@@ -3306,33 +3306,68 @@ footer {
 }
 // add fajar eko 
 .favorit {
-	a {
-    	text-decoration: none !important;
-    	color: $black;
-		.box-border-1 {
-			border-left: 10px solid $green-black;
-			border-bottom: 1px solid #ddd;
-		    height: 45px;
-		    overflow: hidden;
-		    h6 {
-		    	color: $black;
-		    	@include fonts('open_sansbold');
-		    	font-size: 14px;
-		    	margin-left: $margin-left + 2px;
-		    	margin-bottom: $margin-bottom - 5px;
-		    }
+	margin-bottom: $margin-bottom + 20px;
+	.widget-heading {
+		width: 100%;
+		height: 40px;
+		background-color: $aspalt-light;
+		color: $white;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		margin-bottom: $margin-bottom + 15px;
+		h3 {
+		    font-size: 14px;
+		    font-family: "open_sansbold", sans-serif;
+		    text-transform: uppercase;
+		    font-weight: 200;
+		    padding-left: 15px;
+		    padding-right: 15px;
+		    padding-top: 10px;
+		    margin-bottom: -2px;
+		    padding-bottom: 10px;
+		    display: inline-block;
+		    border-bottom: 5px solid #d41d2a;
 		}
-		.box-border-2 {
-			border-left: 10px solid $green;
-			border-bottom: 1px solid #ddd;
-		    height: 45px;
-		    overflow: hidden;
-		    h6 {
-		    	color: $black;
-		    	@include fonts('open_sansbold');
-		    	font-size: 14px;
-		    	margin-left: $margin-left + 2px;
-		    }
+	}
+	.widget-content {
+		.article {
+			display: block;
+			margin-left: $margin-left - 45px;
+			.list-article {
+				margin: $margin - 3px;
+				padding: $padding - 2px;
+				list-style: none;
+				border-bottom: 2px solid #dddddd;
+				a {
+					color: $black;
+					text-decoration: none;
+					.list-numb {
+						color: $red;
+						font-size: 18px;
+						font-weight: 600;
+						float: left;
+						margin-left: $margin-left;
+						margin-right: $margin-right + 5px;
+					}
+					.list-title {
+						line-height: normal;
+						padding-top: $padding-top;
+						h3 {
+							font-size: 16px;
+							font-weight: 600;
+							margin-left: $margin-left + 25px;
+							span {
+								color: $black;
+								&:hover,
+								&:focus,
+								&:active {
+									color: $green;
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -4129,7 +4164,7 @@ a {
 	flex-direction: column;
 }
 
-.label-primary{
+.label-primary {
 	background-color: $green;
 }
 .btn-konsul {
