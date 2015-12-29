@@ -19,8 +19,8 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="description-meta-left">
-                    <div class="text-center">
-                        <div class="preview-media" style="width: 200px; height: 200px;">
+                    <div style="text-align:center;" class="img-thumbnail">
+                        <div class="preview-media" style="width:100%; height:auto; border-radius:10px;">
                             <?php echo $media->getPreview(200, 200) ?>
                         </div>
                         <br>
@@ -61,8 +61,8 @@
                             <?php $i = 4; foreach ($media->getMetadata() as $key => $value): ?>
                                 <tr>
                                     <th scope="row"><?php echo $i++; ?></th>
-                                    <td><?php echo $key ?></td>
-                                    <td><?php echo $value ?></td>
+                                    <td><?php echo $value->key ?></td>
+                                    <td><?php echo $value->value ?></td>
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
