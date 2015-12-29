@@ -20,7 +20,8 @@
     	border-top: 4px solid #1c9c57;
     }
     .navbar-brand {
-        visibility: visible;
+        /*display: none;*/
+
         opacity: 1;
     }
 }

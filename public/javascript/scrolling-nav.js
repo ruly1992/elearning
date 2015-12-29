@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	$(window).scroll(function() {
-	    if ($("#navbar-main").offset().top > 250) {
+	    if ($("#navbar-main").offset().top > 150) {
 	        $("#navbar-main").addClass("top-nav-collapse border navbar-brand");
 	        $("#navbar-main").find('.navbar-brand').show();
 	        $("#navbar-main").find('.header-top-right').show();
