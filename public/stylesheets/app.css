@@ -156,7 +156,9 @@ header {
       header #navbar-main .navbar .navbar-brand {
         margin-top: 12px;
         margin-right: 45px;
-        width: 140px; }
+        width: 140px;
+        opacity: 1;
+        transition: display 0s, opacity 0.5s linear; }
         header #navbar-main .navbar .navbar-brand img {
           width: 100%; }
       header #navbar-main .navbar .navbar-nav > li {

@@ -230,6 +230,8 @@ header {
 				margin-top: $margin-top + 7px;
 				margin-right: $margin-right + 40px;
 				width: 140px;
+				opacity: 1;
+				transition: display 0s, opacity 0.5s linear;
 				img {
 					width: 100%;
 				}
