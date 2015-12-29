@@ -1566,6 +1566,50 @@ header {
 			}
 		}
 	}
+	.content-widget {
+		.widget {
+			.widget-categories {
+				.widget-categories-heading {
+					display: block;
+					border-bottom: 3px solid $red;
+					margin-bottom: $margin-bottom + 15px;
+					h4 {
+						display: inline-block;
+						margin-top: $margin-top - 5px;
+						margin-bottom: $margin-bottom - 5px;
+						padding-top: $padding-top + 5px;
+						padding-bottom: $padding-bottom + 5px;
+						border-top-left-radius: 4px;
+						border-top-right-radius: 4px;
+						font-size: 14px;
+						@include fonts('open_sansbold');
+						background-color: $red;
+						padding-left: $padding-left + 15px;
+						padding-right: $padding-right + 15px;
+						color: $white;
+					}
+				}
+				.widget-categories-content {
+					.list-group {
+						@include border-radius(0);
+						.list-group-item {
+							font-size: 14px;
+							&.active {
+								background-color: $green;
+								border: 1px solid $green;
+								font-size: 14px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.content-single-upload {
+		.form-group {
+			margin-bottom: $margin-bottom - 5px;
+		}
+	}
 }
 
 .box-elib {
