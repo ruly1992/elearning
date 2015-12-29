@@ -118,21 +118,6 @@ class Elibrary extends Admin
         }
     }
 
-    // public function upload($category_id)
-    // {
-    //     $category   = $this->medialib->getCategoryById($category_id);
-
-    //     $data       = [
-    //         'media'     => $category->media,
-    //         'category'  => $category,
-    //     ];
-
-    //     $this->template->add_stylesheet('node_modules/jquery-file-upload/css/uploadfile.css');
-    //     $this->template->add_script('node_modules/jquery-file-upload/js/jquery.uploadfile.min.js');
-    //     $this->template->add_script('javascript/elib.fileupload.admin.js');
-    //     $this->template->build('upload', $data);
-    // }
-
    public function upload()
     {
         $category   = $this->medialib->getCategory();
@@ -148,10 +133,13 @@ class Elibrary extends Admin
         $this->load->library('upload');
         $kategori   = $this->input->post('kategori');
         $counter    = 0;
+
         $media      = $this->medialib;
         $category   = $media->setCategory($kategori)->getCategory();
+
         $files      = $_FILES; 
         $count      = count($_FILES['filemedia']['name']);
+
         for($i=0; $i<$count; $i++) {
 
             if($i==0) {
@@ -160,6 +148,7 @@ class Elibrary extends Admin
                 $idFileName = $i;
             }
             $fileName = $this->input->post('fileName'.$idFileName);
+
             $_FILES['filemedia']['name']    = $files['filemedia']['name'][$i];
             $_FILES['filemedia']['type']    = $files['filemedia']['type'][$i];
             $_FILES['filemedia']['tmp_name']= $files['filemedia']['tmp_name'][$i];
@@ -167,6 +156,7 @@ class Elibrary extends Admin
             $_FILES['filemedia']['size']    = $files['filemedia']['size'][$i];
 
             $this->upload->initialize($this->set_upload_options($category, $fileName));
+
             if(!empty($_FILES['filemedia']['name'])) {
                 $upload     = $this->upload->do_upload('filemedia');
                 $user       = sentinel()->getUser();
@@ -222,9 +212,15 @@ class Elibrary extends Admin
             $created_at = $files[$i]['created_at'];
             $status     = $files[$i]['status'];
             $userId     = $files[$i]['user_id'];
+
             $mediaFiles[$i] = $this->media_model->getFileData($name, $created_at, $userId, $status);
+            foreach($mediaFiles[$i] as $m) { 
+                $media   = Library\Media\Model\Media::withDrafts()->userId($userId)->findOrFail($m->id);
+            }
+            $data['media'][$i] = $media;
         }
         $data['files']  = $mediaFiles;
+  
         $this->template->build('add_meta', $data);
     }
 
@@ -235,6 +231,7 @@ class Elibrary extends Admin
             $this->form_validation->set_rules('title'.$i, 'Title'.$i, 'required');
             $this->form_validation->set_rules('description'.$i, 'Description'.$i, 'required');
             $this->form_validation->set_rules('meta'.$i, 'Meta'.$i);
+
             if($this->form_validation->run()==TRUE) {
                 $id             = set_value('id'.$i);
                 $metadata[$i]   = set_value('meta'.$i);
@@ -243,9 +240,10 @@ class Elibrary extends Admin
                     'description'   => set_value('description'.$i)
                 );
                 $this->media_model->update($id, $dataFile);
+
                 foreach($metadata[$i] AS $key => $value) {
                     $cek = $this->media_model->cekMeta($id, $key, $value);
-                    if($cek == FALSE){
+                    if($cek == FALSE) {
                         $dataMeta = array(
                             'key'       => $key,
                             'value'     => $value,
@@ -254,14 +252,12 @@ class Elibrary extends Admin
                         $this->media_model->addMeta($dataMeta);
                     }
                 }
-                redirect(site_url());
+                redirect('elibrary');
             } else {
-                //redirect('media/upload');
                 echo validation_errors();            
             }
         }
     }
-
 }
 
 /* End of file Elibrary.php */

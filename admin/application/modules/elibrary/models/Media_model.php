@@ -11,7 +11,9 @@ class Media_model extends CI_Model
 	public function save($data){
 		$save = $this->db->insert('media', $data);
 	}
-	public function getFileData($name, $created_at, $userId, $status){
+	
+	public function getFileData($name, $created_at, $userId, $status)
+	{
 		$get = $this->db->get_where('media', 
 			array(
 				'file_name' => $name, 
@@ -21,5 +23,28 @@ class Media_model extends CI_Model
 			)
 		);
 		return $get->result();
+	}
+
+	public function update($id, $dataFile)
+	{
+		$this->db->update('media', $dataFile, array('id'=>$id));
+		if($this->db->affected_rows() == '1'){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+	public function cekMeta($id, $key, $value)
+	{
+		$this->db->get_where('metadata', array('key' => $key, 'value' => $value, 'media_id' => $id));	
+		if($this->db->affected_rows() == '1'){ 
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function addMeta($data)
+	{
+		$this->db->insert('metadata', $data);
 	}
 }
