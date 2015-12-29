@@ -12,25 +12,9 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3">
-
-                        <div class="description-meta-left">
-                            <div class="text-center">
-                                <div class="preview-media" style="width: 200px; height: 200px;">
-                                    <?php echo $media->getPreview(200, 200) ?>
-                                </div>
-                                <br>
-                                <br>
-                                <span><?php echo $media->icon ?> <?php echo $media->type ?></span>
-                            </div>
-                            <div class="description-meta-button">
-                                <a href="<?php echo $media->getLinkDownload() ?>" class="btn btn-sm btn-block btn-primary"><i class="fa fa-download"></i> Download</a>
-                                <a href="<?php echo $media->getLinkPreview() ?>" class="btn btn-sm btn-block btn-primary"><i class="fa fa-eye"></i> Preview</a>
-                            </div>
-                        </div>
-
-                        <!-- <a href="#" class="thumbnail">
+                        <a href="#" class="thumbnail">
                             <img src="http://lorempixel.com/150/150" alt="">
-                        </a> -->
+                        </a>
                     </div>
                     <div class="col-md-9">
                         <input type="hidden" name="id<?php echo $i; ?>" value="<?php echo $file->id; ?>">
@@ -45,7 +29,7 @@
                             <tbody>
                                 <tr>
                                     <td>Title</td>
-                                    <td><input required name="title<?php echo $i; ?>" class="form-control" placeholder="Judul file"></td>
+                                    <td><input required name="meta<?php echo $i; ?>[title]" class="form-control" placeholder="Judul file"></td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
@@ -55,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <td>Deskripsi</td>
-                                    <td><textarea required name="description<?php echo $i; ?>" class="form-control" placeholder="Deskripsi File"></textarea></td>
+                                    <td><textarea required name="meta<?php echo $i; ?>[description]" class="form-control" placeholder="Deskripsi File"></textarea></td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr v-for="meta in metadata">
