@@ -32,9 +32,9 @@ class Media extends Model
         return FCPATH . '/assets/upload/media/' . $this->category->name . '/' . $this->file_name;
     }
 
-    public function resolveVisitorUnique()
+    public function resolveVisitorUnique($user, $mediaID)
     {
-        $user = auth()->user();
+        //$user = auth()->user();
 
         $ip_address = $this->getRealIpAddr();
         $visitor    = VisitorMedia::checkAccessVisitor($this, $ip_address, $user ?: null);
@@ -44,7 +44,7 @@ class Media extends Model
         } else {
             $visitor = VisitorMedia::create(array(
                 'ip_address'    => $ip_address,
-                'media_id'      => $this->id,
+                'media_id'      => $mediaID,
                 'user_id'       => $user ? $user->id : null,
             ));
         }
