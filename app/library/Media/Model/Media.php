@@ -232,7 +232,7 @@ class Media extends Model
 
     public function getFileurl()
     {
-        return elib_url('assets/upload/media/' . $this->category->name . '/' . $this->file_name);
+        return attachment('elibrary/media/' . $this->category->name . '/' . $this->file_name);
     }
 
     public function getLinkPreview()

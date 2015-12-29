@@ -6,7 +6,7 @@
         </ol>
     </div>
 
-    <a href="<?php echo site_url('media/upload/' . $category->id) ?>" class="btn btn-primary"><i class="fa fa-upload"></i> Upload Media</a>
+    <a href="<?php echo site_url('media/upload/') ?>" class="btn btn-primary"><i class="fa fa-upload"></i> Upload Media</a>
 
     <hr>
 
