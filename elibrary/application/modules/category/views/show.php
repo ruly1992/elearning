@@ -16,7 +16,7 @@
                 <ul>
                     <?php if ($media->count()): ?>
                     	<?php $medias = $media; foreach ($medias as $media): ?>
-                        	<li><a href="<?php echo $media->link ?>"><?php echo $media->name ?></a> <small><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d/m/Y') ?> - <?php echo $media->icon ?> <?php echo $media->type ?></small></li>
+                        	<li><a href="<?php echo $media->link ?>"><?php echo $media->title ?></a> <small><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d/m/Y') ?> - <?php echo $media->icon ?> <?php echo $media->type ?></small></li>
                     	<?php endforeach; ?>
                     <?php else: ?>
                     	<p class="alert alert-danger">Tidak ada library tersedia.</p>
