@@ -55,7 +55,7 @@
                         <tbody>
                             <tr>
                                 <td>Judul</td>
-                                <td><input type="text" name="meta[title]" value="<?php echo set_value('meta[title]', $media->getMetadata('title')) ?>" class="form-control"></td>
+                                <td><input type="text" name="meta[title]" value="<?php echo $media->title ?>" class="form-control"></td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
@@ -65,7 +65,7 @@
                             </tr>
                             <tr>
                                 <td>Deskripsi</td>
-                                <td><textarea name="meta[description]" class="form-control"><?php echo set_value('meta[description]', $media->getMetadata('description')) ?></textarea></td>
+                                <td><textarea name="meta[description]" class="form-control"><?php echo $media->description ?></textarea></td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr v-for="meta in metadata">
@@ -109,3 +109,25 @@
     </div>
 </div>
 <?php echo form_close(); ?>
+
+<?php custom_stylesheet() ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo asset('node_modules/awesomplete/awesomplete.css'); ?>">
+    <style type="text/css">
+        div.awesomplete {
+            display: block;
+        }
+        div.awesomplete > ul {
+            margin-top: 45px;
+        }
+    </style>
+<?php endcustom_stylesheet() ?>
+
+<?php custom_script() ?>
+    <!--jQuery-->
+    <!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>-->
+    <script type="text/javascript" src="<?php echo asset('node_modules/vue/dist/vue.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('node_modules/vue-validator/dist/vue-validator.min.js'); ?>"></script>
+    <!--<script type="text/javascript" src="<?php echo asset('node_modules/awesomplete/awesomplete.min.js');?>"></script>-->
+    <script type="text/javascript" src="<?php echo asset('javascript/elib.vue.js'); ?>"></script>
+
+<?php endcustom_script() ?>
