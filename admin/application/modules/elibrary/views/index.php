@@ -3,6 +3,7 @@
 		<h3 class="panel-title">Elibrary</h3>
 	</div>
 	<div class="panel-body">
+	 <?php echo button_create('elibrary/upload/', 'Upload Media') ?>
 	  	<table class="table table-hover table-bordered">
 	  		<thead>
 	  			<tr>
