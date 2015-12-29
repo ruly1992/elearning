@@ -41,6 +41,7 @@
 	                			<td><?php echo anchor('elibrary/category/edit/' . $category->id, $category->name); ?></td>
 	                			<td><?php echo $category->getMediaCount() ?></td>
                                 <td><?php echo button_edit('elibrary/category/edit/' . $category->id) ?></td>
+                                <td><a href="<?php echo site_url('elibrary/category/delete/' . $category->id) ?>" class="btn btn-danger btn-delete"><i class="fa fa-trash-o"></i> Hapus</a></td>
 	                		</tr>
                 		<?php endforeach ?>
                 	</tbody>
