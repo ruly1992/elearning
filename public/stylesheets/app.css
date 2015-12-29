@@ -260,6 +260,9 @@ header {
       border: 1px solid #fff; }
       header #navbar-main .header-top-right .btn:hover, header #navbar-main .header-top-right .btn:focus, header #navbar-main .header-top-right .btn:active {
         background-color: #fff; }
+  header .dropdown {
+    margin-left: 10px;
+    margin-top: 3px; }
   header .dropdown-menu a {
     font-size: 14px;
     color: #37474f;

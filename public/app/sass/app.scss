@@ -352,6 +352,11 @@ header {
 			}
 		}
 	}
+	//add fajar eko s
+	.dropdown {
+		margin-left: $margin-left + 5px;
+		margin-top: $margin-top - 2px;
+	}
 	.dropdown-menu {
 		a {
 			font-size: 14px;
