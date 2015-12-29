@@ -52,11 +52,11 @@ class Lib extends Admin {
             'media'     => $media,
         ];
 
-        $data = file_get_contents($media->getFilepath()); // Read the file's contents
+        $data = file_get_contents($media->getFileurl()); // Read the file's contents
         $name = $media->file_name;
 
         $this->load->helper('download');
-        
+        // echo $media->getFileurl();
         force_download($name, $data);
         // $this->template->build('preview', $data);
     }
