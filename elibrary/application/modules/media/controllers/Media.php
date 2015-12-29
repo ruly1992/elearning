@@ -162,6 +162,7 @@ class Media extends Admin
     }
 
     public function addMeta($jumlah){
+        $simpan = false;
         for($i=0; $i<$jumlah; $i++){
             $this->form_validation->set_rules('id'.$i, 'Id'.$i, 'required');
             $this->form_validation->set_rules('title'.$i, 'Title'.$i, 'required');
@@ -175,6 +176,8 @@ class Media extends Admin
                     'title'         => set_value('title'.$i),
                     'description'   => set_value('description'.$i)
                 );
+                // print_r($dataFile);
+                // echo '<br>'.$id.'<br>';
                 $this->media_model->update($id, $dataFile);
                 foreach($metadata[$i] AS $key => $value){
                     $cek = $this->media_model->cekMeta($id, $key, $value);
@@ -187,11 +190,16 @@ class Media extends Admin
                         $this->media_model->addMeta($dataMeta);
                     }
                 }
-                redirect(site_url());
+                $simpan = true;
             }else{
-                //redirect('media/upload');
-                echo validation_errors();            
+                $simpan = validation_errors();            
             }
+        }
+
+        if($simpan == true){
+            redirect(site_url());
+        }else{
+            echo $simpan;
         }
 
     }
