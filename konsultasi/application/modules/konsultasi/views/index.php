@@ -1,7 +1,19 @@
 <!-- start:content -->
 <div class="container content content-single content-dashboard content-konsultasi">
     <section id="content">
-
+        <?php 
+            if(isset($failed)){
+                echo '<div class="alert alert-danger">';
+                    echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                    echo '<strong>Warning!</strong> '.$failed;
+                echo '</div>';
+            }elseif(isset($success)){
+                echo '<div class="alert alert-info">';
+                    echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                    echo '<strong>Success!</strong> '.$success;
+                echo '</div>';
+            }
+        ?>
         <!-- start:content -->
         <div class="content-konsultasi-main">
             <div class="content-konsultasi-title">
