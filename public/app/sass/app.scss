@@ -3272,7 +3272,6 @@ footer {
 }
 // add fajar eko 
 .favorit {
-<<<<<<< HEAD
 	margin-bottom: $margin-bottom + 20px;
 	.widget-heading {
 		width: 100%;
@@ -3335,35 +3334,6 @@ footer {
 					}
 				}
 			}
-=======
-	a {
-    	text-decoration: none !important;
-    	color: $black;
-		.box-border-1 {
-			border-left: 10px solid $green-black;
-			border-bottom: 1px solid #ddd;
-		    height: 45px;
-		    overflow: hidden;
-		    h6 {
-		    	color: $black;
-		    	@include fonts('open_sansbold');
-		    	font-size: 14px;
-		    	margin-left: $margin-left + 2px;
-		    	margin-bottom: $margin-bottom - 5px;
-		    }
-		}
-		.box-border-2 {
-			border-left: 10px solid $green;
-			border-bottom: 1px solid #ddd;
-		    height: 45px;
-		    overflow: hidden;
-		    h6 {
-		    	color: $black;
-		    	@include fonts('open_sansbold');
-		    	font-size: 14px;
-		    	margin-left: $margin-left + 2px;
-		    }
->>>>>>> 660fb2614056ddad3457768912142061b2a8770a
 		}
 	}
 }
@@ -4160,7 +4130,7 @@ a {
 	flex-direction: column;
 }
 
-.label-primary{
+.label-primary {
 	background-color: $green;
 }
 .btn-konsul {
