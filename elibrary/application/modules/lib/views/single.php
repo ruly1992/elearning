@@ -3,11 +3,11 @@
         <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
             <li><a href="<?php echo $category->link ?>"><?php echo $category->name ?></a></li>
-            <li class="active"><?php echo $media->name ?></li>
+            <li class="active"><?php echo $media->title ?></li>
         </ol>
     </div>
     <div class="title">
-        <h1><?php echo $media->name ?></h1>
+        <h1><?php echo $media->title ?></h1>
         <span><small>
             <ul>
                 <li><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d/m/Y') ?></li>
