@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <label for="">Pesan Anda</label>
-                                <?php echo form_textarea('pesan', set_value('pesan', '', FALSE), array('class' => 'form-control')); ?>
+                                <?php echo form_textarea('pesan', set_value('pesan', '', FALSE), array('class' => 'editor')); ?>
                             </div>
                         </div>
                     </div>
@@ -88,4 +88,6 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/custom.js?v=1.0.5') ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('/plugins/tinymce/tinymce.min.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('/javascript/custom-tiny.js') ?>"></script>
 <?php endcustom_script() ?>

@@ -6,6 +6,19 @@
             <li>Konsulitasi</li>
             <li class="active"><?php echo $konsultasi->subjek ?></li>
         </ol>
+        <?php 
+            if(isset($failed)){
+                echo '<div class="alert alert-danger">';
+                    echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                    echo '<strong>Warning!</strong> '.$failed;
+                echo '</div>';
+            }elseif(isset($success)){
+                echo '<div class="alert alert-info">';
+                    echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                    echo '<strong>Success!</strong> '.$success;
+                echo '</div>';
+            }
+        ?>
         <!-- start:content -->
         <div class="content-konsultasi-main">
             <div class="content-konsultasi-title">
@@ -108,7 +121,7 @@
                                                 </h4>
                                             </div>
                                             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                <form method="POST" action="<?php echo site_url('dashboard/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
+                                                <form method="POST" action="<?php echo site_url('konsultasi/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col-md-8">
@@ -118,7 +131,7 @@
                                                         <div class="row">
                                                             <div class="col-md-8">
                                                                 <label for="">Pesan Anda</label>
-                                                                <textarea name="isi" id="" cols="30" rows="5" class="form-control"></textarea>
+                                                                <textarea name="isi" id="" cols="30" rows="5" class="editor"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -164,4 +177,6 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/custom.js?v=1.0.5') ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('/plugins/tinymce/tinymce.min.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('/javascript/custom-tiny.js') ?>"></script>
 <?php endcustom_script() ?>
