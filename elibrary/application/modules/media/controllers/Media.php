@@ -130,16 +130,6 @@ class Media extends Admin
         return $config;
     }
 
-    protected function submitSingle(Library\Media\Model\Category $category, $file, $metadata = [])
-    {
-        $user = sentinel()->getUser();
-
-        $media = new Library\Media\Media;
-        $media->uploadMediaDraft($category->id, $file, $metadata, $user->id);
-
-        return $media->getMedia();
-    }
-
     public function fillMeta($files){
 
         $mediaFiles = array();
@@ -150,11 +140,25 @@ class Media extends Admin
             $userId     = $files[$i]['user_id'];
 
             $mediaFiles[$i] = $this->media_model->getFileData($name, $created_at, $userId, $status);
+            foreach($mediaFiles[$i] as $m){
+                $media   = Library\Media\Model\Media::withDrafts()->userId($userId)->findOrFail($m->id);
+            }
+            $data['media'][$i] = $media;
         }
 
         $data['files']  = $mediaFiles;
 
         $this->template->build('upload_single', $data);
+    }
+
+    protected function submitSingle(Library\Media\Model\Category $category, $file, $metadata = [])
+    {
+        $user = sentinel()->getUser();
+
+        $media = new Library\Media\Media;
+        $media->uploadMediaDraft($category->id, $file, $metadata, $user->id);
+
+        return $media->getMedia();
     }
 
     public function addMeta($jumlah){
@@ -203,7 +207,6 @@ class Media extends Admin
     public function edit($media)
     {
         try {
-            $user       = sentinel()->getUser();
             $user       = sentinel()->getUser();
             $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($media);
             $category   = $media->category;
