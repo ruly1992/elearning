@@ -249,7 +249,7 @@ class Media extends Model
         }
 
         else if ($this->type == 'Image') {
-            return '<img src="'.$fileurl.'" class="img img-rounded img-responsive">';
+            return '<img src="'.$fileurl.'" class="img-thumbnail">';
         }
 
         elseif ($this->type == 'Video') {
