@@ -211,35 +211,25 @@
                                                     <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Chapter1">
                                                         <div class="container">
                                                             <!-- Start: Deskripsi-->
-                                                                <div class="content-chapter">
-                                                                    <div class="content-chapter-main">
-                                                                        <div class="container">
-                                                                            <div class="col-md-4">
-                                                                                Deskripsi :
-                                                                            </div>
-                                                                            <div class="col-md-8">
-                                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                                            </div>
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                         <p>Deskripsi : </p>
+                                                                    </div>
+                                                                    <div class="card-block">
+                                                                        <div class="form-group row">
+                                                                            <label for="deskripsi" class="col-sm-12 form-control-label">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             <!-- End: Deskripsi -->
                                                             <!-- Start: Attachment -->
-                                                                <div class="content-chapter">
-                                                                    <div class="content-chapter-main">
-                                                                        <div class="container">
-                                                                            <div class="col-md-4">
-                                                                                Attachment :
-                                                                            </div>
-                                                                            <div class="col-md-8">
-                                                                                <button class="btn btn-custom-chapter" data-toggle="modal" data-target=".add-content"><i class="fa fa-paperclip fa-sw"></i> Add Content</button>
-                                                                            </div>
-                                                                        </div>
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                         <p>Attachment : <button class="btn btn-exam" data-toggle="modal" data-target=".add-content"><i class="fa fa-paperclip"></i> Add Content</button></p>
                                                                     </div>
-                                                                    <div class="content-chapter-quiz">
-                                                                        <div class="container">
-                                                                            <!-- Start: Table Queations -->                                                   
-                                                                                <table class="table table-striped">
+                                                                    <div class="card-block">
+                                                                        <!-- Start: Table Attachment -->                                                   
+                                                                            <table class="table table-striped">
                                                                                     <thead>
                                                                                         <tr>
                                                                                           <th>No</th>
@@ -260,47 +250,37 @@
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
-                                                                            <!-- End: Table Questions -->
-                                                                        </div>
+                                                                        <!-- End: Table Attachment -->
                                                                     </div>
                                                                 </div>
                                                             <!-- End: Attachment -->
                                                             <!-- Start: Quiz -->
-                                                                <div class="content-chapter">
-                                                                    <div class="content-chapter-main">
-                                                                        <div class="container">
-                                                                            <div class="col-md-4">
-                                                                                Quiz : 
-                                                                            </div>
-                                                                            <div class="col-md-8">
-                                                                                <button class="btn btn-custom-chapter" data-toggle="modal" data-target=".add-question"><i class="fa fa-paperclip fa-sw"></i> Add Question</button>
-                                                                            </div>
-                                                                        </div>
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                         <p>Quiz : <button class="btn btn-exam" data-toggle="modal" data-target=".add-question"><i class="fa fa-paperclip"></i> Add Question</button></p>
                                                                     </div>
-                                                                    <div class="content-chapter-quiz">
-                                                                        <div class="container">
-                                                                            <!-- Start: Table Queations -->                                                   
-                                                                                <table class="table table-striped">
-                                                                                    <thead>
-                                                                                        <tr>
-                                                                                          <th>No</th>
-                                                                                          <th>Questions</th>
-                                                                                          <th>Action</th>
-                                                                                        </tr>
-                                                                                    </thead>
-                                                                                    <tbody>
-                                                                                        <tr>
-                                                                                          <th scope="row">001</th>
-                                                                                          <td>Kependudukan</td>
-                                                                                          <td>
-                                                                                            <a href="#" class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
-                                                                                            <a href="#" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o"></i></a>
-                                                                                          </td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            <!-- End: Table Questions -->
-                                                                        </div>
+                                                                    <div class="card-block">
+                                                                        <!-- Start: Table Queations -->                                                   
+                                                                            <table class="table table-striped">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                      <th>No</th>
+                                                                                      <th>Questions</th>
+                                                                                      <th>Action</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                      <th scope="row">001</th>
+                                                                                      <td>Kependudukan</td>
+                                                                                      <td>
+                                                                                        <a href="#" class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o"></i></a>
+                                                                                        <a href="#" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                                                      </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        <!-- End: Table Questions -->
                                                                     </div>
                                                                 </div>
                                                             <!-- End: Quiz -->
@@ -325,7 +305,7 @@
                                         <section>
                                             <div class="card">
                                                 <div class="card-header">
-                                                     <p>Exam <button class="btn btn-exam" data-toggle="modal" data-target=".add-exam"><i class="fa fa-paperclip"></i> Add Question</button></p>
+                                                     <p>Exam : <button class="btn btn-exam" data-toggle="modal" data-target=".add-exam"><i class="fa fa-paperclip"></i> Add Question</button></p>
                                                 </div>
                                                 <div class="card-block">
                                                     <div class="form-group row">
