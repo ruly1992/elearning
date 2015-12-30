@@ -3,6 +3,11 @@ $(document).ready(function () {
         headerTag: "h2",
         bodyTag: "section",
         transitionEffect: "slideLeft",
-        enableAllSteps: true
+        enableAllSteps: true,
+        onFinished: function (event, currentIndex) {
+            var form = $('#form-course-result')
+            
+            form.submit();
+        }
     });
 })
