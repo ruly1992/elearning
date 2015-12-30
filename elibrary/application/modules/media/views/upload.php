@@ -6,6 +6,14 @@
             <li class="active">Upload</li>
         </ol>
     </div>
+    <?php
+        if(isset($failed)){
+            echo '<div class="alert alert-danger">';
+                echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                echo '<strong>Warning!</strong> '.$failed;
+            echo '</div>';
+        }
+    ?>
     <div class="title">
         <?php echo form_open_multipart('media/submit'); ?>
             <div class="form-group">
