@@ -149,9 +149,36 @@ class Course extends Admin
                 $modelQuestion->quiz()->associate($modelQuiz);
                 $modelQuestion->save();
             });
+
+            // 6. Attachment
+            $attachments        = collect($chapter->get('attachments'));
+            $attachment_path    = PATH_KELASONLINE_CONTENT.'/'.$course->id.'/chapter_'.$modelChapter->id;
+
+            if (!is_dir($attachment_path)) {
+                mkdir($attachment_path, 0775);
+            }
+
+            $attachments->each(function ($attachment) use ($modelChapter, $course) {
+                $attachment                 = collect($attachment);
+                $modelAttachment            = new Model\Kelas\Attachment;
+                $modelAttachment->filename  = $attachment->get('filename');
+                $modelAttachment->filetype  = $attachment->get('filetype');
+                $modelAttachment->filesize  = $attachment->get('filesize');
+                $modelAttachment->chapter()->associate($modelChapter);
+                $modelAttachment->save();
+
+                // 6.a. Uploading attachment
+                $file_encoded   = $attachment->get('dataurl');
+                $file_encoded   = explode(',', $file_encoded);
+                $file_base64    = $file_encoded[1];
+
+                $fp = fopen($modelAttachment->filepath, 'w+');
+                fwrite($fp, base64_decode($file_base64));
+                fclose($fp);
+            });
         });
 
-        // 6. Exam
+        // 7. Exam
         $exam               = collect($input->get('exam'));
         $modelExam          = new Model\Kelas\Exam;
         $modelExam->name    = $exam->get('name');
