@@ -53,6 +53,7 @@ class Dashboard extends CI_Controller
                     'id_konsultasi' => $id,
                     'id_user'       => sentinel()->getUser()->id,
                 );
+                $updateat = date('Y-m-d H:i:s');
             } else {
                 $file_data = $this->upload->data();
 
@@ -62,9 +63,11 @@ class Dashboard extends CI_Controller
                     'id_konsultasi' => $id,
                     'id_user'       => sentinel()->getUser()->id,
                 );
+                $updateat = date('Y-m-d H:i:s');
             }
             
             $id_konsultasi      = set_value('id_konsultasi');
+            $update             = $this->M_konsultasi->updatedAt($updateat, $id_konsultasi);
             $save               = $this->M_konsultasi->sendReply($reply, $id_konsultasi);
 
             redirect('dashboard/detail/'.$id);
