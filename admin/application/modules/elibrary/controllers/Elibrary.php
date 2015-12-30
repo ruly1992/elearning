@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Symfony\Component\HttpFoundation\Request;
+
 class Elibrary extends Admin
 {
     public function __construct()
@@ -87,18 +89,39 @@ class Elibrary extends Admin
 
             $this->template->build('edit', $data);
         } else {
-            $mediaLib   = new Library\Media\Media;
-            $media      = $media->withDrafts()->findOrFail($media_id);
-
-            $request    = Request::createFromGlobals();
-            $metadata   = $request->request->get('meta');
-
-            $mediaLib->setMetadata($media->id, $metadata);
-
-            set_message_success('Metadata berhasil diperbarui.');
             
-            redirect('elibrary/edit/' . $media->id, 'refresh');
         }
+    }
+
+    public function update($media_id)
+    {
+        $media      = $this->medialib->getMedia();
+        $mediaLib   = new Library\Media\Media;
+        $media      = $media->withDrafts()->findOrFail($media_id);
+
+        $request    = Request::createFromGlobals();
+        $metadata   = $request->request->get('meta');
+
+        foreach ($metadata as $key => $value) {
+            if ($key == 'title') {
+                $title = $value;
+            }
+            if ($key == 'description') {
+                $description = $value;
+            }
+        }
+        
+        $data = array(
+            'title'         => $title,
+            'description'   => $description
+        );
+
+        $this->media_model->update($media->id, $data);
+        $mediaLib->setMetadata($media->id, $metadata);
+
+        set_message_success('Metadata berhasil diperbarui.');
+        
+        redirect('elibrary/edit/' . $media->id, 'refresh');
     }
 
     public function approve($media_id, $status = 'publish')
