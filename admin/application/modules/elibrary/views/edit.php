@@ -17,7 +17,7 @@
 	   		<div class="col-md-4">
                 <div class="description-meta-left">
                     <div class="text-center">
-                        <div class="preview-media" style="width: 200px; height: 200px;">
+                        <div class="preview-media" style="width:100%; height:auto;">
                             <?php echo $media->getPreview(200, 200) ?>
                         </div>
                         <br>
