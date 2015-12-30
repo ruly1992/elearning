@@ -99,7 +99,9 @@ header {
         transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out; }
+        -o-transition: all 0.3s ease-in-out;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px; }
         header #header-content .header-top-right .form-control:focus {
           width: 100%;
           transition: all 0.3s ease-in-out;
@@ -110,7 +112,9 @@ header {
         height: 30px;
         font-size: 10px;
         padding-top: 3px;
-        border: 1px solid #fff; }
+        border: 1px solid #fff;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px; }
         header #header-content .header-top-right .btn:hover, header #header-content .header-top-right .btn:focus, header #header-content .header-top-right .btn:active {
           background-color: #fff; }
     header #header-content .search-navbar {
@@ -2718,21 +2722,20 @@ footer {
     height: 40px;
     background-color: #37474f;
     color: #fff;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-left: 8px solid #d41d2a;
     margin-bottom: 20px; }
     .favorit .widget-heading h3 {
       font-size: 14px;
       font-family: "open_sansbold", sans-serif;
       text-transform: uppercase;
-      font-weight: 200;
+      font-weight: 600;
       padding-left: 15px;
       padding-right: 15px;
       padding-top: 10px;
       margin-bottom: -2px;
       padding-bottom: 10px;
       display: inline-block;
-      border-bottom: 5px solid #d41d2a; }
+      line-height: 1.5; }
   .favorit .widget-content .article {
     display: block;
     margin-left: -40px; }
@@ -2746,7 +2749,7 @@ footer {
         text-decoration: none; }
         .favorit .widget-content .article .list-article a .list-numb {
           color: #d41d2a;
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 600;
           float: left;
           margin-left: 5px;
@@ -2755,7 +2758,7 @@ footer {
           line-height: normal;
           padding-top: 5px; }
           .favorit .widget-content .article .list-article a .list-title h3 {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             margin-left: 30px; }
             .favorit .widget-content .article .list-article a .list-title h3 span {
