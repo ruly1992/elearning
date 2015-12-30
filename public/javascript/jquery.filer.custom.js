@@ -222,7 +222,7 @@ $(document).ready(function() {
                                     </ul>\
                                 </div>\
                                 <div class="form-group">\
-                                    <input type="text" class="form-control" name="fileName{{fi-id}}" placeholder="Nama file {{fi-id}}">\
+                                    <input type="text" class="form-control" id="fileName" name="fileName{{fi-id}}" placeholder="Nama file {{fi-id}}">\
                                 </div>\
                             </div>\
                         </div>\
