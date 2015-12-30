@@ -173,6 +173,10 @@ header {
           -moz-transition: all 0.3s ease-in-out;
           -o-transition: all 0.3s ease-in-out; }
         header #navbar-main .navbar .navbar-nav > li > a {
+          line-height: 1.5;
+          font-weight: 600;
+          font-size: 12px;
+          color: #909090;
           height: 60px;
           padding-left: 15px;
           padding-right: 15px;
@@ -1594,13 +1598,15 @@ header {
           border-top-right-radius: 6px; }
         .content .content-sidebar .widget .widget-heading .nav-tabs .nav-link {
           color: #263238;
-          font-size: 12px; }
+          font-size: 14px;
+          text-transform: uppercase; }
           .content .content-sidebar .widget .widget-heading .nav-tabs .nav-link:hover, .content .content-sidebar .widget .widget-heading .nav-tabs .nav-link:active {
             border: 1px solid #fff; }
         .content .content-sidebar .widget .widget-heading .nav-tabs .nav-link.active,
         .content .content-sidebar .widget .widget-heading .nav-tabs .nav-item.open .nav-link {
           color: #fff;
-          font-size: 12px;
+          text-transform: uppercase;
+          font-size: 14px;
           border: 3px solid #d41d2a;
           margin-bottom: -2px;
           background-color: #d41d2a; }
