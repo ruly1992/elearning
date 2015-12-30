@@ -176,8 +176,7 @@ class Media extends Admin
                     'title'         => set_value('title'.$i),
                     'description'   => set_value('description'.$i)
                 );
-                // print_r($dataFile);
-                // echo '<br>'.$id.'<br>';
+
                 $this->media_model->update($id, $dataFile);
                 foreach($metadata[$i] AS $key => $value){
                     $cek = $this->media_model->cekMeta($id, $key, $value);
@@ -229,17 +228,32 @@ class Media extends Admin
         }
     }
 
-    public function update($media)
+    public function update($mediaID)
     {
         $mediaLib   = new Library\Media\Media;
-        $media      = $mediaLib->onlyUserId()->getMediaById($media);
+        $user       = sentinel()->getUser();
+        $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($mediaID);
 
         $request    = Request::createFromGlobals();
         $metadata   = $request->request->get('meta');
 
+        foreach ($metadata as $key => $value) {
+            if ($key == 'title') {
+                $title = $value;
+            }
+            if ($key == 'description') {
+                $description = $value;
+            }
+        }
+        $dataMedia  =  array(
+            'title'         => $title,
+            'description'   => $description
+        );
+        $this->media_model->update($media->id, $dataMedia);
+
         $mediaLib->setMetadata($media->id, $metadata);
 
-        set_message_success('Metadata berhasil diperbarui.');
+        // set_message_success('Metadata berhasil diperbarui.');
         
         redirect('media/edit/' . $media->id, 'refresh');
     }
