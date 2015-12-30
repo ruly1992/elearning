@@ -211,17 +211,12 @@ class Media extends Admin
 
     }
 
-    public function uploadsingle($media)
-    {
-        //$media = Model\Media::findOrFail($media);
-
-        //$this->load->view('upload_single', compact('media'));
-        $this->load->view('upload_single', $data);
-    }
-
     public function edit($media)
     {
         try {
+            if ($this->session->flashdata('success')) {
+                $data   = $this->session->flashdata('success');
+            }
             $user       = sentinel()->getUser();
             $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($media);
             $category   = $media->category;
@@ -260,8 +255,8 @@ class Media extends Admin
         $this->media_model->update($media->id, $dataMedia);
 
         $mediaLib->setMetadata($media->id, $metadata);
-
-        // set_message_success('Metadata berhasil diperbarui.');
+        
+        $this->session->set_flashdata('success', 'Metadata berhasil diperbarui.');
         
         redirect('media/edit/' . $media->id, 'refresh');
     }
