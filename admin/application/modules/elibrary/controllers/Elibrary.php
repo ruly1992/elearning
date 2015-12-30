@@ -281,8 +281,12 @@ class Elibrary extends Admin
         }
         if($simpan == true){
             set_message_success('Upload Media dan Add Meta Data Berhasil');
+
+            redirect('elibrary/upload');
         }else{
             set_message_error('Upload Media dan Add Meta Data gagal');
+
+            redirect('elibrary/upload');
         }
     }
 }
