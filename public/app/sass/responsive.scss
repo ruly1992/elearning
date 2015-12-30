@@ -41,205 +41,8 @@ $padding-left: 5px;
        -o-transition: all $transition ease-in-out;
 }
 
+// Begin 320px
 @media (min-width: 320px) and (max-width: 360px) {
-  #header-main {
-    #carousel-slider-top {
-      display: none;
-    }
-    .header-main-box{
-      display: none;
-      .header-main-box-content {
-        p {
-          font-size: 18px !important;
-          line-height: 25px !important;
-        }
-        form {
-          .form-control {
-            height: 45px !important;
-          }
-          .form-control[placeholder] {
-            font-size: 14px !important;
-          }
-          .c-input {
-            font-size: 14px !important;
-          }
-          .btn {
-            padding-top: 10px !important;
-            padding-bottom: 10px !important;
-          }
-          a {
-            font-size: 14px !important;
-          }
-        }
-      }
-    }
-  }
-  #navbar-main {
-    padding-left: 0;
-    padding-right: 0;
-    .container {
-      background-color: #fff !important;
-      padding-top: 5px;
-      padding-bottom: 10px;
-      .navbar-nav {
-        li {
-          flex-direction: row;
-          width: 100%;
-        }
-      }
-    }
-  }
-  .nav{
-    padding-top: 10px;
-  }
-  .navbar-logo-mobile {
-    margin-top: 7px;
-    img {
-      width: 150px;
-    }
-  }
-  .dropdown-people{
-    .dropdown-toggle{
-      img{
-        margin-top: -5px;
-        width: 35px;
-        border-radius: 100%;
-      }
-    }
-  }
-  #header {
-    .header-top-left {
-      display: none;
-    }
-    .header-top-right {
-      .form-control {
-        width: 100% !important;
-        height: 45px !important;
-      }
-      .form-control[placeholder] {
-        font-size: 16px;
-      }
-      .btn {
-        height: 45px !important;
-        i.fa {
-          font-size: 20px;
-        }
-
-      }
-    }
-  }
-  .content {
-    .rails-news {
-      display: none;
-    }
-    .latest {
-      background-color: #fff !important;
-      margin-right: 5px !important;
-      .box-articles-latest {
-        margin-bottom: 10px;
-        background-color: #fff !important;
-        padding-right: 10px;
-        padding-left: 10px;
-        .box-articles-latest-img {
-          height: 200px !important;
-          margin-bottom: 10px;
-          img {
-            width: 100% !important;
-            height: 200px !important;
-          }
-        }
-        .box-articles-latest-meta {
-          p {
-            font-size: 12px;
-          }
-        }
-        .box-articles-latest-title {
-          h4 {
-            margin-top: 5px;
-            a {
-              font-size: 16px;
-            }
-          }
-        }
-      }
-    }
-    .news2 {
-      .articles-box {
-        background-color: #ddd;
-        padding: 5px 10px 5px 30px;
-        .articles-box-img {
-          // display: none;
-        }
-        .articles-box-meta {
-          margin-top: 5px;
-          margin-bottom: 10px;
-          ul {
-            li {
-              font-size: 12px !important;
-            }
-          }
-        }
-        .articles-box-title {
-          h3 {
-            line-height: 25px !important;
-            a {
-              font-size: 18px !important;
-            }
-          }
-        }
-        .articles-box-content {
-          display: none;
-        }
-      }
-    }
-    .news3 {
-      padding-right: 5px;
-      .box-articles-sm {
-        border-bottom: 1px solid #ddd;
-        .box-articles-sm-img {
-          display: none;
-        }
-        .box-articles-sm-meta {
-          display: none;
-        }
-        .box-articles-sm-title {
-          padding-left: 20px;
-          h4 {
-            line-height: 20px;
-            a {
-              font-size: 16px !important;
-            }
-          }
-        }
-      }
-    }
-  }
-  .float-center {
-      float: right;
-      left: -30%;
-      position: relative;
-      text-align: left;
-  }
-  footer {
-    .footer-top {
-      display: none;
-    }
-    .footer-logo {
-      display: none;
-    }
-    .footer-bottom {
-      text-align: center;
-      font-size: 16px !important;
-      margin-bottom: 20px;
-      padding-top: 20px;
-      float: none !important;
-      .footer-bottom-right {
-        display: none;
-      }
-    }
-  }
-}
-@media (min-width: 360px) and (max-width: 640px) {
   #header-main {
     #carousel-slider-top {
       display: none;
@@ -306,6 +109,7 @@ $padding-left: 5px;
       }
     }
   }
+  // Begin form login at mobile device
   .custom-login-mobile {
     width: 255px;
     height: auto;
@@ -386,6 +190,319 @@ $padding-left: 5px;
       }
     }
   }
+  //End form login at mobile device
+
+  #header {
+    .header-top-left {
+      display: none;
+    }
+    .header-top-right {
+      .form-control {
+        width: 100% !important;
+        height: 45px !important;
+      }
+      .form-control[placeholder] {
+        font-size: 16px;
+      }
+      .btn {
+        height: 45px !important;
+        i.fa {
+          font-size: 20px;
+        }
+
+      }
+    }
+  }
+  .content {
+    .rails-news {
+      display: none;
+    }
+    .latest {
+      background-color: #fff !important;
+      margin-right: 5px !important;
+      .box-articles-latest {
+        margin-bottom: 10px;
+        background-color: #fff !important;
+        padding-right: 10px;
+        padding-left: 10px;
+        .box-articles-latest-img {
+          height: 200px !important;
+          margin-bottom: 10px;
+          img {
+            width: 100% !important;
+            height: 200px !important;
+          }
+        }
+        .box-articles-latest-meta {
+          p {
+            font-size: 12px;
+          }
+        }
+        .box-articles-latest-title {
+          h4 {
+            margin-top: 5px;
+            a {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+    //add responsive for latest
+    .news-latest {
+      .articles-box {
+        background-color: #fff;
+        padding: 5px 10px 5px 30px;
+        .articles-box-img {
+          margin-left: -15px;
+          height: 200px !important;
+        }
+        .articles-box-meta {
+          margin-top: 5px;
+          margin-bottom: 10px;
+          ul {
+            li {
+              font-size: 12px !important;
+            }
+          }
+        }
+        .articles-box-title {
+          h3 {
+            line-height: 25px !important;
+            a {
+              font-size: 18px !important;
+            }
+          }
+        }
+        .articles-box-content {
+          display: none;
+        }
+      }
+    }
+    .news2 {
+      .articles-box {
+        background-color: #ddd;
+        padding: 5px 10px 5px 30px;
+        .articles-box-img {
+          display: none;
+        }
+        .articles-box-meta {
+          margin-top: 5px;
+          margin-bottom: 10px;
+          ul {
+            li {
+              font-size: 12px !important;
+            }
+          }
+        }
+        .articles-box-title {
+          h3 {
+            line-height: 25px !important;
+            a {
+              font-size: 18px !important;
+            }
+          }
+        }
+        .articles-box-content {
+          display: none;
+        }
+      }
+    }
+    .news3 {
+      padding-right: 5px;
+      .box-articles-sm {
+        border-bottom: 1px solid #ddd;
+        .box-articles-sm-img {
+          display: none;
+        }
+        .box-articles-sm-meta {
+          display: none;
+        }
+        .box-articles-sm-title {
+          padding-left: 20px;
+          h4 {
+            line-height: 20px;
+            a {
+              font-size: 16px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  footer {
+    .footer-top {
+      display: none;
+    }
+    .footer-logo {
+      display: none;
+    }
+    .footer-bottom {
+      text-align: center;
+      font-size: 16px !important;
+      margin-bottom: 20px;
+      padding-top: 20px;
+      float: none !important;
+      .footer-bottom-right {
+        display: none;
+      }
+    }
+  }
+  .content-sidebar {
+    display: none;
+  }
+}
+@media (min-width: 360px) and (max-width: 640px) {
+  #header-main {
+    #carousel-slider-top {
+      display: none;
+    }
+    .header-main-box {
+      display: none;
+      .header-main-box-content {
+        p {
+          font-size: 18px !important;
+          line-height: 25px !important;
+        }
+        form {
+          .form-control {
+            height: 45px !important;
+          }
+          .form-control[placeholder] {
+            font-size: 14px !important;
+          }
+          .c-input {
+            font-size: 14px !important;
+          }
+          .btn {
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+          }
+          a {
+            font-size: 14px !important;
+          }
+        }
+      }
+    }
+  }
+  #navbar-main {
+    padding-left: 0;
+    padding-right: 0;
+    .container {
+      background-color: #fff !important;
+      padding-top: 5px;
+      padding-bottom: 10px;
+      .navbar-nav {
+        li {
+          flex-direction: row;
+          width: 100%;
+        }
+      }
+    }
+  }
+  .nav{
+    padding-top: 10px;
+  }
+  .navbar-logo-mobile {
+    margin-top: 7px;
+    margin-left: 20px;
+    img {
+      width: 150px;
+    }
+  }
+  .dropdown-people{
+    .dropdown-toggle{
+      img{
+        margin-top: -5px;
+        width: 35px;
+        border-radius: 100%;
+      }
+    }
+  }
+
+  //BEGIN CUSTOM LOGIN MOBILE
+  .custom-login-mobile {
+    width: 255px;
+    height: auto;
+    .menu-login {
+      padding: 5px;
+      .form-login {
+        border-bottom: 1px solid $grey-black;
+        margin-bottom: $margin-bottom + 7px;
+      }
+      padding: $padding + 15px;
+      > p {
+        font-size: 12px;
+        line-height: normal;
+        margin-bottom: $margin-bottom + 5px;
+      }
+      .c-input>input:checked~.c-indicator {
+        background-color: $green;
+        border: 1px solid $green;
+      }
+      .c-input>input:focus~.c-indicator {
+        -webkit-box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
+        box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
+      }
+      .c-input.c-checkbox {
+        font-size: 10px;
+        .c-indicator {
+          background-color: $grey-black;
+          border: 1px solid #999;
+          width: 0.8rem;
+          height: 0.8rem;
+        }
+      }
+      label {
+        margin-top: $margin-top - 20px;
+        a {
+          font-size: 10px;
+          color: $green;
+          &:hover,
+          &:active,
+          &:focus {
+            color: $white;
+          }
+        }
+      }
+      form {
+        .form-group {
+          margin-bottom: $margin-bottom;
+          .form-control {
+            border: 2px solid $grey-black;
+            height: 30px;
+            background-color: transparent;
+            @include transition(0.5s);
+            &:focus {
+              border: 2px solid $green;
+              @include transition(0.5s);
+            }
+          }
+          .form-control[placeholder] {
+            font-size: 12px;
+          }
+          .btn-login {
+            background-color: $green;
+            color: $white;
+            @include fonts('open_sanssemibold');
+            margin-top: $margin-top + 5px;
+          }
+          .btn-submit-artikel {
+            background-color: $aspalt-light;
+            color: $grey;
+            &:hover,
+            &:focus,
+            &:active {
+              background: $aspalt;
+              color: $grey-black;
+            }
+          }
+        }
+      }
+    }
+  }
+  // END CUTOM LOGIN MOBILE
+
   #header {
     .header-top-left {
       display: none;
@@ -548,6 +665,117 @@ $padding-left: 5px;
 }
 
 @media (min-width: 640px) and (max-width: 992px){
+   // GENERAL 
+  .nav {
+    padding-top: 10px;
+  }
+  .navbar-logo-mobile {
+    margin-top: 5px;
+    img {
+      width: 150px;
+    }
+  }
+  .navbar-logo-tablet {
+    margin-top: 7px;
+    left: 40%;
+    right: 60%;
+    position: absolute;
+  }
+  .dropdown-people {
+    .dropdown-toggle{
+      img{
+        margin-top: -5px;
+        width: 35px;
+        border-radius: 100%;
+      }
+    }
+  }
+  // END GENERAL
+  
+   //BEGIN CUSTOM LOGIN MOBILE
+  .custom-login-mobile {
+    width: 255px;
+    height: auto;
+    .menu-login {
+      padding: 5px;
+      .form-login {
+        border-bottom: 1px solid $grey-black;
+        margin-bottom: $margin-bottom + 7px;
+      }
+      padding: $padding + 15px;
+      > p {
+        font-size: 12px;
+        line-height: normal;
+        margin-bottom: $margin-bottom + 5px;
+      }
+      .c-input>input:checked~.c-indicator {
+        background-color: $green;
+        border: 1px solid $green;
+      }
+      .c-input>input:focus~.c-indicator {
+        -webkit-box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
+        box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
+      }
+      .c-input.c-checkbox {
+        font-size: 10px;
+        .c-indicator {
+          background-color: $grey-black;
+          border: 1px solid #999;
+          width: 0.8rem;
+          height: 0.8rem;
+        }
+      }
+      label {
+        margin-top: $margin-top - 20px;
+        a {
+          font-size: 10px;
+          color: $green;
+          &:hover,
+          &:active,
+          &:focus {
+            color: $white;
+          }
+        }
+      }
+      form {
+        .form-group {
+          margin-bottom: $margin-bottom;
+          .form-control {
+            border: 2px solid $grey-black;
+            height: 30px;
+            background-color: transparent;
+            @include transition(0.5s);
+            &:focus {
+              border: 2px solid $green;
+              @include transition(0.5s);
+            }
+          }
+          .form-control[placeholder] {
+            font-size: 12px;
+          }
+          .btn-login {
+            background-color: $green;
+            color: $white;
+            @include fonts('open_sanssemibold');
+            margin-top: $margin-top + 5px;
+          }
+          .btn-submit-artikel {
+            background-color: $aspalt-light;
+            color: $grey;
+            &:hover,
+            &:focus,
+            &:active {
+              background: $aspalt;
+              color: $grey-black;
+            }
+          }
+        }
+      }
+    }
+  }
+  // END CUTOM LOGIN MOBILE
+
+  // BEGIN HEADER MAIN
   #header-main {
     #carousel-slider-top {
       display: none;
@@ -580,6 +808,9 @@ $padding-left: 5px;
       }
     }
   }
+  //HEADER MAIN
+
+  //BEGIN NAVBAR MAIN
   #navbar-main {
     padding-left: 0;
     padding-right: 0;
@@ -595,32 +826,9 @@ $padding-left: 5px;
       }
     }
   }
-  .nav{
-    padding-top: 10px;
-  }
-  .navbar-logo-mobile{
-    margin-top: 5px;
-    img{
-      width: 150px;
-    }
-  }
-  .tablet {
-    margin-top: 7px;
-    left: 40%;
-    right: 60%;
-    position: absolute;
-    }
-  
-  .dropdown-people{
-    .dropdown-toggle{
-      img{
-        margin-top: -5px;
-        width: 35px;
-        border-radius: 100%;
-      }
-    }
-  }
- 
+  //END NAVBAR MAIN
+
+  //BEGIN HEADER
   #header {
     .header-top-left {
       display: none;
@@ -642,6 +850,9 @@ $padding-left: 5px;
       }
     }
   }
+  //END HEADER
+  
+  // BEGIN CONTENT
   .content {
     .rails-news {
       display: none;
@@ -678,6 +889,9 @@ $padding-left: 5px;
       }
     }
   }
+  //END CONTENT
+
+  //BEGIN FOOTER
   footer {
     .footer-top {
       display: none;
@@ -696,6 +910,7 @@ $padding-left: 5px;
       }
     }
   }
+  //END FOOTER
 }
 // Extra small devices (portrait phones, less than 34em)
 @media (max-width: 33.9em) {}
