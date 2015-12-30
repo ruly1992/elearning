@@ -8,6 +8,7 @@
         <!-- start:stylesheet -->
         <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../stylesheets/scrolling-nav.css">
         <link rel="stylesheet" href="../stylesheets/app.css">
         <link rel="stylesheet" href="../stylesheets/responsive.css">
         <!-- end:stylesheet -->
@@ -29,21 +30,38 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="header-top-right">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- end:header top -->
             </section>
             <!-- end:header top -->
+
+            <!-- start: header content -->
+            <section id="header-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="header-top-left">
+                                <a class="navbar-brand hidden-lg-down" href="#">
+                                    <img src="../images/portal/logo_kader.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="header-top-right">
+                                <div class="input-group">
+                                    <input class="form-control form-control-sm" placeholder="Search for..." type="text">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-sm btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                     </div>   
+                </div>
+            </section>
+            <!-- end: header content -->
+
             <!-- start:navbar main -->
             <section id="navbar-main">
                 <nav class="navbar navbar-light">
@@ -51,11 +69,11 @@
                         <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarCollapse">
                             &#9776;
                         </button>
-                        <a class="navbar-logo-mobile pull-right hidden-lg-up" href="#">
+                        <a class="navbar-logo-mobile navbar-logo-tablet hidden-lg-up" href="#">
                             <img src="../images/portal/logo_kader.png">
                         </a>
                         <div class="collapse navbar-toggleable-md" id="navbarCollapse">
-                            <a class="navbar-brand hidden-md-down" href="#">
+                            <a class="navbar-brand" href="#" style="display: none">
                                 <img src="../images/portal/logo_kader.png" alt="">
                             </a>
                             <ul class="nav navbar-nav">
@@ -75,6 +93,14 @@
                                     <a href="#" class="nav-link">SIASAT</a>
                                 </li>
                             </ul>
+                            <div class="header-top-right" style="display:none">
+                                <div class="input-group">
+                                    <input class="form-control form-control-sm" placeholder="Search for..." type="text">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-sm btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>    
                     </div>
                 </nav>
@@ -189,8 +215,9 @@
         <!-- start:javascript -->
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../public/javascript/jquery.sticky.js"></script>
-        <script src="../public/javascript/app.js"></script>
+        <script src="../javascript/jquery.sticky.js"></script>
+        <script src="../javascript/scrolling-nav.js"></script>
+        <script src="../javascript/app.js"></script>
         <!-- end:javascript -->
     </body>
 </html>
