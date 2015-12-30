@@ -29,7 +29,8 @@ class Media extends Model
 
     public function getFilepath()
     {
-        return FCPATH . '/assets/upload/media/' . $this->category->name . '/' . $this->file_name;
+        // return FCPATH . '/assets/upload/media/' . $this->category->name . '/' . $this->file_name;
+        return attachment('elibrary/media/' . $this->category->name . '/' . $this->file_name);
     }
 
     public function resolveVisitorUnique($user, $mediaID)
