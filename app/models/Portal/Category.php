@@ -86,7 +86,7 @@ class Category extends Model
 
                 $html .= ' ' . $category->name;
                 $html .= '</label>';
-                $html .= $this->generateCheckbox($category->id, $checked, ++$level);
+                $html .= $this->generateCheckbox($category->id, $checked, $level+1);
                 $html .= '</div>';
             }
         } else {
