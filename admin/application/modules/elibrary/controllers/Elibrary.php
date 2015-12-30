@@ -110,7 +110,7 @@ class Elibrary extends Admin
                 $description = $value;
             }
         }
-        
+
         $data = array(
             'title'         => $title,
             'description'   => $description
@@ -280,9 +280,9 @@ class Elibrary extends Admin
             }
         }
         if($simpan == true){
-            redirect('elibrary/upload');
+            set_message_success('Upload Media dan Add Meta Data Berhasil');
         }else{
-            echo $simpan;
+            set_message_error('Upload Media dan Add Meta Data gagal');
         }
     }
 }
