@@ -7,7 +7,7 @@
     }
 </style>
 
-<?php echo form_open('elibrary/edit/' . $media->id); ?>
+<?php echo form_open('elibrary/update/' . $media->id); ?>
 <div class="panel panel-default" id="app-meta" data-media-id="<?php echo $media->id ?>">
 	<div class="panel-heading">
 		<h3 class="panel-title"><?php echo $media->name ?> <?php echo $media->status_format ?></h3>
@@ -42,7 +42,7 @@
                     <tbody>
                         <tr>
                             <td>Judul</td>
-                            <td><input type="text" name="meta[title]" value="<?php echo set_value('meta[title]', $media->getMetadata('title')) ?>" class="form-control"></td>
+                            <td><input type="text" name="meta[title]" value="<?php echo $media->title ?>" class="form-control"></td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
@@ -52,7 +52,7 @@
                         </tr>
                         <tr>
                             <td>Deskripsi</td>
-                            <td><textarea name="meta[description]" class="form-control"><?php echo set_value('meta[description]', $media->getMetadata('description')) ?></textarea></td>
+                            <td><textarea name="meta[description]" class="form-control"><?php echo $media->description ?></textarea></td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr v-for="meta in metadata">
@@ -93,6 +93,7 @@
             <?php //else: ?>
                 <a href="<?php echo site_url('elibrary/approve/' . $media->id . '/draft') ?>" v-on:click="saveToDraft(<?php echo $media->id ?>, $event)" class="btn btn-sm btn-warning"><i class="fa fa-check"></i> Set to DRAFT</a>
             <?php //endif ?>
+            <?php echo button_save() ?>
         </div>
     </div>
 </div>
