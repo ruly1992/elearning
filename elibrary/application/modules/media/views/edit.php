@@ -11,7 +11,7 @@
 <div class="elib-content-single" id="app-meta" data-media-id="<?php echo $media->id ?>">
     <div class="elib-single-breadcrumb">
         <ol class="breadcrumb">
-            <li><a href="<?php echo dashboard_url() ?>">Dashboard</a></li>
+            <li><a href="<?php echo site_url() ?>">Home</a></li>
             <li><a href="<?php echo site_url('media/show/' . $category->id) ?>"><?php echo $category->name ?></a></li>
             <li class="active"><?php echo $media->title ?></li>
         </ol>
