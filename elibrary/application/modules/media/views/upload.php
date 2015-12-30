@@ -53,14 +53,22 @@
     <script type="text/javascript">
         function checkInput(){
             if(document.getElementById('filer_input_media').value == ''){  
-              alert('Anda harus memilih file untuk diunggah terlebih dahulu!');  
-              document.getElementById('filer_input_media').focus();  
-              return false;  
-            }
-            if(document.getElementById('fileName').value == ''){  
-              alert('Nama file harus diisi terlebih dahulu!');  
-              document.getElementById('fileName').focus();  
-              return false;  
+                alert('Anda harus memilih file untuk diunggah terlebih dahulu!');  
+                document.getElementById('filer_input_media').focus();  
+                return false;  
+            }else{
+                var count   = document.getElementsByClassName('fileName');
+                var id      = '';
+                for(var i=0;i<count.length;i++){
+                    if(i>0){
+                        id = i;
+                    }
+                    if(document.getElementById('fileName'+id).value == ''){  
+                        alert('Nama file harus diisi terlebih dahulu!');  
+                        document.getElementById('fileName'+id).focus();  
+                        return false;  
+                    }
+                }
             }
             document.getElementById('formMedia').submit();
         }
