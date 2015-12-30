@@ -3,7 +3,7 @@
 		<h3 class="panel-title"><?php echo $category->name ?></h3>
 	</div>
 	<div class="panel-body">
-        <?php echo button_create('elibrary/upload/' . $category->id, 'Upload Media') ?>
+        <!-- <?php echo button_create('elibrary/upload/' . $category->id, 'Upload Media') ?> -->
 
         <div class="btn-group">
             <a href="<?php echo site_url('elibrary/show/'.$category->id.'?status=all') ?>" class="btn btn-default btn-sm <?php echo $status == 'all' ? 'active' : '' ?>">Semua</a>

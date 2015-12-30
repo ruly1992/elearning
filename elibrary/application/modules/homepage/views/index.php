@@ -8,7 +8,7 @@
                 <ul>
                 <?php if ($media_latest->count()): ?>
                     <?php foreach ($media_latest as $media): ?>
-                        <li><a href="<?php echo $media->link ?>"><?php echo $media->name ?></a> <small><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d/m/Y') ?> - <?php echo $media->icon ?> <?php echo $media->type ?></small></li>
+                        <li><a href="<?php echo $media->link ?>"><?php echo $media->title ?></a> <small><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d/m/Y') ?> - <?php echo $media->icon ?> <?php echo $media->type ?></small></li>
                     <?php endforeach ?>
                 <?php else: ?>
                     <li><p class="alert alert-warning">Media tidak tersedia.</p></li>
@@ -26,7 +26,7 @@
                 <ul>
                 <?php if ($media_popular->count()): ?>
                     <?php foreach ($media_popular as $media): ?>
-                        <li><a href="<?php echo $media->link ?>"><?php echo $media->name ?></a> <small><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d/m/Y') ?> - <?php echo $media->icon ?> <?php echo $media->type ?></small></li>
+                        <li><a href="<?php echo $media->link ?>"><?php echo $media->title ?></a> <small><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d/m/Y') ?> - <?php echo $media->icon ?> <?php echo $media->type ?></small></li>
                     <?php endforeach ?>
                 <?php else: ?>
                     <li><p class="alert alert-warning">Media tidak tersedia.</p></li>
@@ -48,7 +48,7 @@
                         <ul>
                             <?php if ($category->media->count()): ?>
                                 <?php foreach ($category->media->take(3) as $media): ?>
-                                    <li><a href="<?php echo $media->link ?>"><?php echo $media->name ?></a> <small><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d-m-Y') ?> - <?php echo $media->icon ?> <?php echo $media->type ?></small></li>
+                                    <li><a href="<?php echo $media->link ?>"><?php echo $media->title ?></a> <small><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d-m-Y') ?> - <?php echo $media->icon ?> <?php echo $media->type ?></small></li>
                                 <?php endforeach ?>
                             <?php else: ?>
                                 <li><p class="alert alert-warning">Tidak ada media</p></li>
