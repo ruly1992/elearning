@@ -160,3 +160,25 @@ $db['faq'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$db['elibrary'] = array(
+	'dsn'	=> '',
+	'hostname' => getenv('ELIB_DB_HOST') ?: 'localhost',
+	'username' => getenv('ELIB_DB_USERNAME') ?: 'root',
+	'password' => getenv('ELIB_DB_PASSWORD') ?: '',
+	'database' => getenv('ELIB_DB_DATABASE') ?: 'portal_learning',
+	'dbdriver' => getenv('ELIB_DB_DRIVER') ?: 'mysqli',
+	'dbprefix' => getenv('ELIB_DB_PREFIX') ?: '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);

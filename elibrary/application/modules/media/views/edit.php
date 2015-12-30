@@ -11,13 +11,13 @@
 <div class="elib-content-single" id="app-meta" data-media-id="<?php echo $media->id ?>">
     <div class="elib-single-breadcrumb">
         <ol class="breadcrumb">
-            <li><a href="<?php echo dashboard_url() ?>">Dashboard</a></li>
+            <li><a href="<?php echo site_url() ?>">Home</a></li>
             <li><a href="<?php echo site_url('media/show/' . $category->id) ?>"><?php echo $category->name ?></a></li>
-            <li class="active"><?php echo $media->name ?></li>
+            <li class="active"><?php echo $media->title ?></li>
         </ol>
     </div>
     <div class="title">
-        <h1><?php echo $media->name ?> <small><?php echo $media->status_format ?></small></h1>
+        <h1><?php echo $media->title ?> <small><?php echo $media->status_format ?></small></h1>
         <span><small>
             <ul>
                 <li><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d/m/Y') ?></li>
@@ -29,8 +29,8 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="description-meta-left">
-                    <div class="text-center">
-                        <div class="preview-media" style="width: 200px; height: 200px;">
+                    <div style="text-align:center;" class="img-thumbnail">
+                        <div class="preview-media" style="width:100%; height:auto; border-radius:10px;">
                             <?php echo $media->getPreview(200, 200) ?>
                         </div>
                         <br>
@@ -55,7 +55,7 @@
                         <tbody>
                             <tr>
                                 <td>Judul</td>
-                                <td><input type="text" name="meta[title]" value="<?php echo set_value('meta[title]', $media->getMetadata('title')) ?>" class="form-control"></td>
+                                <td><input type="text" name="meta[title]" value="<?php echo $media->title ?>" class="form-control"></td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
@@ -65,7 +65,7 @@
                             </tr>
                             <tr>
                                 <td>Deskripsi</td>
-                                <td><textarea name="meta[description]" class="form-control"><?php echo set_value('meta[description]', $media->getMetadata('description')) ?></textarea></td>
+                                <td><textarea name="meta[description]" class="form-control"><?php echo $media->description ?></textarea></td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr v-for="meta in metadata">
@@ -109,3 +109,25 @@
     </div>
 </div>
 <?php echo form_close(); ?>
+
+<?php custom_stylesheet() ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo asset('node_modules/awesomplete/awesomplete.css'); ?>">
+    <style type="text/css">
+        div.awesomplete {
+            display: block;
+        }
+        div.awesomplete > ul {
+            margin-top: 45px;
+        }
+    </style>
+<?php endcustom_stylesheet() ?>
+
+<?php custom_script() ?>
+    <!--jQuery-->
+    <!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>-->
+    <script type="text/javascript" src="<?php echo asset('node_modules/vue/dist/vue.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('node_modules/vue-validator/dist/vue-validator.min.js'); ?>"></script>
+    <!--<script type="text/javascript" src="<?php echo asset('node_modules/awesomplete/awesomplete.min.js');?>"></script>-->
+    <script type="text/javascript" src="<?php echo asset('javascript/elib.vue.js'); ?>"></script>
+
+<?php endcustom_script() ?>
