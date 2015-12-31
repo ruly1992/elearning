@@ -17,6 +17,9 @@ class Media extends Admin
 
     public function index()
     {
+        if($this->session->flashdata('success')){
+            $data['success'] = $this->session->flashdata('success');
+        }
         $category   = $this->medialib->getCategory();
         $categories = $category->with(['media' => function ($query) {
             $query->userId(sentinel()->getUser()->id)->withDrafts();
@@ -44,6 +47,9 @@ class Media extends Admin
 
     public function upload()
     {
+        if($this->session->flashdata('failed')){
+            $data['failed']    =   $this->session->flashdata('failed');
+        }
         $category   = $this->medialib->getCategory();
         $categories = $category->with(['media' => function ($query) {
             $query->userId(sentinel()->getUser()->id)->withDrafts();
@@ -111,7 +117,7 @@ class Media extends Admin
         if($counter == ($count-1)){
             $this->fillMeta($dataFiles);
         }else{
-            $this->session->flashdata('failed', 'Media gagal diunggah');
+            $this->session->set_flashdata('failed', 'Media gagal diunggah');
             redirect('media/upload');
         }
 
@@ -196,24 +202,21 @@ class Media extends Admin
         }
 
         if($simpan == true){
-            redirect(site_url());
+            $this->session->set_flashdata('success', 'File media berhasil ditambahkan.');
+            redirect('/media');
         }else{
-            echo $simpan;
+            $this->session->set_flashdata('failed', $simpan);
+            redirect('media/upload');
         }
 
-    }
-
-    public function uploadsingle($media)
-    {
-        //$media = Model\Media::findOrFail($media);
-
-        //$this->load->view('upload_single', compact('media'));
-        $this->load->view('upload_single', $data);
     }
 
     public function edit($media)
     {
         try {
+            if ($this->session->flashdata('success')) {
+                $data   = $this->session->flashdata('success');
+            }
             $user       = sentinel()->getUser();
             $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($media);
             $category   = $media->category;
@@ -252,8 +255,8 @@ class Media extends Admin
         $this->media_model->update($media->id, $dataMedia);
 
         $mediaLib->setMetadata($media->id, $metadata);
-
-        // set_message_success('Metadata berhasil diperbarui.');
+        
+        $this->session->set_flashdata('success', 'Metadata berhasil diperbarui.');
         
         redirect('media/edit/' . $media->id, 'refresh');
     }

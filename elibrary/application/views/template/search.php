@@ -4,30 +4,17 @@
             <div class="text-center">
                 <form action="<?php echo site_url('search') ?>" method="GET" class="form-inline">
                     <div class="form-group">
-                        <input name="q" type="text" value="<?php echo isset($term) ? $term : '' ?>" class="form-control" placeholder="Search type in here..">
+                        <input name="q" type="text" value="<?php echo isset($term) ? $term : '' ?>" class="form-control" required placeholder="Cari judul ...">
                     </div>
                     <div class="form-group">
                         <?php
                         $medialib   = new Library\Media\Media;
                         $categories = $medialib->getCategories()
                         ->pluck('name', 'id')
-                        ->prepend('Select with category')
+                        ->prepend('Select with category', '')
                         ->toArray();
                         ?>
-                        <?php echo form_dropdown('category', $categories, 0, ['class' => 'c-select']); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo form_dropdown('meta', [
-                            'Select with Meta',
-                            'Name Library',
-                            'Author',
-                            'Tahun Terbit',
-                            'Images',
-                            'Video',
-                            'Music',
-                        ], 0, [
-                            'class' => 'c-select'
-                        ]); ?>
+                        <?php echo form_dropdown('category', $categories, 0, ['class' => 'c-select', 'required' => 'required']); ?>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-search">SEARCH</a>

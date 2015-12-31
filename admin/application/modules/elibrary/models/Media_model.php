@@ -34,6 +34,7 @@ class Media_model extends CI_Model
 			return FALSE;
 		}
 	}
+	
 	public function cekMeta($id, $key, $value)
 	{
 		$this->db->get_where('metadata', array('key' => $key, 'value' => $value, 'media_id' => $id));	

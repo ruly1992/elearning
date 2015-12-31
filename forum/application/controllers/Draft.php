@@ -65,7 +65,7 @@ class Draft extends CI_Controller
         $data['draft']          = site_url('draft/');
         $data['home']           = site_url('draft/');
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_drafts();
+        $data['threadSide']     = $this->model_thread->get_all_drafts($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['draftThreads']   = $this->model_thread->get_all_drafts($user->id);

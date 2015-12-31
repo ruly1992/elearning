@@ -11,7 +11,7 @@
 <div class="elib-content-single" id="app-meta" data-media-id="<?php echo $media->id ?>">
     <div class="elib-single-breadcrumb">
         <ol class="breadcrumb">
-            <li><a href="<?php echo site_url() ?>">Home</a></li>
+            <li><a href="<?php echo site_url('media') ?>">Home</a></li>
             <li><a href="<?php echo site_url('media/show/' . $category->id) ?>"><?php echo $category->name ?></a></li>
             <li class="active"><?php echo $media->title ?></li>
         </ol>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="description-meta-button">
                         <a href="<?php echo $media->getLinkDownload() ?>" class="btn btn-sm btn-block btn-download"><i class="fa fa-download"></i> Download</a>
-                        <a href="<?php echo $media->getLinkPreview() ?>" class="btn btn-sm btn-block btn-preview"><i class="fa fa-eye"></i> Preview</a>
+                        <a href="#" class="btn btn-sm btn-block btn-preview" data-toggle="modal" data-target=".preview"><i class="fa fa-eye"></i> Preview</a>
                     </div>
                 </div>
             </div>
@@ -109,6 +109,29 @@
     </div>
 </div>
 <?php echo form_close(); ?>
+
+<!-- Start:modal preview -->
+<div class="modal fade preview" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" id="myLargeModalLabel">Preview</h4>
+        </div>
+        <div class="modal-body">
+            <div class="text-xs-center">
+                <?php echo $media->getPreview(500, 500) ?>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- End:modal preview -->
 
 <?php custom_stylesheet() ?>
     <link rel="stylesheet" type="text/css" href="<?php echo asset('node_modules/awesomplete/awesomplete.css'); ?>">

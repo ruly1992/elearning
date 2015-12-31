@@ -25,8 +25,10 @@ class Faq extends Admin {
 			$this->template->build('create');
 
 		} else {
+			$data['title']			= set_value('title');
 			$data['question']		= set_value('question');
 			$data['answer']			= set_value('answer', '', FALSE);
+			$data['created_at']		= date('Y-m-d H:i:s');
 
 			$this->Mod_faq->create($data);
 
@@ -51,8 +53,10 @@ class Faq extends Admin {
 		} else {
 			
 			$data = array(
+				'title'				=> set_value('title'),
 				'question'			=> set_value('question'),
 				'answer'			=> set_value('answer', '', FALSE),
+				'updated_at'		=> date('Y-m-d H:i:s')
 			);
 
 			$links = $this->Mod_faq->update($faq_id, $data);
