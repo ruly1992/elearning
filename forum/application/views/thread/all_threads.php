@@ -1,4 +1,4 @@
-<?php get_header('private'); ?>
+<?php get_header('private', array('active' => 'forum')); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
