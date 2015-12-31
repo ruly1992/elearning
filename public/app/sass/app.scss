@@ -166,6 +166,8 @@ header {
 				float: right;
 				border: 1px solid $white;
 				@include transition(0.3s);
+				border-top-left-radius: 8px;
+				border-bottom-left-radius: 8px;
 				&:focus {
 					width: 100%;
 					@include transition(0.3s);
@@ -176,6 +178,8 @@ header {
 				font-size: 10px;
 				padding-top: $padding-top - 2px;
 				border: 1px solid $white;
+				border-top-right-radius: 8px;
+				border-bottom-right-radius: 8px;
 				&:hover,
 				&:focus,
 				&:active {
@@ -228,7 +232,7 @@ header {
 			padding-bottom: $padding-bottom - 5px;
 			.navbar-brand {
 				margin-top: $margin-top + 7px;
-				margin-right: $margin-right + 40px;
+				margin-right: $margin-right + 20px;
 				width: 140px;
 				opacity: 1;
 				transition: display 0s, opacity 0.5s linear;
@@ -249,9 +253,13 @@ header {
 						}
 					}
 					> a {
+						line-height: 1.5;
+						font-weight: 600;
+						font-size: 12px;
+						color: #909090;
 						height: 60px;
-						padding-left: $padding-left + 10px;
-						padding-right: $padding-right + 10px;
+						padding-left: $padding-left + 7px;
+						padding-right: $padding-right + 7px;
 						padding-top: $padding-top + 15px;
 						@include transition(0.3s);
 						&:hover,
@@ -1942,7 +1950,8 @@ header {
 				.nav-tabs {
 					.nav-link {
 						color: $aspalt;
-						font-size: 12px;
+						font-size: 14px;
+						text-transform: uppercase;
 						&:hover,
 						&:active {
 							border: 1px solid $white;
@@ -1951,7 +1960,8 @@ header {
 					.nav-link.active,
 					.nav-item.open .nav-link {
 						color: $white;
-						font-size: 12px;
+						text-transform: uppercase;
+						font-size: 14px;
 						border: 3px solid $red;
 						margin-bottom: $margin-bottom - 7px;
 						background-color: $red;
@@ -2171,14 +2181,14 @@ header {
 						margin-bottom: $margin-bottom - 5px;
 						li {
 							display: inline-block;
-							font-size: 8px;
+							font-size: 12px;
 							margin-right: $margin-right;
 						}
 					}
 				}
 				.box-dashboard-articles-title {
 					h4 {
-						font-size: 14px;
+						font-size: 16px;
 						a {
 							color: $aspalt-light;
 							@include transition(0.3s);
@@ -2418,14 +2428,14 @@ header {
 					margin-top: $margin-top - 15px;
 					li {
 						display: inline-block;
-						font-size: 8px;
+						font-size: 12px;
 						margin-right: $margin-right;
 					}
 				}
 			}
 			.articles-box-title {
 				h3 {
-					font-size: 14px;
+					font-size: 16px;
 					line-height:normal;
 					a {
 						color: $aspalt-light;
@@ -2442,7 +2452,7 @@ header {
 			}
 			.articles-box-content {
 				p {
-					font-size: 10px;
+					font-size: 12px;
 				}
 			}
 		}
@@ -3312,21 +3322,20 @@ footer {
 		height: 40px;
 		background-color: $aspalt-light;
 		color: $white;
-		border-top-left-radius: 3px;
-		border-top-right-radius: 3px;
+		border-left: 8px solid $red;
 		margin-bottom: $margin-bottom + 15px;
 		h3 {
 		    font-size: 14px;
 		    font-family: "open_sansbold", sans-serif;
 		    text-transform: uppercase;
-		    font-weight: 200;
+		    font-weight: 600;
 		    padding-left: 15px;
 		    padding-right: 15px;
 		    padding-top: 10px;
 		    margin-bottom: -2px;
 		    padding-bottom: 10px;
 		    display: inline-block;
-		    border-bottom: 5px solid #d41d2a;
+		    line-height: 1.5;
 		}
 	}
 	.widget-content {
@@ -3343,7 +3352,7 @@ footer {
 					text-decoration: none;
 					.list-numb {
 						color: $red;
-						font-size: 18px;
+						font-size: 16px;
 						font-weight: 600;
 						float: left;
 						margin-left: $margin-left;
@@ -3353,7 +3362,7 @@ footer {
 						line-height: normal;
 						padding-top: $padding-top;
 						h3 {
-							font-size: 16px;
+							font-size: 14px;
 							font-weight: 600;
 							margin-left: $margin-left + 25px;
 							span {
