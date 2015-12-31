@@ -76,15 +76,16 @@
                     </div>
                 </div> 
             </div>
+            <div class="panel-body">
+                <button type="submit" class="btn btn-primary">Simpan Meta</button>
+            </div>
         </div>
     </div>
 <?php 
         }
     }
 ?>
-    <div>
-        <button type="submit" class="btn btn-primary">Simpan Meta</button>
-    </div>
+    
 <?php echo form_close(); ?>
 
 <?php custom_stylesheet() ?>
