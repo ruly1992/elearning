@@ -34,9 +34,9 @@
 
         <br>
     
+        <input type="file" class="cropit-image-input" style="display: none;">
         <button type="button" class="btn btn-primary file-btn">
             <span>Browse</span>
-            <input type="file" class="cropit-image-input">
         </button>
     </div>
 </template>
