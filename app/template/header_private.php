@@ -50,7 +50,7 @@
             <!-- end:header top -->
         
             <!-- start: header content -->
-            <section id="header-content">
+            <section id="header-content-private">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -117,7 +117,7 @@
                                         <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <img src="<?php echo auth()->getUser()->avatar ?>" alt="">
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                                        <div class="dropdown-menu dropdown-menu-right custom-float" aria-labelledby="dropdownMenu2">
                                             <a href="<?php echo dashboard_url('profile') ?>" class="dropdown-item">Profile</a>
                                             <a href="<?php echo dashboard_url('sendArticle') ?>" class="dropdown-item">Submit Artikel</a>
                                             <a href="<?php echo logout_url() ?>" class="dropdown-item">Log Out</a>
