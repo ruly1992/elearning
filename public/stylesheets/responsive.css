@@ -46,7 +46,9 @@
 
   .custom-login-mobile {
     width: 255px;
-    height: auto; }
+    height: auto;
+    right: 0;
+    left: auto; }
     .custom-login-mobile .menu-login {
       padding: 5px;
       padding: 20px; }
