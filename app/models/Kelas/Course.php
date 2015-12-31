@@ -3,9 +3,12 @@
 namespace Model\Kelas;
 
 use Model\User;
+use Model\Scopes\Published;
 
 class Course extends Model
 {
+	use Published;
+
 	protected $guarded = [];
 
 	public static function boot()
@@ -27,14 +30,26 @@ class Course extends Model
 		return $this->hasMany(Chapter::class);
 	}
 
+	public function exam()
+	{
+		return $this->hasOne(Exam::class);
+	}
+
 	public function instructor()
 	{
 		return $this->belongsTo(User::class, 'user_id');
 	}
 
+    public function scopePublished($query)
+    {
+        $query = $query->where('status', 'publish');
+
+        return $query;
+    }
+
 	public function scopeUserId($query, $user)
 	{
-
+		return $query->where('user_id', $user->id);
 	}
 
 	public function scopeOnlyInstructor($query, User $user)
@@ -62,4 +77,28 @@ class Course extends Model
 			return $this->generateCode(++$i);
 			return $generated;
 	}
+
+	public function hasFeatured()
+	{
+		return (bool) $this->attributes['featured'];
+	}
+
+	public function getFeaturedImageAttribute()
+	{
+		return $this->hasFeatured() ? asset('kelas-content/'.$this->id.'/'.$this->featured) : '';
+	}
+
+    public function getStatusLabelAttribute()
+    {
+        $status = ucwords($this->status);
+
+        if ($this->status == 'draft')
+            $type = 'info';
+        else
+            $type = 'success';
+
+        $html = '<div class="label label-'.$type.'">'.$status.'</div>';
+
+        return $html;
+    }
 }
