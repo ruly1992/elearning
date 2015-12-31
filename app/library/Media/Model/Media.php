@@ -29,13 +29,11 @@ class Media extends Model
 
     public function getFilepath()
     {
-        return FCPATH . '/assets/upload/media/' . $this->category->name . '/' . $this->file_name;
+        return attachment('elibrary/media/' . $this->category->name . '/' . $this->file_name);
     }
 
     public function resolveVisitorUnique($user, $mediaID)
     {
-        //$user = auth()->user();
-
         $ip_address = $this->getRealIpAddr();
         $visitor    = VisitorMedia::checkAccessVisitor($this, $ip_address, $user ?: null);
 
