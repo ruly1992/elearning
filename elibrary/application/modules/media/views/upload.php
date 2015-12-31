@@ -27,6 +27,7 @@
                 </select>
             </div>
             <div class="form-group">
+                <p class="label label-info">Maximum Files 20MB</p>
                 <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
             </div>
             <button type="button" onclick="checkInput(); return false;" class="btn btn-danger" id="extrabutton">Start</button>
