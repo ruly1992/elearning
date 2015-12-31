@@ -1,8 +1,8 @@
-<div class="sidebar-article">
+<div class="sidebar-kelas-online">
     <div class="widget">
         <div class="widget-categories">
             <div class="widget-categories-heading">
-                <h4>Categories</h4>
+                <h4>Steps</h4>
             </div>
             <div class="widget-categories-content">
                 <div class="list-group">
@@ -13,6 +13,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="widget">
         <div class="widget-categories">
             <div class="widget-categories-heading">
                 <h4>Peserta</h4>
@@ -20,7 +22,7 @@
             <div class="widget-categories-content">
                 <div class="list-group">
                     <a href="#" class="list-group-item active">Aktif</a>
-                    <a href="#" class="list-group-item">Selesai</a>
+                    <a href="#" class="list-group-item">Tidak Aktif</a>
                 </div>
             </div>
         </div>
