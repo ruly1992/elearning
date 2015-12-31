@@ -34,7 +34,7 @@
 			  				<td><?php echo $media->status_format ?></td>
 			  				<td><?php echo $media->created_at->format('d-m-Y H:i:s') ?></td>
 			  				<td><a href="<?php echo site_url('elibrary/edit/' . $media->id) ?>" class="label label-primary">Review</a></td>
-			  				<td><?php echo button_delete('elibrary/delete/' . $media->id) ?></td>
+			  				<td><?php echo button_delete('elibrary/delete/' . $media->id . '?status=' . $media->status  ) ?></td>
 			  			</tr>
 	  				<?php endforeach ?>
 	  			<?php else: ?>
