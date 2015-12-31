@@ -74,6 +74,21 @@ $config['menus'] = [
         'roles' => ['su', 'adm'],
     ],
 
+    // Kelas Online
+    [
+        'name'  => 'Kelas Online',
+        'icon'  => 'fa fa-upload',
+        'link'  => site_url('kelasonline'),
+        'roles' => ['su', 'adm'],
+        'child' => [
+            [
+                'name'  => 'Category',
+                'icon'  => 'fa fa-upload',
+                'link'  => site_url('kelasonline/category'),
+            ],
+        ]
+    ],
+
     // Elibrary
     [
         'name'  => 'Elibrary',
