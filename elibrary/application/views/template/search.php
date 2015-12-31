@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+    <div class="col-lg-8 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
         <div class="content-elib-main-search top">
             <div class="text-center">
                 <form action="<?php echo site_url('search') ?>" method="GET" class="form-inline">
