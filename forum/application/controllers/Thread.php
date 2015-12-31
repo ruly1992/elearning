@@ -316,8 +316,12 @@ class Thread extends CI_Controller
     public function get_topics(){
         $idCategory = $this->input->post('idCategory');
         $getTopics = $this->model_topic->getTopics_by_Category($idCategory);
-        foreach($getTopics as $top){
-            $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
+        if(empty($getTopics)){
+            $topics = '<option value="">Belum ada topic pada kategori ini</option>';
+        }else{
+            foreach($getTopics as $top){
+                $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
+            }
         }
         echo $topics;
     }
