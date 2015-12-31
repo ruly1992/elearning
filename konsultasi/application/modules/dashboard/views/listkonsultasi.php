@@ -72,11 +72,11 @@
                             </div>
                             <div class="widget-categories-content">
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item active">
+                                    <a class="list-group-item active">
                                         <span class="label label-default label-pill pull-right"><?php echo count($allKonsultasi); ?></span> All Categories
                                     </a>
                                     <?php foreach ($listKategori as $cat): ?>                                        
-                                        <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right"><?php echo countKonsultasiKategori($allKonsultasi, $cat->id); ?></span><?php echo $cat->name ?></a>
+                                        <a class="list-group-item"><span class="label label-default label-pill pull-right"><?php echo countKonsultasiKategori($allKonsultasi, $cat->id); ?></span><?php echo $cat->name ?></a>
                                     <?php endforeach ?>
                                 </div>
                             </div>
