@@ -532,14 +532,13 @@
   #header .header-top-left {
     display: none; }
   #header .header-top-right .form-control {
-    width: 100% !important;
-    height: 45px !important; }
+    height: 30px !important; }
   #header .header-top-right .form-control[placeholder] {
-    font-size: 16px; }
+    font-size: 10px; }
   #header .header-top-right .btn {
-    height: 45px !important; }
+    height: 30px !important; }
     #header .header-top-right .btn i.fa {
-      font-size: 20px; }
+      font-size: 10px; }
 
   .content .rails-news {
     display: none; }

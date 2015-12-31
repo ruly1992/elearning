@@ -3430,6 +3430,12 @@ footer {
 				a {
 					color: $black;
 					text-decoration: none;
+					@include transition(0.3s);
+					&:hover,
+					&:focus {
+						color: $green;
+						@include transition(0.3s);
+					}
 					.list-numb {
 						color: $red;
 						font-size: 16px;
@@ -3445,13 +3451,11 @@ footer {
 							font-size: 14px;
 							font-weight: 600;
 							margin-left: $margin-left + 25px;
-							span {
-								color: $black;
-								&:hover,
-								&:focus,
-								&:active {
-									color: $green;
-								}
+							@include transition(0.3s);
+							&:hover,
+							&:focus {
+								color: $green;
+								@include transition(0.3s);
 							}
 						}
 					}
