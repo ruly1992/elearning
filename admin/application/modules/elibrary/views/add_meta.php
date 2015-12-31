@@ -13,7 +13,7 @@
                     <div class="col-md-3">
                         <div class="description-meta-left">
                             <div class="text-center">
-                                <div class="preview-media" style="width: 200px; height: 200px;">
+                                <div class="preview-media" style="width: 100%; height: auto;">
                                     <?php echo $media[$i]->getPreview(150, 150) ?>
                                 </div>
                                 <br>
@@ -102,9 +102,6 @@
 
 <?php custom_script() ?>
     <!--jQuery-->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="<?php echo asset('plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
-    <script type="text/javascript" src="<?php echo asset('javascript/jquery.filer.custom.js') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('node_modules/vue/dist/vue.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo asset('node_modules/vue-validator/dist/vue-validator.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo asset('node_modules/awesomplete/awesomplete.min.js');?>"></script>
@@ -130,7 +127,7 @@
                         var self = this;
                         var app = this.$el;
                         $.ajax({
-                            url: siteurl + 'media/getmetadata',
+                            url: siteurl + 'elibrary/getmetadata',
                             data: {
                                 media_id: $(app).data('media-id')
                             },
