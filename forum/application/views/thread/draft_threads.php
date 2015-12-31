@@ -21,7 +21,7 @@
                                         echo '<strong>Warning!</strong> '.$failed;
                                     echo '</div>';
                                 }elseif(isset($success)){
-                                    echo '<div class="alert alert-info">';
+                                    echo '<div class="alert alert-ytopic">';
                                         echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
                                         echo '<strong>Success!</strong> '.$success;
                                     echo '</div>';
