@@ -1,4 +1,4 @@
-<?php get_header('private', array('active' => 'forum')); ?>
+<?php get_header('private'); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
@@ -28,7 +28,7 @@
                                         echo '<strong>Warning!</strong> '.$failed;
                                     echo '</div>';
                                 }elseif(isset($success)){
-                                    echo '<div class="alert alert-ytopic">';
+                                    echo '<div class="alert alert-info">';
                                         echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
                                         echo '<strong>Success!</strong> '.$success;
                                     echo '</div>';

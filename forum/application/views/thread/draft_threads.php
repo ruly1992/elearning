@@ -118,15 +118,15 @@
                                             ?>
                                             
                                         </div>
-                                        <div class="forum-pagination">
-                                            <nav>
-                                                <?php echo $draftThreads->render() ?>
-                                            </nav>
-                                        </div>
                                     </div>
                             <?php
                                 }
                             ?>
+                            <div class="forum-pagination">
+                                <nav>
+                                    <?php echo $draftThreads->render() ?>
+                                </nav>
+                            </div>
                         </div>
                         <!-- end:content main -->
                     </div>

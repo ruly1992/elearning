@@ -121,15 +121,15 @@
                                             ?>
                                             
                                         </div>
-                                        <div class="forum-pagination">
-                                            <nav>
-                                                <?php echo $threads->render() ?>
-                                            </nav>
-                                        </div>
                                     </div>
                             <?php
                                 }
                             ?>
+                            <div class="forum-pagination">
+                                <nav>
+                                    <?php echo $threads->render() ?>
+                                </nav>
+                            </div>
                         </div>
                         <!-- end:content main -->
                     </div>
