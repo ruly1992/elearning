@@ -30,6 +30,10 @@ body {
   background-color: #fff;
   border-color: #dddddd; }
 
+.custom-float {
+  right: 0px !important;
+  left: auto; }
+
 /* HEADER */
 header {
   background-color: #dddddd;
@@ -83,7 +87,8 @@ header {
       font-size: 14px; }
   header #header-content {
     padding-top: 20px;
-    padding-bottom: 20px; }
+    padding-bottom: 20px;
+    background-color: #f5f5f5; }
     header #header-content .navbar-brand {
       width: 220px; }
       header #header-content .navbar-brand img {
@@ -95,7 +100,8 @@ header {
         font-size: 10px;
         width: 150px;
         float: right;
-        border: 1px solid #fff;
+        background-color: #dddddd;
+        border: 1px solid #dddddd;
         transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
@@ -112,7 +118,8 @@ header {
         height: 30px;
         font-size: 10px;
         padding-top: 3px;
-        border: 1px solid #fff;
+        background-color: #dddddd;
+        border: 1px solid #dddddd;
         border-top-right-radius: 8px;
         border-bottom-right-radius: 8px; }
         header #header-content .header-top-right .btn:hover, header #header-content .header-top-right .btn:focus, header #header-content .header-top-right .btn:active {
@@ -145,6 +152,71 @@ header {
         header #header-content .search-navbar .btn:hover, header #header-content .search-navbar .btn:focus, header #header-content .search-navbar .btn:active {
           background-color: #fff; }
         header #header-content .search-navbar .btn i.fa {
+          color: #dddddd; }
+  header #header-content-private {
+    padding-top: 20px;
+    padding-bottom: 20px; }
+    header #header-content-private .navbar-brand {
+      width: 220px; }
+      header #header-content-private .navbar-brand img {
+        width: 100%; }
+    header #header-content-private .header-top-right {
+      margin-top: 10px; }
+      header #header-content-private .header-top-right .form-control {
+        height: 30px;
+        font-size: 10px;
+        width: 150px;
+        float: right;
+        border: 1px solid #fff;
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px; }
+        header #header-content-private .header-top-right .form-control:focus {
+          width: 100%;
+          transition: all 0.3s ease-in-out;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out; }
+      header #header-content-private .header-top-right .btn {
+        height: 30px;
+        font-size: 10px;
+        padding-top: 3px;
+        border: 1px solid #fff;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px; }
+        header #header-content-private .header-top-right .btn:hover, header #header-content-private .header-top-right .btn:focus, header #header-content-private .header-top-right .btn:active {
+          background-color: #fff; }
+    header #header-content-private .search-navbar {
+      margin-top: 7px; }
+      header #header-content-private .search-navbar input {
+        width: 65px;
+        height: 45px;
+        transition: all 0.5s ease-in-out;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        border: 1px solid white;
+        color: #dddddd; }
+      header #header-content-private .search-navbar input[placeholder] {
+        color: #dddddd;
+        font-size: 13px;
+        height: 45px; }
+      header #header-content-private .search-navbar input:focus {
+        width: 130px;
+        transition: all 0.5s ease-in-out;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        float: right; }
+      header #header-content-private .search-navbar .btn {
+        height: 45px;
+        border: 1px solid #fff; }
+        header #header-content-private .search-navbar .btn:hover, header #header-content-private .search-navbar .btn:focus, header #header-content-private .search-navbar .btn:active {
+          background-color: #fff; }
+        header #header-content-private .search-navbar .btn i.fa {
           color: #dddddd; }
   header #navbar-main {
     z-index: 99; }
