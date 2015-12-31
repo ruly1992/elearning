@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="../stylesheets/scrolling-nav.css">
         <link rel="stylesheet" href="../stylesheets/app.css">
         <link rel="stylesheet" href="../stylesheets/responsive.css">
+        <link rel="stylesheet" href="../plugins/jquery.steps-1.1.0/css/jquery.steps.css">
+        <link rel="stylesheet" href="../plugins/jQuery.filer-1.0.5/css/jquery.filer.css">
+        <link rel="stylesheet" href="../plugins/jQuery.filer-1.0.5/css/themes/jquery.filer-dragdropbox-theme.css">
         <!-- end:stylesheet -->
 
     </head>
@@ -154,20 +157,29 @@
                         <div class="widget">
                             <div class="widget-heading">
                                 <ul class="nav nav-tabs" id="myTabSubmit" role="tablist">
+                                    <!-- Begin : Title Submite Article -->
                                     <li class="nav-item">
                                          <a class="nav-link active" data-toggle="tab" href="#submit-article" role="tab" aria-controls="article-post" aria-expanded="true">Submit article</a>
                                     </li>
+                                    <!-- End : Title Submit Article -->
+
+                                    <!-- Begin : Title Submit Article -->
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#submit-elibrary" role="tab" aria-controls="library-post" aria-expanded="false">Submit Elibrary</a>
                                     </li>
+                                    <!-- End : Title Submit Article -->
+
+                                    <!-- Begin : Title Submit Article -->
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#submit-konsultasi" role="tab" aria-controls="konsultasis-post" aria-expanded="false">Submit Konsultasi</a>
                                     </li>
+                                    <!-- End : Title Submit Article -->
                                 </ul>
                             </div>
                             <div class="row">
                                 <div class="widget-content">
                                     <div class="tab-content" id="myTabSubmitContent">
+                                        <!-- Begin : Content Submite Article -->
                                         <div role="tabpanel" class="tab-pane fade active in" id="submit-article" aria-labelledby="article-post" aria-expanded="true">
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                                 <form>
@@ -243,18 +255,26 @@
                                             </div>
                                             <!-- end: image preview -->
                                         </div>
+                                        <!-- End : Content Submite Article -->
+
+                                        <!-- Begin : Content Submite Article -->
                                         <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                                 <form>
                                                     <fieldset class="form-group">
-                                                        <label for="exampleInputArtikel">Judul Elibrary</label>
-                                                        <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
-                                                        <small class="text-muted">Masukkan judul elibrary disini</small>
+                                                        <label for="exampleSelect1">Kategori</label>
+                                                        <select class="form-control" id="exampleSelect1">
+                                                            <option>Picture</option>
+                                                            <option>Video</option>
+                                                            <option>Kategori 1</option>
+                                                            <option>Kategori 2</option>
+                                                            <option>Kategori 3</option>
+                                                        </select>
                                                     </fieldset>
                                                     <fieldset class="form-group">
-                                                        <label for="exampleInputKonten">Konten Artikel</label>
-                                                        <textarea class="editor"></textarea>
-                                                    </fieldset>
+                                                        <label for="">File Images</label>
+                                                        <input type="file" name="files[]" id="filer_input_images" multiple="multipel">
+                                                    </fieldset>  
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 </form>
                                             </div>
@@ -266,39 +286,10 @@
                                                     </div>
                                                     <div class="widget-sidebar-content">
                                                         <div class="list-group-item">
-                                                            <label class="c-input c-checkbox">
-                                                                <input type="checkbox">
-                                                                <span class="c-indicator"></span>
-                                                                Desa membangun
-                                                            </label>
+                                                           <a href="">Picture</a>
                                                         </div>
                                                         <div class="list-group-item">
-                                                            <label class="c-input c-checkbox">
-                                                                <input type="checkbox">
-                                                                <span class="c-indicator"></span>
-                                                                Desa membangun 1
-                                                            </label>
-                                                            <div class="child">
-                                                                <label class="c-input c-checkbox">
-                                                                    <input type="checkbox">
-                                                                    <span class="c-indicator"></span>
-                                                                    Desa membangun a
-                                                                </label>
-                                                            </div>
-                                                            <div class="child">
-                                                                <label class="c-input c-checkbox">
-                                                                    <input type="checkbox">
-                                                                    <span class="c-indicator"></span>
-                                                                    Desa membangun b
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="list-group-item">
-                                                            <label class="c-input c-checkbox">
-                                                                <input type="checkbox">
-                                                                <span class="c-indicator"></span>
-                                                                Desa membangun 3
-                                                            </label>
+                                                            <a href="">Video</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -306,32 +297,87 @@
                                                 <!-- begin: image preview -->
                                                 <div class="widget">
                                                     <div class="widget-sidebar-heading">
-                                                        <h3>Category</h3>
+                                                        <h3>Media</h3>
                                                     </div>
                                                     <div class="widget-sidebar-content">
-                                                        <div class="image-preview">
-                                                            <img src="../images/portal/img-carousel.jpg" alt="">
-                                                        </div>
-                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#image-preview-1">submit image</button>
+                                                        <div class="list-group-item">
+                                                            <a href="">Your Media Files</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- end: image preview -->
+                                            </div>
+                                            <!-- end: image preview -->
                                         </div>
+                                        <!-- End : Content Submite Article -->
+
+                                        <!-- Begin : Content Submite Konsultasi -->
                                         <div role="tabpanel" class="tab-pane fade" id="submit-konsultasi" aria-labelledby="" aria-expanded="false">
-                                            <form>
-                                                <fieldset class="form-group">
-                                                    <label for="exampleInputArtikel">Judul Konsultasi</label>
-                                                    <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
-                                                    <small class="text-muted">Masukkan judul konsultasi disini</small>
-                                                </fieldset>
-                                                <fieldset class="form-group">
-                                                    <label for="exampleInputKonten">Konten Artikel</label>
-                                                    <textarea class="editor"></textarea>
-                                                </fieldset>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </form>
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                                <form>
+                                                    <fieldset class="form-group">
+                                                        <label for="exampleInputArtikel">Subyek Konsultasi</label>
+                                                        <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
+                                                        <small class="text-muted">Masukkan judul konsultasi disini</small>
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <label for="exampleSelect1">Kader</label>
+                                                        <select class="form-control" id="exampleSelect1">
+                                                            <option>Picture</option>
+                                                            <option>Video</option>
+                                                            <option>Kategori 1</option>
+                                                            <option>Kategori 2</option>
+                                                            <option>Kategori 3</option>
+                                                        </select>
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <label for="exampleSelect1">Prioritas</label>
+                                                        <select class="form-control" id="exampleSelect1">
+                                                            <option>High</option>
+                                                            <option>Medium</option>
+                                                            <option>Low</option>
+                                                        </select>
+                                                    </fieldset>
+                                                    <fieldset class="form-group">
+                                                        <label for="exampleInputKonten">Konten Artikel</label>
+                                                        <textarea class="editor"></textarea>
+                                                    </fieldset>
+                                                    <fieldset class="form-group">
+                                                        <label for="">Input File</label>
+                                                        <input type="file" name="files[]" id="filer_input_file" multiple="multipel">
+                                                    </fieldset> 
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </form>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                <!-- begin: category -->
+                                                <div class="widget">
+                                                    <div class="widget-sidebar-heading">
+                                                        <h3>Category</h3>
+                                                    </div>
+                                                    <div class="widget-sidebar-content">
+                                                        <div class="list-group-item">
+                                                           <a href="">Picture</a>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <a href="">Video</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end: category -->
+                                                <!-- begin: image preview -->
+                                                <div class="widget">
+                                                    <div class="widget-sidebar-heading">
+                                                        <h3>Media</h3>
+                                                    </div>
+                                                    <div class="widget-sidebar-content">
+                                                        <div class="list-group-item">
+                                                            <a href="">Your Media Files</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <!-- End : Content Submite Konsultasi -->
                                     </div>
                                 </div>
                             </div>
@@ -627,6 +673,11 @@
         <script src="../plugins/flot-chart/jquery.flot.stack.js"></script>
         <script src="../plugins/flot-chart/jquery.flot.time.js"></script>
         <script src="../javascript/flot.chart.init.js"></script>
+
+        <script src="../plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js"></script>
+        <script src="../plugins/jQuery.filer-1.0.5/js/custom.js"></script>
+        <script src="../plugins/jquery.steps-1.1.0/js/jquery.steps.js"></script>
+        <script src="../javascript/jquery.filer.custom.js"></script>
         <!-- end:javascript -->
     </body>
 </html>
