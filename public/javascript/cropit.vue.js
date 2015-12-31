@@ -154,4 +154,8 @@ $(document).ready(function () {
             }
         }
     })
+
+    $('.file-btn').on('click', function() {
+        $(this).prev('input[type=file]').trigger('click');
+    })
 })

@@ -4,13 +4,10 @@
     <div class="content-dashboard-articles-heading">
         <h3>ARTIKEL TERKINI</h3>
     </div>
-    <div class="content-dashboard-articles-heading-view">
-        <span class="pull-right"><a href="#">view all <i class="fa fa-plus-square"></i></a></span>
-    </div>
     <div class="content-dashboard-articles-main">
         <div class="row">
-            <?php foreach ($latest->chunk(5) as $chunk): ?>
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <?php foreach ($latest->take(10)->chunk(5) as $chunk): ?>
+            <div class="col-md-6 col-sm-6 col-xs-12">
                 <?php foreach ($chunk as $artikel): ?>
                 <div class="box-dashboard-articles">
                     <div class="row">
@@ -23,7 +20,6 @@
                             <div class="box-dashboard-articles-meta">
                                 <ul>
                                     <li><i class="fa fa-calendar"></i> <?php echo $artikel->date->format('d F Y') ?></li>
-                                    <li><i class="fa fa-user"></i> <?php echo $artikel->author_name ?></li>
                                 </ul>
                             </div>
                             <div class="box-dashboard-articles-title">
@@ -45,7 +41,7 @@
         <!-- start:section content main articles -->
         <section class="content-articles">
             <div class="content-articles-heading">
-                <h3><?php echo $privatepage_category_2_title ?></h3>
+                <h3><?php echo $privatepage_category_1_title ?></h3>
             </div>
             <div class="content-articles-heading-view">
                 <span class="pull-right"><a href="#">view all <i class="fa fa-plus-square"></i></a></span>
@@ -53,9 +49,9 @@
             <div class="content-articles-main">
                 <div class="row">
                     <div class="col-lg-12">
+                        <?php foreach ($privatepage_category_1_a as $article): ?>
                         <div class="articles-box">
                             <div class="row">
-                            <?php foreach ($privatepage_category_2_a as $article): ?>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                     <div class="articles-box-img">
                                         <a href="<?php echo $artikel->link ?>"><img src="<?php echo $artikel->featured_image ?>" alt=""></a>
@@ -64,8 +60,6 @@
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <div class="articles-box-meta">
                                         <ul>
-                                            <li><i class="fa fa-user"></i><?php echo $artikel->contributor->full_name?></li>
-                                            <li>/</li>
                                             <li><i class="fa fa-calendar"></i><?php echo $artikel->date->format('d F Y') ?></li>
                                         </ul>
                                     </div>
@@ -76,9 +70,9 @@
                                         <p><?php echo $article->getExcerpt(250) ?></p>
                                     </div>
                                 </div>
-                                <?php endforeach ?>
                             </div>
                         </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>
@@ -89,7 +83,7 @@
         <!-- start:section content main articles -->
         <section class="content-articles">
             <div class="content-articles-heading">
-                <h3><?php echo $privatepage_category_3_title ?></h3>
+                <h3><?php echo $privatepage_category_2_title ?></h3>
             </div>
             <div class="content-articles-heading-view">
                 <span class="pull-right"><a href="#">view all <i class="fa fa-plus-square"></i></a></span>
@@ -97,9 +91,9 @@
             <div class="content-articles-main">
                 <div class="row">
                     <div class="col-lg-12">
+                        <?php foreach ($privatepage_category_2_a as $article): ?>
                         <div class="articles-box">
                             <div class="row">
-                            <?php foreach ($privatepage_category_3_a as $article): ?>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                     <div class="articles-box-img">
                                         <a href="<?php echo $artikel->link ?>"><img src="<?php echo $artikel->featured_image ?>" alt=""></a>
@@ -108,8 +102,6 @@
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <div class="articles-box-meta">
                                         <ul>
-                                            <li><i class="fa fa-user"></i><?php echo $artikel->contributor->full_name?></li>
-                                            <li>/</li>
                                             <li><i class="fa fa-calendar"></i><?php echo $artikel->date->format('d F Y') ?></li>
                                         </ul>
                                     </div>
@@ -120,9 +112,9 @@
                                         <p><?php echo $article->getExcerpt(250) ?></p>
                                     </div>
                                 </div>
-                                <?php endforeach ?>
                             </div>
                         </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>
@@ -136,17 +128,17 @@
         <!-- start:section content main articles -->
         <section class="content-articles">
             <div class="content-articles-heading">
-                <h3><?php echo $privatepage_category_4_title ?></h3>
+                <h3><?php echo $privatepage_category_3_title ?></h3>
             </div>
             <div class="content-articles-heading-view">
                 <span class="pull-right"><a href="#">view all <i class="fa fa-plus-square"></i></a></span>
             </div>
             <div class="content-articles-main">
                 <div class="row">
-                    <div class="col-lg-12">                    
+                    <div class="col-lg-12">         
+                        <?php foreach ($privatepage_category_3_a as $article): ?>           
                         <div class="articles-box">
                             <div class="row">
-                            <?php foreach ($privatepage_category_4_a as $article): ?>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                     <div class="articles-box-img">
                                         <a href="<?php echo $artikel->link ?>"><img src="<?php echo $artikel->featured_image ?>" alt=""></a>
@@ -155,8 +147,6 @@
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <div class="articles-box-meta">
                                         <ul>
-                                            <li><i class="fa fa-user"></i><?php echo $artikel->contributor->full_name?></li>
-                                            <li>/</li>
                                             <li><i class="fa fa-calendar"></i><?php echo $artikel->date->format('d F Y') ?></li>
                                         </ul>
                                     </div>
@@ -167,9 +157,9 @@
                                         <p><?php echo $article->getExcerpt(250) ?></p>
                                     </div>
                                 </div>
-                                <?php endforeach ?>
                             </div>
                         </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>
@@ -180,7 +170,7 @@
         <!-- start:section content main articles -->
         <section class="content-articles">
             <div class="content-articles-heading">
-                <h3><?php echo $privatepage_category_1_title ?></h3>
+                <h3><?php echo $privatepage_category_4_title ?></h3>
             </div>
             <div class="content-articles-heading-view">
                 <span class="pull-right"><a href="#">view all <i class="fa fa-plus-square"></i></a></span>
@@ -188,9 +178,9 @@
             <div class="content-articles-main">
                 <div class="row">
                     <div class="col-lg-12">
+                        <?php foreach ($privatepage_category_4_a as $article): ?>
                         <div class="articles-box">
                             <div class="row">
-                            <?php foreach ($privatepage_category_1_a as $article): ?>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                     <div class="articles-box-img">
                                         <a href="<?php echo $artikel->link ?>"><img src="<?php echo $artikel->featured_image ?>" alt=""></a>
@@ -199,8 +189,6 @@
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <div class="articles-box-meta">
                                         <ul>
-                                            <li><i class="fa fa-user"></i><?php echo $artikel->contributor->full_name?></li>
-                                            <li>/</li>
                                             <li><i class="fa fa-calendar"></i><?php echo $artikel->date->format('d F Y') ?></li>
                                         </ul>
                                     </div>
@@ -211,9 +199,9 @@
                                         <p><?php echo $article->getExcerpt(250) ?></p>
                                     </div>
                                 </div>
-                                <?php endforeach ?>
                             </div>
                         </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>

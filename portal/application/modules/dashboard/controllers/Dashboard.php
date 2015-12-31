@@ -113,10 +113,9 @@ class Dashboard extends Admin {
             'links'                         => $this->Mod_link->read(),
         );
 
-        $latests    = Model\Portal\Article::registered()->latest('date')
-                        ->limit(15)
-                        ->get();
+        $latests            = Model\Portal\Article::registered()->latest('date')->get();
         $data['latest']     = $latests;
+        
         $this->template->set('active', 'artikel');
         $this->template->set('sidebar', FALSE);
         $this->template->set_layout('article');    
