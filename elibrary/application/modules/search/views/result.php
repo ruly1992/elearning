@@ -1,4 +1,11 @@
 <div class="elib-content-single">
+    <div class="elib-single-breadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="<?php echo site_url() ?>">Home</a></li>
+            <li class="active">Search</li>
+        </ol>
+    </div>
+
     <div class="elib-content-single-list">
         <div class="elib-content-single-list-title">
             <h4><strong>Search in :</strong> <em>"<?php echo $term ?>"</em></h4>
