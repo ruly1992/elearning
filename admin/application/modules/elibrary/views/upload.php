@@ -10,8 +10,9 @@
 		            ?>
 		        </select>
 	    </div>
-	    <div class="panel-body">
-	        <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
+        <div class="panel-body">
+            <p class="label label-primary">Maximum Files 20MB </p>
+            <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
 	    
 	        <button class="btn btn-danger" onclick="checkInput(); return false;" id="extrabutton">Start</button>
 	    </div>
