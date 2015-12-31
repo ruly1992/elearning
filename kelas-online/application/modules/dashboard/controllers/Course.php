@@ -16,27 +16,11 @@ class Course extends Admin
     {
         $this->template->set_layout('dashboard');
 
-        $this->form_validation->set_rules('course[name]', 'Nama Kelas', 'trim|required');
-
-        if ($this->form_validation->run() == FALSE) {
-            keepValidationErrors();
-
-            $data   = [
-                'category_lists' => $this->kelas->getCategoryLists()
-            ];
-            
-            $this->template->build('course/create', $data);
-        } else {
-            print_r($_FILES);
-            // $kelas      = new Library\Kelas\Kelas;
-
-            // $name       = $this->input->post('name');
-            // $category   = $this->input->post('category');
-
-            // $kelas      = $kelas->create($name, $category);
-
-            // redirect('dashboard/course/edit/'.$kelas->id, 'refresh');
-        }
+        $data   = [
+            'category_lists' => $this->kelas->getCategoryLists()
+        ];
+        
+        $this->template->build('course/create', $data);
     }
 
     public function submit()
@@ -81,6 +65,8 @@ class Course extends Admin
 
             $prefix     = 'featured_';
             $filename   = $prefix . $course->id . $extension;
+
+            $kelas_content = PATH_KELASONLINE_CONTENT.'/'.$course->id;
 
             $image->save($kelas_content.'/'.$filename);
 
@@ -202,6 +188,18 @@ class Course extends Admin
             $modelQuestion->exam()->associate($modelExam);
             $modelQuestion->save();
         });
+
+        set_message_success('Kelas Anda berhasil ditambahkan. Namun kelas Anda masih berada pada tahap moderator.');
+
+        $redirect = 'dashboard/course/edit/'.$course->id;
+
+        if ($this->input->is_ajax_request())
+            $this->output->set_content_type('application/json')->set_output(json_encode([
+                'redirect' => site_url($redirect)
+            ]));
+        else {
+            redirect($redirect);
+        }
     }
 
     public function edit($id, $page = 'index')
@@ -216,7 +214,7 @@ class Course extends Admin
         $this->template->set_layout('dashboard_course');
 
         if ($page == 'index') {
-            $this->template->build('course/edit');
+            $this->editIndex($id);
 
             return;
         } else {
@@ -228,14 +226,223 @@ class Course extends Admin
         }
     }
 
+    public function editIndex($id)
+    {
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('category_id', 'Category', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            keepValidationErrors();
+
+            $this->template->build('course/edit');
+        } else {
+            $course                 = Model\Kelas\Course::findOrFail($id);
+            $course->name           = set_value('name');
+            $course->description    = set_value('description');
+            $course->category_id    = set_value('category_id');
+            $course->save();
+
+            set_message_success('Informasi kelas berhasil diperbarui.');
+
+            redirect('dashboard/course/edit/'.$course->id, 'refresh');
+        }
+    }
+
     public function editImage($id)
     {
-        $this->template->build('course/image');
+        if (!$this->input->post()) {
+            $this->template->build('course/image');
+        } else {
+            $course         = Model\Kelas\Course::findOrFail($id);
+            $featured       = $this->input->post('featured[src]');
+            $action         = $this->input->post('featured[action]');
+            $imageManager   = new ImageManager;
+            $kelas_content  = PATH_KELASONLINE_CONTENT.'/'.$course->id;
+            
+            if ($action == 'remove') {
+                // remove
+            } elseif ($action == 'upload') {
+                if (!empty($featured)) {
+                    $image = $imageManager->make($featured);
+
+                    if ($image->mime == 'image/jpeg')
+                        $extension = '.jpg';
+                    elseif ($image->mime == 'image/png')
+                        $extension = '.png';
+                    elseif ($image->mime == 'image/gif')
+                        $extension = '.gif';
+                    else
+                        $extension = '';
+
+                    $prefix     = 'featured_';
+                    $filename   = $prefix . $course->id . $extension;
+
+                    $image->save($kelas_content.'/'.$filename);
+
+                    $course->featured   = $filename;
+                    $course->save();
+                }
+            }
+
+            redirect('dashboard/course/edit/'.$course->id.'/image', 'refresh');
+        }
     }
 
     public function editChapter($id)
     {
-        $this->template->build('course/image');
+        if (!$this->input->post()) {
+            $this->template->build('course/chapter');
+        } else {
+            // 1. Prepare from input
+            $input  = collect($this->input->post('course'));
+            $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
+
+            // 4. Chapters
+            $chapters = collect($input->get('chapters'));
+
+            $chapters->each(function ($chapter) use ($course) {
+                $chapter                    = collect($chapter);
+
+                if ($chapter->get('id')) {
+                    $modelChapter   =  Model\Kelas\Chapter::findOrFail($chapter->get('id'));
+                } else {
+                    $modelChapter   = new Model\Kelas\Chapter;
+                    $modelChapter->course()->associate($course);
+                }
+
+                $modelChapter->name         = $chapter->get('name');
+                $modelChapter->content      = $chapter->get('content');
+                $modelChapter->order        = $chapter->get('order');                
+                $modelChapter->save();
+
+                // 5. Quiz Chapter
+                $quiz               = collect($chapter->get('quiz'));
+
+                if ($quiz->get('id')) {
+                    $modelQuiz  = Model\Kelas\Quiz::findOrFail($quiz->get('id'));
+                } else {
+                    $modelQuiz  = new Model\Kelas\Quiz;
+                    $modelQuiz->chapter()->associate($modelChapter);
+                }
+
+                $modelQuiz->name    = $quiz->get('name');
+                $modelQuiz->time    = $quiz->get('time');
+                $modelQuiz->save();
+
+                $questions = collect($quiz->get('questions'));
+
+                $questions->each(function ($question) use ($modelQuiz, $modelChapter, $course) {
+                    $question = collect($question);
+
+                    if ($question->get('id'))
+                        $modelQuestion  = Model\Kelas\QuizQuestion::findOrFail($question->get('id'));
+                    else {
+                        $modelQuestion  = new Model\Kelas\QuizQuestion;
+                        $modelQuestion->quiz()->associate($modelQuiz);
+                    }
+
+                    $modelQuestion->question    = $question->get('question');
+                    $modelQuestion->option_a    = $question->get('option_a');
+                    $modelQuestion->option_b    = $question->get('option_b');
+                    $modelQuestion->option_c    = $question->get('option_c');
+                    $modelQuestion->option_d    = $question->get('option_d');
+                    $modelQuestion->correct     = $question->get('correct');
+                    $modelQuestion->save();
+                });
+
+                // 6. Attachment
+                $attachments        = collect($chapter->get('attachments'));
+                $attachment_path    = PATH_KELASONLINE_CONTENT.'/'.$course->id.'/chapter_'.$modelChapter->id;
+
+                if (!is_dir($attachment_path)) {
+                    mkdir($attachment_path, 0775);
+                }
+
+                $modelChapter->attachments->each(function ($attachment) use ($attachments) {
+                    $attachments->each(function ($input) use ($attachment) {
+                        $input = collect($input);
+
+                        if (!$input->get('id') == $attachment->id) {
+                            //
+                        }
+                    });
+                });
+
+                $attachments->each(function ($attachment) use ($modelChapter, $course) {
+                    $attachment = collect($attachment);
+
+                    if ($attachment->get('id')) {
+                        // Already
+                    } else {
+                        $modelAttachment            = new Model\Kelas\Attachment;
+                        $modelAttachment->filename  = $attachment->get('filename');
+                        $modelAttachment->filetype  = $attachment->get('filetype');
+                        $modelAttachment->filesize  = $attachment->get('filesize');
+                        $modelAttachment->chapter()->associate($modelChapter);
+                        $modelAttachment->save();
+
+                        // 6.a. Uploading attachment
+                        $file_encoded   = $attachment->get('dataurl');
+                        $file_encoded   = explode(',', $file_encoded);
+                        $file_base64    = $file_encoded[1];
+
+                        $fp = fopen($modelAttachment->filepath, 'w+');
+                        fwrite($fp, base64_decode($file_base64));
+                        fclose($fp);
+                    }
+                });
+            });
+
+            redirect('dashboard/course/edit/'.$course->id.'/chapter', 'refresh');
+        }
+    }
+
+    public function editExam($id)
+    {
+        if (!$this->input->post()) {
+            $this->template->build('course/exam');
+        } else {
+            // 1. Prepare from input
+            $input  = collect($this->input->post('course'));
+            $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
+
+            // 7. Exam
+            $exam = collect($input->get('exam'));
+
+            if ($exam->get('id')) {
+                $modelExam  = Model\Kelas\Exam::findOrFail($exam->get('id'));
+            } else {
+                $modelExam  = new Model\Kelas\Exam;
+                $modelExam->course()->associate($course);
+            }
+
+            $modelExam->name    = $exam->get('name');
+            $modelExam->time    = $exam->get('time');
+            $modelExam->save();
+
+            $questions = collect($exam->get('questions'));
+
+            $questions->each(function ($question) use ($modelExam, $course) {
+                $question = collect($question);
+
+                if ($question->get('id')) {
+                    $modelQuestion  = Model\Kelas\ExamQuestion::findOrFail($question->get('id'));
+                } else {
+                    $modelQuestion  = new Model\Kelas\ExamQuestion;
+                    $modelQuestion->exam()->associate($modelExam);
+                }
+
+                $modelQuestion->question    = $question->get('question');
+                $modelQuestion->option_a    = $question->get('option_a');
+                $modelQuestion->option_b    = $question->get('option_b');
+                $modelQuestion->option_c    = $question->get('option_c');
+                $modelQuestion->option_d    = $question->get('option_d');
+                $modelQuestion->correct     = $question->get('correct');
+                $modelQuestion->save();
+            });
+
+            redirect('dashboard/course/edit/'.$course->id.'/exam', 'refresh');
+        }
     }
 }
 
