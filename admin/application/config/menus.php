@@ -82,18 +82,13 @@ $config['menus'] = [
         'roles' => ['su', 'adm', 'pus'],
         'child' => [
             [
-                'name'  => 'Terbit',
+                'name'  => 'Elibrary',
                 'icon'  => 'fa fa-upload',
                 'link'  => site_url('elibrary'),
             ],
             [
-                'name'  => 'Elibrary',
-                'icon'  => 'fa fa-upload',
-                'link'  => site_url('elibrary?status=draft'),
-            ],
-            [
                 'name'  => 'Kategori',
-                'icon'  => 'fa fa-upload',
+                'icon'  => 'icon-calculator',
                 'link'  => site_url('elibrary/category'),
             ]
         ]
@@ -133,7 +128,7 @@ $config['menus'] = [
         'child' => [
             [
                 'name'  => 'Kategori',
-                'icon'  => 'fa fa-upload',
+                'icon'  => 'icon-calculator',
                 'link'  => site_url('forum/category'),
             ]
         ],
