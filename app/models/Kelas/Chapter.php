@@ -11,7 +11,7 @@ class Chapter extends Model
 
 	public function quiz()
 	{
-		return $this->hasMany(Quiz::class);
+		return $this->hasOne(Quiz::class);
 	}
 
 	public function attachments()
