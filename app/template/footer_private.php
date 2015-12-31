@@ -79,6 +79,11 @@
     </script>
 
     <script src="<?php echo asset('node_modules/jquery/dist/jquery.min.js') ?>"></script>
+    <!--jQuery-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('/javascript/jquery.filer.custom.js') ?>"></script>
+   
     <script src="<?php echo asset('node_modules/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>
     <script src="<?php echo asset('node_modules/moment/moment.js') ?>"></script>
