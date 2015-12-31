@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var STORAGE_KEY = 'vue-kelas-app';
+    var STORAGE_ATTACHMENT_KEY = 'vue-kelas-app-attachment';
 
     var store = {
         fetch: function () {
@@ -26,7 +27,6 @@ $(document).ready(function () {
         this.content = '';
         this.order = 0;
         this.quiz = new ObjQuiz();
-        this.attachment = new ObjAttachment();
     }
 
     function ObjQuiz() {
@@ -55,7 +55,7 @@ $(document).ready(function () {
         this.dataurl = '';
     }
 
-    new Vue({
+    window.app_kelas_online = new Vue({
         el: '#app-kelas-online',
         data: {
             course: new ObjCourse(),
@@ -65,16 +65,19 @@ $(document).ready(function () {
                 chapterAttachment: new ObjAttachment(),
                 exam: new ObjQuestion()
             },
+            attachments: [],
             tinymce: 'editor-question',
             tinymceExam: 'editor-exam',
             filer: $('#file_attachment'),
-            contentResult: '#result-content'
+            contentResult: '#result-content',
+            withCache: true
         },
         watch: {
             course: {
                 deep: true,
                 handler: function (value) {
-                    store.save(value);
+                    if (this.withCache)
+                        store.save(value);
                 }
             }
         },
@@ -85,16 +88,30 @@ $(document).ready(function () {
                 }
 
                 $.extend(this.course, storage);
+
+                var count = this.course.chapters.length;
+
+                for (var i = 0; i < count; i++) {
+                    this.attachments.push(new ObjAttachment());
+                }
+            },
+            initCourse: function (storage) {
+                this.course = storage;
+            },
+            initAttachment: function (storage) {
+                this.attachments = storage;
             },
             saveChapter: function () {
                 var index = this.input.chapter.chapterIndex;
 
                 if (typeof index === 'undefined') {
+                    var attachment = new ObjAttachment();
                     var chapter = new ObjChapter();
                     chapter.name = this.input.chapter.name;
-                    chapter.content = this.input.chapter.content;
+                    chapter.content = this.input.chapter.content;                    
 
-                    this.course.chapters.push(chapter);
+                    this.course.chapters.push(chapter);                    
+                    this.attachments.push(attachment)
                 } else {
                     this.course.chapters[index].name = this.input.chapter.name;
                     this.course.chapters[index].content = this.input.chapter.content;
@@ -191,7 +208,7 @@ $(document).ready(function () {
             },
             saveChapterContent: function () {
                 var chapterIndex = this.input.chapterAttachment.chapterIndex;
-                var chapter = this.course.chapters[chapterIndex];
+                var attachment = this.attachments[chapterIndex];
                 var contents = this.input.chapterAttachment.contents;
                 var that = this;
 
@@ -203,7 +220,7 @@ $(document).ready(function () {
                     content.filesize = data.filesize;
                     content.dataurl = data.dataurl;
 
-                    chapter.attachment.contents.push(content);
+                    attachment.contents.push(content);
                 });
 
                 this.resetInput('chapterAttachment', new ObjAttachment());
@@ -212,9 +229,9 @@ $(document).ready(function () {
                 filerKit.reset()
             },
             removeChapterContent: function (index, chapterIndex) {
-                var chapter = this.course.chapters[chapterIndex];
+                var attachment = this.attachments[chapterIndex];
 
-                chapter.attachment.contents.splice(index, 1);
+                attachment.contents.splice(index, 1);
             },
             saveExam: function () {
                 var index = this.input.exam.examIndex;
@@ -313,7 +330,6 @@ $(document).ready(function () {
                     reader.onload = function (e) {
                         var dataUrl = e.target.result;
                         that.addChapterContent(file.name, file.type, file.size, dataUrl);
-                        console.log(dataUrl)
                     }
                     reader.readAsDataURL(file);
                 },
