@@ -16,15 +16,13 @@ class Search extends Admin {
         
         if (!empty($term)) {
             $category   = $this->input->get('category', '');
-            $meta       = $this->input->get('meta', '');
 
-            $results    = $this->medialib->search($term, $meta, $category)->get();
+            $results    = $this->medialib->search($term, $category)->get();
             $results    = pagination($results, 15, 'search')->appends(['q' => $term]);
 
             $data = [
                 'term'      => $term,
                 'category'  => $category,
-                'meta'      => $meta,
                 'results'   => $results,
             ];
 
