@@ -2815,7 +2815,10 @@ footer {
       margin: 2px;
       padding: 3px;
       list-style: none;
-      border-bottom: 2px solid #dddddd; }
+      border-bottom: 2px solid #dddddd;
+      width: 100%;
+      height: 56px;
+      overflow: hidden; }
       .favorit .widget-content .article .list-article a {
         color: #000;
         text-decoration: none;
@@ -2835,7 +2838,8 @@ footer {
           font-weight: 600;
           float: left;
           margin-left: 5px;
-          margin-right: 10px; }
+          margin-right: 10px;
+          line-height: 2; }
         .favorit .widget-content .article .list-article a .list-title {
           line-height: normal;
           padding-top: 5px; }
@@ -2843,6 +2847,7 @@ footer {
             font-size: 14px;
             font-weight: 600;
             margin-left: 30px;
+            line-height: 1.5;
             transition: all 0.3s ease-in-out;
             -webkit-transition: all 0.3s ease-in-out;
             -moz-transition: all 0.3s ease-in-out;

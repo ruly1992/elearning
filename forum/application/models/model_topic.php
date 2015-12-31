@@ -89,7 +89,12 @@ class Model_topic extends CI_Model
     function getTopics_by_Category($id)
     {
         $data = array('categories.category_name','topics.*');
-        $get = $this->db->select($data)->from('topics')->join('categories','categories.id=topics.category')->where('categories.id', $id)->order_by('topics.id','desc')->get();
+        $get = $this->db->select($data)
+                    ->from('topics')
+                    ->join('categories','categories.id=topics.category')
+                    ->where(array('categories.id' => $id, 'topics.status' => '1'))
+                    ->order_by('topics.id','desc')
+                    ->get();
         return $get->result();
     }
 
