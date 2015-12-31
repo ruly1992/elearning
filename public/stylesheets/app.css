@@ -2818,7 +2818,17 @@ footer {
       border-bottom: 2px solid #dddddd; }
       .favorit .widget-content .article .list-article a {
         color: #000;
-        text-decoration: none; }
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out; }
+        .favorit .widget-content .article .list-article a:hover, .favorit .widget-content .article .list-article a:focus {
+          color: #1c9c57;
+          transition: all 0.3s ease-in-out;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out; }
         .favorit .widget-content .article .list-article a .list-numb {
           color: #d41d2a;
           font-size: 16px;
@@ -2832,11 +2842,17 @@ footer {
           .favorit .widget-content .article .list-article a .list-title h3 {
             font-size: 14px;
             font-weight: 600;
-            margin-left: 30px; }
-            .favorit .widget-content .article .list-article a .list-title h3 span {
-              color: #000; }
-              .favorit .widget-content .article .list-article a .list-title h3 span:hover, .favorit .widget-content .article .list-article a .list-title h3 span:focus, .favorit .widget-content .article .list-article a .list-title h3 span:active {
-                color: #1c9c57; }
+            margin-left: 30px;
+            transition: all 0.3s ease-in-out;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out; }
+            .favorit .widget-content .article .list-article a .list-title h3:hover, .favorit .widget-content .article .list-article a .list-title h3:focus {
+              color: #1c9c57;
+              transition: all 0.3s ease-in-out;
+              -webkit-transition: all 0.3s ease-in-out;
+              -moz-transition: all 0.3s ease-in-out;
+              -o-transition: all 0.3s ease-in-out; }
 
 .dropdown-people .dropdown-toggle {
   cursor: pointer;
