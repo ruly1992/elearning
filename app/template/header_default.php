@@ -90,7 +90,7 @@
                                     <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-user fa-2x"></i>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-right custom-login-mobile" aria-labelledby="dropdownMenu2">
+                                    <div class="dropdown-menu custom-float custom-login-mobile" aria-labelledby="dropdownMenu2">
                                         <div class="menu-login">
                                             <p>Silahkan masukkan username dan password untuk Login.</p>
                                             <form class="form-login" method="POST" action="<?php echo login_url() ?>">

@@ -61,8 +61,6 @@
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <div class="articles-box-meta">
                                     <ul>
-                                        <li><i class="fa fa-user"></i> <?php echo $article->author_name ?></li>
-                                        <li>/</li>
                                         <li><i class="fa fa-calendar"></i> <?php echo $article->date->format('d F Y') ?></li>
                                     </ul>
                                 </div>
@@ -106,8 +104,6 @@
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <div class="articles-box-meta">
                                     <ul>
-                                        <li><i class="fa fa-user"></i> <?php echo $article->author_name ?></li>
-                                        <li>/</li>
                                         <li><i class="fa fa-calendar"></i> <?php echo $article->date->format('d F Y') ?></li>
                                     </ul>
                                 </div>

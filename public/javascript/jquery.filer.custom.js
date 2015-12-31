@@ -198,6 +198,12 @@ $(document).ready(function() {
     });
 
     $("#filer_input_media").filer({
+        maxSize: 20,
+        extensions: ['jpg', 'jpeg', 'png', 
+                    'gif', 'pdf', 'rar', 'zip', 
+                    'xlxs', 'docx', 'doc', 'xlx', 
+                    'ppt', 'pptx', '3gp', 'mp4', 'mpeg', 
+                    'mkv', 'flv', 'mp3', 'txt'],
         addMore: true,
         showThumbs: true,
         templates: {
