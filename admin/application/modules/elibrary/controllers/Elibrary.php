@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Symfony\Component\HttpFoundation\Request;
+
 class Elibrary extends Admin
 {
     public function __construct()
@@ -14,7 +16,6 @@ class Elibrary extends Admin
 
     public function index()
     {
-
         $data['categories'] = $this->medialib->getCategories();
 
         $this->template->build('index', $data);
@@ -87,18 +88,39 @@ class Elibrary extends Admin
 
             $this->template->build('edit', $data);
         } else {
-            $mediaLib   = new Library\Media\Media;
-            $media      = $media->withDrafts()->findOrFail($media_id);
-
-            $request    = Request::createFromGlobals();
-            $metadata   = $request->request->get('meta');
-
-            $mediaLib->setMetadata($media->id, $metadata);
-
-            set_message_success('Metadata berhasil diperbarui.');
             
-            redirect('elibrary/edit/' . $media->id, 'refresh');
         }
+    }
+
+    public function update($media_id)
+    {
+        $media      = $this->medialib->getMedia();
+        $mediaLib   = new Library\Media\Media;
+        $media      = $media->withDrafts()->findOrFail($media_id);
+
+        $request    = Request::createFromGlobals();
+        $metadata   = $request->request->get('meta');
+
+        foreach ($metadata as $key => $value) {
+            if ($key == 'title') {
+                $title = $value;
+            }
+            if ($key == 'description') {
+                $description = $value;
+            }
+        }
+
+        $data = array(
+            'title'         => $title,
+            'description'   => $description
+        );
+
+        $this->media_model->update($media->id, $data);
+        $mediaLib->setMetadata($media->id, $metadata);
+
+        set_message_success('Metadata berhasil diperbarui.');
+        
+        redirect('elibrary/edit/' . $media->id, 'refresh');
     }
 
     public function approve($media_id, $status = 'publish')
@@ -226,13 +248,13 @@ class Elibrary extends Admin
 
     public function addMeta($jumlah)
     {
-        for($i=0; $i<$jumlah; $i++) {
+        $simpan = false;
+        for($i=0; $i<$jumlah; $i++){
             $this->form_validation->set_rules('id'.$i, 'Id'.$i, 'required');
             $this->form_validation->set_rules('title'.$i, 'Title'.$i, 'required');
             $this->form_validation->set_rules('description'.$i, 'Description'.$i, 'required');
             $this->form_validation->set_rules('meta'.$i, 'Meta'.$i);
-
-            if($this->form_validation->run()==TRUE) {
+            if($this->form_validation->run()==TRUE){
                 $id             = set_value('id'.$i);
                 $metadata[$i]   = set_value('meta'.$i);
                 $dataFile = array(
@@ -240,10 +262,9 @@ class Elibrary extends Admin
                     'description'   => set_value('description'.$i)
                 );
                 $this->media_model->update($id, $dataFile);
-
-                foreach($metadata[$i] AS $key => $value) {
+                foreach($metadata[$i] AS $key => $value){
                     $cek = $this->media_model->cekMeta($id, $key, $value);
-                    if($cek == FALSE) {
+                    if($cek == FALSE){
                         $dataMeta = array(
                             'key'       => $key,
                             'value'     => $value,
@@ -252,11 +273,76 @@ class Elibrary extends Admin
                         $this->media_model->addMeta($dataMeta);
                     }
                 }
-                redirect('elibrary');
-            } else {
-                echo validation_errors();            
+                $simpan = true;
+            }else{
+                $simpan = validation_errors();            
             }
         }
+        if($simpan == true){
+            set_message_success('Upload Media dan Add Meta Data Berhasil');
+
+            redirect('elibrary/upload');
+        }else{
+            set_message_error('Upload Media dan Add Meta Data gagal');
+
+            redirect('elibrary/upload');
+        }
+    }
+
+    public function delete($media_id)
+    {
+        try {
+            $media      = $this->medialib->getMedia();
+            $mediaLib   = new Library\Media\Media;
+            $media      = $media->withDrafts()->findOrFail($media_id);
+
+            $category_id   = $media->category;
+
+            $this->medialib->deleteMedia($media_id);
+
+            redirect('elibrary/show/'. $category_id->id,'refresh');
+        } catch (Exception $e) {
+            set_message_error('Maaf Media tidak tersedia.');
+
+            redirect('elibrary','refresh');
+        }
+    }
+
+    public function getmetadata()
+    {
+        $media_id   = $this->input->get('media_id');
+        $hidden     = $this->input->get('hidden');
+
+        $media_id   = explode(',', $media_id);
+
+        if (count($media_id) > 1) {
+            $metadata = [];
+
+            foreach ($media_id as $id) {
+                $metadata['media' . $id] = $this->generatemetadata($id);
+            }
+        } else {
+            $metadata = $this->generatemetadata($media_id[0]);
+        }
+
+        $this->output->set_content_type('application/json')->set_output(
+            json_encode($metadata)
+        );
+    }
+
+    public function generatemetadata($media_id)
+    {
+        $media  = new Library\Media\Media;
+
+        $media->withDrafts()->setMedia($media_id);
+
+        $media->setHiddenMetadata([
+            'title',
+            'description',
+            'full_description',
+        ]);
+
+        return $media->getMetadata();
     }
 }
 

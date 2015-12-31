@@ -110,6 +110,19 @@ class M_konsultasi extends CI_Model {
         $this->db->update('konsultasi', $data);
     }
 
+    public function updatedAt($updateat, $id_konsultasi)
+    {
+        $default = array(
+            'updated_at' => $updateat,
+        ); 
+
+        $data = array_merge($default);
+
+        $this->db->set($data);
+        $this->db->where('id', $id_konsultasi);        
+        $this->db->update('konsultasi', $data);
+    }
+
     public function getReply($id)
     {
         $data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment');

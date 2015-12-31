@@ -8,7 +8,7 @@
 	  		<thead>
 	  			<tr>
 	  				<th>Nama Kategori</th>
-	  				<th>Jumlah Media</th>
+	  				<th>Jumlah Media Publish</th>
 	  				<th>Menunggu Konfirmasi</th>
 	  			</tr>
 	  		</thead>
@@ -16,7 +16,7 @@
 	  			<?php if ($categories->count()): ?>
 	  				<?php foreach ($categories as $category): ?>	  					
 			  			<tr>
-			  				<td><?php echo anchor('elibrary/show/' . $category->id, $category->name); ?></td>
+			  				<td><?php echo anchor('elibrary/show/' . $category->id. '?status=all', $category->name); ?></td>
 			  				<td><a href="<?php echo site_url('elibrary/show/' . $category->id) ?>" class="label label-primary">Lihat</a> <span class="label label-primary"><?php echo $category->getMediaCount() ?></span></td>
 			  				<td><a href="<?php echo site_url('elibrary/show/' . $category->id) ?>?status=draft" class="label label-warning">Review</a> <span class="label label-warning"><?php echo $category->getMediaDraftCount() ?></span></td>
 			  			</tr>
