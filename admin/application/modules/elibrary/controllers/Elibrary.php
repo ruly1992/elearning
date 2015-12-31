@@ -289,6 +289,25 @@ class Elibrary extends Admin
             redirect('elibrary/upload');
         }
     }
+
+    public function delete($media_id)
+    {
+        try {
+            $media      = $this->medialib->getMedia();
+            $mediaLib   = new Library\Media\Media;
+            $media      = $media->withDrafts()->findOrFail($media_id);
+
+            $category_id   = $media->category;
+
+            $this->medialib->deleteMedia($media_id);
+
+            redirect('elibrary/show/'. $category_id->id,'refresh');
+        } catch (Exception $e) {
+            set_message_error('Maaf Media tidak tersedia.');
+
+            redirect('elibrary','refresh');
+        }
+    }
 }
 
 /* End of file Elibrary.php */
