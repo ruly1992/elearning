@@ -85,6 +85,21 @@
                             <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarCollapse">
                                 &#9776;
                             </button>
+                            <a class="navbar-logo-mobile navbar-logo-tablet hidden-lg-up" href="<?php echo home_url() ?>">
+                                <img src="<?php echo asset('images/logo.png') ?>">
+                            </a>
+                            <ul class="nav navbar-nav hidden-lg-up pull-right">
+                                <div class="dropdown dropdown-people">
+                                    <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="<?php echo auth()->getUser()->avatar ?>" alt="">
+                                    </a>
+                                    <div class="dropdown-menu custom-float" aria-labelledby="dropdownMenu2">
+                                        <a href="<?php echo dashboard_url('profile') ?>" class="dropdown-item">Profile</a>
+                                        <a href="<?php echo dashboard_url('sendArticle') ?>" class="dropdown-item">Submit Artikel</a>
+                                        <a href="<?php echo logout_url() ?>" class="dropdown-item">Log Out</a>
+                                    </div>
+                                </div>
+                            </ul>
                             <div class="collapse navbar-toggleable-md" id="navbarCollapse">
                                 <a class="navbar-brand" href="<?php echo home_url() ?>" style="display: none">
                                     <img src="<?php echo asset('images/logo.png') ?>" alt="">
@@ -112,7 +127,7 @@
                                         <a href="<?php echo vicon_url() ?>" target="_blank" class="nav-link">VIRTUAL CONFERENCE</a>
                                     </li>
                                 </ul>
-                                <ul class="nav navbar-nav pull-right">
+                                <ul class="nav navbar-nav hidden-md-down pull-right">
                                     <div class="dropdown dropdown-people">
                                         <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <img src="<?php echo auth()->getUser()->avatar ?>" alt="">

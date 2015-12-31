@@ -436,6 +436,10 @@
     width: 35px;
     border-radius: 100%; }
 
+  .custom-float {
+    right: 0;
+    float: left; }
+
   .custom-login-mobile {
     width: 255px;
     height: auto; }
