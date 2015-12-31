@@ -44,6 +44,7 @@
                     </div>
                 </div>
             </div>
+            <?php if ($konsultasi->count()): ?>
             <div class="content-konsultasi-table">
                 <p><?php echo count($konsultasi) ?> Data ditemukan</p>
                 <table class="table table-bordered">
@@ -92,6 +93,9 @@
                     </ul>
                 </nav>
             </div>
+        <?php else: ?>                       
+            <p class="alert alert-warning">Belum ada riwayat konsultasi...</p>
+        <?php endif ?>
         </div>
         <!-- end:content -->
 
