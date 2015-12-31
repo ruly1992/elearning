@@ -16,7 +16,6 @@ class Elibrary extends Admin
 
     public function index()
     {
-
         $data['categories'] = $this->medialib->getCategories();
 
         $this->template->build('index', $data);
@@ -288,6 +287,62 @@ class Elibrary extends Admin
 
             redirect('elibrary/upload');
         }
+    }
+
+    public function delete($media_id)
+    {
+        try {
+            $media      = $this->medialib->getMedia();
+            $mediaLib   = new Library\Media\Media;
+            $media      = $media->withDrafts()->findOrFail($media_id);
+
+            $category_id   = $media->category;
+
+            $this->medialib->deleteMedia($media_id);
+
+            redirect('elibrary/show/'. $category_id->id,'refresh');
+        } catch (Exception $e) {
+            set_message_error('Maaf Media tidak tersedia.');
+
+            redirect('elibrary','refresh');
+        }
+    }
+
+    public function getmetadata()
+    {
+        $media_id   = $this->input->get('media_id');
+        $hidden     = $this->input->get('hidden');
+
+        $media_id   = explode(',', $media_id);
+
+        if (count($media_id) > 1) {
+            $metadata = [];
+
+            foreach ($media_id as $id) {
+                $metadata['media' . $id] = $this->generatemetadata($id);
+            }
+        } else {
+            $metadata = $this->generatemetadata($media_id[0]);
+        }
+
+        $this->output->set_content_type('application/json')->set_output(
+            json_encode($metadata)
+        );
+    }
+
+    public function generatemetadata($media_id)
+    {
+        $media  = new Library\Media\Media;
+
+        $media->withDrafts()->setMedia($media_id);
+
+        $media->setHiddenMetadata([
+            'title',
+            'description',
+            'full_description',
+        ]);
+
+        return $media->getMetadata();
     }
 }
 

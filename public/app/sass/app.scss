@@ -86,7 +86,10 @@ body {
 	background-color: $white;
 	border-color: $grey-black;
 }
-
+.custom-float {
+	right: 0px !important;
+	left: auto;
+}
 /* HEADER */
 
 header {
@@ -148,6 +151,83 @@ header {
 	}
 	// ADD FAJAR EKO S
 	#header-content {
+		padding-top: $padding-top + 15px;
+		padding-bottom: $padding-bottom + 15px;
+		background-color: $grey;
+		.navbar-brand {
+			width: 220px;
+			img {
+				width: 100%;
+			}
+		}
+		//edited
+		.header-top-right {
+			margin-top: $margin-top + 5px;
+			.form-control {
+				height: 30px;
+				font-size: 10px;
+				width: 150px;
+				float: right;
+				background-color: $grey-black;
+				border: 1px solid $grey-black;
+				@include transition(0.3s);
+				border-top-left-radius: 8px;
+				border-bottom-left-radius: 8px;
+				&:focus {
+					width: 100%;
+					@include transition(0.3s);
+				}
+			}
+			.btn {
+				height: 30px;
+				font-size: 10px;
+				padding-top: $padding-top - 2px;
+				background-color: $grey-black;
+				border: 1px solid $grey-black;
+				border-top-right-radius: 8px;
+				border-bottom-right-radius: 8px;
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: $white;
+				}
+			}
+		}
+		//edited
+		.search-navbar {
+				margin-top: $margin-top + 2px;
+				input {
+					width: 65px;
+					height:45px;
+					@include transition(0.5s);
+					border: 1px solid white;
+					color: $grey-black;
+				}
+				input[placeholder] {
+					color: $grey-black;
+					font-size: 13px;
+					height: 45px;
+				}
+				input:focus {
+					width: 130px;
+					@include transition(0.5s);
+					float: right;
+				}
+				.btn {
+					height: 45px;
+					border: 1px solid $white;
+					&:hover,
+					&:focus,
+					&:active {
+						background-color: $white;
+					}
+					i.fa {
+						color: $grey-black;
+					}
+				}
+		}
+	}
+	#header-content-private {
 		padding-top: $padding-top + 15px;
 		padding-bottom: $padding-bottom + 15px;
 		.navbar-brand {
