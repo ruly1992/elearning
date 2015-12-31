@@ -5,6 +5,10 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title" value="<?php echo set_value('title') ?>" class="form-control"><?php echo form_error('title') ?>
+                </div>
+                <div class="form-group">
                     <label>Pertanyaan</label>
                     <input type="text" name="question" value="<?php echo set_value('question') ?>" class="form-control"><?php echo form_error('question') ?>
                 </div>
