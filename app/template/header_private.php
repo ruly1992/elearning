@@ -64,7 +64,7 @@
                             <div class="header-top-right">
                                 <form action="<?php echo home_url('search') ?>" method="GET">
                                     <div class="input-group">
-                                        <input class="form-control form-control-sm" placeholder="Search for..." type="text">
+                                        <input name="term" class="form-control form-control-sm" placeholder="Search for..." type="text">
                                         <span class="input-group-btn">
                                             <button class="btn btn-sm btn-secondary" type="button"><i class="fa fa-search"></i></button>
                                         </span>
