@@ -99,15 +99,15 @@
                                                                 <table class="table table-striped">
                                                                     <thead>
                                                                         <tr>
-                                                                          <th>No</th>
-                                                                          <th>Name</th>
-                                                                          <th>Type</th>
-                                                                          <th>Size</th>
-                                                                          <th>Action</th>
+                                                                            <th>No</th>
+                                                                            <th>Name</th>
+                                                                            <th>Type</th>
+                                                                            <th>Size</th>
+                                                                            <th>Action</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr v-show="chapter.attachment.contents.length > 0" v-for="content in chapter.attachment.contents">
+                                                                        <tr v-for="content in attachments[$index].contents">
                                                                             <th scope="row">{{ $index+1 }}</th>
                                                                             <td>{{ content.filename }}</td>
                                                                             <td>{{ content.filetype }}</td>
@@ -116,7 +116,7 @@
                                                                                 <a class="btn btn-sm btn-danger" title="Delete" v-on:click="removeChapterContent($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
                                                                             </td>
                                                                         </tr>
-                                                                        <tr v-show="chapter.attachment.contents.length == 0">
+                                                                        <tr v-show="attachments[$index].contents.length == 0">
                                                                             <td colspan="4">Tidak ada attachment</td>
                                                                         </tr>
                                                                     </tbody>
@@ -150,7 +150,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr v-show="chapter.quiz.questions.length > 0" v-for="quiz in chapter.quiz.questions">
+                                                                        <tr v-for="quiz in chapter.quiz.questions">
                                                                             <th scope="row">{{ $index+1 }}</th>
                                                                             <td>{{{ quiz.question }}}</td>
                                                                             <td>
@@ -194,7 +194,7 @@
                                         <div class="form-group row">
                                             <label for="waktu" class="col-sm-2 form-control-label">Waktu</label>
                                             <div class="input-group col-sm-4">
-                                                <input type="text" class="form-control" placeholder="Waktu" v-model="chapter.exam.time">
+                                                <input type="text" class="form-control" placeholder="Waktu" v-model="course.exam.time">
                                                 <div class="input-group-addon">Menit</div>
                                             </div>
                                         </div>
@@ -252,7 +252,9 @@
                     <input type="hidden" name="course[chapters][{{ $parent.$index }}][quiz][questions][{{ $index }}][option_d]" value="{{ quiz.option_d }}">
                     <input type="hidden" name="course[chapters][{{ $parent.$index }}][quiz][questions][{{ $index }}][correct]" value="{{ quiz.correct }}">
                 </div>
-                <div v-for="content in chapter.attachment.contents">
+            </div>
+            <div v-for="attachment in attachments">
+                <div v-for="content in attachment.contents">
                     <input type="hidden" name="course[chapters][{{ $parent.$index }}][attachments][{{ $index }}][filename]" value="{{ content.filename }}">
                     <input type="hidden" name="course[chapters][{{ $parent.$index }}][attachments][{{ $index }}][filetype]" value="{{ content.filetype }}">
                     <input type="hidden" name="course[chapters][{{ $parent.$index }}][attachments][{{ $index }}][filesize]" value="{{ content.filesize }}">
@@ -260,8 +262,8 @@
                 </div>
             </div>
 
-            <input type="hidden" name="course[exam][name]" value="{{ chapter.exam.name }}">
-            <input type="hidden" name="course[exam][time]" value="{{ chapter.exam.time }}">
+            <input type="hidden" name="course[exam][name]" value="{{ course.exam.name }}">
+            <input type="hidden" name="course[exam][time]" value="{{ course.exam.time }}">
             <div v-for="exam in course.exam.questions">
                 <input type="hidden" name="course[exam][questions][{{ $index }}][question]" value="{{ exam.question }}">
                 <input type="hidden" name="course[exam][questions][{{ $index }}][option_a]" value="{{ exam.option_a }}">
@@ -309,11 +311,11 @@
     <script src="<?php echo asset('plugins/tinymce/tinymce.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
+    <script src="<?php echo asset('node_modules/jquery-form/jquery.form.js') ?>"></script>
     <script src="<?php echo asset('javascript/kelas.wizard.js') ?>"></script>
     <script src="<?php echo asset('javascript/kelas.vue.js') ?>"></script>
     <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
     <script src="<?php echo asset('plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js') ?>"></script>
     <script src="<?php echo asset('plugins/jQuery.filer-1.0.5/js/custom.js') ?>"></script>
     <script src="<?php echo asset('plugins/jquery.steps-1.1.0/js/jquery.steps.js') ?>"></script>
-    <script src="<?php echo asset('plugins/jquery.form/jquery.form.min.js') ?>"></script>
 <?php endcustom_script() ?>
