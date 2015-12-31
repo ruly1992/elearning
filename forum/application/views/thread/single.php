@@ -1,7 +1,7 @@
 <?php custom_stylesheet(); ?>
 <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
 <?php endcustom_stylesheet(); ?>
-<?php get_header('private'); ?>
+<?php get_header('private', array('active' => 'forum')); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
@@ -30,7 +30,7 @@
                                         echo '<strong>Warning!</strong> '.$failed;
                                     echo '</div>';
                                 }elseif(isset($success)){
-                                    echo '<div class="alert alert-info">';
+                                    echo '<div class="alert alert-ytopic">';
                                         echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
                                         echo '<strong>Success!</strong> '.$success;
                                     echo '</div>';
