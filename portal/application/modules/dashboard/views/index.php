@@ -68,18 +68,23 @@
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <form>
+                                    <?php echo form_open_multipart('elibrary/media/submit', array('id'=>'formMedia')); ?>
                                         <fieldset class="form-group">
-                                            <label for="exampleInputArtikel">Judul Elibrary</label>
-                                            <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
-                                            <small class="text-muted">Masukkan judul elibrary disini</small>
+                                            <label>Kategori</label>
+                                            <select class="form-control" name="kategori">
+                                                <?php 
+                                                    foreach($categories AS $cat){
+                                                        echo '<option value="'.$cat->id.'">'.$cat->name.'</option>';
+                                                    }
+                                                ?>
+                                            </select>
                                         </fieldset>
                                         <fieldset class="form-group">
-                                            <label for="exampleInputKonten">Konten Artikel</label>
-                                            <textarea class="editor"></textarea>
+                                           <p class="label label-info">Maximum Files 20MB</p>
+                                            <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
                                         </fieldset>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </form>
+                                        <button type="submit" onclick="checkInput(); return false;" class="btn btn-primary">Submit</button>
+                                    <?php echo form_close(); ?>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <!-- begin: category -->
@@ -166,6 +171,13 @@
 </div> 
 <!-- end: content atas -->
 
+<?php custom_stylesheet() ?>
+
+    <link href="<?php echo asset('/plugins/jQuery.filer-1.0.5/css/jquery.filer.css') ?>" type="text/css" rel="stylesheet" />
+    <link href="<?php echo asset('/plugins/jQuery.filer-1.0.5/css/themes/jquery.filer-dragdropbox-theme.css') ?>" type="text/css" rel="stylesheet" />
+
+<?php endcustom_stylesheet() ?>
+
 <?php custom_script() ?>
 <?php $this->load->view('template/vue_cropit'); ?>
 
@@ -179,5 +191,29 @@
             selector: '.editor'
         })
     });
+</script>
+
+<script type="text/javascript">
+function checkInput(){
+    if(document.getElementById('filer_input_media').value == ''){  
+        alert('Anda harus memilih file untuk diunggah terlebih dahulu!');  
+        document.getElementById('filer_input_media').focus();  
+        return false;  
+    }else{
+        var count   = document.getElementsByClassName('fileName');
+        var id      = '';
+        for(var i=0;i<count.length;i++){
+            if(i>0){
+                id = i;
+            }
+            if(document.getElementById('fileName'+id).value == ''){  
+                alert('Nama file harus diisi terlebih dahulu!');  
+                document.getElementById('fileName'+id).focus();  
+                return false;  
+            }
+        }
+    }
+    document.getElementById('formMedia').submit();
+}
 </script>
 <?php endcustom_script() ?>
