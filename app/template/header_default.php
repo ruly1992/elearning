@@ -20,7 +20,7 @@
         <?php echo $custom_stylesheet ?>
         <!-- end:stylesheet -->
     </head>
-    <body>
+    <body id="page-top" data-spy="scroll" data-target="#navbar-main">
 
         <!-- start:header -->
         <header id="header">
