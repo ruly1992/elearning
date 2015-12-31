@@ -345,16 +345,9 @@ class Media
         return $this;
     }
 
-    public function search($term, $by_meta = 0, $by_category = 0)
+    public function search($term, $by_category = 0)
     {
         $results = $this->media->where('file_name', 'like', '%' . $term . '%');
-
-        // Search by Meta
-        if ($by_meta) {
-            $results->whereHas('metadata', function ($query) use ($term, $by_meta) {
-                return $query->where('key', $by_meta)->where('value', 'like', $term);
-            });
-        }
 
         // Search by Category
         if ($by_category) {
