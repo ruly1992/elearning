@@ -21,6 +21,7 @@
 	  				<th>Jenis File</th>
 	  				<th>Status</th>
 	  				<th>Waktu</th>
+	  				<th></th>
 	  			</tr>
 	  		</thead>
 	  		<tbody>
@@ -32,6 +33,7 @@
 			  				<td><?php echo $media->type ?></td>
 			  				<td><?php echo $media->status_format ?></td>
 			  				<td><?php echo $media->created_at->format('d-m-Y H:i:s') ?></td>
+			  				<td><?php echo button_delete('elibrary/delete/' . $media->id) ?></td>
 			  			</tr>
 	  				<?php endforeach ?>
 	  			<?php else: ?>

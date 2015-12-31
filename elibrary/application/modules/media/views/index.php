@@ -1,5 +1,17 @@
+<?php 
+	if(isset($success)){
+        echo '<div class="alert alert-info">';
+            echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            echo '<strong>Success!</strong> '.$success;
+        echo '</div>';
+    }
+?>
 
+<div class="form-group">
     <a href="<?php echo site_url('media/upload/') ?>" class="btn btn-primary"><i class="fa fa-upload"></i> Upload Media</a>
+</div>
+
+    <hr>
 
 <table class="table table-hover table-bordered">
 	<thead>
