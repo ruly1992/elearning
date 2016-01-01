@@ -38,6 +38,11 @@ class Category extends Model
         return $this->belongsToMany(Article::class, 'kategori_has_artikel', 'kategori_id', 'artikel_id');
     }
 
+    public function articles_registered()
+    {
+        return $this->belongsToMany(Article::class, 'kategori_has_artikel', 'kategori_id', 'artikel_id')->onlyRegistered();
+    }
+
     public function scopeParentOnly($query, $parent = 0)
     {
         return $query->where('parent', $parent);

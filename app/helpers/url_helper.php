@@ -37,14 +37,14 @@ if (!function_exists('logout_url')) {
 if (!function_exists('dashboard_url')) {
     function dashboard_url($uri = '')
     {
-        return home_url('dashboard/' . $uri);
+        return home_url('dashboard/' . trim($uri, '/'));
     }
 }
 
 if (!function_exists('admin_url')) {
     function admin_url($uri = '')
     {
-        return home_url('admin/' . $uri);
+        return home_url('admin/' . trim($uri, '/'));
     }
 }
 
@@ -58,7 +58,7 @@ if (!function_exists('portal_url')) {
 if (!function_exists('elib_url')) {
     function elib_url($uri = '')
     {
-        return home_url('elibrary/' . $uri);
+        return home_url('elibrary/' . trim($uri, '/'));
     }
 }
 
@@ -72,27 +72,27 @@ if (!function_exists('virtualclass_url')) {
 if (!function_exists('kelas_url')) {
     function kelas_url($uri = '')
     {
-        return home_url('kelas-online/' . $uri);
+        return home_url('kelas-online/' . trim($uri, '/'));
     }
 }
 
 if (!function_exists('vicon_url')) {
     function vicon_url($uri = '')
     {
-        return 'http://122.200.145.155/'.$uri;
+        return 'http://122.200.145.155/' . trim($uri, '/');
     }
 }
 
 if (!function_exists('forum_url')) {
     function forum_url($uri = '')
     {
-        return home_url('forum/' . $uri);
+        return home_url('forum/' . trim($uri, '/'));
     }
 }
 
 if (!function_exists('konsultasi_url')) {
     function konsultasi_url($uri = '')
     {
-        return home_url('konsultasi/' . $uri);
+        return home_url('konsultasi/' . trim($uri, '/'));
     }
 }
