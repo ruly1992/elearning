@@ -19,7 +19,7 @@
             <div class="content-konsultasi-title">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>Konsultasi <small>Anda bisa membuka atau melihat tiket konsultasi yang pernah anda kirim disini...</small></h2>
+                        <h2>Konsultasi <small>Anda bisa membuka dan melihat tiket konsultasi yang pernah anda kirim disini atau Melihat <a href="<?php echo home_url('faq/'); ?>" class="btn btn-danger">FAQ </a></small></h2>
                     </div>
                 </div>
             </div>
