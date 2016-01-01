@@ -88,7 +88,7 @@
                             <ul class="nav navbar-nav hidden-lg-up pull-right">
                                 <div class="dropdown dropdown-people">
                                     <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-user fa-2x"></i>
+                                        <i class="fa fa-user"></i>
                                     </a>
                                     <div class="dropdown-menu custom-float custom-login-mobile" aria-labelledby="dropdownMenu2">
                                         <div class="menu-login">
