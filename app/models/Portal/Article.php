@@ -57,7 +57,10 @@ class Article extends Model
 
     public function getLinkAttribute()
     {
-        return home_url('/article/' . $this->slug);
+        if ($this->type == 'public')
+            return home_url('/article/' . $this->slug);
+        else
+            return dashboard_url('article/show/' . $this->slug); 
     }
 
     public function getVisitorAttribute()

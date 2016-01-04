@@ -52,9 +52,7 @@
                                 </div>
                                 <div class="col-sm-8 col-xs-6">
                                     <div class="box-articles-widget-meta">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"></i> <?php echo $article->date->format('d F Y') ?></li>
-                                        </ul>
+                                        <p><i class="fa fa-calendar"></i> <?php echo $article->date->format('d F Y') ?></p>
                                     </div>
                                     <div class="box-articles-widget-title">
                                         <h4><a href="<?php echo $article->link ?>"><?php echo $article->title ?></a></h4>

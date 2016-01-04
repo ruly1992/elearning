@@ -72,65 +72,6 @@ class Dashboard extends Admin {
         $this->template->build('index', $data);
     }
 
-    public function article()
-    {
-        $cat_slider = config('privatepage_slider');
-        $cat_1      = config('privatepage_category_1');
-        $cat_2      = config('privatepage_category_2');
-        $cat_3      = config('privatepage_category_3');
-        $cat_4      = config('privatepage_category_4');
-
-        $privatepage_slider_title      = Model\Portal\Category::find($cat_slider);
-        $privatepage_slider            = Model\Portal\Article::categoryId($cat_slider);
-
-        $privatepage_category_1_title  = Model\Portal\Category::find($cat_1);
-        $privatepage_category_1_a      = Model\Portal\Article::onlyRegistered()->categoryId($cat_1)->take(3)->latest('date');
-        $privatepage_category_1_b      = Model\Portal\Article::onlyRegistered()->categoryId($cat_1)->take(3)->skip(2)->latest('date');
-
-        $privatepage_category_2_title  = Model\Portal\Category::find($cat_2);
-        $privatepage_category_2_a      = Model\Portal\Article::onlyRegistered()->categoryId($cat_2)->take(3)->latest('date');
-        $privatepage_category_2_b      = Model\Portal\Article::onlyRegistered()->categoryId($cat_2)->take(3)->skip(2)->latest('date');
-
-        $privatepage_category_3_title  = Model\Portal\Category::find($cat_3);
-        $privatepage_category_3_a      = Model\Portal\Article::onlyRegistered()->categoryId($cat_3)->take(3)->latest('date');
-        $privatepage_category_3_b      = Model\Portal\Article::onlyRegistered()->categoryId($cat_3)->take(3)->skip(2)->latest('date');
-
-        $privatepage_category_4_title  = Model\Portal\Category::find($cat_4);
-        $privatepage_category_4_a      = Model\Portal\Article::onlyRegistered()->categoryId($cat_4)->take(3)->latest('date');
-        $privatepage_category_4_b      = Model\Portal\Article::onlyRegistered()->categoryId($cat_4)->take(3)->skip(2)->latest('date');
-
-        $data = array(
-            'privatepage_slider_title'      => $privatepage_slider_title ? $privatepage_slider_title->name : '',
-            'privatepage_slider'            => $privatepage_slider->count() ? $privatepage_slider->take(9)->latest('date')->get() : collect([]),
-
-            'privatepage_category_1_title'  => $privatepage_category_1_title ? $privatepage_category_1_title->name : 'No Category',
-            'privatepage_category_1_a'      => $privatepage_category_1_a->count() ? $privatepage_category_1_a->get() : collect([]),
-            'privatepage_category_1_b'      => $privatepage_category_1_b->count() ? $privatepage_category_1_a->get() : collect([]),
-
-            'privatepage_category_2_title'  => $privatepage_category_2_title ? $privatepage_category_2_title->name : 'No Category',
-            'privatepage_category_2_a'      => $privatepage_category_2_a->count() ? $privatepage_category_2_a->get() : collect([]),
-            'privatepage_category_2_b'      => $privatepage_category_2_b->count() ? $privatepage_category_2_b->get() : collect([]),
-
-            'privatepage_category_3_title'  => $privatepage_category_3_title ? $privatepage_category_3_title->name : 'No Category',
-            'privatepage_category_3_a'      => $privatepage_category_3_a->count() ? $privatepage_category_3_a->get() : collect([]),
-            'privatepage_category_3_b'      => $privatepage_category_3_b->count() ? $privatepage_category_3_b->get() : collect([]),
-
-            'privatepage_category_4_title'  => $privatepage_category_4_title ? $privatepage_category_4_title->name : 'No Category',
-            'privatepage_category_4_a'      => $privatepage_category_4_a->count() ? $privatepage_category_4_a->get() : collect([]),
-            'privatepage_category_4_b'      => $privatepage_category_4_b->count() ? $privatepage_category_4_b->get() : collect([]),
-
-            'links'                         => $this->Mod_link->read(),
-        );
-
-        $latests            = Model\Portal\Article::registered()->latest('date')->get();
-        $data['latest']     = $latests;
-        
-        $this->template->set('active', 'artikel');
-        $this->template->set('sidebar', FALSE);
-        $this->template->set_layout('article');    
-        $this->template->build('articlePrivate', $data);
-    }
-
     public function sendArticle()
     {
         $this->form_validation->set_rules('title', 'Title', 'required');

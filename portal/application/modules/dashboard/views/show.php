@@ -1,9 +1,3 @@
-<style>
-    .single-article-content img {
-        width: 100%;
-    }
-</style>
-
 <article>
     <div class="single-article-title">
         <h1><?php echo $article->title ?></h1>
@@ -55,13 +49,18 @@
         </div>
     <?php endif ?>
     <div class="single-article-meta">
+        <?php if ($article->hasFeaturedImage()): ?>
+            <div class="photo">
+                <em><?php echo $article->title ?></em>
+            </div>
+        <?php endif ?>
         <ul>
             <li><i class="fa fa-calendar-check-o"></i> <?php echo $article->date->format('d F Y') ?></li>
             <li><i class="fa fa-folder-open-o"></i> <?php echo $article->categories->implode('name', ', ') ?></li>
             <li><i class="fa fa-comments-o"></i> <?php echo $article->comments->count() ?> Komentar</li>
         </ul>
     </div>
-    <div class="single-article-content">
+    <div class="single-article-content">        
         <?php echo $article->content ?>
     </div>
     <div class="single-article-author">
@@ -79,7 +78,7 @@
                     <p><em><?php echo $article->author_email?></em></p>
                 </div>
                 <div class="single-article-author-description">
-
+                    
                 </div>
             </div>
         </div>
@@ -174,6 +173,7 @@
         </div>
 </section>
 <!-- end:section content main articles -->
+
 
 <?php custom_stylesheet() ?>
     <link rel="stylesheet" type="text/css" href="<?php echo asset('plugins/rrssb-master/css/rrssb.css') ?>">
