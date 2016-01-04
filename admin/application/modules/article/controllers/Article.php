@@ -130,7 +130,7 @@ class Article extends Admin {
         $this->form_validation->set_rules('categories[]', 'Category', 'required');
 
         if ($this->form_validation->run() == FALSE) {   
-            $artikel = Model\Portal\Article::withDrafts()->findOrFail($id);
+            $artikel = Model\Portal\Article::withDrafts()->withPrivate()->findOrFail($id);
 
             keepValidationErrors();
 
@@ -157,9 +157,9 @@ class Article extends Admin {
                 'status'            => set_value('status'),
             );
 
-            $article = Model\Portal\Article::withDrafts()->find($id);
+            $article = Model\Portal\Article::withDrafts()->withPrivate()->find($id);
 
-            if ($article->status == 'draft' && $article->editor_id == 0)
+            if ($article->editor_id == 0)
                 $artikel['editor_id'] = auth()->getUser()->id;
 
             if (set_value('with_schedule', 0)) {
