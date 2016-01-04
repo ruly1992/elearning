@@ -22,7 +22,7 @@ class Admin extends CI_Controller
         }
 
         if (!sentinel()->inRole($this->roles)) {
-            redirect('/', 'refresh');
+            redirect(dashboard_url(), 'refresh');
         }
     }
 
