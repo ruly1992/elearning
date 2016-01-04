@@ -58,6 +58,7 @@
         <link rel="stylesheet" href="<?php echo asset('node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker-standalone.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/fancybox/dist/css/jquery.fancybox.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/bootstrap-dialog/dist/css/bootstrap-dialog.min.css') ?>">
+        <link rel="stylesheet" href="<?php echo asset('stylesheets/app.css') ?>">
 
         <?php echo isset($template['partials']['stylesheet']) ? $template['partials']['stylesheet'] : ''; ?>
         <?php echo $custom_stylesheet ?>

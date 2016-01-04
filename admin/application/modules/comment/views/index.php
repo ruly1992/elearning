@@ -22,8 +22,8 @@
                     <td><?php echo $row->content ?><br>
                     <small>on <a href="<?php echo $row->article->link ?>" target="_blank"><?php echo $row->article->title ?></a></small></td>
                     <td><?php echo $row->status_label ?></td>
-                    <td><?php echo $row->date->format('d M Y H:i') ?></td>
-                    <td>
+                    <td class="space"><?php echo $row->date->format('d M Y H:i') ?></td>
+                    <td class="space">
                         <?php if ($row->status == 'draft'): ?>
                             <a href="<?php echo site_url('comment/edit/' . $row->id) ?>" class="label label-info"><i class="fa fa-edit"></i> Moderasi</a>
                             <?php echo button_delete('comment/delete/' . $row->id) ?>
