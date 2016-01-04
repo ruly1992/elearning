@@ -39,6 +39,8 @@ class Author extends CI_Controller
         $data['topics']         = $this->model_topic->get_topics();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['breadcrumb']		= 'Your Threads';
+        $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['userID']         = $user->id;
 
         $threads                = collect($this->model_thread->get_thread_from_author($user->id));
         $data['threads']        = pagination($threads, 10, 'author', 'bootstrap_md');
@@ -106,6 +108,8 @@ class Author extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_topics();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['userID']         = $user->id;
 
         $threads           = collect($this->model_thread->get_thread_from_author($user->id));
         $data['threads']   = pagination($threads, 10, 'author', 'bootstrap_md');
@@ -148,6 +152,7 @@ class Author extends CI_Controller
 
         if($delete==TRUE){
             $this->model_thread->delete_replies($id);
+            $this->model_thread->delete_thread_members($id);
             $this->session->set_flashdata('success','Thread berhasil dihapus');
         }else{
             $this->session->set_flashdata('failed','Thread tidak berhasil dihapus');
