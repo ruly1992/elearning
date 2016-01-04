@@ -186,11 +186,6 @@ header {
 				border: 1px solid $grey-black;
 				border-top-right-radius: 8px;
 				border-bottom-right-radius: 8px;
-				&:hover,
-				&:focus,
-				&:active {
-					background-color: $white;
-				}
 			}
 		}
 		//edited
@@ -441,10 +436,38 @@ header {
 		}
 	}
 	//add fajar eko s
-	.dropdown {
-		margin-left: $margin-left + 5px;
-		margin-top: $margin-top - 2px;
+	.dropdown:hover {
+		.dropdown-navbar {
+			display: block;
+			width: 200px;
+			height: auto;
+			border-radius: 0px;
+			font-size: 12px;
+			background-color: $grey;
+			margin-top: 0px;
+			border: medium none;
+			padding: 0;
+			li {
+				font-size: 10px;
+				color: $aspalt-light;
+				padding-top: $padding-top + 5px;
+				padding-bottom: $padding-bottom + 5px;
+				padding-left: $padding-left + 10px;
+				padding-right: $padding-right + 10px;
+				@include transition(0.3s);
+				@include fonts('open_sansregular');
+				text-transform: uppercase;
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: $green;
+					color: $white;
+					@include transition(0.3s);
+				}
+			}
+		}
 	}
+	
 	.dropdown-menu {
 		a {
 			font-size: 14px;
@@ -2783,7 +2806,7 @@ header {
 				padding-left: $padding-left - 5px;
 				margin-bottom: $margin-bottom - 5px;
 				li {
-					font-size: 10px;
+					font-size: 11px;
 					display: inline-block;
 					margin-right: $margin-right + 15px;
 					i.fa {
@@ -3395,7 +3418,7 @@ footer {
 	}
 }
 // add fajar eko 
-.favorit {
+#favorit {
 	margin-bottom: $margin-bottom + 20px;
 	.widget-heading {
 		width: 100%;
