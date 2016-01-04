@@ -60,6 +60,27 @@ class Mod_konsultasi extends CI_Model {
 			$this->db->update('konsultasi', array('status'=>'open'), array('id'=> $close));
 		}
 	}
+
+	public function delete_konsultasi_by_kategori($id)
+	{
+		$delete = $this->db->delete('konsultasi', array('id_kategori'=>$id));
+        if ($this->db->affected_rows() == '1') {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+	}
+
+	public function delete_reply($id_konsultasi)
+	{
+		$this->db->where('id_konsultasi', $id_konsultasi);
+        $delete = $this->db->delete('reply');
+        if ($this->db->affected_rows() == '1') {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+	}
 }
 
 /* End of file Mod_konsultasi.php */
