@@ -84,8 +84,6 @@ class Article extends Admin {
                 'content'           => set_value('content', '', FALSE),
                 'published'         => set_value('published', '0000-00-00 00:00:00'),
                 'type'              => set_value('type', 'public'),
-                'slider'            => set_value('slidercarousel', ''),
-                'featured_image'    => set_value('featured', ''),
                 'contributor_id'    => $user->id,
                 'editor_id'         => $user->id,
             );
@@ -106,16 +104,16 @@ class Article extends Admin {
                 $artikel['published'] = '0000-00-00 00:00:00';
             }
 
-            $id = $this->Mod_artikel->create($artikel, $categories, $tags, $status, $featured_image, $slider);
+            $id = $this->Mod_artikel->create($artikel, $categories, $tags, $status);
 
             $repo_library = new Library\Article\Article;
             $repo_library->set($id);
 
-            if ($this->input->post('featured'))
-                $repo_library->setFeaturedImage($this->input->post('featured'));
+            if ($this->input->post('featured[src]'))
+                $repo_library->setFeaturedImage($this->input->post('featured[src]'));
 
-            if ($this->input->post('slidercarousel'))
-                $repo_library->setSliderImage($this->input->post('slidercarousel'));
+            if ($this->input->post('slider[src]'))
+                $repo_library->setSliderImage($this->input->post('slider[src]'));
 
             set_message_success('Artikel berhasil dibuat.');
 
@@ -175,11 +173,15 @@ class Article extends Admin {
             $repo_library->set($article);
 
 
-            if ($this->input->post('featured'))
-                $repo_library->setFeaturedImage($this->input->post('featured'));
+            if ($this->input->post('featured[src]') && $this->input->post('featured[action]') == 'upload')
+                $repo_library->setFeaturedImage($this->input->post('featured[src]'));
+            elseif ($this->input->post('featured[action]') == 'remove')
+                $repo_library->removeFeaturedImage();
 
-            if ($this->input->post('slidercarousel'))
-                $repo_library->setSliderImage($this->input->post('slidercarousel'));
+            if ($this->input->post('slider[src]') && $this->input->post('slider[action]') == 'upload')
+                $repo_library->setSliderImage($this->input->post('slider[src]'));
+            elseif ($this->input->post('slider[action]') == 'remove')
+                $repo_library->removeSliderImage();
 
             $id = $this->Mod_artikel->update($id, $artikel, $categories, $tags);
 
