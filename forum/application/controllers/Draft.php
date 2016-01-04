@@ -41,7 +41,7 @@ class Draft extends CI_Controller
         $data['categoryUsers']  = $this->model_thread->get_category_users($user->id);
 
         $draftThreads           = collect($this->model_thread->get_all_drafts($user->id));
-        $data['draftThreads']   = pagination($draftThreads, 10, 'thread');
+        $data['draftThreads']   = pagination($draftThreads, 10, 'draft', 'bootstrap_md');
 
         $this->load->view('thread/draft_threads',$data);
     }
@@ -107,7 +107,7 @@ class Draft extends CI_Controller
         $data['categoryUsers']  = $this->model_thread->get_category_users($user->id);
 
         $draftThreads           = collect($this->model_thread->get_draft_threads_by_category($user->id, $idCategory));
-        $data['draftThreads']   = pagination($draftThreads, 10, 'thread');
+        $data['draftThreads']   = pagination($draftThreads, 10, 'draft', 'bootstrap_md');
 
         $this->load->view('thread/draft_threads',$data);
     }

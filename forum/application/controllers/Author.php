@@ -41,7 +41,7 @@ class Author extends CI_Controller
         $data['breadcrumb']		= 'Your Threads';
 
         $threads                = collect($this->model_thread->get_thread_from_author($user->id));
-        $data['threads']        = pagination($threads, 10, 'thread');
+        $data['threads']        = pagination($threads, 10, 'author', 'bootstrap_md');
 
         $this->load->view('thread/author_threads',$data);
     }
@@ -108,7 +108,7 @@ class Author extends CI_Controller
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
 
         $threads           = collect($this->model_thread->get_thread_from_author($user->id));
-        $data['threads']   = pagination($threads, 10, 'thread');
+        $data['threads']   = pagination($threads, 10, 'author', 'bootstrap_md');
 
         $this->load->view('thread/author_threads',$data);
     }
