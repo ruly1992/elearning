@@ -39,18 +39,22 @@ class Article extends CI_Controller {
             'privatepage_category_1_title'  => $privatepage_category_1_title ? $privatepage_category_1_title->name : 'No Category',
             'privatepage_category_1_a'      => $privatepage_category_1_a->count() ? $privatepage_category_1_a->get() : collect([]),
             'privatepage_category_1_b'      => $privatepage_category_1_b->count() ? $privatepage_category_1_a->get() : collect([]),
+            'private_category_1_link'       => $privatepage_category_1_title ? site_url('dashboard/category/show/' . $privatepage_category_1_title->name) : site_url('/'),
 
             'privatepage_category_2_title'  => $privatepage_category_2_title ? $privatepage_category_2_title->name : 'No Category',
             'privatepage_category_2_a'      => $privatepage_category_2_a->count() ? $privatepage_category_2_a->get() : collect([]),
             'privatepage_category_2_b'      => $privatepage_category_2_b->count() ? $privatepage_category_2_b->get() : collect([]),
+            'private_category_2_link'       => $privatepage_category_2_title ? site_url('dashboard/category/show/' . $privatepage_category_2_title->name) : site_url('/'),
 
             'privatepage_category_3_title'  => $privatepage_category_3_title ? $privatepage_category_3_title->name : 'No Category',
             'privatepage_category_3_a'      => $privatepage_category_3_a->count() ? $privatepage_category_3_a->get() : collect([]),
             'privatepage_category_3_b'      => $privatepage_category_3_b->count() ? $privatepage_category_3_b->get() : collect([]),
+            'private_category_3_link'       => $privatepage_category_3_title ? site_url('dashboard/category/show/' . $privatepage_category_3_title->name) : site_url('/'),
 
             'privatepage_category_4_title'  => $privatepage_category_4_title ? $privatepage_category_4_title->name : 'No Category',
             'privatepage_category_4_a'      => $privatepage_category_4_a->count() ? $privatepage_category_4_a->get() : collect([]),
             'privatepage_category_4_b'      => $privatepage_category_4_b->count() ? $privatepage_category_4_b->get() : collect([]),
+            'private_category_4_link'       => $privatepage_category_4_title ? site_url('dashboard/category/show/' . $privatepage_category_4_title->name) : site_url('/'),
 
             'links'                         => $this->Mod_link->read(),
         );
@@ -67,7 +71,7 @@ class Article extends CI_Controller {
     public function show($slug = null)
     {
         try {
-            $article                    = Model\Portal\Article::onlyRegistered()->with('contributor')->slug($slug);
+            $article                    = Model\Portal\Article::onlyRegistered()->with('contributor', 'comments')->slug($slug);
             $data['article']            = $article;
             $data['contributor']        = $article->contributor;
             $data['comments']           = $article->comments;
@@ -77,8 +81,7 @@ class Article extends CI_Controller {
 
             if ($article->categories->count()) {
                 $data['relevance_title']    = $article->categories->first()->name;
-                $data['relevance']          = Model\Portal\Article::categoryId(
-                                                $article->categories->first()->id)
+                $data['relevance']          = Model\Portal\Article::categoryId($article->categories->first()->id)
                                                 ->where('id', '!=', $article->id)
                                                 ->take(6)
                                                 ->latest('date')
