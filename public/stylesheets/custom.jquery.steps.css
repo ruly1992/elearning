@@ -1,0 +1,122 @@
+/*
+
+===================
+Custom Jquery Steps
+===================
+Author: Singgih Saputro
+Version: 1.0
+
+*/
+
+/* 
+	| Tab Header |
+*/
+.wizard > .steps .current a,
+.wizard > .steps .current a:hover,
+.wizard > .steps .current a:active
+{
+    background: #37474F !important;
+    color: #fff;
+    cursor: default;
+    font-size: 14px;
+}
+
+.wizard > .steps a,
+.wizard > .steps a:hover,
+.wizard > .steps a:active
+{
+    display: block;
+    width: auto;
+    margin: 0 0.5em 0.5em;
+    padding: 10px !important;
+    text-decoration: none;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.wizard > .steps .done a,
+.wizard > .steps .done a:hover,
+.wizard > .steps .done a:active
+{
+    background: #989898 !important;
+    color: #fff;
+}
+
+.wizard > .steps .number
+{
+    font-size: 1em !important;
+}
+
+.wizard > .steps > ul > li,
+.wizard > .actions > ul > li
+{
+    float: left;
+    font-size: 14px !important;
+}
+
+.wizard > .steps .disabled a,
+.wizard > .steps .disabled a:hover,
+.wizard > .steps .disabled a:active
+{
+    background: #F5F5F5 !important;
+    color: #aaa;
+    cursor: default;
+}
+
+/* 
+	Content 
+*/
+.wizard > .content > .body ul > li
+{
+	display: block !important;
+}
+
+.wizard > .actions a,
+.wizard > .actions a:hover,
+.wizard > .actions a:active
+{
+    background: #37474F !important;
+    color: #fff;
+    display: block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.wizard > .actions .disabled a,
+.wizard > .actions .disabled a:hover,
+.wizard > .actions .disabled a:active
+{
+    background: #eee !important;
+    color: #aaa;
+}
+
+.wizard > .content
+{
+    background: #F5F5F5 !important;
+    display: block;
+    margin: 0.5em;
+    min-height: 25em !important;
+    overflow: auto !important;
+    position: relative;
+    width: auto;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.wizard > .content > .body
+{
+    float: left;
+    position: absolute;
+    width: 100% !important;
+    height: 95%;
+    padding: 2.5%;
+}
+

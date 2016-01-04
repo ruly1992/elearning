@@ -6,7 +6,7 @@
         <table class="table table-hover table-bordered" id="">
             <thead>
                 <tr>
-                    
+                    <th>Title</th>
                     <th>Pertanyaan</th>
                     <th>Jawaban</th>
                     <th>&nbsp;</th>
@@ -19,9 +19,9 @@
                    
                  ?>
                 <tr>
-                    
-                    <td><?php echo $row->pertanyaan ?></td>
-                    <td><?php echo $row->jawaban ?></td>
+                    <td><?php echo $row->title ?></td>
+                    <td><?php echo $row->question ?></td>
+                    <td><?php echo $row->answer ?></td>
                     <td>
                         <?php echo button_edit('faq/update/' . $row->id) ?>
                         <?php echo button_delete('faq/delete/' . $row->id) ?>

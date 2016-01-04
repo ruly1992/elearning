@@ -22,39 +22,52 @@ class Thread extends CI_Controller
         }elseif($this->session->flashdata('failed')){
             $data['failed'] = $this->session->flashdata('failed');
         }
-        if ($this->checkTA()==TRUE){
-            $data['addTopic'] = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
-        }
 
-        $data['comments']   = $this->model_thread->get_count_reply(); 
-        $data['visitors']   = $this->model_visitor->get_visitors();
+        $user = sentinel()->getUser();
+        if ($this->checkTA()==TRUE){
+            $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
+            $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
+            $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+            $data['tenagaAhli'] = $user->id;
+        }
+        $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['comments']       = $this->model_thread->get_count_reply(); 
+        $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $this->model_thread->get_categories();
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']     = $this->model_topic->get_topics();
-        $data['threadSide'] = $this->model_thread->get_all_threads();
+        $data['topics']         = $this->model_topic->get_topics();
+        $data['threadSide']     = $this->model_thread->get_all_threads();
 
-        $threads            = collect($this->model_thread->get_all_threads());
-        $data['threads']    = pagination($threads, 10, 'thread');
+        $threads                = collect($this->model_thread->get_all_threads());
+        $data['threads']        = pagination($threads, 10, 'thread');
 
         $this->load->view('thread/all_threads',$data);
     }
 
-    public function viewAt($idCategory)
+    public function category($idCategory)
     {
-        $getCategory        = $this->model_thread->getCategory($idCategory);
+        $getCategory            = $this->model_thread->get_category($idCategory);
         foreach($getCategory as $cat){
-            $data['category'] = $cat->category_name;
+            $data['category']   = $cat->category_name;
         }
 
-        $data['comments']   = $this->model_thread->get_count_reply(); 
-        $data['visitors']   = $this->model_visitor->get_visitors();
+        $user = sentinel()->getUser();
+        if ($this->checkTA()==TRUE){
+            $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
+            $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
+            $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+            $data['tenagaAhli'] = $user->id;
+        }
+        $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['comments']       = $this->model_thread->get_count_reply(); 
+        $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $getCategory;
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']     = $this->model_topic->get_topics();
-        $data['threadSide'] = $this->model_thread->get_all_threads();
+        $data['topics']         = $this->model_topic->get_topics();
+        $data['threadSide']     = $this->model_thread->get_all_threads();
 
-        $threads            = collect($this->model_thread->getThreadsCategory($idCategory));
-        $data['threads']    = pagination($threads, 10, 'thread');
+        $threads                = collect($this->model_thread->get_threads_category($idCategory));
+        $data['threads']        = pagination($threads, 10, 'thread');
 
         $this->load->view('thread/all_threads',$data);
     }
@@ -66,10 +79,15 @@ class Thread extends CI_Controller
         }else{
             $data['breadcrumb'] = 'Post New Thread';
         }
-
+        
+        $user = sentinel()->getUser();
+        if ($this->checkTA()==TRUE){
+            $data['tenagaAhli'] = $user->id;
+            $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+        }
+        $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
-        $data['topics']         = $this->model_topic->get_topics();
         $data['categories']     = $this->model_thread->get_categories();
         $this->load->view('thread/create',$data);
     }
@@ -84,6 +102,18 @@ class Thread extends CI_Controller
         
         if($this->form_validation->run()==TRUE){ 
             $user = sentinel()->getUser();
+            $idCategory = set_value('kategori');
+
+            if ($this->checkTA()==TRUE){
+                $categoryUser = $this->model_thread->get_category_users($user->id);
+                if(checkTA($idCategory, $categoryUser) == TRUE){
+                    $status = '1';
+                }else{
+                    $status = '0';
+                }
+            }else{
+                $status = '0';
+            }
 
             $data=array(
                 'category'  => set_value('kategori'),
@@ -93,7 +123,7 @@ class Thread extends CI_Controller
                 'message'   => set_value('message'),
                 'reply_to'  => '0',
                 'author'    => $user->id,
-                'status'    => '0',
+                'status'    => $status,
                 'created_at'=> date('Y-m-d H:i:s')
             );
             $data = $this->security->xss_clean($data); //xss clean
@@ -120,24 +150,30 @@ class Thread extends CI_Controller
                 'user'      => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,
+                'status'    => $t->status,
                 'message'   => BBCodeParser($t->message)
             );
         }
 
         $user = sentinel()->getUser();
-        $visitorIdentity = visitorIdentity($user->id,$id);
+        $visitorIdentity        = visitorIdentity($user->id,$id);
         $this->model_visitor->saveVisitor($visitorIdentity);
 
+        if ($this->checkTA()==TRUE){
+            $data['tenagaAhli'] = $user->id;
+            $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+        }
+        $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
-        $data['reply']     = $this->model_thread->get_reply($id);
-        $data['countReply'] = count($data['reply']);
-        $data['id'] = $id;
+        $data['reply']          = $this->model_thread->get_reply($id);
+        $data['countReply']     = count($data['reply']);
+        $data['id']             = $id;
         
         if($this->session->flashdata('success')){
-            $data['success'] = $this->session->flashdata('success');
+            $data['success']    = $this->session->flashdata('success');
         }elseif($this->session->flashdata('failed')){
-            $data['failed'] = $this->session->flashdata('failed');
+            $data['failed']     = $this->session->flashdata('failed');
         }
 
         $this->load->view('thread/single',$data);
@@ -156,28 +192,7 @@ class Thread extends CI_Controller
         redirect('thread/');
     }
     
-    public function editThread($id)
-    {
-        $thread=$this->model_thread->get_thread($id);
-        foreach($thread as $t){
-            $data=array(
-                'kategori'=> $t->category,
-                'topic'   => $t->topic,
-                'type'    => $t->type,
-                'title'   => $t->title,
-                'message' => $t->message,
-            );
-        }
-
-        $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
-        $data['topics']         = $this->model_topic->get_topics();
-        $data['id_thread'] = $id;
-        $data['categories']  = $this->model_thread->get_categories();
-        $this->load->view('thread/edit_thread',$data);
-    }
-    
-    public function updateThread($id)
+    public function update($controller, $id)
     {
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
@@ -192,7 +207,6 @@ class Thread extends CI_Controller
                 'type'      => set_value('type'),
                 'title'     => set_value('title'),
                 'message'   => set_value('message'),
-                'author'    => '1',
                 'updated_at'=> date('Y-m-d H:i:s')
             );
             $data = $this->security->xss_clean($data); //xss clean
@@ -202,16 +216,15 @@ class Thread extends CI_Controller
             }else{
                 $this->session->set_flashdata('failed','Thread tidak berhasil diperbarui');
             }
-            redirect('thread/');
+            redirect($controller.'/');
         }else{
             $this->session->set_flashdata('failed',validation_errors());
-            redirect('thread/');
+            redirect($controller.'/');
         }
     }
 
     public function replyThread($id)
     {
-        $this->form_validation->set_rules('title','Title','required');
         $this->form_validation->set_rules('message','Message','required');
 
         if($this->form_validation->run()==TRUE){
@@ -224,14 +237,15 @@ class Thread extends CI_Controller
                 $comments = $t->comments;
             }
 
+            $user = sentinel()->getUser();
             $data=array(
                 'category'  => $category,
                 'topic'     => $topic,
                 'type'      => $type,
-                'title'     => set_value('title'),
+                'title'     => 'Thread Reply',
                 'message'   => set_value('message'),
                 'reply_to'  => $id,
-                'author'    => '0',
+                'author'    => $user->id,
                 'status'    => '1',
                 'created_at'=> date('Y-m-d').' '.date('G:i:s')
             );
@@ -268,12 +282,10 @@ class Thread extends CI_Controller
 
     public function updateReply($idThread,$idReply)
     {
-        $this->form_validation->set_rules('title','Title','required');
         $this->form_validation->set_rules('message','Message','required');
 
         if($this->form_validation->run()==TRUE){
             $data = array(
-                'title'   => set_value('title'),
                 'message' => set_value('message')
             );
 
@@ -299,6 +311,15 @@ class Thread extends CI_Controller
             $this->session->set_flashdata('failed', 'Komentar tidak berhasil dihapus');
         }
         redirect('thread/view/'.$idThread);
+    }
+
+    public function get_topics(){
+        $idCategory = $this->input->post('idCategory');
+        $getTopics = $this->model_topic->getTopics_by_Category($idCategory);
+        foreach($getTopics as $top){
+            $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
+        }
+        echo $topics;
     }
 
     public function checkTA()

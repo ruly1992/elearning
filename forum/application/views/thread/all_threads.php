@@ -11,7 +11,15 @@
                         <div class="content-main">
                             <ol class="breadcrumb">
                                 <li><a href="#">Home</a></li>
-                                <li class="active"><?php if(isset($category)){echo $category;}else{echo 'General';} ?></li>
+                                <li class="active">
+                                    <?php 
+                                        if(isset($category)){
+                                            echo $category;
+                                        }else{
+                                            echo 'General';
+                                        } 
+                                    ?>
+                                </li>
                             </ol>
                             <?php 
                                 if(isset($failed)){
@@ -20,7 +28,7 @@
                                         echo '<strong>Warning!</strong> '.$failed;
                                     echo '</div>';
                                 }elseif(isset($success)){
-                                    echo '<div class="alert alert-info">';
+                                    echo '<div class="alert alert-ytopic">';
                                         echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
                                         echo '<strong>Success!</strong> '.$success;
                                     echo '</div>';
@@ -29,8 +37,8 @@
                             <div class="form-group">
                                 <?php echo anchor('thread/create', '<i class="fa fa-plus"></i> Thread Baru','class="btn btn-primary btn-sm"'); ?>
                                 <?php 
-                                    if(isset($addTopic)){
-                                        echo $addTopic;
+                                    if(isset($tenagaAhli)){
+                                        echo $addTopic.' '.$dashTopic;
                                     }
                                 ?>
                             </div>
@@ -44,6 +52,7 @@
                                         <div class="forum-list">
                                             <?php 
                                                 foreach($topics as $top){
+                                                    if($top->category == $cat->id){
                                             ?>
                                                     <table class="table table-striped">
                                                         <thead class="thead-inverse">
@@ -104,19 +113,20 @@
                                                         </tbody>
                                                     </table>
                                             <?php
+                                                    }
                                                 }
                                             ?>
                                             
-                                        </div>
-                                        <div class="forum-pagination">
-                                            <nav>
-                                                <?php echo $threads->render() ?>
-                                            </nav>
                                         </div>
                                     </div>
                             <?php
                                 }
                             ?>
+                            <div class="forum-pagination">
+                                <nav>
+                                    <?php echo $threads->render() ?>
+                                </nav>
+                            </div>
                         </div>
                         <!-- end:content main -->
                     </div>
@@ -135,8 +145,28 @@
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/viewAt/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget">
+                                <div class="widget-categories">
+                                    <div class="widget-categories-heading">
+                                        <h4>Threads</h4>
+                                    </div>
+                                    <div class="widget-categories-content">
+                                        <div class="list-group">
+                                            <?php 
+                                                if(isset($tenagaAhli)){ 
+                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
+                                                }
+                                            ?>
+                                            <?php 
+                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item"');
                                             ?>
                                         </div>
                                     </div>

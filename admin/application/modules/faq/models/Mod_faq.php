@@ -1,18 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mod_faq extends CI_Model {
+class Mod_faq extends CI_Model 
+{
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->db = $this->load->database('faq', TRUE);		
+	}
 
 	public function getAll()
 	{
-		$query = $this->db->get('faqs');
+		$query = $this->db->get('faq');
 
 		return $query->result();
 	}
 
 	public function create($data)
 	{
-		$query = $this->db->insert('faqs', $data);
+		$query = $this->db->insert('faq', $data);
 
 		return $this->db->insert_id();
 	}
@@ -21,7 +29,7 @@ class Mod_faq extends CI_Model {
 	{
 		$this->db->where('id', $faq_id);
 
-		$query = $this->db->get('faqs');
+		$query = $this->db->get('faq');
 
 		return $query->num_rows() ? $query->row() : FALSE;
 	}
@@ -31,7 +39,7 @@ class Mod_faq extends CI_Model {
 		$this->db->set($data);
         $this->db->where('id', $faq_id);
 
-        $query = $this->db->update('faqs');
+        $query = $this->db->update('faq');
 
         return $query;
 	}
@@ -39,7 +47,7 @@ class Mod_faq extends CI_Model {
 	public function delete($faq_id)
 	{
 		$this->db->where('id', $faq_id);
-		$this->db->delete('faqs');
+		$this->db->delete('faq');
 
 		
 	}

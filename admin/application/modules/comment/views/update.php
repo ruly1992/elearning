@@ -9,23 +9,24 @@
                 <div class="form-group">
                     <label for="">Nama</label>
                     <?php echo form_input('nama', set_value('nama', $data->nama), array('class' => 'form-control', 'placeholder' => 'Nama')); ?>
-               </div>
-               <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="">Email</label>
                     <?php echo form_input('email', set_value('email', $data->email), array('class' => 'form-control', 'placeholder' => 'Email')); ?>
-               </div>
-               <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="">Isi Komentar</label>
                     <?php echo form_textarea('content', set_value('content', $data->content), array('class' => 'form-control', 'placeholder' => 'content')); ?>
-               </div>
+                </div>
             </div>
             <div class="panel-footer">
+                <?php if ($data->status == 'draft'): ?>
+                    <button type="submit" name="publish" value="1" class="btn btn-primary"><i class="fa fa-check"></i> Save and Publish</button>
+                <?php endif ?>
+                
                 <?php echo button_save() ?>
             </div>
         </div>
     </div>
 </div>
-<?php
-echo form_close();
-
-?>
+<?php echo form_close(); ?>

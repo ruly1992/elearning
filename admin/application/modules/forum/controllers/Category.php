@@ -37,7 +37,7 @@ class Category extends Admin {
 
     public function edit($id)
     {
-        $category           = Model\Forum\Category::findOrFail(4);
+        $category           = Model\Forum\Category::findOrFail($id);
 
         $this->form_validation->set_rules('name', 'Nama', 'required');
 
@@ -59,7 +59,7 @@ class Category extends Admin {
 
     public function delete($id)
     {
-        $category = Model\Forum\Category::findOrFail(4);
+        $category = Model\Forum\Category::findOrFail($id);
         $category->users()->detach();
         // $category->topics()->delete();
         $category->delete();

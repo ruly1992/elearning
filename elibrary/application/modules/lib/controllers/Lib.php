@@ -6,6 +6,8 @@ class Lib extends Admin {
     public function show($category, $id, $name)
     {
         $this->medialib = new Library\Media\Media;
+        $modelMedia = new Library\Media\Model\Media;
+        $user = sentinel()->getUser();
 
         $name   = urldecode($name);
         $media  = $this->medialib->getMedia()->where('file_name', 'like', $name . '%')->findOrFail($id);
@@ -14,7 +16,7 @@ class Lib extends Admin {
             'media'     => $media,
         ];
 
-        $media->resolveVisitorUnique();
+        $modelMedia->resolveVisitorUnique($user, $media->id);
 
         $this->template->build('single', $data);
     }
@@ -49,12 +51,12 @@ class Lib extends Admin {
         ];
 
         $data = file_get_contents($media->getFilepath()); // Read the file's contents
+
         $name = $media->file_name;
 
         $this->load->helper('download');
-        
+
         force_download($name, $data);
-        // $this->template->build('preview', $data);
     }
 }
 

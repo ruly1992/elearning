@@ -31,6 +31,7 @@ $config['menus'] = [
                 'name'  => 'Kategori',
                 'icon'  => 'icon-calculator',
                 'link'  => site_url('kategori'),
+                'roles' => ['su', 'adm'],
             ],
         ],
     ],
@@ -49,6 +50,20 @@ $config['menus'] = [
         'icon'  => 'fa fa-comment',
         'link'  => site_url('comment'),
         'roles' => ['su', 'adm', 'edt'],
+        'child' => [
+            [
+                'name'  => 'Approve',
+                'icon'  => 'fa fa-comment',
+                'link'  => site_url('comment'),
+                'roles' => ['su', 'adm', 'edt'],
+            ],
+            [
+                'name'  => 'Draft',
+                'icon'  => 'fa fa-comment',
+                'link'  => site_url('comment?status=draft'),
+                'roles' => ['su', 'adm', 'edt'],
+            ]
+        ]
     ],
 
     // Media
@@ -59,6 +74,21 @@ $config['menus'] = [
         'roles' => ['su', 'adm'],
     ],
 
+    // Kelas Online
+    [
+        'name'  => 'Kelas Online',
+        'icon'  => 'fa fa-upload',
+        'link'  => site_url('kelasonline'),
+        'roles' => ['su', 'adm'],
+        'child' => [
+            [
+                'name'  => 'Category',
+                'icon'  => 'fa fa-upload',
+                'link'  => site_url('kelasonline/category'),
+            ],
+        ]
+    ],
+
     // Elibrary
     [
         'name'  => 'Elibrary',
@@ -67,18 +97,13 @@ $config['menus'] = [
         'roles' => ['su', 'adm', 'pus'],
         'child' => [
             [
-                'name'  => 'Terbit',
+                'name'  => 'Elibrary',
                 'icon'  => 'fa fa-upload',
                 'link'  => site_url('elibrary'),
             ],
             [
-                'name'  => 'Elibrary',
-                'icon'  => 'fa fa-upload',
-                'link'  => site_url('elibrary?status=draft'),
-            ],
-            [
                 'name'  => 'Kategori',
-                'icon'  => 'fa fa-upload',
+                'icon'  => 'icon-calculator',
                 'link'  => site_url('elibrary/category'),
             ]
         ]
@@ -118,7 +143,7 @@ $config['menus'] = [
         'child' => [
             [
                 'name'  => 'Kategori',
-                'icon'  => 'fa fa-upload',
+                'icon'  => 'icon-calculator',
                 'link'  => site_url('forum/category'),
             ]
         ],

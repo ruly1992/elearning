@@ -1,6 +1,6 @@
 $(document).ready(function () {
     tinymce.init({
-        selector:'.editor',
+        selector:'textarea.editor',
         plugins: [
                 "advlist autolink link image lists charmap print preview hr anchor pagebreak",
                 "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
@@ -8,7 +8,8 @@ $(document).ready(function () {
         ],
         toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
         toolbar2: " link unlink anchor | image media | forecolor backcolor  | print preview code ",
-        image_advtab: true ,
+        image_advtab: true,
+        height: 600
     });
 
     $('.cropit-custom-avatar').cropit({
@@ -20,20 +21,38 @@ $(document).ready(function () {
             var imageData       = $('.cropit-custom-avatar').cropit('export')
 
             inputImagedata.val(imageData)
+        },
+        onImageError: function (error, code, message) {
+            if (error.code == 1)
+                alert(error.message)
         }
     });
 
+    var fileBtn = $('.cropit-custom-avatar').find('.file-btn');
+    fileBtn.on('click', function () {
+        $('input.custom-avatar').trigger('click')
+        return false;
+    })
+
     $('.cropit-featured').cropit({
-        imageState: {
-            src: homeurl + '/public/images/portal/img-carousel-default.jpg',
-        },
+        exportZoom: 2,
         onOffsetChange: function (offset) {
             var inputImagedata  = $('input.cropit-featured-imagedata')
             var imageData       = $('.cropit-featured').cropit('export')
 
             inputImagedata.val(imageData)
+        },
+        onImageError: function (error, code, message) {
+            if (error.code == 1)
+                alert(error.message)
         }
     });
+
+    var fileBtn = $('.cropit-featured').find('.file-btn');
+    fileBtn.on('click', function () {
+        $('input.featured').trigger('click')
+        return false;
+    })
 
     $('.cropit-export').on('click', function () {
         var cropitSelector  = $(this).data('cropit-element')

@@ -5,7 +5,7 @@ class Model_faq extends CI_Model
     public function save($data)
     {
         $insert = $this->db->insert('faq', $data);
-        if($insert){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;
@@ -26,7 +26,7 @@ class Model_faq extends CI_Model
     public function update($id,$data){
         $this->db->where('id',$id);
         $update = $this->db->update('faq',$data);
-        if($update){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;
@@ -35,7 +35,7 @@ class Model_faq extends CI_Model
 
     public function delete($id){
         $delete = $this->db->delete('faq', array('id'=>$id));
-        if($delete){
+        if($this->db->affected_rows() == '1'){
             return TRUE;
         }else{
             return FALSE;

@@ -1,4 +1,4 @@
-<?php get_header('private'); ?>
+<?php get_header('private', array('active' => 'forum')); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
@@ -10,6 +10,8 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
+                                <li><?php echo anchor('thread/', 'Home') ?></li>
+                                <li><?php echo anchor('topic/', 'Topics'); ?></li>
                                 <li class="active">Create New Topic</li>
                             </ol>
                             <div class="forum-main">
@@ -29,17 +31,23 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Topic</label>
-                                                <input type="text" name="topic" class="form-control" placeholder="type your title">
+                                                <input type="text" required name="topic" class="form-control" placeholder="type your title">
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Pilih Daerah :</label>
-                                                <select class="c-select form-control" name="daerah">
-                                                    <?php
-                                                        foreach($provinsi as $kode=>$nama){
-                                                            echo '<option value="'.$kode.'">'.$nama.'</option>';
-                                                        }
-                                                    ?>
-                                                </select>
+                                                <label for="provinsi">Provinsi</label>
+                                                <?php echo $this->wilayah->generateSelectProvinsi() ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kota">City/Kota</label>
+                                                <?php echo $this->wilayah->generateSelectKota() ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="kecamatan">Kecamatan</label>
+                                                <?php echo $this->wilayah->generateSelectKecamatan() ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="desa">Desa</label>
+                                                <?php echo $this->wilayah->generateSelectDesa() ?>
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">CREATE NEW TOPIC</button>
@@ -61,12 +69,51 @@
                                     </div>
                                     <div class="widget-categories-content">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item active">
-                                                <span class="label label-default label-pill pull-right">14</span> All Categories
-                                            </a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
+                                            <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
+                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php 
+                                                foreach($categoriesSide as $c){
+                                                    if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget">
+                                <div class="widget-categories">
+                                    <div class="widget-categories-heading">
+                                        <h4>Threads</h4>
+                                    </div>
+                                    <div class="widget-categories-content">
+                                        <div class="list-group">
+                                            <?php 
+                                                if(isset($tenagaAhli)){ 
+                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
+                                                }
+                                            ?>
+                                            <?php 
+                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item"');
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget">
+                                <div class="widget-categories">
+                                    <div class="widget-categories-heading">
+                                        <h4>Your Topics</h4>
+                                    </div>
+                                    <div class="widget-categories-content">
+                                        <div class="list-group">
+                                            <?php 
+                                                foreach($topics as $top){
+                                                    echo anchor('#', $top->topic, 'class="list-group-item"');
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -80,4 +127,8 @@
         </div>
         <!-- emd:content -->
 
+<?php custom_script(); ?>
+    <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js'); ?>"></script>
+    <?php echo $this->wilayah->script(site_url('topic/wilayah')); ?>
+<?php endcustom_script() ?>
 <?php get_footer(); ?>

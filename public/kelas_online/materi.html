@@ -124,16 +124,19 @@
                             </div>
                         </section>
                     
-                    <div class="container content-dashboard">
+                    <div class="container content-dashboard-kelas-online">
                         <div class="row">
-                            <div class="heading">
-                                <h3>Materi</h3>
+                            <div class="alert alert-warning" role="alert">
+                                <strong>2 kelas</strong> masih di moderasi. <a href="#" class="btn btn-sm btn-warning">Lihat</a>
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <button class="btn btn-sm btn-primary"><i class="fa fa-plus fa-fw"></i>Tambah kelas baru</button>
+                                    <h3>Materi</h3>
                                 </div>
                                 <div class="card-block">
+                                    <div class="button-add">
+                                        <button class="btn btn-sm btn-primary"><i class="fa fa-plus fa-fw"></i>Tambah kelas baru</button>   
+                                    </div>
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
@@ -150,27 +153,24 @@
                                               <td>Kategori 1</td>
                                               <td>Kependudukan</td>
                                               <td><div class="label label-success">publish</div></td>
-                                              <td><a href="#" class="btn btn-primary btn-konsul">Update</a></td>
+                                              <td><a href="#" class="btn btn-sm btn-update-custom">Update</a></td>
                                             </tr>
                                             <tr>
                                               <th scope="row">002</th>
                                               <td>Kategori 2</td>
                                               <td>Pemerintahan desa</td>
                                               <td><div class="label label-success">publish</div></td>
-                                              <td><a href="#" class="btn btn-primary btn-konsul">Update</a></td>
+                                              <td><a href="#" class="btn btn-sm btn-update-custom">Update</a></td>
                                             </tr>
                                             <tr>
                                               <th scope="row">003</th>
                                               <td>Kategori 3</td>
                                               <td>Kebudayaan Masyarkat di pedesaan</td>
                                               <td><div class="label label-success">publish</div></td>
-                                              <td><a href="#" class="btn btn-primary btn-konsul">Update</a></td>
+                                              <td><a href="#" class="btn btn-sm btn-update-custom">Update</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn btn-sm btn-warning">2 kelas masih di moderasi</button>
                                 </div>
                             </div>
                         </div>
@@ -249,15 +249,7 @@
         <script src="../javascript/app.js"></script>   
         <script src="../plugins/tinymce/tinymce.min.js"></script>
         <script src="../javascript/custom-tiny.js"></script>
-        <!-- jQuery Flot Chart-->
-        <script src="../plugins/flot-chart/jquery.flot.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.tooltip.min.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.resize.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.pie.resize.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.selection.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.stack.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.time.js"></script>
-        <script src="../javascript/flot.chart.init.js"></script>
+        
         <!-- end:javascript -->
     </body>
 </html>

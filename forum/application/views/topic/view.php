@@ -1,4 +1,4 @@
-<?php get_header('private'); ?>
+<?php get_header('private', array('active' => 'forum')); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
@@ -10,7 +10,8 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li class="active">Your Topics</li>
+                                <li><?php echo anchor('thread/', 'Home'); ?></li>
+                                <li class="active">Topics</li>
                             </ol>
                             <div class="form-group">
                                 <?php echo anchor('topic/create','<i class="fa fa-plus"></i> Topic Baru','class="btn btn-primary btn-sm"'); ?>
@@ -22,7 +23,7 @@
                                         echo '<strong>Warning!</strong> '.$failed;
                                     echo '</div>';
                                 }elseif(isset($success)){
-                                    echo '<div class="alert alert-info">';
+                                    echo '<div class="alert alert-ytopic">';
                                         echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
                                         echo '<strong>Success!</strong> '.$success;
                                     echo '</div>';
@@ -38,52 +39,64 @@
                                                   <th>Topic</th>
                                                   <th>Category</th>
                                                   <th>Daerah</th>
+                                                  <th>Topic Maker</th>
+                                                  <th>Status</th>
                                                   <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             <?php 
-                                                $no=1;
+                                                //$no=1;
                                                 foreach($topics as $t){
                                             ?>
                                                     <tr>
-                                                        <th scope="row"><?php echo $no; ?></th>
+                                                        <th scope="row"><?php echo $t->id; ?></th>
                                                         <td><?php echo $t->topic ?></td>
                                                         <td><?php echo $t->category_name; ?></td>
                                                         <td>
                                                             <?php 
                                                                 foreach($provinsi as $kode=>$nama){
-                                                                    if($t->daerah==$kode){
+                                                                    $prov = explode('.', $kode);
+                                                                    $daerah   = explode('.', $t->daerah);
+                                                                    if($prov[0]==$daerah[0]){
                                                                         echo $nama;
                                                                     }
                                                                 }
                                                             ?>
                                                         </td>
+                                                        <td>
+                                                            <?php echo user($t->tenaga_ahli)->full_name; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                                if($t->status=='1'){
+                                                                    echo 'Approved';
+                                                                }else{
+                                                                    echo 'Waiting';
+                                                                }
+                                                            ?>
+                                                        </td>
                                                         <td align="center">
                                                             <p>
-                                                              <?php echo anchor('topic/edit/'.$t->id,'Edit','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
-                                                              <?php echo anchor('topic/delete/'.$t->id,'Delete','class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
+                                                                <?php 
+                                                                    if($t->tenaga_ahli!=$tenagaAhli AND $t->status=='0'){
+                                                                        echo anchor('topic/approve/'.$t->id, 'Approve', 'class="btn btn-primary btn-konsul" data-toggle="tooltip" data-placement="top" title="Approve"');
+                                                                    }
+                                                                ?>
+                                                                <?php echo anchor('topic/edit/'.$t->id,'Edit','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
+                                                                <?php echo anchor('topic/delete/'.$t->id,'Delete','class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
                                                             </p>
                                                         </td>
                                                     </tr>
                                             <?php 
-                                                    $no++;
+                                                    //$no++;
                                                 } 
                                             ?>
                                             </tbody>
                                         </table>
-                                        <select class="c-select">
-                                            <option selected>Hasil perhalaman</option>
-                                            <option value="1">5</option>
-                                            <option value="2">10</option>
-                                            <option value="3">50</option>
-                                            <option value="4">100</option>
-                                            <option value="5">Tidak terbatas</option>
-                                        </select>
                                         <nav>
                                             <ul class="pager">
-                                                <li><a href="#">Sebelumnya</a></li>
-                                                <li><a href="#">Berikutnya</a></li>
+                                                <?php echo $topics->render() ?>
                                             </ul>
                                         </nav>
                                     </div>
@@ -101,12 +114,34 @@
                                     </div>
                                     <div class="widget-categories-content">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item active">
-                                                <span class="label label-default label-pill pull-right">14</span> All Categories
-                                            </a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
-                                            <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
+                                            <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
+                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php 
+                                                foreach($categoriesSide as $c){
+                                                    if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget">
+                                <div class="widget-categories">
+                                    <div class="widget-categories-heading">
+                                        <h4>Threads</h4>
+                                    </div>
+                                    <div class="widget-categories-content">
+                                        <div class="list-group">
+                                            <?php 
+                                                if(isset($tenagaAhli)){ 
+                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
+                                                }
+                                            ?>
+                                            <?php 
+                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item"');
+                                            ?>
                                         </div>
                                     </div>
                                 </div>

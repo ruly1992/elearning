@@ -172,7 +172,7 @@
                     <div class="cropit-image-preview-container">
                         <div class="cropit-image-preview"
                             style="width: <?php echo getenv('SIZE_FEATURED_WIDTH') ?>; height: <?php echo getenv('SIZE_FEATURED_HEIGHT') ?>;"
-                            data-cropit-preload="<?php echo $artikel->slider_image ?>">
+                            data-cropit-preload="<?php echo $artikel->featured_image ?>">
                         </div>
                     </div>
 

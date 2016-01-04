@@ -7,12 +7,16 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
+                    <label for="">Title</label>
+                    <?php echo form_input('title', set_value('title', $data->title), array('class' => 'form-control')); ?>
+               </div>
+                <div class="form-group">
                     <label for="">Pertanyaan</label>
-                    <?php echo form_input('pertanyaan', set_value('pertanyaan', $data->pertanyaan), array('class' => 'form-control')); ?>
+                    <?php echo form_input('question', set_value('question', $data->question), array('class' => 'form-control')); ?>
                </div>
                <div class="form-group">
                     <label for="">Jawaban</label>
-                    <?php echo form_textarea('jawaban', set_value('jawaban', $data->jawaban), array('class' => 'form-control')); ?>
+                    <?php echo form_textarea('answer', set_value('answer', $data->answer, FALSE), array('class' => 'form-control editor')); ?>
                </div>
             </div>
             <div class="panel-footer">

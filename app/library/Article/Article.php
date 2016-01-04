@@ -24,13 +24,13 @@ class Article
         $this->tags             = [];
     }
 
-    public function submit($article, $name, $email, $desa = 0, $featured = null, $custom_avatar = null)
+    public function submit($article, $name, $email, $desa = 0, $categories = [], $featured = null, $custom_avatar = null)
     {
-        $this->set($article);
+        $this->set($article, $categories);
 
-        $this->model->nama  = $name;
-        $this->model->email = $email;
-        // $this->model->desa()->associate($desa);
+        $this->model->nama      = $name;
+        $this->model->email     = $email;
+        $this->model->desa_id   = $desa;
 
         $this->saveToDraft();
 
@@ -48,7 +48,7 @@ class Article
             $this->categories   = $article->categories->pluck('id')->toArray();
             $this->tags         = $article->categories->pluck('id')->toArray();
         } elseif (is_numeric($article)) {
-            $this->model = $this->model->findOrFail($article);
+            $this->model = $this->model->withDrafts()->withDrafts()->findOrFail($article);
         } else {
             $this->model->fill($article);
         }
@@ -79,7 +79,7 @@ class Article
 
     public function setCustomAvatar($imageData)
     {
-        $filename = $this->setImage($imageData, 'custom-avatar', 'customavatar');
+        $filename = $this->setImage($imageData, 'custom-avatar', 'customavatar_');
 
         $this->model->update(['custom_avatar' => $filename]);
 

@@ -1,7 +1,7 @@
 <?php custom_stylesheet(); ?>
 <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
 <?php endcustom_stylesheet(); ?>
-<?php get_header('private'); ?>
+<?php get_header('private', array('active' => 'forum')); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
@@ -23,7 +23,7 @@
 									   <?php echo form_open('thread/updateReply/'.$idThread.'/'.$idReply); ?>
                                             <div class="form-group">
                                                 <label for="">Title</label>
-                                                <input type="text" class="form-control" value="<?php echo $title;?>" required name="title" placeholder="type your title">
+                                                <input type="text" class="form-control" disabled value="<?php echo $title;?>" required name="title" placeholder="type your title">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Message</label>
@@ -54,7 +54,7 @@
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/viewAt/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                         </div>
@@ -76,7 +76,7 @@
         $(function() {
             $("textarea").sceditor({
                 plugins: "bbcode",
-                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.min.css'); ?>" ,
+                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.css'); ?>" ,
                 emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
             });
         });

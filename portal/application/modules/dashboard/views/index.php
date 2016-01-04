@@ -1,135 +1,183 @@
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
-<div class="row">
-    <div class="col-md-12">
-        <div class="content-articles">
-            <p>Untuk mempublish artikel, silahkan menggunakan link di bawah ini.</p>
-            <a class="btn btn-primary" href="<?php echo site_url('dashboard/sendArticle') ?>"><i class="fa fa-send"></i> Buat Artikel</a>
+<?php custom_stylesheet() ?>
+    <link rel="stylesheet" href="<?php echo asset('node_modules/datatables/media/css/jquery.dataTables.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo asset('stylesheets/cropit.css') ?>">
+<?php endcustom_stylesheet() ?>
 
-            <hr>
-
-            <p>Untuk upload library, silahkan menggunakan link di bawah ini.</p>
-            <a class="btn btn-primary" href="<?php echo elib_url('media') ?>"><i class="fa fa-upload"></i> Upload Library</a>
+<!-- start: content atas -->
+<div class="row" id="app-cropit">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <section class="content-articles">
+            <div class="content-articles-heading">
+                <h3>Dashboard Create Articles</h3>
+            </div>
+        </section>
+        <div class="container content-submit">
+            <div class="widget">
+                <div class="widget-heading">
+                    <ul class="nav nav-tabs" id="myTabSubmit" role="tablist">
+                        <li class="nav-item">
+                             <a class="nav-link active" data-toggle="tab" href="#submit-article" role="tab" aria-controls="article-post" aria-expanded="true">Submit article</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#submit-elibrary" role="tab" aria-controls="library-post" aria-expanded="false">Submit Elibrary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#submit-konsultasi" role="tab" aria-controls="konsultasis-post" aria-expanded="false">Submit Konsultasi</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="widget-content">
+                        <div class="tab-content" id="myTabSubmitContent">
+                            <div role="tabpanel" class="tab-pane fade active in" id="submit-article" aria-labelledby="article-post" aria-expanded="true">
+                                <?php echo form_open('dashboard/sendArticle'); ?>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <fieldset class="form-group">
+                                            <label for="title">Judul Artikel</label>
+                                            <input name="title" type="text" class="form-control" id="title" placeholder="">
+                                            <small class="text-muted">Masukkan judul artikel disini</small>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <textarea name="content" class="editor"></textarea>
+                                        </fieldset>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <!-- begin: category -->
+                                        <div class="widget">
+                                            <div class="widget-sidebar-heading">
+                                                <h3>Category</h3>
+                                            </div>
+                                            <div class="widget-sidebar-content">
+                                                <?php echo $categories_checkbox ?>
+                                            </div>
+                                        </div>
+                                        <!-- end: category -->
+                                        <!-- begin: image preview -->
+                                        <div class="widget">
+                                            <div class="widget-sidebar-heading">
+                                                <h3>Gambar Fitur</h3>
+                                            </div>
+                                            <div class="widget-sidebar-content">
+                                                <cropit-preview name="featured"></cropit-preview>
+                                                <cropit-result name="featured"></cropit-result>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php echo form_close(); ?>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <form>
+                                        <fieldset class="form-group">
+                                            <label for="exampleInputArtikel">Judul Elibrary</label>
+                                            <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
+                                            <small class="text-muted">Masukkan judul elibrary disini</small>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label for="exampleInputKonten">Konten Artikel</label>
+                                            <textarea class="editor"></textarea>
+                                        </fieldset>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <!-- begin: category -->
+                                    <div class="widget">
+                                        <div class="widget-sidebar-heading">
+                                            <h3>Category</h3>
+                                        </div>
+                                        <div class="widget-sidebar-content">
+                                            <div class="list-group-item">
+                                                <label class="c-input c-checkbox">
+                                                    <input type="checkbox">
+                                                    <span class="c-indicator"></span>
+                                                    Desa membangun
+                                                </label>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <label class="c-input c-checkbox">
+                                                    <input type="checkbox">
+                                                    <span class="c-indicator"></span>
+                                                    Desa membangun 1
+                                                </label>
+                                                <div class="child">
+                                                    <label class="c-input c-checkbox">
+                                                        <input type="checkbox">
+                                                        <span class="c-indicator"></span>
+                                                        Desa membangun a
+                                                    </label>
+                                                </div>
+                                                <div class="child">
+                                                    <label class="c-input c-checkbox">
+                                                        <input type="checkbox">
+                                                        <span class="c-indicator"></span>
+                                                        Desa membangun b
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <label class="c-input c-checkbox">
+                                                    <input type="checkbox">
+                                                    <span class="c-indicator"></span>
+                                                    Desa membangun 3
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end: category -->
+                                    <!-- begin: image preview -->
+                                    <div class="widget">
+                                        <div class="widget-sidebar-heading">
+                                            <h3>Category</h3>
+                                        </div>
+                                        <div class="widget-sidebar-content">
+                                            <div class="image-preview">
+                                                <img src="../images/portal/img-carousel.jpg" alt="">
+                                            </div>
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#image-preview-1">submit image</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end: image preview -->
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="submit-konsultasi" aria-labelledby="" aria-expanded="false">
+                                <form>
+                                    <fieldset class="form-group">
+                                        <label for="exampleInputArtikel">Judul Konsultasi</label>
+                                        <input type="email" class="form-control" id="exampleInputArtikel" placeholder="">
+                                        <small class="text-muted">Masukkan judul konsultasi disini</small>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label for="exampleInputKonten">Konten Artikel</label>
+                                        <textarea class="editor"></textarea>
+                                    </fieldset>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="row">    
-    <div class="col-md-6">
-        <!-- start:section content main articles -->
-        <section class="content-articles">
-            <div class="content-articles-heading">
-                <h3>Profile</h3>
-            </div>
-            <table class="table">
-            <tbody>
-                <tr>
-                    <?php if (auth()->getUser()->profile->avatar): ?>
-                        <img class="featured-preview" src="<?php echo base_url("portal/assets/upload/avatar/")."/".auth()->getUser()->profile->avatar ?>" width="100%">
-                        <img class="featured-preview-default" src="<?php echo asset('images/default_avatar_male.jpg') ?>" style="display: none;">
-                    <?php else: ?>
-                        <img class="featured-preview" src="" width="100%" style="display: none;">
-                        <img class="featured-preview-default" src="<?php echo asset('images/default_avatar_male.jpg') ?>">
-                    <?php endif ?>
-                    <input type="hidden" name="avatar" value="<?php echo auth()->getUser()->profile->avatar ?>">
-                </tr>
-                <tr>
-                    <td>Nama Lengkap</td>
-                    <td><?php echo auth()->getUser()->full_name ?></td>
-                </tr>
-                <tr>
-                    <td>Jenis Kelamin</td>
-                    <td><?php echo auth()->getUser()->profile->gender ?></td>
-                </tr>
-                <tr>
-                    <td>Tempat, Tanggal Lahir</td>
-                    <td><?php echo auth()->getUser()->profile->tempat_lahir ?>, <?php echo auth()->getUser()->profile->tanggal_lahir ?></td>
-                </tr>
-                <tr>
-                    <td>Alamat</td>
-                    <td><?php echo auth()->getUser()->profile->address ?></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><?php echo auth()->getUser()->email ?></td>
-                </tr>
-            </tbody>
-          </table>
-        </section>
-        <!-- end:section content main articles -->
-    </div>
-   
-</div>
-<div class="row">
-     <div class="col-md-12">
-        <!-- start:section content main articles -->
-        <section class="content-articles">
-            <div class="content-articles-heading">
-                <h3>Artikel Draft</h3>
-            </div>
-            <table class="table table-hover table-bordered" id="article">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Judul</th>
-                        <th>Status</th>
-                        <th>Waktu Terbit</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($drafts as $draft): ?>
-                    <tr>
-                        <td><?php echo $draft->id ?></td>
-                        <td><?php echo $draft->title ?></td>
-                        <td><?php echo $draft->getStatusLabel() ?></td>
-                        <td><?php echo $draft->date ?></td>
-                        <td>
-                            <a class="btn btn-sm btn-success" href="<?php echo site_url('dashboard/editArticle/'. $draft->id) ?>"><i class="fa fa-save"></i> Update</a>
-                            <a class="btn btn-sm btn-danger" href="<?php echo site_url('dashboard/delete/'. $draft->id) ?>"><i class="fa fa-trash"></i> Delete</a>
-                        </td>
-                    </tr>
-                <?php endforeach ?>
-                </tbody>
-        </table>
-        <?php echo $artikel->render() ?>
-        </section> 
 
-        <section class="content-articles">
-            <div class="content-articles-heading">
-                <h3>Artikel Submit</h3>
-            </div>
-            <table class="table table-hover table-bordered" id="publish">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Judul</th>
-                        <th>Status</th>
-                        <th>Waktu Terbit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($artikel as $row): ?>
-                    <tr>
-                        <td><?php echo $row->id ?></td>
-                        <td><?php echo $row->title ?></td>
-                        <td><?php echo $row->getStatusLabel() ?></td>
-                        <td><?php echo $row->date ?></td>
-                    </tr>
-                <?php endforeach ?>
-                </tbody>
-        </table>
-        <?php echo $artikel->render() ?>
-        </section>        
-    </div>
-</div>
+    <?php $this->load->view('modal/featured'); ?>
+</div> 
+<!-- end: content atas -->
 
 <?php custom_script() ?>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#article').DataTable();
-        } );
+<?php $this->load->view('template/vue_cropit'); ?>
 
-        $(document).ready(function() {
-            $('#publish').DataTable();
-        } );
-    </script>
+<script src="<?php echo asset('plugins/tinymce/tinymce.min.js') ?>"></script>
+<script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
+<script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
+<script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        tinymce.init({
+            selector: '.editor'
+        })
+    });
+</script>
 <?php endcustom_script() ?>

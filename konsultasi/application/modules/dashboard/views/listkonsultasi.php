@@ -8,67 +8,61 @@
                 <!-- start:content main -->
                 <div class="content-main">
                     <ol class="breadcrumb">
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Konsultasi</a></li>
-                        <li class="active">Tenaga Ahli</li>
+                        <li><a href="<?php echo site_url() ?>">Dashboard</a></li>
+                        <li>Konsultasi</li>
+                        <li class="active"><?php echo $kategoriById->name ?></li>
                     </ol>
-
                     <div class="content-konsultasi-table">
-                <table class="table table-bordered table-responsive">
-                    <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Tanggal Konsultasi</th>
-                          <th>Nama Konsultasi</th>
-                          <th>Nama Learner</th>
-                          <th>Status</th>
-                          <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($konsultasi as $row) : ?>
-                        <tr>
-                            <th scope="row"><?php echo $row->id ?></th>
-                            <td><?php echo $row->created_at ?></td>
-                            <td><a href="<?php echo site_url('dashboard/detail/'.$row->id) ?>"><?php echo $row->subjek ?></a></td>
-                            <td><?php echo user($row->user_id)->full_name ?></td>
-                            <td>
-                            <?php if ($row->status == "open"): ?>
-                                <p class="label label-primary">Active</p>
-                            <?php else :?>
-                                <p class="label label-default">Close</p>
-                            <?php endif ?>
-                            </td>
-                            <td align="center">
-                                <p>                                   
-                                    <?php if ($row->status == "open"): ?>
-                                        <a href="<?php echo site_url('dashboard/detail/'. $row->id) ?>" class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Reply">Reply</a>
-                                        <a href="<?php echo site_url('dashboard/status/open/'.$id_kategori.'/'.$row->id) ?>" class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Close">Close</a>
-                                    <?php else : ?>
-                                        <a href="<?php echo site_url('dashboard/status/close/'.$id_kategori.'/'. $row->id) ?>" class="btn btn-success btn-konsul" data-toggle="tooltip" data-placement="top" title="Reopen">Reopen</a>
-                                    <?php endif ?>    
+                    <?php if ($konsultasi->count()): ?>
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Tanggal Konsultasi</th>
+                                  <th>Nama Konsultasi</th>
+                                  <th>Nama Learner</th>
+                                  <th>Status</th>
+                                  <th>Action</th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    <?php $no = 1; foreach ($konsultasi as $row) : ?>
+                                    <tr>
+                                        <th scope="row"><?php echo $no ?></th>
+                                        <td><?php echo $row->created_at ?></td>
+                                        <td><a href="<?php echo site_url('dashboard/detail/'.$row->id) ?>"><?php echo $row->subjek ?></a></td>
+                                        <td><?php echo user($row->user_id)->full_name ?></td>
+                                        <td>
+                                        <?php if ($row->status == "open"): ?>
+                                            <p class="label label-primary">Active</p>
+                                        <?php else :?>
+                                            <p class="label label-default">Close</p>
+                                        <?php endif ?>
+                                        </td>
+                                        <td align="center">
+                                            <p>                                   
+                                                <?php if ($row->status == "open"): ?>
+                                                    <a href="<?php echo site_url('dashboard/detail/'. $row->id) ?>" class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Reply">Reply</a>
+                                                    <a href="<?php echo site_url('dashboard/status/open/'.$id_kategori.'/'.$row->id) ?>" class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Close">Close</a>
+                                                <?php else : ?>
+                                                    <a href="<?php echo site_url('dashboard/status/close/'.$id_kategori.'/'. $row->id) ?>" class="btn btn-success btn-konsul" data-toggle="tooltip" data-placement="top" title="Reopen">Reopen</a>
+                                                <?php endif ?>    
 
-                                </p>
-                            </td>
-                        </tr>
-                        <?php endforeach ?>                        
-                    </tbody>
-                </table>
-                <select class="c-select">
-                    <option selected>Hasil perhalaman</option>
-                    <option value="1">5</option>
-                    <option value="2">10</option>
-                    <option value="3">50</option>
-                    <option value="4">100</option>
-                    <option value="5">Tidak terbatas</option>
-                </select>
-                <nav>
-                    <ul class="pager">
-                        <li><a href="#">Sebelumnya</a></li>
-                        <li><a href="#">Berikutnya</a></li>
-                    </ul>
-                </nav>
-            </div>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <?php $no++; endforeach; ?> 
+                                </tbody>                                
+                        </table>
+                        <?php else: ?>                       
+                            <p class="alert alert-warning">Tidak ada Konsultasi yang ditampilkan.</p>
+                        <?php endif ?>
+                        <nav>
+                            <ul class="pager">
+                                <?php echo $konsultasi->render() ?>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
                 <!-- end:content main -->
             </div>
@@ -81,12 +75,12 @@
                             </div>
                             <div class="widget-categories-content">
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item active">
-                                        <span class="label label-default label-pill pull-right">14</span> All Categories
+                                    <a class="list-group-item active">
+                                        <span class="label label-default label-pill pull-right"><?php echo count($allKonsultasi); ?></span> All Categories
                                     </a>
-                                    <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Video Conferences</a>
-                                    <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> Kelas Online</a>
-                                    <a href="#" class="list-group-item"><span class="label label-default label-pill pull-right">14</span> E-Library</a>
+                                    <?php foreach ($listKategori as $cat): ?>                                        
+                                        <a class="list-group-item"><span class="label label-default label-pill pull-right"><?php echo countKonsultasiKategori($allKonsultasi, $cat->id); ?></span><?php echo $cat->name ?></a>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                         </div>

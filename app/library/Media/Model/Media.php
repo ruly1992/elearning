@@ -29,13 +29,11 @@ class Media extends Model
 
     public function getFilepath()
     {
-        return FCPATH . '/assets/upload/media/' . $this->category->name . '/' . $this->file_name;
+        return attachment('elibrary/media/' . $this->category->name . '/' . $this->file_name);
     }
 
-    public function resolveVisitorUnique()
+    public function resolveVisitorUnique($user, $mediaID)
     {
-        $user = auth()->user();
-
         $ip_address = $this->getRealIpAddr();
         $visitor    = VisitorMedia::checkAccessVisitor($this, $ip_address, $user ?: null);
 
@@ -44,7 +42,7 @@ class Media extends Model
         } else {
             $visitor = VisitorMedia::create(array(
                 'ip_address'    => $ip_address,
-                'media_id'      => $this->id,
+                'media_id'      => $mediaID,
                 'user_id'       => $user ? $user->id : null,
             ));
         }
@@ -232,7 +230,7 @@ class Media extends Model
 
     public function getFileurl()
     {
-        return elib_url('assets/upload/media/' . $this->category->name . '/' . $this->file_name);
+        return attachment('elibrary/media/' . $this->category->name . '/' . $this->file_name);
     }
 
     public function getLinkPreview()
@@ -249,7 +247,7 @@ class Media extends Model
         }
 
         else if ($this->type == 'Image') {
-            return '<img src="'.$fileurl.'" class="img img-rounded img-responsive">';
+            return '<img src="'.$fileurl.'" class="img-thumbnail">';
         }
 
         elseif ($this->type == 'Video') {

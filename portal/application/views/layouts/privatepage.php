@@ -1,7 +1,7 @@
 <?php get_header('private') ?>
 
     <!-- start:main content -->
-    <div class="container content content-dashboard content-single">
+    <div class="container content-dashboard-user articles-dashboard content-single">
         <!-- start:content -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

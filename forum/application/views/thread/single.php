@@ -1,7 +1,7 @@
 <?php custom_stylesheet(); ?>
 <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
 <?php endcustom_stylesheet(); ?>
-<?php get_header('private'); ?>
+<?php get_header('private', array('active' => 'forum')); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
@@ -13,8 +13,13 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li><a href="<?php echo site_url(); ?>">Home</a></li>
-                                <li><?php echo anchor('thread/viewAt/'.$idCategory, $category); ?></li>
+                                <li><a href="<?php if(isset($home)){ echo $home; }else{ echo site_url(); } ?>">Home</a></li>
+                                <li>
+                                    <?php 
+                                        if(isset($home)){ $controller=$home; }else{ $controller='thread'; }
+                                        echo anchor( $controller.'/category/'.$idCategory, $category); 
+                                    ?>
+                                </li>
                                 <li class="active"><?php echo $title; ?></li>
                             </ol>
 
@@ -25,7 +30,7 @@
                                         echo '<strong>Warning!</strong> '.$failed;
                                     echo '</div>';
                                 }elseif(isset($success)){
-                                    echo '<div class="alert alert-info">';
+                                    echo '<div class="alert alert-ytopic">';
                                         echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
                                         echo '<strong>Success!</strong> '.$success;
                                     echo '</div>';
@@ -60,12 +65,34 @@
                                             </p>
                                     </div>
                                     <div class="card-footer">
-                                        <a href="#" class="btn btn-sm btn-reply">Reply Post</a>
+                                        <?php if($status=='1'){ ?>
+                                            <a href="#replyThread" class="btn btn-sm btn-reply" data-toggle="collapse" >Reply Post</a>
+                                            <p></p>
+                                            <div class="card collapse" id="replyThread">
+                                                <div class="card-header">
+                                                     <p>in reply to : <a href="#"><?php echo $title; ?></a></p>
+                                                </div>
+                                                <div class="card-block">
+                                                   
+                                                    <?php echo form_open('thread/replyThread/'.$id); ?>
+                                                        <div class="form-group">
+                                                            <label for="">Message</label>
+                                                            <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-post">POST REPLY</button>
+                                                        </div>
+                                                    <?php echo form_close(); ?>
+
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
-                                <?php 
-                                    foreach($reply as $r){
-                                ?>
+                                <?php if($status=='1'){ ?>
+                                        
+                                <?php } ?>
+                                <?php foreach($reply as $r){ ?>
                                 <div class="card" id="<?php echo $r->id; ?>">
                                     <div class="card-header">
                                         <div class="row">
@@ -87,34 +114,30 @@
                                         <p><?php echo BBCodeParser($r->message); ?></p>
                                     </div>
                                     <div class="card-footer">
-                                        <a href="#" class="btn btn-sm btn-reply">Quote Reply</a>
-                                    </div>
-                                </div>
-                                <?php      
-                                    }
-                                ?>
-                                <div class="card">
-                                    <div class="card-header">
-                                         <p>in reply to : <a href="#"><?php echo $title; ?></a></p>
-                                    </div>
-                                    <div class="card-block">
-                                       
-                                        <?php echo form_open('thread/replyThread/'.$id); ?>
-                                            <div class="form-group">
-                                                <label for="">Title</label>
-                                                <input type="text" class="form-control" required name="title" required placeholder="type your title">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Message</label>
-                                                <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-post">POST REPLY</button>
-                                            </div>
-                                        <?php echo form_close(); ?>
+                                        <a href="#reply<?php echo $r->id; ?>" class="btn btn-sm btn-reply" data-toggle="collapse">Quote Reply</a>
+                                        <p></p>
+                                            <div class="card collapse" id="reply<?php echo $r->id; ?>">
+                                                <div class="card-header">
+                                                     <p>in reply to : <a href="#"><?php echo $r->title; ?></a></p>
+                                                </div>
+                                                <div class="card-block">
+                                                   
+                                                    <?php echo form_open('thread/replyThread/'.$id); ?>
+                                                        <div class="form-group">
+                                                            <label for="">Message</label>
+                                                            <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"><?php echo '[quote=Quote Reply]'.$r->message.'[/quote]'; ?></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-post">POST REPLY</button>
+                                                        </div>
+                                                    <?php echo form_close(); ?>
 
+                                                </div>
+                                            </div>
                                     </div>
                                 </div>
+                                <?php } ?>
+                                
                             </div>
                         </div>
                         <!-- end:content main -->
@@ -128,13 +151,36 @@
                                     </div>
                                     <div class="widget-categories-content">
                                         <div class="list-group">
-                                            <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php 
+                                                if(isset($category)){$activeSide='';}else{ $activeSide='active';} 
+                                                echo anchor( $controller.'/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/viewAt/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor($controller.'/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget">
+                                <div class="widget-categories">
+                                    <div class="widget-categories-heading">
+                                        <h4>Threads</h4>
+                                    </div>
+                                    <div class="widget-categories-content">
+                                        <div class="list-group">
+                                            <?php 
+                                                if(isset($tenagaAhli) OR isset($draft)){ 
+                                                    if(isset($draftThreads)){$active='active';}else{$active='';}
+                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item '.$active.'"');
+                                                }
+                                            ?>
+                                            <?php 
+                                                if(isset($author)){ $active='active'; }else{ $active=''; }
+                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item '.$active.'"');
                                             ?>
                                         </div>
                                     </div>
@@ -155,8 +201,10 @@
         $(function() {
             $("textarea").sceditor({
                 plugins: "bbcode",
-                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.min.css'); ?>" ,
-                emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
+                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.css'); ?>" ,
+                emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>",
+                width:500,
+                height:300,
             });
         });
     </script>

@@ -10,12 +10,16 @@ class Media extends Admin
     public function __construct()
     {
         parent::__construct();
-
+        $this->load->database();
+        $this->load->model('media_model');
         $this->medialib = new Library\Media\Media;
     }
 
     public function index()
     {
+        if($this->session->flashdata('success')){
+            $data['success'] = $this->session->flashdata('success');
+        }
         $category   = $this->medialib->getCategory();
         $categories = $category->with(['media' => function ($query) {
             $query->userId(sentinel()->getUser()->id)->withDrafts();
@@ -41,49 +45,116 @@ class Media extends Admin
         $this->template->build('show', $data);
     }
 
-    public function upload($category)
+    public function upload()
     {
-        $category   = Library\Media\Model\Category::find($category);
-        $data       = [
-            'media'     => $category->media,
-            'category'  => $category,
-        ];
+        if($this->session->flashdata('failed')){
+            $data['failed']    =   $this->session->flashdata('failed');
+        }
+        $category   = $this->medialib->getCategory();
+        $categories = $category->with(['media' => function ($query) {
+            $query->userId(sentinel()->getUser()->id)->withDrafts();
+        }])->get();
 
-        $this->template->add_stylesheet('node_modules/jquery-file-upload/css/uploadfile.css');
-        $this->template->add_script('node_modules/jquery-file-upload/js/jquery.uploadfile.min.js');
-        $this->template->add_script('javascript/elib.fileupload.js');
-        // $this->template->set_layout('bootstrap');
+        $data['categories'] = $categories;
         $this->template->build('upload', $data);
     }
 
-    public function submit($category)
+    public function submit()
     {
+        $this->load->library('upload');
+        $kategori   = $this->input->post('kategori');
+        $counter    = 0;
+
         $media      = $this->medialib;
-        $category   = $media->setCategory($category)->getCategory();
-        $uploaded   = [];
-        $input_name = 'filemedia';
+        $category   = $media->setCategory($kategori)->getCategory();
 
-        if (is_array($_FILES[$input_name]['name'])) {
-            foreach ($_FILES[$input_name]['name'] as $i => $name) {
-                $filemedia['name']     = $_FILES[$input_name]['name'][$i];
-                $filemedia['type']     = $_FILES[$input_name]['type'][$i];
-                $filemedia['tmp_name'] = $_FILES[$input_name]['tmp_name'][$i];
-                $filemedia['error']    = $_FILES[$input_name]['error'][$i];
-                $filemedia['size']     = $_FILES[$input_name]['size'][$i];
-                
-                $uploaded[] = $this->submitSingle($category, $filemedia, $metadata);
+        $files      = $_FILES; 
+        $count      = count($_FILES['filemedia']['name']);
+
+        for($i=0; $i<$count; $i++){
+            if($i==0){
+                $idFileName = '';
+            }else{
+                $idFileName = $i;
             }
-        } else {
-            $uploaded[] = $this->submitSingle($category, $_FILES[$input_name], set_value('meta', []));
+            $fileName = $this->input->post('fileName'.$idFileName);
+
+            $_FILES['filemedia']['name']    = $files['filemedia']['name'][$i];
+            $_FILES['filemedia']['type']    = $files['filemedia']['type'][$i];
+            $_FILES['filemedia']['tmp_name']= $files['filemedia']['tmp_name'][$i];
+            $_FILES['filemedia']['error']   = $files['filemedia']['error'][$i];
+            $_FILES['filemedia']['size']    = $files['filemedia']['size'][$i];
+
+            $this->upload->initialize($this->set_upload_options($category, $fileName));
+
+            if(!empty($_FILES['filemedia']['name'])){
+                $upload     = $this->upload->do_upload('filemedia');
+                $user       = sentinel()->getUser();
+                $counter    = $counter+1;
+                if($upload){
+                    $created_at = date('Y-m-d H:i:s');
+                    $uploadData = $this->upload->data();
+                    $data = array(
+                        'file_name'     => $uploadData['file_name'],
+                        'file_type'     => $uploadData['file_type'],
+                        'file_size'     => $uploadData['file_size'],
+                        'category_id'   => $category->id,
+                        'status'        => 'draft',
+                        'user_id'       => $user->id,
+                        'created_at'    => $created_at
+                    );
+                    $this->media_model->save($data);
+                    $dataFiles[]    = array(
+                        'file_name'     => $uploadData['file_name'],
+                        'user_id'       => $user->id,
+                        'status'        => 'draft',
+                        'created_at'    => $created_at
+                    );
+                }
+            }
+        }
+        
+        if($counter == ($count-1)){
+            $this->fillMeta($dataFiles);
+        }else{
+            $this->session->set_flashdata('failed', 'Media gagal diunggah');
+            redirect('media/upload');
         }
 
-        if ($this->input->is_ajax_request()) {
-            echo json_encode($uploaded);
-        } else {
-            set_message_success('Media berhasil diunggah.');
+    }
 
-            redirect('media/show/' . $category->id, 'refresh');
+    private function set_upload_options($category, $fileName)
+    {   
+        //upload an image options
+        $config = array();
+        $config['upload_path']   = PATH_ELIBRARY_UPLOAD.'/media/'.$category->name;
+        $config['allowed_types'] = '*';
+        $config['max_size']      = '20000';
+        $config['file_name']     = $fileName;
+        $config['overwrite']     = TRUE;
+
+        return $config;
+    }
+
+    public function fillMeta($files){
+
+        $mediaFiles = array();
+        for($i=0; $i<count($files); $i++){
+            $name       = $files[$i]['file_name'];
+            $created_at = $files[$i]['created_at'];
+            $status     = $files[$i]['status'];
+            $userId     = $files[$i]['user_id'];
+
+            $mediaFiles[$i] = $this->media_model->getFileData($name, $created_at, $userId, $status);
+            foreach($mediaFiles[$i] as $m){
+                $media   = Library\Media\Model\Media::withDrafts()->userId($userId)->findOrFail($m->id);
+            }
+            $data['media'][$i] = $media;
         }
+
+        $data['files']  = $mediaFiles;
+
+        $this->template->build('upload_single', $data);
     }
 
     protected function submitSingle(Library\Media\Model\Category $category, $file, $metadata = [])
@@ -96,29 +167,63 @@ class Media extends Admin
         return $media->getMedia();
     }
 
-    public function uploadsingle($media)
-    {
-        $media = Model\Media::findOrFail($media);
+    public function addMeta($jumlah){
+        $simpan = false;
+        for($i=0; $i<$jumlah; $i++){
+            $this->form_validation->set_rules('id'.$i, 'Id'.$i, 'required');
+            $this->form_validation->set_rules('title'.$i, 'Title'.$i, 'required');
+            $this->form_validation->set_rules('description'.$i, 'Description'.$i, 'required');
+            $this->form_validation->set_rules('meta'.$i, 'Meta'.$i);
 
-        $this->load->view('upload_single', compact('media'));
+            if($this->form_validation->run()==TRUE){
+                $id             = set_value('id'.$i);
+                $metadata[$i]   = set_value('meta'.$i);
+                $dataFile = array(
+                    'title'         => set_value('title'.$i),
+                    'description'   => set_value('description'.$i)
+                );
+
+                $this->media_model->update($id, $dataFile);
+                foreach($metadata[$i] AS $key => $value){
+                    $cek = $this->media_model->cekMeta($id, $key, $value);
+                    if($cek == FALSE){
+                        $dataMeta = array(
+                            'key'       => $key,
+                            'value'     => $value,
+                            'media_id'  => $id
+                        );
+                        $this->media_model->addMeta($dataMeta);
+                    }
+                }
+                $simpan = true;
+            }else{
+                $simpan = validation_errors();            
+            }
+        }
+
+        if($simpan == true){
+            $this->session->set_flashdata('success', 'File media berhasil ditambahkan.');
+            redirect('/media');
+        }else{
+            $this->session->set_flashdata('failed', $simpan);
+            redirect('media/upload');
+        }
+
     }
 
     public function edit($media)
     {
         try {
+            if ($this->session->flashdata('success')) {
+                $data   = $this->session->flashdata('success');
+            }
             $user       = sentinel()->getUser();
-            $media      = Model\Elib\Media::withDrafts()->userId($user->id)->findOrFail($media);
+            $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($media);
             $category   = $media->category;
+            $data['media']      = $media;
+            $data['category']   = $category;
 
-            $this->template->add_stylesheet('node_modules/awesomplete/awesomplete.css');
-            $this->template->add_stylesheet('node_modules/jquery-file-upload/css/uploadfile.css');
-            $this->template->add_script('node_modules/jquery-file-upload/js/jquery.uploadfile.min.js');
-            $this->template->add_script('node_modules/awesomplete/awesomplete.min.js');
-            $this->template->add_script('node_modules/vue/dist/vue.min.js');
-            $this->template->add_script('javascript/elib.vue.js');
-            $this->template->add_script('javascript/elib.fileupload.js');
-
-            $this->template->build('edit', compact('media', 'category'));
+            $this->template->build('edit', $data);
         } catch (\Exception $e) {
             set_message_error('Media tidak tersedia.');
 
@@ -126,17 +231,32 @@ class Media extends Admin
         }
     }
 
-    public function update($media)
+    public function update($mediaID)
     {
         $mediaLib   = new Library\Media\Media;
-        $media      = $mediaLib->onlyUserId()->getMediaById($media);
+        $user       = sentinel()->getUser();
+        $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($mediaID);
 
         $request    = Request::createFromGlobals();
         $metadata   = $request->request->get('meta');
 
-        $mediaLib->setMetadata($media->id, $metadata);
+        foreach ($metadata as $key => $value) {
+            if ($key == 'title') {
+                $title = $value;
+            }
+            if ($key == 'description') {
+                $description = $value;
+            }
+        }
+        $dataMedia  =  array(
+            'title'         => $title,
+            'description'   => $description
+        );
+        $this->media_model->update($media->id, $dataMedia);
 
-        set_message_success('Metadata berhasil diperbarui.');
+        $mediaLib->setMetadata($media->id, $metadata);
+        
+        $this->session->set_flashdata('success', 'Metadata berhasil diperbarui.');
         
         redirect('media/edit/' . $media->id, 'refresh');
     }
@@ -145,7 +265,7 @@ class Media extends Admin
     {
         try {
             $user       = sentinel()->getUser();
-            $media      = Model\Elib\Media::withDrafts()->userId($user->id)->findOrFail($media_id);
+            $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($media_id);
             
             $this->medialib->setMedia($media);
 

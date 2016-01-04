@@ -1,7 +1,7 @@
 <?php custom_stylesheet(); ?>
 <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
 <?php endcustom_stylesheet(); ?>
-<?php get_header('private'); ?>
+<?php get_header('private', array('active' => 'forum')); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
@@ -20,11 +20,11 @@
                                 <div class="card">
                                     <div class="card-block">
                                        
-									   <?php echo form_open('thread/updateThread/'.$id_thread); ?>
+									   <?php echo form_open('thread/update/'.$controller.'/'.$id_thread); ?>
                                         <!--<form action="">-->
                                             <div class="form-group">
                                                 <label for="">Pilih Kategori :</label>
-                                                <select class="c-select form-control" required name="kategori">
+                                                <select class="c-select form-control" id="category" required name="kategori">
                                                     <?php 
 														foreach($categories as $cat){
 															if($cat->id==$kategori){$selected='selected';}else{$selected='';}
@@ -35,7 +35,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Pilih Topic :</label>
-                                                <select class="c-select form-control" required name="topic">
+                                                <select class="c-select form-control" id="topic" required name="topic">
                                                     <?php 
                                                         foreach($topics as $top){
                                                             if($top->id==$topic){$selected='selected';}else{$selected='';}
@@ -69,7 +69,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">UPDATE THREAD</button>
-                                                <?php echo anchor('thread/', 'Cancel', 'class="btn btn-secondary"'); ?>
+                                                <?php echo anchor($controller.'/', 'Cancel', 'class="btn btn-secondary"'); ?>
                                             </div>
                                         </form>
                                     </div>
@@ -92,8 +92,30 @@
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/viewAt/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="widget">
+                                <div class="widget-categories">
+                                    <div class="widget-categories-heading">
+                                        <h4>Threads</h4>
+                                    </div>
+                                    <div class="widget-categories-content">
+                                        <div class="list-group">
+                                            <?php 
+                                                if(isset($tenagaAhli) OR isset($draft)){ 
+                                                    if(isset($draftThreads)){$active='active';}else{$active='';}
+                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item '.$active.'"');
+                                                }
+                                            ?>
+                                            <?php 
+                                                if(isset($author)){ $active='active'; }else{ $active=''; }
+                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item '.$active.'"');
                                             ?>
                                         </div>
                                     </div>
@@ -114,9 +136,28 @@
         $(function() {
             $("textarea").sceditor({
                 plugins: "bbcode",
-                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.min.css'); ?>" ,
+                style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.css'); ?>" ,
                 emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
             });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#category').change(function(){
+                var category_id = $('#category').val();
+                if (category_id != ""){
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo site_url('/thread/get_topics'); ?>",
+                        data :"idCategory="+category_id,
+                        success: function( data ) {
+                            $( '#topic' ).html(data);
+                        }
+                    }); 
+                } else {
+                    $('#topic').empty();
+                }
+            }); 
         });
     </script>
 <?php endcustom_script() ?>

@@ -47,6 +47,16 @@ class Comment extends Model
         }
     }
 
+    public function getStatusLabelAttribute()
+    {
+        if ($this->status == 'draft')
+            return '<span class="label label-warning">Draft</span>';
+        elseif ($this->status == 'publish')
+            return '<span class="label label-success">Publish</span>';
+        else
+            return '<span class="label label-secondary">'.$this->status.'</span>';
+    }
+
     public function scopeArticleId($query, $article_id)
     {
         return $query->where('artikel_id', $article_id);

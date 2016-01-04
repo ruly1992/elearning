@@ -10,6 +10,18 @@ class M_konsultasi extends CI_Model {
         return $get->result();
     }
 
+    public function getKonsultasiLearner()
+    {
+        $user_id = sentinel()->getUser()->id; 
+
+        $data = array('konsultasi.*','konsultasi_kategori.name');
+        $get  = $this->db->select($data)->from('konsultasi')
+                ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                ->where('konsultasi.user_id', $user_id)
+                ->order_by('konsultasi.created_at', 'DESC')->get();
+        return $get->result();
+    }
+
     public function getKategori()
     {
         $query = $this->db->get('konsultasi_kategori'); 
@@ -17,14 +29,24 @@ class M_konsultasi extends CI_Model {
         return $query->result();
     }
 
+    public function getKategoriById($kategori_id)
+    {
+        $this->db->where('konsultasi_kategori.id', $kategori_id);
+        $query = $this->db->get('konsultasi_kategori');
+
+        return $query->num_rows() ? $query->row() : FALSE;
+    }
+
     public function getKatByUser()
     {
         $user_id = sentinel()->getUser()->id;
+
         $data = array('konsultasi_kategori.name', 'konsultasi_kategori.description', 'konsultasi_user_has_kategori.*');
         $get  = $this->db->select($data)
                 ->from('konsultasi_user_has_kategori')
                 ->join('konsultasi_kategori','konsultasi_user_has_kategori.id_kategori=konsultasi_kategori.id')
-                ->where('konsultasi_user_has_kategori.user_id', $user_id)->get();
+                ->where('konsultasi_user_has_kategori.user_id', $user_id)
+                ->get();
         
         return $get->result();
     }
@@ -32,7 +54,11 @@ class M_konsultasi extends CI_Model {
     public function getListKat($kategori_id)
     {
         $data = array('konsultasi.*','konsultasi_kategori.name');
-        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->where('konsultasi_kategori.id',$kategori_id)->get();
+        $get   = $this->db->select($data)->from('konsultasi')
+                      ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                      ->where('konsultasi_kategori.id',$kategori_id)
+                      ->order_by('konsultasi.created_at', 'DESC')
+                      ->get();
         return $get->result();
     }
 
@@ -77,17 +103,24 @@ class M_konsultasi extends CI_Model {
         return $get->result();
     }
 
-    public function update($id)
+    public function update($id, $data)
+    {
+        $this->db->set($data);
+        $this->db->where('id', $id);        
+        $this->db->update('konsultasi', $data);
+    }
+
+    public function updatedAt($updateat, $id_konsultasi)
     {
         $default = array(
-            'updated_at' => date('Y-m-d H:i:s'),
-        );  
+            'updated_at' => $updateat,
+        ); 
 
         $data = array_merge($default);
 
         $this->db->set($data);
-        $this->db->where('id', $id);        
-        $this->db->update('konsultasi');
+        $this->db->where('id', $id_konsultasi);        
+        $this->db->update('konsultasi', $data);
     }
 
     public function getReply($id)
@@ -132,7 +165,24 @@ class M_konsultasi extends CI_Model {
         $this->db->or_like('konsultasi_kategori.name',$search_term);
 
         $data = array('konsultasi.*','konsultasi_kategori.name');
-        $get   = $this->db->select($data)->from('konsultasi')->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')->get();
+        $get   = $this->db->select($data)->from('konsultasi')
+                    ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                    ->get();
+        return $get->result();
+    }
+
+    public function setLimit($limitData)
+    {
+        $user_id = sentinel()->getUser()->id; 
+
+        $this->db->limit($limitData);
+        $data  = array('konsultasi.*','konsultasi_kategori.name');
+        $get   = $this->db->select($data)->from('konsultasi')
+                    ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                    ->order_by('konsultasi.created_at', 'DESC')
+                    ->where('konsultasi.user_id', $user_id)                    
+                    ->get();
+        
         return $get->result();
     }
 }
