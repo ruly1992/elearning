@@ -10,21 +10,13 @@ $(document).ready(function () {
 	        $("#navbar-main").find('.header-top-right').hide();
 	    }
 	});
-
-	  // //hide boxex 
-	  // $("#navbar-main").find(".navbar-brand").hide();
-	  // //init scrolling event heandler
-	  // $(document).scroll(function(){
-	  //   var docScroll = $(document).scrollTop(), 
-	  //       boxCntOfset = $(".navbar-brand").offset().top > 250;
-	  //   //when rich top of boxex than fire
-	  //   if(docScroll >= boxCntOfset ) {
-	  //     $("#first").fadeIn(400)
-	  //   } else {
-	  //    $("#first").fadeOut(400)
-	  //   }
-	  // })   
-
+	$(window).scroll(function() {
+		if ($("#favorit").offset().top > 630) {
+			$("#favorit").addClass("fixed-favorit");
+		} else {
+			$("#favorit").removeClass("fixed-favorit");
+		}
+	});
 });
 
 
