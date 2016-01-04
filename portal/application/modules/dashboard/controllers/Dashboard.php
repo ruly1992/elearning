@@ -15,6 +15,8 @@ class Dashboard extends Admin {
         $this->load->model('Mod_user', 'model');
         $this->load->model('Mod_sendarticle');
         $this->load->model('category/Mod_category');
+        $this->load->model('Mod_konsultasi');
+
 
         $this->template->set('active', 'dashboard');
 
@@ -53,6 +55,7 @@ class Dashboard extends Admin {
                         ->latest('date')
                         ->get();
 
+        $data['konsultasiCat']          = $this->Mod_konsultasi->getKonsultasiKategori();        
         $data['categories_checkbox']    = (new Model\Portal\Category)->generateCheckbox();
         $data['artikel']                = pagination($articles, 4, 'dashboard');
         $data['drafts']                 = pagination($drafts, 4, 'dashboard');
