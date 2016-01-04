@@ -39,7 +39,7 @@ class Thread extends CI_Controller
         $data['threadSide']     = $this->model_thread->get_all_threads();
 
         $threads                = collect($this->model_thread->get_all_threads());
-        $data['threads']        = pagination($threads, 10, 'thread');
+        $data['threads']        = pagination($threads, 10, 'thread', 'bootstrap_md');
 
         $this->load->view('thread/all_threads',$data);
     }
@@ -67,7 +67,7 @@ class Thread extends CI_Controller
         $data['threadSide']     = $this->model_thread->get_all_threads();
 
         $threads                = collect($this->model_thread->get_threads_category($idCategory));
-        $data['threads']        = pagination($threads, 10, 'thread');
+        $data['threads']        = pagination($threads, 10, 'thread', 'bootstrap_md');
 
         $this->load->view('thread/all_threads',$data);
     }
