@@ -86,65 +86,6 @@
                                         <button type="submit" onclick="checkInput(); return false;" class="btn btn-primary">Submit</button>
                                     <?php echo form_close(); ?>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <!-- begin: category -->
-                                    <div class="widget">
-                                        <div class="widget-sidebar-heading">
-                                            <h3>Category</h3>
-                                        </div>
-                                        <div class="widget-sidebar-content">
-                                            <div class="list-group-item">
-                                                <label class="c-input c-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="c-indicator"></span>
-                                                    Desa membangun
-                                                </label>
-                                            </div>
-                                            <div class="list-group-item">
-                                                <label class="c-input c-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="c-indicator"></span>
-                                                    Desa membangun 1
-                                                </label>
-                                                <div class="child">
-                                                    <label class="c-input c-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="c-indicator"></span>
-                                                        Desa membangun a
-                                                    </label>
-                                                </div>
-                                                <div class="child">
-                                                    <label class="c-input c-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="c-indicator"></span>
-                                                        Desa membangun b
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item">
-                                                <label class="c-input c-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="c-indicator"></span>
-                                                    Desa membangun 3
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end: category -->
-                                    <!-- begin: image preview -->
-                                    <div class="widget">
-                                        <div class="widget-sidebar-heading">
-                                            <h3>Category</h3>
-                                        </div>
-                                        <div class="widget-sidebar-content">
-                                            <div class="image-preview">
-                                                <img src="../images/portal/img-carousel.jpg" alt="">
-                                            </div>
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#image-preview-1">submit image</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end: image preview -->
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="submit-konsultasi" aria-labelledby="" aria-expanded="false">
                                 <form>
@@ -180,11 +121,16 @@
 
 <?php custom_script() ?>
 <?php $this->load->view('template/vue_cropit'); ?>
+ <!--jQuery-->
 
 <script src="<?php echo asset('plugins/tinymce/tinymce.min.js') ?>"></script>
 <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
 <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
+
 <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
+<script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
+<script type="text/javascript" src="<?php echo asset('/javascript/jquery.filer.custom.js') ?>"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         tinymce.init({
