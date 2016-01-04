@@ -15,7 +15,7 @@
         <div class="widget-content news4">
             <div class="tab-content" id="myTabSidebarContent">
                 <div role="tabpanel" class="tab-pane fade active in" id="popular-post" aria-labelledby="popular-post-tab" aria-expanded="true">
-                    <?php foreach (Model\Article::popular()->take(5)->get() as $article): ?>
+                    <?php foreach (Model\Portal\Article::popular()->take(5)->get() as $article): ?>
                     <div class="box-articles-widget">
                         <div class="row">
                             <div class="col-sm-4 col-xs-6">
@@ -25,9 +25,7 @@
                             </div>
                             <div class="col-sm-8 col-xs-6">
                                 <div class="box-articles-widget-meta">
-                                    <ul>
-                                        <li><i class="fa fa-calendar"></i> <?php echo $article->date->format('d F Y') ?></li>
-                                    </ul>
+                                    <p><i class="fa fa-calendar"></i> <?php echo $article->date->format('d F Y') ?></p>
                                 </div>
                                 <div class="box-articles-widget-title">
                                     <h4><a href="<?php echo $article->link ?>"><?php echo $article->title ?></a></h4>
@@ -38,7 +36,7 @@
                     <?php endforeach; ?>
                 </div>
                 <div class="tab-pane fade" id="latest-post" role="tabpanel" aria-labelledby="latest-post-tab" aria-expanded="false">
-                    <?php foreach (Model\Article::latest('date')->limit(5)->get() as $article): ?>
+                    <?php foreach (Model\Portal\Article::latest('date')->limit(5)->get() as $article): ?>
                     <div class="box-articles-widget">
                         <div class="row">
                             <div class="col-sm-4 col-xs-6">
@@ -48,9 +46,7 @@
                             </div>
                             <div class="col-sm-8 col-xs-6">
                                 <div class="box-articles-widget-meta">
-                                    <ul>
-                                        <li><i class="fa fa-calendar"></i> <?php echo $article->date->format('d F Y') ?></li>
-                                    </ul>
+                                    <p><i class="fa fa-calendar"></i> <?php echo $article->date->format('d F Y') ?></p>
                                 </div>
                                 <div class="box-articles-widget-title">
                                     <h4><a href="<?php echo $article->link ?>"><?php echo $article->title ?></a></h4>
@@ -70,7 +66,7 @@
         </div>
         <div class="widget-content">
             <div class="row">
-                <?php foreach (Model\Comment::latest('date')->get() as $comment): ?>
+                <?php foreach (Model\Portal\Comment::latest('date')->get() as $comment): ?>
                 <div class="box-komentar-widget">
                     <div class="col-sm-3 col-xs-4">
                         <div class="box-komentar-widget-img">

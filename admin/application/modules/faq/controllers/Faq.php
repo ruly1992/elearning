@@ -63,7 +63,7 @@ class Faq extends Admin {
 
 			if ($data == TRUE) {
 
-               set_message_success('FAQ Berhasi di Ubah');
+               set_message_success('FAQ Berhasil di Ubah');
 
                redirect('faq');
            } else {
