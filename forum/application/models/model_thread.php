@@ -70,7 +70,8 @@ class Model_thread extends CI_Model
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories','categories.id=threads.category')
-                ->where(array('reply_to'=>'0', 'status'=>'1'))
+                ->join('topics', 'topics.id=threads.topic')
+                ->where(array('reply_to' => '0', 'threads.status' => '1', 'topics.status' => '1'))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();
