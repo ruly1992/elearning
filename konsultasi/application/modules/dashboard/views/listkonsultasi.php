@@ -1,7 +1,11 @@
 <!-- start:content -->
 <div class="container content content-single content-dashboard content-forum">
     <section id="content">
-
+        <div class="row">
+            <div class="col-lg-12">
+                <small>Anda bisa menambahkan hasil konsultasi pada <a href="<?php echo home_url('faq/dashboard'); ?>" class="btn btn-danger">FAQ </a></small>
+            </div>
+        </div>
         <!-- start:content -->
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
