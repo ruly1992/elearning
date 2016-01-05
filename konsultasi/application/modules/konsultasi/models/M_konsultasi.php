@@ -110,6 +110,33 @@ class M_konsultasi extends CI_Model {
         $this->db->update('konsultasi', $data);
     }
 
+    public function updateRelation($id, $categories)
+    {
+        $this->db->set('id_konsultasi_kategori', $categories);
+        $this->db->where('id_konsultasi', $id);
+        $this->db->update('konsultasi_kategori_has_konsultasi');
+    }
+
+    public function updatedAt($updateat, $id_konsultasi)
+    {
+        $default = array(
+            'updated_at' => $updateat,
+        ); 
+
+        $data = array_merge($default);
+
+        $this->db->set($data);
+        $this->db->where('id', $id_konsultasi);        
+        $this->db->update('konsultasi', $data);
+    }
+
+    public function deleteAttachment($id, $attachment)
+    {
+        $this->db->set('attachment', $attachment);
+        $this->db->where('id', $id);        
+        $this->db->update('konsultasi', $attachment);
+    }
+
     public function getReply($id)
     {
         $data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment');

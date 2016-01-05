@@ -86,7 +86,10 @@ body {
 	background-color: $white;
 	border-color: $grey-black;
 }
-
+.custom-float {
+	right: 0px !important;
+	left: auto;
+}
 /* HEADER */
 
 header {
@@ -98,6 +101,31 @@ header {
 		padding-right: $padding-right - 2px;
 		padding-bottom: $padding-bottom - 7px;
 		padding-left: $padding-left -2px;
+		.header-top-right {
+			.form-control {
+				height: 30px;
+				font-size: 10px;
+				width: 150px;
+				float: right;
+				border: 1px solid $white;
+				@include transition(0.3s);
+				&:focus {
+					width: 100%;
+					@include transition(0.3s);
+				}
+			}
+			.btn {
+				height: 30px;
+				font-size: 10px;
+				padding-top: $padding-top - 2px;
+				border: 1px solid $white;
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: $white;
+				}
+			}
+		}
 		.header-top-left,
 		.header-top-right {
 			ul {
@@ -120,24 +148,113 @@ header {
 			padding-right: $padding-right + 20px ;
 			font-size: 14px;
 		}
+	}
+	// ADD FAJAR EKO S
+	#header-content {
+		padding-top: $padding-top + 15px;
+		padding-bottom: $padding-bottom + 15px;
+		background-color: $grey;
+		.navbar-brand {
+			width: 220px;
+			img {
+				width: 100%;
+			}
+		}
+		//edited
 		.header-top-right {
+			margin-top: $margin-top + 5px;
 			.form-control {
-				height: 25px;
+				height: 30px;
 				font-size: 10px;
 				width: 150px;
 				float: right;
-				border: 1px solid $white;
+				background-color: $grey-black;
+				border: 1px solid $grey-black;
 				@include transition(0.3s);
+				border-top-left-radius: 8px;
+				border-bottom-left-radius: 8px;
 				&:focus {
 					width: 100%;
 					@include transition(0.3s);
 				}
 			}
 			.btn {
-				height: 25px;
+				height: 30px;
+				font-size: 10px;
+				padding-top: $padding-top - 2px;
+				background-color: $grey-black;
+				border: 1px solid $grey-black;
+				border-top-right-radius: 8px;
+				border-bottom-right-radius: 8px;
+			}
+		}
+		//edited
+		.search-navbar {
+				margin-top: $margin-top + 2px;
+				input {
+					width: 65px;
+					height:45px;
+					@include transition(0.5s);
+					border: 1px solid white;
+					color: $grey-black;
+				}
+				input[placeholder] {
+					color: $grey-black;
+					font-size: 13px;
+					height: 45px;
+				}
+				input:focus {
+					width: 130px;
+					@include transition(0.5s);
+					float: right;
+				}
+				.btn {
+					height: 45px;
+					border: 1px solid $white;
+					&:hover,
+					&:focus,
+					&:active {
+						background-color: $white;
+					}
+					i.fa {
+						color: $grey-black;
+					}
+				}
+		}
+	}
+	#header-content-private {
+		padding-top: $padding-top + 15px;
+		padding-bottom: $padding-bottom + 15px;
+		.navbar-brand {
+			width: 220px;
+			img {
+				width: 100%;
+			}
+		}
+		//edited
+		.header-top-right {
+			margin-top: $margin-top + 5px;
+			.form-control {
+				height: 30px;
+				font-size: 10px;
+				width: 150px;
+				float: right;
+				border: 1px solid $white;
+				@include transition(0.3s);
+				border-top-left-radius: 8px;
+				border-bottom-left-radius: 8px;
+				&:focus {
+					width: 100%;
+					@include transition(0.3s);
+				}
+			}
+			.btn {
+				height: 30px;
 				font-size: 10px;
 				padding-top: $padding-top - 2px;
 				border: 1px solid $white;
+				border-top-right-radius: 8px;
+				border-bottom-right-radius: 8px;
 				&:hover,
 				&:focus,
 				&:active {
@@ -145,34 +262,55 @@ header {
 				}
 			}
 		}
-	}
-	#header-content {
-		padding-top: $padding-top + 2px;
-		padding-bottom: $padding-bottom + 2px;
-		.navbar-brand {
-			width: 150px;
-			img {
-				width: 100%;
-			}
+		//edited
+		.search-navbar {
+				margin-top: $margin-top + 2px;
+				input {
+					width: 65px;
+					height:45px;
+					@include transition(0.5s);
+					border: 1px solid white;
+					color: $grey-black;
+				}
+				input[placeholder] {
+					color: $grey-black;
+					font-size: 13px;
+					height: 45px;
+				}
+				input:focus {
+					width: 130px;
+					@include transition(0.5s);
+					float: right;
+				}
+				.btn {
+					height: 45px;
+					border: 1px solid $white;
+					&:hover,
+					&:focus,
+					&:active {
+						background-color: $white;
+					}
+					i.fa {
+						color: $grey-black;
+					}
+				}
 		}
-		.header-top-right {
-			margin-top: $margin-top - 3px;
-		}
 	}
+	// End content create fajar eko s
 	#navbar-main {
 		z-index: 99;
 		.navbar {
-			//@include box-shadow( 0px 6px 12px -5px rgba(0,0,0,0.75));
 			height: 60px;
 			@include border-radius(0);
-			border-top: 4px solid $green;
 			background-color: $grey;
 			padding-top: $padding-top - 5px;
 			padding-bottom: $padding-bottom - 5px;
 			.navbar-brand {
 				margin-top: $margin-top + 7px;
-				margin-right: $margin-right + 40px;
+				margin-right: $margin-right + 20px;
 				width: 140px;
+				opacity: 1;
+				transition: display 0s, opacity 0.5s linear;
 				img {
 					width: 100%;
 				}
@@ -190,9 +328,13 @@ header {
 						}
 					}
 					> a {
-						height: 56px;
-						padding-left: $padding-left + 10px;
-						padding-right: $padding-right + 10px;
+						line-height: 1.5;
+						font-weight: 600;
+						font-size: 12px;
+						color: #909090;
+						height: 60px;
+						padding-left: $padding-left + 7px;
+						padding-right: $padding-right + 7px;
 						padding-top: $padding-top + 15px;
 						@include transition(0.3s);
 						&:hover,
@@ -204,6 +346,7 @@ header {
 					}
 				}
 			}
+			//edited
 			.search-navbar {
 				margin-top: $margin-top + 2px;
 				input {
@@ -264,7 +407,62 @@ header {
 				}
 			}
 		}
+		.header-top-right {
+			.form-control {
+				margin-top: $margin-top + 10px;
+				height: 30px;
+				font-size: 10px;
+				width: 150px;
+				float: right;
+				border: 1px solid $white;
+				@include transition(0.3s);
+				&:focus {
+					width: 100%;
+					@include transition(0.3s);
+				}
+			}
+			.btn {
+				margin-top: $margin-top + 10px;
+				height: 30px;
+				font-size: 10px;
+				padding-top: $padding-top - 2px;
+				border: 1px solid $white;
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: $white;
+				}
+			}
+		}
 	}
+	//add fajar eko s
+	.dropdown:hover {
+		.dropdown-navbar {
+			display: block;
+			width: 250px;
+			height: auto;
+			background-color: $grey;
+			margin-top: 0px;
+			padding: 0;
+			border: medium none;
+			@include border-radius(0);
+			li {
+				font-size: 12px;
+				color: $aspalt-light;
+				padding: $padding + 10px;
+				@include transition(0.3s);
+				@include fonts('open_sansregular');
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: $green;
+					color: $white;
+					@include transition(0.3s);
+				}
+			}
+		}
+	}
+	
 	.dropdown-menu {
 		a {
 			font-size: 14px;
@@ -1508,6 +1706,50 @@ header {
 			}
 		}
 	}
+	.content-widget {
+		.widget {
+			.widget-categories {
+				.widget-categories-heading {
+					display: block;
+					border-bottom: 3px solid $red;
+					margin-bottom: $margin-bottom + 15px;
+					h4 {
+						display: inline-block;
+						margin-top: $margin-top - 5px;
+						margin-bottom: $margin-bottom - 5px;
+						padding-top: $padding-top + 5px;
+						padding-bottom: $padding-bottom + 5px;
+						border-top-left-radius: 4px;
+						border-top-right-radius: 4px;
+						font-size: 14px;
+						@include fonts('open_sansbold');
+						background-color: $red;
+						padding-left: $padding-left + 15px;
+						padding-right: $padding-right + 15px;
+						color: $white;
+					}
+				}
+				.widget-categories-content {
+					.list-group {
+						@include border-radius(0);
+						.list-group-item {
+							font-size: 14px;
+							&.active {
+								background-color: $green;
+								border: 1px solid $green;
+								font-size: 14px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.content-single-upload {
+		.form-group {
+			margin-bottom: $margin-bottom - 5px;
+		}
+	}
 }
 
 .box-elib {
@@ -1806,7 +2048,8 @@ header {
 				.nav-tabs {
 					.nav-link {
 						color: $aspalt;
-						font-size: 12px;
+						font-size: 14px;
+						text-transform: uppercase;
 						&:hover,
 						&:active {
 							border: 1px solid $white;
@@ -1815,7 +2058,8 @@ header {
 					.nav-link.active,
 					.nav-item.open .nav-link {
 						color: $white;
-						font-size: 12px;
+						text-transform: uppercase;
+						font-size: 14px;
 						border: 3px solid $red;
 						margin-bottom: $margin-bottom - 7px;
 						background-color: $red;
@@ -1837,7 +2081,7 @@ header {
 				ul {
 					list-style: none;
 					padding-left: $padding-left - 5px;
-					margin-bottom: $margin-bottom + 10px;
+					margin-bottom: $margin-bottom - 10px;
 					li {
 						margin-bottom: $margin-bottom + 5px;
 						a {
@@ -1873,7 +2117,7 @@ header {
 					.col-sm-8.col-xs-6 {
 						padding-left: 5px;
 						.box-articles-widget-meta {
-							font-size: 8px;
+							font-size: 10px;
 							p {
 								margin-bottom: $margin-bottom - 5px;
 								i.fa {
@@ -2035,14 +2279,14 @@ header {
 						margin-bottom: $margin-bottom - 5px;
 						li {
 							display: inline-block;
-							font-size: 8px;
+							font-size: 12px;
 							margin-right: $margin-right;
 						}
 					}
 				}
 				.box-dashboard-articles-title {
 					h4 {
-						font-size: 14px;
+						font-size: 16px;
 						a {
 							color: $aspalt-light;
 							@include transition(0.3s);
@@ -2282,14 +2526,14 @@ header {
 					margin-top: $margin-top - 15px;
 					li {
 						display: inline-block;
-						font-size: 8px;
+						font-size: 12px;
 						margin-right: $margin-right;
 					}
 				}
 			}
 			.articles-box-title {
 				h3 {
-					font-size: 14px;
+					font-size: 16px;
 					line-height:normal;
 					a {
 						color: $aspalt-light;
@@ -2306,7 +2550,7 @@ header {
 			}
 			.articles-box-content {
 				p {
-					font-size: 10px;
+					font-size: 12px;
 				}
 			}
 		}
@@ -2557,7 +2801,7 @@ header {
 				padding-left: $padding-left - 5px;
 				margin-bottom: $margin-bottom - 5px;
 				li {
-					font-size: 10px;
+					font-size: 11px;
 					display: inline-block;
 					margin-right: $margin-right + 15px;
 					i.fa {
@@ -3170,33 +3414,76 @@ footer {
 }
 // add fajar eko 
 .favorit {
-	a {
-    	text-decoration: none !important;
-    	color: $black;
-		.box-border-1 {
-			border-left: 10px solid $green-black;
-			border-bottom: 1px solid #ddd;
-		    height: 45px;
-		    overflow: hidden;
-		    h6 {
-		    	color: $black;
-		    	@include fonts('open_sansbold');
-		    	font-size: 14px;
-		    	margin-left: $margin-left + 2px;
-		    	margin-bottom: $margin-bottom - 5px;
-		    }
+	margin-bottom: $margin-bottom + 20px;
+	.widget-heading {
+		width: 100%;
+		height: 40px;
+		background-color: $aspalt-light;
+		color: $white;
+		border-left: 8px solid $red;
+		margin-bottom: $margin-bottom + 15px;
+		h3 {
+		    font-size: 14px;
+		    font-family: "open_sansbold", sans-serif;
+		    text-transform: uppercase;
+		    font-weight: 600;
+		    padding-left: 15px;
+		    padding-right: 15px;
+		    padding-top: 10px;
+		    margin-bottom: -2px;
+		    padding-bottom: 10px;
+		    display: inline-block;
+		    line-height: 1.5;
 		}
-		.box-border-2 {
-			border-left: 10px solid $green;
-			border-bottom: 1px solid #ddd;
-		    height: 45px;
-		    overflow: hidden;
-		    h6 {
-		    	color: $black;
-		    	@include fonts('open_sansbold');
-		    	font-size: 14px;
-		    	margin-left: $margin-left + 2px;
-		    }
+	}
+	.widget-content {
+		.article {
+			display: block;
+			margin-left: $margin-left - 45px;
+			.list-article {
+				margin: $margin - 3px;
+				padding: $padding - 2px;
+				list-style: none;
+				border-bottom: 1px solid #dddddd;
+				width: 100%;
+				height: 56px;
+				overflow: hidden;
+				a {
+					color: $black;
+					text-decoration: none;
+					@include transition(0.3s);
+					&:hover,
+					&:focus {
+						color: $green;
+						@include transition(0.3s);
+					}
+					.list-numb {
+						color: $red;
+						font-size: 16px;
+						font-weight: 600;
+						float: left;
+						margin-left: $margin-left;
+						margin-right: $margin-right + 5px;
+						line-height: 3;
+					}
+					.list-title {
+						line-height: normal;
+						padding-top: $padding-top;
+						h3 {
+							font-size: 12px;
+							font-weight: 600;
+							margin-left: $margin-left + 25px;
+							line-height: 2;
+							@include transition(0.3s);
+							&:hover,
+							&:focus {
+								color: $green;
+								@include transition(0.3s);
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -3308,6 +3595,24 @@ a {
 
 .alert-info {
   background-color: $green !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
+.alert-thread {
+  background-color: #5CB85C !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
+.alert-topic {
+  background-color: $green !important;
+  opacity: 0.7;
+  color: $white !important;
+}
+
+.alert-ytopic {
+  background-color: #5BC0DE !important;
   opacity: 0.7;
   color: $white !important;
 }
@@ -3674,6 +3979,18 @@ a {
     display: none;  
 }
 
+.table {
+	.tbody {
+		.tr {
+			.td {
+				.space {
+					width: 105px;
+				}
+			}
+		}
+	}
+}
+
 /* DASHBOARD FOR SUMBIT ARTICLES */
 .articles-dashboard {
 	background-color: $white;
@@ -3754,6 +4071,7 @@ a {
 	background-color: $white;
 	.content-submit {
 		margin-top: $margin-top + 20px;
+		margin-bottom: $margin-bottom + 20px;
 		.widget {
 			.widget-heading {
 				display: block;
@@ -3876,7 +4194,18 @@ a {
 			color: $aspalt-light;
 		}
 	}
+	.btn-kelas {
+	    padding-top: $padding-top - 4;
+	    padding-right: $padding-right;
+	    padding-bottom: $padding-bottom - 4;
+	    padding-left: $padding-left;
+	    margin-top: $margin-top - 30;
+	    font-size: 10px;
+	    line-height: 1.5;
+	    @include border-radius(3px);
+	}
 }
+
 
 /* Landing FAQ
    Fajar Eko Susilo
@@ -3964,7 +4293,7 @@ a {
 	flex-direction: column;
 }
 
-.label-primary{
+.label-primary {
 	background-color: $green;
 }
 .btn-konsul {
@@ -4108,5 +4437,167 @@ a {
 		color: $white;
 		@include border-radius(3px);
 		background-color: $aspalt-light;
+	}
+}
+
+/* Content Kelas Online
+Create: Singgih Saputro */
+.content-kelas-online {
+	.content-main {
+		margin-top: $margin-top + 30px;
+		.breadcrumb {
+			margin-bottom: $margin-bottom + 20px;
+			li {
+				font-size: 12px;
+				a {
+					color: $green;
+					font-size: 12px;
+				}
+			}
+		}
+		.kelas-main {
+			.thead-inverse {
+				background-color: $grey !important;
+				font-size: 14px;
+			}
+			.thread-list-title {
+				@include fonts('open_sansbold');
+				h4 {
+					@include transition(0.3s);
+					margin-bottom: $margin-bottom - 5px;
+					font-size: 15px;
+					a {
+						@include transition(0.3s);
+						color: $black;
+						&:hover,
+						&:focus {
+							color: $green;
+							@include transition(0.3s);
+						}
+					}
+					small {
+						margin-left: $margin-left + 10px;
+						font-size: 9px;
+					}
+				}
+			}
+			.thread-list-meta {
+				ul {
+					list-style: none;
+					padding-left: $padding-left - 5px;
+					margin-bottom: $margin-bottom - 5px;
+					li {
+						display: inline-block;
+						margin-right: $margin-right + 15px;
+						font-size: 11px;
+						a {
+							color: $green;
+						}
+					}
+				}
+			}
+		}
+		.card {
+			.card-header {
+				.card-header-img {
+					text-align: center;
+					img {
+						width: 40px;
+						height: 40px;
+						@include border-radius(100%);
+						margin-bottom: $margin-bottom;
+					}
+					p {
+						margin-bottom: $margin-bottom - 5px;
+					}
+				}
+				.card-header-meta {
+					p {
+						margin-bottom: $margin-bottom - 5px;
+						font-size: 14px;
+						text-align: right;
+						i.fa {
+							margin-left: $margin-left;
+						}
+					}
+				}
+				p {
+					margin-bottom: $margin-bottom - 5px;
+					a {
+						color: $green;
+					}
+				}
+			}
+			.card-block {
+				.card-block-title {
+					margin-bottom: $margin-bottom + 20px;
+					h4 {
+						border-bottom: 1px solid $grey-black;
+						padding-bottom: $padding-bottom + 10px;
+					}
+				}
+				img {
+					margin-bottom: $margin-bottom + 5px;
+				}
+				.btn-post {
+					background-color: $green;
+					color: $white;
+				}
+			}
+			.card-footer {
+				.btn-reply {
+					background-color: $grey-black;
+					color: $aspalt-light;
+					@include transition(0.3s);
+					&:hover,
+					&:focus {
+						background-color: $green;
+						color: $white;
+						@include transition(0.3s);
+					}
+				}
+			}
+		}
+	}
+	.sidebar-kelas-online {
+		margin-top: $margin-top + 30px;
+		.widget {
+			margin-bottom: $margin-bottom + 30px;
+			.widget-categories {
+				.widget-categories-heading {
+					display: block;
+					border-bottom: 3px solid $red;
+					margin-bottom: $margin-bottom + 15px;
+					h4 {
+						display: inline-block;
+						margin-top: $margin-top - 5px;
+						margin-bottom: $margin-bottom - 5px;
+						padding-top: $padding-top + 5px;
+						padding-bottom: $padding-bottom + 5px;
+						border-top-left-radius: 4px;
+						border-top-right-radius: 4px;
+						font-size: 14px;
+						@include fonts('open_sansbold');
+						background-color: $red;
+						padding-left: $padding-left + 15px;
+						padding-right: $padding-right + 15px;
+						color: $white;
+					}
+				}
+				.widget-categories-content {
+					.list-group {
+						@include border-radius(0);
+						.list-group-item {
+							font-size: 14px;
+							&.active {
+								background-color: $green;
+								border: 1px solid $green;
+								font-size: 14px;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

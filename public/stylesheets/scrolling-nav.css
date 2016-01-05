@@ -12,8 +12,23 @@
         -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
         transition: background .5s ease-in-out,padding .5s ease-in-out;
     }
-
     .top-nav-collapse {
         padding: 0;
     }
 }
+    .border {
+        border-top: 4px solid #1c9c57;
+        -webkit-transition: border-top 0.3s ease-in-out;
+        -moz-transition: border-top 0.3s ease-in-out;
+        -o-transition: border-top 0.3s ease-in-out;
+        transition: border-top 0.3s ease-in-out;
+    }
+    .fixed-favorit {
+        position: fixed;
+        top: 64px;
+        width: 298px;
+        z-index: 9;
+        background-color: #fff ;
+    }
+	
+

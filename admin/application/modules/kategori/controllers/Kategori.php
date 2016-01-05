@@ -27,6 +27,7 @@ class Kategori extends Admin
     public function add()
     {
         $this->form_validation->set_rules('name', 'Kategori', 'required|is_unique[kategori.name]');
+        $this->form_validation->set_rules('editor[]', 'Editor', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $data['kategori'] = $this->model->getLists();
@@ -55,6 +56,7 @@ class Kategori extends Admin
     public function update($id)
     {
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
+        $this->form_validation->set_rules('editor[]', 'Editor', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $group  = sentinel()->findRoleBySlug('edt');
@@ -71,18 +73,18 @@ class Kategori extends Admin
             $editor                     = set_value('editor', []);
 
             $category   = Model\Portal\Category::findOrFail($id);
-            $category->update($kategori);
+            $updated    = $category->update($kategori);
 
             $category->editors()->sync($editor);
 
-            if ($res==TRUE) {
+            if ($updated) {
                 set_message_success('Kategori berhasil diperbarui.');
 
                 redirect('kategori');
             } else {
                 set_message_error('Kategori gagal diperbarui.');
 
-                redirect('kategori/update');    
+                redirect('kategori/update/'.$id);    
             }
         }
     }

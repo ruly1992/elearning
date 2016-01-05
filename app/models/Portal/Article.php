@@ -57,7 +57,10 @@ class Article extends Model
 
     public function getLinkAttribute()
     {
-        return home_url('/article/' . $this->slug);
+        if ($this->type == 'public')
+            return home_url('/article/' . $this->slug);
+        else
+            return dashboard_url('article/show/' . $this->slug); 
     }
 
     public function getVisitorAttribute()
@@ -104,7 +107,9 @@ class Article extends Model
 
     public function getExcerpt($max = 100, $trailing = '...')
     {
-        return truncate($this->content, $max, $trailing);
+        $content = strip_tags($this->content);
+
+        return truncate($content, $max, $trailing);
     }
 
     public function onSchedule()

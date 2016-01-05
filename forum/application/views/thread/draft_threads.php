@@ -1,4 +1,4 @@
-<?php get_header('private'); ?>
+<?php get_header('private', array('active' => 'forum')); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
@@ -21,7 +21,7 @@
                                         echo '<strong>Warning!</strong> '.$failed;
                                     echo '</div>';
                                 }elseif(isset($success)){
-                                    echo '<div class="alert alert-info">';
+                                    echo '<div class="alert alert-ytopic">';
                                         echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
                                         echo '<strong>Success!</strong> '.$success;
                                     echo '</div>';
@@ -36,6 +36,7 @@
                                 ?>
                             </div>
                             <?php 
+                                $sumCloseThreads    = array();
                                 foreach($categoriesHead as $cat){
                             ?>
                                     <div class="forum-heading">
@@ -59,45 +60,47 @@
                                                                 foreach($draftThreads as $thr){
                                                                     if($cat->id == $thr->category AND $top->id == $thr->topic){
                                                                         $isThread = true;
+                                                                        if($thr->type == 'close'){
+                                                                            showThread($thr, $visitors, $comments, $threadMembers, $thr->id, $userID);
+                                                                        }else{
                                                             ?>
-                                                                        <tr>
-                                                                            <td>
-                                                                                <div class="thread-list-title">
-                                                                                    <h4><?php echo anchor('draft/view/'.$thr->id, $thr->title); ?> 
-                                                                                        <?php if($thr->type=='close'){echo '<small class="label label-default"><i class="fa fa-lock"></i> Close Group</small>';} ?>
-                                                                                    </h4>
-                                                                                </div>
-                                                                                <div class="thread-list-meta">
-                                                                                    <ul>
-                                                                                        <li>
-                                                                                            <?php echo countViewer($visitors, $thr->id); ?> Views
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <?php echo countComments($comments, $thr->id); ?> Comments
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            Started by <a href="#"><?php echo user($thr->author)->full_name; ?></a>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <?php echo $thr->created_at; ?>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            in <a href="#"><?php echo $thr->category_name; ?></a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td align="center" width="80px">   
-                                                                                <?php 
-                                                                                    if(checkTA($thr->category, $categoryUsers) == TRUE){
-                                                                                        echo anchor('draft/approve/'.$thr->id, 'Approve', 'class="btn btn-primary btn-thread"');
-                                                                                        echo anchor('draft/edit/'.$thr->id, '<i class="fa fa-pencil-square-o"></i>', 'class="btn btn-primary-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Edit"');
-                                                                                        echo anchor('draft/delete/'.$thr->id, '<i class="fa fa-trash-o"></i>', 'class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"');
-                                                                                    }
-                                                                                ?>
-                                                                            </td>
-                                                                        </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="thread-list-title">
+                                                                                        <h4><?php echo anchor('draft/view/'.$thr->id, $thr->title); ?> 
+                                                                                            <?php if($thr->type=='close'){echo '<small class="label label-default"><i class="fa fa-lock"></i> Close Group</small>';} ?>
+                                                                                        </h4>
+                                                                                    </div>
+                                                                                    <div class="thread-list-meta">
+                                                                                        <ul>
+                                                                                            <li>
+                                                                                                <?php echo countViewer($visitors, $thr->id); ?> Views
+                                                                                            </li>
+                                                                                            <li>
+                                                                                                <?php echo countComments($comments, $thr->id); ?> Comments
+                                                                                            </li>
+                                                                                            <li>
+                                                                                                Started by <a href="#"><?php echo user($thr->author)->full_name; ?></a>
+                                                                                            </li>
+                                                                                            <li>
+                                                                                                <?php echo $thr->created_at; ?>
+                                                                                            </li>
+                                                                                            <li>
+                                                                                                in <a href="#"><?php echo $thr->category_name; ?></a>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td align="center" width="80px">   
+                                                                                    <?php 
+                                                                                            echo anchor('draft/approve/'.$thr->id, 'Approve', 'class="btn btn-primary btn-thread"');
+                                                                                            echo anchor('draft/edit/'.$thr->id, '<i class="fa fa-pencil-square-o"></i>', 'class="btn btn-primary-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Edit"');
+                                                                                            echo anchor('draft/delete/'.$thr->id, '<i class="fa fa-trash-o"></i>', 'class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"');
+                                                                                    ?>
+                                                                                </td>
+                                                                            </tr>
                                                             <?php
+                                                                        }
                                                                     }
                                                                 }
                                                                 if($isThread == false){
@@ -120,15 +123,15 @@
                                             ?>
                                             
                                         </div>
-                                        <div class="forum-pagination">
-                                            <nav>
-                                                <?php echo $draftThreads->render() ?>
-                                            </nav>
-                                        </div>
                                     </div>
                             <?php
                                 }
                             ?>
+                            <div class="forum-pagination">
+                                <nav>
+                                    <?php echo $draftThreads->render() ?>
+                                </nav>
+                            </div>
                         </div>
                         <!-- end:content main -->
                     </div>
@@ -147,7 +150,7 @@
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('draft/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($draftSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('draft/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadsAD($draftSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                         </div>

@@ -37,11 +37,13 @@ class Draft extends CI_Controller
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $this->model_thread->get_categories();
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['categoryUsers']  = $this->model_thread->get_category_users($user->id);
+        $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['userID']         = $user->id;
 
         $draftThreads           = collect($this->model_thread->get_all_drafts($user->id));
-        $data['draftThreads']   = pagination($draftThreads, 10, 'thread');
+        $data['draftThreads']   = pagination($draftThreads, 10, 'draft', 'bootstrap_md');
 
         $this->load->view('thread/draft_threads',$data);
     }
@@ -65,7 +67,7 @@ class Draft extends CI_Controller
         $data['draft']          = site_url('draft/');
         $data['home']           = site_url('draft/');
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_drafts();
+        $data['threadSide']     = $this->model_thread->get_all_drafts($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['draftThreads']   = $this->model_thread->get_all_drafts($user->id);
@@ -103,11 +105,13 @@ class Draft extends CI_Controller
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $getCategory;
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['categoryUsers']  = $this->model_thread->get_category_users($user->id);
+        $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['userID']         = $user->id;
 
         $draftThreads           = collect($this->model_thread->get_draft_threads_by_category($user->id, $idCategory));
-        $data['draftThreads']   = pagination($draftThreads, 10, 'thread');
+        $data['draftThreads']   = pagination($draftThreads, 10, 'draft', 'bootstrap_md');
 
         $this->load->view('thread/draft_threads',$data);
     }
@@ -163,6 +167,7 @@ class Draft extends CI_Controller
 
         if($delete==TRUE){
             $this->model_thread->delete_replies($id);
+            $this->model_thread->delete_thread_members($id);
             $this->session->set_flashdata('success','Thread berhasil dihapus');
         }else{
             $this->session->set_flashdata('failed','Thread tidak berhasil dihapus');

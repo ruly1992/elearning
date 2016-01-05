@@ -5,7 +5,7 @@ class Model_thread extends CI_Model
     function save_thread($data)
     {
         $this->db->insert('threads',$data);
-        if($this->db->affected_rows() == '1'){
+        if($this->db->affected_rows() == 1){
           return TRUE;
         } else {
           return FALSE;
@@ -15,7 +15,7 @@ class Model_thread extends CI_Model
     function delete_thread($id)
     {
         $delete = $this->db->delete('threads', array('id'=>$id));
-        if($this->db->affected_rows() == '1'){
+        if($this->db->affected_rows() == 1){
             return TRUE;
         }else{
             return FALSE;
@@ -25,7 +25,7 @@ class Model_thread extends CI_Model
     function delete_thread_by_topic($idTopic)
     {
         $delete = $this->db->delete('threads', array('topic'=>$idTopic));
-        if($this->db->affected_rows() == '1'){
+        if($this->db->affected_rows() >= 1){
             return TRUE;
         }else{
             return FALSE;
@@ -37,7 +37,7 @@ class Model_thread extends CI_Model
         $this->db->where('id',$id);
         $update = $this->db->update('threads', $data); 
         
-        if($this->db->affected_rows() == '1'){
+        if($this->db->affected_rows() == 1){
             return TRUE;
         }
         return FALSE;
@@ -70,7 +70,8 @@ class Model_thread extends CI_Model
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories','categories.id=threads.category')
-                ->where(array('reply_to'=>'0', 'status'=>'1'))
+                ->join('topics', 'topics.id=threads.topic')
+                ->where(array('reply_to' => '0', 'threads.status' => '1', 'topics.status' => '1'))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();
@@ -130,7 +131,7 @@ class Model_thread extends CI_Model
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories','categories.id=threads.category')
-                ->where(array('reply_to'=>'0', 'threads.category'=>$idCategory))
+                ->where(array('reply_to' => '0', 'threads.status' => '1', 'threads.category' => $idCategory))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();
@@ -157,7 +158,18 @@ class Model_thread extends CI_Model
     {
         $this->db->where('reply_to', $id);
         $delete = $this->db->delete('threads');
-        if($this->db->affected_rows() == '1'){
+        if($this->db->affected_rows() >= 1){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    function delete_thread_members($id)
+    {
+        $this->db->where('thread_id', $id);
+        $delete = $this->db->delete('thread_members');
+        if($this->db->affected_rows() >= 1){
             return TRUE;
         }else{
             return FALSE;
@@ -175,14 +187,53 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
+    function get_topics_by_user($id){
+        $get = $this->db->select('*')
+                    ->from('topics')
+                    ->where('tenaga_ahli', $id)
+                    ->get();
+        if($this->db->affected_rows() >= 1){
+            return $get->result();
+        }else{
+            return array();
+        }
+    }
+
     function approve_thread($data, $id)
     {   
         $this->db->where('id', $id);
         $update = $this->db->update('threads', $data);
-        if($this->db->affected_rows() == '1'){
+        if($this->db->affected_rows() == 1){
             return TRUE;
         }else{
             return FALSE;
+        }
+    }
+
+    function get_thread_by_all($where){
+        $get = $this->db->get_where('threads', $where);
+        if($this->db->affected_rows() >= 1){
+            return $get->result();
+        }else{
+            return array();
+        }
+    }
+
+    function save_thread_member($member){
+        $save   = $this->db->insert('thread_members', $member);
+        if($this->db->affected_rows() == 1){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    function get_thread_members(){
+        $get = $this->db->get('thread_members');
+        if($this->db->affected_rows() >= 1){
+            return $get->result();
+        }else{
+            return array();
         }
     }
 

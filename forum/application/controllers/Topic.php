@@ -32,14 +32,6 @@ class Topic extends CI_Controller
     }
 
     public function getWilayah(){
-        // $hostname = getenv('AUTH_DB_HOST') ?: 'localhost';
-        // $username = getenv('AUTH_DB_USERNAME') ?: 'root';
-        // $password = getenv('AUTH_DB_PASSWORD') ?: '';
-        // $database = getenv('AUTH_DB_DATABASE') ?: 'portal_learning';
-
-        // $source = new DatabaseSource($hostname, $username, $password, $database);
-        // $this->wilayah->setSource($source);
-
         $source = $this->wilayah->getSource();
         return $source->getAllProvinsi();
     }
@@ -50,7 +42,7 @@ class Topic extends CI_Controller
         }elseif($this->session->flashdata('failed')){
             $data['failed'] = $this->session->flashdata('failed');
         }
-        if($this->checkRole()==FALSE){
+        if($this->checkTA()==FALSE){
             $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
             redirect('thread/');
         }
@@ -60,16 +52,18 @@ class Topic extends CI_Controller
 
         $user               = sentinel()->getUser();
         $data['tenagaAhli'] = $user->id;
+        $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+        $data['authorSide'] = $this->model_thread->get_thread_from_author($user->id);
         $data['provinsi']   = $this->getWilayah();
 
         $topics             = collect($this->model_topic->get_topics_from_id($user->id));
-        $data['topics']     = pagination($topics, 10, 'topic');
+        $data['topics']     = pagination($topics, 10, 'topic', 'bootstrap_md');
         $this->load->view('topic/view',$data);
     }
 
     public function create()
     {
-        if($this->checkRole()==FALSE){
+        if($this->checkTA()==FALSE){
             $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
             redirect('topic/');
         }
@@ -85,12 +79,15 @@ class Topic extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['categories']     = $this->model_topic->get_categories();
+        $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+        $data['authorSide'] = $this->model_thread->get_thread_from_author($user->id);
+        $data['tenagaAhli'] = $user->id;
 
     	$this->load->view('topic/create', $data);
     }
 
     public function save(){
-        if($this->checkRole()==FALSE){
+        if($this->checkTA()==FALSE){
             $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
             redirect('topic/');
         }
@@ -136,7 +133,7 @@ class Topic extends CI_Controller
     }
 
     public function edit($id){
-        if($this->checkRole()==FALSE){
+        if($this->checkTA()==FALSE){
             $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
             redirect('topic/');
         }
@@ -160,13 +157,15 @@ class Topic extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['categories']     = $this->model_topic->get_categories();
-        //$data['provinsi']       = $this->getWilayah();
+        $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+        $data['authorSide'] = $this->model_thread->get_thread_from_author($user->id);
+        $data['tenagaAhli'] = $user->id;
 
         $this->load->view('topic/edit',$data);
     }
 
     public function update($id){
-        if($this->checkRole()==FALSE){
+        if($this->checkTA()==FALSE){
             $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
             redirect('topic/');
         }
@@ -201,7 +200,7 @@ class Topic extends CI_Controller
     }
 
     public function delete($id){
-        if($this->checkRole()==FALSE){
+        if($this->checkTA()==FALSE){
             $this->session->set_flashdata('failed', 'Maaf, anda tidak dapat mengakses halaman tersebut!');
             redirect('topic/');
         }
@@ -233,7 +232,7 @@ class Topic extends CI_Controller
         redirect('topic/');
     }
 
-    public function checkRole()
+    public function checkTA()
     {
         if (sentinel()->inRole('ta')) {
             return TRUE;

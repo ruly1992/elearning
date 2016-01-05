@@ -35,11 +35,13 @@ class Thread extends CI_Controller
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $this->model_thread->get_categories();
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['userID']         = $user->id;
 
         $threads                = collect($this->model_thread->get_all_threads());
-        $data['threads']        = pagination($threads, 10, 'thread');
+        $data['threads']        = pagination($threads, 10, 'thread', 'bootstrap_md');
 
         $this->load->view('thread/all_threads',$data);
     }
@@ -63,11 +65,13 @@ class Thread extends CI_Controller
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $getCategory;
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['userID']         = $user->id;
 
         $threads                = collect($this->model_thread->get_threads_category($idCategory));
-        $data['threads']        = pagination($threads, 10, 'thread');
+        $data['threads']        = pagination($threads, 10, 'thread', 'bootstrap_md');
 
         $this->load->view('thread/all_threads',$data);
     }
@@ -86,10 +90,10 @@ class Thread extends CI_Controller
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
         }
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
-        $data['draftSide']      = $this->model_thread->get_all_drafts();
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['categories']     = $this->model_thread->get_categories();
+        $data['users']          = Model\User::all();
         $this->load->view('thread/create',$data);
     }
     
@@ -103,7 +107,18 @@ class Thread extends CI_Controller
         
         if($this->form_validation->run()==TRUE){ 
             $user = sentinel()->getUser();
+            $idTopic = set_value('topic');
 
+            if ($this->checkTA()==TRUE){
+                $userTopics = $this->model_thread->get_topics_by_user($user->id);
+                if(checkTopic($idTopic, $userTopics) == TRUE){
+                    $status = '1';
+                }else{
+                    $status = '0';
+                }
+            }else{
+                $status = '0';
+            }
             $data=array(
                 'category'  => set_value('kategori'),
                 'type'      => set_value('type'),
@@ -112,11 +127,30 @@ class Thread extends CI_Controller
                 'message'   => set_value('message'),
                 'reply_to'  => '0',
                 'author'    => $user->id,
-                'status'    => '0',
+                'status'    => $status,
                 'created_at'=> date('Y-m-d H:i:s')
             );
             $data = $this->security->xss_clean($data); //xss clean
             $save = $this->model_thread->save_thread($data);
+
+            $typeThread     = set_value('type');
+            if($typeThread == 'close'){
+                $where      = $data;
+                $getThread  = $this->model_thread->get_thread_by_all($where);
+                foreach($getThread AS $thread){
+                    $idThread   =   $thread->id;
+                }
+
+                $member = $this->input->post('member');
+                foreach($member AS $key => $value){
+                    $threadMember = array(
+                        'thread_id' => $idThread,
+                        'user_id'   => $value
+                    );
+                    $this->model_thread->save_thread_member($threadMember);
+                }
+            }
+
             if($save==TRUE){
                 $this->session->set_flashdata('success','Thread baru berhasil dibuat');
             }else{
@@ -174,6 +208,7 @@ class Thread extends CI_Controller
 
         if($delete==TRUE){
             $this->model_thread->delete_replies($id);
+            $this->model_thread->delete_thread_members($id);
             $this->session->set_flashdata('success','Thread berhasil dihapus');
         }else{
             $this->session->set_flashdata('failed','Thread tidak berhasil dihapus');
@@ -305,8 +340,12 @@ class Thread extends CI_Controller
     public function get_topics(){
         $idCategory = $this->input->post('idCategory');
         $getTopics = $this->model_topic->getTopics_by_Category($idCategory);
-        foreach($getTopics as $top){
-            $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
+        if(!empty($getTopics)){
+            foreach($getTopics as $top){
+                $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
+            }
+        }else{
+            $topics     = '<option value="">- Topic belum tersedia -</option>';
         }
         echo $topics;
     }

@@ -1,13 +1,25 @@
 <!-- start:content -->
 <div class="container content content-single content-dashboard content-konsultasi">
     <section id="content">
-
+        <?php 
+            if(isset($failed)){
+                echo '<div class="alert alert-danger">';
+                    echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                    echo '<strong>Warning!</strong> '.$failed;
+                echo '</div>';
+            }elseif(isset($success)){
+                echo '<div class="alert alert-info">';
+                    echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+                    echo '<strong>Success!</strong> '.$success;
+                echo '</div>';
+            }
+        ?>
         <!-- start:content -->
         <div class="content-konsultasi-main">
             <div class="content-konsultasi-title">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>Konsultasi <small>Anda bisa membuka atau melihat tiket konsultasi yang pernah anda kirim disini...</small></h2>
+                        <h2>Konsultasi <small>Anda bisa membuka dan melihat tiket konsultasi yang pernah anda kirim disini atau Melihat <a href="<?php echo home_url('faq/'); ?>" class="btn btn-danger">FAQ </a></small></h2>
                     </div>
                 </div>
             </div>
@@ -32,6 +44,7 @@
                     </div>
                 </div>
             </div>
+            <?php if ($konsultasi->count()): ?>
             <div class="content-konsultasi-table">
                 <p><?php echo count($konsultasi) ?> Data ditemukan</p>
                 <table class="table table-bordered">
@@ -44,6 +57,7 @@
                           <th>Update Terakhir</th>
                           <th>Status</th>
                           <th>Lihat Konsultasi</th>
+                          <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +74,7 @@
                             	<input id="result" type="hidden">
                             </td>
                             <td><a href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>">Lihat Konsultasi</a></td>
+                            <td><a href="<?php echo site_url('konsultasi/update/'. $row->id) ?>">Update</a></td>
                         </tr>
                         <?php $no++; endforeach; ?>
                     </tbody>
@@ -80,6 +95,9 @@
                     </ul>
                 </nav>
             </div>
+        <?php else: ?>                       
+            <p class="alert alert-warning">Belum ada riwayat konsultasi...</p>
+        <?php endif ?>
         </div>
         <!-- end:content -->
 

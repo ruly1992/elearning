@@ -15,7 +15,7 @@ class Comment extends CI_Controller {
         $this->query    = $this->request->query;
 
         if ($this->query->has('article_id'))
-            $this->article  = Model\Portal\Article::findOrFail($this->query->get('article_id'));
+            $this->article  = Model\Portal\Article::withPrivate()->findOrFail($this->query->get('article_id'));
         else
             $this->article  = new Model\Portal\Article;
     }
@@ -38,7 +38,7 @@ class Comment extends CI_Controller {
 
     public function store()
     {
-        $article = Model\Portal\Article::findOrFail(set_value('article_id'));
+        $article = Model\Portal\Article::withPrivate()->findOrFail(set_value('article_id'));
 
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');

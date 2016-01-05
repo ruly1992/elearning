@@ -1,12 +1,12 @@
 <div class="elib-content-single">
     <div class="elib-single-breadcrumb">
         <ol class="breadcrumb">
-            <li><a href="<?php echo dashboard_url() ?>">Dashboard</a></li>
+            <li><a href="<?php echo site_url('media') ?>">Media</a></li>
             <li class="active"><?php echo $category->name ?></li>
         </ol>
     </div>
 
-    <a href="<?php echo site_url('media/upload/' . $category->id) ?>" class="btn btn-primary"><i class="fa fa-upload"></i> Upload Media</a>
+    <a href="<?php echo site_url('media/upload/') ?>" class="btn btn-primary"><i class="fa fa-upload"></i> Upload Media</a>
 
     <hr>
 

@@ -26,6 +26,12 @@ class Konsultasi extends CI_Controller {
 
 	public function index()
 	{
+        if($this->session->flashdata('success')){
+            $data['success'] = $this->session->flashdata('success');
+        }elseif($this->session->flashdata('failed')){
+            $data['failed'] = $this->session->flashdata('failed');
+        }
+
 		$konsultasi             = collect($this->M_konsultasi->getKonsultasiLearner());
         $data['konsultasi']     = pagination($konsultasi, 10, 'konsultasi');
 
@@ -53,7 +59,7 @@ class Konsultasi extends CI_Controller {
             if ( ! $this->upload->do_upload('files')) {                
                 $data = array(
                     'subjek'                        => set_value('subjek'),
-                    'pesan'                         => set_value('pesan'),
+                    'pesan'                         => set_value('pesan', '', FALSE),
                     'prioritas'                     => set_value('prioritas'),
                     'id_kategori'                   => set_value('id_konsultasi_kategori'),
                     'user_id'                       => sentinel()->getUser()->id,
@@ -65,7 +71,7 @@ class Konsultasi extends CI_Controller {
                 $data = array(
                         'attachment'     => $file_data['file_name'],
                         'subjek'         => set_value('subjek'),
-                        'pesan'          => set_value('pesan'),
+                        'pesan'          => set_value('pesan', '', FALSE),
                         'prioritas'      => set_value('prioritas'),
                         'id_kategori'    => set_value('id_konsultasi_kategori'),
                         'user_id'        => sentinel()->getUser()->id,
@@ -77,12 +83,23 @@ class Konsultasi extends CI_Controller {
 
             $save = $this->M_konsultasi->create($data, $categories, $status);
 
+            if($save==TRUE){
+                $this->session->set_flashdata('success','Konsultasi baru berhasil dibuat');
+            }else{
+                $this->session->set_flashdata('failed','Konsultasi baru tidak berhasil dibuat');
+            }
             redirect('konsultasi/','refresh');
         }
     }
 
     public function detail($id)
     {
+        if($this->session->flashdata('success')){
+            $data['success'] = $this->session->flashdata('success');
+        }elseif($this->session->flashdata('failed')){
+            $data['failed'] = $this->session->flashdata('failed');
+        }
+
         $this->form_validation->set_rules('isi', 'Isi', 'required');
 
         if ($this->form_validation->run() == FALSE) {            
@@ -101,27 +118,37 @@ class Konsultasi extends CI_Controller {
 
             if (! $this->upload->do_upload('files')) {                
                 $reply = array(
-                    'isi'           => set_value('isi'),
+                    'isi'           => set_value('isi', '', FALSE),
                     'id_konsultasi' => $id,
                     'id_user'       => sentinel()->getUser()->id,
                 );
+
+                $updateat = date('Y-m-d H:i:s');
+
             } else {
                 $file_data = $this->upload->data();
 
                 $reply = array(
                     'attachment'    => $file_data['file_name'],
-                    'isi'           => set_value('isi'),
+                    'isi'           => set_value('isi', '', FALSE),
                     'id_konsultasi' => $id,
                     'id_user'       => sentinel()->getUser()->id,
                 );
+
+                $updateat = date('Y-m-d H:i:s');
             }                       
             $id_konsultasi      = set_value('id_konsultasi');
 
-            $save             = $this->M_konsultasi->sendReply($reply, $id_konsultasi);
-            $updateKonsultasi = $this->M_konsultasi->update($id);
+            $update             = $this->M_konsultasi->updatedAt($updateat, $id_konsultasi);
+            $save               = $this->M_konsultasi->sendReply($reply, $id_konsultasi);
+
+            if($save==TRUE){
+                $this->session->set_flashdata('success','Anda berhasil Mereply Konsultasi');
+            }else{
+                $this->session->set_flashdata('failed','Anda Tidak Berhasil Mereply Konsultasi');
+            }
 
             redirect('konsultasi/detail/'.$id);
-
         }
     }
 
@@ -146,9 +173,8 @@ class Konsultasi extends CI_Controller {
 
             if (!$this->upload->do_upload('files')) {
                 $data = array(
-                    'attachment'    => $file_data['file_name'],
                     'subjek'        => set_value('subjek'),
-                    'pesan'         => set_value('pesan'),
+                    'pesan'         => set_value('pesan', '', FALSE),
                     'prioritas'     => set_value('prioritas'),
                     'id_kategori'   => set_value('id_konsultasi_kategori'),
                     'user_id'       => sentinel()->getUser()->id,
@@ -159,23 +185,37 @@ class Konsultasi extends CI_Controller {
                 $data = array(
                         'attachment'     => $file_data['file_name'],
                         'subjek'         => set_value('subjek'),
-                        'pesan'          => set_value('pesan'),
+                        'pesan'          => set_value('pesan', '', FALSE),
                         'prioritas'      => set_value('prioritas'),
                         'id_kategori'    => set_value('id_konsultasi_kategori'),
                         'user_id'        => sentinel()->getUser()->id,
                 );
             }
-            $update = $this->M_konsultasi->update($id, $data);
-            
-            if ($update == TRUE) {                
-                set_message_error('Konsultasi gagal diperbarui.');
 
-                redirect('konsultasi/update/'.$id);
+            $categories     = set_value('id_konsultasi_kategori');
+
+            $update             = $this->M_konsultasi->update($id, $data, $categories);
+            $updateRelation     = $this->M_konsultasi->updateRelation($id, $categories);
+
+            if ($update == FALSE) {                
+                $this->session->set_flashdata('success','Konsultasi berhasil diperbarui.');
             } else {
-                set_message_success('Konsultasi berhasil diperbarui.');
-
-                redirect('konsultasi/detail/'.$id);    
+                $this->session->set_flashdata('failed','Konsultasi gagal diperbarui.');
             }
+            
+            redirect('/konsultasi/detail/'. $id, 'refresh');    
+        }
+    }
+
+    public function deleteAttachment($id, $path)
+    {
+        $attachment;
+        $update  = $this->M_konsultasi->deleteAttachment($id, $attachment);
+        unlink(PATH_KONSULTASI_ATTACHMENT.'/'.$path);
+        if($update) {
+            redirect('/konsultasi/update/'. $id);
+        } else {
+            redirect('/konsultasi/update/'. $id);
         }
     }
 

@@ -1,7 +1,7 @@
 <?php custom_stylesheet(); ?>
 <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
 <?php endcustom_stylesheet(); ?>
-<?php get_header('private'); ?>
+<?php get_header('private', array('active' => 'forum')); ?>
 
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
@@ -43,16 +43,19 @@
                                                 <label for="">Pilih Type Thread :</label>
                                                 <div>
                                                     <label class="c-input c-radio">
-                                                        <input id="radio1" name="type" value="close" type="radio">
+                                                        <input id="radio1" name="type" value="close" type="radio" onclick="private()">
                                                         <span class="c-indicator"></span>
                                                         Close
                                                     </label>
                                                     <label class="c-input c-radio">
-                                                        <input id="radio2" name="type" value="public" checked type="radio">
+                                                        <input id="radio1" name="type" value="public" checked type="radio" onclick="public()">
                                                         <span class="c-indicator"></span>
                                                         Public
                                                     </label>
                                                 </div>
+                                            </div>
+                                            <div class="form-group" id="addUser">
+                                                
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Title</label>
@@ -154,6 +157,19 @@
                 }
             }); 
         });
+    </script>
+    <script type="text/javascript">
+        function private(){
+            if(($("#addLabel").length <= 0) && ($("#addMember").length <= 0)){
+                $('#addUser').append( '<label id="addLabel">Pilih anggota</label>' );
+                $('#addUser').append( '<select id="addMember" required class="form-control" multiple name="member[]"><?php usersOption($users) ?></select>' );
+            }
+        }
+
+        function public(){
+            $('#addLabel').remove();
+            $('#addMember').remove();
+        }
     </script>
 <?php endcustom_script() ?>
 <?php get_footer('private') ?>

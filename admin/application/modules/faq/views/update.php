@@ -7,6 +7,10 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
+                    <label for="">Title</label>
+                    <?php echo form_input('title', set_value('title', $data->title), array('class' => 'form-control')); ?>
+               </div>
+                <div class="form-group">
                     <label for="">Pertanyaan</label>
                     <?php echo form_input('question', set_value('question', $data->question), array('class' => 'form-control')); ?>
                </div>

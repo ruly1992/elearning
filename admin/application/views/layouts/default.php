@@ -58,6 +58,7 @@
         <link rel="stylesheet" href="<?php echo asset('node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker-standalone.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/fancybox/dist/css/jquery.fancybox.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/bootstrap-dialog/dist/css/bootstrap-dialog.min.css') ?>">
+        <link rel="stylesheet" href="<?php echo asset('stylesheets/app.css') ?>">
 
         <?php echo isset($template['partials']['stylesheet']) ? $template['partials']['stylesheet'] : ''; ?>
         <?php echo $custom_stylesheet ?>
@@ -86,7 +87,9 @@
             var siteurl = '<?php echo site_url(); ?>';
             var homeurl = '<?php echo home_url(); ?>';
         </script>
-
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
+        <script type="text/javascript" src="<?php echo asset('/javascript/jquery.filer.custom.js') ?>"></script>
         <script src="<?php echo asset('node_modules/jasny-bootstrap/dist/js/jasny-bootstrap.min.js') ?>"></script>
         <script src="<?php echo asset('node_modules/moment/moment.js') ?>"></script>        
         <script src="<?php echo asset('node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') ?>"></script>

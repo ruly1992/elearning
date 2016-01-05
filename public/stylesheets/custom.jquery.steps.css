@@ -101,8 +101,8 @@ Version: 1.0
     background: #F5F5F5 !important;
     display: block;
     margin: 0.5em;
-    min-height: 35em;
-    overflow: hidden;
+    min-height: 25em !important;
+    overflow: auto !important;
     position: relative;
     width: auto;
 
