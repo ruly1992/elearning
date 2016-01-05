@@ -82,7 +82,7 @@
 	{
 		$sum_threads = 0;
 			foreach($threads as $t){
-				if($t->category == $category AND $t->type == 'public'){
+				if($t->category == $category){
 					$sum_threads = $sum_threads+1;
 				}
 			}
