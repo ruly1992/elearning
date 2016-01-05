@@ -75,11 +75,11 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.countThreads($threadSide, $closeThreads).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategory($threadSide, $c->id, $closeThreads).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                         </div>
