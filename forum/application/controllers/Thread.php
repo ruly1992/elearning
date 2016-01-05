@@ -37,6 +37,7 @@ class Thread extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_approved_topics();
         $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
 
@@ -67,6 +68,7 @@ class Thread extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_approved_topics();
         $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
 
@@ -92,6 +94,7 @@ class Thread extends CI_Controller
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['categories']     = $this->model_thread->get_categories();
         $data['users']          = Model\User::all();
         $this->load->view('thread/create',$data);
@@ -189,6 +192,7 @@ class Thread extends CI_Controller
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['reply']          = $this->model_thread->get_reply($id);
         $data['countReply']     = count($data['reply']);
         $data['id']             = $id;
