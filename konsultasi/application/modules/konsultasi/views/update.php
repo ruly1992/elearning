@@ -73,7 +73,7 @@
                                         <?php echo "Tidak ada Attachments" ?>
                                     </div>
                                 <?php endif ?>
-                                <input type="file" name="files" id="filer_update" idkonsultasi="<?php echo $konsultasi->id ?>">
+                                <input type="file" name="files" id="filer_input" idkonsultasi="<?php echo $konsultasi->id ?>">
                                 <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt) </small>
                             </div>
                         </div>
