@@ -57,6 +57,7 @@
                           <th>Update Terakhir</th>
                           <th>Status</th>
                           <th>Lihat Konsultasi</th>
+                          <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,6 +74,7 @@
                             	<input id="result" type="hidden">
                             </td>
                             <td><a href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>">Lihat Konsultasi</a></td>
+                            <td><a href="<?php echo site_url('konsultasi/update/'. $row->id) ?>">Update</a></td>
                         </tr>
                         <?php $no++; endforeach; ?>
                     </tbody>

@@ -96,13 +96,20 @@ class Konsultasi extends Admin {
 
 	public function deleteKategori($id_kategori)
 	{
-		$data = $this->model->delete($id_kategori);
+		$data 				= $this->model->delete($id_kategori);
+		$deleteKonsultasi 	= $this->model->delete_kategori_has_konsultasi($id_kategori);
+		$deleteUser 		= $this->model->delete_kategori_has_user($id_kategori);
 
-		set_message_success('Kategori Konsultasi berhasi dihapus');
+		if($data==TRUE){
+            $this->Mod_konsultasi->delete_konsultasi_by_kategori($id_kategori);
+            set_message_success('Kategori berhasil dihapus');
+        }else{
+            set_message_success('Kategori tidak berhasil dihapus');
+        }
 
 		redirect('konsultasi/kategori');
 	}
-
+	
 	public function pengampu()
 	{
         $data['users']      	= sentinel()->findRoleBySlug('ta')->users->pluck('email', 'id')->toArray();       
