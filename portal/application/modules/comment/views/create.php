@@ -36,6 +36,10 @@
             </div>
         <?php endif ?>
 
+        <div class="col-sm-12" v-show="name">
+            <p class="label label-info">Reply comment to {{ name }} <a href="#comments" v-on:click="cancel">&times;</a></p>
+        </div>
+
         <div class="col-lg-12">
             <div class="form-group">
                 <textarea name="content" id="content" cols="40" rows="5" placeholder="Your Message" class="form-control"></textarea>
@@ -48,3 +52,23 @@
         </div>
     </div>
 <?php echo form_close(); ?>
+
+<?php custom_script() ?>
+<script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
+<script>
+    new Vue({
+        el: '#comments',
+        data: {
+            name: ''
+        },
+        methods: {
+            reply: function (name) {
+                this.name = name;
+            },
+            cancel: function () {
+                this.name = '';
+            }
+        }
+    })
+</script>
+<?php endcustom_script() ?>

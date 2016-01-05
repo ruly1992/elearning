@@ -78,7 +78,7 @@
         var homeurl = '<?php echo home_url(); ?>';
     </script>
 
-    <script src="<?php echo asset('node_modules/jquery/dist/jquery.min.js') ?>"></script>
+    <script src="<?php echo asset('node_modules/jquery/dist/jquery.min.js') ?>"></script>   
     <script src="<?php echo asset('node_modules/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>
     <script src="<?php echo asset('node_modules/moment/moment.js') ?>"></script>

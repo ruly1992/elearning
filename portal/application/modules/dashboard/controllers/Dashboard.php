@@ -16,6 +16,8 @@ class Dashboard extends Admin {
         $this->load->model('Mod_sendarticle');
         $this->load->model('category/Mod_category');
 
+        $this->medialib = new Library\Media\Media;
+
         $this->template->set('active', 'dashboard');
 
         $this->status = array(
@@ -52,6 +54,13 @@ class Dashboard extends Admin {
                         ->contributor($user->id)
                         ->latest('date')
                         ->get();
+
+        $category   = $this->medialib->getCategory();
+        $categories = $category->with(['media' => function ($query) {
+            $query->userId(sentinel()->getUser()->id)->withDrafts();
+        }])->get();
+
+        $data['categories'] = $categories;
 
         $data['categories_checkbox']    = (new Model\Portal\Category)->generateCheckbox();
         $data['artikel']                = pagination($articles, 4, 'dashboard');
