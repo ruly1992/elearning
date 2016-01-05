@@ -11,7 +11,7 @@
                 <cropit-cropper name="slider" :width="632" :height="334"></cropit-cropper>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" v-on:click="cancel('featured')">Cancel</button>
                 <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" v-on:click="save('slider')">Save</button>
             </div>
         </div>

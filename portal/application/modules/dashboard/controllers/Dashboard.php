@@ -119,7 +119,7 @@ class Dashboard extends Admin {
         $this->form_validation->set_rules('content', 'Content', 'trim|required');
 
         if ($this->form_validation->run() == FALSE) {
-            $artikel = Model\Portal\Article::withDrafts()->findOrFail($id);
+            $artikel = Model\Portal\Article::withDrafts()->withPrivate()->findOrFail($id);
 
             $cat_ids = array_map(function ($cat){
                 return $cat->kategori_id;
