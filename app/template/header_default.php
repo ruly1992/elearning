@@ -35,7 +35,7 @@
                             <div class="header-top-left">
                                 <ul>
                                     <li><i class="fa fa-clock"></i><?php echo Carbon\Carbon::today()->format('d F Y') ?></li>
-                                    <li><a href="mailto:<?php echo config('email', 'support@desamembangun.go.id') ?>"><i class="fa fa-envelope"></i> <?php echo config('email', 'support@desamembangun.go.id') ?></li>
+                                    <li><a href="mailto:<?php echo config('email', 'support@desamembangun.go.id') ?>"><i class="fa fa-envelope"></i> <?php echo config('email', 'support@desamembangun.go.id') ?></a></li>
                                 </ul>
                             </div>
                         </div>
