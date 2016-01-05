@@ -23,5 +23,12 @@
         -o-transition: border-top 0.3s ease-in-out;
         transition: border-top 0.3s ease-in-out;
     }
+    .fixed-favorit {
+        position: fixed;
+        top: 64px;
+        width: 298px;
+        z-index: 9;
+        background-color: #fff ;
+    }
 	
 
