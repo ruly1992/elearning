@@ -436,8 +436,7 @@ header {
 		}
 	}
 	//add fajar eko s
-	.dropdown:hover,
-	.dropdown:focus {
+	.dropdown:hover {
 		.dropdown-navbar {
 			display: block;
 			width: 250px;
@@ -3414,7 +3413,7 @@ footer {
 	}
 }
 // add fajar eko 
-#favorit {
+.favorit {
 	margin-bottom: $margin-bottom + 20px;
 	.widget-heading {
 		width: 100%;

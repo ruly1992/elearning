@@ -338,8 +338,7 @@ header {
       border: 1px solid #fff; }
       header #navbar-main .header-top-right .btn:hover, header #navbar-main .header-top-right .btn:focus, header #navbar-main .header-top-right .btn:active {
         background-color: #fff; }
-  header .dropdown:hover .dropdown-navbar,
-  header .dropdown:focus .dropdown-navbar {
+  header .dropdown:hover .dropdown-navbar {
     display: block;
     width: 250px;
     height: auto;
@@ -351,8 +350,7 @@ header {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -o-border-radius: 0; }
-    header .dropdown:hover .dropdown-navbar li,
-    header .dropdown:focus .dropdown-navbar li {
+    header .dropdown:hover .dropdown-navbar li {
       font-size: 12px;
       color: #37474f;
       padding: 15px;
@@ -361,10 +359,7 @@ header {
       -moz-transition: all 0.3s ease-in-out;
       -o-transition: all 0.3s ease-in-out;
       font-family: "open_sansregular", sans-serif; }
-      header .dropdown:hover .dropdown-navbar li:hover, header .dropdown:hover .dropdown-navbar li:focus, header .dropdown:hover .dropdown-navbar li:active,
-      header .dropdown:focus .dropdown-navbar li:hover,
-      header .dropdown:focus .dropdown-navbar li:focus,
-      header .dropdown:focus .dropdown-navbar li:active {
+      header .dropdown:hover .dropdown-navbar li:hover, header .dropdown:hover .dropdown-navbar li:focus, header .dropdown:hover .dropdown-navbar li:active {
         background-color: #1c9c57;
         color: #fff;
         transition: all 0.3s ease-in-out;
@@ -2815,16 +2810,16 @@ footer {
   .news4 .box-articles-widget-img img {
     width: auto; }
 
-#favorit {
+.favorit {
   margin-bottom: 25px; }
-  #favorit .widget-heading {
+  .favorit .widget-heading {
     width: 100%;
     height: 40px;
     background-color: #37474f;
     color: #fff;
     border-left: 8px solid #d41d2a;
     margin-bottom: 20px; }
-    #favorit .widget-heading h3 {
+    .favorit .widget-heading h3 {
       font-size: 14px;
       font-family: "open_sansbold", sans-serif;
       text-transform: uppercase;
@@ -2836,10 +2831,10 @@ footer {
       padding-bottom: 10px;
       display: inline-block;
       line-height: 1.5; }
-  #favorit .widget-content .article {
+  .favorit .widget-content .article {
     display: block;
     margin-left: -40px; }
-    #favorit .widget-content .article .list-article {
+    .favorit .widget-content .article .list-article {
       margin: 2px;
       padding: 3px;
       list-style: none;
@@ -2847,20 +2842,20 @@ footer {
       width: 100%;
       height: 56px;
       overflow: hidden; }
-      #favorit .widget-content .article .list-article a {
+      .favorit .widget-content .article .list-article a {
         color: #000;
         text-decoration: none;
         transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out; }
-        #favorit .widget-content .article .list-article a:hover, #favorit .widget-content .article .list-article a:focus {
+        .favorit .widget-content .article .list-article a:hover, .favorit .widget-content .article .list-article a:focus {
           color: #1c9c57;
           transition: all 0.3s ease-in-out;
           -webkit-transition: all 0.3s ease-in-out;
           -moz-transition: all 0.3s ease-in-out;
           -o-transition: all 0.3s ease-in-out; }
-        #favorit .widget-content .article .list-article a .list-numb {
+        .favorit .widget-content .article .list-article a .list-numb {
           color: #d41d2a;
           font-size: 16px;
           font-weight: 600;
@@ -2868,10 +2863,10 @@ footer {
           margin-left: 5px;
           margin-right: 10px;
           line-height: 3; }
-        #favorit .widget-content .article .list-article a .list-title {
+        .favorit .widget-content .article .list-article a .list-title {
           line-height: normal;
           padding-top: 5px; }
-          #favorit .widget-content .article .list-article a .list-title h3 {
+          .favorit .widget-content .article .list-article a .list-title h3 {
             font-size: 12px;
             font-weight: 600;
             margin-left: 30px;
@@ -2880,7 +2875,7 @@ footer {
             -webkit-transition: all 0.3s ease-in-out;
             -moz-transition: all 0.3s ease-in-out;
             -o-transition: all 0.3s ease-in-out; }
-            #favorit .widget-content .article .list-article a .list-title h3:hover, #favorit .widget-content .article .list-article a .list-title h3:focus {
+            .favorit .widget-content .article .list-article a .list-title h3:hover, .favorit .widget-content .article .list-article a .list-title h3:focus {
               color: #1c9c57;
               transition: all 0.3s ease-in-out;
               -webkit-transition: all 0.3s ease-in-out;
