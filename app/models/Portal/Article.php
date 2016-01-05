@@ -107,7 +107,9 @@ class Article extends Model
 
     public function getExcerpt($max = 100, $trailing = '...')
     {
-        return truncate($this->content, $max, $trailing);
+        $content = strip_tags($this->content);
+
+        return truncate($content, $max, $trailing);
     }
 
     public function onSchedule()
