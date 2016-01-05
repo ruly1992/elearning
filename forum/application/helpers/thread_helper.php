@@ -20,14 +20,47 @@
         return $sum_comments;
 	}
 
-	function countThreadCategories($threads, $category){
-		$sum_categories = 0;
+	function countThreadCategories($threads, $category, $sumCloseThreads){
+		$sum_threads = 0;
 			foreach($threads as $t){
-				if($t->category == $category){
-					$sum_categories = $sum_categories+1;
+				if($t->category == $category AND $t->type == 'public'){
+					$sum_threads = $sum_threads+1;
 				}
 			}
-		return $sum_categories;
+
+			foreach($sumCloseThreads as $closeThreads){
+				foreach($closeThreads as $key => $value){
+					if($category == $key){
+						$sum_threads += $value;
+					}
+				}
+			}
+		return $sum_threads;
+	}
+
+	function countThreadsAD($threads, $category){
+		$sum_threads = 0;
+			foreach($threads as $t){
+				if($t->category == $category AND $t->type == 'public'){
+					$sum_threads = $sum_threads+1;
+				}
+			}
+		return $sum_threads;
+	}
+
+	function countThreads($threads, $sumCloseThreads){
+		$sum_threads = 0;
+			foreach($threads as $t){
+				if($t->type == 'public'){
+					$sum_threads = $sum_threads+1;
+				}
+			}
+			foreach($sumCloseThreads as $closeThreads){
+				foreach($closeThreads as $key => $value){
+					$sum_threads += $value;
+				}
+			}
+		return $sum_threads;
 	}
 
 	function checkTA($idCategory, $categoryUser){
@@ -60,7 +93,19 @@
         } 
 	}
 
-	function showThread($thr, $visitors, $comments, $threadMembers, $threadID, $userID){
+	function sumCloseThread($threadMembers, $threadID, $userID)
+	{
+		$counter = 0;
+		foreach($threadMembers as $tm){
+			if($tm->thread_id == $threadID AND $tm->user_id == $userID){
+				$counter = $counter+1;
+			}
+		}
+		return $counter;
+	}
+
+	function showThread($thr, $visitors, $comments, $threadMembers, $threadID, $userID)
+	{
 		$counter = 0;
 		foreach($threadMembers as $tm){
 			if($tm->thread_id == $threadID AND $tm->user_id == $userID){

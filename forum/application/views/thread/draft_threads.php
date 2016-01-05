@@ -36,6 +36,7 @@
                                 ?>
                             </div>
                             <?php 
+                                $sumCloseThreads    = array();
                                 foreach($categoriesHead as $cat){
                             ?>
                                     <div class="forum-heading">
@@ -149,7 +150,7 @@
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('draft/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($draftSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('draft/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadsAD($draftSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                         </div>
