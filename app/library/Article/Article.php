@@ -48,7 +48,7 @@ class Article
             $this->categories   = $article->categories->pluck('id')->toArray();
             $this->tags         = $article->categories->pluck('id')->toArray();
         } elseif (is_numeric($article)) {
-            $this->model = $this->model->withDrafts()->withDrafts()->findOrFail($article);
+            $this->model = $this->model->withDrafts()->withPrivate()->findOrFail($article);
         } else {
             $this->model->fill($article);
         }

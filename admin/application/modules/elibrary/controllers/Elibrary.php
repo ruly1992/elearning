@@ -220,7 +220,7 @@ class Elibrary extends Admin
         $config = array();
         $config['upload_path']   = PATH_ELIBRARY_UPLOAD.'/media/'.$category->name;
         $config['allowed_types'] = '*';
-        $config['max_size']      = '5000';
+        $config['max_size']      = '20000';
         $config['file_name']     = $fileName;
         $config['overwrite']     = TRUE;
         return $config;

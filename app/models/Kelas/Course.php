@@ -74,7 +74,7 @@ class Course extends Model
 		$generated		= $prefix.'.'.$user_id.'.'.$category_id.'.'.$suffix;
 
 		if ($this->whereCode($generated)->count())
-			return $this->generateCode(++$i);
+			return $this->generateCode($i+1);
 			return $generated;
 	}
 

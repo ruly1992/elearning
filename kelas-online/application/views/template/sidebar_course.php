@@ -2,7 +2,7 @@
     <div class="widget">
         <div class="widget-categories">
             <div class="widget-categories-heading">
-                <h4>Steps</h4>
+                <h4>STEPS</h4>
             </div>
             <div class="widget-categories-content">
                 <div class="list-group">
@@ -17,7 +17,7 @@
     <div class="widget">
         <div class="widget-categories">
             <div class="widget-categories-heading">
-                <h4>Peserta</h4>
+                <h4>PESERTA</h4>
             </div>
             <div class="widget-categories-content">
                 <div class="list-group">

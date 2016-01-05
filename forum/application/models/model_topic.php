@@ -50,6 +50,18 @@ class Model_topic extends CI_Model
         return $get->result();
     }
 
+    function get_approved_topics()
+    {
+        $data = array('categories.category_name','topics.*');
+        $get = $this->db->select($data)
+                        ->from('topics')
+                        ->join('categories','categories.id=topics.category')
+                        ->where('status', '1')
+                        ->order_by('topics.id','desc')
+                        ->get();
+        return $get->result();
+    }
+
     function get_topics_from_id($id)
     {
         $data = array('categories.category_name','topics.*');
@@ -98,7 +110,8 @@ class Model_topic extends CI_Model
         return $get->result();
     }
 
-    function approve_topic($id, $data){
+    function approve_topic($id, $data)
+    {
         $approve = $this->db->update('topics', $data, array('id'=>$id));
         if($this->db->affected_rows() == '1'){
             return TRUE;

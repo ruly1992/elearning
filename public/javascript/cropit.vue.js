@@ -122,12 +122,21 @@ $(document).ready(function () {
                 }
 
                 this.$parent.$broadcast('cropped', imageEvent);
+            },
+            clearCropper: function () {
+                var $cropitEl = $(this.$el);
+                
+                $cropitEl.find('.cropit-image-preview').css('background-image', '')
             }
         },
         events: {
             'cropping': function (name) {
                 if (this.name == name)
                     this.setImagePreview()
+            },
+            'clear': function (name) {
+                if (this.name == name)
+                    this.clearCropper()
             }
         },
         ready: function () {
@@ -151,7 +160,14 @@ $(document).ready(function () {
             },
             remove: function (name) {
                 this.$broadcast('removing', name)
+            },
+            cancel: function (name) {
+                this.$broadcast('clear', name)
             }
         }
+    })
+
+    $('.file-btn').on('click', function() {
+        $(this).prev('input[type=file]').trigger('click');
     })
 })
