@@ -305,6 +305,7 @@ class Thread extends CI_Controller
         
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $this->load->view('thread/edit_reply',$data);
     }
 
