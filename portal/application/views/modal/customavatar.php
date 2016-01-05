@@ -11,7 +11,7 @@
                 <cropit-cropper name="customavatar" :width="256" :height="256"></cropit-cropper>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" v-on:click="cancel('customavatar')">Cancel</button>
                 <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" v-on:click="save('customavatar')">Save</button>
             </div>
         </div>
