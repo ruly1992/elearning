@@ -101,7 +101,7 @@
                                 </div>
                             </ul>
                             <div class="collapse navbar-toggleable-md" id="navbarCollapse">
-                                <a class="navbar-brand" href="<?php echo home_url() ?>" style="display: none">
+                                <a class="navbar-brand hidden-sm-down" href="<?php echo home_url() ?>" style="display: none">
                                     <img src="<?php echo asset('images/logo.png') ?>" alt="">
                                 </a>
                                 <ul class="nav navbar-nav">
