@@ -24,7 +24,7 @@ class Article extends Admin {
     public function index()
     {
         $request    = Request::createFromGlobals();
-        $articles   = Model\Portal\Article::published()->latest('date');
+        $articles   = Model\Portal\Article::withPrivate()->latest('date');
         $status     = 'publish';
 
         if ($request->query->has('status')) {
@@ -35,9 +35,9 @@ class Article extends Admin {
 
                 return;
             } elseif ($status === 'schedule') {
-                $articles   = Model\Portal\Article::withDrafts()->scheduled()->latest('date');
+                $articles   = Model\Portal\Article::withDrafts()->withPrivate()->scheduled()->latest('date');
             } elseif ($status === 'all') {
-                $articles   = Model\Portal\Article::latest('date');
+                $articles   = Model\Portal\Article::withDrafts()->withPrivate()->latest('date');
             }
         }
 
@@ -54,7 +54,7 @@ class Article extends Admin {
     protected function indexDraft()
     {
         $status     = 'draft';
-        $articles   = Model\Portal\Article::withDrafts()->status($status)->latest('date');
+        $articles   = Model\Portal\Article::withPrivate()->withDrafts()->status($status)->latest('date');
 
         if (sentinel()->inRole(['edt'])) {
             $articles = $articles->onlyAllowEditor();
