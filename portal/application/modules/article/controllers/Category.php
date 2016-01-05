@@ -9,12 +9,6 @@ class Category extends CI_Controller {
 		
         saveVisitor();
 	}
-
-	public function index()
-	{
-		echo 'tes';
-	}
-
 }
 
 /* End of file Category.php */

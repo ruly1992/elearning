@@ -18,9 +18,10 @@ class Article extends CI_Controller {
     {
         try {
 
-            $article                    = Model\Portal\Article::with('contributor')->slug($slug);
+            $article                    = Model\Portal\Article::with('contributor', 'editor')->slug($slug);
             $data['article']            = $article;
             $data['contributor']        = $article->contributor;
+            $data['editor']             = $article->editor;
             $data['comments']           = $article->comments;
             $data['links']              = $this->Mod_link->read();
             

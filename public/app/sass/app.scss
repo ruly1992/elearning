@@ -3961,6 +3961,18 @@ a {
     display: none;  
 }
 
+.table {
+	.tbody {
+		.tr {
+			.td {
+				.space {
+					width: 105px;
+				}
+			}
+		}
+	}
+}
+
 /* DASHBOARD FOR SUMBIT ARTICLES */
 .articles-dashboard {
 	background-color: $white;
