@@ -2869,22 +2869,9 @@ header {
 		}
 		.single-article-share {
 			margin-top: $margin-top - 25px;
-			img {
-				width: 30px;
-				height: 30px;
-			}
-			.share {
-				border: 1px solid $grey;
-				padding: $padding - 3px;
-				margin-left: $margin-left;
-				@include border-radius(3px);
-				h6 {
-					font-size: 14px;
-					padding-top: $padding-top - 1px;
-					margin-bottom: $margin-bottom;
-				}
-			}
 			margin-bottom: $margin-bottom;
+			float: right;
+			width: 130px;
 		}
 	}
 	#comments {
@@ -3517,7 +3504,27 @@ footer {
 		}
 	}
 }
+// Custom breadcrumbs add by fajar eko susilo
+.breadcrumb::after {
+  display: table;
+  clear: both;
+  content: "";
+}
 
+.breadcrumb-item {
+  float: left;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  padding-right: .5rem;
+  padding-left: .5rem;
+  color: #818a91;
+  content: "/";
+}
+
+.breadcrumb-item.active {
+  color: #818a91;
+}
 /* override */
 
 a {
@@ -4319,7 +4326,17 @@ a {
 		img {
 			width: 250px !important;
 		}
+}
+.breadcrumb {
+	margin-bottom: $margin-bottom + 20px;
+	li {
+		font-size: 12px;
+		a {
+			color: $green;
+			font-size: 12px;
+		}
 	}
+}
 /* Dashboard Faq */
 .dashboard-faq {
 	padding-top: $padding-top;

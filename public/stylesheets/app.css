@@ -2373,22 +2373,9 @@ header {
       color: #37474f; }
   .content-single article .single-article-share {
     margin-top: -20px;
-    margin-bottom: 5px; }
-    .content-single article .single-article-share img {
-      width: 30px;
-      height: 30px; }
-    .content-single article .single-article-share .share {
-      border: 1px solid #f5f5f5;
-      padding: 2px;
-      margin-left: 5px;
-      border-radius: 3px;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      -o-border-radius: 3px; }
-      .content-single article .single-article-share .share h6 {
-        font-size: 14px;
-        padding-top: 4px;
-        margin-bottom: 5px; }
+    margin-bottom: 5px;
+    float: right;
+    width: 130px; }
   .content-single #comments .comments-form .comments-title {
     margin-bottom: 15px; }
     .content-single #comments .comments-form .comments-title h3 {
@@ -2913,6 +2900,23 @@ footer {
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out; }
+
+.breadcrumb::after {
+  display: table;
+  clear: both;
+  content: ""; }
+
+.breadcrumb-item {
+  float: left; }
+
+.breadcrumb-item + .breadcrumb-item::before {
+  padding-right: .5rem;
+  padding-left: .5rem;
+  color: #818a91;
+  content: "/"; }
+
+.breadcrumb-item.active {
+  color: #818a91; }
 
 /* override */
 a {
@@ -3569,6 +3573,14 @@ a {
 /* Logo bottom */
 .footer-logo img {
   width: 250px !important; }
+
+.breadcrumb {
+  margin-bottom: 25px; }
+  .breadcrumb li {
+    font-size: 12px; }
+    .breadcrumb li a {
+      color: #1c9c57;
+      font-size: 12px; }
 
 /* Dashboard Faq */
 .dashboard-faq {

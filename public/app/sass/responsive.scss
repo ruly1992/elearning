@@ -43,6 +43,16 @@ $padding-left: 5px;
 
 // BEGIN 320px
 @media (min-width: 320px) and (max-width: 360px) {
+  header {
+    #header-content {
+      padding-top: 0;
+      padding-bottom: $padding-bottom + 5px;
+    }
+    #header-content-private {
+      padding-top: 0;
+      padding-bottom: $padding-bottom + 5px;
+    }
+  }
   #header-main {
     #carousel-slider-top {
       display: none;
@@ -100,86 +110,6 @@ $padding-left: 5px;
       width: 150px;
     }
   }
-  .custom-login-mobile {
-    width: 255px;
-    height: auto;
-    .menu-login {
-      padding: 5px;
-      .form-login {
-        border-bottom: 1px solid $grey-black;
-        margin-bottom: $margin-bottom + 7px;
-      }
-      padding: $padding + 15px;
-      > p {
-        font-size: 12px;
-        line-height: normal;
-        margin-bottom: $margin-bottom + 5px;
-      }
-      .c-input>input:checked~.c-indicator {
-        background-color: $green;
-        border: 1px solid $green;
-      }
-      .c-input>input:focus~.c-indicator {
-        -webkit-box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
-        box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem $green;
-      }
-      .c-input.c-checkbox {
-        font-size: 10px;
-        .c-indicator {
-          background-color: $grey-black;
-          border: 1px solid #999;
-          width: 0.8rem;
-          height: 0.8rem;
-        }
-      }
-      label {
-        margin-top: $margin-top - 20px;
-        a {
-          font-size: 10px;
-          color: $green;
-          &:hover,
-          &:active,
-          &:focus {
-            color: $white;
-          }
-        }
-      }
-      form {
-        .form-group {
-          margin-bottom: $margin-bottom;
-          .form-control {
-            border: 2px solid $grey-black;
-            height: 30px;
-            background-color: transparent;
-            @include transition(0.5s);
-            &:focus {
-              border: 2px solid $green;
-              @include transition(0.5s);
-            }
-          }
-          .form-control[placeholder] {
-            font-size: 12px;
-          }
-          .btn-login {
-            background-color: $green;
-            color: $white;
-            @include fonts('open_sanssemibold');
-            margin-top: $margin-top + 5px;
-          }
-          .btn-submit-artikel {
-            background-color: $aspalt-light;
-            color: $grey;
-            &:hover,
-            &:focus,
-            &:active {
-              background: $aspalt;
-              color: $grey-black;
-            }
-          }
-        }
-      }
-    }
-  }
   .dropdown-people{
     .dropdown-toggle{
       img{
@@ -191,7 +121,7 @@ $padding-left: 5px;
   }
   // Begin form login at mobile device
   .custom-login-mobile {
-    width: 255px;
+    width: 288px;
     height: auto;
     right: 0;
     left: auto;
@@ -361,7 +291,6 @@ $padding-left: 5px;
       }
     }
     //add responsive for latest
->>>>>>> cc84b261ae11067acc7adf0f74db7809e7ca1d9d
     .news-latest {
       .articles-box {
         background-color: #fff;
@@ -392,7 +321,6 @@ $padding-left: 5px;
         }
       }
     }
->>>>>>> cc84b261ae11067acc7adf0f74db7809e7ca1d9d
     .news2 {
       .articles-box {
         background-color: #ddd;
@@ -444,8 +372,6 @@ $padding-left: 5px;
       }
     }
   }
-
->>>>>>> cc84b261ae11067acc7adf0f74db7809e7ca1d9d
   footer {
     .footer-top {
       display: none;
@@ -472,36 +398,14 @@ $padding-left: 5px;
 
 // BEGIN 360
 @media (min-width: 360px) and (max-width: 640px) {
-  #header-main {
-    #carousel-slider-top {
-      display: none;
+  header {
+    #header-content {
+      padding-top: 0;
+      padding-bottom: $padding-bottom + 5px;
     }
-    .header-main-box {
-      display: none;
-      .header-main-box-content {
-        p {
-          font-size: 18px !important;
-          line-height: 25px !important;
-        }
-        form {
-          .form-control {
-            height: 45px !important;
-          }
-          .form-control[placeholder] {
-            font-size: 14px !important;
-          }
-          .c-input {
-            font-size: 14px !important;
-          }
-          .btn {
-            padding-top: 10px !important;
-            padding-bottom: 10px !important;
-          }
-          a {
-            font-size: 14px !important;
-          }
-        }
-      }
+    #header-content-private {
+      padding-top: 0;
+      padding-bottom: $padding-bottom + 5px;
     }
   }
   #navbar-main {
@@ -519,12 +423,9 @@ $padding-left: 5px;
       }
     }
   }
-  .nav {
-    padding-top: 10px;
-  }
   .navbar-logo-mobile {
     margin-top: 7px;
-    margin-left: 20px;
+    margin-left: 14%;
     img {
       width: 150px;
     }
@@ -540,9 +441,8 @@ $padding-left: 5px;
   }
 
   //BEGIN CUSTOM LOGIN MOBILE
->>>>>>> cc84b261ae11067acc7adf0f74db7809e7ca1d9d
   .custom-login-mobile {
-    width: 255px;
+    width: 328px;
     height: auto;
     .menu-login {
       padding: 5px;
@@ -623,7 +523,6 @@ $padding-left: 5px;
   }
   // END CUTOM LOGIN MOBILE
 
->>>>>>> cc84b261ae11067acc7adf0f74db7809e7ca1d9d
   #header {
     .header-top-left {
       display: none;
@@ -929,6 +828,16 @@ $padding-left: 5px;
   // END CUTOM LOGIN MOBILE
 
   // BEGIN HEADER MAIN
+  header {
+    #header-content {
+      padding-top: 0;
+      padding-bottom: $padding-bottom + 5px;
+    }
+    #header-content-private {
+      padding-top: 0;
+      padding-bottom: $padding-bottom + 5px;
+    }
+  }
   #header-main {
     #carousel-slider-top {
       display: none;
