@@ -35,7 +35,7 @@ class Thread extends CI_Controller
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $this->model_thread->get_categories();
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
@@ -65,7 +65,7 @@ class Thread extends CI_Controller
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $getCategory;
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
@@ -340,8 +340,12 @@ class Thread extends CI_Controller
     public function get_topics(){
         $idCategory = $this->input->post('idCategory');
         $getTopics = $this->model_topic->getTopics_by_Category($idCategory);
-        foreach($getTopics as $top){
-            $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
+        if(!empty($getTopics)){
+            foreach($getTopics as $top){
+                $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
+            }
+        }else{
+            $topics     = '<option value="">- Topic belum tersedia -</option>';
         }
         echo $topics;
     }

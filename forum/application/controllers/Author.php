@@ -36,7 +36,7 @@ class Author extends CI_Controller
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $this->model_thread->get_categories();
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['breadcrumb']		= 'Your Threads';
         $data['threadMembers']  = $this->model_thread->get_thread_members();
@@ -106,7 +106,7 @@ class Author extends CI_Controller
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $getCategory;
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
