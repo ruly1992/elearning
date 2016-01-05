@@ -38,6 +38,16 @@
 		return $sum_threads;
 	}
 
+	function countThreadsAD($threads, $category){
+		$sum_threads = 0;
+			foreach($threads as $t){
+				if($t->category == $category AND $t->type == 'public'){
+					$sum_threads = $sum_threads+1;
+				}
+			}
+		return $sum_threads;
+	}
+
 	function countThreads($threads, $sumCloseThreads){
 		$sum_threads = 0;
 			foreach($threads as $t){
