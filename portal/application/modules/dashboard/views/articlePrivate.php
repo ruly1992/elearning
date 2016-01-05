@@ -44,7 +44,7 @@
                 <h3><?php echo $privatepage_category_1_title ?></h3>
             </div>
             <div class="content-articles-heading-view">
-                <span class="pull-right"><a href="#">view all <i class="fa fa-plus-square"></i></a></span>
+                <span class="pull-right"><a href="<?php echo $private_category_1_link ?>">view all <i class="fa fa-plus-square"></i></a></span>
             </div>
             <div class="content-articles-main">
                 <div class="row">
@@ -86,7 +86,7 @@
                 <h3><?php echo $privatepage_category_2_title ?></h3>
             </div>
             <div class="content-articles-heading-view">
-                <span class="pull-right"><a href="#">view all <i class="fa fa-plus-square"></i></a></span>
+                <span class="pull-right"><a href="<?php echo $private_category_2_link ?>">view all <i class="fa fa-plus-square"></i></a></span>
             </div>
             <div class="content-articles-main">
                 <div class="row">
@@ -131,7 +131,7 @@
                 <h3><?php echo $privatepage_category_3_title ?></h3>
             </div>
             <div class="content-articles-heading-view">
-                <span class="pull-right"><a href="#">view all <i class="fa fa-plus-square"></i></a></span>
+                <span class="pull-right"><a href="<?php echo $private_category_3_link ?>">view all <i class="fa fa-plus-square"></i></a></span>
             </div>
             <div class="content-articles-main">
                 <div class="row">
@@ -173,7 +173,7 @@
                 <h3><?php echo $privatepage_category_4_title ?></h3>
             </div>
             <div class="content-articles-heading-view">
-                <span class="pull-right"><a href="#">view all <i class="fa fa-plus-square"></i></a></span>
+                <span class="pull-right"><a href="<?php echo $private_category_4_link ?>">view all <i class="fa fa-plus-square"></i></a></span>
             </div>
             <div class="content-articles-main">
                 <div class="row">

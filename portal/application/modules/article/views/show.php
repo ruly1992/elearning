@@ -40,12 +40,6 @@
                       <span class="rrssb-text">google+</span>
                     </a>
                 </li>
-                <li class="rrssb-tumblr">
-                    <a target="_blank" href="http://tumblr.com/share/link?url=<?php echo $article->link ?>&name=Ridiculously%20Responsive%20Social%20Sharing%20Buttons%20by%20KNI%20Labs">
-                      <span class="rrssb-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28"><path d="M18.02 21.842c-2.03.052-2.422-1.396-2.44-2.446v-7.294h4.73V7.874H15.6V1.592h-3.714s-.167.053-.182.186c-.218 1.935-1.144 5.33-4.988 6.688v3.637h2.927v7.677c0 2.8 1.7 6.7 7.3 6.6 1.863-.03 3.934-.795 4.392-1.453l-1.22-3.54c-.52.213-1.415.413-2.115.455z"/></svg></span>
-                      <span class="rrssb-text">tumblr</span>
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
@@ -76,7 +70,7 @@
                     <p><a href="#"><?php echo $article->author_name ?></a></p>
                 </div>
                 <div class="single-article-author-role">
-                    <p><em><?php echo $article->author_email?></em></p>
+                    <p><em>Editor: <?php echo $article->editor->full_name?></em></p>
                 </div>
                 <div class="single-article-author-description">
 
@@ -159,7 +153,7 @@
                                 </div>
                                 <div class="col-sm-8 col-xs-12">
                                     <div class="box-articles-sm-meta">
-                                        <p><i class="fa fa-calendar"></i><?php echo $artikel->date->format('d F Y') ?></p>
+                                        <p><i class="fa fa-calendar"></i> <?php echo $artikel->date->format('d F Y') ?></p>
                                     </div>
                                     <div class="box-articles-sm-title">
                                         <h4><a href="<?php echo $artikel->link ?>"><?php echo $artikel->title ?></a></h4>
