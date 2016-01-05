@@ -15,6 +15,8 @@ class Dashboard extends Admin {
         $this->load->model('Mod_user', 'model');
         $this->load->model('Mod_sendarticle');
         $this->load->model('category/Mod_category');
+        $this->load->model('Mod_konsultasi');
+
 
         $this->medialib = new Library\Media\Media;
 
@@ -55,12 +57,14 @@ class Dashboard extends Admin {
                         ->latest('date')
                         ->get();
 
+        $data['konsultasiCat']          = $this->Mod_konsultasi->getKonsultasiKategori();        
+
         $category   = $this->medialib->getCategory();
         $categories = $category->with(['media' => function ($query) {
             $query->userId(sentinel()->getUser()->id)->withDrafts();
         }])->get();
 
-        $data['categories'] = $categories;
+        $data['categories']             = $categories;
 
         $data['categories_checkbox']    = (new Model\Portal\Category)->generateCheckbox();
         $data['artikel']                = pagination($articles, 4, 'dashboard');

@@ -173,9 +173,8 @@ class Konsultasi extends CI_Controller {
 
             if (!$this->upload->do_upload('files')) {
                 $data = array(
-                    'attachment'    => $file_data['file_name'],
                     'subjek'        => set_value('subjek'),
-                    'pesan'         => set_value('pesan'),
+                    'pesan'         => set_value('pesan', '', FALSE),
                     'prioritas'     => set_value('prioritas'),
                     'id_kategori'   => set_value('id_konsultasi_kategori'),
                     'user_id'       => sentinel()->getUser()->id,
@@ -186,23 +185,37 @@ class Konsultasi extends CI_Controller {
                 $data = array(
                         'attachment'     => $file_data['file_name'],
                         'subjek'         => set_value('subjek'),
-                        'pesan'          => set_value('pesan'),
+                        'pesan'          => set_value('pesan', '', FALSE),
                         'prioritas'      => set_value('prioritas'),
                         'id_kategori'    => set_value('id_konsultasi_kategori'),
                         'user_id'        => sentinel()->getUser()->id,
                 );
             }
-            $update = $this->M_konsultasi->update($id, $data);
-            
-            if ($update == TRUE) {                
-                set_message_error('Konsultasi gagal diperbarui.');
 
-                redirect('konsultasi/update/'.$id);
+            $categories     = set_value('id_konsultasi_kategori');
+
+            $update             = $this->M_konsultasi->update($id, $data, $categories);
+            $updateRelation     = $this->M_konsultasi->updateRelation($id, $categories);
+
+            if ($update == FALSE) {                
+                $this->session->set_flashdata('success','Konsultasi berhasil diperbarui.');
             } else {
-                set_message_success('Konsultasi berhasil diperbarui.');
-
-                redirect('konsultasi/detail/'.$id);    
+                $this->session->set_flashdata('failed','Konsultasi gagal diperbarui.');
             }
+            
+            redirect('/konsultasi/detail/'. $id, 'refresh');    
+        }
+    }
+
+    public function deleteAttachment($id, $path)
+    {
+        $attachment;
+        $update  = $this->M_konsultasi->deleteAttachment($id, $attachment);
+        unlink(PATH_KONSULTASI_ATTACHMENT.'/'.$path);
+        if($update) {
+            redirect('/konsultasi/update/'. $id);
+        } else {
+            redirect('/konsultasi/update/'. $id);
         }
     }
 

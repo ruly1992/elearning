@@ -133,4 +133,26 @@
     <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
     <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
+    <script>
+    $(document).ready(function () {
+        $('.switch-input.ajax').on('change', function () {
+            var id      = $(this).val();
+            var type    = this.checked ? 'private' : 'public';
+
+            $.ajax({
+                url: siteurl + '/article/json/type',
+                data: {
+                    id: id,
+                    type: type,
+                },
+                success: function (response) {
+                    alert('Artikel telah diperbarui visibilitas menjadi '+type)
+                },
+                error: function (response) {
+                    //
+                }
+            })
+        })
+    })
+    </script>
 <?php endcustom_script() ?>

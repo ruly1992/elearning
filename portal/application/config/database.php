@@ -116,3 +116,25 @@ $db['user'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$db['konsultasi'] = array(
+	'dsn'	=> '',
+	'hostname' => getenv('KONSULTASI_DB_HOST') ?: 'localhost',
+	'username' => getenv('KONSULTASI_DB_USERNAME') ?: 'root',
+	'password' => getenv('KONSULTASI_DB_PASSWORD') ?: '',
+	'database' => getenv('KONSULTASI_DB_DATABASE') ?: 'portal_learning',
+	'dbdriver' => getenv('KONSULTASI_DB_DRIVER') ?: 'mysqli',
+	'dbprefix' => getenv('KONSULTASI_DB_PREFIX') ?: '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
