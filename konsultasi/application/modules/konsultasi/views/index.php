@@ -47,7 +47,7 @@
             <?php if ($konsultasi->count()): ?>
             <div class="content-konsultasi-table">
                 <p><?php echo count($konsultasi) ?> Data ditemukan</p>
-                <table class="table table-bordered">
+                <table class="table table-striped table-responsive">
                     <thead>
                         <tr>
                           <th>#</th>
@@ -55,8 +55,7 @@
                           <th>Konsultasi Title</th>
                           <th>Tanggal Konsultasi</th>
                           <th>Update Terakhir</th>
-                          <th>Status</th>
-                          <th>Lihat Konsultasi</th>
+                          <th>Status</th>   
                           <th></th>
                         </tr>
                     </thead>
@@ -73,8 +72,8 @@
 		                        <p><input id="switch-size" type="checkbox" <?php echo $checked?> data-size="mini" data-taskid="<?php echo $row->id; ?>" name="my-checkbox" class="switch-status"></p>                         
                             	<input id="result" type="hidden">
                             </td>
-                            <td><a href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>">Lihat Konsultasi</a></td>
-                            <td><a href="<?php echo site_url('konsultasi/update/'. $row->id) ?>">Update</a></td>
+                            <td class="text-xs-center"><a href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>"><span class="label label-default">Lihat</span></a>
+                            <a href="<?php echo site_url('konsultasi/update/'. $row->id) ?>"><span class="label label-primary">Update</span></a></td>
                         </tr>
                         <?php $no++; endforeach; ?>
                     </tbody>
