@@ -332,6 +332,7 @@ $(document).ready(function() {
 
     $('#filer_konsultasi').filer({
         limit : 1,
+        maxSize: 10,
         showThumbs: true,
         templates: {
             box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
