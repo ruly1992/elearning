@@ -8,6 +8,11 @@
     <div class="single-article-title">
         <h1><?php echo $article->title ?></h1>
     </div>
+    <ol class="breadcrumb" style="margin-bottom: 5px;">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+    </ol>
     <div class="single-article-share col-md-4 col-md-offset-8">
         <div class="row">
             <ul class="rrssb-buttons">
