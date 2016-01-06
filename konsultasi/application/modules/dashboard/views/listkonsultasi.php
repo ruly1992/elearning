@@ -16,9 +16,9 @@
                         <li>Konsultasi</li>
                         <li class="active"><?php echo $kategoriById->name ?></li>
                     </ol>
-                    <div class="content-konsultasi-table">
+                    <div class="table-responsive">
                     <?php if ($konsultasi->count()): ?>
-                        <table class="table table-bordered table-responsive">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                   <th>#</th>
