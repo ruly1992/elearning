@@ -87,8 +87,8 @@
                             <!-- Begin : Login mobile -->
                             <ul class="nav navbar-nav hidden-lg-up pull-right">
                                 <div class="dropdown dropdown-people">
-                                    <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-unlock-alt"></i>
+                                    <a type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-key"></i>
                                     </a>
                                     <div class="dropdown-menu custom-float custom-login-mobile" aria-labelledby="dropdownMenu2">
                                         <div class="menu-login">
