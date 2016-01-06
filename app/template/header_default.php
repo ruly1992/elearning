@@ -79,7 +79,7 @@
                     <div class="container">
                         <div class="row">
                             <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarCollapse">
-                                &#9776;
+                                <!-- &#9776; --> <i class="fa fa-bars"></i>
                             </button>
                             <a class="navbar-logo-mobile navbar-logo-tablet hidden-lg-up" href="<?php echo site_url() ?>">
                                 <img src="<?php echo config('site_logo', asset('images/logo.png')) ?>" alt="">
