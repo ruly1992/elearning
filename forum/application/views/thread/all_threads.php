@@ -43,6 +43,7 @@
                                 ?>
                             </div>
                             <?php 
+                                $sumCloseThreads    = array();
                                 foreach($categoriesHead as $cat){
                             ?>
                                     <div class="forum-heading">
@@ -67,6 +68,7 @@
                                                                     if($cat->id == $thr->category AND $top->id == $thr->topic){
                                                                         $isThread = true;
                                                                         if($thr->type == 'close'){
+                                                                            array_push($sumCloseThreads, array($thr->category => sumCloseThread($threadMembers, $thr->id, $userID)));
                                                                             showThread($thr, $visitors, $comments, $threadMembers, $thr->id, $userID);
                                                                         }else{
                                                             ?>
@@ -140,7 +142,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="sidebar-forum">
-
+                            
                             <div class="widget">
                                 <div class="widget-categories">
                                     <div class="widget-categories-heading">
@@ -149,11 +151,11 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.countThreads($threadSide, $sumCloseThreads).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id, $sumCloseThreads).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                         </div>

@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Article extends Admin {
 
@@ -24,7 +25,7 @@ class Article extends Admin {
     public function index()
     {
         $request    = Request::createFromGlobals();
-        $articles   = Model\Portal\Article::published()->latest('date');
+        $articles   = Model\Portal\Article::withPrivate()->latest('date');
         $status     = 'publish';
 
         if ($request->query->has('status')) {
@@ -35,9 +36,9 @@ class Article extends Admin {
 
                 return;
             } elseif ($status === 'schedule') {
-                $articles   = Model\Portal\Article::withDrafts()->scheduled()->latest('date');
+                $articles   = Model\Portal\Article::withDrafts()->withPrivate()->scheduled()->latest('date');
             } elseif ($status === 'all') {
-                $articles   = Model\Portal\Article::latest('date');
+                $articles   = Model\Portal\Article::withDrafts()->withPrivate()->latest('date');
             }
         }
 
@@ -54,7 +55,7 @@ class Article extends Admin {
     protected function indexDraft()
     {
         $status     = 'draft';
-        $articles   = Model\Portal\Article::withDrafts()->status($status)->latest('date');
+        $articles   = Model\Portal\Article::withPrivate()->withDrafts()->status($status)->latest('date');
 
         if (sentinel()->inRole(['edt'])) {
             $articles = $articles->onlyAllowEditor();
@@ -206,22 +207,34 @@ class Article extends Admin {
 
     public function choice($id)
     {
-        $article = Model\Portal\Article::findOrFail($id);
-        $article->setEditorChoice(sentinel()->getUser());
+        try {
+            $article = Model\Portal\Article::withPrivate()->findOrFail($id);
+            $article->setEditorChoice(sentinel()->getUser());
 
-        set_message_success('Artikel berhasil diperbarui sebagai Pilihan Editor.');
+            set_message_success('Artikel berhasil diperbarui sebagai Pilihan Editor.');
 
-        redirect('article/edit/'.$article->id, 'refresh');
+            redirect('article/edit/'.$article->id, 'refresh');
+        } catch (ModelNotFoundException $e) {
+            set_message_error('Artikel tidak dapat dijadikan sebagai Pilihan Editor.');
+
+            redirect('article/edit/'.$article->id, 'refresh');
+        }
     }
 
     public function unchoice($id)
     {
-        $article = Model\Portal\Article::findOrFail($id);
-        $article->removeEditorChoice();
+        try {
+            $article = Model\Portal\Article::withPrivate()->findOrFail($id);
+            $article->removeEditorChoice();
 
-        set_message_success('Artikel berhasil diperbarui.');
+            set_message_success('Artikel berhasil diperbarui.');
 
-        redirect('article/edit/'.$article->id, 'refresh');
+            redirect('article/edit/'.$article->id, 'refresh');
+        } catch (ModelNotFoundException $e) {
+            set_message_error('Artikel tidak dapat diperbarui.');
+
+            redirect('article/edit/'.$article->id, 'refresh');
+        }
     }
 }
 

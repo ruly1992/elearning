@@ -50,7 +50,7 @@
                         <div class="input-group input-schedule">
                         <?php echo form_hidden('with_schedule', '1'); ?>
                     <?php endif ?>
-                        <?php echo form_input('published', date('Y-m-d H:i:s'), array('class' => 'form-control input-sm datetimepicker', 'id' => 'published')); ?>
+                        <?php echo form_input('published', set_value('published', $artikel->published), array('class' => 'form-control input-sm datetimepicker', 'id' => 'published')); ?>
                         <span class="input-group-btn">
                             <button class="btn btn-default btn-sm close-schedule">No schedule</button>
                         </span>
@@ -133,4 +133,26 @@
     <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
     <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
+    <script>
+    $(document).ready(function () {
+        $('.switch-input.ajax').on('change', function () {
+            var id      = $(this).val();
+            var type    = this.checked ? 'private' : 'public';
+
+            $.ajax({
+                url: siteurl + '/article/json/type',
+                data: {
+                    id: id,
+                    type: type,
+                },
+                success: function (response) {
+                    alert('Artikel telah diperbarui visibilitas menjadi '+type)
+                },
+                error: function (response) {
+                    //
+                }
+            })
+        })
+    })
+    </script>
 <?php endcustom_script() ?>

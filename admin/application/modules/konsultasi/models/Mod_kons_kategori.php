@@ -54,8 +54,32 @@ class Mod_kons_kategori extends CI_Model {
 
 	public function delete($id_kategori)
 	{
-		$this->db->where('id', $id_kategori);
-		$this->db->delete('konsultasi_kategori');
+		$delete = $this->db->delete('konsultasi_kategori',array('id'=>$id_kategori));
+        if($this->db->affected_rows() == '1'){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+	}
+
+	public function delete_kategori_has_konsultasi($id)
+	{
+		$delete = $this->db->delete('konsultasi_kategori_has_konsultasi', array('id_konsultasi_kategori'=>$id));
+        if($this->db->affected_rows() == '1') {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+	}
+
+	public function delete_kategori_has_user($id)
+	{
+		$delete = $this->db->delete('konsultasi_user_has_kategori', array('id_kategori'=>$id));
+        if($this->db->affected_rows() == '1') {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
 	}
 
 	public function getAllGroupByUser()

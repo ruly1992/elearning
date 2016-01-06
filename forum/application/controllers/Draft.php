@@ -37,7 +37,7 @@ class Draft extends CI_Controller
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $this->model_thread->get_categories();
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['categoryUsers']  = $this->model_thread->get_category_users($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
@@ -105,7 +105,7 @@ class Draft extends CI_Controller
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $getCategory;
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['topics']         = $this->model_topic->get_topics();
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['categoryUsers']  = $this->model_thread->get_category_users($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
