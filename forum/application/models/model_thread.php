@@ -77,6 +77,11 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
+    function get_close_threads($id){
+        $get    = $this->db->get_where('thread_members', array('user_id' => $id));
+        return $get->result();
+    }
+
     function get_all_drafts($id)
     {
         $items = array('threads.*', 'categories.category_name', 'topics.topic AS topic_name');

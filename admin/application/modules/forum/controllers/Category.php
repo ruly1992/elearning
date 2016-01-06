@@ -22,15 +22,26 @@ class Category extends Admin {
         } else {
             $name           = $this->input->post('name');
             $users          = $this->input->post('tenagaahli', []);
+            $same           = FALSE;
 
-            $category       = new Model\Forum\Category;
-            $category->name = $name;
-            $category->save();
+            $categories     = Model\Forum\Category::all();
+            foreach($categories as $cat){
+                if($cat->category_name == $name){
+                    $same   = TRUE;
+                }
+            }
+            if($same == FALSE){
+                $category       = new Model\Forum\Category;
+                $category->name = $name;
+                $category->save();
 
-            $category->users()->attach($users);
+                $category->users()->attach($users);
 
-            set_message_success('Kategori forum berhasil ditambahkan.');
-
+                set_message_success('Kategori forum berhasil ditambahkan.');
+            }else{
+                set_message_error('Kategori '.$name.' sudah ada.');
+            }
+            
             redirect('forum/category', 'refresh');
         }
     }

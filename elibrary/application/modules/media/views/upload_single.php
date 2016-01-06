@@ -13,7 +13,7 @@
                             <div class="description-meta-left">
                                 <div style="text-align:center;" class="img-thumbnail">
                                     <div class="preview-media" style="width:100%; height:auto; border-radius:10px;">
-                                        <?php echo $media[$i]->getPreview(150, 150) ?>
+                                        <?php echo $media[$i]->getPreview(200, 180) ?>
                                     </div>
                                     <span><?php echo $media[$i]->icon ?> <?php echo $media[$i]->type ?></span>
                                     <br>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="text-xs-center">
-                            <?php echo $media[$i]->getPreview(500, 500) ?>
+                            <?php echo $media[$i]->getPreview(500, 'auto') ?>
                         </div>
                     </div>
                     <div class="modal-footer">
