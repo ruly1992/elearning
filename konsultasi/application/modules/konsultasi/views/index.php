@@ -45,9 +45,9 @@
                 </div>
             </div>
             <?php if ($konsultasi->count()): ?>
-            <div class="content-konsultasi-table">
+            <div class="table-responsive">
                 <p><?php echo count($konsultasi) ?> Data ditemukan</p>
-                <table class="table table-striped table-responsive">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                           <th>#</th>
