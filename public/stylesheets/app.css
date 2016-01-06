@@ -2842,12 +2842,12 @@ footer {
           -o-transition: all 0.3s ease-in-out; }
         .favorit .widget-content .article .list-article a .list-numb {
           color: #d41d2a;
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 600;
           float: left;
           margin-left: 5px;
           margin-right: 10px;
-          line-height: 3; }
+          line-height: 2.5; }
         .favorit .widget-content .article .list-article a .list-title {
           line-height: normal;
           padding-top: 5px; }
