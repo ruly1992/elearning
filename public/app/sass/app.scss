@@ -303,8 +303,7 @@ header {
 			height: 60px;
 			@include border-radius(0);
 			background-color: $grey;
-			padding-top: $padding-top - 5px;
-			padding-bottom: $padding-bottom - 5px;
+			padding: $padding - 5px;
 			.navbar-brand {
 				margin-top: $margin-top + 7px;
 				margin-right: $margin-right + 20px;
@@ -3339,7 +3338,7 @@ footer {
 		height: 120px;
 		overflow: hidden;
 		img {
-			width: auto;
+			width: 260px;
 		}
 	}
 	.col-sm-8 {
@@ -3385,7 +3384,7 @@ footer {
 		height: 64px;
 		overflow: hidden;
 		img {
-			width: auto;
+			width: 133px;
 		}
 	}
 }

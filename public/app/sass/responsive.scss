@@ -102,6 +102,8 @@ $padding-left: 5px;
   }
   .nav{
     padding-top: $padding-top + 5px;
+    padding-right: $padding-right + 9px;
+    cursor: pointer;
   }
   .navbar-logo-mobile {
     margin-top: $padding-top + 2px;
@@ -121,7 +123,7 @@ $padding-left: 5px;
   }
   // Begin form login at mobile device
   .custom-login-mobile {
-    width: 288px;
+    width: 292px;
     height: auto;
     right: 0;
     left: auto;
@@ -439,10 +441,15 @@ $padding-left: 5px;
       }
     }
   }
-
+  
+  .nav {
+    padding-top: $padding-top + 5px;
+    padding-right: $padding-right + 9px;
+    cursor: pointer;
+  }
   //BEGIN CUSTOM LOGIN MOBILE
   .custom-login-mobile {
-    width: 328px;
+    width: 332px;
     height: auto;
     .menu-login {
       padding: 5px;

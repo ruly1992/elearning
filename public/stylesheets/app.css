@@ -225,8 +225,7 @@ header {
       -moz-border-radius: 0;
       -o-border-radius: 0;
       background-color: #f5f5f5;
-      padding-top: 0px;
-      padding-bottom: 0px; }
+      padding: 0px; }
       header #navbar-main .navbar .navbar-brand {
         margin-top: 12px;
         margin-right: 25px;
@@ -2762,7 +2761,7 @@ footer {
   height: 120px;
   overflow: hidden; }
   .news-latest .articles-box-img img {
-    width: auto; }
+    width: 260px; }
 .news-latest .col-sm-8 {
   padding-left: 0px; }
 
@@ -2789,7 +2788,7 @@ footer {
   height: 64px;
   overflow: hidden; }
   .news3 .box-articles-sm-img img {
-    width: auto; }
+    width: 133px; }
 
 .news4 .box-articles-widget-img {
   height: 80px;
