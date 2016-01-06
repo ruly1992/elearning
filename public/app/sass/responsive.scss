@@ -409,6 +409,17 @@ $padding-left: 5px;
       .single-article-meta {
         margin-top: $margin-top + 30px;
       }
+      .single-article-author {
+        .single-article-author-title {
+          text-align: center;
+          margin-top: $margin-top + 5px;
+        }
+        .single-article-author-role {
+          text-align: center;
+          margin-bottom: $margin-bottom;
+        }
+
+      }
     }
   }
   footer {

@@ -264,6 +264,12 @@
 
   .content-single article .single-article-meta {
     margin-top: 35px; }
+  .content-single article .single-article-author .single-article-author-title {
+    text-align: center;
+    margin-top: 10px; }
+  .content-single article .single-article-author .single-article-author-role {
+    text-align: center;
+    margin-bottom: 5px; }
 
   footer .footer-top {
     display: none; }
