@@ -118,7 +118,7 @@
                             </ul>
                             <!-- End : Login mobile -->
                             <div class="collapse navbar-toggleable-md" id="navbarCollapse">
-                                <a class="navbar-brand hidden-sm-down" href="<?php echo site_url() ?>" style="display: none">
+                                <a class="navbar-brand hidden-lg-down" href="<?php echo site_url() ?>" style="display: none">
                                     <img src="<?php echo config('site_logo', asset('images/logo.png')) ?>" alt="">
                                 </a>
                                 <ul class="nav navbar-nav">
