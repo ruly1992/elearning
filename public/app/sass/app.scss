@@ -301,7 +301,6 @@ header {
 	#navbar-main {
 		z-index: 99;
 		.navbar {
-			height: 60px;
 			@include border-radius(0);
 			background-color: $grey;
 			padding: $padding - 5px;
@@ -452,12 +451,13 @@ header {
 				padding: $padding + 10px;
 				@include transition(0.3s);
 				@include fonts('open_sansregular');
-				&:hover,
-				&:focus,
-				&:active {
+				&:hover {
 					background-color: $green;
 					color: $white;
 					@include transition(0.3s);
+				}
+				a {
+					text-decoration: none;
 				}
 			}
 		}

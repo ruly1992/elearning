@@ -103,6 +103,7 @@ $padding-left: 5px;
         background-color: #fff !important;
         padding-top: $padding-top + 8px;
         padding-bottom: $padding-bottom + 8px;
+        z-index: 999;
         .navbar-nav {
           li {
             flex-direction: row;
@@ -404,6 +405,73 @@ $padding-left: 5px;
       }
     }
   }
+  .content-dashboard {
+    .content-articles {
+      .articles-box {
+        background-color: #ddd;
+        padding-left: $padding-left + 25px;
+        padding-right: $padding-right + 25px;
+        padding-top: $padding-top + 15px;
+        padding-bottom: $padding-bottom + 15px;
+        .articles-box-title {
+          padding-bottom: $padding-bottom - 10px;
+          h3 {
+            line-height: 25px !important;
+            font-size: 18px;
+            a {
+              color: $black;
+            }
+          }
+        }
+        .articles-box-content {
+          display: none;
+        }
+        .articles-box-img {
+          display: none;
+        }
+      }
+    }
+    .content-dashboard-articles {
+      .content-dashboard-articles-heading {
+        h3 {
+          color: #FFF;
+          font-size: 14px;
+          font-weight: 200;
+          font-family: "open_sansbold",sans-serif;
+          text-transform: uppercase;
+          padding: 10px 15px 8px;
+          margin-bottom: 0px;
+          display: inline-block;
+          border-bottom: 3px solid #1C9C57;
+          background-color: #1C9C57;
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+          width: 290px;
+          text-align: center;
+        }
+      }
+      .content-dashboard-articles-main {
+        .box-dashboard-articles {
+          .box-dashboard-articles-meta {
+            padding-left: $padding-left + 11px;
+          }
+          .box-dashboard-articles-title {
+            padding-left: $padding-left + 11px;
+          }
+          .box-dashboard-articles-img {
+            height: 160px;
+            width: 290px;
+            overflow: hidden;
+            @include border-radius(4);
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
   .content-single {
     article {
       .single-article-meta {
@@ -485,6 +553,7 @@ $padding-left: 5px;
         background-color: #fff !important;
         padding-top: $padding-top + 8px;
         padding-bottom: $padding-bottom + 8px;
+        z-index: 999;
         .navbar-nav {
           li {
             flex-direction: row;
@@ -510,8 +579,7 @@ $padding-left: 5px;
         border-radius: 100%;
       }
     }
-  }
-  
+  }  
   .nav {
     padding-top: $padding-top + 5px;
     padding-right: $padding-right + 9px;
@@ -788,6 +856,73 @@ $padding-left: 5px;
             line-height: 20px;
             a {
               font-size: 16px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .content-dashboard {
+    .content-articles {
+      .articles-box {
+        background-color: #ddd;
+        padding-left: $padding-left + 25px;
+        padding-right: $padding-right + 25px;
+        padding-top: $padding-top + 15px;
+        padding-bottom: $padding-bottom + 15px;
+        .articles-box-title {
+          padding-bottom: $padding-bottom - 10px;
+          h3 {
+            line-height: 25px !important;
+            font-size: 18px;
+            a {
+              color: $black;
+            }
+          }
+        }
+        .articles-box-content {
+          display: none;
+        }
+        .articles-box-img {
+          display: none;
+        }
+      }
+    }
+    .content-dashboard-articles {
+      .content-dashboard-articles-heading {
+        h3 {
+          color: #FFF;
+          font-size: 14px;
+          font-weight: 200;
+          font-family: "open_sansbold",sans-serif;
+          text-transform: uppercase;
+          padding: 10px 15px 8px;
+          margin-bottom: 0px;
+          display: inline-block;
+          border-bottom: 3px solid #1C9C57;
+          background-color: #1C9C57;
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+          width: 330px;
+          text-align: center;
+        }
+      }
+      .content-dashboard-articles-main {
+        .box-dashboard-articles {
+          .box-dashboard-articles-meta {
+            padding-left: $padding-left + 11px;
+          }
+          .box-dashboard-articles-title {
+            padding-left: $padding-left + 11px;
+          }
+          .box-dashboard-articles-img {
+            height: 180px;
+            width: 330px;
+            overflow: hidden;
+            @include border-radius(4);
+            img {
+              width: 100%;
+              height: 100%;
             }
           }
         }
@@ -1081,6 +1216,70 @@ $padding-left: 5px;
     }
   }
   //END CONTENT
+  // BEGIN CONTENT DASHBOARD 
+  .content-dashboard {
+    .content-articles {
+      .articles-box {
+        .articles-box-meta {
+          margin-top: $margin-top;
+          ul {
+            li {
+              display: inline-block;
+              font-size: 12px;
+              margin-right: 5px;
+            }
+          }
+        }
+        .articles-box-title {
+          padding-bottom: $padding-bottom - 10px;
+          h3 {
+            line-height: 15px !important;
+            font-size: 14px;
+            a {
+              color: $black;
+            }
+          }
+        }
+        .articles-box-content {
+          display: none;
+        }
+        .articles-box-img {
+          height: 68px;
+          width: 105px;
+          overflow: hidden;
+        }
+      }
+    }
+    .content-dashboard-articles {
+      .content-dashboard-articles-main {
+        .box-dashboard-articles {
+          .box-dashboard-articles-meta {
+            ul {
+              li {
+                font-size: 10px;
+              }
+            }
+          }
+          .box-dashboard-articles-title {
+            h4 {
+              font-size: 12px;
+            }
+          }
+          .box-dashboard-articles-img {
+            height: 68px;
+            width: 105px;
+            overflow: hidden;
+            @include border-radius(4);
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+  // END CONTENT DASHBOARD
 
   //BEGIN FOOTER
   footer {
