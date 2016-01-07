@@ -56,6 +56,15 @@ class Media
         return $categories->paginate($perPage);
     }
 
+    public function getCategoryByUser($user_id, $perPage = 15, $orderBy = 'created_at', $orderMode = 'desc')
+    {
+        $categories = $this->category->orderBy($orderBy, $orderMode)
+                                    ->join('category_user', 'categories.id', '=', 'category_user.category_id')
+                                    ->where('category_user.user_id', $user_id);
+
+        return $categories->paginate($perPage);
+    }
+
     public function getCategoryById($category_id)
     {
         $this->setCategory($category_id);
