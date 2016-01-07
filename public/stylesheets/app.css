@@ -3725,4 +3725,20 @@ Create: Singgih Saputro */
     margin-top: 7px;
     margin-right: -6px; }
 
+/* Dashboard Admin
+Create: Singgih Saputro */
+.btn-info,
+.btn-delete {
+  font-size: 10px;
+  border: medium none;
+  padding: 3px 6px;
+  text-shadow: none; }
+
+.btn-small {
+  font-size: 10px;
+  border: medium none;
+  padding: 3px 6px;
+  text-shadow: none;
+  font-weight: 600; }
+
 /*# sourceMappingURL=app.css.map */
