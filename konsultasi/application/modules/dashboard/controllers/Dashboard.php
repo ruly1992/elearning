@@ -43,7 +43,7 @@ class Dashboard extends CI_Controller
         } else {
             $config['upload_path']      = PATH_KONSULTASI_ATTACHMENT;
             $config['allowed_types']    = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt|ppt|pptx';
-            $config['max_size']         = '5000';
+            $config['max_size']         = '10000';
 
             $this->load->library('upload', $config);
 
