@@ -135,7 +135,7 @@
                                         <div class="row">
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <label for="">Attachments</label>
-                                                <input type="file" name="files" id="filer_input">
+                                                <input type="file" name="files" id="filer_konsultasi">
                                                 <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt) </small>
                                             </div>
                                         </div>

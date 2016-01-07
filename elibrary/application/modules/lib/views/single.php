@@ -95,8 +95,7 @@
         </div>
         <div class="modal-body">
             <div class="text-xs-center">
-                <!-- <img src="../images/kelas_online/thumbnails-lg.jpg" alt="Responsive image" class="img-fluid"> -->
-                <?php echo $media->getPreview() ?>
+                <?php echo $media->getPreview(500, 'auto') ?>
             </div>
         </div>
         <div class="modal-footer">

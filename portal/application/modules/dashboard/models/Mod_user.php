@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 use Intervention\Image\ImageManager;
+use Hashids\Hashids;
 
 class Mod_user extends CI_Model {
 
@@ -37,20 +38,26 @@ class Mod_user extends CI_Model {
 	}
 
 	public function setAvatar($user_id, $avatar)
-	{		
-        $source     = $avatar['tmp_name'];
-        $filename   = $avatar['name'];
+	{
+		$hashids	= new Hashids('amtek123456');
+        $source     = $avatar;
+        $filename   = 'avatar_u' . $hashids->encode($user_id);
 
         $manager    = new ImageManager;
-        $upload_dir = BASEPATH . '../assets/upload/avatar/';
+        $upload_dir = PATH_AVATAR;
         $image      = $manager->make($source);
 
-        $image->save($upload_dir . $filename, 90);
+        $image->save($upload_dir . '/' . $filename, 90);
 
         $data['avatar'] = $filename;
 
         $this->db->where('user_id', $user_id);
         $this->db->update('profile', $data);
+	}
+
+	public function removeAvatar($user_id)
+	{
+		
 	}
 
 	public function changePassword($user_id, $new_password, $old_password)

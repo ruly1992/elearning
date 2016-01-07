@@ -97,29 +97,43 @@
                                                                                             <td align="center" width="80px">   
                                                                                                 <?php 
                                                                                                         echo anchor('draft/approve/'.$thr->id, 'Approve', 'class="btn btn-primary btn-thread"');
-                                                                                                        echo anchor('draft/edit/'.$thr->id, '<i class="fa fa-pencil-square-o"></i>', 'class="btn btn-primary-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Edit"');
-                                                                                                        echo anchor('draft/delete/'.$thr->id, '<i class="fa fa-trash-o"></i>', 'class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"');
+                                                                                                        echo anchor('draft/edit/'.$thr->id, '<i class="fa fa-pencil-square-o"></i>', 'class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"');
                                                                                                 ?>
+                                                                                                <a href="#" class="btn btn-danger btn-konsul"  data-toggle="modal" data-target=".confirm<?php echo $thr->id ?>" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
                                                                                             </td>
                                                                                         </tr>
                                                                         <?php
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            if($isThread == false){
-                                                                        ?>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <div class="thread-list-title">
-                                                                                            <h4>Belum ada thread</h4>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                        <?php
-                                                                            }
                                                                         ?>
                                                                     </tbody>
                                                                 </table>
+
+                                                                <!-- Start:modal preview -->
+                                                                <div class="modal fade confirm<?php echo $thr->id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                                  <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                              <span aria-hidden="true">×</span>
+                                                                            </button>
+                                                                            <h4 class="modal-title" id="myLargeModalLabel">Konfirmasi</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="text-xs-center">
+                                                                                <h5>Apakah anda akan menghapus topic <?php echo $thr->title ?> ?</h5>
+                                                                                <?php echo anchor('draft/delete/'.$thr->id,'Ya','class="btn btn-danger btn-sm" title="Delete"'); ?>
+                                                                                <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Tidak</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                        </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <!-- End:modal preview -->
+
                                                 <?php
                                                             }
                                                         }
@@ -142,47 +156,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="sidebar-forum">
-
-                            <div class="widget">
-                                <div class="widget-categories">
-                                    <div class="widget-categories-heading">
-                                        <h4>Categories</h4>
-                                    </div>
-                                    <div class="widget-categories-content">
-                                        <div class="list-group">
-                                            <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('draft/', '<span class="label label-default label-pill pull-right"> '.count($draftSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
-                                            <?php 
-                                                foreach($categoriesSide as $c){
-                                                    if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('draft/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadsAD($draftSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
-                                                }
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="widget">
-                                <div class="widget-categories">
-                                    <div class="widget-categories-heading">
-                                        <h4>Threads</h4>
-                                    </div>
-                                    <div class="widget-categories-content">
-                                        <div class="list-group">
-                                            <?php 
-                                                if(isset($tenagaAhli)){ 
-                                                    if(isset($draftThreads)){$active='active';}else{$active='';}
-                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item '.$active.'"');
-                                                }
-                                            ?>
-                                            <?php 
-                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item"');
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php $this->load->view('template/sidebar'); ?>
                         </div>
                     </div>
                 </div>

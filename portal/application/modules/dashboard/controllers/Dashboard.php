@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 use Symfony\Component\HttpFoundation\Request;
-
 use Nurmanhabib\WilayahIndonesia\Sources\DatabaseSource;
 
 class Dashboard extends Admin {
@@ -190,25 +189,22 @@ class Dashboard extends Admin {
         $id     = auth()->getUser()->id;
         $source = $this->wilayah->getSource();
 
-        $user               = sentinel()->findById($id);
+        $user               = sentinel()->getUser();
         $user->wilayah      = $source->getParentByDesa($user->profile->desa_id);
         
         $data['user']       = $user;
         $data['profile']    = $user->profile;
 
         $this->template->set('sidebar');
-        $this->template->set_layout('privatepage');  
+        $this->template->set_layout('privatepage');
         $this->template->inject_partial('script', $this->wilayah->script(site_url('user/wilayah')));
-        $this->template->build('profile',$data);
+        $this->template->build('profile', $data);
     }
 
     public function update()
     {
-        $id     = auth()->getUser()->id;        
-        $user       = array(
-            'email' => $this->input->post('email')
-        );
-        
+        $id         = auth()->getUser()->id;        
+        $user       = array('email' => $this->input->post('email'));        
         $profile    = array(
             'first_name'         => set_value('first_name'),
             'last_name'          => set_value('last_name'),
@@ -217,22 +213,20 @@ class Dashboard extends Admin {
             'tanggal_lahir'      => set_value('tanggal_lahir'),
             'address'            => set_value('address'),
             'desa_id'            => set_value('desa'),
-            'avatar'             => set_value('avatar'),
         );
 
         $res = $this->model->update($id, $user, $profile);
 
-        // if (isset($_FILES['avatar']) && $_FILES['avatar']['tmp_name']) {
-        //     $this->model->setAvatar($id, $_FILES['avatar']);
-        //     $profile['avatar'] = $_FILES['avatar']['file_name'];
-        // }        
+        $action = $this->input->post('avatar[action]');
+        $avatar = $this->input->post('avatar[src]');
 
-        if (isset($_FILES['avatar']) && $_FILES['avatar']['tmp_name']) {
-            $this->model->setAvatar($id, $_FILES['avatar']);
+        if ($action === 'upload') {
+            $this->model->setAvatar($id, $avatar);
+        } elseif ($action === 'remove') {
+            $this->model->removeAvatar($id);
         }
 
-
-        if ($res==TRUE) {
+        if ($res) {
             set_message_success('User berhasil diperbarui.');
 
             redirect('dashboard/profile');
@@ -251,7 +245,9 @@ class Dashboard extends Admin {
         $this->form_validation->set_rules('password_old', 'Old Password', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['user'] = auth()->getById($user_id);
+            $data['user'] = auth()->findById($user_id);
+
+            keepValidationErrors();
             
             $this->template->set('sidebar');
             $this->template->set_layout('privatepage');  

@@ -114,6 +114,12 @@ class Mod_kons_kategori extends CI_Model {
 		return $get;
 	}
 
+	public function getPengampu()
+	{
+		$query = $this->db->get('konsultasi_user_has_kategori');
+		return $query->result();
+	}
+
 	public function addPengampu($data=NULL)
 	{
         $this->db->insert('konsultasi_user_has_kategori', $data);

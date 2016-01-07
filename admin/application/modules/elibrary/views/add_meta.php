@@ -21,7 +21,7 @@
                             </div>
                             <div class="description-meta-button">
                                 <a href="<?php echo $media[$i]->getLinkDownload() ?>" class="btn btn-sm btn-block btn-download"><i class="fa fa-download"></i> Download</a>
-                                <a href="<?php echo $media[$i]->getLinkPreview() ?>" class="btn btn-sm btn-block btn-preview"><i class="fa fa-eye"></i> Preview</a>
+                                <a class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#myModal-1<?php echo $i ?>"><i class="fa fa-eye"></i> Preview</a>
                             </div>
                         </div>
                     </div>
@@ -81,11 +81,26 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal-1<?php echo $i ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Preview Media</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-xs-center">
+                        <?php echo $media[$i]->getPreview(500, 'auto') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php 
         }
     }
 ?>
-    
 <?php echo form_close(); ?>
 
 <?php custom_stylesheet() ?>
@@ -156,4 +171,7 @@
                 })
         </script>
     <?php } ?>
+    
+    <script src="<?php echo asset('admin/plugins/modal/js/jquery.modalEffects.js') ?>"></script>
+    <script src="<?php echo asset('admin/js/pages/ui-modals.js') ?>"></script>
 <?php endcustom_script() ?>

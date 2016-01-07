@@ -5,7 +5,7 @@ class Model_topic extends CI_Model
     function save($data)
     {
         $this->db->insert('topics',$data);
-        if($this->db->affected_rows() == '1'){
+        if($this->db->affected_rows() == 1){
           return TRUE;
         } else {
           return FALSE;
@@ -15,7 +15,7 @@ class Model_topic extends CI_Model
     function delete($id)
     {
         $delete = $this->db->delete('topics',array('id'=>$id));
-        if($this->db->affected_rows() == '1'){
+        if($this->db->affected_rows() == 1){
             return TRUE;
         }else{
             return FALSE;
@@ -27,7 +27,7 @@ class Model_topic extends CI_Model
         $where="id = '".$id."'"; 
         $update = $this->db->update('topics', $data, $where); 
         
-        if($this->db->affected_rows() == '1'){
+        if($this->db->affected_rows() == 1){
             return TRUE;
         }
         return FALSE;
@@ -113,7 +113,7 @@ class Model_topic extends CI_Model
     function approve_topic($id, $data)
     {
         $approve = $this->db->update('topics', $data, array('id'=>$id));
-        if($this->db->affected_rows() == '1'){
+        if($this->db->affected_rows() == 1){
             return TRUE;
         }else{
             return FALSE;

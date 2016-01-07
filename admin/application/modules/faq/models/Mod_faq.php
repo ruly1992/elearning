@@ -13,6 +13,7 @@ class Mod_faq extends CI_Model
 
 	public function getAll()
 	{
+        $this->db->order_by('created_at', 'desc');
 		$query = $this->db->get('faq');
 
 		return $query->result();
