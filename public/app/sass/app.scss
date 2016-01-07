@@ -2148,8 +2148,11 @@ header {
 						padding-right: 5px;
 						.box-komentar-widget-img {
 							text-align: center;
+							width: 55px;
+							height: 55px;
 							img {
-								width: 45px;
+								width: 100%;
+								height: 100%;
 								border: 4px solid $grey;
 								border-radius: 100%;
 							}
@@ -2266,10 +2269,12 @@ header {
 				}
 				.box-dashboard-articles-img {
 					height: 80px;
+					width: 135px;
 					overflow: hidden;
 					@include border-radius(4px);
 					img {
-						width: auto;
+						width: 100%;
+						height: 100%;
 					}
 				}
 				.box-dashboard-articles-meta {
@@ -2511,11 +2516,13 @@ header {
 				padding-left: $padding-left - 5px;
 			}
 			.articles-box-img {
-				height: 120px;
+				height: 95px;
+				width: 140px;
 				@include border-radius(4px);
 				overflow: hidden;
 				img {
-					width: auto;
+					width: 100%;
+					height: 100%;
 				}
 			}
 			.articles-box-meta {
@@ -3487,6 +3494,7 @@ footer {
 		img {
 			margin-top: $margin-top + 5px;
 			width: 35px;
+			height: 35px;
 			@include border-radius(100%);
 		}
 	}
