@@ -93,58 +93,22 @@
                                             ?>
                                             </tbody>
                                         </table>
-                                        <nav>
-                                            <ul class="pager">
-                                                <?php echo $topics->render() ?>
-                                            </ul>
-                                        </nav>
+
                                     </div>
                                 </div>
                             </div>
+                            
+                                <div class="forum-pagination">
+                                    <nav>
+                                        <?php echo $topics->render() ?>
+                                    </nav>
+                                </div>
                         </div>
                         <!-- end:content main -->
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="sidebar-forum">
-                            <div class="widget">
-                                <div class="widget-categories">
-                                    <div class="widget-categories-heading">
-                                        <h4>Categories</h4>
-                                    </div>
-                                    <div class="widget-categories-content">
-                                        <div class="list-group">
-                                            <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.countThreads($threadSide, $closeThreads).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
-                                            <?php 
-                                                foreach($categoriesSide as $c){
-                                                    if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategory($threadSide, $c->id, $closeThreads).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
-                                                }
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="widget">
-                                <div class="widget-categories">
-                                    <div class="widget-categories-heading">
-                                        <h4>Threads</h4>
-                                    </div>
-                                    <div class="widget-categories-content">
-                                        <div class="list-group">
-                                            <?php 
-                                                if(isset($tenagaAhli)){ 
-                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
-                                                }
-                                            ?>
-                                            <?php 
-                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item"');
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php $this->load->view('template/sidebar'); ?>
                         </div>
                     </div>
                 </div>

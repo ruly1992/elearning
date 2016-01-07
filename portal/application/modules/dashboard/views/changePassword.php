@@ -1,13 +1,12 @@
-<?php 
-echo form_open('dashboard/changepassword/'.$user->id);
-?>
+<?php echo form_open('dashboard/changepassword'); ?>
+<?php echo show_message() ?>
 <div class="row">
     <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2><strong>Change Password</strong></h2>
+        <div class="card">
+            <div class="card-header">
+                Change Password
             </div>
-            <div class="panel-body">
+            <div class="card-block">
                 <div class="form-group">
                     <label>New Password</label>
                     <?php echo form_password('password', '', array('class' => 'form-control', 'placeholder' => 'New Password')); ?>
@@ -21,8 +20,9 @@ echo form_open('dashboard/changepassword/'.$user->id);
                     <?php echo form_password('password_old', '', array('class' => 'form-control', 'placeholder' => 'Old Password')); ?>
                 </div>
             </div>
-            <div class="panel-footer">
-                <?php echo button_save('Change Password') ?>
+            <div class="card-footer">
+                <?php echo button_save('Save a new password') ?>
+                <a href="<?php echo site_url('dashboard/profile') ?>" class="btn btn-warning">Cancel</a>
             </div>
         </div>
     </div>
