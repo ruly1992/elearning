@@ -147,6 +147,9 @@ $(document).ready(function () {
                 onOffsetChange: function (offset) {
                     var imageData = $cropitEl.cropit('export');
                     that.imageSrc = imageData;
+                },
+                onImageError: function (error, code, message) {
+                    alert('Error: ' + error.message)
                 }
             })
         }
