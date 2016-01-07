@@ -34,7 +34,7 @@ class Mod_konsultasi extends CI_Model {
 	public function readKonsultasi()
 	{
 		$this->db->from('konsultasi');
-		$this->db->order_by('id');
+		$this->db->order_by('created_at', 'DESC');
 		$query = $this->db->get();
 
 		return $query->result();
