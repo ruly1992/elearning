@@ -8,6 +8,11 @@
     <div class="single-article-title">
         <h1><?php echo $article->title ?></h1>
     </div>
+    <ol class="breadcrumb" style="margin-bottom: 5px;">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+    </ol>
     <div class="single-article-share col-md-4 col-md-offset-8">
         <div class="row">
             <ul class="rrssb-buttons">
@@ -137,7 +142,7 @@
 <!-- start:section content main articles -->
 <section class="content-articles">
     <div class="content-articles-heading">
-        <h3><?php echo $relevance_title ?></h3>
+        <h3>artikel terkait</h3>
     </div>
     <div class="content-articles-main news3">
             <div class="row">

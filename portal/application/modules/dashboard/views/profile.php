@@ -12,20 +12,20 @@
             <div class="panel-body">  
                 <div class="text-center">
                     <div class="panel-body">
-                    <div class="avatar thumbnail" style="max-width: 200px;">
-                        <?php if (auth()->getUser()->profile->avatar): ?>
-                            <img class="featured-preview" src="<?php echo base_url("portal/assets/upload/avatar/")."/".auth()->getUser()->profile->avatar ?>" width="100%">
-                            <img class="featured-preview-default" src="<?php echo asset('images/default_avatar_male.jpg') ?>" style="display: none;">
-                        <?php else: ?>
-                            <img class="featured-preview" src="" width="100%" style="display: none;">
-                            <img class="featured-preview-default" src="<?php echo asset('images/default_avatar_male.jpg') ?>">
-                        <?php endif ?>
-                        <input type="hidden" name="avatar" value="<?php echo auth()->getUser()->profile->avatar ?>">
-                    </div> 
-                </div>
-                <div class="form-group">
-                    <input type="file" name="avatar" value=""></input>
-                </div>
+                        <div class="avatar thumbnail" style="max-width: 200px;">
+                            <?php if (auth()->getUser()->profile->avatar): ?>
+                                <img class="featured-preview" src="<?php echo base_url("public/user/avatar/")."/".auth()->getUser()->profile->avatar ?>" width="100%" id="featured">
+                                <img class="featured-preview-default" src="<?php echo asset('images/default_avatar_male.jpg') ?>" style="display: none;">
+                            <?php else: ?>
+                                <img class="featured-preview" src="<?php echo asset('images/default_avatar_male.jpg') ?>" width="100%" id="featured">
+                            <?php endif ?>
+                            <input type="hidden" name="avatar" value="<?php echo auth()->getUser()->profile->avatar ?>">
+                        </div> 
+                    </div>
+                    <div class="form-group">
+                        <br/>
+                        <input type="file" name="avatar" value="" id="preview">
+                    </div>
                 </div>                
                 <div class="form-group">
                     <label for="email">Username</label>
@@ -114,3 +114,23 @@
 </div>
 <br>
 <?php echo form_close();?>
+
+<?php custom_script() ?>
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    $('#featured').attr('src', e.target.result);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        $("#preview").change(function(){
+            readURL(this);
+        });
+    </script>
+<?php endcustom_script() ?>
