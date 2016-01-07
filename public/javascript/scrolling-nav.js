@@ -10,13 +10,6 @@ $(document).ready(function () {
 	        $("#navbar-main").find('.header-top-right').hide();
 	    }
 	});
-	$(window).scroll(function() {
-		if ($("#favorit").offset().top > 630) {
-			$("#favorit").addClass("fixed-favorit");
-		} else {
-			$("#favorit").removeClass("fixed-favorit");
-		}
-	});
 });
 
 
