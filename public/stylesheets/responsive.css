@@ -56,13 +56,13 @@
     header .navbar-logo-mobile img {
       width: 170px; }
   header .custom-login-mobile {
-    width: 292px;
     height: auto;
     right: 0;
     left: auto; }
     header .custom-login-mobile .menu-login {
-      padding: 5px;
-      padding: 20px; }
+      padding: 20px;
+      margin-right: -12px;
+      margin-left: 2px; }
       header .custom-login-mobile .menu-login .form-login {
         border-bottom: 1px solid #dddddd;
         margin-bottom: 12px; }
@@ -336,11 +336,11 @@
     cursor: pointer; }
 
   .custom-login-mobile {
-    width: 332px;
     height: auto; }
     .custom-login-mobile .menu-login {
-      padding: 5px;
-      padding: 20px; }
+      padding: 20px;
+      margin-right: -12px;
+      margin-left: 2px; }
       .custom-login-mobile .menu-login .form-login {
         border-bottom: 1px solid #dddddd;
         margin-bottom: 12px; }
@@ -573,10 +573,8 @@
     float: left; }
 
   .custom-login-mobile {
-    width: 255px;
     height: auto; }
     .custom-login-mobile .menu-login {
-      padding: 5px;
       padding: 20px; }
       .custom-login-mobile .menu-login .form-login {
         border-bottom: 1px solid #dddddd;

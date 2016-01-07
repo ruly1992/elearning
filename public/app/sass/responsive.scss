@@ -119,17 +119,17 @@ $padding-left: 5px;
       }
     }
     .custom-login-mobile {
-      width: 292px;
       height: auto;
       right: 0;
       left: auto;
       .menu-login {
-        padding: 5px;
+        padding: $padding + 15px;
+        margin-right: $margin-right - 17px;
+        margin-left: $margin-left - 3px;
         .form-login {
           border-bottom: 1px solid $grey-black;
           margin-bottom: $margin-bottom + 7px;
         }
-        padding: $padding + 15px;
         > p {
           font-size: 12px;
           line-height: normal;
@@ -519,15 +519,15 @@ $padding-left: 5px;
   }
   //BEGIN CUSTOM LOGIN MOBILE
   .custom-login-mobile {
-    width: 332px;
     height: auto;
     .menu-login {
-      padding: 5px;
+      padding: $padding + 15px;
+      margin-right: $margin-right - 17px;
+      margin-left: $margin-left - 3px;
       .form-login {
         border-bottom: 1px solid $grey-black;
         margin-bottom: $margin-bottom + 7px;
       }
-      padding: $padding + 15px;
       > p {
         font-size: 12px;
         line-height: normal;
@@ -853,15 +853,13 @@ $padding-left: 5px;
   
    //BEGIN CUSTOM LOGIN MOBILE
   .custom-login-mobile {
-    width: 255px;
     height: auto;
     .menu-login {
-      padding: 5px;
+      padding: $padding + 15px;
       .form-login {
         border-bottom: 1px solid $grey-black;
         margin-bottom: $margin-bottom + 7px;
       }
-      padding: $padding + 15px;
       > p {
         font-size: 12px;
         line-height: normal;
