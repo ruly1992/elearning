@@ -12,6 +12,10 @@ class Dashboard extends CI_Controller
         if(!sentinel()->check()) {
             redirect(login_url());
         }
+
+        if(!sentinel()->inRole('ta')){
+            redirect();
+        }
     }
 
     public function index(){
