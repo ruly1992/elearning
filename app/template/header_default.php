@@ -92,7 +92,7 @@
                             </a>
                             <!-- Begin : Trigger navbarCollapselogin -->
                             <button class="navbar-toggler hidden-lg-up pull-right" type="button" data-toggle="collapse" data-target="#navbarCollapselogin">
-                                <i class="fa fa-key"></i>
+                                <i class="fa fa-sign-in"></i>
                             </button>
                             <!-- End : Trigger navbarCollapselogin -->
                             <!-- Begin : Content navbarCollapse -->

@@ -219,7 +219,6 @@ header {
   header #navbar-main {
     z-index: 99; }
     header #navbar-main .navbar {
-      height: 60px;
       border-radius: 0;
       -webkit-border-radius: 0;
       -moz-border-radius: 0;
@@ -358,13 +357,15 @@ header {
       -moz-transition: all 0.3s ease-in-out;
       -o-transition: all 0.3s ease-in-out;
       font-family: "open_sansregular", sans-serif; }
-      header .dropdown:hover .dropdown-navbar li:hover, header .dropdown:hover .dropdown-navbar li:focus, header .dropdown:hover .dropdown-navbar li:active {
+      header .dropdown:hover .dropdown-navbar li:hover {
         background-color: #1c9c57;
         color: #fff;
         transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out; }
+      header .dropdown:hover .dropdown-navbar li a {
+        text-decoration: none; }
   header .dropdown-menu a {
     font-size: 14px;
     color: #37474f;
@@ -2316,6 +2317,24 @@ header {
         font-size: 11px; }
         .content-dashboard .content-sidebar .widget .widget-content .box-komentar-widget .box-komentar-widget-content a {
           color: #1c9c57; }
+  .content-dashboard .content-list-categories .list-title {
+    width: 120px;
+    height: 25px;
+    border-bottom: 2px solid #263238; }
+    .content-dashboard .content-list-categories .list-title h3 {
+      font-size: 14px;
+      text-transform: uppercase; }
+  .content-dashboard .content-list-categories .list-categories {
+    margin-top: 10px; }
+    .content-dashboard .content-list-categories .list-categories .nav-item .nav-link {
+      text-transform: none;
+      line-height: 1.5; }
+    .content-dashboard .content-list-categories .list-categories .nav-item a {
+      color: #000;
+      font-size: 14px; }
+      .content-dashboard .content-list-categories .list-categories .nav-item a:hover {
+        color: #1c9c57;
+        font-size: 14px; }
 
 /* CONTENT SINGLE */
 .content-single {
