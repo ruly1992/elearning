@@ -1109,6 +1109,12 @@ header {
       -o-transition: all 0.3s ease-in-out;
       background-color: #dddddd;
       color: #263238; }
+  .content-konsultasi .content-konsultasi-heading .content-konsultasi-heading-left {
+    margin-bottom: 10px; }
+    .content-konsultasi .content-konsultasi-heading .content-konsultasi-heading-left .form-control {
+      height: 34px; }
+  .content-konsultasi .content-konsultasi-heading .content-konsultasi-heading-right {
+    margin-bottom: -5px; }
 .content-konsultasi .content-konsultasi-table a {
   color: #1c9c57; }
 .content-konsultasi .content-konsultasi-table p {
