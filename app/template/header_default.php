@@ -32,11 +32,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="header-top-left">
-                                <ul>
-                                    <li><i class="fa fa-clock"></i><?php echo Carbon\Carbon::today()->format('d F Y') ?></li>
-                                    <li><a href="mailto:<?php echo config('email', 'support@desamembangun.go.id') ?>"><i class="fa fa-envelope"></i> <?php echo config('email', 'support@desamembangun.go.id') ?></a></li>
-                                </ul>
+                            <div class="row">
+                                <div class="header-top-left">
+                                    <ul>
+                                        <li><i class="fa fa-clock"></i><?php echo Carbon\Carbon::today()->format('d F Y') ?></li>
+                                        <li><a href="mailto:<?php echo config('email', 'support@desamembangun.go.id') ?>"><i class="fa fa-envelope"></i> <?php echo config('email', 'support@desamembangun.go.id') ?></a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -50,10 +52,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="header-top-left">
-                                <a class="navbar-brand hidden-lg-down" href="<?php echo site_url() ?>">
-                                    <img src="<?php echo config('site_logo', asset('images/logo.png')) ?>" alt="">
-                                </a>
+                            <div class="row">
+                                <div class="header-top-left">
+                                    <a class="navbar-brand hidden-lg-down" href="<?php echo site_url() ?>">
+                                        <img src="<?php echo config('site_logo', asset('images/logo.png')) ?>" alt="">
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -78,45 +82,20 @@
                 <nav class="navbar navbar-light">
                     <div class="container">
                         <div class="row">
+                            <!-- Begin : Trigger navbarCollapse -->
                             <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarCollapse">
                                 <!-- &#9776; --> <i class="fa fa-bars"></i>
                             </button>
+                            <!-- End : Trigger navbarCollapse-->
                             <a class="navbar-logo-mobile navbar-logo-tablet hidden-lg-up" href="<?php echo site_url() ?>">
                                 <img src="<?php echo config('site_logo', asset('images/logo.png')) ?>" alt="">
                             </a>
-                            <!-- Begin : Login mobile -->
-                            <ul class="nav navbar-nav hidden-lg-up pull-right">
-                                <div class="dropdown dropdown-people">
-                                    <a type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-key"></i>
-                                    </a>
-                                    <div class="dropdown-menu custom-float custom-login-mobile" aria-labelledby="dropdownMenu2">
-                                        <div class="menu-login">
-                                            <p>Silahkan masukkan username dan password untuk Login.</p>
-                                            <form class="form-login" method="POST" action="<?php echo login_url() ?>">
-                                                <div class="form-group">
-                                                    <input type="text" name="email" class="form-control" placeholder="Username / Email">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="password" name="password" class="form-control" placeholder="Password">
-                                                </div>
-                                                <label class="c-input c-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="c-indicator"></span>
-                                                    Remember me
-                                                </label>
-                                                <div class="form-group">
-                                                    <button  class="btn btn-sm btn-login btn-block">LOGIN</button>
-                                                </div>
-                                                <div class="form group">
-                                                    <label for=""><a href="#">Lupa password?</a></label>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ul>
-                            <!-- End : Login mobile -->
+                            <!-- Begin : Trigger navbarCollapselogin -->
+                            <button class="navbar-toggler hidden-lg-up pull-right" type="button" data-toggle="collapse" data-target="#navbarCollapselogin">
+                                <i class="fa fa-key"></i>
+                            </button>
+                            <!-- End : Trigger navbarCollapselogin -->
+                            <!-- Begin : Content navbarCollapse -->
                             <div class="collapse navbar-toggleable-md" id="navbarCollapse">
                                 <a class="navbar-brand hidden-lg-down" href="<?php echo site_url() ?>" style="display: none">
                                     <img src="<?php echo config('site_logo', asset('images/logo.png')) ?>" alt="">
@@ -144,7 +123,38 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>    
+                            </div> 
+                            <!-- End : Content navbarCollapse -->
+                            <!-- Begin : Content navbarCollapselogin -->
+                            <div class="collapse navbar-toggleable-md" id="navbarCollapselogin">
+                                <ul class="nav navbar-nav custom-login-mobile">
+                                    <li class="nav-item">
+                                        <div class="menu-login hidden-lg-up">
+                                            <p>Silahkan masukkan username dan password untuk Login.</p>
+                                            <form class="form-login" method="POST" action="<?php echo login_url() ?>">
+                                                <div class="form-group">
+                                                    <input type="text" name="email" class="form-control" placeholder="Username / Email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="password" class="form-control" placeholder="Password">
+                                                </div>
+                                                <label class="c-input c-checkbox">
+                                                    <input type="checkbox">
+                                                    <span class="c-indicator"></span>
+                                                    Remember me
+                                                </label>
+                                                <div class="form-group">
+                                                    <button  class="btn btn-sm btn-login btn-block">LOGIN</button>
+                                                </div>
+                                                <div class="form group">
+                                                    <label for=""><a href="#">Lupa password?</a></label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>  
+                            <!-- End : Content navbarCollapselogin -->
                         </div>
                     </div>
                 </nav>
