@@ -96,12 +96,28 @@ class Topic extends CI_Controller
 
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
-        $this->form_validation->set_rules('desa','Daerah','required');
 
         if($this->form_validation->run()==TRUE){
             $category           = set_value('kategori'); 
             $getUsersCategory   = $this->model_topic->get_userID_by_category($category);
             $user               = sentinel()->getUser();
+
+            $provinsi           = $this->input->post('provinsi');
+            $kota               = $this->input->post('kota');
+            $kecamatan          = $this->input->post('kecamatan');
+            $desa               = $this->input->post('kecamatan');
+
+            if($desa != ''){
+                $daerah     = $desa;
+            }elseif($kecamatan != ''){
+                $daerah     = $kecamatan;
+            }elseif($kota != ''){
+                $daerah     = $kota;
+            }elseif($provinsi != ''){
+                $daerah     = $provinsi;
+            }else{
+                $daerah     = '00.00.00.0000';
+            }
 
             foreach($getUsersCategory AS $u){
                 if($u->user_id == $user->id){
@@ -115,7 +131,7 @@ class Topic extends CI_Controller
                 'tenaga_ahli' => $user->id, 
                 'category'    => $category,
                 'topic'       => set_value('topic'),
-                'daerah'      => set_value('desa'),
+                'daerah'      => $daerah,
                 'created_at'  => date('Y-m-d H:i:s'),
                 'status'      => $status
             );
