@@ -27,12 +27,12 @@
                 <h2><strong>Daftar Pengampu</strong></h2>
             </div>
             <div class="panel-body">     
-                <table class="table table-hover table-bordered" id="konsultasi">
+                <table class="table table-hover table-bordered" id="elibtable">
                     <thead>
                         <tr>
                             <th>Pustakawan</th>
                             <th>Kategori</th>
-                            <th></th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,19 +43,19 @@
                                 foreach ($row['categories'] as $category):
                                     if ($i == 0):
                             ?>
-                                <tr>
-                                    <td rowspan="<?php echo $row['count'] ?>"><?php echo $row['user']->full_name ?><br><small><?php echo $row['user']->email ?></small></th>
-                                    <td><?php echo $category->name ?></td>
-                                    <td> <?php echo button_delete('elibrary/deletePengampu/' . $category->id) ?></td>
-                                </tr>
-                            <?php else: ?>
-                                <tr>
-                                    <td><?php echo $category->name ?></td>
-                                    <td> <?php echo button_delete('elibrary/deletePengampu/' . $category->id) ?></td>
-                                </tr>
-                            <?php endif; ?>
+                                        <tr>
+                                            <td rowspan="<?php echo $row['count'] ?>"><?php echo $row['user']->full_name ?><br><small><?php echo $row['user']->email ?></small></th>
+                                            <td><?php echo $category->name ?></td>
+                                            <td> <?php echo button_delete('elibrary/deletePengampu/' . $category->id) ?></td>
+                                        </tr>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td><?php echo $category->name ?></td>
+                                            <td> <?php echo button_delete('elibrary/deletePengampu/' . $category->id) ?></td>
+                                        </tr>
+                                    <?php endif; ?>
                             <?php $i++; endforeach; ?>
-                    <?php endforeach ?>
+                        <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
@@ -64,6 +64,6 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-        //$('#konsultasi').DataTable();
+        $('#elibtable').DataTable();
     } );
 </script>
