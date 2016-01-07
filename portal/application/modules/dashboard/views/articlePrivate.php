@@ -1,3 +1,30 @@
+<!-- Begin : list all categories -->
+<section class="content-list-categories">
+    <div class="container">
+        <div class="row">
+            <div class="list-title">
+                <h3>ALL Categories</h3>
+            </div>
+            <div class="list-categories">
+                <ul class="nav nav-inline">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Kearifan Lokal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Administrasi Desa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Kader desa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Opini dan Analisa</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End : list all categories -->
 
 <!-- start:section content main articles -->
 <section class="content-dashboard-articles">
