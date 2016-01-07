@@ -42,12 +42,12 @@
       -moz-border-radius: 0;
       -o-border-radius: 0;
       background-color: #F5F5F5;
-      padding: 0px; }
+      padding: 0px;
+      z-index: 9999; }
     header #navbar-main .container {
       background-color: #fff !important;
       padding-top: 13px;
-      padding-bottom: 13px;
-      z-index: 999; }
+      padding-bottom: 13px; }
       header #navbar-main .container .navbar-nav li {
         flex-direction: row;
         width: 100%; }
