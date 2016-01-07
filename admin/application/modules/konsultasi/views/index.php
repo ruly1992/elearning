@@ -26,7 +26,7 @@
                         <?php } ?>
                     </td>
                     <td>
-                       <a class="btn btn-sm btn-success" href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>">Lihat selengkapnya</a>
+                       <a class="btn btn-success btn-small" href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>">Lihat selengkapnya</a>
                     </td>
                 </tr>
             <?php $no++; endforeach; ?>
