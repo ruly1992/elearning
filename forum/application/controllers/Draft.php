@@ -33,6 +33,8 @@ class Draft extends CI_Controller
         $data['tenagaAhli']     = $user->id;
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
+        $data['threadSide']      = $this->model_thread->get_all_drafts($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $this->model_thread->get_categories();
@@ -102,6 +104,8 @@ class Draft extends CI_Controller
         $data['tenagaAhli']     = $user->id;
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
+        $data['threadSide']     = $this->model_thread->get_all_drafts($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
         $data['visitors']       = $this->model_visitor->get_visitors();
         $data['categoriesHead'] = $getCategory;
@@ -150,10 +154,11 @@ class Draft extends CI_Controller
 
         $user = sentinel()->getUser();
         $data['tenagaAhli']     = $user->id;
-        $data['draftThreads']   = $this->model_thread->get_all_drafts();
+        $data['draftThreads']   = $this->model_thread->get_all_drafts($user->id);
         $data['controller']     = 'draft';
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_drafts();
+        $data['threadSide']      = $this->model_thread->get_all_drafts($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['topics']         = $this->model_topic->getTopics_by_Category($idCategory);
         $data['id_thread']      = $id;
         $data['categories']     = $this->model_thread->get_categories();
