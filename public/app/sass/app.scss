@@ -2780,6 +2780,34 @@ header {
 			}
 		}
 	}
+	.content-list-categories {
+		.list-title {
+			width: 120px;
+			height: 25px;
+			border-bottom: 2px solid $aspalt;
+			h3 {
+				font-size: 14px;
+				text-transform: uppercase;
+			}
+		}
+		.list-categories {
+			margin-top: $margin-top + 5px;
+			.nav-item {
+				.nav-link {
+					text-transform: none;
+					line-height: 1.5;
+				}
+				a {
+					color: $black;
+					font-size: 14px;
+					&:hover {
+						color: $green;
+						font-size: 14px;
+					}
+				}
+			}
+		}
+	}
 }
 
 /* CONTENT SINGLE */
