@@ -3852,5 +3852,13 @@ Create: Singgih Saputro */
           font-size: 14px; }
 .content-kelas-online #time {
   top: 5px; }
+.content-kelas-online .has-attention {
+  position: relative; }
+  .content-kelas-online .has-attention .attention {
+    position: absolute;
+    z-index: 1;
+    right: 25px;
+    margin-top: 7px;
+    margin-right: -6px; }
 
 /*# sourceMappingURL=app.css.map */
