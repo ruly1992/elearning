@@ -19,3 +19,10 @@ $('.btn-reply').on('click', function () {
     inputp.val(parent)
 })
 
+$('#navbarCollapse').on('show.bs.collapse', function (){
+    $('#navbarCollapselogin').collapse('hide');
+});
+$('#navbarCollapselogin').on('show.bs.collapse', function (){
+    $('#navbarCollapse').collapse('hide');
+});
+

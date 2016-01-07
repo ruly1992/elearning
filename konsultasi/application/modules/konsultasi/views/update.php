@@ -73,8 +73,8 @@
                                         <?php echo "Tidak ada Attachments" ?>
                                     </div>
                                 <?php endif ?>
-                                <input type="file" name="files" id="filer_input" idkonsultasi="<?php echo $konsultasi->id ?>">
-                                <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt) </small>
+                                <input type="file" name="files" id="filer_konsultasi" idkonsultasi="<?php echo $konsultasi->id ?>">
+                                <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt | Max Size Upload : 10MB) </small>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
 <?php custom_script() ?>
     <!--jQuery-->
     <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
-    <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/custom.js?v=1.0.5') ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('/javascript/jquery.filer.custom.js') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('/plugins/tinymce/tinymce.min.js') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('/javascript/custom-tiny.js') ?>"></script>
 <?php endcustom_script() ?>

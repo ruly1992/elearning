@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="header-top-left">
-                                <a class="navbar-brand hidden-lg-down" href="<?php echo site_url() ?>">
+                                <a class="navbar-brand hidden-lg-down" href="<?php echo dashboard_url() ?>">
                                     <img src="<?php echo config('site_logo', asset('images/logo.png')) ?>" alt="">
                                 </a>
                             </div>
@@ -101,7 +101,7 @@
                                 </div>
                             </ul>
                             <div class="collapse navbar-toggleable-md" id="navbarCollapse">
-                                <a class="navbar-brand" href="<?php echo home_url() ?>" style="display: none">
+                                <a class="navbar-brand hidden-sm-down" href="<?php echo home_url() ?>" style="display: none">
                                     <img src="<?php echo asset('images/logo.png') ?>" alt="">
                                 </a>
                                 <ul class="nav navbar-nav">

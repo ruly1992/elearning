@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-lg-8 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-        <div class="content-elib-main-search top">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="content-elib-main-search top text-xs-center">
             <div class="text-center">
                 <form action="<?php echo site_url('search') ?>" method="GET" class="form-inline">
                     <div class="form-group">
