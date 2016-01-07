@@ -6,6 +6,8 @@ class Konsultasi extends Admin {
 	public function __construct()
 	{
 		parent::__construct();
+
+		$this->db = $this->load->database('konsultasi', TRUE);	
 		
 		$this->load->model('Mod_konsultasi');
 		$this->load->model('Mod_kons_kategori','model');
@@ -122,7 +124,7 @@ class Konsultasi extends Admin {
 
 	public function pengampu_tambah()
 	{   
-		$this->form_validation->set_rules('user_id', 'Tenaga Ahli', 'trim|required');
+		$this->form_validation->set_rules('user_id', 'Tenaga Ahli', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
             keepValidationErrors();
@@ -131,16 +133,25 @@ class Konsultasi extends Admin {
         	
         	$users 			= $this->input->post('user_id');
         	$kategori_list 	= $this->input->post('id_kategori');
+        	$temp = FALSE;
 
-        	$data = array(
-        		'user_id' 		=> $users,
-        		'id_kategori'	=> $kategori_list,
-        	);
+        	$data = $this->model->getPengampu();
+        	foreach ($data as $row) {
+        		if ($row->user_id == $users && $row->id_kategori == $kategori_list) {
+        			$temp = TRUE;
+        		}
+        	}
 
-            $save = $this->model->addPengampu($data);
-
-            set_message_success('data berhasil ditambahkan.');
-
+        	if ($temp == FALSE) {
+        		$data = array(
+        			'user_id' 		=> $users,
+        			'id_kategori'	=> $kategori_list,
+        		);
+            	$save = $this->model->addPengampu($data);
+            	set_message_success('data berhasil ditambahkan.');            
+        	} else {
+            	set_message_error('Data sudah ada.');            
+        	}
             redirect('konsultasi/pengampu', 'refresh');
         }
 	}

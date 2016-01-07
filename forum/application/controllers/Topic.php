@@ -75,7 +75,7 @@ class Topic extends CI_Controller
         }
 
         $user                   = sentinel()->getUser();
-        $data['topics']         = $this->model_topic->get_topics_from_id($user->id);
+        $data['sideTopics']     = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
@@ -154,7 +154,7 @@ class Topic extends CI_Controller
         }
 
         $user                   = sentinel()->getUser();
-        $data['topics']         = $this->model_topic->get_topics_from_id($user->id);
+        $data['sideTopics']     = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);

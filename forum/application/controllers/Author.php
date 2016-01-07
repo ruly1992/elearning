@@ -37,6 +37,8 @@ class Author extends CI_Controller
         $data['categoriesHead'] = $this->model_thread->get_categories();
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_approved_topics();
+        $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['breadcrumb']		= 'Your Threads';
         $data['threadMembers']  = $this->model_thread->get_thread_members();
@@ -71,6 +73,8 @@ class Author extends CI_Controller
         $data['author']         = user($user->id)->full_name;
         $data['home']           = site_url('author/');
         $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
@@ -108,6 +112,8 @@ class Author extends CI_Controller
         $data['categoriesHead'] = $getCategory;
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_approved_topics();
+        $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
