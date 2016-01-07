@@ -72,6 +72,7 @@ class Author extends CI_Controller
         $data['home']           = site_url('author/');
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['reply']          = $this->model_thread->get_reply($id);
         $data['countReply']     = count($data['reply']);
