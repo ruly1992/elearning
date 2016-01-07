@@ -93,14 +93,16 @@
                                             ?>
                                             </tbody>
                                         </table>
-                                        <nav>
-                                            <ul class="pager">
-                                                <?php echo $topics->render() ?>
-                                            </ul>
-                                        </nav>
+
                                     </div>
                                 </div>
                             </div>
+                            
+                                <div class="forum-pagination">
+                                    <nav>
+                                        <?php echo $topics->render() ?>
+                                    </nav>
+                                </div>
                         </div>
                         <!-- end:content main -->
                     </div>
