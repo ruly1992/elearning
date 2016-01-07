@@ -35,6 +35,8 @@ class Konsultasi extends Admin {
 	{
 		$detail['konsultasi'] 		= $this->Mod_konsultasi->getByIdKonsultasi($id);
 		$detail['kategori']    		= $this->Mod_konsultasi->getByKategori($id);
+        $balasan          			= collect($this->Mod_konsultasi->getAllReply($id));
+        $detail['reply']			= pagination($balasan, 3, 'konsultasi/detail/' . $id);
 
 
 		$this->template->build('detail_konsultasi', $detail);
