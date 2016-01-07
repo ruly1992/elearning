@@ -47,17 +47,17 @@ class Topic extends CI_Controller
             redirect('thread/');
         }
 
+        $user                   = sentinel()->getUser();
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
-
-        $user               = sentinel()->getUser();
-        $data['tenagaAhli'] = $user->id;
-        $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
-        $data['authorSide'] = $this->model_thread->get_thread_from_author($user->id);
-        $data['provinsi']   = $this->getWilayah();
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
+        $data['tenagaAhli']     = $user->id;
+        $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
+        $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['provinsi']       = $this->getWilayah();
 
         $topics             = collect($this->model_topic->get_topics_from_id($user->id));
-        $data['topics']     = pagination($topics, 10, 'topic', 'bootstrap_md');
+        $data['topics']     = pagination($topics, 5, 'topic', 'bootstrap_md');
         $this->load->view('topic/view',$data);
     }
 
@@ -78,10 +78,11 @@ class Topic extends CI_Controller
         $data['topics']         = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['categories']     = $this->model_topic->get_categories();
-        $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
-        $data['authorSide'] = $this->model_thread->get_thread_from_author($user->id);
-        $data['tenagaAhli'] = $user->id;
+        $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
+        $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['tenagaAhli']     = $user->id;
 
     	$this->load->view('topic/create', $data);
     }
@@ -156,10 +157,11 @@ class Topic extends CI_Controller
         $data['topics']         = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['categories']     = $this->model_topic->get_categories();
-        $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
-        $data['authorSide'] = $this->model_thread->get_thread_from_author($user->id);
-        $data['tenagaAhli'] = $user->id;
+        $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
+        $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['tenagaAhli']     = $user->id;
 
         $this->load->view('topic/edit',$data);
     }

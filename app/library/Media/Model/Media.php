@@ -247,17 +247,17 @@ class Media extends Model
         }
 
         else if ($this->type == 'Image') {
-            return '<img src="'.$fileurl.'" class="img-thumbnail">';
+            return '<img src="'.$fileurl.'" width="'.$width.'" height="'.$height.'" class="img-thumbnail">';
         }
 
         elseif ($this->type == 'Video') {
-            return '<video id="my-video" class="video-js" controls preload="auto" data-setup="{}">
+            return '<video id="my-video" width="'.$width.'" height="'.$height.'" class="video-js" controls preload="auto" data-setup="{}">
                 <source src="'.$fileurl.'" type="video/mp4">
                 </video>';
         }
 
         elseif ($this->type == 'Audio') {
-            return '<audio id="audio_example" class="video-js vjs-default-skin" controls 
+            return '<audio id="audio_example" class="video-js width="'.$width.'" vjs-default-skin" controls 
                 preload="auto" data-setup="{}">
                 <source src="'.$fileurl.'" type="audio/mp3"/>
             </audio>';

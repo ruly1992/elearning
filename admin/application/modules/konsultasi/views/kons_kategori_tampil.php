@@ -44,7 +44,8 @@
                             <td><?php echo $row->description ?></td>
                             <td>
                                 <?php echo button_edit('konsultasi/updateKategori/' . $row->id) ?>
-                                <?php echo button_delete('konsultasi/deleteKategori/' . $row->id) ?>
+                                <a class="btn btn-danger" href="<?php echo site_url('konsultasi/deleteKategori/'. $row->id);?>" onClick="return doconfirm();">Hapus
+                                </a>
                             </td>
                         </tr>
                     <?php $no++; endforeach; ?>
@@ -58,4 +59,13 @@
     $(document).ready(function() {
         $('#article').DataTable();
     } );
+
+    function doconfirm()
+    {
+        hapus=confirm("Ketika Menghapus kategori, Konsultasi dan Pengampu yang berdasarkan kategori tersebut juga akan terhapus, apakah anda yakin?");
+        if(hapus!=true)
+        {
+            return false;
+        }
+    }
 </script>

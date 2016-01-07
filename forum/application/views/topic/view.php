@@ -39,8 +39,7 @@
                                                   <th>Topic</th>
                                                   <th>Category</th>
                                                   <th>Daerah</th>
-                                                  <th>Topic Maker</th>
-                                                  <th>Status</th>
+                                                  <th>Created</th>
                                                   <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -51,7 +50,16 @@
                                             ?>
                                                     <tr>
                                                         <th scope="row"><?php echo $t->id; ?></th>
-                                                        <td><?php echo $t->topic ?></td>
+                                                        <td>
+                                                            <?php echo $t->topic ?>
+                                                            <?php
+                                                                if($t->status=='1'){
+                                                                    echo '<span class="label label-primary">Approved</span>';
+                                                                }else{
+                                                                    echo '<span class="label label-warning">Waiting</span>';
+                                                                }
+                                                            ?>
+                                                        </td>
                                                         <td><?php echo $t->category_name; ?></td>
                                                         <td>
                                                             <?php 
@@ -67,24 +75,15 @@
                                                         <td>
                                                             <?php echo user($t->tenaga_ahli)->full_name; ?>
                                                         </td>
-                                                        <td>
-                                                            <?php
-                                                                if($t->status=='1'){
-                                                                    echo 'Approved';
-                                                                }else{
-                                                                    echo 'Waiting';
-                                                                }
-                                                            ?>
-                                                        </td>
                                                         <td align="center">
                                                             <p>
                                                                 <?php 
                                                                     if($t->tenaga_ahli!=$tenagaAhli AND $t->status=='0'){
-                                                                        echo anchor('topic/approve/'.$t->id, 'Approve', 'class="btn btn-primary btn-konsul" data-toggle="tooltip" data-placement="top" title="Approve"');
+                                                                        echo anchor('topic/approve/'.$t->id, 'Approve', 'class="btn btn-primary btn-konsul" data-toggle="tooltip" data-placement="top" title="Approve"').'<br>';
                                                                     }
                                                                 ?>
-                                                                <?php echo anchor('topic/edit/'.$t->id,'Edit','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
-                                                                <?php echo anchor('topic/delete/'.$t->id,'Delete','class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
+                                                                <?php echo anchor('topic/edit/'.$t->id,'<i class="fa fa-pencil"></i>','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
+                                                                <?php echo anchor('topic/delete/'.$t->id,'<i class="fa fa-trash"></i>','class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
                                                             </p>
                                                         </td>
                                                     </tr>
@@ -115,11 +114,11 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.countThreads($threadSide, $closeThreads).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategory($threadSide, $c->id, $closeThreads).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                         </div>

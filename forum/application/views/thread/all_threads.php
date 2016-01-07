@@ -44,90 +44,85 @@
                             </div>
                             <?php 
                                 foreach($categoriesHead as $cat){
+                                    $countTopicsCategory = checkTopicsCategory($topics, $threads, $cat->id);
+                                    if($countTopicsCategory > 0){
                             ?>
-                                    <div class="forum-heading">
-                                        <h3><?php if(isset($category)){echo $category;}else{echo $cat->category_name;} ?></h3>
-                                    </div>
-                                    <div class="forum-main">
-                                        <div class="forum-list">
-                                            <?php 
-                                                foreach($topics as $top){
-                                                    if($top->category == $cat->id){
-                                            ?>
-                                                    <table class="table table-striped">
-                                                        <thead class="thead-inverse">
-                                                            <tr>
-                                                              <th>Topic : <?php echo $top->topic ?></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php 
-                                                                $isThread = false;
-                                                                foreach($threads as $thr){
-                                                                    if($cat->id == $thr->category AND $top->id == $thr->topic){
-                                                                        $isThread = true;
-                                                                        if($thr->type == 'close'){
-                                                                            showThread($thr, $visitors, $comments, $threadMembers, $thr->id, $userID);
-                                                                        }else{
-                                                            ?>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div class="thread-list-title">
-                                                                                        <h4><?php echo anchor('thread/view/'.$thr->id, $thr->title); ?> 
-                                                                                            <?php 
-                                                                                                if($thr->type=='close'){
-                                                                                                    echo '<small class="label label-default"><i class="fa fa-lock"></i> Close Group</small>';
-                                                                                                } 
-                                                                                            ?>
-                                                                                        </h4>
-                                                                                    </div>
-                                                                                    <div class="thread-list-meta">
-                                                                                        <ul>
-                                                                                            <li>
-                                                                                                <?php echo countViewer($visitors, $thr->id); ?> Views
-                                                                                            </li>
-                                                                                            <li>
-                                                                                                <?php echo countComments($comments, $thr->id); ?> Comments
-                                                                                            </li>
-                                                                                            <li>
-                                                                                                Started by <a href="#"><?php echo user($thr->author)->full_name; ?></a>
-                                                                                            </li>
-                                                                                            <li>
-                                                                                                <?php echo $thr->created_at; ?>
-                                                                                            </li>
-                                                                                            <li>
-                                                                                                in <a href="#"><?php echo $thr->category_name; ?></a>
-                                                                                            </li>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                            <?php
-                                                                        }
-                                                                    }
-                                                                }
-                                                                if($isThread == false){
-                                                            ?>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="thread-list-title">
-                                                                                <h4>Belum ada thread</h4>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                            <?php
-                                                                }
-                                                            ?>
-                                                        </tbody>
-                                                    </table>
-                                            <?php
-                                                    }
-                                                }
-                                            ?>
-                                            
+                                        <div class="forum-heading">
+                                            <h3><?php if(isset($category)){echo $category;}else{echo $cat->category_name;} ?></h3>
                                         </div>
-                                    </div>
+                                        <div class="forum-main">
+                                            <div class="forum-list">
+                                                <?php 
+                                                    foreach($topics as $top){
+                                                        if($top->category == $cat->id){
+                                                            $countThreadsTopic = checkThreadsTopic($threads, $top->id);
+                                                            if($countThreadsTopic > 0){
+                                                ?>
+                                                                <table class="table table-striped">
+                                                                    <thead class="thead-inverse">
+                                                                        <tr>
+                                                                          <th>Topic : <?php echo $top->topic ?></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <?php 
+                                                                            $isThread = false;
+                                                                            foreach($threads as $thr){
+                                                                                if($cat->id == $thr->category AND $top->id == $thr->topic){
+                                                                                    $isThread = true;
+                                                                                    if($thr->type == 'close'){
+                                                                                        showThread($thr, $visitors, $comments, $threadMembers, $thr->id, $userID);
+                                                                                    }else{
+                                                                        ?>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <div class="thread-list-title">
+                                                                                                    <h4><?php echo anchor('thread/view/'.$thr->id, $thr->title); ?> 
+                                                                                                        <?php 
+                                                                                                            if($thr->type=='close'){
+                                                                                                                echo '<small class="label label-default"><i class="fa fa-lock"></i> Close Group</small>';
+                                                                                                            } 
+                                                                                                        ?>
+                                                                                                    </h4>
+                                                                                                </div>
+                                                                                                <div class="thread-list-meta">
+                                                                                                    <ul>
+                                                                                                        <li>
+                                                                                                            <?php echo countViewer($visitors, $thr->id); ?> Views
+                                                                                                        </li>
+                                                                                                        <li>
+                                                                                                            <?php echo countComments($comments, $thr->id); ?> Comments
+                                                                                                        </li>
+                                                                                                        <li>
+                                                                                                            Started by <a href="#"><?php echo user($thr->author)->full_name; ?></a>
+                                                                                                        </li>
+                                                                                                        <li>
+                                                                                                            <?php echo $thr->created_at; ?>
+                                                                                                        </li>
+                                                                                                        <li>
+                                                                                                            in <a href="#"><?php echo $thr->category_name; ?></a>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                        <?php
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        ?>
+                                                                    </tbody>
+                                                                </table>
+                                                <?php
+                                                            }
+                                                        }
+                                                    }
+                                                ?>
+                                                
+                                            </div>
+                                        </div>
                             <?php
+                                    }
                                 }
                             ?>
                             <div class="forum-pagination">
@@ -140,7 +135,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="sidebar-forum">
-
+                            
                             <div class="widget">
                                 <div class="widget-categories">
                                     <div class="widget-categories-heading">
@@ -149,11 +144,11 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($threadSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.countThreads($threadSide, $closeThreads).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 foreach($categoriesSide as $c){
                                                     if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadCategories($threadSide, $c->id).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
+                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategory($threadSide, $c->id, $closeThreads).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
                                                 }
                                             ?>
                                         </div>

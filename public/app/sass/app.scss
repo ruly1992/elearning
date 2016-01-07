@@ -186,11 +186,6 @@ header {
 				border: 1px solid $grey-black;
 				border-top-right-radius: 8px;
 				border-bottom-right-radius: 8px;
-				&:hover,
-				&:focus,
-				&:active {
-					background-color: $white;
-				}
 			}
 		}
 		//edited
@@ -441,10 +436,33 @@ header {
 		}
 	}
 	//add fajar eko s
-	.dropdown {
-		margin-left: $margin-left + 5px;
-		margin-top: $margin-top - 2px;
+	.dropdown:hover {
+		.dropdown-navbar {
+			display: block;
+			width: 250px;
+			height: auto;
+			background-color: $grey;
+			margin-top: 0px;
+			padding: 0;
+			border: medium none;
+			@include border-radius(0);
+			li {
+				font-size: 12px;
+				color: $aspalt-light;
+				padding: $padding + 10px;
+				@include transition(0.3s);
+				@include fonts('open_sansregular');
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: $green;
+					color: $white;
+					@include transition(0.3s);
+				}
+			}
+		}
 	}
+	
 	.dropdown-menu {
 		a {
 			font-size: 14px;
@@ -972,6 +990,39 @@ header {
 					h4 {
 						font-size: 16px;
 						margin-bottom: $margin-bottom - 5px;
+						font-weight: 600;
+					}
+					p {
+						margin-top: $margin-top - 5px;
+						margin-bottom: $margin-bottom - 5px;
+						em {
+							font-size: 10px;
+							@include fonts('open_sansbold');
+						}
+					}
+				}
+				.card-success {
+					@include transition(0.3s);
+					color: $white;
+					&:hover,
+					&:focus {
+						color: $aspalt-light;
+						@include transition(0.3s);
+					}
+					span {
+						font-size: 12px;
+						@include fonts('open_sansbold');
+						color: $white;
+					}
+					h4 {
+						font-size: 16px;
+						margin-bottom: $margin-bottom - 5px;
+						font-weight: 600;
+						&:hover,
+						&:focus {
+							color: $aspalt-light;
+							@include transition(0.3s);
+						}
 					}
 					p {
 						margin-top: $margin-top - 5px;
@@ -2783,7 +2834,7 @@ header {
 				padding-left: $padding-left - 5px;
 				margin-bottom: $margin-bottom - 5px;
 				li {
-					font-size: 10px;
+					font-size: 11px;
 					display: inline-block;
 					margin-right: $margin-right + 15px;
 					i.fa {
@@ -3426,7 +3477,7 @@ footer {
 				margin: $margin - 3px;
 				padding: $padding - 2px;
 				list-style: none;
-				border-bottom: 2px solid #dddddd;
+				border-bottom: 1px solid #dddddd;
 				width: 100%;
 				height: 56px;
 				overflow: hidden;
@@ -3446,16 +3497,16 @@ footer {
 						float: left;
 						margin-left: $margin-left;
 						margin-right: $margin-right + 5px;
-						line-height: 2;
+						line-height: 3;
 					}
 					.list-title {
 						line-height: normal;
 						padding-top: $padding-top;
 						h3 {
-							font-size: 14px;
+							font-size: 12px;
 							font-weight: 600;
 							margin-left: $margin-left + 25px;
-							line-height: 1.5;
+							line-height: 2;
 							@include transition(0.3s);
 							&:hover,
 							&:focus {
@@ -4581,5 +4632,8 @@ Create: Singgih Saputro */
 				}
 			}
 		}
+	}
+	#time {
+		top: 5px;
 	}
 }
