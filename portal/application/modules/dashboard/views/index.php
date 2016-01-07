@@ -132,27 +132,17 @@
                                                 </div>
                                             </div>
                                         </div>
-<<<<<<< HEAD
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                                     <label for="">Attachments</label>
-                                                    <input type="file" name="files" id="filer_input">
+                                                    <input type="file" name="files" id="filer_konsultasi">
                                                     <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt) </small>
                                                 </div>
-=======
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <label for="">Attachments</label>
-                                                <input type="file" name="files" id="filer_konsultasi">
-                                                <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt) </small>
->>>>>>> 0f56b8b429baa813d580f8af914f85b3a93e6ab6
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
