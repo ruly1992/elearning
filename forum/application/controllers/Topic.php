@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use Symfony\Component\HttpFoundation\Request;
 use Nurmanhabib\WilayahIndonesia\Sources\DatabaseSource;
+use Library\WilayahIndonesia\AllWilayah;
 
 class Topic extends CI_Controller 
 {
@@ -23,7 +24,7 @@ class Topic extends CI_Controller
         $password = getenv('AUTH_DB_PASSWORD') ?: '';
         $database = getenv('AUTH_DB_DATABASE') ?: 'portal_learning';
 
-        $source = new DatabaseSource($hostname, $username, $password, $database);
+        $source = new AllWilayah($hostname, $username, $password, $database);
         $this->wilayah->setSource($source);
     }
 

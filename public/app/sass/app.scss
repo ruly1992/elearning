@@ -301,7 +301,6 @@ header {
 	#navbar-main {
 		z-index: 99;
 		.navbar {
-			height: 60px;
 			@include border-radius(0);
 			background-color: $grey;
 			padding: $padding - 5px;
@@ -452,12 +451,13 @@ header {
 				padding: $padding + 10px;
 				@include transition(0.3s);
 				@include fonts('open_sansregular');
-				&:hover,
-				&:focus,
-				&:active {
+				&:hover {
 					background-color: $green;
 					color: $white;
 					@include transition(0.3s);
+				}
+				a {
+					text-decoration: none;
 				}
 			}
 		}
@@ -2780,6 +2780,34 @@ header {
 			}
 		}
 	}
+	.content-list-categories {
+		.list-title {
+			width: 120px;
+			height: 25px;
+			border-bottom: 2px solid $aspalt;
+			h3 {
+				font-size: 14px;
+				text-transform: uppercase;
+			}
+		}
+		.list-categories {
+			margin-top: $margin-top + 5px;
+			.nav-item {
+				.nav-link {
+					text-transform: none;
+					line-height: 1.5;
+				}
+				a {
+					color: $black;
+					font-size: 14px;
+					&:hover {
+						color: $green;
+						font-size: 14px;
+					}
+				}
+			}
+		}
+	}
 }
 
 /* CONTENT SINGLE */
@@ -4432,5 +4460,15 @@ Create: Singgih Saputro */
 	}
 	#time {
 		top: 5px;
+	}
+	.has-attention {
+		position: relative;
+		.attention {
+			position: absolute;
+			z-index: 1;
+			right: 25px;
+			margin-top: $margin-top + 2;
+			margin-right: $margin-right - 11;
+		}
 	}
 }

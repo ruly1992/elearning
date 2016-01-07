@@ -54,7 +54,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="row">
                                 <div class="header-top-left">
-                                    <a class="navbar-brand hidden-lg-down" href="<?php echo site_url() ?>">
+                                    <a class="navbar-brand hidden-lg-down" href="<?php echo home_url() ?>">
                                         <img src="<?php echo config('site_logo', asset('images/logo.png')) ?>" alt="">
                                     </a>
                                 </div>
@@ -87,12 +87,12 @@
                                 <!-- &#9776; --> <i class="fa fa-bars"></i>
                             </button>
                             <!-- End : Trigger navbarCollapse-->
-                            <a class="navbar-logo-mobile navbar-logo-tablet hidden-lg-up" href="<?php echo site_url() ?>">
+                            <a class="navbar-logo-mobile navbar-logo-tablet hidden-lg-up" href="<?php echo home_url() ?>">
                                 <img src="<?php echo config('site_logo', asset('images/logo.png')) ?>" alt="">
                             </a>
                             <!-- Begin : Trigger navbarCollapselogin -->
                             <button class="navbar-toggler hidden-lg-up pull-right" type="button" data-toggle="collapse" data-target="#navbarCollapselogin">
-                                <i class="fa fa-key"></i>
+                                <i class="fa fa-sign-in"></i>
                             </button>
                             <!-- End : Trigger navbarCollapselogin -->
                             <!-- Begin : Content navbarCollapse -->
@@ -108,9 +108,22 @@
                                     $categories = Model\Portal\Category::ordered()->parentOnly()->get();
 
                                     foreach ($categories as $category): ?>
-                                        <li class="nav-item <?php echo $active == $category->id ? 'active' : '' ?>">
-                                            <a class="nav-link" href="<?php echo $category->link ?>"><?php echo strtoupper($category->name) ?></a>
-                                        </li>
+                                        <?php if ($category->childs->count()): ?>
+                                            <li class="nav-item dropdown <?php echo $active == $category->id ? 'active' : '' ?>">
+                                                <a class="nav-link dropdown-toggle" href="<?php echo $category->link ?>"><?php echo strtoupper($category->name) ?></a>
+                                                <ul class="dropdown-menu dropdown-navbar">
+                                                    <?php foreach ($category->childs as $child): ?>
+                                                        <li>
+                                                            <a href="<?php echo $child->link ?>"><?php echo $child->name ?></a>
+                                                        </li>
+                                                    <?php endforeach ?>
+                                                </ul>
+                                            </li>
+                                        <?php else: ?>
+                                            <li class="nav-item <?php echo $active == $category->id ? 'active' : '' ?>">
+                                                <a class="nav-link" href="<?php echo $category->link ?>"><?php echo strtoupper($category->name) ?></a>
+                                            </li>
+                                        <?php endif ?>
                                     <?php endforeach ?>
                                 </ul>
                                 <div class="header-top-right" style="display:none">
