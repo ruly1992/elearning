@@ -42,7 +42,7 @@ class Mod_user extends CI_Model {
         $filename   = $avatar['name'];
 
         $manager    = new ImageManager;
-        $upload_dir = BASEPATH . '../assets/upload/avatar/';
+        $upload_dir = PATH_AVATAR . '/';
         $image      = $manager->make($source);
 
         $image->save($upload_dir . $filename, 90);
