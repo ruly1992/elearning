@@ -83,7 +83,7 @@
                     <div class="container">
                         <div class="row">
                             <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarCollapse">
-                                &#9776;
+                                <i class="fa fa-bars"></i>
                             </button>
                             <a class="navbar-logo-mobile navbar-logo-tablet hidden-lg-up" href="<?php echo home_url() ?>">
                                 <img src="<?php echo asset('images/logo.png') ?>">
@@ -101,7 +101,7 @@
                                 </div>
                             </ul>
                             <div class="collapse navbar-toggleable-md" id="navbarCollapse">
-                                <a class="navbar-brand hidden-sm-down" href="<?php echo home_url() ?>" style="display: none">
+                                <a class="navbar-brand hidden-lg-down" href="<?php echo home_url() ?>" style="display: none">
                                     <img src="<?php echo asset('images/logo.png') ?>" alt="">
                                 </a>
                                 <ul class="nav navbar-nav">
