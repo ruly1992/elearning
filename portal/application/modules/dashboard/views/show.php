@@ -101,7 +101,7 @@
 <!-- start:section content main articles -->
 <section class="content-articles">
     <div class="content-articles-heading">
-        <h3><?php echo $relevance_title ?></h3>
+        <h3>Artikel Terkait</h3>
     </div>
     <div class="content-articles-main news3">
             <div class="row">
