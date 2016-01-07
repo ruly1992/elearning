@@ -90,7 +90,9 @@
                     <h4 class="modal-title" id="myModalLabel">Preview Media</h4>
                 </div>
                 <div class="modal-body">
-                    <?php echo $media[$i]->getPreview(500, 'auto') ?>
+                    <div class="text-xs-center">
+                        <?php echo $media[$i]->getPreview(500, 'auto') ?>
+                    </div>
                 </div>
             </div>
         </div>

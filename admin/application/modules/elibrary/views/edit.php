@@ -105,7 +105,9 @@
                     <h4 class="modal-title" id="myModalLabel">Preview Media</h4>
                 </div>
                 <div class="modal-body">
-                    <?php echo $media->getPreview(500, 500) ?>
+                    <div class="text-xs-center">
+                        <?php echo $media->getPreview(500, 500) ?>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
