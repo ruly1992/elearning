@@ -2066,7 +2066,7 @@ header {
 		}
 	}
 	.content-sidebar {
-		margin-top: $margin-top + 20px;
+		margin-top: $margin-top - 5px;
 		.widget {
 			margin-bottom: $margin-bottom + 30px;
 			.widget-heading {
@@ -3486,6 +3486,7 @@ footer {
 // add fajar eko 
 .favorit {
 	margin-bottom: $margin-bottom + 20px;
+	margin-top: $margin-top + 55px;
 	.widget-heading {
 		width: 100%;
 		height: 40px;
@@ -3557,6 +3558,9 @@ footer {
 			}
 		}
 	}
+}
+.favorit-single {
+	margin-top: $margin-top - 5px;
 }
 
 .dropdown-people {
