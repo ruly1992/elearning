@@ -33,7 +33,12 @@ class Thread extends CI_Controller
             $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['tenagaAhli'] = $user->id;
+            $threads            = collect($this->model_thread->get_all_threads());
+        }else{
+            $daerahUser         = $user->profile->desa_id;
+            $threads            = collect($this->model_thread->get_threads_by_user($daerahUser));
         }
+        
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
         $data['visitors']       = $this->model_visitor->get_visitors();
@@ -45,7 +50,6 @@ class Thread extends CI_Controller
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
 
-        $threads                = collect($this->model_thread->get_all_threads());
         $data['threads']        = pagination($threads, 10, 'thread', 'bootstrap_md');
 
         $this->load->view('thread/all_threads',$data);
@@ -64,6 +68,10 @@ class Thread extends CI_Controller
             $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['tenagaAhli'] = $user->id;
+            $threads            = collect($this->model_thread->get_threads_category($idCategory));
+        }else{
+            $daerahUser         = $user->profile->desa_id;
+            $threads            = collect($this->model_thread->get_threads_category_by_user($idCategory, $daerahUser));
         }
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
@@ -76,7 +84,6 @@ class Thread extends CI_Controller
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
 
-        $threads                = collect($this->model_thread->get_threads_category($idCategory));
         $data['threads']        = pagination($threads, 10, 'thread', 'bootstrap_md');
 
         $this->load->view('thread/all_threads',$data);
@@ -180,6 +187,7 @@ class Thread extends CI_Controller
             $data = array(
                 'idCategory'=> $t->category,
                 'category'  => $t->category_name,
+                'topic'     => $t->topicName,
                 'user'      => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,
@@ -188,7 +196,7 @@ class Thread extends CI_Controller
             );
         }
 
-        $user = sentinel()->getUser();
+        $user                   = sentinel()->getUser();
         $visitorIdentity        = visitorIdentity($user->id,$id);
         $this->model_visitor->saveVisitor($visitorIdentity);
 

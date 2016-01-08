@@ -24,6 +24,7 @@
     </div>
     <div class="col-md-8">
         <div class="panel panel-default">
+        <?php if ($categories->count()): ?>
             <div class="panel-body">
                 <table class="table table-hover table-bordered">
                     <thead>
@@ -57,7 +58,15 @@
                         <?php endif ?>
                     </tbody>
                 </table>
+                <nav class="pull-right">
+                    <ul>
+                        <?php echo $categories->render() ?>
+                    </ul>
+                </nav>
             </div>
+        <?php else: ?>
+            <p class="alert alert-warning">Belum ada data</p>
+        <?php endif ?>
         </div>
     </div>
 </div>

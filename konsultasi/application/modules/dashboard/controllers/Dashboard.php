@@ -23,9 +23,11 @@ class Dashboard extends CI_Controller
         $data['id_kategori']    = $kategori_id;
         $data['listKategori']   = $this->M_konsultasi->getKategori();   
         $data['kategoriById']   = $this->M_konsultasi->getKategoriById($kategori_id);   
-        $data['allKonsultasi']  = $this->M_konsultasi->readKonsultasi();    
+        $data['allKonsultasi']  = $this->M_konsultasi->readKonsultasi();
         $categories             = collect($this->M_konsultasi->getListKat($kategori_id));
-        $data['konsultasi']     = pagination($categories, 10, 'dashboard/kategori/'.$kategori_id);
+        $perPage                = 10;    
+        $data['konsultasi']     = pagination($categories, $perPage, 'dashboard/kategori/'.$kategori_id, 'bootstrap_md');
+        $data['perPage']        = $perPage;
 
         $this->template->build('listkonsultasi', $data);
     }
@@ -37,7 +39,8 @@ class Dashboard extends CI_Controller
         if ($this->form_validation->run() == FALSE) {            
             $detail['konsultasi']       = $this->M_konsultasi->getByIdKonsultasi($id);
             $detail['kategori']         = $this->M_konsultasi->getKatByKons($id);
-            $detail['reply']            = $this->M_konsultasi->getReply($id);
+            $balasan                    = collect($this->M_konsultasi->getReply($id));
+            $detail['reply']            = pagination($balasan, 3, 'konsultasi/detail/' . $id, 'bootstrap_md');
 
             $this->template->build('detail', $detail);
         } else {

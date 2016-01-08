@@ -3540,7 +3540,7 @@ a {
     background-color: #fff;
     border-color: #ddd; }
     .panel-default .panel-heading h5 {
-      font-size: 16px; }
+      font-size: 14px; }
     .panel-default .panel-heading a {
       color: #37474f; }
   .panel-default .btn-kelas {
@@ -3937,6 +3937,22 @@ Create: Singgih Saputro */
   border: medium none;
   padding: 3px 6px;
   text-shadow: none; }
+
+.btn-delete-lg {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px; }
 
 .btn-small {
   font-size: 10px;

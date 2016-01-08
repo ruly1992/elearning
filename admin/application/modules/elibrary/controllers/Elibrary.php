@@ -355,7 +355,8 @@ class Elibrary extends Admin
     public function pengampu()
     {
         $data['users']          = sentinel()->findRoleBySlug('pus')->users->pluck('email', 'id')->toArray();
-        $data['getKategori']    = $this->category_model->getAllGroupByUser();
+        $pengampu               = collect($this->category_model->getAllGroupByUser());
+        $data['getKategori']    = pagination($pengampu, '5', 'elibrary/pengampu');
         $data['kategori_list']  = $this->category_model->getKategoriList();        
 
         $this->template->build('pengampu', $data);

@@ -1,3 +1,10 @@
+
+<ol class="breadcrumb">
+    <li><a href="<?php echo dashboard_url() ?>">Dashboard</a></li>
+    <li><a href="<?php echo site_url('dashboard') ?>">Kelas Online</a></li>
+    <li class="active"><?php echo $course->name ?></li>
+</ol>
+
 <div class="kelas-main">
     <div class="card">
         <div class="card-block">
@@ -17,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label>Deskripsi :</label>
-                    <?php echo form_textarea('description', set_value('description', $course->description), ['class' => 'form-control']); ?>
+                    <?php echo form_textarea('description', set_value('description', $course->description, FALSE), ['class' => 'form-control editor']); ?>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-sm">Save</button>
@@ -26,3 +33,14 @@
         </div>
     </div>
 </div>
+
+<?php custom_script() ?>
+<script src="<?php echo asset('plugins/tinymce/tinymce.jquery.min.js') ?>"></script>
+<script>
+    $(document).ready(function () {
+        tinymce.init({
+            selector: '.editor'
+        })
+    })
+</script>
+<?php endcustom_script() ?>

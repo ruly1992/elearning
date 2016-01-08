@@ -20,7 +20,7 @@
                                         echo anchor( $controller.'/category/'.$idCategory, $category); 
                                     ?>
                                 </li>
-                                <li class="active"><?php echo $title; ?></li>
+                                <li class="active"><?php echo $topic; ?></li>
                             </ol>
 
                             <?php 

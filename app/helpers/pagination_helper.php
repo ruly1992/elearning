@@ -19,11 +19,13 @@ if (!function_exists('pagination')) {
             ['path' => site_url($path)]
         );
 
-        if ($template != null) {
-            $paginate->presenter(function () use ($paginate, $template) {
-                return new Library\Pagination\BootstrapCustomPresenter($paginate, $template);
-            });
+        if ($template == null) {
+            $template = 'bootstrap_md';
         }
+
+        $paginate->presenter(function () use ($paginate, $template) {
+            return new Library\Pagination\BootstrapCustomPresenter($paginate, $template);
+        });
 
         return $paginate;
     }

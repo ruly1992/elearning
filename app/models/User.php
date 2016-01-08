@@ -3,8 +3,9 @@
 namespace Model;
 
 use Cartalyst\Sentinel\Roles\RoleInterface;
+use Cartalyst\Sentinel\Users\EloquentUser as SentinelUser;
 
-class User extends \Cartalyst\Sentinel\Users\EloquentUser
+class User extends SentinelUser
 {
     protected $connection = 'user';
 
