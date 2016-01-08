@@ -3,7 +3,7 @@
         <?php echo button_create('faq/create', 'Tambah FAQ')?>
         <hr>
 
-        <table class="table table-hover table-bordered" id="">
+        <table class="table table-hover table-bordered" id="faq">
             <thead>
                 <tr>
                     <th>Title</th>
@@ -35,6 +35,6 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#article').DataTable();
+        $('#faq').DataTable();
     } );
 </script>
