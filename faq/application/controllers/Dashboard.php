@@ -24,7 +24,10 @@ class Dashboard extends CI_Controller
     	}elseif($this->session->flashdata('failed')){
     		$data['failed'] = $this->session->flashdata('failed');
     	}
-    	$data['faq'] = $this->model_faq->getFAQs();
+        $faqs               = collect($this->model_faq->getFAQs()); 
+        $perPage            = 5;
+    	$data['faq']        = pagination($faqs, $perPage, 'dashboard', 'bootstrap_md');
+        $data['perPage']    = $perPage;
     	$this->load->view('dashboard',$data);
     }
 
