@@ -45,11 +45,12 @@
                                             </thead>
                                             <tbody>
                                             <?php 
-                                                //$no=1;
+                                                $noPage = $topics->currentPage();
+                                                $i = $noPage + ($noPage - 1) * ($perPage - 1);
                                                 foreach($topics as $t){
                                             ?>
                                                     <tr>
-                                                        <th scope="row"><?php echo $t->id; ?></th>
+                                                        <th scope="row"><?php echo $i; ?></th>
                                                         <td>
                                                             <?php echo $t->topic ?>
                                                             <?php
@@ -88,7 +89,7 @@
                                                         </td>
                                                     </tr>
                                             <?php 
-                                                    //$no++;
+                                                    $i++;
                                                 } 
                                             ?>
                                             </tbody>
