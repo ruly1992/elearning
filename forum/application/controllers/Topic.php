@@ -11,7 +11,10 @@ class Topic extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model(array('model_topic', 'model_thread'));
+        $this->load->model(array(
+            'Model_thread'  => 'model_thread',
+            'Model_topic'   => 'model_topic'
+        ));
         $this->load->library('WilayahIndonesia', null, 'wilayah');
         $this->load->helper('thread');
 
