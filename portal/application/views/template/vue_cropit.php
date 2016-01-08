@@ -1,5 +1,5 @@
 <template id="cropit-preview">
-    <div class="image-preview image-{{ name }}" style="margin-bottom:10px;">
+    <div class="image-preview image-{{ name }}">
         <img src="{{ imageSrc }}" width="{{ width }}" height="{{ height }}" class="img img-responsive img-thumbnail">
     </div>
     <slot name="button-select">
