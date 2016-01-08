@@ -58,8 +58,8 @@
                         <div class="footer-bottom-right">
                             <ul>
                                 <li><a href="<?php echo home_url() ?>">Home</a></li>
-                                <li><a href="<?php echo home_url('about-us') ?>">About Us</a></li>
-                                <li><a href="<?php echo home_url('contact-us') ?>">Contact Us</a></li>
+                                <li><a href="<?php echo home_url('page/about-us') ?>">About Us</a></li>
+                                <li><a href="<?php echo home_url('page/contact-us') ?>">Contact Us</a></li>
                                 <li><a href="<?php echo home_url('faq') ?>">FAQ</a></li>
                             </ul>
                         </div>

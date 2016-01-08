@@ -7,18 +7,11 @@
             </div>
             <div class="list-categories">
                 <ul class="nav nav-inline">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Kearifan Lokal</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Administrasi Desa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Kader desa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Opini dan Analisa</a>
-                    </li>
+                    <?php foreach ($categories as $category): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo $category->link ?>"><?php echo $category->name ?></a>
+                        </li>
+                    <?php endforeach ?>
                 </ul>
             </div>
         </div>

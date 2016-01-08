@@ -88,13 +88,24 @@ class Media extends Admin
             $this->upload->initialize($this->set_upload_options($category, $fileName));
 
             if(!empty($_FILES['filemedia']['name'])){
+                $dataCheck  = array(
+                    'file_name'     => preg_replace('/\s+/', '_', $fileName),
+                    'file_type'     => $_FILES['filemedia']['type'],
+                    'category_id'   => $category->id
+                );
+                $checkMedia = $this->media_model->checkMedia($dataCheck);    //chek data media
+                if($checkMedia == TRUE){    //jika data media sudah ada
+                    $this->session->set_flashdata('failed', 'Nama media yang anda upload sudah ada, silahkan pakai nama yang lain.');
+                    redirect('media/upload');
+                } 
+
                 $upload     = $this->upload->do_upload('filemedia');
                 $user       = sentinel()->getUser();
                 $counter    = $counter+1;
                 if($upload){
                     $created_at = date('Y-m-d H:i:s');
                     $uploadData = $this->upload->data();
-                    $data = array(
+                    $data       = array(
                         'file_name'     => $uploadData['file_name'],
                         'file_type'     => $uploadData['file_type'],
                         'file_size'     => $uploadData['file_size'],
