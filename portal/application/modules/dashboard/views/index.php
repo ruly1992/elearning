@@ -8,7 +8,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <section class="content-articles">
             <div class="content-articles-heading">
-                <h3>Dashboard Create Articles</h3>
+                <h3>Dashboard Submit</h3>
             </div>
         </section>
         <div class="container content-submit">
@@ -16,13 +16,13 @@
                 <div class="widget-heading">
                     <ul class="nav nav-tabs" id="myTabSubmit" role="tablist">
                         <li class="nav-item">
-                             <a class="nav-link active" data-toggle="tab" href="#submit-article" role="tab" aria-controls="article-post" aria-expanded="true">Submit article</a>
+                             <a class="nav-link active" data-toggle="tab" href="#submit-article" role="tab" aria-controls="article-post" aria-expanded="true"><label for="" class="title">Artikel</label></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#submit-elibrary" role="tab" aria-controls="library-post" aria-expanded="false">Submit Elibrary</a>
+                            <a class="nav-link" data-toggle="tab" href="#submit-elibrary" role="tab" aria-controls="library-post" aria-expanded="false"><label for="" class="title">Elibrary</label></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#submit-konsultasi" role="tab" aria-controls="konsultasis-post" aria-expanded="false">Submit Konsultasi</a>
+                            <a class="nav-link" data-toggle="tab" href="#submit-konsultasi" role="tab" aria-controls="konsultasis-post" aria-expanded="false"><label for="" class="title">Konsultasi</label></a>
                         </li>
                     </ul>
                 </div>

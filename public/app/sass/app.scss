@@ -2828,6 +2828,7 @@ header {
 			margin-bottom: $margin-bottom;
 			img {
 				width: 100%;
+				height: 100%;
 			}
 		}
 		.single-article-meta {
@@ -2851,6 +2852,10 @@ header {
 				font-size: 14px;
 				line-height: 30px;
 				letter-spacing: normal;
+				img {
+					width: 100%;
+					height: 100%;
+				}
 			}
 			img.img-content {
 				float: left;
