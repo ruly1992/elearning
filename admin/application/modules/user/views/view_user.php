@@ -2,7 +2,7 @@
 	<div class="panel-body">
 		<?php echo button_create('user/create', 'Tambah Pengguna')?>
 		<hr>
-		<table class="table table-hover table-bordered">
+		<table class="table table-hover table-bordered" id="usertable">
 			<thead>
 				<tr>
 					<th>No</th>
@@ -15,26 +15,28 @@
 			</thead>
 			<tbody>
 				<?php 
-				$no=1;
+					$no=1;
 				
-				foreach ($list_user as $prof) { ?>
-					<tr>
-						<td><?php echo $no ?></td>
-						<td><?php echo $prof->first_name." ".$prof->last_name ?></td>
-						<td><?php echo $prof->gender ?></td>
-						<td><?php echo $prof->email?></td>
-						<td><?php echo $prof->address?></td>
-		            	<td>
-	                        <?php echo button_edit('user/updateProfile/' . $prof->user_id) ?>
-	                        <?php echo button_delete('user/delete/' . $prof->user_id) ?>
-	                    </td>
-					</tr>
-					<?php
-					$no++;
-				}
-				?>
+					foreach ($list_user as $prof) { ?>
+						<tr>
+							<td><?php echo $no ?></td>
+							<td><?php echo $prof->first_name." ".$prof->last_name ?></td>
+							<td><?php echo $prof->gender ?></td>
+							<td><?php echo $prof->email?></td>
+							<td><?php echo $prof->address?></td>
+			            	<td>
+		                        <?php echo button_edit('user/updateProfile/' . $prof->user_id) ?>
+		                        <?php echo button_delete('user/delete/' . $prof->user_id) ?>
+		                    </td>
+						</tr>
+				<?php $no++; } ?>
 			</tbody>		
 		</table>
 	</div>
-
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#usertable').DataTable();
+    } );
+</script>

@@ -26,7 +26,7 @@
                     </div>
                     <div class="description-meta-button">
                         <a href="<?php echo $media->getLinkDownload() ?>" class="btn btn-sm btn-block btn-primary"><i class="fa fa-download"></i> Download</a>
-                        <a href="<?php echo $media->getLinkPreview() ?>" class="btn btn-sm btn-block btn-primary"><i class="fa fa-eye"></i> Preview</a>
+                        <a class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#myModal-1"><i class="fa fa-eye"></i> Preview</a>
                     </div>
                 </div>
 	   		</div>
@@ -96,5 +96,34 @@
             <?php echo button_save() ?>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal-1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Preview Media</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-xs-center" id="modal-content">
+                        <?php echo $media->getPreview(500, 'auto') ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <?php echo form_close(); ?>
+
+<?php custom_script() ?>>
+    <script src="<?php echo asset('admin/plugins/modal/js/jquery.modalEffects.js') ?>"></script>
+    <script src="<?php echo asset('admin/js/pages/ui-modals.js') ?>"></script>
+    <script type="text/javascript">
+        $('#myModal-1').on('hidden.bs.modal', function (e) {
+            $('#modal-content video').get(0).pause();
+        });
+    </script>
+<?php endcustom_script() ?>

@@ -1,5 +1,5 @@
 <?php echo form_open('user/saveUpdateProfile/' . $user->id); ?>
-<div class="row">
+<div class="row" id="app-cropit">
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -7,20 +7,15 @@
             </div>
             <div class="panel-body">                
                 <div class="text-center">
-                    <div class="avatar thumbnail" style="max-width: 200px;">
-                        <?php if ($user->avatar): ?>
-                            <img id="avatar-preview" src="<?php echo $user->avatar ?>" width="100%">
-                            <img id="avatar-preview-default" src="<?php echo base_url('assets/admin/img/default_avatar_male.jpg') ?>" width="100%" style="display: none;">
-                        <?php else: ?>
-                            <img id="avatar-preview" src="" width="100%" style="display: none;">
-                            <img id="avatar-preview-default" src="<?php echo base_url('assets/admin/img/default_avatar_male.jpg') ?>">
-                        <?php endif ?>
-                    </div>
-                    <div>
-                        <a href="<?php echo base_url('filemanager/dialog.php?type=0&field_id=avatar_url') ?>" class="btn btn-default iframe-btn" type="button">Open Filemanager</a>
-                        <a href="#" class="btn btn-default btn-remove" data-dismiss="fileinput">Remove</a>
-                        <input type="hidden" name="avatar" id="avatar_url" value="<?php echo $user->avatar ?>">
-                    </div>
+                    <cropit-preview
+                        name="avatar"
+                        :width="192"
+                        :height="192"
+                        image-src="<?php echo $user->avatar ?>"
+                        image-empty="<?php echo asset('images/default_avatar_male.jpg') ?>">
+                        <button type="button" class="btn btn-danger" v-on:click="remove('customavatar')" slot="button-remove"><i class="fa fa-trash-o"></i></button>
+                    </cropit-preview>
+                    <cropit-result name="avatar"></cropit-result>
                 </div>
 
                 <div class="form-group">
@@ -110,27 +105,18 @@
             </div>
         </div>
     </div>
+
+    <?php $this->load->view('modal/avatar'); ?>
 </div>
 <?php echo form_close(); ?>
 
+<?php custom_stylesheet() ?>
+    <link rel="stylesheet" href="<?php echo asset('stylesheets/cropit.css') ?>">
+<?php endcustom_stylesheet() ?>
+
 <?php custom_script() ?>
-<script>
-    var avatar_default  = jQuery('#avatar-preview-default');
-    var avatar          = jQuery('#avatar-preview');
-
-    function responsive_filemanager_callback (field_id) {
-        var field   = jQuery('#'+field_id);
-        var url     = field.val();
-        var img     = jQuery('<img>', {id: 'avatar-preview', width: '100%', src: url});
-        
-        avatar_default.hide()
-        avatar.attr('src', url).show()
-    }
-
-    jQuery('.btn-remove').on('click', function () {
-        jQuery('#avatar_url').val('')
-        avatar.hide()
-        avatar_default.show()
-    })
-</script>
+    <?php $this->load->view('template/vue_cropit'); ?>
+    <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
+    <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
+    <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
 <?php endcustom_script() ?>

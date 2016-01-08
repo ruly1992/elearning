@@ -100,11 +100,19 @@ $config['menus'] = [
                 'name'  => 'Elibrary',
                 'icon'  => 'fa fa-upload',
                 'link'  => site_url('elibrary'),
+                'roles' => ['su', 'adm', 'pus'],
             ],
             [
                 'name'  => 'Kategori',
                 'icon'  => 'icon-calculator',
                 'link'  => site_url('elibrary/category'),
+                'roles' => ['su', 'adm'],
+            ],
+            [
+                'name'  => 'Pengampu',
+                'icon'  => 'icon-users',
+                'link'  => site_url('elibrary/pengampu'),
+                'roles' => ['su', 'adm'],
             ]
         ]
     ],

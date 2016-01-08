@@ -5,6 +5,14 @@
 </style>
 
 <article>
+    <ol class="breadcrumb" style="margin-bottom: 5px;">
+        <li><a href="<?php echo home_url() ?>">Home</a></li>
+        <li><a href="<?php echo home_url() ?>">Article</a></li>
+        <?php try { ?>
+            <li><a href="<?php echo $article->categories()->firstOrFail()->link ?>"><?php echo $article->categories()->firstOrFail()->name ?></a></li>
+        <?php } catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) {} ?>
+        <li class="active"><?php echo $article->title ?></li>
+    </ol>
     <div class="single-article-title">
         <h1><?php echo $article->title ?></h1>
     </div>
@@ -137,7 +145,7 @@
 <!-- start:section content main articles -->
 <section class="content-articles">
     <div class="content-articles-heading">
-        <h3><?php echo $relevance_title ?></h3>
+        <h3>artikel terkait</h3>
     </div>
     <div class="content-articles-main news3">
             <div class="row">

@@ -44,7 +44,7 @@
                             <td><?php echo $row->description ?></td>
                             <td>
                                 <?php echo button_edit('konsultasi/updateKategori/' . $row->id) ?>
-                                <a class="btn btn-danger" href="<?php echo site_url('konsultasi/deleteKategori/'. $row->id);?>" onClick="return doconfirm();">Hapus
+                                <a class="btn btn-danger btn-delete" href="<?php echo site_url('konsultasi/deleteKategori/'. $row->id);?>" onClick="return doconfirm();">Hapus
                                 </a>
                             </td>
                         </tr>
@@ -62,7 +62,7 @@
 
     function doconfirm()
     {
-        hapus=confirm("Ketika Menghapus kategori, Konsultasi dan Pengampu yang berdasarkan kategori tersebut juga akan terhapus, apakah anda yakin?");
+        hapus=confirm("Ketika menghapus kategori, konsultasi dan pengampu yang berdasarkan kategori tersebut juga akan terhapus. Apakah anda yakin akan menghapus kategori ini?");
         if(hapus!=true)
         {
             return false;

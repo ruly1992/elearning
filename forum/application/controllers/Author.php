@@ -7,7 +7,11 @@ class Author extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model(array('model_thread','model_visitor','model_topic'));
+        $this->load->model(array(
+            'Model_thread'  => 'model_thread',
+            'Model_visitor' => 'model_visitor',
+            'Model_topic'   => 'model_topic'
+        ));
         $this->load->helper(array('BBCodeParser','visitor','thread'));
 
         if(!sentinel()->check()) {
@@ -37,6 +41,8 @@ class Author extends CI_Controller
         $data['categoriesHead'] = $this->model_thread->get_categories();
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_approved_topics();
+        $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['breadcrumb']		= 'Your Threads';
         $data['threadMembers']  = $this->model_thread->get_thread_members();
@@ -71,6 +77,8 @@ class Author extends CI_Controller
         $data['author']         = user($user->id)->full_name;
         $data['home']           = site_url('author/');
         $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
@@ -108,6 +116,8 @@ class Author extends CI_Controller
         $data['categoriesHead'] = $getCategory;
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_approved_topics();
+        $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
@@ -133,16 +143,20 @@ class Author extends CI_Controller
         }
 
         $user = sentinel()->getUser();
+        $daerahUser = $user->profile->desa_id;
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
+            $data['categories']     = $this->model_thread->get_categories();
+        }else{
+            $data['categories']     = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         }
         $data['controller']     = 'author';
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['topics']         = $this->model_topic->getTopics_by_Category($idCategory);
         $data['id_thread']      = $id;
-        $data['categories']     = $this->model_thread->get_categories();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $this->load->view('thread/edit_thread',$data);
     }

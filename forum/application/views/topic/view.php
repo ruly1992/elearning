@@ -83,7 +83,7 @@
                                                                     }
                                                                 ?>
                                                                 <?php echo anchor('topic/edit/'.$t->id,'<i class="fa fa-pencil"></i>','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
-                                                                <?php echo anchor('topic/delete/'.$t->id,'<i class="fa fa-trash"></i>','class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
+                                                                <a href="#" class="btn btn-danger btn-konsul"  data-toggle="modal" data-target=".confirm<?php echo $t->id ?>" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
                                                             </p>
                                                         </td>
                                                     </tr>
@@ -93,58 +93,47 @@
                                             ?>
                                             </tbody>
                                         </table>
-                                        <nav>
-                                            <ul class="pager">
-                                                <?php echo $topics->render() ?>
-                                            </ul>
-                                        </nav>
+
+                                        <?php foreach($topics as $top): ?>
+                                            <!-- Start:modal preview -->
+                                            <div class="modal fade confirm<?php echo $top->id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">×</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="myLargeModalLabel">Konfirmasi</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="text-xs-center">
+                                                            <h5>Apakah anda akan menghapus topic <?php echo $top->topic ?> ?</h5>
+                                                            <?php echo anchor('topic/delete/'.$top->id,'Ya','class="btn btn-danger btn-sm" title="Delete"'); ?>
+                                                            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Tidak</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <!-- End:modal preview -->
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
+                            
+                                <div class="forum-pagination">
+                                    <nav>
+                                        <?php echo $topics->render() ?>
+                                    </nav>
+                                </div>
                         </div>
                         <!-- end:content main -->
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="sidebar-forum">
-                            <div class="widget">
-                                <div class="widget-categories">
-                                    <div class="widget-categories-heading">
-                                        <h4>Categories</h4>
-                                    </div>
-                                    <div class="widget-categories-content">
-                                        <div class="list-group">
-                                            <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.countThreads($threadSide, $closeThreads).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
-                                            <?php 
-                                                foreach($categoriesSide as $c){
-                                                    if(isset($category) AND $category == $c->category_name){$active='active';}else{$active='';}
-                                                    echo anchor('thread/category/'.$c->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategory($threadSide, $c->id, $closeThreads).'</span> '.$c->category_name, 'class="list-group-item '.$active.'"');
-                                                }
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="widget">
-                                <div class="widget-categories">
-                                    <div class="widget-categories-heading">
-                                        <h4>Threads</h4>
-                                    </div>
-                                    <div class="widget-categories-content">
-                                        <div class="list-group">
-                                            <?php 
-                                                if(isset($tenagaAhli)){ 
-                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
-                                                }
-                                            ?>
-                                            <?php 
-                                                echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item"');
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php $this->load->view('template/sidebar'); ?>
                         </div>
                     </div>
                 </div>

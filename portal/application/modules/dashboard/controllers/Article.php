@@ -57,6 +57,7 @@ class Article extends CI_Controller {
             'private_category_4_link'       => $privatepage_category_4_title ? site_url('dashboard/category/show/' . $privatepage_category_4_title->name) : site_url('/'),
 
             'links'                         => $this->Mod_link->read(),
+            'categories'                    => Model\Portal\Category::all(),
         );
 
         $latests            = Model\Portal\Article::onlyRegistered()->latest('date')->get();
