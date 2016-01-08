@@ -33,7 +33,9 @@ class Konsultasi extends CI_Controller {
         }
 
 		$konsultasi             = collect($this->M_konsultasi->getKonsultasiLearner());
-        $data['konsultasi']     = pagination($konsultasi, 10, 'konsultasi', 'bootstrap_md');
+        $perPage                = 10;
+        $data['konsultasi']     = pagination($konsultasi, $perPage, 'konsultasi', 'bootstrap_md');
+        $data['perPage']        = $perPage;
 
         $this->template->build('index', $data);
 	}
