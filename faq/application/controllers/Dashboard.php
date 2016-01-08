@@ -7,7 +7,7 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model('Model_faq' => 'model_faq');
+        $this->load->model(array('Model_faq' => 'model_faq'));
 
         if(!sentinel()->check()) {
             redirect(login_url());
