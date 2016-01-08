@@ -22,9 +22,9 @@ if (!function_exists('button_edit')) {
     function button_edit($link, $size = 'md')
     {
         if ($size == 'sm')
-            $html = '<a href="'.site_url($link).'" class="label label-info"><i class="fa fa-pencil"></i> Edit</a>';
+            $html = '<a href="'.site_url($link).'" class="btn btn-info btn-editadmin"><i class="fa fa-pencil"></i> Edit</a>';
         else
-            $html = '<a href="'.site_url($link).'" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>';
+            $html = '<a href="'.site_url($link).'" class="btn btn-info btn-editadmin"><i class="fa fa-pencil"></i> Edit</a>';
 
         return $html;
     }
@@ -33,7 +33,7 @@ if (!function_exists('button_edit')) {
 if (!function_exists('button_delete')) {
     function button_delete($link)
     {
-        $html = '<a href="'.site_url($link).'" class="label label-danger btn-delete"><i class="fa fa-trash-o"></i> Hapus</a>';
+        $html = '<a href="'.site_url($link).'" class="btn btn-danger btn-delete"><i class="fa fa-trash-o"></i> Hapus</a>';
 
         return $html;
     }
