@@ -89,12 +89,14 @@
                         <option value="100">100</option>
                     </select>
                 </form>
+            </div>
+            <center>
                 <nav>
-                    <ul class="pager">
+                    <ul class="#">
                         <?php echo $konsultasi->render() ?>
                     </ul>
-                </nav>
-            </div>
+                </nav>                
+            </center>
 
             <!-- start: table-mobile -->
             <div class="table-responsive hidden-md-up">
@@ -136,12 +138,14 @@
                         <option value="100">100</option>
                     </select>
                 </form>
+            </div>
+            <center>
                 <nav>
-                    <ul class="pager">
+                    <ul class="#">
                         <?php echo $konsultasi->render() ?>
                     </ul>
-                </nav>
-            </div>
+                </nav>                
+            </center>
             <!-- end: table-mobile -->
         <?php else: ?>                       
             <p class="alert alert-warning">Belum ada riwayat konsultasi...</p>
