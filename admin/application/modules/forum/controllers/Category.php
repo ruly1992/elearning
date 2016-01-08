@@ -6,7 +6,8 @@ class Category extends Admin {
     public function index()
     {
         $data['users']      = sentinel()->findRoleBySlug('ta')->users->pluck('email', 'id')->toArray();
-        $data['categories'] = Model\Forum\Category::all();
+        $forum              = collect(Model\Forum\Category::all());
+        $data['categories'] = pagination($forum, '5', 'forum/category');
 
         $this->template->build('category_index', $data);
     }

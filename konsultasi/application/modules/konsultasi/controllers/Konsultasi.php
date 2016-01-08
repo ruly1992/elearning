@@ -234,7 +234,9 @@ class Konsultasi extends CI_Controller {
     {
         $search_term        = $this->input->get('search');
         $result             = collect($this->M_konsultasi->search($search_term));
-        $data['results']    = pagination($result, 10, 'konsultasi/search')->appends(array('search' => $search_term));
+        $perPage            = 10;
+        $data['results']    = pagination($result, $perPage, 'konsultasi/search', 'bootstrap_md')->appends(array('search' => $search_term));
+        $data['perPage']    = $perPage;
         $this->template->build('search',$data);
     }
 
@@ -243,6 +245,7 @@ class Konsultasi extends CI_Controller {
         $limitData          = $this->input->post('limit');
         $konsultasi         = collect($this->M_konsultasi->setLimit($limitData));
         $data['konsultasi'] = pagination($konsultasi, $limitData, 'konsultasi') ;
+        $data['perPage']    = $limitData;
 
         $this->template->build('index', $data);
     }
