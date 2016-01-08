@@ -3797,6 +3797,22 @@ Create: Singgih Saputro */
   padding: 3px 6px;
   text-shadow: none; }
 
+.btn-delete-lg {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px; }
+
 .btn-small {
   font-size: 10px;
   border: medium none;
