@@ -61,12 +61,12 @@
                         <?php endforeach ?>
                         </tbody>
                     </table>
+                    <nav class="pull-right">
+                        <ul class="#">
+                            <?php echo $getKategori->render() ?>
+                        </ul>
+                    </nav>
                 </div>
-                <nav>
-                    <ul class="#">
-                        <?php echo $getKategori->render() ?>
-                    </ul>
-                </nav>
             <?php else: ?>
                 <p class="alert alert-warning">Belum ada data</p>
             <?php endif ?>
