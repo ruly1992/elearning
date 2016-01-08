@@ -187,6 +187,7 @@ class Thread extends CI_Controller
             $data = array(
                 'idCategory'=> $t->category,
                 'category'  => $t->category_name,
+                'topic'     => $t->topicName,
                 'user'      => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,
@@ -195,7 +196,7 @@ class Thread extends CI_Controller
             );
         }
 
-        $user = sentinel()->getUser();
+        $user                   = sentinel()->getUser();
         $visitorIdentity        = visitorIdentity($user->id,$id);
         $this->model_visitor->saveVisitor($visitorIdentity);
 
