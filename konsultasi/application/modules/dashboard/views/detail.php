@@ -93,6 +93,11 @@
                                 </div>
                             </div>
                             <?php } ?>
+                            <nav>
+                                <ul class="#">
+                                    <?php echo $reply->render() ?>
+                                </ul>
+                            </nav>
                         <?php else: ?>                       
                             <p class="alert alert-warning">Belum ada balasan</p>
                         <?php endif ?>                             
