@@ -15,6 +15,7 @@ $(document).ready(function () {
     }
 
     function ObjCourse() {
+        this.id = 0;
         this.name = '';
         this.description = '';
         this.category_id = 0;
@@ -23,6 +24,7 @@ $(document).ready(function () {
     }
 
     function ObjChapter() {
+        this.id = 0;
         this.name = '';
         this.content = '';
         this.order = 0;
@@ -30,12 +32,14 @@ $(document).ready(function () {
     }
 
     function ObjQuiz() {
+        this.id = 0;
         this.name = '';
         this.time = 0;
         this.questions = [];
     }
 
     function ObjQuestion() {
+        this.id = 0;
         this.question = '';
         this.option_a = '';
         this.option_b = '';
@@ -49,6 +53,7 @@ $(document).ready(function () {
     }
 
     function ObjContent() {
+        this.id = 0;
         this.filename = '';
         this.filetype = '';
         this.filesize = 0;
@@ -63,7 +68,13 @@ $(document).ready(function () {
                 chapter: new ObjChapter(),
                 chapterQuiz: new ObjQuestion(),
                 chapterAttachment: new ObjAttachment(),
-                exam: new ObjQuestion()
+                exams: new ObjQuestion()
+            },
+            remove: {
+                chapters: [],
+                chapterQuiz: [],
+                chapterAttachment: [],
+                exams: []
             },
             attachments: [],
             tinymce: 'editor-question',
@@ -96,7 +107,7 @@ $(document).ready(function () {
                 }
             },
             initCourse: function (storage) {
-                this.course = storage;
+                this.course = $.extend({}, new ObjCourse(), storage);
             },
             initAttachment: function (storage) {
                 this.attachments = storage;
@@ -108,7 +119,7 @@ $(document).ready(function () {
                     var attachment = new ObjAttachment();
                     var chapter = new ObjChapter();
                     chapter.name = this.input.chapter.name;
-                    chapter.content = this.input.chapter.content;                    
+                    chapter.content = this.input.chapter.content;
 
                     this.course.chapters.push(chapter);                    
                     this.attachments.push(attachment)
@@ -127,6 +138,9 @@ $(document).ready(function () {
                 this.input.chapter.chapterIndex = chapterIndex;
             },
             removeChapter: function (chapter) {
+                if (chapter.id)
+                    this.remove.chapters.push(chapter.id);
+                
                 this.course.chapters.$remove(chapter);
             },
             cancelChapter: function () {
@@ -139,6 +153,11 @@ $(document).ready(function () {
                 var chapter_index = this.input.chapterQuiz.chapterIndex;
                 var index = this.input.chapterQuiz.questionIndex;
                 var chapter = this.course.chapters[chapter_index];
+
+                if (chapter.quiz === null) {
+                    chapter.quiz = new ObjQuiz();
+                }
+
                 var quiz = chapter.quiz;
 
                 if (typeof index === 'undefined') {
@@ -181,6 +200,9 @@ $(document).ready(function () {
             removeChapterQuiz: function (questionIndex, chapterIndex) {                
                 var chapter = this.course.chapters[chapterIndex];
                 var question = chapter.quiz.questions[questionIndex];
+
+                if (question.id)
+                    this.remove.chapterQuiz.push(chapter.id + '/' + question.id);
 
                 chapter.quiz.questions.$remove(question);
             },
@@ -230,6 +252,11 @@ $(document).ready(function () {
             },
             removeChapterContent: function (index, chapterIndex) {
                 var attachment = this.attachments[chapterIndex];
+                var content = attachment.contents[index];
+                var chapter = this.course.chapters[chapterIndex];
+
+                if (content.id)
+                    this.remove.chapterAttachment.push(chapter.id + '/' + content.id);
 
                 attachment.contents.splice(index, 1);
             },
@@ -245,6 +272,10 @@ $(document).ready(function () {
                     question.option_c = this.input.exam.option_c;
                     question.option_d = this.input.exam.option_d;
                     question.correct = this.input.exam.correct;
+
+                    if (this.course.exam === null) {
+                        this.course.exam = new ObjQuiz();
+                    }
 
                     this.course.exam.questions.push(question);
                 } else {
@@ -278,6 +309,11 @@ $(document).ready(function () {
                 tinymce.get(this.tinymceExam).setContent(question.question);
             },
             removeExamQuestion: function (questionIndex) {
+                var question = this.course.exam.questions[questionIndex];
+
+                if (question.id)
+                    this.remove.exams.push(question.id);
+
                 this.course.exam.questions.splice(questionIndex, 1);
             },
             cancelExam: function () {

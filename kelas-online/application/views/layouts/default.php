@@ -1,21 +1,11 @@
 <?php get_header('private', array('active' => 'kelas')) ?>
 
     <!-- start:main content -->
-    <div class="container content content-single">
+    <div class="container content content-single content-dashboard content-kelas-online">
         <section id="content">
                            
             <!-- start:content -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!-- start:content main -->
-                    <div class="content-main">
-                        
-                        <?php echo $template['body'] ?>
-
-                    </div>
-                    <!-- end:content main -->
-                </div>
-            </div>
+            <?php echo $template['body'] ?>
             <!-- end:content -->
 
         </section>

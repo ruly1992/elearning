@@ -26,39 +26,48 @@
             <div class="panel-heading">
                 <h2><strong>Daftar Pengampu</strong></h2>
             </div>
-            <div class="panel-body">     
-                <table class="table table-hover table-bordered" id="elibtable">
-                    <thead>
-                        <tr>
-                            <th>Pustakawan</th>
-                            <th>Kategori</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($getKategori as $row): ?>
-                            <?php
-                                $i = 0;
+            <?php if ($getKategori->count()): ?>
+                <div class="panel-body">     
+                    <table class="table table-hover table-bordered" id="elibtable">
+                        <thead>
+                            <tr>
+                                <th>Pustakawan</th>
+                                <th>Kategori</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($getKategori as $row): ?>
+                                <?php
+                                    $i = 0;
 
-                                foreach ($row['categories'] as $category):
-                                    if ($i == 0):
-                            ?>
-                                        <tr>
-                                            <td rowspan="<?php echo $row['count'] ?>"><?php echo $row['user']->full_name ?><br><small><?php echo $row['user']->email ?></small></th>
-                                            <td><?php echo $category->name ?></td>
-                                            <td> <?php echo button_delete('elibrary/deletePengampu/' . $category->id) ?></td>
-                                        </tr>
-                                    <?php else: ?>
-                                        <tr>
-                                            <td><?php echo $category->name ?></td>
-                                            <td> <?php echo button_delete('elibrary/deletePengampu/' . $category->id) ?></td>
-                                        </tr>
-                                    <?php endif; ?>
-                            <?php $i++; endforeach; ?>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
-            </div>
+                                    foreach ($row['categories'] as $category):
+                                        if ($i == 0):
+                                ?>
+                                            <tr>
+                                                <td rowspan="<?php echo $row['count'] ?>"><?php echo $row['user']->full_name ?><br><small><?php echo $row['user']->email ?></small></th>
+                                                <td><?php echo $category->name ?></td>
+                                                <td> <?php echo button_delete('elibrary/deletePengampu/' . $category->id) ?></td>
+                                            </tr>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td><?php echo $category->name ?></td>
+                                                <td> <?php echo button_delete('elibrary/deletePengampu/' . $category->id) ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                <?php $i++; endforeach; ?>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+                <nav>
+                    <ul class="#">
+                        <?php echo $getKategori->render() ?>
+                    </ul>
+                </nav>
+            <?php else: ?>
+                <p class="alert alert-warning">Belum ada data</p>
+            <?php endif ?>
         </div>
     </div>
 </div>

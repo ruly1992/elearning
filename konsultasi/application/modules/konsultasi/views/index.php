@@ -60,7 +60,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no = 1;  foreach ($konsultasi as $row) : ?>
+                        <?php 
+                            $noPage = $konsultasi->currentPage();
+                            $no = $noPage + ($noPage - 1) * ($perPage - 1);  
+                            foreach ($konsultasi as $row) : 
+                        ?>
                         <tr>
                             <th scope="row"><?php echo $no ?></th>
                             <td><?php echo $row->name ?></td>
@@ -89,12 +93,14 @@
                         <option value="100">100</option>
                     </select>
                 </form>
+            </div>
+            <center>
                 <nav>
-                    <ul class="pager">
+                    <ul class="#">
                         <?php echo $konsultasi->render() ?>
                     </ul>
-                </nav>
-            </div>
+                </nav>                
+            </center>
 
             <!-- start: table-mobile -->
             <div class="table-responsive hidden-md-up">
@@ -108,7 +114,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no = 1;  foreach ($konsultasi as $row) : ?>
+                        <?php 
+                            $noPage = $konsultasi->currentPage();
+                            $no = $noPage + ($noPage - 1) * ($perPage - 1); 
+                            foreach ($konsultasi as $row) : ?>
                         <tr>
                             <th scope="row"><p><?php echo $no ?></p></th>
                             <td>
@@ -136,11 +145,13 @@
                         <option value="100">100</option>
                     </select>
                 </form>
-                <nav>
-                    <ul class="pager">
-                        <?php echo $konsultasi->render() ?>
-                    </ul>
-                </nav>
+                <center>
+                    <nav>
+                        <ul class="#">
+                            <?php echo $konsultasi->render() ?>
+                        </ul>
+                    </nav>                
+                </center>
             </div>
             <!-- end: table-mobile -->
         <?php else: ?>                       
