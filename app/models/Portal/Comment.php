@@ -41,9 +41,7 @@ class Comment extends Model
         if ($this->user) {
             return $this->user->avatar;
         } else {
-            $email_hash = md5(trim(strtolower($this->email)));
-
-            return asset('../portal/assets/img/default_avatar_male.jpg');
+            return asset('images/default_avatar_male.jpg');
         }
     }
 

@@ -11,7 +11,6 @@
         <?php try { ?>
             <li><a href="<?php echo $article->categories()->firstOrFail()->link ?>"><?php echo $article->categories()->firstOrFail()->name ?></a></li>
         <?php } catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) {} ?>
-        <li class="active"><?php echo $article->title ?></li>
     </ol>
     <div class="single-article-title">
         <h1><?php echo $article->title ?></h1>

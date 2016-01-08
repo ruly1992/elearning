@@ -67,34 +67,24 @@
                                     <div id="collapse{{ $index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Chapter{{ $index }}">
                                         <div class="container">
                                             <!-- Start: Deskripsi-->
-                                            <div class="content-chapter">
-                                                <div class="content-chapter-main">
-                                                    <div class="container">
-                                                        <div class="col-md-2">
-                                                            Deskripsi :
-                                                        </div>
-                                                        <div class="col-md-10">
-                                                            {{ chapter.content }}
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                         <p>Deskripsi : </p>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div class="form-group row">
+                                                            <label for="deskripsi" class="col-sm-12 form-control-label">{{ chapter.content }}</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             <!-- End: Deskripsi -->
                                             <!-- Start: Attachment -->
-                                            <div class="content-chapter">
-                                                <div class="content-chapter-main">
-                                                    <div class="container">
-                                                        <div class="col-md-2">
-                                                            Attachment :
-                                                        </div>
-                                                        <div class="col-md-10">
-                                                            <button class="btn btn-custom-chapter" data-toggle="modal" data-target=".add-content" v-on:click="addChapterAttachment($index)"><i class="fa fa-paperclip fa-sw"></i> Add Content</button>
-                                                        </div>
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                         <p>Attachment : <button class="btn btn-exam" data-toggle="modal" data-target=".add-content" v-on:click="addChapterAttachment($index)"><i class="fa fa-paperclip fa-sw"></i> Add Content</button></p>
                                                     </div>
-                                                </div>
-                                                <div class="content-chapter-quiz">
-                                                    <div class="container">
-                                                        <!-- Start: Table Queations -->                                                   
+                                                    <div class="card-block">
+                                                        <!-- Start: Table Attachment -->                                                   
                                                             <table class="table table-striped table-responsive">
                                                                 <thead>
                                                                     <tr>
@@ -120,25 +110,16 @@
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
-                                                        <!-- End: Table Questions -->
+                                                        <!-- End: Table Attachment -->
                                                     </div>
                                                 </div>
-                                            </div>
                                             <!-- End: Attachment -->
                                             <!-- Start: Quiz -->
-                                            <div class="content-chapter">
-                                                <div class="content-chapter-main">
-                                                    <div class="container">
-                                                        <div class="col-md-2">
-                                                            Quiz : 
-                                                        </div>
-                                                        <div class="col-md-10">
-                                                            <button class="btn btn-custom-chapter" data-toggle="modal" data-target=".add-question" v-on:click="addChapterQuiz($index)"><i class="fa fa-paperclip fa-sw"></i> Add Question</button>
-                                                        </div>
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                         <p>Quiz : <button class="btn btn-exam" data-toggle="modal" data-target=".add-question" v-on:click="addChapterQuiz($index)"><i class="fa fa-paperclip fa-sw"></i> Add Question</button></p>
                                                     </div>
-                                                </div>
-                                                <div class="content-chapter-quiz">
-                                                    <div class="container">
+                                                    <div class="card-block">
                                                         <!-- Start: Table Queations -->                                                   
                                                             <table class="table table-striped table-responsive">
                                                                 <thead>
@@ -165,7 +146,6 @@
                                                         <!-- End: Table Questions -->
                                                     </div>
                                                 </div>
-                                            </div>
                                             <!-- End: Quiz -->
                                         </div>
                                     </div>
