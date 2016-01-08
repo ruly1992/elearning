@@ -60,7 +60,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no = 1;  foreach ($konsultasi as $row) : ?>
+                        <?php 
+                            $noPage = $konsultasi->currentPage();
+                            $no = $noPage + ($noPage - 1) * ($perPage - 1);  
+                            foreach ($konsultasi as $row) : 
+                        ?>
                         <tr>
                             <th scope="row"><?php echo $no ?></th>
                             <td><?php echo $row->name ?></td>
@@ -110,7 +114,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no = 1;  foreach ($konsultasi as $row) : ?>
+                        <?php 
+                            $noPage = $konsultasi->currentPage();
+                            $no = $noPage + ($noPage - 1) * ($perPage - 1); 
+                            foreach ($konsultasi as $row) : ?>
                         <tr>
                             <th scope="row"><p><?php echo $no ?></p></th>
                             <td>
@@ -138,14 +145,14 @@
                         <option value="100">100</option>
                     </select>
                 </form>
+                <center>
+                    <nav>
+                        <ul class="#">
+                            <?php echo $konsultasi->render() ?>
+                        </ul>
+                    </nav>                
+                </center>
             </div>
-            <center>
-                <nav>
-                    <ul class="#">
-                        <?php echo $konsultasi->render() ?>
-                    </ul>
-                </nav>                
-            </center>
             <!-- end: table-mobile -->
         <?php else: ?>                       
             <p class="alert alert-warning">Belum ada riwayat konsultasi...</p>
