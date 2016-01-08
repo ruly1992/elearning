@@ -1,8 +1,9 @@
 
 <ol class="breadcrumb">
-    <li><a href="#">Dashboard</a></li>
-    <li><a href="">Kelas Online</a></li>
-    <li class="active">Chapter & Quiz</li>
+    <li><a href="<?php echo dashboard_url() ?>">Dashboard</a></li>
+    <li><a href="<?php echo site_url('dashboard') ?>">Kelas Online</a></li>
+    <li><a href="<?php echo site_url('dashboard/course/edit/'.$course->id) ?>"><?php echo $course->name ?></a></li>
+    <li class="active">Chapter &amp; Quiz</li>
 </ol>
 
 <div class="kelas-main" id="app-kelas-online">
@@ -147,7 +148,7 @@
         <div v-for="chapter in course.chapters">
             <input type="hidden" name="course[chapters][{{ $index }}][id]" value="{{ chapter.id || 0 }}">
             <input type="hidden" name="course[chapters][{{ $index }}][name]" value="{{ chapter.name }}">
-            <input type="hidden" name="course[chapters][{{ $index }}][order]" value="{{ chapter.order }}">
+            <input type="hidden" name="course[chapters][{{ $index }}][order]" value="{{ $index+1 }}">
             <input type="hidden" name="course[chapters][{{ $index }}][content]" value="{{ chapter.content }}">
 
             <input type="hidden" name="course[chapters][{{ $index }}][quiz][id]" value="{{ chapter.quiz.id || 0 }}">
@@ -171,6 +172,16 @@
                 <input type="hidden" name="course[chapters][{{ $parent.$index }}][attachments][{{ $index }}][filesize]" value="{{ content.filesize }}">
                 <input type="hidden" name="course[chapters][{{ $parent.$index }}][attachments][{{ $index }}][dataurl]" value="{{ content.dataurl }}">
             </div>
+        </div>
+
+        <div class="chapter-remove" v-for="chapter in remove.chapters">
+            <input type="hidden" name="remove[chapters][{{ $index }}]" value="{{ chapter }}">
+        </div>
+        <div class="chapter-quiz-remove" v-for="quiz in remove.chapterQuiz">
+            <input type="hidden" name="remove[chapter_quiz][{{ $index }}]" value="{{ quiz }}">
+        </div>
+        <div class="chapter-attachment-remove" v-for="attachment in remove.chapterAttachment">
+            <input type="hidden" name="remove[chapter_attachment][{{ $index }}]" value="{{ attachment }}">
         </div>
     </div>
     <?php echo form_close(); ?>

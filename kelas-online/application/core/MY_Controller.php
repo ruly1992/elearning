@@ -23,9 +23,7 @@ class Admin extends CI_Controller
         }
 
         if (!sentinel()->inRole($this->roles)) {
-            set_message_error('Anda tidak mempunyai hak akses.');
-
-            redirect(login_url(), 'refresh');
+            redirect(site_url(), 'refresh');
         }
     }
 
