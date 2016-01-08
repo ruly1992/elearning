@@ -30,7 +30,11 @@
                                 </tr>
                             </thead>
                                 <tbody>
-                                    <?php $no = 1; foreach ($konsultasi as $row) : ?>
+                                    <?php
+                                        $noPage = $konsultasi->currentPage();
+                                        $no = $noPage + ($noPage - 1) * ($perPage - 1); 
+                                        foreach ($konsultasi as $row) : 
+                                    ?>
                                     <tr>
                                         <th scope="row"><?php echo $no ?></th>
                                         <td><?php echo $row->created_at ?></td>
@@ -55,7 +59,7 @@
                                             </p>
                                         </td>
                                     </tr>
-                                    <?php $no++; endforeach; ?> 
+                                    <?php $no+=1; endforeach; ?> 
                                 </tbody>                                
                         </table>
                         <?php else: ?>                       
