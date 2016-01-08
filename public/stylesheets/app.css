@@ -34,6 +34,14 @@ body {
   right: 0px !important;
   left: auto; }
 
+.nav-inline .nav-item {
+  display: inline-block;
+  padding: 5px 15px;
+  margin: 5px;
+  background-color: #37474f;
+  color: white;
+  border-radius: 3px; }
+
 /* HEADER */
 header {
   background-color: #dddddd;
@@ -2366,7 +2374,7 @@ header {
       text-transform: none;
       line-height: 1.5; }
     .content-dashboard .content-list-categories .list-categories .nav-item a {
-      color: #000;
+      color: #fff;
       font-size: 14px; }
       .content-dashboard .content-list-categories .list-categories .nav-item a:hover {
         color: #1c9c57;

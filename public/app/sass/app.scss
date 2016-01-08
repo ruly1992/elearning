@@ -90,7 +90,16 @@ body {
 	right: 0px !important;
 	left: auto;
 }
-
+.nav-inline {
+	.nav-item {
+		display: inline-block;
+		padding: 5px 15px;
+		margin: 5px;
+		background-color: rgb(55, 71, 79);
+		color: rgb(255, 255, 255);
+		border-radius: 3px;
+	}
+}
 /* HEADER */
 
 header {
@@ -2843,7 +2852,7 @@ header {
 					line-height: 1.5;
 				}
 				a {
-					color: $black;
+					color: $white;
 					font-size: 14px;
 					&:hover {
 						color: $green;
