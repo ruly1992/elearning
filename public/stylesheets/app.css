@@ -817,13 +817,46 @@ header {
       color: #1c9c57; }
     .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card h4 {
       font-size: 16px;
-      margin-bottom: 0px; }
+      margin-bottom: 0px;
+      font-weight: 600; }
     .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card p {
       margin-top: 0px;
       margin-bottom: 0px; }
       .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card p em {
         font-size: 10px;
         font-family: "open_sansbold", sans-serif; }
+    .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card-success {
+      transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      color: #fff; }
+      .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card-success:hover, .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card-success:focus {
+        color: #37474f;
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out; }
+      .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card-success span {
+        font-size: 12px;
+        font-family: "open_sansbold", sans-serif;
+        color: #fff; }
+      .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card-success h4 {
+        font-size: 16px;
+        margin-bottom: 0px;
+        font-weight: 600; }
+        .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card-success h4:hover, .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card-success h4:focus {
+          color: #37474f;
+          transition: all 0.3s ease-in-out;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out; }
+      .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card-success p {
+        margin-top: 0px;
+        margin-bottom: 0px; }
+        .content-kelas-online .content-kelas-online-main .content-left .content-lesson .card-success p em {
+          font-size: 10px;
+          font-family: "open_sansbold", sans-serif; }
   .content-kelas-online .content-kelas-online-main .content-left .content-course-forum .content-course-forum-title {
     border-bottom: 1px solid #dddddd;
     margin-bottom: 25px;
