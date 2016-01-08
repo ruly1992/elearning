@@ -108,7 +108,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="text-xs-center">
-                                                            <h5>Apakah anda akan menghapus topic <?php echo $top->topic ?> ?</h5>
+                                                            <p>Apakah anda akan menghapus topic <?php echo $top->topic ?> ?</p>
                                                             <?php echo anchor('topic/delete/'.$top->id,'Ya','class="btn btn-danger btn-sm" title="Delete"'); ?>
                                                             <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Tidak</button>
                                                         </div>
