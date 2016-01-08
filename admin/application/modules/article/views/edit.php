@@ -58,8 +58,8 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <button type="submit" class="btn btn-primary btn-editadmin"><i class="fa fa-save"></i> Update</button>
-                <?php echo button_delete('article/delete/'.$artikel->id, 'md') ?>
+                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Update</button>
+                <?php echo button_delete_lg('article/delete/'.$artikel->id, 'md') ?>
             </div>
         </div>
 

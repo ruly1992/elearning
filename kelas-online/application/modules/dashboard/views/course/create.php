@@ -6,223 +6,201 @@
                     <h3>Dashboard Kelas Online</h3>
                 </div>
             </section>
-            <div class="container">
-                <div class="card">
-                    <div class="card-block">
-                        <div id="wizard">
-                            <h2>Overview</h2>
-                            <section>
-                               <div class="card card-block">
-                                    <div class="form-group row">
-                                        <label for="name" class="col-sm-2 form-control-label">Name</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="name" placeholder="Judul" v-model="course.name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="category" class="col-sm-2 form-control-label">Category</label>
-                                        <div class="col-sm-6">
-                                            <select class="form-control" id="category" v-model="course.category_id">
-                                                <?php foreach ($category_lists as $value => $text): ?>
-                                                    <option value="<?php echo $value ?>"><?php echo $text ?></option>
-                                                <?php endforeach ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 form-control-label">Description</label>
-                                        <div class="col-sm-6">
-                                            <textarea class="form-control" v-model="course.description"></textarea>
-                                        </div>
+            <div class="card">
+                <div class="card-block">
+                    <div id="wizard">
+                        <h2><label class="hidden-xs-down">Overview</label></h2>
+                        <section>
+                           <div class="card card-block">
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-2 form-control-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="name" placeholder="Judul" v-model="course.name">
                                     </div>
                                 </div>
-                            </section>
-                            <h2>Images</h2>
-                            <section>
-                                <div class="card">
-                                    <div class="card-block">
-                                        <h4>Featured Image</h4>
-                                        <cropit-preview name="featured" width="311px" height="145px" image-empty="<?php echo asset('images/kelas_online/thumbnails-lg.jpg') ?>"></cropit-preview>
-                                    </div>
-                                    <div class="card-block">
-                                        <h4>Thumbnail</h4>
-                                        <cropit-preview name="thumbnail" width="107px" height="90px" image-empty="<?php echo asset('images/kelas_online/thumbnails-md.jpg') ?>"></cropit-preview>
+                                <div class="form-group row">
+                                    <label for="category" class="col-sm-2 form-control-label">Category</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="category" v-model="course.category_id">
+                                            <?php foreach ($category_lists as $value => $text): ?>
+                                                <option value="<?php echo $value ?>"><?php echo $text ?></option>
+                                            <?php endforeach ?>
+                                        </select>
                                     </div>
                                 </div>
-                            </section>
-                            <h2>Chapter and Quiz</h2>
-                            <section>
-                                <div id="accordion" role="tablist" aria-multiselectable="true">
-                                    <div class="panel panel-default" v-for="chapter in course.chapters">
-                                        <div class="panel-heading" role="tab" id="Chapter1">
-                                            <h5 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $index }}" aria-expanded="true" aria-controls="collapseOne">
-                                                    <p class="font-weight-bold text-uppercase">Chapter {{ $index + 1 }} : {{ chapter.name }}</p>
-                                                </a>
-                                                <div class="btn-kelas pull-right">
-                                                    <button class="btn btn-secondary btn-kelas" data-toggle="modal" data-target=".add_chapter" v-on:click="editChapter($index)" title="Edit"><i class="fa fa-pencil-square-o"></i></button>
-                                                    <button class="btn btn-danger btn-kelas" data-toggle="tooltip" data-placement="top" title="Delete" v-on:click="removeChapter(chapter)"><i class="fa fa-times"></i></button>
-                                                </div>
-                                            </h5>
-                                        </div>
-                                        <div id="collapse{{ $index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Chapter{{ $index }}">
-                                            <div class="container">
-                                                <!-- Start: Deskripsi-->
-                                                <div class="content-chapter">
-                                                    <div class="content-chapter-main">
-                                                        <div class="container">
-                                                            <div class="col-md-2">
-                                                                Deskripsi :
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                {{ chapter.content }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End: Deskripsi -->
-                                                <!-- Start: Attachment -->
-                                                <div class="content-chapter">
-                                                    <div class="content-chapter-main">
-                                                        <div class="container">
-                                                            <div class="col-md-2">
-                                                                Attachment :
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                <button class="btn btn-custom-chapter" data-toggle="modal" data-target=".add-content" v-on:click="addChapterAttachment($index)"><i class="fa fa-paperclip fa-sw"></i> Add Content</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="content-chapter-quiz">
-                                                        <div class="container">
-                                                            <!-- Start: Table Queations -->                                                   
-                                                                <table class="table table-striped">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>No</th>
-                                                                            <th>Name</th>
-                                                                            <th>Type</th>
-                                                                            <th>Size</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr v-for="content in attachments[$index].contents">
-                                                                            <th scope="row">{{ $index+1 }}</th>
-                                                                            <td>{{ content.filename }}</td>
-                                                                            <td>{{ content.filetype }}</td>
-                                                                            <td>{{ content.filesize }}</td>
-                                                                            <td>
-                                                                                <a class="btn btn-sm btn-danger" title="Delete" v-on:click="removeChapterContent($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr v-show="attachments[$index].contents.length == 0">
-                                                                            <td colspan="4">Tidak ada attachment</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            <!-- End: Table Questions -->
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End: Attachment -->
-                                                <!-- Start: Quiz -->
-                                                <div class="content-chapter">
-                                                    <div class="content-chapter-main">
-                                                        <div class="container">
-                                                            <div class="col-md-2">
-                                                                Quiz : 
-                                                            </div>
-                                                            <div class="col-md-10">
-                                                                <button class="btn btn-custom-chapter" data-toggle="modal" data-target=".add-question" v-on:click="addChapterQuiz($index)"><i class="fa fa-paperclip fa-sw"></i> Add Question</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="content-chapter-quiz">
-                                                        <div class="container">
-                                                            <!-- Start: Table Queations -->                                                   
-                                                                <table class="table table-striped">
-                                                                    <thead>
-                                                                        <tr>
-                                                                          <th>No</th>
-                                                                          <th>Questions</th>
-                                                                          <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr v-for="quiz in chapter.quiz.questions">
-                                                                            <th scope="row">{{ $index+1 }}</th>
-                                                                            <td>{{{ quiz.question }}}</td>
-                                                                            <td>
-                                                                                <a class="btn btn-sm btn-secondary" data-toggle="modal" data-target=".add-question" v-on:click="editChapterQuiz($index, $parent.$index)"><i class="fa fa-pencil-square-o"></i></a>
-                                                                                <a class="btn btn-sm btn-danger" v-on:click="removeChapterQuiz($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr v-show="chapter.quiz.questions.length == 0">
-                                                                            <td colspan="3">Tidak ada quiz</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            <!-- End: Table Questions -->
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End: Quiz -->
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control editor" v-model="course.description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h2><label class="hidden-xs-down">Images</label></h2>
+                        <section>
+                            <div class="card">
+                                <div class="card-block">
+                                    <h4>Featured Image</h4>
+                                    <cropit-preview name="featured" width="auto" height="145px" image-empty="<?php echo asset('images/kelas_online/thumbnails-lg.jpg') ?>"></cropit-preview>
+                                </div>
+                                <div class="card-block">
+                                    <h4>Thumbnail</h4>
+                                    <cropit-preview name="thumbnail" width="auto" height="90px" image-empty="<?php echo asset('images/kelas_online/thumbnails-md.jpg') ?>"></cropit-preview>
+                                </div>
+                            </div>
+                        </section>
+                        <h2><label class="hidden-xs-down">Chapter and Quiz</label></h2>
+                        <section>
+                            <div id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default" v-for="chapter in course.chapters">
+                                    <div class="panel-heading" role="tab" id="Chapter1">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $index }}" aria-expanded="true" aria-controls="collapseOne">
+                                                <p class="font-weight-bold text-uppercase">Chapter {{ $index + 1 }} : {{ chapter.name }}</p>
+                                            </a>
+                                            <div class="btn-kelas pull-right">
+                                                <button class="btn btn-info btn-kelas" data-toggle="modal" data-target=".add_chapter" v-on:click="editChapter($index)" title="Edit"><i class="fa fa-pencil-square-o"></i></button>
+                                                <button class="btn btn-danger btn-kelas" data-toggle="tooltip" data-placement="top" title="Delete" v-on:click="removeChapter(chapter)"><i class="fa fa-times"></i></button>
                                             </div>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse{{ $index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Chapter{{ $index }}">
+                                        <div class="container">
+                                            <!-- Start: Deskripsi-->
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                         <p>Deskripsi : </p>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div class="form-group row">
+                                                            <label for="deskripsi" class="col-sm-12 form-control-label">{{ chapter.content }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <!-- End: Deskripsi -->
+                                            <!-- Start: Attachment -->
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                         <p>Attachment : <button class="btn btn-exam" data-toggle="modal" data-target=".add-content" v-on:click="addChapterAttachment($index)"><i class="fa fa-paperclip fa-sw"></i> Add Content</button></p>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <!-- Start: Table Attachment -->                                                   
+                                                            <table class="table table-striped table-responsive">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>No</th>
+                                                                        <th>Name</th>
+                                                                        <th>Type</th>
+                                                                        <th>Size</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr v-for="content in attachments[$index].contents">
+                                                                        <th scope="row">{{ $index+1 }}</th>
+                                                                        <td>{{ content.filename }}</td>
+                                                                        <td>{{ content.filetype }}</td>
+                                                                        <td>{{ content.filesize }}</td>
+                                                                        <td>
+                                                                            <a class="btn btn-konsul btn-danger" title="Delete" v-on:click="removeChapterContent($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr v-show="attachments[$index].contents.length == 0">
+                                                                        <td colspan="4">Tidak ada attachment</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        <!-- End: Table Attachment -->
+                                                    </div>
+                                                </div>
+                                            <!-- End: Attachment -->
+                                            <!-- Start: Quiz -->
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                         <p>Quiz : <button class="btn btn-exam" data-toggle="modal" data-target=".add-question" v-on:click="addChapterQuiz($index)"><i class="fa fa-paperclip fa-sw"></i> Add Question</button></p>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <!-- Start: Table Queations -->                                                   
+                                                            <table class="table table-striped table-responsive">
+                                                                <thead>
+                                                                    <tr>
+                                                                      <th>No</th>
+                                                                      <th>Questions</th>
+                                                                      <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr v-for="quiz in chapter.quiz.questions">
+                                                                        <th scope="row">{{ $index+1 }}</th>
+                                                                        <td>{{{ quiz.question }}}</td>
+                                                                        <td>
+                                                                            <a class="btn btn-konsul btn-info" data-toggle="modal" data-target=".add-question" v-on:click="editChapterQuiz($index, $parent.$index)"><i class="fa fa-pencil-square-o"></i></a>
+                                                                            <a class="btn btn-konsul btn-danger" v-on:click="removeChapterQuiz($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr v-show="chapter.quiz.questions.length == 0">
+                                                                        <td colspan="3">Tidak ada quiz</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        <!-- End: Table Questions -->
+                                                    </div>
+                                                </div>
+                                            <!-- End: Quiz -->
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="panel">
-                                    <div class="panel-default">
-                                        <div class="panel-heading">
-                                            <h5 class="panel-title">
-                                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".add_chapter" v-on:click="addChapter">Add Chapter</button>
-                                            </h5>
-                                        </div>
+                            <div class="panel">
+                                <div class="panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".add_chapter" v-on:click="addChapter">Add Chapter</button>
+                                        </h5>
                                     </div>
                                 </div>
-                            </section>
-                            
-                            <h2>Exam</h2>
-                            <section>
-                                <div class="card">
-                                    <div class="card-header">
-                                        <p>Exam <button class="btn btn-exam" data-toggle="modal" data-target=".add-exam"><i class="fa fa-paperclip"></i> Add Question</button></p>
-                                    </div>
-                                    <div class="card-block">
-                                        <div class="form-group row">
-                                            <label for="waktu" class="col-sm-2 form-control-label">Waktu</label>
-                                            <div class="input-group col-sm-4">
-                                                <input type="text" class="form-control" placeholder="Waktu" v-model="course.exam.time">
-                                                <div class="input-group-addon">Menit</div>
-                                            </div>
-                                        </div>
-                                        <!-- Start: Table Queations -->                                                   
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                      <th>No</th>
-                                                      <th>Questions</th>
-                                                      <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="question in course.exam.questions">
-                                                        <th scope="row">{{ $index+1 }}</th>
-                                                        <td>{{{ question.question }}}</td>
-                                                        <td>
-                                                            <a class="btn btn-sm btn-secondary" data-toggle="modal" data-target=".add-exam" title="Edit" v-on:click="editExamQuestion($index)"><i class="fa fa-pencil-square-o"></i></a>
-                                                            <a class="btn btn-sm btn-danger" title="Delete" v-on:click="removeExamQuestion($index)"><i class="fa fa-trash-o"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        <!-- End: Table Questions -->
-                                    </div>
+                            </div>
+                        </section>
+                        
+                        <h2><label class="hidden-xs-down">Exam</label></h2>
+                        <section>
+                            <div class="card">
+                                <div class="card-header">
+                                    <p>Exam <button class="btn btn-exam" data-toggle="modal" data-target=".add-exam"><i class="fa fa-paperclip"></i> Add Question</button></p>
                                 </div>
-                            </section>
-                        </div>
+                                <div class="card-block">
+                                    <div class="form-group row">
+                                        <label for="waktu" class="col-sm-2 form-control-label">Waktu</label>
+                                        <div class="input-group col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Waktu" v-model="course.exam.time">
+                                            <div class="input-group-addon">Menit</div>
+                                        </div>
+                                    </div>
+                                    <!-- Start: Table Queations -->                                                   
+                                        <table class="table table-striped table-responsive">
+                                            <thead>
+                                                <tr>
+                                                  <th>No</th>
+                                                  <th>Questions</th>
+                                                  <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="question in course.exam.questions">
+                                                    <th scope="row">{{ $index+1 }}</th>
+                                                    <td>{{{ question.question }}}</td>
+                                                    <td>
+                                                        <a class="btn btn-konsul btn-info" data-toggle="modal" data-target=".add-exam" title="Edit" v-on:click="editExamQuestion($index)"><i class="fa fa-pencil-square-o"></i></a>
+                                                        <a class="btn btn-konsul btn-danger" title="Delete" v-on:click="removeExamQuestion($index)"><i class="fa fa-trash-o"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    <!-- End: Table Questions -->
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -239,7 +217,7 @@
             <input type="hidden" name="course[category_id]" value="{{ course.category_id }}">
             <div v-for="chapter in course.chapters">
                 <input type="hidden" name="course[chapters][{{ $index }}][name]" value="{{ chapter.name }}">
-                <input type="hidden" name="course[chapters][{{ $index }}][order]" value="{{ chapter.order }}">
+                <input type="hidden" name="course[chapters][{{ $index }}][order]" value="{{ $index+1 }}">
                 <input type="hidden" name="course[chapters][{{ $index }}][content]" value="{{ chapter.content }}">
 
                 <input type="hidden" name="course[chapters][{{ $index }}][quiz][name]" value="{{ chapter.quiz.name }}">
@@ -318,4 +296,12 @@
     <script src="<?php echo asset('plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js') ?>"></script>
     <script src="<?php echo asset('plugins/jQuery.filer-1.0.5/js/custom.js') ?>"></script>
     <script src="<?php echo asset('plugins/jquery.steps-1.1.0/js/jquery.steps.js') ?>"></script>
+    <script src="<?php echo asset('plugins/tinymce/tinymce.jquery.min.js') ?>"></script>
+    <script>
+        $(document).ready(function () {
+            tinymce.init({
+                selector: '.editor'
+            })
+        })
+    </script>
 <?php endcustom_script() ?>

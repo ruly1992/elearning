@@ -125,11 +125,13 @@
                                     }
                                 }
                             ?>
-                            <div class="forum-pagination">
-                                <nav>
-                                    <?php echo $threads->render() ?>
-                                </nav>
-                            </div>
+                            <center>
+                                <div class="forum-pagination">
+                                    <nav>
+                                        <?php echo $threads->render() ?>
+                                    </nav>
+                                </div>
+                            </center>
                         </div>
                         <!-- end:content main -->
                     </div>

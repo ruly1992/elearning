@@ -30,7 +30,11 @@
                                 </tr>
                             </thead>
                                 <tbody>
-                                    <?php $no = 1; foreach ($konsultasi as $row) : ?>
+                                    <?php
+                                        $noPage = $konsultasi->currentPage();
+                                        $no = $noPage + ($noPage - 1) * ($perPage - 1); 
+                                        foreach ($konsultasi as $row) : 
+                                    ?>
                                     <tr>
                                         <th scope="row"><?php echo $no ?></th>
                                         <td><?php echo $row->created_at ?></td>
@@ -55,19 +59,21 @@
                                             </p>
                                         </td>
                                     </tr>
-                                    <?php $no++; endforeach; ?> 
+                                    <?php $no+=1; endforeach; ?> 
                                 </tbody>                                
                         </table>
                         <?php else: ?>                       
                             <p class="alert alert-warning">Tidak ada Konsultasi yang ditampilkan.</p>
                         <?php endif ?>
-                        <nav>
-                            <ul class="pager">
-                                <?php echo $konsultasi->render() ?>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
+                <center>
+                    <nav>
+                        <ul class="#">
+                            <?php echo $konsultasi->render() ?>
+                        </ul>
+                    </nav>                
+                </center>
                 <!-- end:content main -->
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">

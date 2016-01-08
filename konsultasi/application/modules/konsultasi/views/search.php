@@ -47,9 +47,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($results as $row) : ?>
+                        <?php 
+                            $noPage = $results->currentPage();
+                            $no = $noPage + ($noPage - 1) * ($perPage - 1);
+                            foreach ($results as $row) : 
+                        ?>
                         <tr>
-                            <th scope="row"><?php echo $row->id ?></th>
+                            <th scope="row"><?php echo $no ?></th>
                             <td><?php echo $row->name ?></td>
                             <td><?php echo $row->subjek ?></td>
                             <td><?php echo $row->created_at ?></td>
@@ -64,7 +68,7 @@
                                 <a href="<?php echo site_url('konsultasi/update/'. $row->id) ?>"><span class="label label-primary">Update</span></a>
                             </td>
                         </tr>
-                        <?php endforeach ?>
+                        <?php $no++; endforeach; ?>
                     </tbody>
                 </table>
                 <form method="post" action="<?php echo site_url('konsultasi/setLimit') ?>">
@@ -76,12 +80,14 @@
                         <option value="100">100</option>
                     </select>
                 </form>
+            </div>
+            <center>                
                 <nav>
-                    <ul class="pager">
+                    <ul class="#">
                         <?php echo $results->render() ?>
                     </ul>
                 </nav>
-            </div>
+            </center>
         </div>
         <!-- end:content -->
 

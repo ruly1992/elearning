@@ -38,7 +38,8 @@
                             </thead>
                             <tbody>
                                 <?php 
-                                    $no=1;
+                                    $noPage = $faq->currentPage();
+                                    $no = $noPage + ($noPage - 1) * ($perPage - 1);
                                     foreach($faq as $f){
                                 ?>
                                     <tr>
@@ -59,7 +60,6 @@
                                 
                             </tbody>
                         </table>
-
                         </div>
                         <!-- end:content main -->
                     </div>

@@ -69,7 +69,7 @@
             <div class="content-articles-main">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?php foreach ($privatepage_category_1_a as $article): ?>
+                        <?php foreach ($privatepage_category_1_a as $artikel): ?>
                         <div class="articles-box">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-12">
@@ -87,7 +87,7 @@
                                         <h3><a href="<?php echo $artikel->link ?>"><?php echo $artikel->title ?></a></h3>
                                     </div>
                                     <div class="articles-box-content">
-                                        <p><?php echo $article->getExcerpt(250) ?></p>
+                                        <p><?php echo $artikel->getExcerpt(120) ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
             <div class="content-articles-main">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?php foreach ($privatepage_category_2_a as $article): ?>
+                        <?php foreach ($privatepage_category_2_a as $artikel): ?>
                         <div class="articles-box">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-12">
@@ -129,7 +129,7 @@
                                         <h3><a href="<?php echo $artikel->link ?>"><?php echo $artikel->title ?></a></h3>
                                     </div>
                                     <div class="articles-box-content">
-                                        <p><?php echo $article->getExcerpt(250) ?></p>
+                                        <p><?php echo $artikel->getExcerpt(120) ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
             <div class="content-articles-main">
                 <div class="row">
                     <div class="col-lg-12">         
-                        <?php foreach ($privatepage_category_3_a as $article): ?>           
+                        <?php foreach ($privatepage_category_3_a as $artikel): ?>           
                         <div class="articles-box">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-12">
@@ -174,7 +174,7 @@
                                         <h3><a href="<?php echo $artikel->link ?>"><?php echo $artikel->title ?></a></h3>
                                     </div>
                                     <div class="articles-box-content">
-                                        <p><?php echo $article->getExcerpt(250) ?></p>
+                                        <p><?php echo $artikel->getExcerpt(120) ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +198,7 @@
             <div class="content-articles-main">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?php foreach ($privatepage_category_4_a as $article): ?>
+                        <?php foreach ($privatepage_category_4_a as $artikel): ?>
                         <div class="articles-box">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-12">
@@ -216,7 +216,7 @@
                                         <h3><a href="<?php echo $artikel->link ?>"><?php echo $artikel->title ?></a></h3>
                                     </div>
                                     <div class="articles-box-content">
-                                        <p><?php echo $article->getExcerpt(250) ?></p>
+                                        <p><?php echo $artikel->getExcerpt(120) ?></p>
                                     </div>
                                 </div>
                             </div>

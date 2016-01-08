@@ -74,6 +74,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <?php if ($reply->count()): ?>
                             <?php foreach ($reply as $data) { ?>
                             <div class="card">    
                                 <div class="card-block">
@@ -91,7 +92,15 @@
                                     </p>
                                 </div>
                             </div>
-                            <?php } ?>                           
+                            <?php } ?>
+                            <nav>
+                                <ul class="#">
+                                    <?php echo $reply->render() ?>
+                                </ul>
+                            </nav>
+                        <?php else: ?>                       
+                            <p class="alert alert-warning">Belum ada balasan</p>
+                        <?php endif ?>                             
                             
                             <?php if ($konsultasi->status == 'open'): ?>
                                 <div class="card-block">
@@ -153,6 +162,7 @@
 
     <link href="<?php echo asset('/plugins/jQuery.filer-1.0.5/css/jquery.filer.css') ?>" type="text/css" rel="stylesheet" />
     <link href="<?php echo asset('/plugins/jQuery.filer-1.0.5/css/themes/jquery.filer-dragdropbox-theme.css') ?>" type="text/css" rel="stylesheet" />
+    <link href="<?php echo asset('/stylesheets/custom-jquery-filer.css') ?>" type="text/css" rel="stylesheet" >
 
 <?php endcustom_stylesheet() ?>
 

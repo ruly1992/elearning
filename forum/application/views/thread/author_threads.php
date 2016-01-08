@@ -103,6 +103,29 @@
                                                                                             <td align="center" width="80px">   
                                                                                                 <?php echo anchor('author/edit/'.$thr->id, '<i class="fa fa-pencil-square-o"></i>', 'class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
                                                                                                 <a href="#" class="btn btn-danger btn-konsul"  data-toggle="modal" data-target=".confirm<?php echo $thr->id ?>" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                                                                                                <!-- Start:modal preview -->
+                                                                                                <div class="modal fade confirm<?php echo $thr->id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                                                                  <div class="modal-dialog">
+                                                                                                    <div class="modal-content">
+                                                                                                        <div class="modal-header">
+                                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                              <span aria-hidden="true">×</span>
+                                                                                                            </button>
+                                                                                                            <h4 class="modal-title" id="myLargeModalLabel">Konfirmasi</h4>
+                                                                                                        </div>
+                                                                                                        <div class="modal-body">
+                                                                                                            <div class="text-xs-center">
+                                                                                                                <p>Apakah anda akan menghapus topic <?php echo $thr->title ?> ?</p>
+                                                                                                                <?php echo anchor('author/delete/'.$thr->id,'Ya','class="btn btn-danger btn-sm" title="Delete"'); ?>
+                                                                                                                <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Tidak</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="modal-footer">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                  </div>
+                                                                                                </div>
+                                                                                                <!-- End:modal preview -->
                                                                                             </td>
                                                                                         </tr>
                                                                         <?php
@@ -113,29 +136,6 @@
                                                                     </tbody>
                                                                 </table>
 
-                                                                <!-- Start:modal preview -->
-                                                                <div class="modal fade confirm<?php echo $thr->id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                                  <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                              <span aria-hidden="true">×</span>
-                                                                            </button>
-                                                                            <h4 class="modal-title" id="myLargeModalLabel">Konfirmasi</h4>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <div class="text-xs-center">
-                                                                                <h5>Apakah anda akan menghapus topic <?php echo $thr->title ?> ?</h5>
-                                                                                <?php echo anchor('author/delete/'.$thr->id,'Ya','class="btn btn-danger btn-sm" title="Delete"'); ?>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Tidak</button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                        </div>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                                <!-- End:modal preview -->
                                                 <?php
                                                             }
                                                         }
@@ -148,11 +148,13 @@
                                     }
                                 }
                             ?>
-                            <div class="forum-pagination">
-                                <nav>
-                                    <?php echo $threads->render() ?>
-                                </nav>
-                            </div>
+                            <center>
+                                <div class="forum-pagination">
+                                    <nav>
+                                        <?php echo $threads->render() ?>
+                                    </nav>
+                                </div>
+                            </center>
                         </div>
                         <!-- end:content main -->
                     </div>
