@@ -74,6 +74,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <?php if ($reply->count()): ?>
                             <?php foreach ($reply as $data) { ?>
                             <div class="card">    
                                 <div class="card-block">
@@ -91,7 +92,10 @@
                                     </p>
                                 </div>
                             </div>
-                            <?php } ?>                           
+                            <?php } ?>
+                        <?php else: ?>                       
+                            <p class="alert alert-warning">Belum ada balasan</p>
+                        <?php endif ?>                             
                             
                             <?php if ($konsultasi->status == 'open'): ?>
                                 <div class="card-block">
