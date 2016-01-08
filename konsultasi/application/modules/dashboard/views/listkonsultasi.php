@@ -61,13 +61,15 @@
                         <?php else: ?>                       
                             <p class="alert alert-warning">Tidak ada Konsultasi yang ditampilkan.</p>
                         <?php endif ?>
-                        <nav>
-                            <ul class="pager">
-                                <?php echo $konsultasi->render() ?>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
+                <center>
+                    <nav>
+                        <ul class="#">
+                            <?php echo $konsultasi->render() ?>
+                        </ul>
+                    </nav>                
+                </center>
                 <!-- end:content main -->
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
