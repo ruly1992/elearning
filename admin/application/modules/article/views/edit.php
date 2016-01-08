@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Update</button>
+                <button type="submit" class="btn btn-primary btn-editadmin"><i class="fa fa-save"></i> Update</button>
                 <?php echo button_delete('article/delete/'.$artikel->id, 'md') ?>
             </div>
         </div>
