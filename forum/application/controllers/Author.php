@@ -61,6 +61,7 @@ class Author extends CI_Controller
             $data = array(
                 'idCategory'=> $t->category,
                 'category'  => $t->category_name,
+                'topic'     => $t->topicName,
                 'user'      => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,

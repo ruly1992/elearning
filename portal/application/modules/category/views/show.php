@@ -34,7 +34,9 @@
                 <?php else: ?>
                     <p class="alert alert-warning">Tidak ada artikel yang tersedia.</p>
                 <?php endif ?>
-                <?php echo $articles->render() ?>
+                <center>
+                    <?php echo $articles->render() ?>
+                </center>
             </div>
         </div>
     </div>
