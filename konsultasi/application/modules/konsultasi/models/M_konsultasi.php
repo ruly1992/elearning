@@ -175,12 +175,16 @@ class M_konsultasi extends CI_Model {
 
     public function search($search_term)
     {
+        $user_id = sentinel()->getUser()->id;
+
         $this->db->like('subjek',$search_term);
         $this->db->or_like('konsultasi_kategori.name',$search_term);
 
         $data = array('konsultasi.*','konsultasi_kategori.name');
         $get   = $this->db->select($data)->from('konsultasi')
                     ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                    ->order_by('konsultasi.created_at', 'DESC')
+                    ->where('konsultasi.user_id', $user_id)
                     ->get();
         return $get->result();
     }

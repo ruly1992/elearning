@@ -124,8 +124,14 @@
   .nav {
     padding-top: 10px;
     padding-right: 14px;
-    cursor: pointer;
-    margin-left: 15px; }
+    cursor: pointer; }
+
+  .title {
+    margin-bottom: 5px;
+    font-size: 10px; }
+
+  .widget {
+    margin-top: 10px; }
 
   .dropdown-people {
     width: 60px;
@@ -393,8 +399,7 @@
   .nav {
     padding-top: 10px;
     padding-right: 14px;
-    cursor: pointer;
-    margin-left: 15px; }
+    cursor: pointer; }
 
   .custom-login-mobile {
     height: auto; }
@@ -641,6 +646,10 @@
     .content-dashboard .content-dashboard-articles .content-dashboard-articles-main .box-dashboard-articles .box-dashboard-articles-img img {
       width: 100%;
       height: 100%; }
+
+  .title {
+    margin-bottom: 5px;
+    font-size: 10px; }
 
   footer .footer-top {
     display: none; }

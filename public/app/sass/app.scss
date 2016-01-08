@@ -990,6 +990,39 @@ header {
 					h4 {
 						font-size: 16px;
 						margin-bottom: $margin-bottom - 5px;
+						font-weight: 600;
+					}
+					p {
+						margin-top: $margin-top - 5px;
+						margin-bottom: $margin-bottom - 5px;
+						em {
+							font-size: 10px;
+							@include fonts('open_sansbold');
+						}
+					}
+				}
+				.card-success {
+					@include transition(0.3s);
+					color: $white;
+					&:hover,
+					&:focus {
+						color: $aspalt-light;
+						@include transition(0.3s);
+					}
+					span {
+						font-size: 12px;
+						@include fonts('open_sansbold');
+						color: $white;
+					}
+					h4 {
+						font-size: 16px;
+						margin-bottom: $margin-bottom - 5px;
+						font-weight: 600;
+						&:hover,
+						&:focus {
+							color: $aspalt-light;
+							@include transition(0.3s);
+						}
 					}
 					p {
 						margin-top: $margin-top - 5px;
@@ -2837,6 +2870,7 @@ header {
 			margin-bottom: $margin-bottom;
 			img {
 				width: 100%;
+				height: 100%;
 			}
 		}
 		.single-article-meta {
@@ -2860,6 +2894,10 @@ header {
 				font-size: 14px;
 				line-height: 30px;
 				letter-spacing: normal;
+				img {
+					width: 100%;
+					height: 100%;
+				}
 			}
 			img.img-content {
 				float: left;

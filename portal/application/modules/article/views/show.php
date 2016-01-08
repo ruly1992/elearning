@@ -5,14 +5,17 @@
 </style>
 
 <article>
+    <ol class="breadcrumb" style="margin-bottom: 5px;">
+        <li><a href="<?php echo home_url() ?>">Home</a></li>
+        <li><a href="<?php echo home_url() ?>">Article</a></li>
+        <?php try { ?>
+            <li><a href="<?php echo $article->categories()->firstOrFail()->link ?>"><?php echo $article->categories()->firstOrFail()->name ?></a></li>
+        <?php } catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) {} ?>
+        <li class="active"><?php echo $article->title ?></li>
+    </ol>
     <div class="single-article-title">
         <h1><?php echo $article->title ?></h1>
     </div>
-    <ol class="breadcrumb" style="margin-bottom: 5px;">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Library</a></li>
-        <li class="active">Data</li>
-    </ol>
     <div class="single-article-share col-md-4 col-md-offset-8">
         <div class="row">
             <ul class="rrssb-buttons">
