@@ -38,7 +38,7 @@
                     </div>
                     <div class="description-meta-button">
                         <a href="<?php echo $media->getLinkDownload() ?>" class="btn btn-sm btn-block btn-download"><i class="fa fa-download"></i> Download</a>
-                        <a href="#" class="btn btn-sm btn-block btn-preview" data-toggle="modal" data-target=".preview"><i class="fa fa-eye"></i> Preview</a>
+                        <a href="#" class="btn btn-sm btn-block btn-preview" data-toggle="modal" data-target="#preview"><i class="fa fa-eye"></i> Preview</a>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
 <?php echo form_close(); ?>
 
 <!-- Start:modal preview -->
-<div class="modal fade preview" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="preview" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -121,8 +121,8 @@
             <h4 class="modal-title" id="myLargeModalLabel">Preview</h4>
         </div>
         <div class="modal-body">
-            <div class="text-xs-center">
-                <?php echo $media->getPreview(500, 500) ?>
+            <div class="text-xs-center" id="modal-content">
+                <?php echo $media->getPreview(500, 'auto') ?>
             </div>
         </div>
         <div class="modal-footer">
@@ -153,4 +153,9 @@
     <!--<script type="text/javascript" src="<?php echo asset('node_modules/awesomplete/awesomplete.min.js');?>"></script>-->
     <script type="text/javascript" src="<?php echo asset('javascript/elib.vue.js'); ?>"></script>
 
+    <script type="text/javascript">
+        $('#preview').on('hidden.bs.modal', function (e) {
+            $('#modal-content video').get(0).pause();
+        });
+    </script>
 <?php endcustom_script() ?>
