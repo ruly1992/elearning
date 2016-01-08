@@ -1,7 +1,7 @@
 <template id="cropit-preview">
     <div class="image-preview image-{{ name }}">
         <img src="{{ imageSrc }}" width="{{ width }}" height="{{ height }}" class="img img-responsive img-thumbnail">
-    </div>
+    </div><br>
     <slot name="button-select">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cropit-{{ name }}">Select Image</button>
     </slot>
