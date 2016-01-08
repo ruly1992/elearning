@@ -7,6 +7,15 @@ class Media_model extends CI_Model
 		$this->db->insert('media', $data);
 	}
 
+	public function checkMedia($data){
+		$this->db->get_where('media', $data);
+		if($this->db->affected_rows() >= '1'){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
 	public function getFileData($name, $created_at, $userId, $status)
 	{
 		$get = $this->db->get_where('media', 
