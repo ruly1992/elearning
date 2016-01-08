@@ -19,6 +19,7 @@ Version: 1.0
     color: #fff;
     cursor: default;
     font-size: 14px;
+    height: 42px;
 }
 
 .wizard > .steps a,
@@ -42,6 +43,7 @@ Version: 1.0
 {
     background: #989898 !important;
     color: #fff;
+    height: 42px;
 }
 
 .wizard > .steps .number
@@ -63,6 +65,7 @@ Version: 1.0
     background: #F5F5F5 !important;
     color: #aaa;
     cursor: default;
+    height: 42px;
 }
 
 /* 
