@@ -500,6 +500,13 @@ $padding-left: 5px;
       }
     }
   }
+  .dashboard-kelas-online {
+    h5 {
+      p {
+        width: 185px;
+      }
+    }
+  }
   footer {
     .footer-top {
       display: none;
@@ -967,6 +974,13 @@ $padding-left: 5px;
     display: none;
   }
 }
+.dashboard-kelas-online {
+  h5 {
+    p {
+      width: 170px;
+    }
+  }
+}
 //END 640
 
 //BEGIN 640
@@ -1317,6 +1331,13 @@ $padding-left: 5px;
       }
     }
   }
+  .dashboard-kelas-online {
+    h5 {
+      p {
+        width: 570px;
+      }
+    }
+  }
   // END CONTENT DASHBOARD
 
   //BEGIN FOOTER
@@ -1339,6 +1360,16 @@ $padding-left: 5px;
     }
   }
   //END FOOTER
+}
+// 1280
+@media (min-width: 992px) and (max-width:1500px){
+  .dashboard-kelas-online {
+    h5 {
+      p {
+        width: 765px;
+      }
+    }
+  }
 }
 // Extra small devices (portrait phones, less than 34em)
 @media (max-width: 33.9em) {}
