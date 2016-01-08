@@ -25,7 +25,9 @@
             </div>
             <?php endforeach ?>
             <div class="col-md-12">
-                <?php echo $linkAll->render() ?>
+                <center>
+                    <?php echo $linkAll->render() ?>
+                </center>
             </div>
         </div>
     </div>
