@@ -38,3 +38,12 @@ if (!function_exists('button_delete')) {
         return $html;
     }
 }
+
+if (!function_exists('button_delete_lg')) {
+    function button_delete_lg($link)
+    {
+        $html = '<a href="'.site_url($link).'" class="btn btn-danger btn-delete-lg"><i class="fa fa-trash-o"></i> Hapus</a>';
+
+        return $html;
+    }
+}
