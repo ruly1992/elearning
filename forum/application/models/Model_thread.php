@@ -56,10 +56,16 @@ class Model_thread extends CI_Model
     
     function get_thread($id)
     {
-        $items = array('threads.*', 'categories.category_name', 'categories.id AS idCategory');
+        $items = array(
+                'threads.*',
+                'categories.category_name', 
+                'categories.id AS idCategory',
+                'topics.topic AS topicName'
+        );
         $get   = $this->db->select($items)
                         ->from('threads')
-                        ->join('categories','categories.id=threads.category')
+                        ->join('categories', 'categories.id=threads.category')
+                        ->join('topics', 'topics.id=threads.topic')
                         ->where('threads.id',$id)
                         ->get();
         return $get->result();
