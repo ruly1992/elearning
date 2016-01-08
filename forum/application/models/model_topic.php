@@ -2,6 +2,11 @@
 
 class Model_topic extends CI_Model 
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     function save($data)
     {
         $this->db->insert('topics',$data);

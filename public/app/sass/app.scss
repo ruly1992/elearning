@@ -1356,6 +1356,15 @@ header {
 				color: $aspalt;
 			}
 		}
+		.content-konsultasi-heading-left {
+			margin-bottom: $margin-bottom + 5;
+			.form-control {
+				height: 34px;
+			}
+		}
+		.content-konsultasi-heading-right {
+			margin-bottom: $margin-bottom - 10;
+		}
 	}
 	.content-konsultasi-table {
 		a {
@@ -1893,6 +1902,7 @@ header {
 				margin-bottom: $margin-bottom;
 				img {
 					width: 100%;
+					height: 100%;
 				}
 			}
 			.articles-box-meta {

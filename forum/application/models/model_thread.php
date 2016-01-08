@@ -2,6 +2,12 @@
 
 class Model_thread extends CI_Model 
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     function save_thread($data)
     {
         $this->db->insert('threads',$data);
