@@ -1,3 +1,23 @@
+<!-- Begin : list all categories -->
+<section class="content-list-categories">
+    <div class="container">
+        <div class="row">
+            <div class="list-title">
+                <h3>ALL Categories</h3>
+            </div>
+            <div class="list-categories">
+                <ul class="nav nav-inline">
+                    <?php foreach ($categories as $category): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo $category->link ?>"><?php echo $category->name ?></a>
+                        </li>
+                    <?php endforeach ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End : list all categories -->
 
 <!-- start:section content main articles -->
 <section class="content-dashboard-articles">

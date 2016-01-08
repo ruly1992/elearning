@@ -44,7 +44,7 @@
                             <td><?php echo $row->description ?></td>
                             <td>
                                 <?php echo button_edit('konsultasi/updateKategori/' . $row->id) ?>
-                                <a class="btn btn-danger" href="<?php echo site_url('konsultasi/deleteKategori/'. $row->id);?>" onClick="return doconfirm();">Hapus
+                                <a class="btn btn-danger btn-delete" href="<?php echo site_url('konsultasi/deleteKategori/'. $row->id);?>" onClick="return doconfirm();">Hapus
                                 </a>
                             </td>
                         </tr>

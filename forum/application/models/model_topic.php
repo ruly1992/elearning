@@ -2,6 +2,11 @@
 
 class Model_topic extends CI_Model 
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     function save($data)
     {
         $this->db->insert('topics',$data);
@@ -95,6 +100,26 @@ class Model_topic extends CI_Model
     function get_userID_by_category($idCategory)
     {
         $get = $this->db->get_where('category_user', array('category_id'=>$idCategory));
+        return $get->result();
+    }
+
+    function getCategory_by_Wilayah($daerahUser)
+    {
+        $d          = explode('.', $daerahUser);
+        $desa       = $daerahUser;
+        $kecamatan  = $d[0].'.'.$d[1].'.'.$d[2].'.0000';
+        $kota       = $d[0].'.'.$d[1].'.00.0000';
+        $provinsi   = $d[0].'.00.00.0000';
+        $daerah     = array($desa, $kecamatan, $kota, $provinsi);
+
+        $data = array('categories.*');
+        $get = $this->db->select($data)
+                    ->from('categories')
+                    ->join('topics', 'topics.category=categories.id')
+                    ->where('topics.status', '1')
+                    ->where_in('daerah', $daerah)
+                    ->order_by('categories.id', 'desc')
+                    ->get();
         return $get->result();
     }
 

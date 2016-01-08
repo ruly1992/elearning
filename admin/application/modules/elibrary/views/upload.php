@@ -41,9 +41,9 @@
                     if(i>0){
                         id = i;
                     }
-                    if(document.getElementsByName('fileName'+id).value == ''){  
+                    if(document.getElementById('fileName'+id).value == ''){  
                         alert('Nama file harus diisi terlebih dahulu!');  
-                        document.getElementsByName('fileName'+id).focus();  
+                        document.getElementById('fileName'+id).focus();  
                         return false;  
                     }
                 }
