@@ -10,13 +10,19 @@ class Elibrary extends Admin
         parent::__construct();
 
         $this->load->model('media_model');
+        $this->load->model('category_model');
+        $this->load->model('user/Mod_user');
+
         $this->medialib = new Library\Media\Media;
+
 
     }
 
     public function index()
     {
-        $data['categories'] = $this->medialib->getCategories();
+        $user_id                    = sentinel()->getUser()->id;
+        $data['categoryByUser']     = $this->medialib->getCategoryByUser($user_id);
+        $data['categories']         = $this->medialib->getCategories();
 
         $this->template->build('index', $data);
     }
@@ -344,6 +350,61 @@ class Elibrary extends Admin
         ]);
 
         return $media->getMetadata();
+    }
+
+    public function pengampu()
+    {
+        $data['users']          = sentinel()->findRoleBySlug('pus')->users->pluck('email', 'id')->toArray();
+        $data['getKategori']    = $this->category_model->getAllGroupByUser();
+        $data['kategori_list']  = $this->category_model->getKategoriList();        
+
+        $this->template->build('pengampu', $data);
+
+    }
+
+    public function pengampu_tambah()
+    {   
+        $this->form_validation->set_rules('user_id', 'Pustakawan', 'required');
+        
+        if ($this->form_validation->run() == FALSE) {
+            keepValidationErrors();
+        } else {
+            
+            $users          = $this->input->post('user_id');
+            $category       = $this->input->post('category_id');
+            $temp           = FALSE;
+
+            $data           = $this->category_model->getPengampu();
+
+            foreach ($data as $row) {
+                if ($row->user_id == $users && $row->category_id == $category) {
+                    $temp = TRUE;
+                }
+            }
+
+            if ($temp == FALSE) {
+                $data = array(
+                    'user_id'       => $users,
+                    'category_id'   => $category,
+                );
+
+                $save = $this->category_model->addPengampu($data);
+                set_message_success('data berhasil ditambahkan.');            
+            } else {
+                set_message_error('Data sudah ada.');            
+            }
+
+            redirect('elibrary/pengampu', 'refresh');
+        }
+    }
+
+    public function deletePengampu($id)
+    {
+        $data = $this->category_model->deletePengampu($id);
+
+        set_message_success('Kategori Konsultasi berhasi dihapus');
+
+        redirect('elibrary/pengampu');
     }
 }
 

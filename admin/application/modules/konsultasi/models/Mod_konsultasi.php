@@ -34,10 +34,17 @@ class Mod_konsultasi extends CI_Model {
 	public function readKonsultasi()
 	{
 		$this->db->from('konsultasi');
-		$this->db->order_by('id');
+		$this->db->order_by('created_at', 'DESC');
 		$query = $this->db->get();
 
 		return $query->result();
+	}
+
+	public function getAllReply($id)
+	{
+		$data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment');
+        $get   = $this->db->select($data)->from('konsultasi')->join('reply AS rp','rp.id_konsultasi=konsultasi.id')->where('konsultasi.id',$id)->order_by('rp.created_at', 'DESC')->get();
+        return $get->result();
 	}
 
 	public function getByKategori($id)

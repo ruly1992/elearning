@@ -86,16 +86,18 @@ class Thread extends CI_Controller
             $data['breadcrumb'] = 'Post New Thread';
         }
         
-        $user = sentinel()->getUser();
+        $user       = sentinel()->getUser();
+        $daerahUser = $user->profile->desa_id;
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+            $data['categories'] = $this->model_thread->get_categories();
         }
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
-        $data['categories']     = $this->model_thread->get_categories();
+        $data['categories']     = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         $data['users']          = Model\User::all();
         $this->load->view('thread/create',$data);
     }
@@ -344,7 +346,9 @@ class Thread extends CI_Controller
 
     public function get_topics(){
         $idCategory = $this->input->post('idCategory');
-        $getTopics = $this->model_topic->getTopics_by_Category($idCategory);
+        $getTopics  = $this->model_topic->getTopics_by_Category($idCategory);
+
+        $topics = null;
         if(!empty($getTopics)){
             foreach($getTopics as $top){
                 $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
