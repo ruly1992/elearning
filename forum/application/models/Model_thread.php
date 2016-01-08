@@ -78,7 +78,27 @@ class Model_thread extends CI_Model
                 ->join('categories','categories.id=threads.category')
                 ->join('topics', 'topics.id=threads.topic')
                 ->where(array('reply_to' => '0', 'threads.status' => '1', 'topics.status' => '1'))
-                ->order_by('created_at','desc')
+                ->order_by('threads.id','desc')
+                ->get();
+        return $get->result();
+    }
+
+    function get_threads_by_user($daerahUser)
+    {
+        $d          = explode('.', $daerahUser);
+        $desa       = $daerahUser;
+        $kecamatan  = $d[0].'.'.$d[1].'.'.$d[2].'.0000';
+        $kota       = $d[0].'.'.$d[1].'.00.0000';
+        $provinsi   = $d[0].'.00.00.0000';
+        $daerah     = array($desa, $kecamatan, $kota, $provinsi);
+
+        $items = array('threads.*','categories.category_name');
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories','categories.id=threads.category')
+                ->join('topics', 'topics.id=threads.topic')
+                ->where(array('reply_to' => '0', 'threads.status' => '1', 'topics.status' => '1'))
+                ->where_in('topics.daerah', $daerah)
+                ->order_by('threads.id','desc')
                 ->get();
         return $get->result();
     }
@@ -144,6 +164,26 @@ class Model_thread extends CI_Model
                 ->join('categories','categories.id=threads.category')
                 ->where(array('reply_to' => '0', 'threads.status' => '1', 'threads.category' => $idCategory))
                 ->order_by('created_at','desc')
+                ->get();
+        return $get->result();
+    }
+
+    function get_threads_category_by_user($idCategory, $daerah)
+    {
+        $d          = explode('.', $daerahUser);
+        $desa       = $daerahUser;
+        $kecamatan  = $d[0].'.'.$d[1].'.'.$d[2].'.0000';
+        $kota       = $d[0].'.'.$d[1].'.00.0000';
+        $provinsi   = $d[0].'.00.00.0000';
+        $daerah     = array($desa, $kecamatan, $kota, $provinsi);
+
+        $items = array('threads.*', 'categories.category_name');
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories', 'categories.id=threads.category')
+                ->join('topics', 'topics.id=threads.topic')
+                ->where(array('reply_to' => '0', 'threads.status' => '1', 'threads.category' => $idCategory))
+                ->where_in('daerah', $daerah)
+                ->order_by('threads.id','desc')
                 ->get();
         return $get->result();
     }
