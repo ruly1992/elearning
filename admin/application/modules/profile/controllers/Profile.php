@@ -4,6 +4,8 @@ use Nurmanhabib\WilayahIndonesia\Sources\DatabaseSource;
 
 class Profile extends Admin
 {
+    protected $roles = [];
+
     public function __construct()
     {
         parent::__construct();
@@ -59,13 +61,17 @@ class Profile extends Admin
                 'tanggal_lahir'      => set_value('tanggal_lahir'),
                 'address'            => set_value('address'),
                 'desa_id'            => set_value('desa'),
-                'avatar'             => set_value('avatar'),
             );
             
             $res = $this->model->update($id, $user, $profile);
 
-            if (isset($_FILES['avatar']) && $_FILES['avatar']['tmp_name']) {
-                $this->model->setAvatar($id, $_FILES['avatar']);
+            $action = $this->input->post('avatar[action]');
+            $avatar = $this->input->post('avatar[src]');
+
+            if ($action === 'upload') {
+                $this->model->setAvatar($id, $avatar);
+            } elseif ($action === 'remove') {
+                $this->model->removeAvatar($id);
             }
 
             if ($res==TRUE) {

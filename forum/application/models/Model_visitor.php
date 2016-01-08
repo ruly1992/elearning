@@ -2,7 +2,11 @@
 
 class Model_visitor extends CI_Model
 {
-
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
     public function saveVisitor($data)
     {
             $dataWhere = array(

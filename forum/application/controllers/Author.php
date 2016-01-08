@@ -7,7 +7,11 @@ class Author extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model(array('model_thread','model_visitor','model_topic'));
+        $this->load->model(array(
+            'Model_thread'  => 'model_thread',
+            'Model_visitor' => 'model_visitor',
+            'Model_topic'   => 'model_topic'
+        ));
         $this->load->helper(array('BBCodeParser','visitor','thread'));
 
         if(!sentinel()->check()) {
@@ -144,6 +148,8 @@ class Author extends CI_Controller
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
             $data['categories']     = $this->model_thread->get_categories();
+        }else{
+            $data['categories']     = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         }
         $data['controller']     = 'author';
         $data['categoriesSide'] = $this->model_thread->get_categories();
@@ -151,7 +157,6 @@ class Author extends CI_Controller
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['topics']         = $this->model_topic->getTopics_by_Category($idCategory);
         $data['id_thread']      = $id;
-        $data['categories']     = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $this->load->view('thread/edit_thread',$data);
     }
