@@ -190,6 +190,11 @@ class Elibrary extends Admin
                 $user       = sentinel()->getUser();
                 $counter    = $counter+1;
                 if($upload) {
+                    if($this->checkRole() == TRUE){ //check status user
+                        $status = 'publish';
+                    }else{
+                        $status = 'draft';
+                    }
                     $created_at = date('Y-m-d H:i:s');
                     $uploadData = $this->upload->data();
                     $data       = array(
@@ -197,7 +202,7 @@ class Elibrary extends Admin
                         'file_type'     => $uploadData['file_type'],
                         'file_size'     => $uploadData['file_size'],
                         'category_id'   => $category->id,
-                        'status'        => 'draft',
+                        'status'        => $status,
                         'user_id'       => $user->id,
                         'created_at'    => $created_at
                     );
@@ -205,7 +210,7 @@ class Elibrary extends Admin
                     $dataFiles[]    = array(
                         'file_name'     => $uploadData['file_name'],
                         'user_id'       => $user->id,
-                        'status'        => 'draft',
+                        'status'        => $status,
                         'created_at'    => $created_at
                     );
                 }
@@ -406,6 +411,14 @@ class Elibrary extends Admin
         set_message_success('Kategori Konsultasi berhasi dihapus');
 
         redirect('elibrary/pengampu');
+    }
+
+    public function checkRole(){
+        if (sentinel()->inRole('adm') OR sentinel()->inRole('pus')) {
+            return TRUE;
+        }else{
+            return FALSE;
+        }
     }
 }
 
