@@ -17,7 +17,7 @@
     <li class="page-item disabled">
         <span class="page-link" href="#">Previous</span>
     </li>
-    <li class="page-item active disabled">
+    <li class="page-item disabled">
         <span class="page-link" href="#">1</span>
     </li>
     <li class="page-item disabled">
