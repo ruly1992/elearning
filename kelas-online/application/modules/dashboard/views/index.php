@@ -21,7 +21,7 @@
                         <div class="button-add">
                             <a href="<?php echo site_url('dashboard/course/create') ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus fa-fw"></i>Tambah kelas baru</a>   
                         </div>
-                        <table class="table table-striped">
+                        <table class="table table-hover table-responsive">
                             <thead>
                                 <tr>
                                     <th>Kode</th>
