@@ -12,7 +12,7 @@ class Thread extends CI_Controller
             'Model_visitor' => 'model_visitor',
             'Model_topic'   => 'model_topic'
         ));
-        $this->load->helper(array('BBCodeParser','visitor','thread'));
+        $this->load->helper(array('bbcodeparser','visitor','thread'));
 
         if(!sentinel()->check()) {
             redirect(login_url());
