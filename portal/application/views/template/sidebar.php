@@ -2,7 +2,7 @@
 <!-- start:content sidebar -->
 <div class="content-sidebar">
     <!-- Begin Article Pilihan -->
-    <div class="favorit">
+    <div class="favorit favorit-single">
         <div class="widget-heading">
             <h3>ARTIKEL PILIHAN</h3>
         </div>
