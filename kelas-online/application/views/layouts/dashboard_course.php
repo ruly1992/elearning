@@ -16,7 +16,7 @@
                     <!-- end:content main -->
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <?php $this->load->view('template/sidebar_course', compact('sidebar_active', 'course')); ?>
+                    <?php $this->load->view('template/sidebar_course', compact('sidebar_active', 'course', 'repository')); ?>
                 </div>
 
             </div>
