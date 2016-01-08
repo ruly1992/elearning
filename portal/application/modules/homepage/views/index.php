@@ -44,7 +44,7 @@
         <div class="content-articles-heading">
             <h3><?php echo $homepage_category_2_title ?></h3>
         </div>
-        <div class="content-articles-heading-view">
+        <div class="content-articles-heading-view hidden-sm-down">
             <span class="pull-right"><a href="<?php echo $homepage_category_2_link ?>">view all <i class="fa fa-plus-square"></i></a></span>
         </div>
         <div class="content-articles-main news2">
@@ -87,7 +87,7 @@
         <div class="content-articles-heading">
             <h3><?php echo $homepage_category_3_title ?></h3>
         </div>
-        <div class="content-articles-heading-view">
+        <div class="content-articles-heading-view hidden-sm-down">
             <span class="pull-right"><a href="<?php echo $homepage_category_3_link ?>">view all <i class="fa fa-plus-square"></i></a></span>
         </div>
         <div class="content-articles-main news2">
@@ -130,7 +130,7 @@
         <div class="content-articles-heading">
             <h3><?php echo $homepage_category_4_title ?></h3>
         </div>
-        <div class="content-articles-heading-view">
+        <div class="content-articles-heading-view hidden-sm-down">
             <span class="pull-right"><a href="<?php echo $homepage_category_4_link ?>">view all <i class="fa fa-plus-square"></i></a></span>
         </div>
         <div class="content-articles-main news3">
