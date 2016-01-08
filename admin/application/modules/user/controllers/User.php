@@ -4,7 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Nurmanhabib\WilayahIndonesia\Sources\DatabaseSource;
 
-class User extends Admin {
+class User extends Admin
+{
+    protected $roles = ['su', 'adm'];
 
     public function __construct()
     {
@@ -65,8 +67,11 @@ class User extends Admin {
 
             $register = $this->model->register($username, $password, $email, $role, $profile);
 
-            if (isset($_FILES['avatar']['tmp_name'])) {
-                $this->model->setAvatar($register->user_id, $_FILES['avatar']);
+            $action = $this->input->post('avatar[action]');
+            $avatar = $this->input->post('avatar[src]');
+
+            if ($action === 'upload') {
+                $this->model->setAvatar($id, $avatar);
             }
 
             if ($register == FALSE) {
@@ -116,11 +121,14 @@ class User extends Admin {
         $userModel->save();
         $userModel->profile()->update($profile);
 
-        // $res = $this->model->update($id, $user, $profile);
+        $action = $this->input->post('avatar[action]');
+        $avatar = $this->input->post('avatar[src]');
 
-        // if (isset($_FILES['avatar']) && $_FILES['avatar']['tmp_name']) {
-        //     $this->model->setAvatar($id, $_FILES['avatar']);
-        // }
+        if ($action === 'upload') {
+            $this->model->setAvatar($id, $avatar);
+        } elseif ($action === 'remove') {
+            $this->model->removeAvatar($id);
+        }
 
         if ($userModel->id) {
             set_message_success('User berhasil diperbarui.');
