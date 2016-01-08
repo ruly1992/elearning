@@ -5,14 +5,14 @@ class Pages extends Admin {
 
 	public function index()
 	{
-		$data['pages']	= Model\Page::latest('date')->get();
+		$data['pages']	= Model\Portal\Page::latest('date')->get();
 
 		$this->template->build('index', $data);
 	}
 
     public function add()
     {
-        $user = auth()->user();
+        $user = auth()->getUser();
 
         $this->form_validation->set_rules('title', 'Title', 'trim|required');
         $this->form_validation->set_rules('content', 'Content', 'required');
@@ -40,7 +40,7 @@ class Pages extends Admin {
 
 			$data['slug']   = $this->slug->create_uri($data);
 
-            $page = Model\Page::create($data);
+            $page = Model\Portal\Page::create($data);
 
             set_message_success('Halaman berhasil dibuat.');
 
@@ -52,7 +52,7 @@ class Pages extends Admin {
     {
     	$this->form_validation->set_rules('title', 'Judul Halaman', 'required');
 
-    	$page = Model\Page::findOrFail($page_id);
+    	$page = Model\Portal\Page::findOrFail($page_id);
 
     	if ($this->form_validation->run() == FALSE) {
 	    	$data['page'] = $page;
@@ -75,7 +75,7 @@ class Pages extends Admin {
 
     public function delete($page_id)
     {
-    	$page = Model\Page::findOrFail($page_id);
+    	$page = Model\Portal\Page::findOrFail($page_id);
     	$page->delete();
 
     	set_message_success('Halaman berhasil dihapus.');

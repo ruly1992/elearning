@@ -7,7 +7,11 @@ class Thread extends CI_Controller
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model(array('model_thread','model_visitor','model_topic'));
+        $this->load->model(array(
+            'Model_thread'  => 'model_thread',
+            'Model_visitor' => 'model_visitor',
+            'Model_topic'   => 'model_topic'
+        ));
         $this->load->helper(array('BBCodeParser','visitor','thread'));
 
         if(!sentinel()->check()) {
