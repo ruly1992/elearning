@@ -4,7 +4,8 @@
 	</div>
 	<div class="panel-body">
 	 <?php echo button_create('elibrary/upload/', 'Upload Media') ?>
-	  	<table class="table table-hover table-bordered">
+	 	<hr>
+	  	<table class="table table-hover table-bordered" id="elibtable">
 	  		<thead>
 	  			<tr>
 	  				<th>Nama Kategori</th>
@@ -48,3 +49,8 @@
 	  	</table>
 	</div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#elibtable').DataTable();
+    } );
+</script>
