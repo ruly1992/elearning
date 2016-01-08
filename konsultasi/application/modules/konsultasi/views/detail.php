@@ -110,7 +110,7 @@
                             </div>
                             <?php } ?>
                                 <nav>
-                                    <ul class="pager">
+                                    <ul class="#">
                                         <?php echo $reply->render() ?>
                                     </ul>
                                 </nav>
