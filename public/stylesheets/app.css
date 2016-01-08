@@ -219,7 +219,6 @@ header {
   header #navbar-main {
     z-index: 99; }
     header #navbar-main .navbar {
-      height: 60px;
       border-radius: 0;
       -webkit-border-radius: 0;
       -moz-border-radius: 0;
@@ -358,13 +357,15 @@ header {
       -moz-transition: all 0.3s ease-in-out;
       -o-transition: all 0.3s ease-in-out;
       font-family: "open_sansregular", sans-serif; }
-      header .dropdown:hover .dropdown-navbar li:hover, header .dropdown:hover .dropdown-navbar li:focus, header .dropdown:hover .dropdown-navbar li:active {
+      header .dropdown:hover .dropdown-navbar li:hover {
         background-color: #1c9c57;
         color: #fff;
         transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out; }
+      header .dropdown:hover .dropdown-navbar li a {
+        text-decoration: none; }
   header .dropdown-menu a {
     font-size: 14px;
     color: #37474f;
@@ -1109,6 +1110,12 @@ header {
       -o-transition: all 0.3s ease-in-out;
       background-color: #dddddd;
       color: #263238; }
+  .content-konsultasi .content-konsultasi-heading .content-konsultasi-heading-left {
+    margin-bottom: 10px; }
+    .content-konsultasi .content-konsultasi-heading .content-konsultasi-heading-left .form-control {
+      height: 34px; }
+  .content-konsultasi .content-konsultasi-heading .content-konsultasi-heading-right {
+    margin-bottom: -5px; }
 .content-konsultasi .content-konsultasi-table a {
   color: #1c9c57; }
 .content-konsultasi .content-konsultasi-table p {
@@ -1560,7 +1567,8 @@ header {
         -o-border-radius: 4px;
         margin-bottom: 5px; }
         .content .content-articles .articles-box .articles-box-img img {
-          width: 100%; }
+          width: 100%;
+          height: 100%; }
       .content .content-articles .articles-box .articles-box-meta {
         margin-top: -10px; }
         .content .content-articles .articles-box .articles-box-meta ul {
@@ -2310,6 +2318,24 @@ header {
         font-size: 11px; }
         .content-dashboard .content-sidebar .widget .widget-content .box-komentar-widget .box-komentar-widget-content a {
           color: #1c9c57; }
+  .content-dashboard .content-list-categories .list-title {
+    width: 120px;
+    height: 25px;
+    border-bottom: 2px solid #263238; }
+    .content-dashboard .content-list-categories .list-title h3 {
+      font-size: 14px;
+      text-transform: uppercase; }
+  .content-dashboard .content-list-categories .list-categories {
+    margin-top: 10px; }
+    .content-dashboard .content-list-categories .list-categories .nav-item .nav-link {
+      text-transform: none;
+      line-height: 1.5; }
+    .content-dashboard .content-list-categories .list-categories .nav-item a {
+      color: #000;
+      font-size: 14px; }
+      .content-dashboard .content-list-categories .list-categories .nav-item a:hover {
+        color: #1c9c57;
+        font-size: 14px; }
 
 /* CONTENT SINGLE */
 .content-single {
@@ -3716,5 +3742,29 @@ Create: Singgih Saputro */
           font-size: 14px; }
 .content-kelas-online #time {
   top: 5px; }
+.content-kelas-online .has-attention {
+  position: relative; }
+  .content-kelas-online .has-attention .attention {
+    position: absolute;
+    z-index: 1;
+    right: 25px;
+    margin-top: 7px;
+    margin-right: -6px; }
+
+/* Dashboard Admin
+Create: Singgih Saputro */
+.btn-editadmin,
+.btn-delete {
+  font-size: 10px;
+  border: medium none;
+  padding: 3px 6px;
+  text-shadow: none; }
+
+.btn-small {
+  font-size: 10px;
+  border: medium none;
+  padding: 3px 6px;
+  text-shadow: none;
+  font-weight: 600; }
 
 /*# sourceMappingURL=app.css.map */

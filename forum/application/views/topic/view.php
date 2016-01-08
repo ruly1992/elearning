@@ -83,7 +83,7 @@
                                                                     }
                                                                 ?>
                                                                 <?php echo anchor('topic/edit/'.$t->id,'<i class="fa fa-pencil"></i>','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
-                                                                <?php echo anchor('topic/delete/'.$t->id,'<i class="fa fa-trash"></i>','class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
+                                                                <a href="#" class="btn btn-danger btn-konsul"  data-toggle="modal" data-target=".confirm<?php echo $t->id ?>" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
                                                             </p>
                                                         </td>
                                                     </tr>
@@ -94,6 +94,31 @@
                                             </tbody>
                                         </table>
 
+                                        <?php foreach($topics as $top): ?>
+                                            <!-- Start:modal preview -->
+                                            <div class="modal fade confirm<?php echo $top->id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">×</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="myLargeModalLabel">Konfirmasi</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="text-xs-center">
+                                                            <h5>Apakah anda akan menghapus topic <?php echo $top->topic ?> ?</h5>
+                                                            <?php echo anchor('topic/delete/'.$top->id,'Ya','class="btn btn-danger btn-sm" title="Delete"'); ?>
+                                                            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Tidak</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <!-- End:modal preview -->
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>

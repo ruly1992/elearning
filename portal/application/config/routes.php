@@ -53,6 +53,7 @@ $route['default_controller'] = 'homepage';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['article/([^/]+)/?'] = 'article/show/$1';
+$route['page/([^/]+)/?'] = 'page/show/$1';
 $route['contributor/submit-article'] = 'contributor/submitArticle';
 $route['login'] = 'user/login';
 $route['logout'] = 'user/logout';
