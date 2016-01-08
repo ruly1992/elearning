@@ -357,15 +357,15 @@ header {
       -moz-transition: all 0.3s ease-in-out;
       -o-transition: all 0.3s ease-in-out;
       font-family: "open_sansregular", sans-serif; }
-      header .dropdown:hover .dropdown-navbar li:hover {
-        background-color: #1c9c57;
-        color: #fff;
-        transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out; }
       header .dropdown:hover .dropdown-navbar li a {
         text-decoration: none; }
+        header .dropdown:hover .dropdown-navbar li a:hover {
+          background-color: #1c9c57;
+          color: #fff;
+          transition: all 0.3s ease-in-out;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out; }
   header .dropdown-menu a {
     font-size: 14px;
     color: #37474f;
@@ -3341,7 +3341,10 @@ a {
       border-radius: 3px;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
-      -o-border-radius: 3px; }
+      -o-border-radius: 3px;
+      width: 287px;
+      height: 300px;
+      overflow: auto; }
       .content-dashboard-user .content-submit .widget .widget-sidebar-content .list-group-item {
         font-size: 13px;
         border-radius: 3px;
