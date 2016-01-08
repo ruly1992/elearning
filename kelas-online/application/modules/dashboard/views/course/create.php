@@ -96,7 +96,7 @@
                                                     <div class="content-chapter-quiz">
                                                         <div class="container">
                                                             <!-- Start: Table Queations -->                                                   
-                                                                <table class="table table-striped">
+                                                                <table class="table table-striped table-responsive">
                                                                     <thead>
                                                                         <tr>
                                                                             <th>No</th>
@@ -141,7 +141,7 @@
                                                     <div class="content-chapter-quiz">
                                                         <div class="container">
                                                             <!-- Start: Table Queations -->                                                   
-                                                                <table class="table table-striped">
+                                                                <table class="table table-striped table-responsive">
                                                                     <thead>
                                                                         <tr>
                                                                           <th>No</th>
@@ -199,7 +199,7 @@
                                             </div>
                                         </div>
                                         <!-- Start: Table Queations -->                                                   
-                                            <table class="table table-striped">
+                                            <table class="table table-striped table-responsive">
                                                 <thead>
                                                     <tr>
                                                       <th>No</th>
