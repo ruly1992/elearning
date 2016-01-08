@@ -32,7 +32,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 form-control-label">Description</label>
                                         <div class="col-sm-6">
-                                            <textarea class="form-control" v-model="course.description"></textarea>
+                                            <textarea class="form-control editor" v-model="course.description"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -239,7 +239,7 @@
             <input type="hidden" name="course[category_id]" value="{{ course.category_id }}">
             <div v-for="chapter in course.chapters">
                 <input type="hidden" name="course[chapters][{{ $index }}][name]" value="{{ chapter.name }}">
-                <input type="hidden" name="course[chapters][{{ $index }}][order]" value="{{ chapter.order }}">
+                <input type="hidden" name="course[chapters][{{ $index }}][order]" value="{{ $index+1 }}">
                 <input type="hidden" name="course[chapters][{{ $index }}][content]" value="{{ chapter.content }}">
 
                 <input type="hidden" name="course[chapters][{{ $index }}][quiz][name]" value="{{ chapter.quiz.name }}">
@@ -318,4 +318,12 @@
     <script src="<?php echo asset('plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js') ?>"></script>
     <script src="<?php echo asset('plugins/jQuery.filer-1.0.5/js/custom.js') ?>"></script>
     <script src="<?php echo asset('plugins/jquery.steps-1.1.0/js/jquery.steps.js') ?>"></script>
+    <script src="<?php echo asset('plugins/tinymce/tinymce.jquery.min.js') ?>"></script>
+    <script>
+        $(document).ready(function () {
+            tinymce.init({
+                selector: '.editor'
+            })
+        })
+    </script>
 <?php endcustom_script() ?>

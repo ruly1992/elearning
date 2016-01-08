@@ -8,10 +8,6 @@
 
 $("#navbar-main").sticky({ topSpacing: 0 });
 
-$('.btn-delete').on('click', function () {
-	return confirm('Anda yakin mau menghapus?');
-})
-
 $('.btn-reply').on('click', function () {
     var parent = $(this).data('parent')
     var inputp = $('input[name=parent]')

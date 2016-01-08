@@ -8,6 +8,7 @@ class Api extends CI_Controller
         $course     = Model\Kelas\Course::withDrafts()
                         ->with('chapters.quiz.questions')
                         ->with('exam.questions')
+                        ->with('requirements')
                         ->findOrFail($course_id);
 
         $this->output->set_content_type('application/json')->set_output(json_encode($course->toArray()));
