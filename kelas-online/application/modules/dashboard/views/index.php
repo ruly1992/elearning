@@ -8,6 +8,11 @@
         
         <div class="container content-dashboard-kelas-online">
             <div class="row">
+                <div class="col-sm-12">
+                    <?php echo show_message() ?>
+                </div>
+            </div>
+            <div class="row">
                 <?php if ($count = $drafts->count()): ?>
                     <div class="alert alert-warning" role="alert">
                         <strong><?php echo $count ?> kelas</strong> masih di moderasi. <a href="<?php echo site_url('dashboard?status=draft') ?>" class="btn btn-sm btn-warning">Lihat</a>
@@ -21,7 +26,7 @@
                         <div class="button-add">
                             <a href="<?php echo site_url('dashboard/course/create') ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus fa-fw"></i>Tambah kelas baru</a>   
                         </div>
-                        <table class="table table-striped">
+                        <table class="table table-hover table-responsive">
                             <thead>
                                 <tr>
                                     <th>Kode</th>

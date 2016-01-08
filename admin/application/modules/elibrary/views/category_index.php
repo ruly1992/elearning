@@ -24,7 +24,7 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2><strong>Daftar Konsultasi</strong></h2>
+                <h2><strong>Kategori Elibrary</strong></h2>
             </div>
             <div class="panel-body">                
                 <table class="table table-hover table-bordered" id="elibtable">

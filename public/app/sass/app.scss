@@ -451,13 +451,13 @@ header {
 				padding: $padding + 10px;
 				@include transition(0.3s);
 				@include fonts('open_sansregular');
-				&:hover {
-					background-color: $green;
-					color: $white;
-					@include transition(0.3s);
-				}
 				a {
 					text-decoration: none;
+					&:hover {
+						background-color: $green;
+						color: $white;
+						@include transition(0.3s);
+					}
 				}
 			}
 		}
@@ -1983,8 +1983,10 @@ header {
 			}
 			.box-articles-sm-img {
 				@include border-radius(4px);
+				height: 65px;
 				img {
 					width: 100%;
+					height: 100%;
 				}
 			}
 			.box-articles-sm-meta {
@@ -2064,7 +2066,7 @@ header {
 		}
 	}
 	.content-sidebar {
-		margin-top: $margin-top + 20px;
+		margin-top: $margin-top - 5px;
 		.widget {
 			margin-bottom: $margin-bottom + 30px;
 			.widget-heading {
@@ -3484,6 +3486,7 @@ footer {
 // add fajar eko 
 .favorit {
 	margin-bottom: $margin-bottom + 20px;
+	margin-top: $margin-top + 55px;
 	.widget-heading {
 		width: 100%;
 		height: 40px;
@@ -3555,6 +3558,9 @@ footer {
 			}
 		}
 	}
+}
+.favorit-single {
+	margin-top: $margin-top - 5px;
 }
 
 .dropdown-people {
@@ -4010,6 +4016,9 @@ a {
 				margin-bottom: $margin-bottom + 5px;
 				border: 1px solid $grey;
 				@include border-radius(3px);
+				width: 287px;
+				height: 300px;
+				overflow: auto;
 				.list-group-item {
 					font-size: 13px;
 					@include border-radius(3px);

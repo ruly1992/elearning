@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 use Intervention\Image\ImageManager;
+use Library\Kelas\CourseRepository;
 
 class Course extends Admin
 {
@@ -9,7 +10,8 @@ class Course extends Admin
     {
         parent::__construct();
 
-        $this->kelas    = new Library\Kelas\Kelas;
+        $this->kelas        = new Library\Kelas\Kelas;
+        $this->repository   = new Library\Kelas\CourseRepository;
     }
 
     public function create()
@@ -31,7 +33,7 @@ class Course extends Admin
         // 2. Create Course
         $course                 = new Model\Kelas\Course;
         $course->name           = $input->get('name');
-        $course->description    = $input->get('description');
+        $course->description    = $input->get('description', '', FALSE);
         $course->days           = $input->get('days');
         $course->status         = 'draft';
 
@@ -207,6 +209,7 @@ class Course extends Admin
         $data = [
             'category_lists'    => $this->kelas->getCategoryLists(),
             'course'            => $this->kelas->getCourse($id),
+            'repository'        => new CourseRepository($id),
             'sidebar_active'    => 'basic',
         ];
 
@@ -236,9 +239,9 @@ class Course extends Admin
 
             $this->template->build('course/edit');
         } else {
-            $course                 = Model\Kelas\Course::findOrFail($id);
+            $course                 = Model\Kelas\Course::withDrafts()->findOrFail($id);
             $course->name           = set_value('name');
-            $course->description    = set_value('description');
+            $course->description    = set_value('description', '', FALSE);
             $course->category_id    = set_value('category_id');
             $course->save();
 
@@ -248,12 +251,29 @@ class Course extends Admin
         }
     }
 
+    public function editRequirement($id)
+    {
+        $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
+
+        if (!$this->input->post()) {
+            $course_lists = Model\Kelas\Course::all()->pluck('name', 'id');
+            
+            $this->template->build('course/requirement', compact('courses', 'course_lists'));
+        } else {
+            $requirements = $this->input->post('course[requirements]');
+
+            $course->requirements()->sync($requirements);
+
+            redirect('dashboard/course/edit/'.$id.'/requirement', 'refresh');
+        }
+    }
+
     public function editImage($id)
     {
         if (!$this->input->post()) {
             $this->template->build('course/image');
         } else {
-            $course         = Model\Kelas\Course::findOrFail($id);
+            $course         = Model\Kelas\Course::withDrafts()->findOrFail($id);
             $featured       = $this->input->post('featured[src]');
             $action         = $this->input->post('featured[action]');
             $imageManager   = new ImageManager;
@@ -284,6 +304,36 @@ class Course extends Admin
                 }
             }
 
+            $thumbnail      = $this->input->post('thumbnail[src]');
+            $action         = $this->input->post('thumbnail[action]');
+            $imageManager   = new ImageManager;
+            $kelas_content  = PATH_KELASONLINE_CONTENT.'/'.$course->id;
+            
+            if ($action == 'remove') {
+                // remove
+            } elseif ($action == 'upload') {
+                if (!empty($thumbnail)) {
+                    $image = $imageManager->make($thumbnail);
+
+                    if ($image->mime == 'image/jpeg')
+                        $extension = '.jpg';
+                    elseif ($image->mime == 'image/png')
+                        $extension = '.png';
+                    elseif ($image->mime == 'image/gif')
+                        $extension = '.gif';
+                    else
+                        $extension = '';
+
+                    $prefix     = 'thumbnail_';
+                    $filename   = $prefix . $course->id . $extension;
+
+                    $image->save($kelas_content.'/'.$filename);
+
+                    $course->thumbnail = $filename;
+                    $course->save();
+                }
+            }
+
             redirect('dashboard/course/edit/'.$course->id.'/image', 'refresh');
         }
     }
@@ -296,6 +346,30 @@ class Course extends Admin
             // 1. Prepare from input
             $input  = collect($this->input->post('course'));
             $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
+
+            $this->repository->set($course);
+
+            // 2. Remove data
+            $remove = collect($this->input->post('remove'));
+
+            // 2.a Remove Chapter
+            foreach ($remove->get('chapters', []) as $chapter_id) {
+                $this->repository->deleteChapter($chapter_id);
+            }
+
+            // 2.b Remove Quiz
+            foreach ($remove->get('chapter_quiz', []) as $question) {
+                list($chapter_id, $question_id) = explode('/', $question);
+
+                $this->repository->deleteChapterQuiz($question_id);
+            }
+
+            // 2.b Remove Attachment
+            foreach ($remove->get('chapter_attachment', []) as $attachment) {
+                list($chapter_id, $attachment_id) = explode('/', $attachment);
+
+                $this->repository->deleteChapterAttachment($attachment_id);
+            }
 
             // 4. Chapters
             $chapters = collect($input->get('chapters'));
@@ -405,6 +479,16 @@ class Course extends Admin
             // 1. Prepare from input
             $input  = collect($this->input->post('course'));
             $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
+            $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
+
+            $this->repository->set($course);
+
+            // 2. Remove data
+            $remove = collect($this->input->post('remove'));
+
+            foreach ($remove->get('exams', []) as $exam_id) {
+                $this->repository->deleteExamQuestion($exam_id);
+            }
 
             // 7. Exam
             $exam = collect($input->get('exam'));
@@ -442,6 +526,61 @@ class Course extends Admin
             });
 
             redirect('dashboard/course/edit/'.$course->id.'/exam', 'refresh');
+        }
+    }
+
+    public function editMember($id)
+    {
+        $status     = $this->input->get('status', 'all');
+        $repository = new CourseRepository($id);
+        $members    = $repository->getMemberStatus($status);
+        $members    = pagination($members, 15, 'dashboard/course/edit/'.$id.'/member');
+
+        $members->appends(compact('status'));
+
+        $this->template->build('course/member', compact('members'));
+    }
+
+    public function approveMember($id, $member)
+    {
+        $repository = new CourseRepository($id);
+        $repository->approveMember($member);
+
+        redirect('dashboard/course/edit/'.$id.'/member?status=pending', 'refresh');
+    }
+
+    public function kickMember($id, $member)
+    {
+        $repository = new CourseRepository($id);
+        $repository->deleteMember($member);
+
+        redirect('dashboard/course/edit/'.$id.'/member?status=active', 'refresh');
+    }
+
+    public function delete($id)
+    {
+        $course = new CourseRepository($id);
+        $course->delete();
+
+        set_message_success('Kelas berhasil dihapus');
+
+        redirect('dashboard', 'refresh');
+    }
+
+    public function _remap($method, $params = array())
+    {
+        switch ($method) {
+            case 'approve-member':
+                return $this->approveMember($params[0], $params[1]);
+                break;
+
+            case 'kick-member':
+                return $this->kickMember($params[0], $params[1]);
+                break;
+            
+            default:
+                return call_user_func_array(array($this, $method), $params);
+                break;
         }
     }
 }

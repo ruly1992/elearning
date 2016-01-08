@@ -1,3 +1,11 @@
+
+<ol class="breadcrumb">
+    <li><a href="<?php echo dashboard_url() ?>">Dashboard</a></li>
+    <li><a href="<?php echo site_url('dashboard') ?>">Kelas Online</a></li>
+    <li><a href="<?php echo site_url('dashboard/course/edit/'.$course->id) ?>"><?php echo $course->name ?></a></li>
+    <li class="active">Image</li>
+</ol>
+
 <div id="app-cropit">
     <div class="card">
         <div class="card-block">
@@ -15,7 +23,12 @@
             <h4 class="card-title">Thumbnail</h4>
         </div>
         <div class="card-block text-xs-center">
-            <cropit-preview name="thumbnail" width="215px" height="180px" image-empty="<?php echo asset('images/kelas_online/thumbnails-md.jpg') ?>"></cropit-preview>
+            <cropit-preview
+                name="thumbnail"
+                width="215px"
+                height="180px"
+                image-empty="<?php echo asset('images/kelas_online/thumbnails-md.jpg') ?>"
+                image-src="<?php echo $course->thumbnail_image ?>"></cropit-preview>
         </div>
         <div class="card-block">
             <?php echo form_open('dashboard/course/edit/'.$course->id.'/image'); ?>
