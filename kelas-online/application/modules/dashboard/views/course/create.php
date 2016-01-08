@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-block">
                         <div id="wizard">
-                            <h2>Overview</h2>
+                            <h2><label class="hidden-xs-down">Overview</label></h2>
                             <section>
                                <div class="card card-block">
                                     <div class="form-group row">
@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                             </section>
-                            <h2>Images</h2>
+                            <h2><label class="hidden-xs-down">Images</label></h2>
                             <section>
                                 <div class="card">
                                     <div class="card-block">
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                             </section>
-                            <h2>Chapter and Quiz</h2>
+                            <h2><label class="hidden-xs-down">Chapter and Quiz</label></h2>
                             <section>
                                 <div id="accordion" role="tablist" aria-multiselectable="true">
                                     <div class="panel panel-default" v-for="chapter in course.chapters">
@@ -60,7 +60,7 @@
                                                     <p class="font-weight-bold text-uppercase">Chapter {{ $index + 1 }} : {{ chapter.name }}</p>
                                                 </a>
                                                 <div class="btn-kelas pull-right">
-                                                    <button class="btn btn-secondary btn-kelas" data-toggle="modal" data-target=".add_chapter" v-on:click="editChapter($index)" title="Edit"><i class="fa fa-pencil-square-o"></i></button>
+                                                    <button class="btn btn-info btn-kelas" data-toggle="modal" data-target=".add_chapter" v-on:click="editChapter($index)" title="Edit"><i class="fa fa-pencil-square-o"></i></button>
                                                     <button class="btn btn-danger btn-kelas" data-toggle="tooltip" data-placement="top" title="Delete" v-on:click="removeChapter(chapter)"><i class="fa fa-times"></i></button>
                                                 </div>
                                             </h5>
@@ -154,7 +154,7 @@
                                                                             <th scope="row">{{ $index+1 }}</th>
                                                                             <td>{{{ quiz.question }}}</td>
                                                                             <td>
-                                                                                <a class="btn btn-sm btn-secondary" data-toggle="modal" data-target=".add-question" v-on:click="editChapterQuiz($index, $parent.$index)"><i class="fa fa-pencil-square-o"></i></a>
+                                                                                <a class="btn btn-sm btn-info" data-toggle="modal" data-target=".add-question" v-on:click="editChapterQuiz($index, $parent.$index)"><i class="fa fa-pencil-square-o"></i></a>
                                                                                 <a class="btn btn-sm btn-danger" v-on:click="removeChapterQuiz($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
                                                                             </td>
                                                                         </tr>
@@ -184,7 +184,7 @@
                                 </div>
                             </section>
                             
-                            <h2>Exam</h2>
+                            <h2><label class="hidden-xs-down">Exam</label></h2>
                             <section>
                                 <div class="card">
                                     <div class="card-header">
@@ -212,7 +212,7 @@
                                                         <th scope="row">{{ $index+1 }}</th>
                                                         <td>{{{ question.question }}}</td>
                                                         <td>
-                                                            <a class="btn btn-sm btn-secondary" data-toggle="modal" data-target=".add-exam" title="Edit" v-on:click="editExamQuestion($index)"><i class="fa fa-pencil-square-o"></i></a>
+                                                            <a class="btn btn-sm btn-info" data-toggle="modal" data-target=".add-exam" title="Edit" v-on:click="editExamQuestion($index)"><i class="fa fa-pencil-square-o"></i></a>
                                                             <a class="btn btn-sm btn-danger" title="Delete" v-on:click="removeExamQuestion($index)"><i class="fa fa-trash-o"></i></a>
                                                         </td>
                                                     </tr>
