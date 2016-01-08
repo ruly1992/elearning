@@ -3,7 +3,7 @@
     for($i=0; $i<count($files); $i++){
         foreach($files[$i] AS $file){
 ?>
-    <div id="app-meta<?php echo $i; ?>">
+    <div id="app-meta<?php echo $i; ?>" data-media-id="<?php echo $file->id ?>">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo $file->file_name ?></h3>
@@ -90,7 +90,7 @@
                     <h4 class="modal-title" id="myModalLabel">Preview Media</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="text-xs-center">
+                    <div class="text-xs-center" id="modal-content<?php echo $i; ?>">
                         <?php echo $media[$i]->getPreview(500, 'auto') ?>
                     </div>
                 </div>
@@ -133,6 +133,12 @@
     <?php 
         for($a=0; $a<count($files); $a++){
     ?>
+        <script type="text/javascript">
+            $('#myModal-1<?php echo $a; ?>').on('hidden.bs.modal', function (e) {
+                $('#modal-content<?php echo $a; ?> video').get(0).pause();
+            });
+        </script>
+
         <script type="text/javascript">
                 new Vue({
                     el: '#app-meta<?php echo $a; ?>',
