@@ -117,8 +117,8 @@ class Konsultasi extends Admin {
 	public function pengampu()
 	{
         $data['users']      	= sentinel()->findRoleBySlug('ta')->users->pluck('email', 'id')->toArray();       
-        $data['getKategori']    = $this->model->getAllGroupByUser();        
-        // $data['getUser']    	= $this->model->getByUser();        
+        $pengampu               = collect($this->model->getAllGroupByUser());
+        $data['getKategori']    = pagination($pengampu, '5', 'konsultasi/pengampu');    
 		$data['kategori_list'] 	= $this->model->getKategoriList();
 
 		$this->template->build('pengampu', $data);
