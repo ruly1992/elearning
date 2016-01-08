@@ -2,6 +2,11 @@
 
 class Model_faq extends CI_Model
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function save($data)
     {
         $insert = $this->db->insert('faq', $data);

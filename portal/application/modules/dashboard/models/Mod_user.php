@@ -57,7 +57,14 @@ class Mod_user extends CI_Model {
 
 	public function removeAvatar($user_id)
 	{
-		
+		$user		= Model\User::findOrFail($user_id);
+		$filename	= $user->profile->avatar;
+
+		if (file_exists(PATH_AVATAR.'/'.$filename)) {
+			unlink(PATH_AVATAR.'/'.$filename);
+		}
+
+		$user->profile->update(['avatar' => '']);
 	}
 
 	public function changePassword($user_id, $new_password, $old_password)

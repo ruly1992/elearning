@@ -81,7 +81,7 @@ class Dashboard extends Admin {
         $this->form_validation->set_rules('content', 'Content', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['categories_checkbox']    = $this->Mod_category->generateCheckbox();
+            $data['categories_checkbox']    =(new Model\Portal\Category)->generateCheckbox();
             $data['status'] = $this->status;
 
             $this->template->set('sidebar');
