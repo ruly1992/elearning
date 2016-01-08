@@ -3,7 +3,7 @@
         for($i=0; $i<count($files); $i++){
             foreach($files[$i] AS $file){
     ?>
-            <div class="card" id="app-meta<?php echo $i ?>">
+            <div class="card" id="app-meta<?php echo $i ?>" data-media-id="<?php echo $file->id ?>">
                 <div class="card-header">
                     <?php echo $file->file_name ?>
                 </div>
@@ -21,7 +21,7 @@
                                 <div class="description-meta-button">
                                     <a href="<?php echo $media[$i]->getLinkDownload() ?>" class="btn btn-sm btn-block btn-download"><i class="fa fa-download"></i> Download</a>
                                     <!-- <a href="<?php echo $media[$i]->getLinkPreview() ?>" class="btn btn-sm btn-block btn-preview"><i class="fa fa-eye"></i> Preview</a> -->
-                                    <a href="#" class="btn btn-sm btn-block btn-preview" data-toggle="modal" data-target=".preview<?php echo $i ?>"><i class="fa fa-eye"></i> Preview</a>
+                                    <a href="#" class="btn btn-sm btn-block btn-preview" data-toggle="modal" data-target="#preview<?php echo $i ?>"><i class="fa fa-eye"></i> Preview</a>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
             </div>
 
             <!-- Start:modal preview -->
-            <div class="modal fade preview<?php echo $i ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal fade" id="preview<?php echo $i ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -89,7 +89,7 @@
                         <h4 class="modal-title" id="myLargeModalLabel">Preview</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="text-xs-center">
+                        <div class="text-xs-center" id="modal-content<?php echo $i; ?>">
                             <?php echo $media[$i]->getPreview(500, 'auto') ?>
                         </div>
                     </div>
@@ -122,24 +122,24 @@
 
 <?php custom_script() ?>
     <!--jQuery-->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>-->
     <script type="text/javascript" src="<?php echo asset('plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('javascript/jquery.filer.custom.js') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('node_modules/vue/dist/vue.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo asset('node_modules/vue-validator/dist/vue-validator.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo asset('node_modules/awesomplete/awesomplete.min.js');?>"></script>
-    <script type="text/javascript" src="<?php echo asset('javascript/elib.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo asset('plugins/jquery-validation-1.14.0/dist/jquery.validate.js'); ?>"></script>
     
     <script type="text/javascript">
-        $().ready(function() {
-            $("#metaAdd").validate();
-        });
     </script>
 
     <?php 
         for($a=0; $a<count($files); $a++){
     ?>
+        <script type="text/javascript">
+            $('#preview<?php echo $a; ?>').on('hidden.bs.modal', function (e) {
+                $('#modal-content<?php echo $a; ?> video').get(0).pause();
+            });
+        </script>
         <script type="text/javascript">
                 new Vue({
                     el: '#app-meta<?php echo $a; ?>',
@@ -153,7 +153,7 @@
                         $.ajax({
                             url: siteurl + 'media/getmetadata',
                             data: {
-                                media_id: $(app).data('media-id')
+                                media_id: $(this.$el).data('media-id')
                             },
                             success: function (response) {
                                 self.metadata = response
