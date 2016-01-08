@@ -112,7 +112,7 @@
                                                                                                         </div>
                                                                                                         <div class="modal-body">
                                                                                                             <div class="text-xs-center">
-                                                                                                                <h5>Apakah anda akan menghapus topic <?php echo $thr->title ?> ?</h5>
+                                                                                                                <p>Apakah anda akan menghapus topic <?php echo $thr->title ?> ?</p>
                                                                                                                 <?php echo anchor('draft/delete/'.$thr->id,'Ya','class="btn btn-danger btn-sm" title="Delete"'); ?>
                                                                                                                 <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Tidak</button>
                                                                                                             </div>
