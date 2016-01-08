@@ -23,7 +23,7 @@
                 <h2><strong>List Category</strong></h2>
             </div>
             <div class="panel-body">
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered" id="kelasonline">
                 	<thead>
                 		<tr>
                 			<th>Nama Kategori</th>
@@ -44,3 +44,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#kelasonline').DataTable();
+    } );
+</script>

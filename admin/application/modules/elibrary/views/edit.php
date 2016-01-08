@@ -105,8 +105,8 @@
                     <h4 class="modal-title" id="myModalLabel">Preview Media</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="text-xs-center">
-                        <?php echo $media->getPreview(500, 500) ?>
+                    <div class="text-xs-center" id="modal-content">
+                        <?php echo $media->getPreview(500, 'auto') ?>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -121,4 +121,9 @@
 <?php custom_script() ?>>
     <script src="<?php echo asset('admin/plugins/modal/js/jquery.modalEffects.js') ?>"></script>
     <script src="<?php echo asset('admin/js/pages/ui-modals.js') ?>"></script>
+    <script type="text/javascript">
+        $('#myModal-1').on('hidden.bs.modal', function (e) {
+            $('#modal-content video').get(0).pause();
+        });
+    </script>
 <?php endcustom_script() ?>
