@@ -1,7 +1,8 @@
 
 <ol class="breadcrumb">
-    <li><a href="#">Dashboard</a></li>
-    <li><a href="">Kelas Online</a></li>
+    <li><a href="<?php echo dashboard_url() ?>">Dashboard</a></li>
+    <li><a href="<?php echo site_url('dashboard') ?>">Kelas Online</a></li>
+    <li><a href="<?php echo site_url('dashboard/course/edit/'.$course->id) ?>"><?php echo $course->name ?></a></li>
     <li class="active">Exam</li>
 </ol>
 
@@ -64,6 +65,9 @@
             <input type="hidden" name="course[exam][questions][{{ $index }}][option_c]" value="{{ exam.option_c }}">
             <input type="hidden" name="course[exam][questions][{{ $index }}][option_d]" value="{{ exam.option_d }}">
             <input type="hidden" name="course[exam][questions][{{ $index }}][correct]" value="{{ exam.correct }}">
+        </div>
+        <div class="exam-remove" v-for="exam in remove.exams">
+            <input type="hidden" name="remove[exams][{{ $index }}]" value="{{ exam }}">
         </div>
     </div>
     <?php echo form_close(); ?>

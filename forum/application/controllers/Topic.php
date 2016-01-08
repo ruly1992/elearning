@@ -61,7 +61,9 @@ class Topic extends CI_Controller
         $data['provinsi']       = $this->getWilayah();
 
         $topics             = collect($this->model_topic->get_topics_from_id($user->id));
-        $data['topics']     = pagination($topics, 5, 'topic', 'bootstrap_md');
+        $perPage            = 5;
+        $data['topics']     = pagination($topics, $perPage, 'topic', 'bootstrap_md');
+        $data['perPage']    = $perPage;
         $this->load->view('topic/view',$data);
     }
 
