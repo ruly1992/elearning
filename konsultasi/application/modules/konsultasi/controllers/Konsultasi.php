@@ -33,7 +33,9 @@ class Konsultasi extends CI_Controller {
         }
 
 		$konsultasi             = collect($this->M_konsultasi->getKonsultasiLearner());
-        $data['konsultasi']     = pagination($konsultasi, 10, 'konsultasi');
+        $perPage                = 10;
+        $data['konsultasi']     = pagination($konsultasi, $perPage, 'konsultasi', 'bootstrap_md');
+        $data['perPage']        = $perPage;
 
         $this->template->build('index', $data);
 	}
@@ -105,7 +107,8 @@ class Konsultasi extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {            
             $detail['konsultasi']       = $this->M_konsultasi->getByIdKonsultasi($id);
             $detail['kategori']         = $this->M_konsultasi->getKatByKons($id);
-            $detail['reply']            = $this->M_konsultasi->getReply($id);
+            $balasan                    = collect($this->M_konsultasi->getReply($id));
+            $detail['reply']            = pagination($balasan, 3, 'konsultasi/detail/' . $id, 'bootstrap_md');
 
             $this->template->build('detail', $detail);
 
