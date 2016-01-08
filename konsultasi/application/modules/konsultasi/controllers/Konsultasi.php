@@ -231,7 +231,7 @@ class Konsultasi extends CI_Controller {
     {
         $search_term        = $this->input->get('search');
         $result             = collect($this->M_konsultasi->search($search_term));
-        $data['results']    = pagination($result, 2, 'konsultasi/search')->appends(array('search' => $search_term));
+        $data['results']    = pagination($result, 10, 'konsultasi/search')->appends(array('search' => $search_term));
         $this->template->build('search',$data);
     }
 
