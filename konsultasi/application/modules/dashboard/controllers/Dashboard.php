@@ -37,7 +37,8 @@ class Dashboard extends CI_Controller
         if ($this->form_validation->run() == FALSE) {            
             $detail['konsultasi']       = $this->M_konsultasi->getByIdKonsultasi($id);
             $detail['kategori']         = $this->M_konsultasi->getKatByKons($id);
-            $detail['reply']            = $this->M_konsultasi->getReply($id);
+            $balasan                    = collect($this->M_konsultasi->getReply($id));
+            $detail['reply']            = pagination($balasan, 3, 'konsultasi/detail/' . $id);
 
             $this->template->build('detail', $detail);
         } else {
