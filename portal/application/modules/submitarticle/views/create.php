@@ -53,7 +53,7 @@
         <label for="title">Judul Artikel</label>
         <input type="text" name="title" class="form-control" id="title">
     </fieldset>
-    <fieldset>
+    <fieldset class="form-group">
         <label for="img-caption">Keterangan Gambar</label>
         <input type="text" name="caption" class="form-control" id="caption">
     </fieldset>

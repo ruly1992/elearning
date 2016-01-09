@@ -11,8 +11,12 @@
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <fieldset class="form-group">
                     <label for="title">Judul Artikel</label>
-                    <input name="title" type="text" class="form-control" id="title" placeholder="">
+                    <input name="title" type="text" class="form-control" id="title">
                     <small class="text-muted">Masukkan judul artikel disini</small>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="caption-img">Keterangan Gambar</label>
+                    <input name="caption" type="text" class="form-control" id="caption">
                 </fieldset>
                 <fieldset class="form-group">
                     <textarea name="content" class="editor-simple"></textarea>
