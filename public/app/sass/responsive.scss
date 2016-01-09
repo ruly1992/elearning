@@ -990,15 +990,6 @@ $padding-left: 5px;
     padding-top: $padding-top + 5px;
     cursor: pointer;
     width: 100%;
-    .nav-item {
-        float: left;
-        margin-bottom: -1px;
-        width: 49%;
-    }
-    .nav-item + .nav-item {
-        margin-left: 0.2rem;
-        width: 48.9%;
-    }
   } 
   .dropdown-people{
     width: 60px;
