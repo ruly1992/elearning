@@ -677,13 +677,6 @@
     padding-top: 10px;
     cursor: pointer;
     width: 100%; }
-    .nav .nav-item {
-      float: left;
-      margin-bottom: -1px;
-      width: 49%; }
-    .nav .nav-item + .nav-item {
-      margin-left: 0.2rem;
-      width: 48.9%; }
 
   .dropdown-people {
     width: 60px;
