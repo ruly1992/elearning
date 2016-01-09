@@ -4465,6 +4465,12 @@ a {
 			margin-left: 0px;
 		}
 	}
+	.pagination {
+		display: block;
+		.page-link {
+			border-color: #DDD;
+		}
+	}
 }
 .content-main-faq {
 	background-color: $white;
