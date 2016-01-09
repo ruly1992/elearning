@@ -4460,12 +4460,16 @@ a {
 		font-size: 14px;
 		margin-left: $margin-left - 31;
 	}
+	.breadcrumb {
+		li {
+			margin-left: 0px;
+		}
+	}
 }
 .content-main-faq {
 	background-color: $white;
 	@include border-radius(4px);
 	margin-top: $margin-top + 12;
-	padding-bottom: $padding-bottom + 60px;
 }
 
 /* Forum Thread */
