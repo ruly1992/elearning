@@ -54,10 +54,6 @@
         <input type="text" name="title" class="form-control" id="title">
     </fieldset>
     <fieldset class="form-group">
-        <label for="img-caption">Keterangan Gambar</label>
-        <input type="text" name="caption" class="form-control" id="caption">
-    </fieldset>
-    <fieldset class="form-group">
         <textarea name="content" class="editor-simple"></textarea>
     </fieldset>
 </div>
