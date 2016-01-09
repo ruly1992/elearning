@@ -1,6 +1,6 @@
 <?php echo form_open('comment/store', array('id' => 'form-comment')); ?>
 <?php echo form_hidden('article_id', $article->id); ?>
-<?php echo form_hidden('parent', $parent); ?>
+<input type="hidden" name="parent" v-model="parent">
     
     <?php echo show_message() ?>
 
@@ -63,13 +63,16 @@
     new Vue({
         el: '#comments',
         data: {
+            parent: 0,
             name: ''
         },
         methods: {
-            reply: function (name) {
+            reply: function (parent, name) {
+                this.parent = parent;
                 this.name = name;
             },
             cancel: function () {
+                this.parent = 0;
                 this.name = '';
             }
         }
