@@ -16,7 +16,11 @@ class User extends CI_Controller
     }
 
     public function index(){
-        $data['faq'] = $this->model_faq->getFAQs();
+        $faqs               = collect($this->model_faq->getFAQs());
+        $perPage            = 5;
+        $data['faq']        = pagination($faqs, $perPage, '/', 'bootstrap_md');
+        $data['perPage']    = $perPage;
         $this->load->view('user_faq', $data);
+        
     }
 }
