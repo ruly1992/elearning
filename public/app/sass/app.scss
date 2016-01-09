@@ -4711,7 +4711,7 @@ Create: Singgih Saputro */
 	}
 }
 
-/* Dashboard Admin
+/* Dashboard Administrator
 Create: Singgih Saputro */
 .btn-editadmin,
 .btn-delete {
@@ -4744,5 +4744,25 @@ Create: Singgih Saputro */
 	padding: 3px 6px;
 	text-shadow: none;
 	font-weight: 600;
+}
+
+.sidebar-header {
+	padding: $padding + 5 !important;
+	height: 140px !important;
+	h2 {
+		margin-bottom: $margin-bottom + 15;
+	}
+	.admin-image {
+		padding: $padding;
+		img {
+			width: 60px;
+			margin-left: $margin-left + 78;
+			margin-right: $margin-right + 78;
+		}
+	}
+	.admin-info {
+		padding: $padding;
+		margin-top: $margin-top + 45;
+	}
 }
 

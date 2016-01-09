@@ -3938,7 +3938,7 @@ Create: Singgih Saputro */
     margin-top: 7px;
     margin-right: -6px; }
 
-/* Dashboard Admin
+/* Dashboard Administrator
 Create: Singgih Saputro */
 .btn-editadmin,
 .btn-delete {
@@ -3969,5 +3969,20 @@ Create: Singgih Saputro */
   padding: 3px 6px;
   text-shadow: none;
   font-weight: 600; }
+
+.sidebar-header {
+  padding: 10px !important;
+  height: 140px !important; }
+  .sidebar-header h2 {
+    margin-bottom: 20px; }
+  .sidebar-header .admin-image {
+    padding: 5px; }
+    .sidebar-header .admin-image img {
+      width: 60px;
+      margin-left: 83px;
+      margin-right: 83px; }
+  .sidebar-header .admin-info {
+    padding: 5px;
+    margin-top: 50px; }
 
 /*# sourceMappingURL=app.css.map */
