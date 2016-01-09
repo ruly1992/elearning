@@ -120,7 +120,7 @@
                                                 <div class="card-header">
                                                      <p>in reply to : <a href="#"><?php echo $r->title; ?></a></p>
                                                 </div>
-                                                <div class="card-block">
+                                                <div class="card-block" id="form-reply">
                                                    
                                                     <?php echo form_open('thread/replyThread/'.$id); ?>
                                                         <div class="form-group">
@@ -158,12 +158,15 @@
     <script src="<?php echo asset('plugins/sceditor/development/jquery.sceditor.bbcode.js'); ?>"></script>
     <script>
         $(function() {
+           var cardWidth    = $("div .card-block").width();
+           var bbcodeWidth  = cardWidth - 40;
+           var bbcodeHeight = bbcodeWidth / 2;
             $("textarea").sceditor({
                 plugins: "bbcode",
                 style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.css'); ?>" ,
                 emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>",
-                width:500,
-                height:300,
+                width:bbcodeWidth,
+                height:bbcodeHeight
             });
         });
     </script>
