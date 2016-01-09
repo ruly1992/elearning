@@ -2101,6 +2101,14 @@ header {
 					border-top-right-radius: 6px;
 				}
 				.nav-tabs {
+					.nav-item {
+						float: left;
+						margin-bottom: $margin-bottom - 6;
+						width: 49%;
+					}
+					.nav-item {
+						width: 49%;
+					}
 					.nav-link {
 						color: $aspalt;
 						font-size: 14px;
@@ -3784,6 +3792,7 @@ a {
   background-color: $green !important;
   border: 1px solid $green !important;
   color: $white;
+  margin-bottom: $margin-bottom;
   &:hover,
   &:active,
   &:focus {
