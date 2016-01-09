@@ -4195,9 +4195,8 @@ a {
 			}
 			.widget-sidebar-content{
 				margin-bottom: $margin-bottom + 5px;
-				border: 1px solid $grey;
 				@include border-radius(3px);
-				width: 287px;
+				width: 100%;
 				height: 300px;
 				overflow: auto;
 				.list-group-item {
