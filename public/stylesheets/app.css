@@ -3723,6 +3723,10 @@ a {
     margin-left: -26px; }
   .content-faq .breadcrumb li {
     margin-left: 0px; }
+  .content-faq .pagination {
+    display: block; }
+    .content-faq .pagination .page-link {
+      border-color: #DDD; }
 
 .content-main-faq {
   background-color: #fff;
