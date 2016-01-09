@@ -118,6 +118,37 @@ body {
 		border-color: $green-black;
 	}
 }
+/* Begin : CUstom table*/ 
+.table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 1rem;
+	border: 1px solid rgb(144, 144, 144);
+}
+.table thead th {
+	vertical-align: bottom;
+	border-bottom: 1px solid #909090;
+	border-top: 1px solid #909090;
+	border-right: 1px solid #909090;
+	font-size: 12px;
+	padding-bottom: 10px;
+	padding-top: 11px;
+}
+.table td {
+	vertical-align: top;
+	border-top: 1px solid #909090;
+	font-size: 14px;
+	padding: 10px 10px 0px;
+	border-left: 1px solid #909090;
+}
+.table th {
+	padding: 12px;
+	line-height: 1.5;
+	vertical-align: top;
+	border-top: 1px solid #909090;
+}
+/* End Custom table */ 
+
 /* HEADER */
 
 header {
