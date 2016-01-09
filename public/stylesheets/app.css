@@ -80,13 +80,26 @@ body {
   border-top: 1px solid #909090;
   font-size: 14px;
   padding: 10px 10px 0px;
-  border-left: 1px solid #909090; }
+  border-left: 1px solid #909090;
+  border-bottom: 1px solid #909090;
+  border-top: 1px solid #909090;
+  border-right: 1px solid #909090; }
 
 .table th {
   padding: 12px;
   line-height: 1.5;
   vertical-align: top;
-  border-top: 1px solid #909090; }
+  border-top: 1px solid #909090;
+  border-left: 1px solid #909090;
+  border-bottom: 1px solid #909090;
+  border-right: 1px solid #909090; }
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  min-height: 0.01%;
+  overflow-x: auto;
+  border: none !important; }
 
 /* End Custom table */
 /* HEADER */
