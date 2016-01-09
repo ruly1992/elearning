@@ -2102,12 +2102,13 @@ header {
 				}
 				.nav-tabs {
 					.nav-item {
-						float: left;
+						margin-left: $margin-left - 5;
 						margin-bottom: $margin-bottom - 6;
-						width: 49%;
+						width: 50%;
 					}
 					.nav-item {
-						width: 49%;
+						margin-left: $margin-left - 5;
+						width: 50%;
 					}
 					.nav-link {
 						color: $aspalt;
