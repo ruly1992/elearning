@@ -3721,6 +3721,8 @@ a {
   .content-faq li {
     font-size: 14px;
     margin-left: -26px; }
+  .content-faq .breadcrumb li {
+    margin-left: 0px; }
 
 .content-main-faq {
   background-color: #fff;
@@ -3728,8 +3730,7 @@ a {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
-  margin-top: 17px;
-  padding-bottom: 65px; }
+  margin-top: 17px; }
 
 /* Forum Thread */
 .content-forum .content-main .forum-main .thread-list-title {
