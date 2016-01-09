@@ -40,6 +40,7 @@
                                              <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
                                         </fieldset>
                                         <fieldset class="form-group hidden-sm-up">
+                                            <label for="">Keterangan gambar</label>
                                             <input type="text" class="form-control" name="caption-img">
                                         </fieldset>
                                         <button type="submit" class="btn btn-primary">Submit</button>
