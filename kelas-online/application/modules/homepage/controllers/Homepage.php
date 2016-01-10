@@ -3,9 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use Model\Kelas\Course;
 
-class Homepage extends CI_Controller
+class Homepage extends Admin
 {
 	protected $repository;
+    protected $roles = [];
 
 	public function __construct()
 	{
