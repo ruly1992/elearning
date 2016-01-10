@@ -34,20 +34,21 @@
                                                 <input type="text" required name="topic" class="form-control" placeholder="type your title">
                                             </div>
                                             <div class="form-group">
-                                                <label for="provinsi">Provinsi</label>
-                                                <?php echo $this->wilayah->generateSelectProvinsi() ?>
+                                                <label for="">Pilih Type Topic :</label>
+                                                <div>
+                                                    <label class="c-input c-radio">
+                                                        <input id="radio1" name="type" value="close" type="radio" onclick="private()">
+                                                        <span class="c-indicator"></span>
+                                                        Close
+                                                    </label>
+                                                    <label class="c-input c-radio">
+                                                        <input id="radio1" name="type" value="public" checked type="radio" onclick="public()">
+                                                        <span class="c-indicator"></span>
+                                                        Public
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="kota">City/Kota</label>
-                                                <?php echo $this->wilayah->generateSelectKota() ?>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="kecamatan">Kecamatan</label>
-                                                <?php echo $this->wilayah->generateSelectKecamatan() ?>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="desa">Desa</label>
-                                                <?php echo $this->wilayah->generateSelectDesa() ?>
+                                            <div id="addPrivate">
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">CREATE NEW TOPIC</button>
@@ -75,5 +76,24 @@
 <?php custom_script(); ?>
     <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js'); ?>"></script>
     <?php echo $this->wilayah->script(site_url('topic/wilayah')); ?>
+
+    <script type="text/javascript">
+        function private(){
+            if(($("#addProvinsi").length <= 0) && ($("#addKota").length <= 0) && ($("#addKecamatan").length <= 0) && ($("#addDesa").length <= 0)){
+                $('#addPrivate').append( '<div id="addProvinsi" class="form-group"><label for="provinsi">Provinsi</label><?php echo $this->wilayah->generateSelectProvinsi() ?></div>' );
+                $('#addPrivate').append( '<div id="addKota" class="form-group"><label for="provinsi">Kota</label><?php echo $this->wilayah->generateSelectKota() ?></div>' );
+                $('#addPrivate').append( '<div id="addKecamatan" class="form-group"><label for="provinsi">Kecamatan</label><?php echo $this->wilayah->generateSelectKecamatan() ?></div>' );
+                $('#addPrivate').append( '<div id="addDesa" class="form-group"><label for="provinsi">Desa</label><?php echo $this->wilayah->generateSelectDesa() ?></div>' );
+            }
+        }
+
+        function public(){
+            $('#addLabel').remove();
+            $('#addProvinsi').remove();
+            $('#addKota').remove();
+            $('#addKecamatan').remove();
+            $('#addDesa').remove();
+        }
+    </script>
 <?php endcustom_script() ?>
 <?php get_footer(); ?>

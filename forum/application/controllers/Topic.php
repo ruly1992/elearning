@@ -101,27 +101,33 @@ class Topic extends CI_Controller
 
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
+        $this->form_validation->set_rules('type','Type','required');
 
         if($this->form_validation->run()==TRUE){
             $category           = set_value('kategori'); 
             $getUsersCategory   = $this->model_topic->get_userID_by_category($category);
             $user               = sentinel()->getUser();
+            $type               = set_value('type');
 
-            $provinsi           = $this->input->post('provinsi');
-            $kota               = $this->input->post('kota');
-            $kecamatan          = $this->input->post('kecamatan');
-            $desa               = $this->input->post('kecamatan');
+            if($type == 'private'){
+                $provinsi           = $this->input->post('provinsi');
+                $kota               = $this->input->post('kota');
+                $kecamatan          = $this->input->post('kecamatan');
+                $desa               = $this->input->post('kecamatan');
 
-            if($desa != ''){
-                $daerah     = $desa;
-            }elseif($kecamatan != ''){
-                $daerah     = $kecamatan;
-            }elseif($kota != ''){
-                $daerah     = $kota;
-            }elseif($provinsi != ''){
-                $daerah     = $provinsi;
+                if($desa != ''){
+                    $daerah     = $desa;
+                }elseif($kecamatan != ''){
+                    $daerah     = $kecamatan;
+                }elseif($kota != ''){
+                    $daerah     = $kota;
+                }elseif($provinsi != ''){
+                    $daerah     = $provinsi;
+                }else{
+                    $daerah     = '00.00.00.0000';
+                } 
             }else{
-                $daerah     = '00.00.00.0000';
+                $daerah         = '00.00.00.0000';
             }
 
             foreach($getUsersCategory AS $u){
