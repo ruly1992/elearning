@@ -118,7 +118,7 @@ body {
 		border-color: $green-black;
 	}
 }
-/* Begin : CUstom table*/ 
+/* Begin : CUstom table */ 
 .table {
 	width: 100%;
 	max-width: 100%;
@@ -506,9 +506,9 @@ header {
 		}
 	}
 	//add fajar eko s
-	.dropdown:hover {
+	
+	.dropdown {
 		.dropdown-navbar {
-			display: block;
 			width: 250px;
 			height: auto;
 			background-color: $grey;
@@ -537,7 +537,7 @@ header {
 	.dropdown-menu {
 		a {
 			font-size: 14px;
-			color: $aspalt-light;
+			color: #909090;
 			padding-top: 5px;
 			padding-bottom: 5px;
 			@include transition(0.3s);
@@ -547,7 +547,7 @@ header {
 			&:active {
 				background-color: $green;
 				color: $white;
-				@include transition(0.3s);
+				@include transition(0.2s);
 			}
 		}
 	}
