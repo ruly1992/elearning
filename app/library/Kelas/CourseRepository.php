@@ -8,8 +8,10 @@ use Model\Kelas\Chapter;
 use Model\Kelas\Attachment;
 use Model\Kelas\Quiz;
 use Model\Kelas\QuizQuestion;
+use Model\Kelas\QuizAnswer;
 use Model\Kelas\Exam;
 use Model\Kelas\ExamQuestion;
+use Model\Kelas\ExamAnswer;
 use Model\User;
 use Carbon\Carbon;
 
@@ -380,5 +382,84 @@ class CourseRepository
 
             return false;
         }
+    }
+
+    public function startQuiz(Quiz $quiz, $attempt = 1)
+    {
+        if (!$this->checkQuizMember($quiz)) {
+            $quiz->members()->create([
+                'user_id'       => $this->user->id,
+                'attempt'       => $attempt,
+                'started_at'    => Carbon::now(),
+                'finished_at'   => Carbon::now()->addMinutes($quiz->time),
+            ]);
+        }
+    }
+
+    public function getMemberSessionQuiz(Quiz $quiz)
+    {
+        if ($this->checkQuizTimeout($quiz)) {
+            $member = $quiz->members()->where('user_id', $this->user->id)->first();
+
+            return $member;
+        } else {
+            return null;
+        }
+    }
+
+    public function getMemberQuiz(Quiz $quiz)
+    {
+        return $quiz->members;
+    }
+
+    public function checkQuizMember(Quiz $quiz, User $user = null)
+    {
+        if ($user) $this->setUser($user);
+
+        $search = $this->getMemberQuiz($quiz)->search(function ($member) {
+            return $member->user_id === $this->user->id;
+        });
+
+        if ($search !== FALSE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function checkQuizTimeout(Quiz $quiz, $attempt = 1)
+    {
+        $member = $quiz->members()->where('user_id', $this->user->id)->first();
+
+        if ($member) {
+            if ($member->finished_at->diffInSeconds(Carbon::now(), false) < 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function submitQuizMember(Quiz $quiz, $answers = [])
+    {
+        $member = $this->getMemberSessionQuiz($quiz);
+
+        if ($member) {
+            $answers = collect($answers)->map(function ($answer, $question_id) {
+                $question = QuizQuestion::find($question_id);
+
+                return new QuizAnswer([
+                    'question_id'   => $question_id,
+                    'answer'        => $answer,
+                    'is_correct'    => $question->correct == $answer,
+                ]);
+            });
+
+            $member->answers()->saveMany($answers);
+
+            return $member->answers;
+        }
+
+        return null;
     }
 }

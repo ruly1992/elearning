@@ -1,5 +1,5 @@
 <!-- start:section content main articles -->
-<section class="content-articles">
+<section class="content-articles view-content-articles">
     <div class="content-articles-heading">
         <h3><?php echo $category->name ?></h3>
     </div>
