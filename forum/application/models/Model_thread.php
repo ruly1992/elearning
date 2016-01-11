@@ -96,7 +96,8 @@ class Model_thread extends CI_Model
         $kecamatan  = $d[0].'.'.$d[1].'.'.$d[2].'.0000';
         $kota       = $d[0].'.'.$d[1].'.00.0000';
         $provinsi   = $d[0].'.00.00.0000';
-        $daerah     = array($desa, $kecamatan, $kota, $provinsi);
+        $default    = '00.00.00.0000';
+        $daerah     = array($desa, $kecamatan, $kota, $provinsi, $default);
 
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
@@ -181,7 +182,8 @@ class Model_thread extends CI_Model
         $kecamatan  = $d[0].'.'.$d[1].'.'.$d[2].'.0000';
         $kota       = $d[0].'.'.$d[1].'.00.0000';
         $provinsi   = $d[0].'.00.00.0000';
-        $daerah     = array($desa, $kecamatan, $kota, $provinsi);
+        $default    = '00.00.00.0000';
+        $daerah     = array($desa, $kecamatan, $kota, $provinsi, $default);
 
         $items = array('threads.*', 'categories.category_name');
         $get   = $this->db->select($items)->from('threads')

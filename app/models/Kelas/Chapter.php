@@ -53,10 +53,14 @@ class Chapter extends Model
     public function hasQuizMember(User $user)
     {
     	$position = $this->quiz->members->search(function ($member) use ($user) {
-    		return $member->id === $user->id;
+    		return $member->user_id === $user->id;
     	});
 
-    	return !empty($position);
+    	if ($position !== false) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function memberHasFinished(User $user)
