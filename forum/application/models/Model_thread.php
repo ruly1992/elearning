@@ -77,6 +77,20 @@ class Model_thread extends CI_Model
         $get = $this->db->get('categories');
         return $get->result();
     }
+
+    function get_categories_by_ta($id)
+    {
+        $get    = $this->db->select('categories.*')
+                            ->from('categories')
+                            ->join('category_user', 'category_user.category_id=categories.id')
+                            ->join('topics', 'topics.category=categories.id')
+                            ->where(array('category_user.user_id' => $id))
+                            ->or_where('topics.daerah', '00.00.00.0000')
+                            ->group_by('categories.category_name')
+                            ->order_by('categories.id', 'desc')
+                            ->get();
+        return $get->result();
+    }
     
     function get_all_threads()
     {
