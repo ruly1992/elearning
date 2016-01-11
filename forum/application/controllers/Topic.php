@@ -109,11 +109,11 @@ class Topic extends CI_Controller
             $user               = sentinel()->getUser();
             $type               = set_value('type');
 
-            if($type == 'private'){
+            if($type == 'close'){
                 $provinsi           = $this->input->post('provinsi');
                 $kota               = $this->input->post('kota');
                 $kecamatan          = $this->input->post('kecamatan');
-                $desa               = $this->input->post('kecamatan');
+                $desa               = $this->input->post('desa');
 
                 if($desa != ''){
                     $daerah     = $desa;
@@ -129,7 +129,7 @@ class Topic extends CI_Controller
             }else{
                 $daerah         = '00.00.00.0000';
             }
-
+            
             foreach($getUsersCategory AS $u){
                 if($u->user_id == $user->id){
                     $status = '1';
