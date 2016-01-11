@@ -4748,7 +4748,7 @@ Create: Singgih Saputro */
 
 .sidebar-header {
 	padding: $padding + 5 !important;
-	height: 140px !important;
+	height: 145px !important;
 	h2 {
 		margin-bottom: $margin-bottom + 15;
 	}
@@ -4763,6 +4763,10 @@ Create: Singgih Saputro */
 	.admin-info {
 		padding: $padding;
 		margin-top: $margin-top + 45;
+		.dropdown-menu {
+			margin-left: $margin-left + 15;
+			margin-top: $margin-top - 42
+		}
 	}
 }
 
