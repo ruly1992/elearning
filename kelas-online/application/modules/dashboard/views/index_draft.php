@@ -36,7 +36,7 @@
                                     <td><?php echo $course->category->name ?></td>
                                     <td><?php echo $course->name ?></td>
                                     <td><?php echo $course->status_label ?></td>
-                                    <td><a href="<?php echo site_url('dashboard/course/edit/'.$course->id) ?>" class="btn btn-sm btn-update-custom">Update</a></td>
+                                    <td><a href="<?php echo site_url('dashboard/course/edit/'.$course->id) ?>" class="btn btn-konsul btn-update-custom">Update</a></td>
                                 </tr>                                    
                                 <?php endforeach ?>
                             </tbody>
