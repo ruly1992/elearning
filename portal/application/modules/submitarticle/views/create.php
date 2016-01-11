@@ -54,7 +54,7 @@
         <input type="text" name="title" class="form-control" id="title">
     </fieldset>
     <fieldset class="form-group">
-        <textarea name="content" class="editor"></textarea>
+        <textarea name="content" class="editor-simple"></textarea>
     </fieldset>
 </div>
 
@@ -76,5 +76,6 @@
 
 <?php custom_script() ?>
     <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>
+    <script src="<?php echo asset('javascript/editor.js') ?>"></script>
     <?php echo $this->wilayah->script('api/wilayah') ?>
 <?php endcustom_script() ?>

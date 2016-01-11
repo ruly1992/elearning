@@ -25,7 +25,9 @@
                     </div>
                 </div>
                 <!-- end:content -->
-
+                <center>
+                    <?php echo $faq->render(); ?>
+                </center>
             </section>
         </div>
         <!-- end:main content -->

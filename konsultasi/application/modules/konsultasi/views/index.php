@@ -93,15 +93,14 @@
                         <option value="100">100</option>
                     </select>
                 </form>
+                <center>
+                    <nav>
+                        <ul class="#">
+                            <?php echo $konsultasi->render() ?>
+                        </ul>
+                    </nav>                
+                </center>
             </div>
-            <center>
-                <nav>
-                    <ul class="#">
-                        <?php echo $konsultasi->render() ?>
-                    </ul>
-                </nav>                
-            </center>
-
             <!-- start: table-mobile -->
             <div class="table-responsive hidden-md-up">
                 <p><?php echo count($konsultasi) ?> Data ditemukan</p>

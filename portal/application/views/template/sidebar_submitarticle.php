@@ -12,6 +12,10 @@
     <div class="widget-sidebar-heading">
         <h3>Gambar Fitur</h3>
     </div>
+    <fieldset class="form-group">
+        <label for="">Keterangan Gambar</label>
+        <input type="text" name="caption-img" class="form-control">
+    </fieldset>
     <div class="widget-sidebar-content">
         <cropit-preview name="featured"></cropit-preview>
     </div>

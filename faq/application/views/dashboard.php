@@ -9,6 +9,15 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <!-- start:content main -->
                         <div class="content-main-faq">
+                            <div class="content-forum">
+                                <div class="content-main">
+                                    <ol class="breadcrumb">
+                                        <li><?php echo anchor(home_url('/dashboard'), 'Dashboard'); ?></li>
+                                        <li><?php echo anchor(home_url('/konsultasi'), 'Konsultasi'); ?></li>
+                                        <li class="active">FAQ</li>
+                                    </ol>
+                                </div>
+                            </div>
 							<div class="form-group">
                                 <?php echo anchor('dashboard/create','<i class="fa fa-plus"></i> FAQ Baru','class="btn btn-primary btn-sm"'); ?>
                             </div>
@@ -66,6 +75,9 @@
                 </div>
                 <!-- end:content -->
 
+                <center>
+                    <?php echo $faq->render(); ?>
+                </center>
             </section>
         </div>
         <!-- end:main content -->

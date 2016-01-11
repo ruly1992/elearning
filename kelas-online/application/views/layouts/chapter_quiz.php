@@ -8,16 +8,10 @@
                 <div class="breadcrumbs">
                     <ol class="breadcrumb">
                         <li><a href="<?php echo dashboard_url() ?>">Dashboard</a></li>
-                        <?php if (isset($chapter) && isset($course)): ?>
-                            <li><a href="<?php echo site_url() ?>">Kelas Online</a></li>
-                            <li><a href="<?php echo site_url('course/show/'.$course->slug) ?>"><?php echo $course->name ?></a></li>
-                            <li class="active">Chapter <?php echo $chapter->order ?></li>
-                        <?php elseif (isset($course)): ?>
-                            <li><a href="<?php echo site_url() ?>">Kelas Online</a></li>
-                            <li class="active"><?php echo $course->name ?></li>
-                        <?php else: ?>
-                            <li class="active">Kelas Online</li>
-                        <?php endif ?>
+                        <li><a href="<?php echo site_url() ?>">Kelas Online</a></li>
+                        <li><a href="<?php echo site_url('course/show/'.$course->slug) ?>"><?php echo $course->name ?></a></li>
+                        <li><a href="<?php echo site_url('course/showchapter/'.$course->slug.'/chapter-'.$chapter->order) ?>"><?php echo $course->name ?></a></li>
+                        <li class="active">Quiz <?php echo $chapter->order ?></li>
                     </ol>
                 </div>
                 <!-- end:breadcrumb -->
@@ -28,7 +22,7 @@
                         <!-- end:content -->
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <?php $this->load->view('template/sidebar_instructor', compact('course', 'repository')); ?>
+                        <?php $this->load->view('template/sidebar_quiz', compact('course', 'chapter', 'repository')); ?>
                     </div>
                 </div>
             </div>

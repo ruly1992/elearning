@@ -11,11 +11,11 @@
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <fieldset class="form-group">
                     <label for="title">Judul Artikel</label>
-                    <input name="title" type="text" class="form-control" id="title" placeholder="">
+                    <input name="title" type="text" class="form-control" id="title">
                     <small class="text-muted">Masukkan judul artikel disini</small>
                 </fieldset>
                 <fieldset class="form-group">
-                    <textarea name="content" class="editor"></textarea>
+                    <textarea name="content" class="editor-simple"></textarea>
                 </fieldset>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -58,17 +58,5 @@
     <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
     <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
     <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
-    <script>
-        $(document).ready(function () {
-            tinymce.init({
-                selector: '.editor',
-                plugins: [
-                    "advlist autolink lists link image charmap print preview anchor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media table contextmenu paste imagetools"
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-            });
-        })
-    </script>
+    <script src="<?php echo asset('javascript/editor.js') ?>"></script>
 <?php endcustom_script() ?>

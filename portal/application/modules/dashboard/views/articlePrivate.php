@@ -9,7 +9,7 @@
                 <ul class="nav nav-inline">
                     <?php foreach ($categories as $category): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $category->link ?>"><?php echo $category->name ?></a>
+                            <a class="nav-link" href="<?php echo $category->link_private ?>"><?php echo $category->name ?></a>
                         </li>
                     <?php endforeach ?>
                 </ul>
@@ -87,7 +87,7 @@
                                         <h3><a href="<?php echo $artikel->link ?>"><?php echo $artikel->title ?></a></h3>
                                     </div>
                                     <div class="articles-box-content">
-                                        <p><?php echo $artikel->getExcerpt(250) ?></p>
+                                        <p><?php echo $artikel->getExcerpt(120) ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                                         <h3><a href="<?php echo $artikel->link ?>"><?php echo $artikel->title ?></a></h3>
                                     </div>
                                     <div class="articles-box-content">
-                                        <p><?php echo $artikel->getExcerpt(250) ?></p>
+                                        <p><?php echo $artikel->getExcerpt(120) ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
                                         <h3><a href="<?php echo $artikel->link ?>"><?php echo $artikel->title ?></a></h3>
                                     </div>
                                     <div class="articles-box-content">
-                                        <p><?php echo $artikel->getExcerpt(250) ?></p>
+                                        <p><?php echo $artikel->getExcerpt(120) ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                                         <h3><a href="<?php echo $artikel->link ?>"><?php echo $artikel->title ?></a></h3>
                                     </div>
                                     <div class="articles-box-content">
-                                        <p><?php echo $artikel->getExcerpt(250) ?></p>
+                                        <p><?php echo $artikel->getExcerpt(120) ?></p>
                                     </div>
                                 </div>
                             </div>

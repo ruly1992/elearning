@@ -6,7 +6,6 @@
             <?php $category = $article->categories()->firstOrFail() ?>
             <li><a href="<?php echo dashboard_url('category/show/'.$category->name) ?>"><?php echo $category->name ?></a></li>
         <?php } catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) {} ?>
-        <li class="active"><?php echo $article->title ?></li>
     </ol>
     <div class="single-article-title">
         <h1><?php echo $article->title ?></h1>
@@ -60,10 +59,7 @@
             <h3>Leave a Comments</h3>
         </div>
         <div class="comments-form-main">
-            <?php echo $this->load->view('comment/create', array(
-                'article'   => $article,
-                'parent'    => 0,
-            )); ?>
+            <?php echo $this->load->view('comment/create', compact('article')); ?>
         </div>
         <div class="comments-title">
             <h3>Latest Comments</h3>

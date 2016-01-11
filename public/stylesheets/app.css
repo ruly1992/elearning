@@ -34,6 +34,74 @@ body {
   right: 0px !important;
   left: auto; }
 
+.nav-inline .nav-item {
+  display: inline-block;
+  padding: 5px 15px;
+  margin: 5px;
+  background-color: #37474f;
+  color: white;
+  border-radius: 3px;
+  margin-left: 1px !important; }
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #55595C;
+  background-color: #FFF;
+  background-image: none;
+  border: 1px solid #CCC;
+  border-radius: 0.25rem;
+  font-family: "open_sansregular", sans-serif; }
+  .form-control:focus {
+    outline: 0px none;
+    border-color: #128a4a; }
+
+/* Begin : CUstom table*/
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid #909090; }
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #909090;
+  border-top: 1px solid #909090;
+  border-right: 1px solid #909090;
+  font-size: 12px;
+  padding-bottom: 10px;
+  padding-top: 11px; }
+
+.table td {
+  vertical-align: top;
+  border-top: 1px solid #909090;
+  font-size: 14px;
+  padding: 10px 10px 0px;
+  border-left: 1px solid #909090;
+  border-bottom: 1px solid #909090;
+  border-top: 1px solid #909090;
+  border-right: 1px solid #909090; }
+
+.table th {
+  padding: 12px;
+  line-height: 1.5;
+  vertical-align: top;
+  border-top: 1px solid #909090;
+  border-left: 1px solid #909090;
+  border-bottom: 1px solid #909090;
+  border-right: 1px solid #909090; }
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  min-height: 0.01%;
+  overflow-x: auto;
+  border: none !important; }
+
+/* End Custom table */
 /* HEADER */
 header {
   background-color: #dddddd;
@@ -1713,6 +1781,8 @@ header {
             -webkit-transition: all 0.3s ease-in-out;
             -moz-transition: all 0.3s ease-in-out;
             -o-transition: all 0.3s ease-in-out; }
+  .content .view-content-articles {
+    margin-top: 0px; }
   .content .content-sidebar {
     margin-top: 60px; }
     .content .content-sidebar .widget {
@@ -1737,6 +1807,13 @@ header {
           background-color: #d41d2a;
           border-top-left-radius: 6px;
           border-top-right-radius: 6px; }
+        .content .content-sidebar .widget .widget-heading .nav-tabs .nav-item {
+          margin-left: 0px;
+          margin-bottom: -1px;
+          width: 50%; }
+        .content .content-sidebar .widget .widget-heading .nav-tabs .nav-item {
+          margin-left: 0px;
+          width: 50%; }
         .content .content-sidebar .widget .widget-heading .nav-tabs .nav-link {
           color: #263238;
           font-size: 14px;
@@ -2354,7 +2431,7 @@ header {
         .content-dashboard .content-sidebar .widget .widget-content .box-komentar-widget .box-komentar-widget-content a {
           color: #1c9c57; }
   .content-dashboard .content-list-categories .list-title {
-    width: 120px;
+    width: 100%;
     height: 25px;
     border-bottom: 2px solid #263238; }
     .content-dashboard .content-list-categories .list-title h3 {
@@ -2366,7 +2443,7 @@ header {
       text-transform: none;
       line-height: 1.5; }
     .content-dashboard .content-list-categories .list-categories .nav-item a {
-      color: #000;
+      color: #fff;
       font-size: 14px; }
       .content-dashboard .content-list-categories .list-categories .nav-item a:hover {
         color: #1c9c57;
@@ -3115,7 +3192,8 @@ a {
 .btn-primary {
   background-color: #1c9c57 !important;
   border: 1px solid #1c9c57 !important;
-  color: #fff; }
+  color: #fff;
+  margin-bottom: 5px; }
   .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
     background-color: #128a4a !important;
     color: #fff;
@@ -3475,12 +3553,11 @@ a {
         color: #fff; }
     .content-dashboard-user .content-submit .widget .widget-sidebar-content {
       margin-bottom: 10px;
-      border: 1px solid #f5f5f5;
       border-radius: 3px;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -o-border-radius: 3px;
-      width: 287px;
+      width: 100%;
       height: 300px;
       overflow: auto; }
       .content-dashboard-user .content-submit .widget .widget-sidebar-content .list-group-item {
@@ -3704,6 +3781,12 @@ a {
   .content-faq li {
     font-size: 14px;
     margin-left: -26px; }
+  .content-faq .breadcrumb li {
+    margin-left: 0px; }
+  .content-faq .pagination {
+    display: block; }
+    .content-faq .pagination .page-link {
+      border-color: #DDD; }
 
 .content-main-faq {
   background-color: #fff;
@@ -3711,8 +3794,7 @@ a {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
-  margin-top: 17px;
-  padding-bottom: 65px; }
+  margin-top: 17px; }
 
 /* Forum Thread */
 .content-forum .content-main .forum-main .thread-list-title {

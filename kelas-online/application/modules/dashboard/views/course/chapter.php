@@ -81,6 +81,13 @@
                                          <p>Quiz : <button class="btn btn-exam" data-toggle="modal" data-target=".add-question" v-on:click="addChapterQuiz($index)"><i class="fa fa-paperclip"></i> Add Question</button></p>
                                     </div>
                                     <div class="card-block">
+                                        <div class="form-group row">
+                                            <label for="waktu" class="col-sm-2 form-control-label">Waktu</label>
+                                            <div class="input-group col-sm-4">
+                                                <input type="text" class="form-control" id="waktu" placeholder="Waktu" v-model="chapter.quiz.time">
+                                                <div class="input-group-addon">Menit</div>
+                                            </div>
+                                        </div>
                                         <!-- Start: Table Queations -->                                                   
                                             <table class="table table-striped">
                                                 <thead>
