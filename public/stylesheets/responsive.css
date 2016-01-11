@@ -639,8 +639,8 @@
 @media (min-width: 640px) and (max-width: 992px) {
   .nav {
     padding-top: 10px;
-    padding-right: 14px;
-    cursor: pointer; }
+    cursor: pointer;
+    width: 100%; }
 
   .dropdown-people {
     width: 60px;

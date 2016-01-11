@@ -26,10 +26,13 @@ class Course extends Admin
     public function join($slug)
     {
         $this->repository->set($slug);
-        $requirements = $this->repository->checkRequirements();
+        
+        $course         = $this->repository->get();
+        $requirements   = $this->repository->checkRequirements();
+        $repository     = $this->repository;
 
         if (!$requirements->isEmpty()) {
-            $this->template->build('requirement', compact('requirements'));
+            $this->template->build('requirement', compact('requirements', 'course', 'repository'));
         } else {
             $this->repository->addMember(sentinel()->getUser());
             $course = $this->repository->get();
@@ -65,9 +68,46 @@ class Course extends Admin
         }
     }
 
-    public function quiz($quiz)
+    public function showquiz($slug, $chapter)
     {
-        
+        $chapter        = str_replace('chapter-', '', $chapter);
+        $course         = $this->repository->getBySlug($slug);
+        $repository     = $this->repository;
+        $chapter        = $course->chapters()->whereOrder($chapter)->firstOrFail();
+        $quiz           = $chapter->quiz;
+        $nextchapter    = $chapter->getNext();
+
+        $repository->startQuiz($quiz);
+
+        if ($repository->checkQuizTimeout($quiz)) {
+            if ($repository->memberAllowChapter($chapter)) {
+                $member     = $repository->getMemberSessionQuiz($quiz);
+
+                $this->template->set_layout('chapter_quiz');
+                $this->template->build('quiz_show', compact('course', 'quiz', 'repository', 'chapter', 'nextchapter', 'member'));
+            } else {
+                redirect('course/show/'.$course->slug, 'refresh');
+            }
+        } else {
+            echo "timeout";
+        }
+    }
+
+    public function submitquiz($slug, $chapter)
+    {
+        $chapter        = str_replace('chapter-', '', $chapter);
+        $course         = $this->repository->getBySlug($slug);
+        $repository     = $this->repository;
+        $chapter        = $course->chapters()->whereOrder($chapter)->firstOrFail();
+        $quiz           = $chapter->quiz;
+
+        $submit         = $this->repository->submitQuizMember($quiz, $this->input->post('answers'));
+
+        if ($submit) {
+            redirect('course/showchapter/'.$course->slug.'/chapter-'.$chapter->order, 'refresh');
+        } else {
+            redirect('course/showchapter/'.$course->slug.'/chapter-'.$chapter->order, 'refresh');
+        }
     }
 }
 

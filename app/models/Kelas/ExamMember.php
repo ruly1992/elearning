@@ -4,21 +4,21 @@ namespace Model\Kelas;
 
 use Model\User;
 
-class QuizMember extends Model
+class ExamMember extends Model
 {
-	protected $table = 'member_quiz';
+	protected $table = 'member_exam';
 	protected $dates = ['started_at', 'finished_at'];
 	protected $guarded = [];
 	public $timestamps = false;
 
-	public function quiz()
+	public function exam()
 	{
-		return $this->belongsTo(Quiz::class);
+		return $this->belongsTo(Exam::class);
 	}
 
 	public function answers()
 	{
-		return $this->hasMany(QuizAnswer::class, 'member_quiz_id');
+		return $this->hasMany(ExamAnswer::class, 'member_exam_id');
 	}
 
 	public function user()

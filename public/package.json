@@ -8,6 +8,7 @@
     "bootstrap": "twbs/bootstrap#v4-dev",
     "bootstrap-daterangepicker": "git://github.com/dangrossman/bootstrap-daterangepicker",
     "bootstrap-dialog": "^1.34.6",
+    "countdown": "hilios/jQuery.countdown",
     "cropit": "^0.4.5",
     "datatables": "^1.10.9",
     "eonasdan-bootstrap-datetimepicker": "git://github.com/Eonasdan/bootstrap-datetimepicker",

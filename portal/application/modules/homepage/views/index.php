@@ -25,7 +25,7 @@
                                     <h3><a href="<?php echo $artikel->link ?>"><?php echo $artikel->title ?></a></h3>
                                 </div>
                                 <div class="articles-box-content">
-                                    <p><?php echo $artikel->getExcerpt(250) ?></p>
+                                    <p><?php echo $artikel->getExcerpt(120) ?></p>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                                     <h3><a href="<?php echo $article->link ?>"><?php echo $article->title ?></a></h3>
                                 </div>
                                 <div class="articles-box-content">
-                                    <p><?php echo $article->getExcerpt(250) ?></p>
+                                    <p><?php echo $article->getExcerpt(120) ?></p>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                                     <h3><a href="<?php echo $article->link ?>"><?php echo $article->title ?></a></h3>
                                 </div>
                                 <div class="articles-box-content">
-                                    <p><?php echo $article->getExcerpt(250) ?></p>
+                                    <p><?php echo $article->getExcerpt(120) ?></p>
                                 </div>
                             </div>
                         </div>

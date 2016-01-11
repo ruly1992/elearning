@@ -45,7 +45,7 @@
             </div>
             <div class="card-block">
                 <?php if ($chapter->hasQuiz()): ?>
-                    <button class="btn btn-block btn-exam btn-primary">START QUIZ</button>
+                    <a href="<?php echo site_url('course/showquiz/'.$course->slug.'/chapter-'.$chapter->order) ?>" class="btn btn-block btn-exam btn-primary">START QUIZ</a>
                 <?php else: ?>
                     <p>Tidak ada quiz</p>
                 <?php endif ?>
@@ -59,16 +59,27 @@
                 <?php if ($repository->memberAllowChapter($nextChapter)): ?>
                     <a href="<?php echo site_url('course/showchapter/'.$course->slug.'/chapter-'.$nextChapter->order) ?>" class="btn btn-block text-xs-left">
                         <div class="card card-success">
-                <?php else: ?>
-                    <a href="#" class="btn btn-block disabled text-xs-left">
-                        <div class="card card-gray">
-                <?php endif ?>
                             <div class="card-block">
                                 <span>CHAPTER <?php echo $nextChapter->order ?></span>
                                 <h4><?php echo $nextChapter->name ?></h4>
                             </div>
                         </div>
                     </a>
+                <?php else: ?>
+                    <div class="has-attention">
+                        <div class="attention pull-right">
+                            <button class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Anda harus menyelesaikan Quiz Chapter <?php echo $chapter->order ?> terlebih dahulu"><i class="fa fa-warning"></i></button>
+                        </div>
+                        <a href="#" class="btn btn-block disabled text-xs-left">
+                            <div class="card card-gray">
+                                <div class="card-block">
+                                    <span>CHAPTER <?php echo $nextChapter->order ?></span>
+                                    <h4><?php echo $nextChapter->name ?></h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <?php endif ?>
             </div>
         <?php endif ?>
     </div>
@@ -84,7 +95,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-xs-12">
                             <div class="text-center">
-                                <img src="../images/portal/people-1.png" alt="">
+                                <img src="<?php echo asset('images/portal/people-1.png') ?>" alt="">
                             </div>
                         </div>
                         <div class="col-sm-10 col-xs-12">
@@ -102,7 +113,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-xs-12">
                             <div class="text-center">
-                                <img src="../images/portal/people-1.png" alt="">
+                                <img src="<?php echo asset('images/portal/people-1.png') ?>" alt="">
                             </div>
                         </div>
                         <div class="col-sm-10 col-xs-12">
@@ -120,7 +131,7 @@
                     <div class="row">
                         <div class="col-sm-2 col-xs-12">
                             <div class="text-center">
-                                <img src="../images/portal/people-1.png" alt="">
+                                <img src="<?php echo asset('images/portal/people-1.png') ?>" alt="">
                             </div>
                         </div>
                         <div class="col-sm-10 col-xs-12">

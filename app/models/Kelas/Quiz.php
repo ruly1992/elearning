@@ -7,6 +7,7 @@ use Hashids\Hashids;
 class Quiz extends Model
 {
 	protected $table = 'quiz';
+	protected $guarded = [];
 
 	public function chapter()
 	{
@@ -20,7 +21,7 @@ class Quiz extends Model
 
 	public function members()
 	{
-		return $this->hasMany(QuizMember::class, 'user_id');
+		return $this->hasMany(QuizMember::class, 'quiz_id');
 	}
 
 	public function getCodeHashAttribute()

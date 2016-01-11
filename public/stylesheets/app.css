@@ -1806,6 +1806,13 @@ header {
           background-color: #d41d2a;
           border-top-left-radius: 6px;
           border-top-right-radius: 6px; }
+        .content .content-sidebar .widget .widget-heading .nav-tabs .nav-item {
+          margin-left: 0px;
+          margin-bottom: -1px;
+          width: 50%; }
+        .content .content-sidebar .widget .widget-heading .nav-tabs .nav-item {
+          margin-left: 0px;
+          width: 50%; }
         .content .content-sidebar .widget .widget-heading .nav-tabs .nav-link {
           color: #263238;
           font-size: 14px;
@@ -2423,7 +2430,7 @@ header {
         .content-dashboard .content-sidebar .widget .widget-content .box-komentar-widget .box-komentar-widget-content a {
           color: #1c9c57; }
   .content-dashboard .content-list-categories .list-title {
-    width: 120px;
+    width: 100%;
     height: 25px;
     border-bottom: 2px solid #263238; }
     .content-dashboard .content-list-categories .list-title h3 {
@@ -3184,7 +3191,8 @@ a {
 .btn-primary {
   background-color: #1c9c57 !important;
   border: 1px solid #1c9c57 !important;
-  color: #fff; }
+  color: #fff;
+  margin-bottom: 5px; }
   .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
     background-color: #128a4a !important;
     color: #fff;
@@ -3772,6 +3780,12 @@ a {
   .content-faq li {
     font-size: 14px;
     margin-left: -26px; }
+  .content-faq .breadcrumb li {
+    margin-left: 0px; }
+  .content-faq .pagination {
+    display: block; }
+    .content-faq .pagination .page-link {
+      border-color: #DDD; }
 
 .content-main-faq {
   background-color: #fff;
@@ -3779,8 +3793,7 @@ a {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
-  margin-top: 17px;
-  padding-bottom: 65px; }
+  margin-top: 17px; }
 
 /* Forum Thread */
 .content-forum .content-main .forum-main .thread-list-title {

@@ -996,8 +996,8 @@ $padding-left: 5px;
   // GENERAL 
   .nav {
     padding-top: $padding-top + 5px;
-    padding-right: $padding-right + 9px;
     cursor: pointer;
+    width: 100%;
   } 
   .dropdown-people {
     width: 60px;
