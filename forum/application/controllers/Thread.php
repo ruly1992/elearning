@@ -110,7 +110,9 @@ class Thread extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
-        $data['users']          = Model\User::all();
+        $role                   = sentinel()->findRoleBySlug('lnr');
+        $data['users']          = $role->users;
+        // $data['users']          = Model\User::where('slug', 'lnr')->get();
         $this->load->view('thread/create',$data);
     }
     
@@ -123,19 +125,23 @@ class Thread extends CI_Controller
         $this->form_validation->set_rules('message','Message','required');
         
         if($this->form_validation->run()==TRUE){ 
-            $user = sentinel()->getUser();
-            $idTopic = set_value('topic');
+            $user       = sentinel()->getUser();
+            $idTopic    = set_value('topic');
+            $status     = '1';
+            
+            // START : check status apabila nantinya thread perlu di approve
+            // if ($this->checkTA()==TRUE){ 
+            //     $userTopics = $this->model_thread->get_topics_by_user($user->id);
+            //     if(checkTopic($idTopic, $userTopics) == TRUE){
+            //         $status = '1';
+            //     }else{
+            //         $status = '0';
+            //     }
+            // }else{
+            //     $status = '0';
+            // }
+            // END : check status apabila nantinya thread perlu di approve
 
-            if ($this->checkTA()==TRUE){
-                $userTopics = $this->model_thread->get_topics_by_user($user->id);
-                if(checkTopic($idTopic, $userTopics) == TRUE){
-                    $status = '1';
-                }else{
-                    $status = '0';
-                }
-            }else{
-                $status = '0';
-            }
             $data=array(
                 'category'  => set_value('kategori'),
                 'type'      => set_value('type'),
