@@ -4796,6 +4796,11 @@ Create: Singgih Saputro */
 
 /* Dashboard Administrator
 Create: Singgih Saputro */
+.mm-page {
+	.btn-group {
+		margin-bottom: $margin-bottom;
+	}
+}
 .btn-editadmin,
 .btn-delete {
 	font-size: 10px;
