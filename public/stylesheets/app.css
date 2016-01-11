@@ -4013,6 +4013,9 @@ Create: Singgih Saputro */
 
 /* Dashboard Administrator
 Create: Singgih Saputro */
+.mm-page .btn-group {
+  margin-bottom: 5px; }
+
 .btn-editadmin,
 .btn-delete {
   font-size: 10px;
