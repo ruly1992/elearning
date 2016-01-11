@@ -3972,7 +3972,7 @@ Create: Singgih Saputro */
 
 .sidebar-header {
   padding: 10px !important;
-  height: 140px !important; }
+  height: 145px !important; }
   .sidebar-header h2 {
     margin-bottom: 20px; }
   .sidebar-header .admin-image {
@@ -3984,5 +3984,8 @@ Create: Singgih Saputro */
   .sidebar-header .admin-info {
     padding: 5px;
     margin-top: 50px; }
+    .sidebar-header .admin-info .dropdown-menu {
+      margin-left: 20px;
+      margin-top: -37px; }
 
 /*# sourceMappingURL=app.css.map */
