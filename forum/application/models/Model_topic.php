@@ -118,6 +118,7 @@ class Model_topic extends CI_Model
                     ->from('categories')
                     ->join('topics', 'topics.category=categories.id')
                     ->where('topics.status', '1')
+                    ->group_by('category_name')
                     ->where_in('daerah', $daerah)
                     ->order_by('categories.id', 'desc')
                     ->get();
