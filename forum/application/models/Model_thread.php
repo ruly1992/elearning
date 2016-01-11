@@ -73,6 +73,7 @@ class Model_thread extends CI_Model
     
     function get_categories()
     {
+        $this->db->order_by('categories.id', 'desc');
         $get = $this->db->get('categories');
         return $get->result();
     }
@@ -84,7 +85,8 @@ class Model_thread extends CI_Model
                 ->join('categories','categories.id=threads.category')
                 ->join('topics', 'topics.id=threads.topic')
                 ->where(array('reply_to' => '0', 'threads.status' => '1', 'topics.status' => '1'))
-                ->order_by('threads.id','desc')
+                ->order_by('threads.category', 'desc')
+                ->order_by('threads.id', 'desc')
                 ->get();
         return $get->result();
     }
