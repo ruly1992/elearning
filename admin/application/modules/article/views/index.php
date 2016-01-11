@@ -10,40 +10,41 @@
         </div>
 
         <hr>
-
-        <table class="table table-hover table-bordered" id="article">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Judul</th>
-                    <th>Only Registered</th>
-                    <th>Status</th>
-                    <th>Waktu Terbit</th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($artikel as $row): ?>
-                <tr>
-                    <td><?php echo $row->id ?></td>
-                    <td><?php echo $row->title ?></td>
-                    <td>
-                        <label class="switch switch-danger">
-                            <?php echo form_checkbox('status['.$row->id.']', $row->id, $row->type == 'private', array('class' => 'switch-input ajax')); ?>
-                            <span class="switch-label" data-on="Yes" data-off="No"></span>
-                            <span class="switch-handle"></span>
-                        </label>
-                    </td>
-                    <td><?php echo $row->getStatusLabel() ?></td>
-                    <td><?php echo $row->date ?></td>
-                    <td>
-                        <?php echo button_edit('article/edit/' . $row->id) ?>
-                        <?php echo button_delete('article/delete/' . $row->id) ?>
-                    </td>
-                </tr>
-            <?php endforeach ?>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered" id="article">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Judul</th>
+                        <th>Only Registered</th>
+                        <th>Status</th>
+                        <th>Waktu Terbit</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($artikel as $row): ?>
+                    <tr>
+                        <td><?php echo $row->id ?></td>
+                        <td><?php echo $row->title ?></td>
+                        <td>
+                            <label class="switch switch-danger">
+                                <?php echo form_checkbox('status['.$row->id.']', $row->id, $row->type == 'private', array('class' => 'switch-input ajax')); ?>
+                                <span class="switch-label" data-on="Yes" data-off="No"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </td>
+                        <td><?php echo $row->getStatusLabel() ?></td>
+                        <td><?php echo $row->date ?></td>
+                        <td>
+                            <?php echo button_edit('article/edit/' . $row->id) ?>
+                            <?php echo button_delete('article/delete/' . $row->id) ?>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
