@@ -338,7 +338,7 @@ $(document).ready(function () {
 
             this.initData();
 
-            // tinyMCE
+            // tinyMCE question
             tinyMCE.init({
                 setup: function (editor) {
                     editor.on('keyup', function(e) {
@@ -347,13 +347,17 @@ $(document).ready(function () {
                 },
                 selector: '#'+that.tinymce
             });
+
+            // tinyMCE exam question
             tinyMCE.init({
                 setup: function (editor) {
                     editor.on('keyup', function(e) {
-                        that.setExamQuestion(editor.getContent());
+                        var description = editor.getContent();
+
+                        that.course.description = description;
                     });
                 },
-                selector: '#'+that.tinymceExam
+                selector: '.editor-description'
             });
 
             // jQuery Filer
