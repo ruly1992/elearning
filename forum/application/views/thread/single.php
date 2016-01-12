@@ -43,8 +43,8 @@
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="card-header-img">
-                                                    <img src="<?php echo user($author)->avatar; ?>" alt="">
-                                                    <p><small><a href="#"><?php echo user($author)->full_name; ?></a></small></p>
+                                                    <img src="<?php echo sentinel()->getUser($author)->avatar; ?>" alt="">
+                                                    <p><small><a href="#"><?php echo sentinel()->getUser($author)->full_name; ?></a></small></p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-9">
@@ -95,8 +95,8 @@
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="card-header-img">
-                                                    <img src="<?php echo user($r->author)->avatar; ?>" alt="">
-                                                    <p><small><a href="#"><?php echo user($r->author)->full_name; ?></a></small></p>
+                                                    <img src="<?php echo sentinel()->getUser($r->author)->avatar; ?>" alt="">
+                                                    <p><small><a href="#"><?php echo sentinel()->getUser($r->author)->full_name; ?></a></small></p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-9">
