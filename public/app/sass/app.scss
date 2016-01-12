@@ -4796,11 +4796,20 @@ Create: Singgih Saputro */
 
 /* Dashboard Administrator
 Create: Singgih Saputro */
+.panel-default {
+	.panel-body {
+		.jFiler-input {
+			width: 270px;
+		}
+	}
+}
+
 .mm-page {
 	.btn-group {
 		margin-bottom: $margin-bottom;
 	}
 }
+
 .btn-editadmin,
 .btn-delete {
 	font-size: 10px;
