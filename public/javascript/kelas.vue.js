@@ -34,7 +34,7 @@ $(document).ready(function () {
     function ObjQuiz() {
         this.id = 0;
         this.name = '';
-        this.time = 0;
+        this.time = 5;
         this.questions = [];
     }
 

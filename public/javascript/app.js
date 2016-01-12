@@ -8,13 +8,6 @@
 
 $("#navbar-main").sticky({ topSpacing: 0 });
 
-$('.btn-reply').on('click', function () {
-    var parent = $(this).data('parent')
-    var inputp = $('input[name=parent]')
-
-    inputp.val(parent)
-})
-
 $('#navbarCollapse').on('show.bs.collapse', function (){
     $('#navbarCollapselogin').collapse('hide');
 });

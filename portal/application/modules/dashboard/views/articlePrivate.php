@@ -9,7 +9,7 @@
                 <ul class="nav nav-inline">
                     <?php foreach ($categories as $category): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $category->link ?>"><?php echo $category->name ?></a>
+                            <a class="nav-link" href="<?php echo $category->link_private ?>"><?php echo $category->name ?></a>
                         </li>
                     <?php endforeach ?>
                 </ul>

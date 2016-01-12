@@ -102,15 +102,22 @@ class Thread extends CI_Controller
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
-            $data['categories'] = $this->model_thread->get_categories();
+            $data['categories'] = $this->model_thread->get_categories_by_ta($user->id);
         }else{
-            $data['categories']     = $this->model_topic->getCategory_by_Wilayah($daerahUser);
+            $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         }
+        // echo $user->id.'<br>';
+        // foreach($data['categories'] as $cat){
+        //     echo $cat->category_name.'->'.$cat->topic.'<br>';
+        // } 
+        $data['idUser']         = $user->id;
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
-        $data['users']          = Model\User::all();
+        $role                   = sentinel()->findRoleBySlug('lnr');
+        $data['users']          = $role->users;
+
         $this->load->view('thread/create',$data);
     }
     
@@ -123,19 +130,23 @@ class Thread extends CI_Controller
         $this->form_validation->set_rules('message','Message','required');
         
         if($this->form_validation->run()==TRUE){ 
-            $user = sentinel()->getUser();
-            $idTopic = set_value('topic');
+            $user       = sentinel()->getUser();
+            $idTopic    = set_value('topic');
+            $status     = '1';
+            
+            // START : check status apabila nantinya thread perlu di approve
+            // if ($this->checkTA()==TRUE){ 
+            //     $userTopics = $this->model_thread->get_topics_by_user($user->id);
+            //     if(checkTopic($idTopic, $userTopics) == TRUE){
+            //         $status = '1';
+            //     }else{
+            //         $status = '0';
+            //     }
+            // }else{
+            //     $status = '0';
+            // }
+            // END : check status apabila nantinya thread perlu di approve
 
-            if ($this->checkTA()==TRUE){
-                $userTopics = $this->model_thread->get_topics_by_user($user->id);
-                if(checkTopic($idTopic, $userTopics) == TRUE){
-                    $status = '1';
-                }else{
-                    $status = '0';
-                }
-            }else{
-                $status = '0';
-            }
             $data=array(
                 'category'  => set_value('kategori'),
                 'type'      => set_value('type'),
@@ -359,11 +370,27 @@ class Thread extends CI_Controller
 
     public function get_topics(){
         $idCategory = $this->input->post('idCategory');
-        $getTopics  = $this->model_topic->getTopics_by_Category($idCategory);
+        $user       = sentinel()->getUser();
+        if($this->checkTA() == TRUE){
+            $getTopics  = $this->model_topic->getTopics_by_ta($user->id, $idCategory);
+        }else{
+            $daerahUser = $user->profile->desa_id;
+            $getTopics  = $this->model_topic->getTopics_by_Category($idCategory, $daerahUser);
+        }
+        $publicTopics   = $this->model_topic->get_public_topics($idCategory);
+
+        $tempTopics      = (object) array_merge_recursive((array) $getTopics, (array) $publicTopics);
+        $allTopics       = array();
+
+        foreach($tempTopics as $temp){
+            if ( ! in_array($temp, $allTopics)) {
+                $allTopics[] = $temp;
+            }
+        }
 
         $topics = null;
         if(!empty($getTopics)){
-            foreach($getTopics as $top){
+            foreach($allTopics as $top){
                 $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
             }
         }else{

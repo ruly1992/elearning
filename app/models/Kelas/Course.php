@@ -41,11 +41,6 @@ class Course extends Model
         return $this->hasOne(Exam::class);
     }
 
-    public function quiz()
-    {
-        return $this->hasOne(Quiz::class);
-    }
-
     public function members()
     {
         $database = $this->getConnection()->getDatabaseName();

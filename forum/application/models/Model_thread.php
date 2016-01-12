@@ -73,7 +73,22 @@ class Model_thread extends CI_Model
     
     function get_categories()
     {
+        $this->db->order_by('categories.id', 'desc');
         $get = $this->db->get('categories');
+        return $get->result();
+    }
+
+    function get_categories_by_ta($id)
+    {
+        $get    = $this->db->select('categories.*')
+                            ->from('categories')
+                            ->join('category_user', 'category_user.category_id=categories.id')
+                            ->join('topics', 'topics.category=categories.id')
+                            ->where(array('category_user.user_id' => $id))
+                            ->or_where('topics.daerah', '00.00.00.0000')
+                            ->group_by('categories.category_name')
+                            ->order_by('categories.id', 'desc')
+                            ->get();
         return $get->result();
     }
     
@@ -84,7 +99,8 @@ class Model_thread extends CI_Model
                 ->join('categories','categories.id=threads.category')
                 ->join('topics', 'topics.id=threads.topic')
                 ->where(array('reply_to' => '0', 'threads.status' => '1', 'topics.status' => '1'))
-                ->order_by('threads.id','desc')
+                ->order_by('threads.category', 'desc')
+                ->order_by('threads.id', 'desc')
                 ->get();
         return $get->result();
     }
@@ -96,7 +112,8 @@ class Model_thread extends CI_Model
         $kecamatan  = $d[0].'.'.$d[1].'.'.$d[2].'.0000';
         $kota       = $d[0].'.'.$d[1].'.00.0000';
         $provinsi   = $d[0].'.00.00.0000';
-        $daerah     = array($desa, $kecamatan, $kota, $provinsi);
+        $default    = '00.00.00.0000';
+        $daerah     = array($desa, $kecamatan, $kota, $provinsi, $default);
 
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
@@ -181,7 +198,8 @@ class Model_thread extends CI_Model
         $kecamatan  = $d[0].'.'.$d[1].'.'.$d[2].'.0000';
         $kota       = $d[0].'.'.$d[1].'.00.0000';
         $provinsi   = $d[0].'.00.00.0000';
-        $daerah     = array($desa, $kecamatan, $kota, $provinsi);
+        $default    = '00.00.00.0000';
+        $daerah     = array($desa, $kecamatan, $kota, $provinsi, $default);
 
         $items = array('threads.*', 'categories.category_name');
         $get   = $this->db->select($items)->from('threads')

@@ -133,9 +133,10 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php 
-                                                if(isset($tenagaAhli)){ 
-                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
-                                                }
+                                                // Untuk menampilkan navigasi draft thread (jika dibutuhkan)
+                                                // if(isset($tenagaAhli)){ 
+                                                //     echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
+                                                // }
                                             ?>
                                             <?php 
                                                 if(isset($authorThreads)){ $active = 'active'; }else{ $active=''; }

@@ -13,7 +13,12 @@ class Category extends Model
 
     public function getLinkAttribute()
     {
-        return site_url('category/show/' . $this->name);
+        return portal_url('category/show/' . $this->name);
+    }
+
+    public function getLinkPrivateAttribute()
+    {
+        return dashboard_url('category/show/' . $this->name);
     }
 
     public function childs()
