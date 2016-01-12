@@ -110,7 +110,7 @@
                                     foreach ($categories as $category): ?>
                                         <?php if ($category->childs->count()): ?>
                                             <li class="nav-item dropdown <?php echo $active == $category->id ? 'active' : '' ?>">
-                                                <a class="nav-link dropdown-toggle" href="<?php echo $category->link ?>"><?php echo strtoupper($category->name) ?></a>
+                                                <a class="nav-link dropdown-toggle" href="#"><?php echo strtoupper($category->name) ?></a>
                                                 <ul class="dropdown-menu dropdown-navbar">
                                                     <?php foreach ($category->childs as $child): ?>
                                                         <li>
@@ -138,6 +138,28 @@
                                 </div>
                             </div> 
                             <!-- End : Content navbarCollapse -->
+                            <!-- Begin : Login or Profile button if login -->
+                            <?php if (!sentinel()->check()): ?>
+                                <?php if ($active != 'home' && !empty($active)): ?>
+                                    <div class="header-top-right-login pull-right">
+                                        <a href="<?php echo login_url() ?>" class="btn btn-primary-outline">Login </a>
+                                    </div>
+                                <?php endif ?>
+                            <?php else: ?>
+                                <ul class="nav navbar-nav hidden-md-down pull-right">
+                                    <div class="dropdown dropdown-people">
+                                        <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img src="<?php echo auth()->getUser()->avatar ?>" alt="">
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right custom-float" aria-labelledby="dropdownMenu2">
+                                            <a href="<?php echo dashboard_url('profile') ?>" class="dropdown-item">Profile</a>
+                                            <a href="<?php echo dashboard_url('sendArticle') ?>" class="dropdown-item">Submit Artikel</a>
+                                            <a href="<?php echo logout_url() ?>" class="dropdown-item">Log Out</a>
+                                        </div>
+                                    </div>
+                                </ul>
+                            <?php endif ?>
+                            <!-- End : Login or Profile button if login -->
                             <!-- Begin : Content navbarCollapselogin -->
                             <div class="collapse navbar-toggleable-md" id="navbarCollapselogin">
                                 <ul class="nav navbar-nav custom-login-mobile">
