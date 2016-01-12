@@ -4046,6 +4046,9 @@ Create: Singgih Saputro */
   text-shadow: none;
   font-weight: 600; }
 
+.btn-margin-btm {
+  margin-bottom: 5px; }
+
 .sidebar-header {
   padding: 10px !important;
   height: 145px !important; }
