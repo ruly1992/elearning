@@ -137,7 +137,8 @@
 	{
 		$counter = 0;
 		foreach($threadMembers as $tm){
-			if($tm->thread_id == $threadID AND $tm->user_id == $userID){
+			$author 	= $thr->author;
+			if(($tm->thread_id == $threadID AND $tm->user_id == $userID) OR $author == $userID){
 				$counter = $counter+1;
 			}
 		}
