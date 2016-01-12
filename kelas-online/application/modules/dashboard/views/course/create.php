@@ -31,7 +31,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 form-control-label">Description</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control editor" v-model="course.description"></textarea>
+                                        <textarea class="form-control editor-description" v-model="course.description"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -297,11 +297,4 @@
     <script src="<?php echo asset('plugins/jQuery.filer-1.0.5/js/custom.js') ?>"></script>
     <script src="<?php echo asset('plugins/jquery.steps-1.1.0/js/jquery.steps.js') ?>"></script>
     <script src="<?php echo asset('plugins/tinymce/tinymce.jquery.min.js') ?>"></script>
-    <script>
-        $(document).ready(function () {
-            tinymce.init({
-                selector: '.editor'
-            })
-        })
-    </script>
 <?php endcustom_script() ?>
