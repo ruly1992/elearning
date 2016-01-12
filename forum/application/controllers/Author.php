@@ -62,7 +62,7 @@ class Author extends CI_Controller
                 'idCategory'=> $t->category,
                 'category'  => $t->category_name,
                 'topic'     => $t->topicName,
-                'user'      => $t->author,
+                'author'    => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,
                 'status'    => $t->status,
