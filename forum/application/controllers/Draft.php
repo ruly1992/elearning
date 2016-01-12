@@ -62,7 +62,7 @@ class Draft extends CI_Controller
                 'idCategory'=> $t->category,
                 'category'  => $t->category_name,
                 'topic'     => $t->topicName,
-                'user'      => $t->author,
+                'author'    => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,
                 'status'    => $t->status,
@@ -174,7 +174,8 @@ class Draft extends CI_Controller
 
     public function delete($id)
     {
-        $delete = $this->model_thread->delete_thread($id);
+        $data   = array('id' => $id);
+        $delete = $this->model_thread->delete_thread($data);
 
         if($delete==TRUE){
             $this->model_thread->delete_replies($id);
