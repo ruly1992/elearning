@@ -59,7 +59,6 @@
                                         <div class="card-block-title">
                                             <h4><?php echo $title; ?></h4>
                                         </div>
-											<img src="<?php echo asset('images/portal/img-carousel.jpg');?>" class="img-fluid" alt="">
 											<p>
                                                 <?php echo $message; ?>
                                             </p>
