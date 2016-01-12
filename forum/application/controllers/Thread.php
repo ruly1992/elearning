@@ -159,16 +159,10 @@ class Thread extends CI_Controller
                 'created_at'=> date('Y-m-d H:i:s')
             );
             $data = $this->security->xss_clean($data); //xss clean
-            $save = $this->model_thread->save_thread($data);
+            $idThread = $this->model_thread->save_thread($data);
 
             $typeThread     = set_value('type');
             if($typeThread == 'close'){
-                $where      = $data;
-                $getThread  = $this->model_thread->get_thread_by_all($where);
-                foreach($getThread AS $thread){
-                    $idThread   =   $thread->id;
-                }
-
                 $member = $this->input->post('member');
                 foreach($member AS $key => $value){
                     $threadMember = array(
@@ -179,7 +173,7 @@ class Thread extends CI_Controller
                 }
             }
 
-            if($save==TRUE){
+            if($save != FALSE){
                 $this->session->set_flashdata('success','Thread baru berhasil dibuat');
             }else{
                 $this->session->set_flashdata('failed','Thread baru tidak berhasil dibuat');
