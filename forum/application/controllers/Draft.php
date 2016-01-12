@@ -174,7 +174,8 @@ class Draft extends CI_Controller
 
     public function delete($id)
     {
-        $delete = $this->model_thread->delete_thread($id);
+        $data   = array('id' => $id);
+        $delete = $this->model_thread->delete_thread($data);
 
         if($delete==TRUE){
             $this->model_thread->delete_replies($id);

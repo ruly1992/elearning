@@ -191,7 +191,7 @@ class Thread extends CI_Controller
                 'idCategory'=> $t->category,
                 'category'  => $t->category_name,
                 'topic'     => $t->topicName,
-                'user'      => $t->author,
+                'author'      => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,
                 'status'    => $t->status,
@@ -226,7 +226,8 @@ class Thread extends CI_Controller
     
     public function deleteThread($id)
     {
-        $delete = $this->model_thread->delete_thread($id);
+        $data   = array('id' => $id);
+        $delete = $this->model_thread->delete_thread($data);
 
         if($delete==TRUE){
             $this->model_thread->delete_replies($id);
@@ -349,13 +350,17 @@ class Thread extends CI_Controller
         }
     }
 
-    public function deleteReply($idThread,$idReply)
+    public function deleteReply($idThread, $idReply, $userID)
     {
-        $delete=$this->model_thread->delete_thread($idReply);
+        $data = array(
+            'id'    => $idReply,
+            'author'=> $userID
+        );
+        $delete=$this->model_thread->delete_thread($data);
         if($delete==TRUE){
-            $this->session->set_flashdata('success', 'Komentar berhasil dihapus');
+            $this->session->set_flashdata('success', 'Komentar berhasil dihapus.');
         }else{
-            $this->session->set_flashdata('failed', 'Komentar tidak berhasil dihapus');
+            $this->session->set_flashdata('failed', 'Komentar tidak berhasil dihapus.');
         }
         redirect('thread/view/'.$idThread);
     }
