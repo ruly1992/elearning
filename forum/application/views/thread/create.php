@@ -1,5 +1,7 @@
 <?php custom_stylesheet(); ?>
 <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
+<link rel="stylesheet" href="<?php echo asset('plugins/customselect/css/jquery-customselect-1.9.1.css'); ?>" type="text/css" media="all" />
+<link rel="stylesheet" href="<?php echo asset('plugins/chosen_v1.4.2/chosen.css'); ?>" type="text/css" media="all" />
 <?php endcustom_stylesheet(); ?>
 <?php get_header('private', array('active' => 'forum')); ?>
 
@@ -54,8 +56,11 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="form-group" id="addUser">
-                                                
+                                            <div class="form-group collapse" id="addPrivate">
+                                                <label>Pilih anggota</label>
+                                                <select data-placeholder="Pilih anggota ..." class="form-control chosen-select" required multiple name="member[]" style="width:100%; border-radius:10px;" tabindex="4">
+                                                    <?php usersOption($users) ?>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Title</label>
@@ -90,6 +95,8 @@
 
 <?php custom_script(); ?>
     <script src="<?php echo asset('plugins/sceditor/development/jquery.sceditor.bbcode.js'); ?>"></script>
+    <script src="<?php echo asset('plugins/customselect/js/jquery-customselect-1.9.1.js'); ?>"></script>
+    <script src="<?php echo asset('plugins/chosen_v1.4.2/chosen.jquery.min.js'); ?>"></script>
     <script>
         $(function() {
             $("textarea").sceditor({
@@ -120,15 +127,12 @@
     </script>
     <script type="text/javascript">
         function private(){
-            if(($("#addLabel").length <= 0) && ($("#addMember").length <= 0)){
-                $('#addUser').append( '<label id="addLabel">Pilih anggota</label>' );
-                $('#addUser').append( '<select id="addMember" required class="form-control" multiple name="member[]"><?php usersOption($users) ?></select>' );
-            }
+            $('#addPrivate').collapse('show');
+            $('.chosen-select').chosen();
         }
 
         function public(){
-            $('#addLabel').remove();
-            $('#addMember').remove();
+            $('#addPrivate').collapse('hide');
         }
     </script>
 <?php endcustom_script() ?>

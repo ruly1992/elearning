@@ -17,7 +17,7 @@
             </div>
             <div class="panel-footer">
                 <?php echo button_save() ?>
-                <a href="<?php echo site_url('elibrary/category/delete/' . $category->id) ?>" class="btn btn-danger btn-delete-lg"><i class="fa fa-trash-o"></i> Hapus</a>
+                <a href="<?php echo site_url('elibrary/category/delete/' . $category->id) ?>" class="btn btn-danger btn-delete-lg btn-margin-btm"><i class="fa fa-trash-o"></i> Hapus</a>
             </div>
         </div>
         <?php echo form_close(); ?>

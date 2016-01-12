@@ -4042,6 +4042,9 @@ Create: Singgih Saputro */
 
 /* Dashboard Administrator
 Create: Singgih Saputro */
+.panel-default .panel-body .jFiler-input {
+  width: 270px; }
+
 .mm-page .btn-group {
   margin-bottom: 5px; }
 
@@ -4074,6 +4077,9 @@ Create: Singgih Saputro */
   padding: 3px 6px;
   text-shadow: none;
   font-weight: 600; }
+
+.btn-margin-btm {
+  margin-bottom: 5px; }
 
 .sidebar-header {
   padding: 10px !important;
