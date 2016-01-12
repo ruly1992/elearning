@@ -191,7 +191,7 @@ class Thread extends CI_Controller
                 'idCategory'=> $t->category,
                 'category'  => $t->category_name,
                 'topic'     => $t->topicName,
-                'author'      => $t->author,
+                'author'    => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,
                 'status'    => $t->status,
@@ -294,7 +294,7 @@ class Thread extends CI_Controller
                 'reply_to'  => $id,
                 'author'    => $user->id,
                 'status'    => '1',
-                'created_at'=> date('Y-m-d').' '.date('G:i:s')
+                'created_at'=> date('Y-m-d H:i:s')
             );
             $post_reply = $this->model_thread->save_thread($data);
 
@@ -334,7 +334,8 @@ class Thread extends CI_Controller
 
         if($this->form_validation->run()==TRUE){
             $data = array(
-                'message' => set_value('message')
+                'updated_at'    => date('Y-m-d H:i:s'),
+                'message'       => set_value('message')
             );
 
             $update = $this->model_thread->update_thread($idReply,$data);
