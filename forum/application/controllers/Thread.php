@@ -106,10 +106,7 @@ class Thread extends CI_Controller
         }else{
             $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         }
-        // echo $user->id.'<br>';
-        // foreach($data['categories'] as $cat){
-        //     echo $cat->category_name.'->'.$cat->topic.'<br>';
-        // } 
+
         $data['idUser']         = $user->id;
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
@@ -159,11 +156,12 @@ class Thread extends CI_Controller
                 'created_at'=> date('Y-m-d H:i:s')
             );
             $data = $this->security->xss_clean($data); //xss clean
-            $idThread = $this->model_thread->save_thread($data);
+            $save = $this->model_thread->save_thread($data);
 
             $typeThread     = set_value('type');
             if($typeThread == 'close'){
-                $member = $this->input->post('member');
+                $idThread   = $save;
+                $member     = $this->input->post('member');
                 foreach($member AS $key => $value){
                     $threadMember = array(
                         'thread_id' => $idThread,
