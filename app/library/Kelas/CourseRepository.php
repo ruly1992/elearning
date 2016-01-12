@@ -17,6 +17,7 @@ use Carbon\Carbon;
 
 class CourseRepository
 {
+    use CategoryTrait;
     use CountingTrait;
     use MemberTrait;
 
