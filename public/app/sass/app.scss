@@ -504,6 +504,21 @@ header {
 				}
 			}
 		}
+		//add login button
+		.button-login {
+			margin-top: $margin-top + 10px;
+			border: 1px solid #ddd;
+			width: 110px;
+			height: 30px;
+			border-radius: 50px;
+			a {
+				font-size: 14px;
+				@include fonts('open_sansregular');
+				padding: $padding + 5px;
+				font-weight: 300;
+				line-height: 2;
+			}
+		}
 	}
 	//add fajar eko s
 	
@@ -1952,7 +1967,7 @@ header {
 		}
 	}
 	.content-articles {
-		margin-top: $margin-top + 20px;
+		margin-top: $margin-top - 5px;
 		margin-bottom: $margin-bottom + 35px;
 		.content-articles-heading {
 			display: block;
@@ -2140,7 +2155,7 @@ header {
 		margin-top: $margin-top - 5px;
 	}
 	.content-sidebar {
-		margin-top: $margin-top + 55px;
+		margin-top: $margin-top + 20px;
 		.widget {
 			margin-bottom: $margin-bottom + 30px;
 			.widget-heading {
