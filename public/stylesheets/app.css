@@ -4011,8 +4011,11 @@ Create: Singgih Saputro */
     margin-top: 7px;
     margin-right: -6px; }
 
-/* Dashboard Admin
+/* Dashboard Administrator
 Create: Singgih Saputro */
+.mm-page .btn-group {
+  margin-bottom: 5px; }
+
 .btn-editadmin,
 .btn-delete {
   font-size: 10px;
@@ -4042,5 +4045,23 @@ Create: Singgih Saputro */
   padding: 3px 6px;
   text-shadow: none;
   font-weight: 600; }
+
+.sidebar-header {
+  padding: 10px !important;
+  height: 145px !important; }
+  .sidebar-header h2 {
+    margin-bottom: 20px; }
+  .sidebar-header .admin-image {
+    padding: 5px; }
+    .sidebar-header .admin-image img {
+      width: 60px;
+      margin-left: 83px;
+      margin-right: 83px; }
+  .sidebar-header .admin-info {
+    padding: 5px;
+    margin-top: 50px; }
+    .sidebar-header .admin-info .dropdown-menu {
+      margin-left: 20px;
+      margin-top: -37px; }
 
 /*# sourceMappingURL=app.css.map */
