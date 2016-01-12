@@ -18,9 +18,9 @@ class Model_thread extends CI_Model
         }
     }
     
-    function delete_thread($id)
+    function delete_thread($data)
     {
-        $delete = $this->db->delete('threads', array('id'=>$id));
+        $delete = $this->db->delete('threads', $data);
         if($this->db->affected_rows() == 1){
             return TRUE;
         }else{
