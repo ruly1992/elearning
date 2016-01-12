@@ -6,6 +6,8 @@ use Model\Kelas\Category;
 
 trait CategoryTrait
 {
+    protected $category;
+
     public function setCategory($category)
     {
         if ($category instanceof Category)
@@ -13,7 +15,7 @@ trait CategoryTrait
         else
             $this->category = $this->category->findOrFail($category);
 
-        return $this->category;
+        return $this;
     }
 
     public function getCategory()
@@ -21,8 +23,10 @@ trait CategoryTrait
         return $this->category;
     }
 
-    public function getCategoryLists()
+    public function getCategoryLists($category = null)
     {
+        if ($category) $this->setCategory($category);
+
         $lists = $this->category->orderBy('name', 'asc')->get()->pluck('name', 'id');
 
         return $lists->toArray();
@@ -30,26 +34,38 @@ trait CategoryTrait
 
     public function createCategory($name, $description = '')
     {
-        $category               = new $this->category;
+        $category               = new Category;
         $category->name         = $name;
         $category->description  = $description;
         $category->save();
 
         $this->setCategory($category);
 
-        return $category;
+        return $this;
     }
 
-    public function updateCategory($name, $description = '', $id = 0)
+    public function updateCategory($name, $description = '', $category = null)
     {
-        if ($id !== 0)
-            $this->setCategory($id);
+        if ($category) $this->setCategory($category);
 
         $category               = $this->getCategory();
         $category->name         = $name;
         $category->description  = $description;
         $category->save();
 
-        return $category;
+        return $this;
+    }
+
+    public function deleteCategory($category = null)
+    {
+        if ($category) $this->setCategory($category);
+
+        $this->category->courses->each(function ($course) {
+            $this->delete($course);
+        });
+
+        $this->category->delete();
+
+        return $this;
     }
 }
