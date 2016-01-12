@@ -504,65 +504,27 @@ header {
 				}
 			}
 		}
-		//add login button
-		.button-login {
-			margin-top: $margin-top + 10px;
-			border: 1px solid #ddd;
-			width: 110px;
-			height: 30px;
-			border-radius: 50px;
-			a {
-				font-size: 14px;
+		.header-top-right-login {
+			.btn {
+				margin-top: $margin-top + 8px;
+				border-radius: 50px;
 				@include fonts('open_sansregular');
-				padding: $padding + 5px;
-				font-weight: 300;
-				line-height: 2;
-			}
-		}
-	}
-	//add fajar eko s
-	
-	.dropdown {
-		.dropdown-navbar {
-			width: 250px;
-			height: auto;
-			background-color: $grey;
-			margin-top: 0px;
-			padding: 0;
-			border: medium none;
-			@include border-radius(0);
-			li {
 				font-size: 12px;
-				color: $white;
-				padding: $padding + 10px;
-				@include transition(0.3s);
-				@include fonts('open_sansregular');
-				&:hover {
-					background-color: $green;
-					color: $white;
-					@include transition(0.3s);
-				}
-				a {
-					text-decoration: none;
-				}
+				font-weight: 600;
+				padding-top: $padding-top - 1px;
+				padding-bottom: $padding-bottom - 1px;
+				padding-left: $padding-left + 20px;
+				padding-right: $padding-right + 20px;
 			}
-		}
-	}
-	
-	.dropdown-menu {
-		a {
-			font-size: 14px;
-			color: #909090;
-			padding-top: 5px;
-			padding-bottom: 5px;
-			@include transition(0.3s);
-			@include fonts('open_sansregular');
-			&:hover,
-			&:focus,
-			&:active {
-				background-color: $green;
-				color: $white;
-				@include transition(0.2s);
+			.btn-primary-outline {
+				color: $green-black;
+				background-color: transparent;
+				background-image: none;
+				border-color: $green-black;
+				&:hover {
+					color: $white;
+					background-color: $green-black;
+				}
 			}
 		}
 	}
@@ -752,6 +714,51 @@ header {
 						background-color: $white;
 					}
 				}
+			}
+		}
+	}
+	//add fajar eko s
+	
+	.dropdown {
+		.dropdown-navbar {
+			width: 250px;
+			height: auto;
+			background-color: $grey;
+			margin-top: 0px;
+			padding: 0;
+			border: medium none;
+			@include border-radius(0);
+			li {
+				font-size: 12px;
+				color: $white;
+				padding: $padding + 10px;
+				@include transition(0.3s);
+				@include fonts('open_sansregular');
+				&:hover {
+					background-color: $green;
+					color: $white;
+					@include transition(0.3s);
+				}
+				a {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	.dropdown-menu {
+		a {
+			font-size: 14px;
+			color: #909090;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			@include transition(0.3s);
+			@include fonts('open_sansregular');
+			&:hover,
+			&:focus,
+			&:active {
+				background-color: $green;
+				color: $white;
+				@include transition(0.2s);
 			}
 		}
 	}
