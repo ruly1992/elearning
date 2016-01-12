@@ -26,31 +26,33 @@
             <div class="panel-heading">
                 <h2><strong>Daftar Konsultasi</strong></h2>
             </div>
-            <div class="panel-body">                
-                <table class="table table-hover table-bordered" id="article">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Subjek</th>
-                            <th>Status</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $no = 1; foreach ($kategori as $row): ?>
-                        <tr>
-                            <td><?php echo $no ?></td>
-                            <td><?php echo $row->name ?></td>
-                            <td><?php echo $row->description ?></td>
-                            <td>
-                                <?php echo button_edit('konsultasi/updateKategori/' . $row->id) ?>
-                                <a class="btn btn-danger btn-delete" href="<?php echo site_url('konsultasi/deleteKategori/'. $row->id);?>" onClick="return doconfirm();">Hapus
-                                </a>
-                            </td>
-                        </tr>
-                    <?php $no++; endforeach; ?>
-                    </tbody>
-                </table>
+            <div class="panel-body">
+                <div class="table-responsive">                
+                    <table class="table table-hover table-bordered" id="article">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Subjek</th>
+                                <th>Status</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no = 1; foreach ($kategori as $row): ?>
+                            <tr>
+                                <td><?php echo $no ?></td>
+                                <td><?php echo $row->name ?></td>
+                                <td><?php echo $row->description ?></td>
+                                <td>
+                                    <?php echo button_edit('konsultasi/updateKategori/' . $row->id) ?>
+                                    <a class="btn btn-danger btn-delete" href="<?php echo site_url('konsultasi/deleteKategori/'. $row->id);?>" onClick="return doconfirm();">Hapus
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php $no++; endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
