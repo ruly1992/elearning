@@ -101,6 +101,13 @@ body {
   overflow-x: auto;
   border: none !important; }
 
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+  background-color: #37474f;
+  color: #fff; }
+
 /* End Custom table */
 /* HEADER */
 header {
