@@ -89,9 +89,9 @@
             </div>
 
             <?php //if ($media->status == 'draft'): ?>
-                <a href="<?php echo site_url('elibrary/approve/' . $media->id) ?>" v-on:click="saveToPublish(<?php echo $media->id ?>, $event)" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Save to Publish</a>
+                <a href="<?php echo site_url('elibrary/approve/' . $media->id) ?>" v-on:click="saveToPublish(<?php echo $media->id ?>, $event)" class="btn btn-sm btn-success btn-margin-btm"><i class="fa fa-check"></i> Save to Publish</a>
             <?php //else: ?>
-                <a href="<?php echo site_url('elibrary/approve/' . $media->id . '/draft') ?>" v-on:click="saveToDraft(<?php echo $media->id ?>, $event)" class="btn btn-sm btn-warning"><i class="fa fa-check"></i> Set to DRAFT</a>
+                <a href="<?php echo site_url('elibrary/approve/' . $media->id . '/draft') ?>" v-on:click="saveToDraft(<?php echo $media->id ?>, $event)" class="btn btn-sm btn-warning btn-margin-btm"><i class="fa fa-check"></i> Set to DRAFT</a>
             <?php //endif ?>
             <?php echo button_save() ?>
         </div>
