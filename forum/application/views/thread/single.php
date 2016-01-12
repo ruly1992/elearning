@@ -102,6 +102,11 @@
                                             <div class="col-sm-9">
                                                 <div class="card-header-meta pull-right">
                                                     <p><?php echo $r->created_at; ?> <i class="fa fa-calendar"></i></p>
+                                                    <?php 
+                                                        if($r->updated_at > 0){
+                                                            echo '<span class="label label-primary pull-right">Edited</span>';
+                                                        }
+                                                    ?>
                                                     <!--<p>201 <i class="fa fa-comments"></i></p>-->
                                                 </div>
                                             </div>
