@@ -43,7 +43,7 @@
     $(document).ready(function() {
         $('#article').DataTable({
             responsive: true,
-            "sDom": '<"row"<"col-lg-6"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+            "sDom": '<"row"<"col-lg-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
             'order': [[4, 'desc']]
         });
     } );
