@@ -12,8 +12,12 @@ trait CategoryTrait
     {
         if ($category instanceof Category)
             $this->category = $category;
-        else
+        elseif (is_numeric($category))
             $this->category = $this->category->findOrFail($category);
+        elseif (is_string($category))
+            $this->category = $this->category->findBySlug($category);
+        else
+            $this->category = new Category;
 
         return $this;
     }
@@ -30,6 +34,13 @@ trait CategoryTrait
         $lists = $this->category->orderBy('name', 'asc')->get()->pluck('name', 'id');
 
         return $lists->toArray();
+    }
+
+    public function getAllCategory()
+    {
+        $category   = $this->category->newQuery();
+
+        return $category->get();
     }
 
     public function createCategory($name, $description = '')
