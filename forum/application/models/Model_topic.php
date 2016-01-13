@@ -128,17 +128,44 @@ class Model_topic extends CI_Model
     function getTopics_by_ta($idUser, $idCategory)
     {
             $data = array('categories.category_name','topics.*');
-            $get = $this->db->select($data)
+            $getByTopic = $this->db->select($data)
                         ->from('topics')
                         ->join('categories','categories.id=topics.category')
                         ->where(array(
-                            'topics.category' => $idCategory, 
-                            'topics.status' => '1', 
-                            'topics.tenaga_ahli' => $idUser
+                            'topics.category'       => $idCategory, 
+                            'topics.status'         => '1', 
+                            'topics.tenaga_ahli'    => $idUser
                         ))
                         ->order_by('topics.id','desc')
-                        ->get();
-            return $get->result();
+                        ->get()
+                        ->result();
+
+            $getByCategory  = $this->db->select($data)
+                        ->from('topics')
+                        ->join('categories','categories.id=topics.category')
+                        ->join('category_user','category_user.category_id=topics.category')
+                        ->where(array(
+                            'topics.category'       => $idCategory, 
+                            'topics.status'         => '1', 
+                            'category_user.user_id' => $idUser
+                        ))
+                        ->order_by('topics.id','desc')
+                        ->get()
+                        ->result();
+
+            $allTopics      = array();
+            foreach($getByTopic as $temp){
+                if ( ! in_array($temp, $allTopics)) {
+                    $allTopics[] = $temp;
+                }
+            }
+            foreach($getByCategory as $temp){
+                if ( ! in_array($temp, $allTopics)) {
+                    $allTopics[] = $temp;
+                }
+            }
+            
+            return $allTopics;
     }
 
     function get_public_topics($idCategory)
