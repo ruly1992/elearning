@@ -21,7 +21,8 @@
 	  				<th>Jenis File</th>
 	  				<th>Status</th>
 	  				<th>Waktu</th>
-	  				<th></th>
+	  				<th>&nbsp;</th>
+	  				<th>&nbsp;</th>
 	  			</tr>
 	  		</thead>
 	  		<tbody>

@@ -87,13 +87,8 @@
                     <textarea name="meta[full_description]" class="form-control" rows="5"><?php echo set_value('meta[full_description]', $media->getMetadata('full_description')) ?></textarea>  
                 </div>              
             </div>
-
-            <?php //if ($media->status == 'draft'): ?>
-                <a href="<?php echo site_url('elibrary/approve/' . $media->id) ?>" v-on:click="saveToPublish(<?php echo $media->id ?>, $event)" class="btn btn-sm btn-success btn-margin-btm"><i class="fa fa-check"></i> Save to Publish</a>
-            <?php //else: ?>
-                <a href="<?php echo site_url('elibrary/approve/' . $media->id . '/draft') ?>" v-on:click="saveToDraft(<?php echo $media->id ?>, $event)" class="btn btn-sm btn-warning btn-margin-btm"><i class="fa fa-check"></i> Set to DRAFT</a>
-            <?php //endif ?>
-            <?php echo button_save() ?>
+                <!-- <a href="<?php echo site_url('elibrary/approve/' . $media->id . '/draft') ?>" v-on:click="saveToDraft(<?php echo $media->id ?>, $event)" class="btn btn-sm btn-warning btn-margin-btm"><i class="fa fa-check"></i> Set to DRAFT</a> -->
+                <button class="btn btn-sm btn-success btn-margin-btm"><i class="fa fa-check"></i>Save to Publish</button>
         </div>
     </div>
     <!-- Modal -->
