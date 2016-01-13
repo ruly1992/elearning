@@ -30,7 +30,7 @@
                             :height="192"
                             image-src="<?php echo $user->avatar ?>"
                             image-empty="<?php echo asset('images/default_avatar_male.jpg') ?>">
-                            <button type="button" class="btn btn-danger" v-on:click="remove('customavatar')" slot="button-remove"><i class="fa fa-trash-o"></i></button>
+                            <button type="button" class="btn btn-danger" v-on:click="remove('avatar')" slot="button-remove"><i class="fa fa-trash-o"></i></button>
                         </cropit-preview>
                         <cropit-result name="avatar"></cropit-result>
                     </div>
