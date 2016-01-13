@@ -65,9 +65,6 @@
                                                                             foreach($threads as $thr){
                                                                                 if($cat->id == $thr->category AND $top->id == $thr->topic){
                                                                                     $isThread = true;
-                                                                                    if($thr->type == 'close'){
-                                                                                        showThread($thr, $visitors, $comments, $threadMembers, $thr->id, $userID);
-                                                                                    }else{
                                                                         ?>
                                                                                         <tr>
                                                                                             <td>
@@ -129,7 +126,6 @@
                                                                                             </td>
                                                                                         </tr>
                                                                         <?php
-                                                                                    }
                                                                                 }
                                                                             }
                                                                         ?>

@@ -106,10 +106,7 @@ class Thread extends CI_Controller
         }else{
             $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         }
-        // echo $user->id.'<br>';
-        // foreach($data['categories'] as $cat){
-        //     echo $cat->category_name.'->'.$cat->topic.'<br>';
-        // } 
+
         $data['idUser']         = $user->id;
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
@@ -163,13 +160,8 @@ class Thread extends CI_Controller
 
             $typeThread     = set_value('type');
             if($typeThread == 'close'){
-                $where      = $data;
-                $getThread  = $this->model_thread->get_thread_by_all($where);
-                foreach($getThread AS $thread){
-                    $idThread   =   $thread->id;
-                }
-
-                $member = $this->input->post('member');
+                $idThread   = $save;
+                $member     = $this->input->post('member');
                 foreach($member AS $key => $value){
                     $threadMember = array(
                         'thread_id' => $idThread,
@@ -179,7 +171,7 @@ class Thread extends CI_Controller
                 }
             }
 
-            if($save==TRUE){
+            if($save != FALSE){
                 $this->session->set_flashdata('success','Thread baru berhasil dibuat');
             }else{
                 $this->session->set_flashdata('failed','Thread baru tidak berhasil dibuat');
@@ -199,7 +191,7 @@ class Thread extends CI_Controller
                 'idCategory'=> $t->category,
                 'category'  => $t->category_name,
                 'topic'     => $t->topicName,
-                'user'      => $t->author,
+                'author'    => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,
                 'status'    => $t->status,
@@ -234,7 +226,8 @@ class Thread extends CI_Controller
     
     public function deleteThread($id)
     {
-        $delete = $this->model_thread->delete_thread($id);
+        $data   = array('id' => $id);
+        $delete = $this->model_thread->delete_thread($data);
 
         if($delete==TRUE){
             $this->model_thread->delete_replies($id);
@@ -301,7 +294,7 @@ class Thread extends CI_Controller
                 'reply_to'  => $id,
                 'author'    => $user->id,
                 'status'    => '1',
-                'created_at'=> date('Y-m-d').' '.date('G:i:s')
+                'created_at'=> date('Y-m-d H:i:s')
             );
             $post_reply = $this->model_thread->save_thread($data);
 
@@ -341,7 +334,8 @@ class Thread extends CI_Controller
 
         if($this->form_validation->run()==TRUE){
             $data = array(
-                'message' => set_value('message')
+                'updated_at'    => date('Y-m-d H:i:s'),
+                'message'       => set_value('message')
             );
 
             $update = $this->model_thread->update_thread($idReply,$data);
@@ -357,13 +351,17 @@ class Thread extends CI_Controller
         }
     }
 
-    public function deleteReply($idThread,$idReply)
+    public function deleteReply($idThread, $idReply, $userID)
     {
-        $delete=$this->model_thread->delete_thread($idReply);
+        $data = array(
+            'id'    => $idReply,
+            'author'=> $userID
+        );
+        $delete=$this->model_thread->delete_thread($data);
         if($delete==TRUE){
-            $this->session->set_flashdata('success', 'Komentar berhasil dihapus');
+            $this->session->set_flashdata('success', 'Komentar berhasil dihapus.');
         }else{
-            $this->session->set_flashdata('failed', 'Komentar tidak berhasil dihapus');
+            $this->session->set_flashdata('failed', 'Komentar tidak berhasil dihapus.');
         }
         redirect('thread/view/'.$idThread);
     }

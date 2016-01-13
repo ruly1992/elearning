@@ -12,15 +12,15 @@ class Model_thread extends CI_Model
     {
         $this->db->insert('threads',$data);
         if($this->db->affected_rows() == 1){
-          return TRUE;
+          return $this->db->insert_id();
         } else {
           return FALSE;
         }
     }
     
-    function delete_thread($id)
+    function delete_thread($data)
     {
-        $delete = $this->db->delete('threads', array('id'=>$id));
+        $delete = $this->db->delete('threads', $data);
         if($this->db->affected_rows() == 1){
             return TRUE;
         }else{
@@ -287,7 +287,7 @@ class Model_thread extends CI_Model
 
     function get_thread_by_all($where){
         $get = $this->db->get_where('threads', $where);
-        if($this->db->affected_rows() >= 1){
+        if($this->db->affected_rows() == '1'){
             return $get->result();
         }else{
             return array();

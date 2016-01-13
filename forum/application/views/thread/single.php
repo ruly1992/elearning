@@ -43,8 +43,8 @@
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="card-header-img">
-                                                    <img src="<?php echo asset('images/portal/people-1.png'); ?>" alt="">
-                                                    <p><small><a href="#"><?php echo user($user)->full_name; ?></a></small></p>
+                                                    <img src="<?php echo sentinel()->getUser($author)->avatar; ?>" alt="">
+                                                    <p><small><a href="#"><?php echo sentinel()->getUser($author)->full_name; ?></a></small></p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-9">
@@ -59,7 +59,6 @@
                                         <div class="card-block-title">
                                             <h4><?php echo $title; ?></h4>
                                         </div>
-											<img src="<?php echo asset('images/portal/img-carousel.jpg');?>" class="img-fluid" alt="">
 											<p>
                                                 <?php echo $message; ?>
                                             </p>
@@ -89,22 +88,25 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <?php if($status=='1'){ ?>
-                                        
-                                <?php } ?>
+                                
                                 <?php foreach($reply as $r){ ?>
                                 <div class="card" id="<?php echo $r->id; ?>">
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="card-header-img">
-                                                    <img src="<?php echo asset('images/portal/people-1.png');?>" alt="">
-                                                    <p><small><a href="#">@chanchandrue</a></small></p>
+                                                    <img src="<?php echo sentinel()->getUser($r->author)->avatar; ?>" alt="">
+                                                    <p><small><a href="#"><?php echo sentinel()->getUser($r->author)->full_name; ?></a></small></p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="card-header-meta pull-right">
                                                     <p><?php echo $r->created_at; ?> <i class="fa fa-calendar"></i></p>
+                                                    <?php 
+                                                        if($r->updated_at > 0){
+                                                            echo '<span class="label label-primary pull-right">Edited</span>';
+                                                        }
+                                                    ?>
                                                     <!--<p>201 <i class="fa fa-comments"></i></p>-->
                                                 </div>
                                             </div>
@@ -115,7 +117,37 @@
                                     </div>
                                     <div class="card-footer">
                                         <a href="#reply<?php echo $r->id; ?>" class="btn btn-sm btn-reply" data-toggle="collapse">Quote Reply</a>
+                                        <?php 
+                                            $userID     = auth()->getUser()->id;
+                                            if( $userID == $r->author){
+                                         ?>
+                                            <div class="pull-right">
+                                                <a href="#editReply<?php echo $r->id; ?>" class="btn btn-info btn-konsul" data-toggle="collapse"><i class="fa fa-pencil-square-o"></i></a>
+                                                <?php echo anchor('thread/deleteReply/'.$id.'/'.$r->id.'/'.$userID, '<i class="fa fa-trash"></i>', 'class="btn btn-danger btn-konsul" title="Delete"'); ?>
+                                            </div>
+                                            <p></p>
+                                            <!-- Start : Edit Reply -->
+                                            <div class="card collapse" id="editReply<?php echo $r->id; ?>">
+                                                <div class="card-header">
+                                                     <p>in reply to : <a href="#"><?php echo $r->title; ?></a></p>
+                                                </div>
+                                                <div class="card-block" id="form-reply">
+                                                   
+                                                    <?php echo form_open('thread/updateReply/'.$id.'/'.$r->id); ?>
+                                                        <div class="form-group">
+                                                            <label for="">Message</label>
+                                                            <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"><?php echo $r->message; ?></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-post">UPDATE REPLY</button>
+                                                        </div>
+                                                    <?php echo form_close(); ?>
+                                                </div>
+                                            </div>
+                                            <!-- Start : Edit Reply -->
+                                        <?php } ?>
                                         <p></p>
+                                            <!-- Start : Quote Reply -->
                                             <div class="card collapse" id="reply<?php echo $r->id; ?>">
                                                 <div class="card-header">
                                                      <p>in reply to : <a href="#"><?php echo $r->title; ?></a></p>
@@ -131,9 +163,9 @@
                                                             <button type="submit" class="btn btn-post">POST REPLY</button>
                                                         </div>
                                                     <?php echo form_close(); ?>
-
                                                 </div>
                                             </div>
+                                            <!-- Start : Quote Reply -->
                                     </div>
                                 </div>
                                 <?php } ?>
