@@ -156,6 +156,13 @@ class M_konsultasi extends CI_Model {
         $this->db->insert('reply');
     }
 
+    public function updateReply($idReply, $data)
+    {
+        $this->db->set($data);
+        $this->db->where('id', $idReply);        
+        $this->db->update('reply', $data);
+    }
+
     public function status($id, $open)
     {
         if ($open == 'open') {
