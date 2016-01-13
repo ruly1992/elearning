@@ -72,7 +72,7 @@ $sliders = Model\Portal\Article::latest('date')->slider()->take(3)->get();
                                     <button type="submit" class="btn btn-sm btn-login btn-block">LOGIN</button>
                                 </div>
                                 <div class="form group">
-                                    <label for=""><a href="#">Lupa password?</a></label>
+                                    <label for=""><a href="<?php echo site_url('auth/reset') ?>">Lupa password?</a></label>
                                 </div>
                             </form>
                             <p>Kirimkan artikel anda ke redaksi kami :</p>
