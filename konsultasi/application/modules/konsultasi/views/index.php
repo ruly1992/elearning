@@ -129,8 +129,8 @@
                                 <p>Tanggal Konsultasi: <span class="label label-primary"><?php echo $row->created_at ?></span></p>
                                 <p>Terakhir Dibalas: <span class="label label-info"><?php echo $row->updated_at ?></span></p>
                             </td>
-                            <td class="text-xs-center"><a href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>"><span class="label label-default">Lihat</span></a>
-                            <a href="<?php echo site_url('konsultasi/update/'. $row->id) ?>"><span class="label label-primary">Update</span></a></td>
+                            <td class="text-xs-center"><a href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>"><span class="btn btn-md btn-primary">Lihat</span></a>
+                            <a href="<?php echo site_url('konsultasi/update/'. $row->id) ?>"><span class="btn btn-md btn-info btn-margin-btm">Update</span></a></td>
                         </tr>
                         <?php $no++; endforeach; ?>
                     </tbody>
