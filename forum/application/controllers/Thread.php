@@ -378,10 +378,13 @@ class Thread extends CI_Controller
         }
         $publicTopics   = $this->model_topic->get_public_topics($idCategory);
 
-        $tempTopics      = (object) array_merge_recursive((array) $getTopics, (array) $publicTopics);
         $allTopics       = array();
-
-        foreach($tempTopics as $temp){
+        foreach($getTopics as $temp){
+            if ( ! in_array($temp, $allTopics)) {
+                $allTopics[] = $temp;
+            }
+        }
+        foreach($publicTopics as $temp){
             if ( ! in_array($temp, $allTopics)) {
                 $allTopics[] = $temp;
             }
