@@ -33,9 +33,11 @@ class Thread extends CI_Controller
             $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['tenagaAhli'] = $user->id;
+            $data['threadSide']     = $this->model_thread->get_all_threads();
             $threads            = collect($this->model_thread->get_all_threads());
         }else{
             $daerahUser         = $user->profile->desa_id;
+            $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser);
             $threads            = collect($this->model_thread->get_threads_by_user($daerahUser));
         }
         
@@ -45,7 +47,6 @@ class Thread extends CI_Controller
         $data['categoriesHead'] = $this->model_thread->get_categories();
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_approved_topics();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;

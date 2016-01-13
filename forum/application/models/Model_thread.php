@@ -127,8 +127,15 @@ class Model_thread extends CI_Model
     }
 
     function get_close_threads($id){
-        $get    = $this->db->get_where('thread_members', array('user_id' => $id));
-        return $get->result();
+        $get    = $this->db->select(array('threads.id', 'category'))
+                                    ->from('threads')
+                                    ->join('thread_members', 'thread_members.thread_id=threads.id')
+                                    ->where(array('author' => $id, 'type' => 'close', 'reply_to' => '0'))
+                                    ->or_where('thread_members.user_id', $id)
+                                    ->group_by('threads.id')
+                                    ->get()
+                                    ->result();
+        return $get;
     }
 
     function get_all_drafts($id)
@@ -191,7 +198,7 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_threads_category_by_user($idCategory, $daerah)
+    function get_threads_category_by_user($idCategory, $daerahUser)
     {
         $d          = explode('.', $daerahUser);
         $desa       = $daerahUser;

@@ -3,11 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Category extends Admin
 {
+	protected $repository;
+
 	public function __construct()
 	{
 		parent::__construct();
 
-		$this->kelas = new Library\Kelas\Kelas;
+		$this->repository	= new Library\Kelas\CourseRepository;
 	}
 
 	public function index()
@@ -56,8 +58,7 @@ class Category extends Admin
 
 	public function delete($id)
 	{
-		$category = Model\Kelas\Category::findOrFail($id);
-		$category->delete();
+		$this->repository->deleteCategory($id);
 
 		set_message_success('Kategori berhasil dihapus.');
 

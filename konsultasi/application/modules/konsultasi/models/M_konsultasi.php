@@ -139,7 +139,7 @@ class M_konsultasi extends CI_Model {
 
     public function getReply($id)
     {
-        $data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment');
+        $data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment', 'rp.created_at', 'rp.id');
         $get   = $this->db->select($data)->from('konsultasi')->join('reply AS rp','rp.id_konsultasi=konsultasi.id')->where('konsultasi.id',$id)->order_by('rp.created_at', 'DESC')->get();
         return $get->result();
     }
