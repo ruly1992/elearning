@@ -147,10 +147,8 @@
 
 <?php custom_script() ?>
     <!--jQuery-->
-    <!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>-->
     <script type="text/javascript" src="<?php echo asset('node_modules/vue/dist/vue.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo asset('node_modules/vue-validator/dist/vue-validator.min.js'); ?>"></script>
-    <!--<script type="text/javascript" src="<?php echo asset('node_modules/awesomplete/awesomplete.min.js');?>"></script>-->
     <script type="text/javascript" src="<?php echo asset('javascript/elib.vue.js'); ?>"></script>
 
     <script type="text/javascript">
