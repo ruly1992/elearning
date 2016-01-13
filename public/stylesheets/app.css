@@ -3726,7 +3726,7 @@ a {
     padding-right: 5px;
     padding-bottom: 1px;
     padding-left: 5px;
-    margin-top: -25px;
+    margin-top: -21px;
     font-size: 10px;
     line-height: 1.5;
     border-radius: 3px;
@@ -4149,6 +4149,9 @@ Create: Singgih Saputro */
   padding: 3px 6px;
   text-shadow: none;
   font-weight: 600; }
+
+.btn-md {
+  padding: 2px 12px; }
 
 .btn-margin-btm {
   margin-bottom: 5px; }
