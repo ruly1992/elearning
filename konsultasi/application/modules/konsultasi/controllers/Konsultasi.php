@@ -230,6 +230,51 @@ class Konsultasi extends CI_Controller {
         $this->M_konsultasi->setStatus($id, $status);
     }
 
+    public function updateReply($idReply, $id_konsultasi)
+    {
+        $this->form_validation->set_rules('isi', 'Isi', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            redirect('/konsultasi/detail/'. $id_konsultasi, 'refresh');
+        } else {
+            $config['upload_path']      = PATH_KONSULTASI_ATTACHMENT;
+            $config['overwrite']        = TRUE;
+            $config['allowed_types']    = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt|ppt|pptx';
+            $config['max_size']         = '10000';
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('files')) {
+                $data = array(
+                    'updated_at'  => date('Y-m-d H:i:s'),
+                    'isi'         => set_value('isi', '', FALSE),
+                    'id_user'     => sentinel()->getUser()->id,
+                ); 
+            } else {
+                $file_data = $this->upload->data();
+
+                $data = array(
+                        'attachment'  => $file_data['file_name'],
+                        'updated_at'  => date('Y-m-d H:i:s'),
+                        'isi'         => set_value('isi', '', FALSE),
+                        'id_user'     => sentinel()->getUser()->id,
+                );
+            }
+
+            $update             = $this->M_konsultasi->updateReply($idReply, $data);
+
+            if ($update == FALSE) {         
+                set_message_error('Reply berhasil diperbarui.');
+                
+                redirect('/konsultasi/detail/'. $id_konsultasi, 'refresh');
+            } else {
+                set_message_error('Reply gagal diperbarui.');
+                
+                redirect('/konsultasi/detail/'. $id_konsultasi, 'refresh');
+            }
+        }
+    }
+
     public function search()
     {
         $search_term        = $this->input->get('search');

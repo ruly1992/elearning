@@ -43,12 +43,14 @@
 	                            </div>
 						  	</div>
 						</div>
-					<?php } ?> 					
+					<?php } ?> 	
+					<center>
 					  	<nav>
-		                   	<ul class="pager">
+		                   	<ul>
 		                        <?php echo $reply->render() ?>
 		                    </ul>
 		                </nav>
+					</center>				
 				<?php else: ?>                       
 		            <p class="alert alert-warning">Tidak Ada Balasan</p>
 		        <?php endif ?>
