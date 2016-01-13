@@ -77,8 +77,8 @@
                             	<input id="result" type="hidden">
                             </td>
                             <td class="text-xs-center">
-                                <a href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>"><span class="label label-default">Lihat</span></a>
-                                <a href="<?php echo site_url('konsultasi/update/'. $row->id) ?>"><span class="label label-primary">Update</span></a>
+                                <a href="<?php echo site_url('konsultasi/detail/'. $row->id) ?>"><span class="btn btn-md btn-primary">Lihat</span></a>
+                                <a href="<?php echo site_url('konsultasi/update/'. $row->id) ?>"><span class="btn btn-md btn-info btn-margin-btm">Update</span></a>
                             </td>
                         </tr>
                         <?php $no++; endforeach; ?>
