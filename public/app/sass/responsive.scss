@@ -217,6 +217,14 @@ $padding-left: 5px;
         }
       }
     }
+    //Begin : header dropdown
+    .dropdown {
+      .dropdown-navbar {
+        width: 331px;
+        height: auto;
+      }
+    }
+    //end : header dropdown
   }
   .nav{
     padding-top: $padding-top + 5px;
@@ -267,32 +275,32 @@ $padding-left: 5px;
         }
       }
     }
-    .dropdown:hover {
-      .dropdown-navbar {
-        display: table !important;
-        width: 100%;
-        height: auto;
-        background-color: $grey;
-        margin-top: 0px;
-        padding: 0;
-        border: medium none;
-        @include border-radius(0);
-        li {
-          font-size: 12px;
-          color: $aspalt-light;
-          padding: $padding + 10px;
-          @include transition(0.3s);
-          @include fonts('open_sansregular');
-          &:hover,
-          &:focus,
-          &:active {
-            background-color: $green;
-            color: $white;
-            @include transition(0.3s);
-          }
-        }
-      }
-    }
+    // .dropdown:hover {
+    //   .dropdown-navbar {
+    //     display: table !important;
+    //     width: 100%;
+    //     height: auto;
+    //     background-color: $grey;
+    //     margin-top: 0px;
+    //     padding: 0;
+    //     border: medium none;
+    //     @include border-radius(0);
+    //     li {
+    //       font-size: 12px;
+    //       color: $aspalt-light;
+    //       padding: $padding + 10px;
+    //       @include transition(0.3s);
+    //       @include fonts('open_sansregular');
+    //       &:hover,
+    //       &:focus,
+    //       &:active {
+    //         background-color: $green;
+    //         color: $white;
+    //         @include transition(0.3s);
+    //       }
+    //     }
+    //   }
+    // }
   }
   .content {
     .rails-news {
@@ -580,6 +588,10 @@ $padding-left: 5px;
               padding-top: 16px;
               transition: all 0.3s ease-in-out 0s;
               margin-right: $margin-right - 20px;
+              &:hover,
+              &:active {
+                color: $white;
+              }
             }
           }
         }
@@ -594,6 +606,12 @@ $padding-left: 5px;
             width: 100%;
           }
         }
+      }
+    }
+    .dropdown {
+      .dropdown-navbar {
+        width: 331px;
+        height: auto;
       }
     }
   }
@@ -614,7 +632,7 @@ $padding-left: 5px;
         border-radius: 100%;
       }
     }
-  }  
+  }
   .nav {
     padding-top: $padding-top + 5px;
     padding-right: $padding-right + 9px;
@@ -726,33 +744,6 @@ $padding-left: 5px;
         i.fa {
           font-size: 16px;
           color: #909090;
-        }
-
-      }
-    }
-    .dropdown:hover {
-      .dropdown-navbar {
-        display: table !important;
-        width: 100%;
-        height: auto;
-        background-color: $grey;
-        margin-top: 0px;
-        padding: 0;
-        border: medium none;
-        @include border-radius(0);
-        li {
-          font-size: 12px;
-          color: $aspalt-light;
-          padding: $padding + 10px;
-          @include transition(0.3s);
-          @include fonts('open_sansregular');
-          &:hover,
-          &:focus,
-          &:active {
-            background-color: $green;
-            color: $white;
-            @include transition(0.3s);
-          }
         }
       }
     }
@@ -1163,6 +1154,14 @@ $padding-left: 5px;
       }
     }
     //END NAVBAR MAIN
+    //Begin: Header navbar
+    .dropdown {
+      .dropdown-navbar {
+        width: 331px;
+        height: auto;
+      }
+    }
+    // End : Header navbar
   }
   #header-main {
     #carousel-slider-top {
@@ -1217,32 +1216,32 @@ $padding-left: 5px;
         }
       }
     }
-    .dropdown:hover {
-      .dropdown-navbar {
-        display: table !important;
-        width: 100%;
-        height: auto;
-        background-color: $grey;
-        margin-top: 0px;
-        padding: 0;
-        border: medium none;
-        @include border-radius(0);
-        li {
-          font-size: 12px;
-          color: $aspalt-light;
-          padding: $padding + 10px;
-          @include transition(0.3s);
-          @include fonts('open_sansregular');
-          &:hover,
-          &:focus,
-          &:active {
-            background-color: $green;
-            color: $white;
-            @include transition(0.3s);
-          }
-        }
-      }
-    }
+    // .dropdown:hover {
+    //   .dropdown-navbar {
+    //     display: table !important;
+    //     width: 100%;
+    //     height: auto;
+    //     background-color: $grey;
+    //     margin-top: 0px;
+    //     padding: 0;
+    //     border: medium none;
+    //     @include border-radius(0);
+    //     li {
+    //       font-size: 12px;
+    //       color: $aspalt-light;
+    //       padding: $padding + 10px;
+    //       @include transition(0.3s);
+    //       @include fonts('open_sansregular');
+    //       &:hover,
+    //       &:focus,
+    //       &:active {
+    //         background-color: $green;
+    //         color: $white;
+    //         @include transition(0.3s);
+    //       }
+    //     }
+    //   }
+    // }
   }
   //END HEADER
   

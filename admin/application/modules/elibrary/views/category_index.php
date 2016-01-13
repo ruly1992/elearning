@@ -26,36 +26,41 @@
             <div class="panel-heading">
                 <h2><strong>Kategori Elibrary</strong></h2>
             </div>
-            <div class="panel-body">                
-                <table class="table table-hover table-bordered" id="elibtable">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nama Kategori</th>
-                            <th>Jumlah Media</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $no = 1; foreach ($categories as $category): ?>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="elibtable">
+                        <thead>
                             <tr>
-                                <td><?php echo $no ?></td>
-                                <td><?php echo anchor('elibrary/category/edit/' . $category->id, $category->name); ?></td>
-                                <td><?php echo $category->getMediaCount() ?></td>
-                                <td>
-                                    <?php echo button_edit('elibrary/category/edit/' . $category->id) ?>
-                                    <a href="<?php echo site_url('elibrary/category/delete/' . $category->id) ?>" class="btn btn-danger btn-delete"><i class="fa fa-trash-o"></i> Hapus</a>
-                                </td>
+                                <th>#</th>
+                                <th>Nama Kategori</th>
+                                <th>Jumlah Media</th>
+                                <th>&nbsp;</th>
                             </tr>
-                        <?php $no++; endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php $no = 1; foreach ($categories as $category): ?>
+                                <tr>
+                                    <td><?php echo $no ?></td>
+                                    <td><?php echo anchor('elibrary/category/edit/' . $category->id, $category->name); ?></td>
+                                    <td><?php echo $category->getMediaCount() ?></td>
+                                    <td>
+                                        <?php echo button_edit('elibrary/category/edit/' . $category->id) ?>
+                                        <a href="<?php echo site_url('elibrary/category/delete/' . $category->id) ?>" class="btn btn-danger btn-delete"><i class="fa fa-trash-o"></i> Hapus</a>
+                                    </td>
+                                </tr>
+                            <?php $no++; endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#elibtable').DataTable();
+            $('#elibtable').DataTable({
+                responsive: true,
+                "sDom": '<"row"<"col-lg-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+            });
         } );
     </script>

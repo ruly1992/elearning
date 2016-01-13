@@ -37,7 +37,7 @@
                                             <textarea name="content" class="editor"></textarea>
                                         </fieldset>
                                         <fieldset class="form-group hidden-sm-up">
-                                             <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
+                                             <input type="file" name="filemedia[]" id="filer_input_img" multiple="multiple">
                                         </fieldset>
                                         <fieldset class="form-group hidden-sm-up">
                                             <label for="">Keterangan gambar</label>

@@ -131,6 +131,9 @@
           header .custom-login-mobile .menu-login form .form-group .btn-submit-artikel:hover, header .custom-login-mobile .menu-login form .form-group .btn-submit-artikel:focus, header .custom-login-mobile .menu-login form .form-group .btn-submit-artikel:active {
             background: #263238;
             color: #dddddd; }
+  header .dropdown .dropdown-navbar {
+    width: 331px;
+    height: auto; }
 
   .nav {
     padding-top: 10px;
@@ -170,34 +173,6 @@
       #header .header-top-right .btn i.fa {
         font-size: 12px;
         color: #909090; }
-  #header .dropdown:hover .dropdown-navbar {
-    display: table !important;
-    width: 100%;
-    height: auto;
-    background-color: #f5f5f5;
-    margin-top: 0px;
-    padding: 0;
-    border: medium none;
-    border-radius: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -o-border-radius: 0; }
-    #header .dropdown:hover .dropdown-navbar li {
-      font-size: 12px;
-      color: #37474f;
-      padding: 15px;
-      transition: all 0.3s ease-in-out;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      font-family: "open_sansregular", sans-serif; }
-      #header .dropdown:hover .dropdown-navbar li:hover, #header .dropdown:hover .dropdown-navbar li:focus, #header .dropdown:hover .dropdown-navbar li:active {
-        background-color: #1c9c57;
-        color: #fff;
-        transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out; }
 
   .content .rails-news {
     display: none; }
@@ -389,6 +364,8 @@
         padding-top: 16px;
         transition: all 0.3s ease-in-out 0s;
         margin-right: -15px; }
+        header #navbar-main .navbar .navbar-nav li a:hover, header #navbar-main .navbar .navbar-nav li a:active {
+          color: #fff; }
     header #navbar-main .container {
       background-color: #fff !important;
       padding-top: 13px;
@@ -396,6 +373,9 @@
       header #navbar-main .container .navbar-nav li {
         flex-direction: row;
         width: 100%; }
+  header .dropdown .dropdown-navbar {
+    width: 331px;
+    height: auto; }
 
   .navbar-logo-mobile {
     margin-top: 7px;
@@ -498,34 +478,6 @@
       #header .header-top-right .btn i.fa {
         font-size: 16px;
         color: #909090; }
-  #header .dropdown:hover .dropdown-navbar {
-    display: table !important;
-    width: 100%;
-    height: auto;
-    background-color: #f5f5f5;
-    margin-top: 0px;
-    padding: 0;
-    border: medium none;
-    border-radius: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -o-border-radius: 0; }
-    #header .dropdown:hover .dropdown-navbar li {
-      font-size: 12px;
-      color: #37474f;
-      padding: 15px;
-      transition: all 0.3s ease-in-out;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      font-family: "open_sansregular", sans-serif; }
-      #header .dropdown:hover .dropdown-navbar li:hover, #header .dropdown:hover .dropdown-navbar li:focus, #header .dropdown:hover .dropdown-navbar li:active {
-        background-color: #1c9c57;
-        color: #fff;
-        transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out; }
 
   .content .rails-news {
     display: none; }
@@ -809,6 +761,9 @@
           padding-right: 12px;
           padding-top: 16px;
           transition: all 0.3s ease-in-out 0s; }
+  header .dropdown .dropdown-navbar {
+    width: 331px;
+    height: auto; }
 
   #header-main #carousel-slider-top {
     display: none; }
@@ -839,34 +794,6 @@
     height: 30px !important; }
     #header .header-top-right .btn i.fa {
       font-size: 10px; }
-  #header .dropdown:hover .dropdown-navbar {
-    display: table !important;
-    width: 100%;
-    height: auto;
-    background-color: #f5f5f5;
-    margin-top: 0px;
-    padding: 0;
-    border: medium none;
-    border-radius: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -o-border-radius: 0; }
-    #header .dropdown:hover .dropdown-navbar li {
-      font-size: 12px;
-      color: #37474f;
-      padding: 15px;
-      transition: all 0.3s ease-in-out;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      font-family: "open_sansregular", sans-serif; }
-      #header .dropdown:hover .dropdown-navbar li:hover, #header .dropdown:hover .dropdown-navbar li:focus, #header .dropdown:hover .dropdown-navbar li:active {
-        background-color: #1c9c57;
-        color: #fff;
-        transition: all 0.3s ease-in-out;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out; }
 
   .content .rails-news {
     display: none; }
