@@ -1,6 +1,7 @@
 <div class="row">
     <!-- start:search course -->
     <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+        <?php echo form_open('search', 'method="get"'); ?>
         <div class="search-course">
             <div class="text-center">
                 <h4>Search Course</h4>
@@ -8,21 +9,17 @@
             </div>
             <div class="row">
                 <div class="col-md-5 col-xs-12">
-                    <select class="c-select form-control">
-                        <option selected>Course Category</option>
-                        <option value="1">Category One</option>
-                        <option value="2">Category Two</option>
-                        <option value="3">Category Three</option>
-                    </select>
+                    <?php echo form_dropdown('category_id', $category_lists, null, 'class="c-select form-control"'); ?>
                 </div>
                 <div class="col-md-5 col-xs-12">
-                    <input type="text" class="form-control" placeholder="Search Text">
+                    <input name="term" type="text" class="form-control" placeholder="Search Text">
                 </div>
                 <div class="col-md-2 col-xs-12">
-                    <a href="#" class="btn btn-search btn-block">SEARCH</a>
+                    <button type="submit" class="btn btn-search btn-block">SEARCH</button>
                 </div>
             </div>
         </div>
+        <?php echo form_close(); ?>
     </div>
 </div>
 <hr>

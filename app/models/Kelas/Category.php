@@ -31,4 +31,11 @@ class Category extends Model
     		return $this->generateSlug(++$i);
     		return $slugged;
     }
+
+    public function findBySlug($slug)
+    {
+        $course = $this->whereSlug($slug)->firstOrFail();
+
+        return $course;
+    }
 }
