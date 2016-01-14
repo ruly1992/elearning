@@ -1,0 +1,80 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Course extends Admin
+{
+    protected $roles = ['su', 'adm', 'pcp'];
+    protected $repository;
+    
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $this->repository   = new Library\Kelas\CourseRepository;
+    }
+
+    public function index()
+    {
+        $status     = $this->input->get('status') ?: 'publish';
+        $courses    = $this->repository->getByStatus($status);
+        $courses    = pagination($courses, 15, 'kelasonline/course');
+
+        $courses->appends(compact('status'));
+
+        $this->template->build('course/index', compact('courses', 'status'));
+    }
+
+    public function edit($id, $page = 'basic')
+    {
+        $this->repository->set($id);
+
+        $course         = $this->repository->get();
+        $category_lists = $this->repository->getCategoryLists();
+        $repository     = $this->repository;
+        $sidebar_active = $page;
+
+        $this->template->set(compact('course', 'category_lists', 'repository', 'sidebar_active', 'page'));
+
+        call_user_func_array([$this, 'edit'.ucfirst($page)], [$id]);
+    }
+
+    public function editBasic($id)
+    {
+        $this->template->build('course/edit');
+    }
+
+    public function editRequirement($id)
+    {
+        $courses        = $this->repository->allExcept($id);
+        $course_lists   = $courses->pluck('name', 'id');
+
+        $this->template->build('course/edit', compact('course_lists'));
+    }
+
+    public function editImage($id)
+    {
+        $this->template->build('course/edit');
+    }
+
+    public function editChapter($id)
+    {
+        $this->template->build('course/edit');
+    }
+
+    public function editExam($id)
+    {
+        $this->template->build('course/edit');
+    }
+
+    public function delete($id)
+    {
+        $this->repository->set($id)->delete();
+
+        set_message_success('Kelas berhasil dihapus');
+
+        redirect('kelasonline/course', 'refresh');
+    }
+}
+
+/* End of file Course.php */
+/* Location: ./application/modules/kelasonline/controllers/Course.php */
