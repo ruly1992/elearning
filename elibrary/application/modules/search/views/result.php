@@ -14,7 +14,7 @@
             <ul>
                 <?php if ($results->count()): ?>
                 <?php foreach ($results as $media): ?>
-                    <li><a href="<?php echo $media->link ?>"><?php echo $media->file_name ?></a> <small><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d/m/Y') ?> - <?php echo $media->icon ?> <?php echo $media->type ?></small></li>
+                    <li><a href="<?php echo $media->link ?>"><?php echo $media->title ?></a> <small><i class="fa fa-calendar"></i> <?php echo $media->created_at->format('d/m/Y') ?> - <?php echo $media->icon ?> <?php echo $media->type ?></small></li>
                 <?php endforeach ?>
                 <?php else: ?>
                     <p class="alert alert-warning">Hasil pencarian tidak ditemukan.</p>
