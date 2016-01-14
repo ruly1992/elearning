@@ -23,7 +23,7 @@ class Course extends Admin
 
         $slug        = str_replace('-', '.', $slug);
 
-        $course_member_status   = $repository->courseMemberStatus($slug);
+        $course_member_status   = $repository->courseMemberStatus($slug); //get status member course
 
         $this->template->build('show', compact('course', 'repository','course_member_status'));
     }
