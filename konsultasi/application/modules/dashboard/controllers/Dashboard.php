@@ -40,7 +40,7 @@ class Dashboard extends CI_Controller
             $detail['konsultasi']       = $this->M_konsultasi->getByIdKonsultasi($id);
             $detail['kategori']         = $this->M_konsultasi->getKatByKons($id);
             $balasan                    = collect($this->M_konsultasi->getReply($id));
-            $detail['reply']            = pagination($balasan, 3, 'konsultasi/detail/' . $id, 'bootstrap_md');
+            $detail['reply']            = pagination($balasan, 3, 'dashboard/detail/' . $id, 'bootstrap_md');
 
             $this->template->build('detail', $detail);
         } else {
@@ -76,6 +76,61 @@ class Dashboard extends CI_Controller
             redirect('dashboard/detail/'.$id);
         }
 
+    }
+
+    public function deleteAttachmentReply($id, $path, $id_konsultasi)
+    {
+        $attachment;
+        $update  = $this->M_konsultasi->deleteAttachmentReply($id, $attachment);
+        unlink(PATH_KONSULTASI_ATTACHMENT.'/'.$path);
+        if($update) {
+            redirect('/dashboard/detail/'. $id_konsultasi);
+        } else {
+            redirect('/dashboard/detail/'. $id_konsultasi);
+        }
+    }
+
+    public function updateReply($idReply, $id_konsultasi)
+    {
+        $this->form_validation->set_rules('isi', 'Isi', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            redirect('/dashboard/detail/'. $id_konsultasi, 'refresh');
+        } else {
+            $config['upload_path']      = PATH_KONSULTASI_ATTACHMENT;
+            $config['allowed_types']    = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt|ppt|pptx';
+            $config['max_size']         = '10000';
+
+            $this->load->library('upload', $config);
+
+            if (! $this->upload->do_upload('reply')) {                
+                $data = array(
+                    'isi'           => set_value('isi', '', FALSE),
+                    'updated_at'    => date('Y-m-d H:i:s'),
+                );
+
+            } else {
+                $file_data = $this->upload->data();
+
+                $data = array(
+                    'attachment'    => $file_data['file_name'],
+                    'isi'           => set_value('isi', '', FALSE),
+                    'updated_at'    => date('Y-m-d H:i:s'),
+                );
+            }                       
+
+            $update = $this->M_konsultasi->updateReply($idReply, $data);
+
+            if ($update == FALSE) {         
+                set_message_error('Reply berhasil diperbarui.');
+                
+                redirect('/dashboard/detail/'. $id_konsultasi, 'refresh');
+            } else {
+                set_message_error('Reply gagal diperbarui.');
+                
+                redirect('/dashboard/detail/'. $id_konsultasi, 'refresh');
+            }
+        }
     }
 
     public function status($open, $kategoriId, $id)
