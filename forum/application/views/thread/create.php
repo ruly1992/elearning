@@ -142,6 +142,7 @@
 
         function public(){
             $('#addPrivate').collapse('hide');
+            $('#addMember').removeAttr('required');
         }
     </script>
 <?php endcustom_script() ?>
