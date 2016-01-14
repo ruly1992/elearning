@@ -12,6 +12,17 @@ $(document).ready(function () {
             height: {
                 default: 0
             },
+            description: {
+                type: String
+            },
+            showDescription: {
+                type: Boolean,
+                default: false
+            },
+            inputDescription: {
+                type: Boolean,
+                default: false
+            },
             imageEmpty: {
                 type: String,
                 default: '/public/images/portal/img-carousel-default.jpg'
@@ -34,16 +45,34 @@ $(document).ready(function () {
                         action: action
                     });
                 }
+            },
+            'description': {
+                handler: function (description) {
+                    this.updateDescription(description)
+                }
             }
         },
         methods: {
             setImage: function (imageSrc) {
                 this.imageSrc = imageSrc;
                 this.action = 'upload';
+
+                if (this.showDescription)
+                    this.inputDescription = true;
+            },
+            updateDescription: function (description) {
+                this.$parent.$broadcast('updateDescription', {
+                    name: this.name,
+                    description: description
+                })
             },
             remove: function () {
                 this.imageSrc = this.imageEmpty;
                 this.action = 'remove';
+                this.description = '';
+
+                if (this.showDescription)
+                    this.inputDescription = false;
 
                 this.$parent.$broadcast('removed', this.name);
             }
@@ -71,6 +100,10 @@ $(document).ready(function () {
                 type: String,
                 required: true
             },
+            description: {
+                type: String,
+                default: ''
+            },
             imageSrc: {
                 default: ''
             },
@@ -83,13 +116,19 @@ $(document).ready(function () {
                 if (this.name == imageEvent.name)
                     this.imageSrc = imageEvent.src;
             },
+            'updateDescription': function (imageEvent) {
+                if (this.name == imageEvent.name)
+                    this.description = imageEvent.description;
+            },
             'actioning': function (actionEvent) {
                 if (this.name == actionEvent.name)
                     this.action = actionEvent.action;
             },
             'removed': function (imageName) {
-                if (this.name == imageName)
+                if (this.name == imageName) {
                     this.imageSrc = '';
+                    this.description = '';
+                }
             }
         }
     })

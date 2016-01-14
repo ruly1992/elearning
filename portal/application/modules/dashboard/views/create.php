@@ -36,7 +36,7 @@
                         <h3>Gambar Fitur</h3>
                     </div>
                     <div class="widget-sidebar-content">
-                        <cropit-preview name="featured"></cropit-preview>
+                        <cropit-preview name="featured" :show-description="true"></cropit-preview>
                         <cropit-result name="featured"></cropit-result>
                     </div>
                 </div>

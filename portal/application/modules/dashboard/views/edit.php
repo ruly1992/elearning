@@ -34,7 +34,7 @@
                     <h3>Gambar Fitur</h3>
                 </div>
                 <div class="widget-sidebar-content">
-                    <cropit-preview name="featured" image-src="<?php echo $artikel->featured_image ?>"></cropit-preview>
+                    <cropit-preview name="featured" image-src="<?php echo $artikel->featured_image ?>" :show-description="true" :input-description="true" description="<?php echo $artikel->featured_description ?>"></cropit-preview>
                     <cropit-result name="featured"></cropit-result>
                 </div>
             </div>

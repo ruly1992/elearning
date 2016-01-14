@@ -111,7 +111,7 @@ class Article extends Admin {
             $repo_library->set($id);
 
             if ($this->input->post('featured[src]'))
-                $repo_library->setFeaturedImage($this->input->post('featured[src]'));
+                $repo_library->setFeaturedImage($this->input->post('featured[src]'), $this->input->post('featured[description]'));
 
             if ($this->input->post('slider[src]'))
                 $repo_library->setSliderImage($this->input->post('slider[src]'));
@@ -175,7 +175,7 @@ class Article extends Admin {
 
 
             if ($this->input->post('featured[src]') && $this->input->post('featured[action]') == 'upload')
-                $repo_library->setFeaturedImage($this->input->post('featured[src]'));
+                $repo_library->setFeaturedImage($this->input->post('featured[src]'), $this->input->post('featured[description]'));
             elseif ($this->input->post('featured[action]') == 'remove')
                 $repo_library->removeFeaturedImage();
 
