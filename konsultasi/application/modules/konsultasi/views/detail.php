@@ -121,67 +121,67 @@
                     <?php if ($reply->count()): ?>
                     <?php foreach ($reply as $data) { ?>
                     <div class="card">    
-                            <div class="card-header">
-                                <p><strong>From : <?php echo user($data->id_user)->full_name ?></strong> <span class="pull-right"><?php echo $data->created_at ?></span></p>
-                            </div>
-                            <div class="card-block">
-                                <p class="card-text">
-                                   <?php echo $data->isi ?>
-                                </p>
-                            </div>
-                            <div class="card-block">
-                                <p class="card-text">
-                                   <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$data->attachment) ?>"><?php echo $data->attachment ?></a>
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                <?php 
-                                    $userId = sentinel()->getUser()->id;
-                                    if ($userId == $data->id_user): 
-                                ?>
-                                    <a href="#forCollapse<?php echo $data->id; ?>" class="pull-right btn btn-primary" data-toggle="collapse"><i class="fa fa-pencil"> Edit</i></a>
-                                    <div class="card collapse margin-card" id="forCollapse<?php echo $data->id; ?>">
-                                        <div class="card-header">
-                                            Edit Reply
-                                        </div>
-                                        <div class="card-block">
-                                            <form method="POST" action="<?php echo site_url('konsultasi/updateReply/'.$data->id . '/' . $konsultasi->id) ?>">
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-8">
-                                                            <label for="">Pesan Anda</label>
-                                                            <textarea name="isi" id="" cols="30" rows="5" class="editor"><?php echo $data->isi ?></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                                            <label for="">Attachments</label>
-                                                            <?php if (!empty($konsultasi->attachment)): ?>
-                                                                <div class="alert alert-success" role="alert">
-                                                                    <?php echo $konsultasi->attachment ?>
-                                                                    <?php echo anchor('konsultasi/deleteAttachment/'. $konsultasi->id . '/' . $konsultasi->attachment, '<i class="fa fa-trash-o"></i>', 'class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
-                                                                </div>
-                                                            <?php else: ?>
-                                                                <div class="alert alert-success" role="alert">
-                                                                    <?php echo "Tidak ada Attachments" ?>
-                                                                </div>
-                                                            <?php endif ?>
-                                                            <input type="file" name="files" id="filer_konsultasi" idkonsultasi="<?php echo $konsultasi->id ?>">
-                                                            <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt | Max Size Upload : 10MB) </small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <button type="submit" class="btn btn-primary">Update</button>
-                                                </div>
-                                            </form>
-                                        </div>                                                    
+                        <div class="card-header">
+                            <p><strong>From : <?php echo user($data->id_user)->full_name ?></strong> <span class="pull-right"><?php echo $data->created_at ?></span></p>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                               <?php echo $data->isi ?>
+                            </p>
+                        </div>
+                        <div class="card-block">
+                            <p class="card-text">
+                               <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$data->attachment) ?>"><?php echo $data->attachment ?></a>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <?php 
+                                $userId = sentinel()->getUser()->id;
+                                if ($userId == $data->id_user): 
+                            ?>
+                            <a href="#forCollapse<?php echo $data->id; ?>" class="pull-right btn btn-primary" data-toggle="collapse"><i class="fa fa-pencil"> Edit</i></a>
+                            <div class="card collapse margin-card" id="forCollapse<?php echo $data->id; ?>">
+                                    <div class="card-header">
+                                        Edit Reply
                                     </div>
-                                <?php else: ?>                                                
-                                <?php endif ?>
+                                    <div class="card-block">
+                                        <form method="POST" action="<?php echo site_url('konsultasi/updateReply/'.$data->id . '/' . $konsultasi->id) ?>">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <label for="">Pesan Anda</label>
+                                                        <textarea name="isi" id="" cols="30" rows="5" class="editor"><?php echo $data->isi ?></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <label for="">Attachments</label>
+                                                        <?php if (!empty($konsultasi->attachment)): ?>
+                                                            <div class="alert alert-success" role="alert">
+                                                                <?php echo $konsultasi->attachment ?>
+                                                                <?php echo anchor('konsultasi/deleteAttachment/'. $konsultasi->id . '/' . $konsultasi->attachment, '<i class="fa fa-trash-o"></i>', 'class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
+                                                            </div>
+                                                        <?php else: ?>
+                                                            <div class="alert alert-success" role="alert">
+                                                                <?php echo "Tidak ada Attachments" ?>
+                                                            </div>
+                                                        <?php endif ?>
+                                                        <input type="file" name="files" id="filer_konsultasi" idkonsultasi="<?php echo $konsultasi->id ?>">
+                                                        <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt | Max Size Upload : 10MB) </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>                                                    
                             </div>
+                            <?php else: ?>                                                
+                            <?php endif ?>
+                        </div>
                     </div>
                     <?php } ?>
                     <nav>
