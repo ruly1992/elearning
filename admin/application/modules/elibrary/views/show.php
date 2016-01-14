@@ -10,7 +10,6 @@
             <a href="<?php echo site_url('elibrary/show/'.$category->id.'?status=publish') ?>" class="btn btn-default btn-sm <?php echo $status == 'publish' ? 'active' : '' ?>">Publish</a>
             <a href="<?php echo site_url('elibrary/show/'.$category->id.'?status=draft') ?>" class="btn btn-default btn-sm <?php echo $status == 'draft' ? 'active' : '' ?>">Draft</a>
         </div>
-
         <hr>
 		<div class="table-responsive">
 		  	<table class="table table-hover table-bordered">

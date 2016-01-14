@@ -368,8 +368,8 @@ class Thread extends CI_Controller
     }
 
     public function get_topics(){
-        $idCategory = $this->input->post('idCategory');
-        $user       = sentinel()->getUser();
+        $idCategory     = $this->input->post('idCategory');
+        $user           = sentinel()->getUser();
         if($this->checkTA() == TRUE){
             $getTopics  = $this->model_topic->getTopics_by_ta($user->id, $idCategory);
         }else{
@@ -378,10 +378,13 @@ class Thread extends CI_Controller
         }
         $publicTopics   = $this->model_topic->get_public_topics($idCategory);
 
-        $tempTopics      = (object) array_merge_recursive((array) $getTopics, (array) $publicTopics);
-        $allTopics       = array();
-
-        foreach($tempTopics as $temp){
+        $allTopics      = array();
+        foreach($getTopics as $temp){
+            if ( ! in_array($temp, $allTopics)) {
+                $allTopics[] = $temp;
+            }
+        }
+        foreach($publicTopics as $temp){
             if ( ! in_array($temp, $allTopics)) {
                 $allTopics[] = $temp;
             }
