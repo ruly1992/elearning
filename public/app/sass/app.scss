@@ -2375,8 +2375,10 @@ header {
 					}
 				}
 				.box-komentar-widget {
+					margin-bottom: $margin-bottom + 10px;
 					.col-sm-3.col-xs-4 {
 						padding-right: 5px;
+						margin-bottom: $margin-bottom + 5px;
 						.box-komentar-widget-img {
 							text-align: center;
 							width: 55px;
@@ -2391,6 +2393,9 @@ header {
 					}
 					.col-sm-9.col-xs-8 {
 						padding-left: 5px;
+						margin-bottom: 10px;
+						max-height: 76px;
+						overflow: hidden;
 						.box-komentar-widget-title {
 							p {
 								margin-bottom: $margin-bottom - 5px;
