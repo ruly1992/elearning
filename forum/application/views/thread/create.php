@@ -58,7 +58,7 @@
                                             </div>
                                             <div class="form-group collapse" id="addPrivate">
                                                 <label>Pilih anggota</label>
-                                                <select id="addMember" data-placeholder="Pilih anggota ..." class="form-control chosen-select" multiple name="member[]" style="width:100%; border-radius:10px;" tabindex="4">
+                                                <select id="addMember" data-placeholder="Pilih anggota ..." class="form-control chosen-select" multiple name="member[]" tabindex="4">
                                                     <?php usersOption($users) ?>
                                                 </select>
                                             </div>
