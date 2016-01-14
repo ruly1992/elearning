@@ -40,7 +40,7 @@ class Dashboard extends CI_Controller
             $detail['konsultasi']       = $this->M_konsultasi->getByIdKonsultasi($id);
             $detail['kategori']         = $this->M_konsultasi->getKatByKons($id);
             $balasan                    = collect($this->M_konsultasi->getReply($id));
-            $detail['reply']            = pagination($balasan, 3, 'konsultasi/detail/' . $id, 'bootstrap_md');
+            $detail['reply']            = pagination($balasan, 3, 'dashboard/detail/' . $id, 'bootstrap_md');
 
             $this->template->build('detail', $detail);
         } else {
