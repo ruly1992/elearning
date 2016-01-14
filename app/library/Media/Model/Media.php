@@ -92,20 +92,87 @@ class Media extends Model
         return pathinfo($this->file_name, PATHINFO_FILENAME);
     }
 
+    public function sheetType()
+    {
+        $types = array(
+                    'text/x-comma-separated-values', 
+                    'text/comma-separated-values', 
+                    'application/octet-stream', 
+                    'application/vnd.ms-excel',
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+                    'application/vnd.ms-excel.sheet.macroEnabled.12',
+                    'application/vnd.ms-excel.template.macroEnabled.12',
+                    'application/vnd.ms-excel.addin.macroEnabled.12',
+                    'application/vnd.ms-excel.sheet.binary.macroEnabled.12',
+                    'application/x-csv', 
+                    'text/x-csv', 
+                    'text/csv', 
+                    'application/csv', 
+                    'application/excel', 
+                    'application/vnd.msexcel', 
+                    'text/plain'
+                );
+        return $types;
+    }
+
+    public function docType()
+    {
+        $types  = array(
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+                'application/vnd.ms-word.document.macroEnabled.12'
+                );
+        return $types;
+    }
+
+    public function presentationType()
+    {
+        $types  = array(
+                'application/vnd.ms-powerpoint',
+                'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                'application/vnd.openxmlformats-officedocument.presentationml.template',
+                'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
+                'application/vnd.ms-powerpoint.addin.macroEnabled.12',
+                'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
+                'application/vnd.ms-powerpoint.slideshow.macroEnabled.12'
+                );
+        return $types;
+    }
+
+    public function compressedType()
+    {
+        $types  = array(
+                'application/x-compressed',
+                'application/x-tar',
+                'application/x-zip-compressed',
+                'application/zip',
+                'multipart/x-zip',
+                'application/octet-stream',
+                'application/x-rar-compressed'
+                );
+        return $types;
+    }
+
     public function getTypeAttribute()
     {
         if (preg_match('/^image\//', $this->file_type)) {
             return 'Image';
-        } elseif (preg_match('/^video\/|^audio\/mpeg|^audio\/mp4/', $this->file_type)) {
+        } elseif (preg_match('/^video\//', $this->file_type)) {
             return 'Video';
-        } elseif ($this->file_type == 'application/octet-stream') {
+        } elseif (preg_match('/^audio\//', $this->file_type)) {
             return 'Audio';
         } elseif ($this->file_type == 'application/pdf') {
             return 'PDF';
-        } elseif (preg_match('/^application\/vnd.ms-excel/', $this->file_type)) {
+        } elseif (in_array($this->file_type, $this->sheetType())) {
             return 'Excel';
-        } elseif (preg_match('/^application\/vnd.ms-powerpoint/', $this->file_type)) {
+        } elseif (in_array($this->file_type, $this->presentationType())) {
             return 'Presentation';
+        } elseif (in_array($this->file_type, $this->docType())) {
+            return 'DOC';
+        } elseif (in_array($this->file_type, $this->compressedType())){
+            return 'Compressed';
         } else {
             return 'Unknown';
         }
@@ -138,10 +205,30 @@ class Media extends Model
                 return 'file-video-o';
                 break;
 
+            case 'Audio':
+                return 'file-audio-o';
+                break;
+
             case 'PDF':
                 return 'file-pdf-o';
                 break;
-            
+
+            case 'DOC':
+                return 'file-word-o';
+                break;
+
+            case 'Presentation':
+                return 'file-powerpoint-o';
+                break;
+
+            case 'Excel':
+                return 'file-excel-o';
+                break;
+
+            case 'Compressed':
+                return 'file-zip-o';
+                break;
+
             default:
                 return 'file-o';
                 break;
@@ -242,7 +329,7 @@ class Media extends Model
     {
         $fileurl = $this->getFileurl();
 
-        if (in_array($this->type, ['PDF', 'DOCX', 'EXCEL'])) {
+        if (in_array($this->type, ['PDF', 'DOC', 'Presentation', 'Excel'])) {
             return '<iframe src="http://docs.google.com/gview?url='.$fileurl.'&embedded=true" style="width:'.$width.'px; height:'.$height.'px;" frameborder="0"></iframe>';
         }
 
@@ -261,6 +348,10 @@ class Media extends Model
                 preload="auto" data-setup="{}">
                 <source src="'.$fileurl.'" type="audio/mp3"/>
             </audio>';
+        }
+
+        else{
+            return '<center><i class="fa fa-' . $this->icon_name . '" style="font-size:200px;"></i><center>';
         }
     }
 
