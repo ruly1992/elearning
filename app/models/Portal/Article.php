@@ -47,9 +47,9 @@ class Article extends Model
     {
         try {
             $slugged    = \Illuminate\Support\Str::slug($title . ($i ? '-' . $i : ''), '-');
-            $article    = Article::withDrafts()->slug($slugged);
+            $article    = Article::withDrafts()->withPrivate()->slug($slugged);
 
-            return $this->generateSlug($title, ++$i);
+            return $this->generateSlug($title, $i+1);
         } catch (\Exception $e) {
             return $slugged;
         }
