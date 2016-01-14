@@ -64,6 +64,10 @@
                                             <div class="widget-sidebar-content">
                                                 <cropit-preview name="featured" :show-description="true"></cropit-preview>
                                                 <cropit-result name="featured"></cropit-result>
+                                                <fieldset class="form-group">
+                                                    <label for="">Keterangan Gambar</label>
+                                                    <input type="text" name="caption-img" class="form-control">
+                                                </fieldset>
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +103,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Kategori</label><br>
-                                            <select class="c-select form-control" name="id_konsultasi_kategori">
+                                            <select class="form-control" name="id_konsultasi_kategori">
                                                 <?php 
                                                     foreach ($konsultasiCat as $row) {
                                                 ?>
@@ -109,7 +113,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Prioritas</label><br>
-                                            <select class="c-select form-control" name="prioritas">
+                                            <select class="form-control" name="prioritas">
                                                 <option value="High" selected>High</option>
                                                 <option value="Medium">Medium</option>
                                                 <option value="Low">Low</option>

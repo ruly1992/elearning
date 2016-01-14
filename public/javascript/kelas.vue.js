@@ -68,7 +68,7 @@ $(document).ready(function () {
                 chapter: new ObjChapter(),
                 chapterQuiz: new ObjQuestion(),
                 chapterAttachment: new ObjAttachment(),
-                exams: new ObjQuestion()
+                exam: new ObjQuestion()
             },
             remove: {
                 chapters: [],
@@ -338,7 +338,7 @@ $(document).ready(function () {
 
             this.initData();
 
-            // tinyMCE
+            // tinyMCE question
             tinyMCE.init({
                 setup: function (editor) {
                     editor.on('keyup', function(e) {
@@ -347,6 +347,8 @@ $(document).ready(function () {
                 },
                 selector: '#'+that.tinymce
             });
+
+            // tinyMCE exam question
             tinyMCE.init({
                 setup: function (editor) {
                     editor.on('keyup', function(e) {
@@ -354,6 +356,18 @@ $(document).ready(function () {
                     });
                 },
                 selector: '#'+that.tinymceExam
+            });
+
+            // tinyMCE description
+            tinyMCE.init({
+                setup: function (editor) {
+                    editor.on('keyup', function(e) {
+                        var description = editor.getContent();
+
+                        that.course.description = description;
+                    });
+                },
+                selector: '.editor-description'
             });
 
             // jQuery Filer

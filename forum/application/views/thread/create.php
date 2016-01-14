@@ -58,7 +58,7 @@
                                             </div>
                                             <div class="form-group collapse" id="addPrivate">
                                                 <label>Pilih anggota</label>
-                                                <select data-placeholder="Pilih anggota ..." class="form-control chosen-select" required multiple name="member[]" style="width:100%; border-radius:10px;" tabindex="4">
+                                                <select id="addMember" data-placeholder="Pilih anggota ..." class="form-control chosen-select" multiple name="member[]" tabindex="4">
                                                     <?php usersOption($users) ?>
                                                 </select>
                                             </div>
@@ -71,7 +71,7 @@
                                                 <textarea name="message" id="" cols="30" rows="10" required class="form-control" placeholder="type your message"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">Create New Thread</button>
+                                                <button type="submit" class="btn btn-primary" onclick="validate()">Create New Thread</button>
                                                 <?php echo anchor('thread/', 'Cancel', 'class="btn btn-secondary"') ?>
                                             </div>
                                         <?php echo form_close(); ?>
@@ -129,10 +129,20 @@
         function private(){
             $('#addPrivate').collapse('show');
             $('.chosen-select').chosen();
+            $('#addMember').attr('required', true);
+            $('#addMember').on('change invalid', function() {
+                var select = $(this).get(0);
+                select.setCustomValidity('');
+                
+                if (!select.validity.valid) {
+                    select.setCustomValidity('Daftar anggota tidak boleh kosong');  
+                }
+            });
         }
 
         function public(){
             $('#addPrivate').collapse('hide');
+            $('#addMember').removeAttr('required');
         }
     </script>
 <?php endcustom_script() ?>

@@ -60,6 +60,11 @@
                             <?php endforeach ?>
                         </tbody>
                     </table>
+                    <nav class="pull-right">
+                        <ul class="#">
+                            <?php echo $getKategori->render() ?>
+                        </ul>
+                    </nav>
                 </div>
                 </div>
             <?php else: ?>
