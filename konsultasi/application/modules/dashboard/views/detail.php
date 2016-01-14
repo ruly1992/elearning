@@ -5,91 +5,124 @@
         <!-- start:content -->
         <div class="content-konsultasi-main">
             <div class="content-konsultasi-title">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Lihat Konsultasi #<?php echo $konsultasi->id ?></h2>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>Lihat Konsultasi #<?php echo $konsultasi->id ?></h2>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="content-konsultasi-table">
-                <h5><?php echo $konsultasi->subjek ?></h5>
-                <hr>
-
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="content-konsultasi-table">
-                    <?php echo $konsultasi->pesan ?>
-                </div>
-
-                <div class="content-konsultasi-table">
-                    <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$konsultasi->attachment) ?>"><?php echo $konsultasi->attachment ?></a>
-                </div>
-                <hr>
-
-                <div class="content-konsultasi-table-details">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <div class="card card-inverse card-info text-center">
-                                <div class="card-block">
-                                    <blockquote class="card-blockquote">
-                                        <p><strong>Tanggal Posting</strong></p>
-                                        <hr>
-                                        <p><?php echo $konsultasi->created_at ?></p>
-                                    </blockquote>
+                    <!-- Begin for content konsultasi -->
+                    <div class="konsultasi-content">
+                        <div class="container">
+                            <div class="row">
+                                <div class="title">
+                                    <div class="col-md-2 col-lg-2">
+                                        <h3>Title</h3>
+                                    </div>
+                                    <div class="col-md-10 col-lg-10">
+                                        <h3><?php echo $konsultasi->subjek ?></h3>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <div class="card card-inverse card-info text-center">
-                                <div class="card-block">
-                                    <blockquote class="card-blockquote">
-                                        <p><strong>Kategori</strong></p>
-                                        <hr>
-                                        <p><?php foreach ($kategori as $kat) {echo $kat->name;}
-                                        ?></p>
-                                    </blockquote>
+                                <div class="description">
+                                    <div class="col-md-2 col-lg-2">
+                                        <h3>Description</h3>
+                                    </div>
+                                    <div class="col-md-10 col-lg-10">
+                                       <h3><?php echo $konsultasi->pesan ?></h3>   
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <div class="card card-inverse card-info text-center">
-                                <div class="card-block">
-                                    <blockquote class="card-blockquote">
-                                        <p><strong>Prioritas</strong></p>
-                                        <hr>
-                                        <p><?php echo $konsultasi->prioritas ?></p>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <div class="card card-inverse card-info text-center">
-                                <div class="card-block">
-                                    <blockquote class="card-blockquote">
-                                        <p><strong>Status</strong></p>
-                                        <hr>
-                                        <p><?php echo $konsultasi->status ?></p>
-                                    </blockquote>
+                                <div class="image">
+                                    <div class="col-md-2 col-lg-2">
+                                        <h3>Attachment</h3>
+                                    </div>
+                                    <div class="col-md-10 col-lg-10">
+                                        <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$konsultasi->attachment) ?>"><?php echo $konsultasi->attachment ?></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- End for content konsultasi -->
+                    <!-- begin for content detail -->
+                    <div class="konsultasi-detail">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <?php if ($reply->count()): ?>
-                            <?php foreach ($reply as $data) { ?>
-                            <div class="card">    
-                                <div class="card-block">
-                                    <p><strong>From : <?php echo user($data->id_user)->full_name ?></strong> <span class="pull-right"><?php echo $data->created_at ?></span></p>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
+                                        <div class="card card-inverse card-info text-center">
+                                            <div class="card-block">
+                                                <blockquote class="card-blockquote">
+                                                    <p><strong>Tanggal Posting</strong></p>
+                                                    <hr>
+                                                    <p><?php echo $konsultasi->created_at ?></p>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
+                                        <div class="card card-inverse card-info text-center">
+                                            <div class="card-block">
+                                                <blockquote class="card-blockquote">
+                                                    <p><strong>Kategori</strong></p>
+                                                    <hr>
+                                                    <p><?php foreach ($kategori as $kat) {echo $kat->name;}
+                                                    ?></p>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
+                                        <div class="card card-inverse card-info text-center">
+                                            <div class="card-block">
+                                                <blockquote class="card-blockquote">
+                                                    <p><strong>Prioritas</strong></p>
+                                                    <hr>
+                                                    <p><?php echo $konsultasi->prioritas ?></p>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
+                                        <div class="card card-inverse card-info text-center">
+                                            <div class="card-block">
+                                                <blockquote class="card-blockquote">
+                                                    <p><strong>Status</strong></p>
+                                                    <hr>
+                                                    <p><?php echo $konsultasi->status ?></p>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <hr>
-                                <div class="card-block">
-                                    <p class="card-text">
-                                       <?php echo $data->isi ?>
-                                    </p>
-                                </div>
-                                <div class="card-block">
-                                    <p class="card-text">
-                                       <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$data->attachment) ?>"><?php echo $data->attachment ?></a>
-                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End for content detail -->
+
+                    <div class="content-konsultasi-table-details">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <?php if ($reply->count()): ?>
+                                <?php foreach ($reply as $data) { ?>
+                                <div class="card">    
+                                    <div class="card-block">
+                                        <p><strong>From : <?php echo user($data->id_user)->full_name ?></strong> <span class="pull-right"><?php echo $data->created_at ?></span></p>
+                                    </div>
+                                    <hr>
+                                    <div class="card-block">
+                                        <p class="card-text">
+                                           <?php echo $data->isi ?>
+                                        </p>
+                                    </div>
+                                    <div class="card-block">
+                                        <p class="card-text">
+                                           <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$data->attachment) ?>"><?php echo $data->attachment ?></a>
+                                        </p>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <?php 
@@ -167,34 +200,34 @@
                                                             <div class="col-md-8">
                                                                 <input type="hidden" id="" name="id_konsultasi" value="<?php echo $konsultasi->id ?>">
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-8">
-                                                                <label for="">Pesan Anda</label>
-                                                                <textarea name="isi" id="" cols="30" rows="5" class="editor"></textarea>
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <label for="">Pesan Anda</label>
+                                                                    <textarea name="isi" id="" cols="30" rows="5" class="editor"></textarea>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                                <label for="">Attachments</label>
-                                                                <input type="file" name="files" id="filer_konsultasi">
-                                                                <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt | Max Size Upload : 10MB) </small>
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                    <label for="">Attachments</label>
+                                                                    <input type="file" name="files" id="filer_konsultasi">
+                                                                    <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt | Max Size Upload : 10MB) </small>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-sm btn-kirim">Kirim</button>
-                                                    </div>
-                                                </form>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-sm btn-kirim">Kirim</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>                            
-                            <?php else: ?>
-                                <p class="alert alert-warning">Konsultasi telah di tutup anda tidak dapat mengirim kan balasan.</p>
-                            <?php endif ?>
+                                    </div>                            
+                                <?php else: ?>
+                                    <p class="alert alert-warning">Konsultasi telah di tutup anda tidak dapat mengirim kan balasan.</p>
+                                <?php endif ?>
+                            </div>
                         </div>
                     </div>
                 </div>

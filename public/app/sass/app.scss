@@ -81,6 +81,16 @@ body {
 	margin-bottom: $margin-bottom + 5px;
 	margin-top: $margin-top;
 }
+.btn-kirim {
+	@include border-radius(3px);
+	padding-left: $padding-left + 30px;
+	padding-right: $padding-right + 30px;
+	font-size: 14px;
+	font-weight: 600;
+	@include fonts('open_sansregular');
+	color: $white;
+	background-color: $green-black;
+}
 .btn-update-custom {
 	color: $black;
 	background-color: $white;
@@ -1503,7 +1513,7 @@ header {
 	}
 	.content-konsultasi-table {
 		.konsultasi-content {
-			margin-bottom: $margin-bottom + 10px;
+			margin-bottom: $margin-bottom + 20px;
 			.title {
 				margin: $margin + 2px;
 				h3 {
@@ -1577,13 +1587,6 @@ header {
 					}
 				}
 				.list-content-title {
-					width: 90%;
-					height: 40px;
-					@include border-radius(3px);
-					background-color: $aspalt;
-					margin-left: $margin-left + 10px;
-					margin-right: $margin-right + 10px;
-					margin-bottom: $margin-bottom + 5px;
 					h4 {
 						font-size: 16px;
 						@include fonts('open_sansregular');
@@ -1594,6 +1597,12 @@ header {
 							color: $white;
 							text-decoration: none;
 							text-transform: uppercase;
+							@include border-radius(3px);
+							background-color: $aspalt;
+							padding-left: $padding-left + 20px;
+							padding-right: $padding-right + 20px;
+							padding-top: $padding-top + 5px;
+							padding-bottom: $padding-bottom + 5px;
 						}
 					}
 				}
@@ -1609,23 +1618,6 @@ header {
 						font-weight: 600;
 					}
 				}	
-			}
-		}
-		.custom-card {
-			margin-top: $margin-top + 35px;
-		}
-		.btn-reply-outline {
-			padding-left: $padding-left + 20px;
-			padding-right: $padding-right + 20px;
-			border: 2px solid $green-black;
-			font-size: 12px;
-			font-weight: 600;
-			&:hover {
-				color: $white;
-				background-color: $green-black;
-			}
-			&:active {
-				color: $green-black;
 			}
 		}
 	}
@@ -2166,6 +2158,7 @@ header {
 				img {
 					width: 100%;
 					height: 100%;
+					object-fit: cover;
 				}
 			}
 			.box-articles-sm-meta {
@@ -2382,8 +2375,10 @@ header {
 					}
 				}
 				.box-komentar-widget {
+					margin-bottom: $margin-bottom + 10px;
 					.col-sm-3.col-xs-4 {
 						padding-right: 5px;
+						margin-bottom: $margin-bottom + 5px;
 						.box-komentar-widget-img {
 							text-align: center;
 							width: 55px;
@@ -2398,6 +2393,9 @@ header {
 					}
 					.col-sm-9.col-xs-8 {
 						padding-left: 5px;
+						margin-bottom: 10px;
+						max-height: 76px;
+						overflow: hidden;
 						.box-komentar-widget-title {
 							p {
 								margin-bottom: $margin-bottom - 5px;
@@ -4466,7 +4464,6 @@ a {
 	}
 }
 
-
 /* Landing FAQ
    Fajar Eko Susilo
 */
@@ -4984,6 +4981,24 @@ Create: Singgih Saputro */
 
 .btn-margin-btm {
 	margin-bottom: $margin-bottom;
+}
+.btn-reply-outline {
+	padding-left: $padding-left + 20px;
+	padding-right: $padding-right + 20px;
+	border: 2px solid $green-black;
+	font-size: 12px;
+	font-weight: 600;
+	&:hover {
+		color: $white;
+		background-color: $green-black;
+	}
+	&:active {
+		color: $green-black;
+	}
+}
+
+.margin-card {
+	margin-top: $margin-top + 35px;
 }
 
 .sidebar-header {
