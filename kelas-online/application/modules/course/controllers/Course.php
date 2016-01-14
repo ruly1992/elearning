@@ -13,14 +13,19 @@ class Course extends Admin
         $this->template->set_layout('chapter');
         
         $this->repository = new Library\Kelas\CourseRepository;
+        $this->kelas      = new Library\Kelas\Kelas;
     }
 
     public function show($slug)
     {
-        $course     = $this->repository->getBySlug($slug);
-        $repository = $this->repository;
+        $course                 = $this->repository->getBySlug($slug);
+        $repository             = $this->repository;
 
-        $this->template->build('show', compact('course', 'repository'));
+        $slug        = str_replace('-', '.', $slug);
+
+        $course_member_status   = $repository->courseMemberStatus($slug);
+
+        $this->template->build('show', compact('course', 'repository','course_member_status'));
     }
 
     public function join($slug)
@@ -55,14 +60,18 @@ class Course extends Admin
 
     public function showchapter($slug, $chapter)
     {
+
         $chapter        = str_replace('chapter-', '', $chapter);
+        $chapter_id     = $chapter;
         $course         = $this->repository->getBySlug($slug);
         $repository     = $this->repository;
         $chapter        = $course->chapters()->whereOrder($chapter)->firstOrFail();
         $nextchapter    = $chapter->getNext();
 
+        $quiz           = $this->repository->getScoreQuizAnswer($chapter_id);
+        
         if ($repository->memberAllowChapter($chapter)) {
-            $this->template->build('chapter_show', compact('course', 'repository', 'chapter', 'nextchapter'));
+            $this->template->build('chapter_show', compact('course', 'repository', 'chapter', 'nextchapter','quiz'));
         } else {
             redirect('course/show/'.$course->slug, 'refresh');
         }
@@ -107,6 +116,49 @@ class Course extends Admin
             redirect('course/showchapter/'.$course->slug.'/chapter-'.$chapter->order, 'refresh');
         } else {
             redirect('course/showchapter/'.$course->slug.'/chapter-'.$chapter->order, 'refresh');
+        }
+    }
+
+    public function showexam($slug)
+    {
+        
+        //$chapter
+        //$chapter        = str_replace('chapter-', '', $chapter);
+        $course         = $this->repository->getBySlug($slug);
+        $repository     = $this->repository;
+        //$chapter        = $course->chapters()->whereOrder($chapter)->firstOrFail();
+        $exam           = $course->exam;
+        
+        $check = $repository->startExam($exam);
+
+        if ($repository->checkExamTimeout($exam)) {
+            //if ($repository->memberAllowChapter($chapter)) {
+                $member     = $repository->getMemberSessionExam($exam);
+
+                $this->template->set_layout('exam_layout');
+                $this->template->build('exam_show', compact('course', 'exam', 'repository', 'member'));
+             //} else {
+             //    redirect('course/show/'.$course->slug, 'refresh');
+             //}
+        } else {
+            echo "timeout";
+        }
+    }
+
+    public function submitexam($slug)
+    {
+        //$chapter        = str_replace('chapter-', '', $chapter);
+        $course         = $this->repository->getBySlug($slug);
+        $repository     = $this->repository;
+        //$chapter        = $course->chapters()->whereOrder($chapter)->firstOrFail();
+        $exam           = $course->exam;
+
+        $submit         = $this->repository->submitExamMember($exam, $this->input->post('answers'));
+
+        if ($submit) {
+            redirect('course/show/'.$course->slug, 'refresh');
+        } else {
+            redirect('course/show/'.$course->slug, 'refresh');
         }
     }
 }

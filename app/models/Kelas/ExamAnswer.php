@@ -4,7 +4,9 @@ namespace Model\Kelas;
 
 class ExamAnswer extends Model
 {
-	protected $table = 'member_exam_answer';
+	protected $table = 'member_exam_answers';
+	protected $guarded = [];
+
 	public $timestamps = false;
 
 	public function member()

@@ -5,6 +5,7 @@ namespace Model\Kelas;
 use Model\User;
 use Model\Scopes\Published;
 
+
 class Course extends Model
 {
     use Published;
@@ -39,6 +40,11 @@ class Course extends Model
     public function exam()
     {
         return $this->hasOne(Exam::class);
+    }
+
+    public function courseMember()
+    {
+        return $this->hasMany(CourseMember::class);
     }
 
     public function members()
@@ -195,4 +201,11 @@ class Course extends Model
 
         return $query->where('code', $code)->firstOrFail();
     }
+
+    public function hasExam()
+    {
+        return !$this->exam->questions->isEmpty();
+    }
+
+    
 }

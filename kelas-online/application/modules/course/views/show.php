@@ -35,6 +35,9 @@
             </div>
         </div>
     </div>
+
+    
+
     <div class="content-lesson">
         <div class="content-lesson-title">
             <h3>CHAPTERS</h3>
@@ -50,6 +53,47 @@
             </a>
         <?php $numb++; endforeach ?>
     </div>
+
+    <!-- START EXAM -->
+    <div class="content-exam">
+        
+        
+        <h4>EXAM</h4>
+        <hr>
+        
+        
+        <?php if ($course->hasExam()): ?>
+                <a href="<?php echo site_url('course/showexam/'.$course->slug) ?>" class="btn btn-block btn-exam btn-primary">START EXAM</a>
+        <?php else: ?>
+                <p>Tidak ada exam</p>
+        <?php endif ?>
+        
+
+    </div>
+    <!-- END EXAM -->
+
+    <br><br>
+    <!-- SERTIFIKAT -->
+    <div class="content-setifikat">
+        <h4>SERTIFIKAT</h4>
+        <hr>
+        <?php foreach ($course_member_status as $key => $value): ?>
+
+            <?php if ($value->status == 'finished'): ?>
+                
+                    <button class="btn btn-block btn-sertifikat btn-info">CETAK SERTIFIKAT</button>
+            
+            <?php else: ?>
+
+                    <div class="alert alert-success">Anda belum menyelesaikan exam.</div>
+
+            <?php endif ?> 
+            
+
+        <?php endforeach ?>
+    </div>
+    <!-- END SERTIFIKAT -->
+
     <br><br>
     <div class="content-course-forum">
         <div class="content-course-forum-title">

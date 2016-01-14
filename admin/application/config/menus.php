@@ -86,6 +86,11 @@ $config['menus'] = [
                 'icon'  => 'fa fa-upload',
                 'link'  => site_url('kelasonline/category'),
             ],
+            [
+                'name'  => 'Course',
+                'icon'  => 'fa fa-upload',
+                'link'  => site_url('kelasonline/course'),
+            ],
         ]
     ],
 

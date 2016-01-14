@@ -8,7 +8,7 @@
                  <p>Attachment</p>
             </div>
             <div class="card-block">
-                <!-- Start: Table Attachment -->                                                   
+               <!-- Start: Table Attachment -->                                                   
                     <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -43,6 +43,64 @@
             <div class="card-header">
                  <p>Quiz</p>
             </div>
+
+            <div class="card-block">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+               Lihat Skor Quiz
+            </button>
+            </div>
+            <!-- Modal Skor Nilai Quiz-->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Skor Quiz</h4>
+                  </div>
+                  <div class="modal-body">
+                    <?php  
+                    
+                    $score      = 0;
+                    $correct    = 0;
+                    $un_correct = 0;
+
+                    foreach ($quiz as $key => $value) 
+                    {
+                        
+                        if ($value->is_correct == 1) 
+                        {
+                            $score      = $score + 10;
+                            $correct    = $correct + 1;
+                            $un_correct = $un_correct;
+                        }
+                        else
+                        {
+                            $score      = $score;
+                            $correct    = $correct;
+                            $un_correct = $un_correct + 1;
+                        }
+
+                    }
+                    
+                    
+                    
+                    ?>
+
+                    <div class="alert alert-info"><?php echo "Skor quiz : ". $score; ?></div>
+                    <div class="alert alert-success"><?php echo "Benar : ". $correct; ?></div>
+                    <div class="alert alert-warning"><?php echo "Salah : ". $un_correct; ?></div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- END MODAL -->
+
+            
             <div class="card-block">
                 <?php if ($chapter->hasQuiz()): ?>
                     <a href="<?php echo site_url('course/showquiz/'.$course->slug.'/chapter-'.$chapter->order) ?>" class="btn btn-block btn-exam btn-primary">START QUIZ</a>
@@ -51,6 +109,8 @@
                 <?php endif ?>
             </div>
         </div>
+
+        
         <?php if ($nextChapter = $chapter->getNext()): ?>
             <div class="card content-lesson">
                 <div class="card-header">

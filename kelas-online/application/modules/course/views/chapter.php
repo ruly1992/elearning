@@ -3,6 +3,9 @@
     <div class="content-title">
         <h1><?php echo $course->name ?></h1>
     </div>
+
+    
+
     <div class="content-lesson">
         <div class="content-lesson-title">
             <h3>CHAPTERS</h3>
