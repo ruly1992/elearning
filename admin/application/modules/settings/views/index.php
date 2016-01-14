@@ -10,7 +10,7 @@
                     <li><a href="ui-elements.html#privatepage">Private Page</a></li>
                     <li><a href="ui-elements.html#medsos">Social Network</a></li>
                 </ul>
-            </div>
+            </div><br><hr>
             <div class="panel-body">                
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane active" id="general">

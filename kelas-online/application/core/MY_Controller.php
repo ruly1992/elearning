@@ -5,7 +5,7 @@ class MY_Controller extends CI_Controller {}
 
 class Admin extends CI_Controller
 {
-    protected $roles = array('ins');
+    protected $roles = array('ins', 'lnr');
 
     public function __construct()
     {

@@ -23,29 +23,34 @@
                 <h2><strong>List Category</strong></h2>
             </div>
             <div class="panel-body">
-                <table class="table table-hover table-bordered" id="kelasonline">
-                	<thead>
-                		<tr>
-                			<th>Nama Kategori</th>
-                            <th>&nbsp;</th>
-                		</tr>
-                	</thead>
-                	<tbody>
-                		<?php foreach ($categories as $category): ?>                			
-	                		<tr>
-	                			<td><?php echo anchor('kelasonline/category/edit/' . $category->id, $category->name); ?></td>
-                                <td><?php echo button_edit('kelasonline/category/edit/' . $category->id) ?>
-                                <?php echo button_delete('kelasonline/category/delete/' . $category->id) ?></td>
-	                		</tr>
-                		<?php endforeach ?>
-                	</tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="kelasonline">
+                    	<thead>
+                    		<tr>
+                    			<th>Nama Kategori</th>
+                                <th>&nbsp;</th>
+                    		</tr>
+                    	</thead>
+                    	<tbody>
+                    		<?php foreach ($categories as $category): ?>                			
+    	                		<tr>
+    	                			<td><?php echo anchor('kelasonline/category/edit/' . $category->id, $category->name); ?></td>
+                                    <td><?php echo button_edit('kelasonline/category/edit/' . $category->id) ?>
+                                    <?php echo button_delete('kelasonline/category/delete/' . $category->id) ?></td>
+    	                		</tr>
+                    		<?php endforeach ?>
+                    	</tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#kelasonline').DataTable();
+        $('#kelasonline').DataTable({
+            responsive: true,
+            "sDom": '<"row"<"col-lg-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+        });
     } );
 </script>

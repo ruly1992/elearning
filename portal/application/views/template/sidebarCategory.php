@@ -30,10 +30,10 @@
         <div class="widget-heading">
             <ul class="nav nav-tabs" id="myTabSidebar" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="popular-post-tab" data-toggle="tab" href="#popular-post" role="tab" aria-controls="popular-post" aria-expanded="true">Popular Post</a>
+                    <a class="nav-link active" id="popular-post-tab" data-toggle="tab" href="#popular-post" role="tab" aria-controls="popular-post" aria-expanded="true">Terpopuler</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="latest-post-tab" data-toggle="tab" href="#latest-post" role="tab" aria-controls="latest-post" aria-expanded="false">Latest Post</a>
+                    <a class="nav-link" id="latest-post-tab" data-toggle="tab" href="#latest-post" role="tab" aria-controls="latest-post" aria-expanded="false">Terkini</a>
                 </li>
             </ul>
         </div>
@@ -90,8 +90,8 @@
             <h3>LATEST KOMENTAR</h3>
         </div>
         <div class="widget-content">
+            <?php foreach (Model\Portal\Comment::latest('date')->get() as $comment): ?>
             <div class="row">
-                <?php foreach (Model\Portal\Comment::latest('date')->get() as $comment): ?>
                 <div class="box-komentar-widget">
                     <div class="col-sm-3 col-xs-4">
                         <div class="box-komentar-widget-img">
@@ -107,8 +107,8 @@
                         </div>
                     </div>
                 </div>
-                <?php endforeach ?>
             </div>
+            <?php endforeach ?>
         </div>
     </div>
 </div>

@@ -69,7 +69,7 @@
 					$sum_threads += 1;
 				}else{
 					foreach($closeThreads as $cls){
-						if($t->id == $cls->thread_id AND $t->category == $idCategory){
+						if($t->id == $cls->id AND $t->category == $idCategory){
 							$sum_threads += 1;
 						}
 					}
@@ -137,7 +137,8 @@
 	{
 		$counter = 0;
 		foreach($threadMembers as $tm){
-			if($tm->thread_id == $threadID AND $tm->user_id == $userID){
+			$author 	= $thr->author;
+			if(($tm->thread_id == $threadID AND $tm->user_id == $userID) OR $author == $userID){
 				$counter = $counter+1;
 			}
 		}

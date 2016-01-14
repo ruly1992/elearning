@@ -28,39 +28,41 @@
             </div>
             <?php if ($getKategori->count()): ?>
                 <div class="panel-body">     
-                    <table class="table table-hover table-bordered" id="konsultasi">
-                        <thead>
-                            <tr>
-                                <th>Tenaga</th>
-                                <th>Kategori</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($getKategori as $row): ?>
-                                <?php
-                                $i = 0;
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="konsultasi">
+                            <thead>
+                                <tr>
+                                    <th>Tenaga</th>
+                                    <th>Kategori</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($getKategori as $row): ?>
+                                    <?php
+                                    $i = 0;
 
-                                foreach ($row['categories'] as $category):
-                                    if ($i == 0):
-                                ?>
-                                    <tr>
-                                        <td rowspan="<?php echo $row['count'] ?>"><?php echo $row['user']->full_name ?><br><small><?php echo $row['user']->email ?></small></th>
-                                        <td><?php echo $category->name ?></td>
-                                        <td> <?php echo button_delete('konsultasi/deletePengampu/' . $category->id) ?></td>
-                                    </tr>
-                                <?php else: ?>
-                                    <tr>
-                                        <td><?php echo $category->name ?></td>
-                                        <td> <?php echo button_delete('konsultasi/deletePengampu/' . $category->id) ?></td>
-                                    </tr>
-                                <?php endif; ?>
+                                    foreach ($row['categories'] as $category):
+                                        if ($i == 0):
+                                    ?>
+                                        <tr>
+                                            <td rowspan="<?php echo $row['count'] ?>"><?php echo $row['user']->full_name ?><br><small><?php echo $row['user']->email ?></small></th>
+                                            <td><?php echo $category->name ?></td>
+                                            <td> <?php echo button_delete('konsultasi/deletePengampu/' . $category->id) ?></td>
+                                        </tr>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td><?php echo $category->name ?></td>
+                                            <td> <?php echo button_delete('konsultasi/deletePengampu/' . $category->id) ?></td>
+                                        </tr>
+                                    <?php endif; ?>
 
 
-                                <?php $i++; endforeach; ?>
-                        <?php endforeach ?>
-                        </tbody>
-                    </table>
+                                    <?php $i++; endforeach; ?>
+                            <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
                     <nav class="pull-right">
                         <ul class="#">
                             <?php echo $getKategori->render() ?>

@@ -53,7 +53,7 @@ class Topic extends CI_Controller
 
         $user                   = sentinel()->getUser();
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['tenagaAhli']     = $user->id;
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
@@ -83,7 +83,7 @@ class Topic extends CI_Controller
         $user                   = sentinel()->getUser();
         $data['sideTopics']     = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['categories']     = $this->model_topic->get_categories();
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
@@ -101,29 +101,35 @@ class Topic extends CI_Controller
 
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
+        $this->form_validation->set_rules('type','Type','required');
 
         if($this->form_validation->run()==TRUE){
             $category           = set_value('kategori'); 
             $getUsersCategory   = $this->model_topic->get_userID_by_category($category);
             $user               = sentinel()->getUser();
+            $type               = set_value('type');
 
-            $provinsi           = $this->input->post('provinsi');
-            $kota               = $this->input->post('kota');
-            $kecamatan          = $this->input->post('kecamatan');
-            $desa               = $this->input->post('kecamatan');
+            if($type == 'close'){
+                $provinsi           = $this->input->post('provinsi');
+                $kota               = $this->input->post('kota');
+                $kecamatan          = $this->input->post('kecamatan');
+                $desa               = $this->input->post('desa');
 
-            if($desa != ''){
-                $daerah     = $desa;
-            }elseif($kecamatan != ''){
-                $daerah     = $kecamatan;
-            }elseif($kota != ''){
-                $daerah     = $kota;
-            }elseif($provinsi != ''){
-                $daerah     = $provinsi;
+                if($desa != ''){
+                    $daerah     = $desa;
+                }elseif($kecamatan != ''){
+                    $daerah     = $kecamatan;
+                }elseif($kota != ''){
+                    $daerah     = $kota;
+                }elseif($provinsi != ''){
+                    $daerah     = $provinsi;
+                }else{
+                    $daerah     = '00.00.00.0000';
+                } 
             }else{
-                $daerah     = '00.00.00.0000';
+                $daerah         = '00.00.00.0000';
             }
-
+            
             foreach($getUsersCategory AS $u){
                 if($u->user_id == $user->id){
                     $status = '1';
@@ -178,7 +184,7 @@ class Topic extends CI_Controller
         $user                   = sentinel()->getUser();
         $data['sideTopics']     = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['categories']     = $this->model_topic->get_categories();
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);

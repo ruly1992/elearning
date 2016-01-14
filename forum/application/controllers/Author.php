@@ -62,7 +62,7 @@ class Author extends CI_Controller
                 'idCategory'=> $t->category,
                 'category'  => $t->category_name,
                 'topic'     => $t->topicName,
-                'user'      => $t->author,
+                'author'    => $t->author,
                 'tanggal'   => $t->created_at,
                 'title'     => $t->title,
                 'status'    => $t->status,
@@ -73,7 +73,7 @@ class Author extends CI_Controller
         $user = sentinel()->getUser();
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
-            $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
+            $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
         }
         $data['author']         = user($user->id)->full_name;
         $data['home']           = site_url('author/');
@@ -108,7 +108,7 @@ class Author extends CI_Controller
             $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
             $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['tenagaAhli'] = $user->id;
-            $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
+            $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
         }
         $data['addTopic']       = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
         $data['authorThreads']  = $this->model_thread->get_thread_from_author($user->id);
@@ -147,10 +147,10 @@ class Author extends CI_Controller
         $daerahUser = $user->profile->desa_id;
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
-            $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
-            $data['categories']     = $this->model_thread->get_categories();
+            $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+            $data['categories'] = $this->model_thread->get_categories();
         }else{
-            $data['categories']     = $this->model_topic->getCategory_by_Wilayah($daerahUser);
+            $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         }
         $data['controller']     = 'author';
         $data['categoriesSide'] = $this->model_thread->get_categories();
@@ -164,7 +164,8 @@ class Author extends CI_Controller
 
     public function delete($id)
     {
-        $delete = $this->model_thread->delete_thread($id);
+        $data   = array('id' => $id);
+        $delete = $this->model_thread->delete_thread($data);
 
         if($delete==TRUE){
             $this->model_thread->delete_replies($id);

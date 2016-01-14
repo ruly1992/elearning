@@ -28,6 +28,7 @@
             </div>
             <?php if ($getKategori->count()): ?>
                 <div class="panel-body">     
+                <div class="table-responsive">
                     <table class="table table-hover table-bordered" id="elibtable">
                         <thead>
                             <tr>
@@ -59,12 +60,13 @@
                             <?php endforeach ?>
                         </tbody>
                     </table>
+                    <nav class="pull-right">
+                        <ul class="#">
+                            <?php echo $getKategori->render() ?>
+                        </ul>
+                    </nav>
                 </div>
-                <nav>
-                    <ul class="#">
-                        <?php echo $getKategori->render() ?>
-                    </ul>
-                </nav>
+                </div>
             <?php else: ?>
                 <p class="alert alert-warning">Belum ada data</p>
             <?php endif ?>
@@ -73,6 +75,9 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#elibtable').DataTable();
+        $('#elibtable').DataTable({
+            responsive: true,
+            "sDom": '<"row"<"col-lg-6"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+        });
     } );
 </script>

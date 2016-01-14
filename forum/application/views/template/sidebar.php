@@ -7,7 +7,7 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.countThreads($threadSide, $closeThreads).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.count($categoriesSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 $c              = $categoriesSide;
                                                 $limitCat       = 3; //Jumlah yang ditampilkan
@@ -133,9 +133,10 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php 
-                                                if(isset($tenagaAhli)){ 
-                                                    echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
-                                                }
+                                                // Untuk menampilkan navigasi draft thread (jika dibutuhkan)
+                                                // if(isset($tenagaAhli)){ 
+                                                //     echo anchor('draft/', '<span class="label label-default label-pill pull-right">'.count($draftSide).'</span> Draft Threads', 'class="list-group-item"');
+                                                // }
                                             ?>
                                             <?php 
                                                 if(isset($authorThreads)){ $active = 'active'; }else{ $active=''; }

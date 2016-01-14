@@ -8,12 +8,15 @@
                 <div class="breadcrumbs">
                     <ol class="breadcrumb">
                         <li><a href="<?php echo dashboard_url() ?>">Dashboard</a></li>
-                        <li><a href="<?php echo site_url() ?>">Kelas Online</a></li>
-                        <?php if (!isset($chapter)): ?>
-                            <li class="active"><?php echo $course->name ?></li>
-                        <?php else: ?>
+                        <?php if (isset($chapter) && isset($course)): ?>
+                            <li><a href="<?php echo site_url() ?>">Kelas Online</a></li>
                             <li><a href="<?php echo site_url('course/show/'.$course->slug) ?>"><?php echo $course->name ?></a></li>
                             <li class="active">Chapter <?php echo $chapter->order ?></li>
+                        <?php elseif (isset($course)): ?>
+                            <li><a href="<?php echo site_url() ?>">Kelas Online</a></li>
+                            <li class="active"><?php echo $course->name ?></li>
+                        <?php else: ?>
+                            <li class="active">Kelas Online</li>
                         <?php endif ?>
                     </ol>
                 </div>

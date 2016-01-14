@@ -66,11 +66,8 @@
 
     <div class="widget">
         <div class="widget-categories">
-            <div class="widget-categories-heading">
-                <h4>DELETE</h4>
-            </div>
             <div class="widget-categories-content">
-                <p><a href="<?php echo site_url('dashboard/course/delete/' . $course->id) ?>" class="btn-delete text-danger">Delete this course</a></p>
+                <p><a href="<?php echo site_url('dashboard/course/delete/' . $course->id) ?>" class="btn btn-delete-lg btn-danger"><i class="fa fa-trash"></i> Delete This Course</a></p>
             </div>
         </div>
     </div>

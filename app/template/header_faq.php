@@ -51,11 +51,11 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="header-top-right">
-                                <form action="<?php echo home_url('search') ?>" method="GET">
+                                <form action="<?php echo dashboard_url('search') ?>" method="GET">
                                     <div class="input-group">
                                         <input name="term" class="form-control form-control-sm" placeholder="Search for..." type="text">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-sm btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                                            <button class="btn btn-sm btn-secondary" type="submit"><i class="fa fa-search"></i></button>
                                         </span>
                                     </div>
                                 </form>
@@ -72,25 +72,18 @@
                     <div class="container">
                         <div class="row">
                             <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarCollapse">
-                                &#9776;
+                                <i class="fa fa-bars"></i>
                             </button>
                             <a class="navbar-logo-mobile navbar-logo-tablet hidden-lg-up" href="<?php echo home_url() ?>">
                                 <img src="<?php echo asset('images/logo.png') ?>">
                             </a>
-                            <ul class="nav navbar-nav hidden-lg-up pull-right">
-                                <div class="dropdown dropdown-people">
-                                    <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?php echo auth()->getUser()->avatar ?>" alt="">
-                                    </a>
-                                    <div class="dropdown-menu custom-float" aria-labelledby="dropdownMenu2">
-                                        <a href="<?php echo dashboard_url('profile') ?>" class="dropdown-item">Profile</a>
-                                        <a href="<?php echo dashboard_url('sendArticle') ?>" class="dropdown-item">Submit Artikel</a>
-                                        <a href="<?php echo logout_url() ?>" class="dropdown-item">Log Out</a>
-                                    </div>
-                                </div>
-                            </ul>
+                            <button class="navbar-toggler dropdown-people hidden-lg-up pull-right" type="button" data-toggle="collapse" data-target="#navbarCollapselogout">
+                                <a type="button">
+                                    <img src="<?php echo auth()->getUser()->avatar ?>" alt="">
+                                </a>
+                            </button>
                             <div class="collapse navbar-toggleable-md" id="navbarCollapse">
-                                <a class="navbar-brand" href="<?php echo home_url() ?>" style="display: none">
+                                <a class="navbar-brand hidden-lg-down" href="<?php echo home_url() ?>" style="display: none">
                                     <img src="<?php echo asset('images/logo.png') ?>" alt="">
                                 </a>
                                 <ul class="nav navbar-nav">
@@ -127,6 +120,19 @@
                                             <a href="<?php echo logout_url() ?>" class="dropdown-item">Log Out</a>
                                         </div>
                                     </div>
+                                </ul>
+                            </div>
+                            <div class="collapse navbar-toggleable-md" id="navbarCollapselogout">
+                                <ul class="hidden-lg-up nav navbar-nav">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="<?php echo dashboard_url('profile') ?>">PROFIL</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?php echo dashboard_url('sendArticle') ?>">SUBMIT ARTIKEL</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?php echo logout_url() ?>">LOGOUT</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

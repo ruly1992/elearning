@@ -6,7 +6,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cropit-{{ name }}">Select Image</button>
     </slot>
     <slot name="button-remove">
-        <button type="button" class="btn btn-danger" v-on:click="remove">Remove</button>
+        <button type="button" class="btn btn-danger btn-margin-btm" v-on:click="remove">Remove</button>
     </slot>
 </template>
 
