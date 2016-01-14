@@ -21,13 +21,16 @@ new Vue({
         addMeta: function () {
             var key = this.key;
 
-            this.metadata.push({
-                key: key,
-                value: ''
-            })
+            if (key != '' && key != undefined) {
+                this.metadata.push({
+                    key: key,
+                    value: ''
+                })
+            }else{
+                alert('Nama meta harus diisi terlebih dahulu!');
+            }
 
             this.key = '';
-
             return false
         },
         removeMeta: function (index) {

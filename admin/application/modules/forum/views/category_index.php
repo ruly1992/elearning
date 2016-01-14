@@ -26,38 +26,40 @@
         <div class="panel panel-default">
         <?php if ($categories->count()): ?>
             <div class="panel-body">
-                <table class="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Tenaga Ahli</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if ($categories->count()): ?>
-                            <?php foreach ($categories as $category): ?>
-                                <?php $i = 0; foreach ($category->users as $tenagaahli): ?>
-                                    <tr>
-                                        <?php if ($i == 0): ?>
-                                            <td rowspan="<?php echo $category->users->count() ?>"><?php echo $category->name ?></td>
-                                            <td><?php echo $tenagaahli->full_name ?><br>
-                                            <small><?php echo $tenagaahli->email ?></small></td>
-                                            <td rowspan="<?php echo $category->users->count() ?>"><?php echo button_edit('forum/category/edit/'.$category->id) ?> <?php echo button_delete('forum/category/delete/'.$category->id) ?></td>
-                                        <?php else: ?>
-                                            <td><?php echo $tenagaahli->full_name ?><br>
-                                            <small><?php echo $tenagaahli->email ?></small></td>
-                                        <?php endif ?>
-                                    </tr>
-                                <?php $i++; endforeach ?>
-                            <?php endforeach ?>
-                        <?php else: ?>
-                            <tr class="warning">
-                                <td colspan="3">Tidak ada kategori yang ditampilkan</td>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Tenaga Ahli</th>
+                                <th>&nbsp;</th>
                             </tr>
-                        <?php endif ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php if ($categories->count()): ?>
+                                <?php foreach ($categories as $category): ?>
+                                    <?php $i = 0; foreach ($category->users as $tenagaahli): ?>
+                                        <tr>
+                                            <?php if ($i == 0): ?>
+                                                <td rowspan="<?php echo $category->users->count() ?>"><?php echo $category->name ?></td>
+                                                <td><?php echo $tenagaahli->full_name ?><br>
+                                                <small><?php echo $tenagaahli->email ?></small></td>
+                                                <td rowspan="<?php echo $category->users->count() ?>"><?php echo button_edit('forum/category/edit/'.$category->id) ?> <?php echo button_delete('forum/category/delete/'.$category->id) ?></td>
+                                            <?php else: ?>
+                                                <td><?php echo $tenagaahli->full_name ?><br>
+                                                <small><?php echo $tenagaahli->email ?></small></td>
+                                            <?php endif ?>
+                                        </tr>
+                                    <?php $i++; endforeach ?>
+                                <?php endforeach ?>
+                            <?php else: ?>
+                                <tr class="warning">
+                                    <td colspan="3">Tidak ada kategori yang ditampilkan</td>
+                                </tr>
+                            <?php endif ?>
+                        </tbody>
+                    </table>
+                </div>
                 <nav class="pull-right">
                     <ul>
                         <?php echo $categories->render() ?>

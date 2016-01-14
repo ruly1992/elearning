@@ -118,22 +118,91 @@ class Model_topic extends CI_Model
                     ->from('categories')
                     ->join('topics', 'topics.category=categories.id')
                     ->where('topics.status', '1')
+                    ->group_by('category_name')
                     ->where_in('daerah', $daerah)
                     ->order_by('categories.id', 'desc')
                     ->get();
         return $get->result();
     }
 
-    function getTopics_by_Category($id)
+    function getTopics_by_ta($idUser, $idCategory)
+    {
+            $data = array('categories.category_name','topics.*');
+            $getByTopic = $this->db->select($data)
+                        ->from('topics')
+                        ->join('categories','categories.id=topics.category')
+                        ->where(array(
+                            'topics.category'       => $idCategory, 
+                            'topics.status'         => '1', 
+                            'topics.tenaga_ahli'    => $idUser
+                        ))
+                        ->order_by('topics.id','desc')
+                        ->get()
+                        ->result();
+
+            $getByCategory  = $this->db->select($data)
+                        ->from('topics')
+                        ->join('categories','categories.id=topics.category')
+                        ->join('category_user','category_user.category_id=topics.category')
+                        ->where(array(
+                            'topics.category'       => $idCategory, 
+                            'topics.status'         => '1', 
+                            'category_user.user_id' => $idUser
+                        ))
+                        ->order_by('topics.id','desc')
+                        ->get()
+                        ->result();
+
+            $allTopics      = array();
+            foreach($getByTopic as $temp){
+                if ( ! in_array($temp, $allTopics)) {
+                    $allTopics[] = $temp;
+                }
+            }
+            foreach($getByCategory as $temp){
+                if ( ! in_array($temp, $allTopics)) {
+                    $allTopics[] = $temp;
+                }
+            }
+            
+            return $allTopics;
+    }
+
+    function get_public_topics($idCategory)
     {
         $data = array('categories.category_name','topics.*');
         $get = $this->db->select($data)
                     ->from('topics')
                     ->join('categories','categories.id=topics.category')
-                    ->where(array('categories.id' => $id, 'topics.status' => '1'))
+                    ->where(array(
+                        'topics.category' => $idCategory, 
+                        'topics.status' => '1', 
+                        'topics.daerah' => '00.00.00.0000'
+                    ))
                     ->order_by('topics.id','desc')
                     ->get();
         return $get->result();
+    }
+
+    function getTopics_by_Category($idCategory, $daerahUser)
+    {
+            $d          = explode('.', $daerahUser);
+            $desa       = $daerahUser;
+            $kecamatan  = $d[0].'.'.$d[1].'.'.$d[2].'.0000';
+            $kota       = $d[0].'.'.$d[1].'.00.0000';
+            $provinsi   = $d[0].'.00.00.0000';
+            $default    = '00.00.00.0000';
+            $daerah     = array($desa, $kecamatan, $kota, $provinsi, $default);
+
+            $data = array('categories.category_name','topics.*');
+            $get = $this->db->select($data)
+                        ->from('topics')
+                        ->join('categories','categories.id=topics.category')
+                        ->where(array('categories.id' => $idCategory, 'topics.status' => '1'))
+                        ->where_in('daerah', $daerah)
+                        ->order_by('topics.id','desc')
+                        ->get();
+            return $get->result();
     }
 
     function approve_topic($id, $data)

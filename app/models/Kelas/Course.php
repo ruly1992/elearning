@@ -4,14 +4,24 @@ namespace Model\Kelas;
 
 use Model\User;
 use Model\Scopes\Published;
+use Model\SearchableTrait;
 
 
 class Course extends Model
 {
     use Published;
+    use SearchableTrait;
 
     protected $guarded = [];
     protected $content_path = PATH_KELASONLINE_CONTENT;
+    protected $searchable = [
+        'columns' => [
+            'name'          => 15,
+            'description'   => 5,
+        ],
+        'joins' => [
+        ],
+    ];
 
     public static function boot()
     {
@@ -84,6 +94,13 @@ class Course extends Model
     public function required()
     {
         return $this->belongsToMany(Course::class, 'course_requirements', 'requirement_course_id', 'course_id');
+    }
+
+    public function getExcerpt($max = 100, $trailing = '...')
+    {
+        $content = strip_tags($this->description);
+
+        return truncate($content, $max, $trailing);
     }
 
     public function scopeWhereMember($query, User $member)

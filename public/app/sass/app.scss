@@ -118,7 +118,7 @@ body {
 		border-color: $green-black;
 	}
 }
-/* Begin : CUstom table*/ 
+/* Begin : CUstom table */ 
 .table {
 	width: 100%;
 	max-width: 100%;
@@ -138,7 +138,7 @@ body {
 	vertical-align: top;
 	border-top: 1px solid #909090;
 	font-size: 14px;
-	padding: 10px 10px 0px;
+	padding: 8px 10px;
 	border-left: 1px solid #909090;
 	border-bottom: 1px solid #909090;
 	border-top: 1px solid #909090;
@@ -159,6 +159,13 @@ body {
 	min-height: 0.01%;
 	overflow-x: auto;
 	border: none !important;
+}
+thead {
+	display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+    background-color: $aspalt-light;
+    color: $white;
 }
 /* End Custom table */ 
 
@@ -504,50 +511,27 @@ header {
 				}
 			}
 		}
-	}
-	//add fajar eko s
-	.dropdown:hover {
-		.dropdown-navbar {
-			display: block;
-			width: 250px;
-			height: auto;
-			background-color: $grey;
-			margin-top: 0px;
-			padding: 0;
-			border: medium none;
-			@include border-radius(0);
-			li {
-				font-size: 12px;
-				color: $white;
-				padding: $padding + 10px;
-				@include transition(0.3s);
+		.header-top-right-login {
+			.btn {
+				margin-top: $margin-top + 8px;
+				border-radius: 50px;
 				@include fonts('open_sansregular');
-				&:hover {
-					background-color: $green;
-					color: $white;
-					@include transition(0.3s);
-				}
-				a {
-					text-decoration: none;
-				}
+				font-size: 12px;
+				font-weight: 600;
+				padding-top: $padding-top - 1px;
+				padding-bottom: $padding-bottom - 1px;
+				padding-left: $padding-left + 20px;
+				padding-right: $padding-right + 20px;
 			}
-		}
-	}
-	
-	.dropdown-menu {
-		a {
-			font-size: 14px;
-			color: $aspalt-light;
-			padding-top: 5px;
-			padding-bottom: 5px;
-			@include transition(0.3s);
-			@include fonts('open_sansregular');
-			&:hover,
-			&:focus,
-			&:active {
-				background-color: $green;
-				color: $white;
-				@include transition(0.3s);
+			.btn-primary-outline {
+				color: $green-black;
+				background-color: transparent;
+				background-image: none;
+				border-color: $green-black;
+				&:hover {
+					color: $white;
+					background-color: $green-black;
+				}
 			}
 		}
 	}
@@ -556,6 +540,7 @@ header {
 		padding-bottom: $padding-bottom + 55px;
 		.carousel {
 			margin-bottom: $margin-bottom + 5px;
+			margin-right: $margin-right + 5px;
 			.carousel-caption {
 				right: 11%;
 				left: 11%;
@@ -602,6 +587,7 @@ header {
 			}
 		}
 		.header-main-box {
+			margin-left: $margin-left + 5px;
 			background-color: rgba(255, 255, 255, 0.5);
 			border-top: 4px solid $aspalt;
 			@include border-radius(6px);
@@ -737,6 +723,51 @@ header {
 						background-color: $white;
 					}
 				}
+			}
+		}
+	}
+	//add fajar eko s
+	
+	.dropdown {
+		.dropdown-navbar {
+			width: 250px;
+			height: auto;
+			background-color: $grey;
+			margin-top: 0px;
+			padding: 0;
+			border: medium none;
+			@include border-radius(0);
+			li {
+				font-size: 12px;
+				color: $white;
+				padding: $padding + 10px;
+				@include transition(0.3s);
+				@include fonts('open_sansregular');
+				&:hover {
+					background-color: $green;
+					color: $white;
+					@include transition(0.3s);
+				}
+				a {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	.dropdown-menu {
+		a {
+			font-size: 14px;
+			color: #909090;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			@include transition(0.3s);
+			@include fonts('open_sansregular');
+			&:hover,
+			&:focus,
+			&:active {
+				background-color: $green;
+				color: $white;
+				@include transition(0.2s);
 			}
 		}
 	}
@@ -1471,12 +1502,51 @@ header {
 		}
 	}
 	.content-konsultasi-table {
-		a {
-			color: $green;
+		.konsultasi-content {
+			margin-bottom: $margin-bottom + 10px;
+			.title {
+				margin: $margin + 2px;
+				h3 {
+					font-size: 12px;
+					font-weight: 600;
+					border-bottom: 1px solid $grey;
+					padding: $padding + 3px;
+				}
+			}
+			.description {
+				margin: $margin + 2px;
+				h3 {
+					font-size: 12px;
+					font-weight: 600;
+					border-bottom: 1px solid $grey;
+					padding: $padding + 3px;
+					line-height: 1.5;
+				}
+				p {
+					margin-bottom: $margin-bottom - 5px;
+				}
+			}
+			.image {
+				margin: $margin + 2px;
+				h3 {
+					font-size: 12px;
+					font-weight: 600;
+					border-bottom: 1px solid $grey;
+					padding: $padding + 3px;
+				}
+				a {
+					font-size: 12px;
+					font-weight: 600;
+					border-bottom: 1px solid $grey;
+					padding: $padding + 3px;
+				}
+			}
 		}
-		p {
-			margin-bottom: $margin-bottom - 5px;
+		.konsultasi-detail {
+			margin-top: $margin-top + 20px;
 		}
+		// Begin dashboard tenaga ahli
+		
 		.label-primary {
 			background-color: $green;
 		}
@@ -1484,41 +1554,78 @@ header {
 			margin-top: $margin-top + 20px;
 			list-style: none;
 			padding-left: $padding-left + 15px;
-			li {
-				margin-bottom: $margin-bottom + 20px;
-				border-bottom: 1px solid $grey;
-				padding-bottom: $padding-bottom + 10px;
-				h4 {
-					font-size: 20px;
-					@include fonts('open_sansbold');
-					a {
-						text-decoration: none;
-						color: $aspalt-light;
-						@include transition(0.3s);
-						&:hover,
-						&:focus {
-							color: $black;
-							@include transition(0.3s);
-						}
-						i.fa {
-							margin-right: $margin-right;
-						}
-					}
-				}
-			}
-
-		}
-		.btn-kirim {
-			background-color: $green-black;
-			color: $white;
-		}
-		.content-konsultasi-table-details {
-			.card {
-				.card-block {
+			.list-content {
+				margin-bottom: $margin-bottom + 10px;
+				width: 100%;
+				height: auto;
+				@include border-radius(3px);
+				border: 1px solid #939EA2;
+				display: inline-block;
+				text-align: center;
+				position: relative;
+				.list-content-icon {
+					margin-top: $margin-top + 5px;
+					width: 55px;
+					height: 55px;
+					background-color: $aspalt-light;
+					@include border-radius(50px);
+					position: absolute;
+					left: 40%;
 					p {
-						margin-bottom: $margin-bottom - 5px;
+						line-height: 3;
+						color: $white;
 					}
 				}
+				.list-content-title {
+					width: 90%;
+					height: 40px;
+					@include border-radius(3px);
+					background-color: $aspalt;
+					margin-left: $margin-left + 10px;
+					margin-right: $margin-right + 10px;
+					margin-bottom: $margin-bottom + 5px;
+					h4 {
+						font-size: 16px;
+						@include fonts('open_sansregular');
+						a {
+							line-height: 3;
+							font-size: 12px;
+							font-weight: 600;
+							color: $white;
+							text-decoration: none;
+							text-transform: uppercase;
+						}
+					}
+				}
+				.list-content-description {
+					width: 100%;
+					height: 80px;
+					overflow: hidden;
+					margin-top: $margin-top + 65px;
+					p {
+						line-height: 2;
+						@include fonts('open_sansregular');
+						font-size: 12px;
+						font-weight: 600;
+					}
+				}	
+			}
+		}
+		.custom-card {
+			margin-top: $margin-top + 35px;
+		}
+		.btn-reply-outline {
+			padding-left: $padding-left + 20px;
+			padding-right: $padding-right + 20px;
+			border: 2px solid $green-black;
+			font-size: 12px;
+			font-weight: 600;
+			&:hover {
+				color: $white;
+				background-color: $green-black;
+			}
+			&:active {
+				color: $green-black;
 			}
 		}
 	}
@@ -1592,7 +1699,7 @@ header {
 			}
 		}
 		.elib-content {
-			margin-top: $margin-top + 20px;
+			margin-top: $margin-top - 5px;
 			.elib-content-left,
 			.elib-content-right {
 				margin-bottom: $margin-bottom + 40px;
@@ -1952,7 +2059,7 @@ header {
 		}
 	}
 	.content-articles {
-		margin-top: $margin-top + 20px;
+		margin-top: $margin-top - 5px;
 		margin-bottom: $margin-bottom + 35px;
 		.content-articles-heading {
 			display: block;
@@ -2007,6 +2114,7 @@ header {
 				img {
 					width: 100%;
 					height: 100%;
+					object-fit: cover;
 				}
 			}
 			.articles-box-meta {
@@ -2140,7 +2248,7 @@ header {
 		margin-top: $margin-top - 5px;
 	}
 	.content-sidebar {
-		margin-top: $margin-top + 55px;
+		margin-top: $margin-top + 20px;
 		.widget {
 			margin-bottom: $margin-bottom + 30px;
 			.widget-heading {
@@ -2165,6 +2273,15 @@ header {
 					border-top-right-radius: 6px;
 				}
 				.nav-tabs {
+					.nav-item {
+						margin-left: $margin-left - 5;
+						margin-bottom: $margin-bottom - 6;
+						width: 50%;
+					}
+					.nav-item {
+						margin-left: $margin-left - 5;
+						width: 50%;
+					}
 					.nav-link {
 						color: $aspalt;
 						font-size: 14px;
@@ -2230,6 +2347,8 @@ header {
 							height: 60px;
 							img {
 								width: 100%;
+								height: 100%;
+								object-fit: cover;
 							}
 						}
 					}
@@ -2901,7 +3020,7 @@ header {
 	}
 	.content-list-categories {
 		.list-title {
-			width: 120px;
+			width: 100%;
 			height: 25px;
 			border-bottom: 2px solid $aspalt;
 			h3 {
@@ -3848,6 +3967,7 @@ a {
   background-color: $green !important;
   border: 1px solid $green !important;
   color: $white;
+  margin-bottom: $margin-bottom;
   &:hover,
   &:active,
   &:focus {
@@ -4261,7 +4381,7 @@ a {
 				margin-bottom: $margin-bottom + 5px;
 				@include border-radius(3px);
 				width: 100%;
-				height: 300px;
+				max-height: 310px;
 				overflow: auto;
 				.list-group-item {
 					font-size: 13px;
@@ -4339,7 +4459,7 @@ a {
 	    padding-right: $padding-right;
 	    padding-bottom: $padding-bottom - 4;
 	    padding-left: $padding-left;
-	    margin-top: $margin-top - 30;
+	    margin-top: $margin-top - 26;
 	    font-size: 10px;
 	    line-height: 1.5;
 	    @include border-radius(3px);
@@ -4513,12 +4633,22 @@ a {
 		font-size: 14px;
 		margin-left: $margin-left - 31;
 	}
+	.breadcrumb {
+		li {
+			margin-left: 0px;
+		}
+	}
+	.pagination {
+		display: block;
+		.page-link {
+			border-color: #DDD;
+		}
+	}
 }
 .content-main-faq {
 	background-color: $white;
 	@include border-radius(4px);
 	margin-top: $margin-top + 12;
-	padding-bottom: $padding-bottom + 60px;
 }
 
 /* Forum Thread */
@@ -4553,6 +4683,31 @@ a {
 			    font-size: 10px;
 			    line-height: 1.5;
 			    @include border-radius(5px);
+			}
+		}
+		.chosen-container {
+			.chosen-results {
+				li {
+					font-size: 14px;
+				}
+			}
+		}
+		.chosen-container-multi {
+			background-image: none !important;
+			.chosen-choices {
+				border: 1px solid #CCC;
+				background-image: none !important;
+				font-size: 14px !important;
+				li.search-field input[type="text"] {
+					height: 30px !important;
+					margin-left: $margin-left + 3;
+				}
+			}
+		}
+		.chosen-container-active {
+			.chosen-choices {
+				border: 1px solid $green-black;
+				box-shadow: none !important;
 			}
 		}
 	}
@@ -4774,8 +4929,22 @@ Create: Singgih Saputro */
 	}
 }
 
-/* Dashboard Admin
+/* Dashboard Administrator
 Create: Singgih Saputro */
+.panel-default {
+	.panel-body {
+		.jFiler-input {
+			width: 270px;
+		}
+	}
+}
+
+.mm-page {
+	.btn-group {
+		margin-bottom: $margin-bottom;
+	}
+}
+
 .btn-editadmin,
 .btn-delete {
 	font-size: 10px;
@@ -4807,5 +4976,37 @@ Create: Singgih Saputro */
 	padding: 3px 6px;
 	text-shadow: none;
 	font-weight: 600;
+}
+
+.btn-md {
+	padding: 2px 12px;
+}
+
+.btn-margin-btm {
+	margin-bottom: $margin-bottom;
+}
+
+.sidebar-header {
+	padding: $padding + 5 !important;
+	height: 145px !important;
+	h2 {
+		margin-bottom: $margin-bottom + 15;
+	}
+	.admin-image {
+		padding: $padding;
+		img {
+			width: 60px;
+			margin-left: $margin-left + 78;
+			margin-right: $margin-right + 78;
+		}
+	}
+	.admin-info {
+		padding: $padding;
+		margin-top: $margin-top + 45;
+		.dropdown-menu {
+			margin-left: $margin-left + 15;
+			margin-top: $margin-top - 42
+		}
+	}
 }
 

@@ -48,7 +48,23 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div id="addPrivate">
+                                            <div id="addPrivate" class="collapse">
+                                                <div id="addProvinsi" class="form-group">
+                                                    <label for="provinsi">Provinsi</label>
+                                                    <?php echo $this->wilayah->generateSelectProvinsi() ?>
+                                                </div>
+                                                <div id="addKota" class="form-group">
+                                                    <label for="provinsi">Kota</label>
+                                                    <?php echo $this->wilayah->generateSelectKota() ?>
+                                                </div>
+                                                <div id="addKecamatan" class="form-group">
+                                                    <label for="provinsi">Kecamatan</label>
+                                                    <?php echo $this->wilayah->generateSelectKecamatan() ?>
+                                                </div>
+                                                <div id="addDesa" class="form-group">
+                                                    <label for="provinsi">Desa</label>
+                                                    <?php echo $this->wilayah->generateSelectDesa() ?>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">CREATE NEW TOPIC</button>
@@ -79,20 +95,11 @@
 
     <script type="text/javascript">
         function private(){
-            if(($("#addProvinsi").length <= 0) && ($("#addKota").length <= 0) && ($("#addKecamatan").length <= 0) && ($("#addDesa").length <= 0)){
-                $('#addPrivate').append( '<div id="addProvinsi" class="form-group"><label for="provinsi">Provinsi</label><?php echo $this->wilayah->generateSelectProvinsi() ?></div>' );
-                $('#addPrivate').append( '<div id="addKota" class="form-group"><label for="provinsi">Kota</label><?php echo $this->wilayah->generateSelectKota() ?></div>' );
-                $('#addPrivate').append( '<div id="addKecamatan" class="form-group"><label for="provinsi">Kecamatan</label><?php echo $this->wilayah->generateSelectKecamatan() ?></div>' );
-                $('#addPrivate').append( '<div id="addDesa" class="form-group"><label for="provinsi">Desa</label><?php echo $this->wilayah->generateSelectDesa() ?></div>' );
-            }
+            $('#addPrivate').collapse('show');
         }
 
         function public(){
-            $('#addLabel').remove();
-            $('#addProvinsi').remove();
-            $('#addKota').remove();
-            $('#addKecamatan').remove();
-            $('#addDesa').remove();
+            $('#addPrivate').collapse('hide');
         }
     </script>
 <?php endcustom_script() ?>

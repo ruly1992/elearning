@@ -13,7 +13,7 @@ class Kelas
     use CategoryTrait;
 
     protected $course;
-    protected $category;
+    protected $var_category;
     protected $chapter;
     protected $attachment;
     protected $user;
@@ -43,9 +43,9 @@ class Kelas
         return $this->course;
     }
 
-    public function create($name, $category)
+    public function create($name, $var_category)
     {
-        $this->setCategory($category);
+        $this->setCategory($var_category);
 
         $course         = new $this->course;
         $course->name   = $name;
@@ -60,10 +60,10 @@ class Kelas
         return $course;
     }
 
-    public function update($name, $category = null)
+    public function update($name, $var_category = null)
     {
-        if ($category)
-            $this->setCategory($category);
+        if ($var_category)
+            $this->setCategory($var_category);
 
         $course         = new $this->course;
         $course->name   = $name;

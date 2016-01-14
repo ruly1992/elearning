@@ -19,16 +19,18 @@ use Carbon\Carbon;
 
 class CourseRepository
 {
+    use CategoryTrait;
     use CountingTrait;
     use MemberTrait;
 
     protected $model;
     protected $user;
 
-    public function __construct($course = null, $user = null)
+    public function __construct($course = null, $user = null, $category = null)
     {
         $this->set($course);
         $this->setUser($user);
+        $this->setCategory($category);
     }
 
     public function set($course)
@@ -55,6 +57,17 @@ class CourseRepository
         $this->model = $this->model->findBySlug($slug);
 
         return $this->get();
+    }
+
+    public function getByCategory($slug)
+    {
+        if (is_string($slug)) {
+            $category   = $this->getCategory()->findBySlug($slug);
+        } else {
+            $category   = $this->getCategory()->find($slug);
+        }
+
+        return $category->courses;
     }
 
     public function setUser($user)
@@ -353,6 +366,29 @@ class CourseRepository
             $courses->where('course_member.status', $status);
 
         return $courses->get();
+    }
+
+    public function search($term)
+    {
+        $course     = $this->model->newQuery();
+        $result     = $course->search($term);
+
+        return $result;
+    }
+
+    public function searchWithCategory($term, $category)
+    {
+        $this->setCategory($category);
+
+        $course     = $this->model->newQuery();
+
+        $course->whereHas('category', function ($query) {
+            return $query->where('id', $this->category->id);
+        });
+
+        $result     = $course->search($term);
+
+        return $result;
     }
 
     public function hasFeaturedImage()

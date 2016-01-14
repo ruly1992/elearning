@@ -22,7 +22,7 @@
                     <button type="submit" class="btn btn-success btn-lg btn-block"><i class="fa fa-save"></i> Update</button>
                 </div>
                 <div class="form-group">
-                    <a href="<?php echo site_url('konsultasi/deleteKategori/' . $kategori->id) ?>" class="btn btn-danger btn-sm btn-block btn-delete"><i class="fa fa-trash-o"></i> Hapus</a>
+                    <a href="<?php echo site_url('konsultasi/deleteKategori/' . $kategori->id) ?>" class="btn btn-danger btn-block btn-delete-lg"><i class="fa fa-trash-o"></i> Hapus</a>
                 </div>
             </div>
         </div>

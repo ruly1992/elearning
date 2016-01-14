@@ -37,7 +37,7 @@
                                             <textarea name="content" class="editor"></textarea>
                                         </fieldset>
                                         <fieldset class="form-group hidden-sm-up">
-                                             <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
+                                             <input type="file" name="filemedia[]" id="filer_input_img" multiple="multiple">
                                         </fieldset>
                                         <fieldset class="form-group hidden-sm-up">
                                             <label for="">Keterangan gambar</label>
@@ -61,13 +61,13 @@
                                             <div class="widget-sidebar-heading">
                                                 <h3>Gambar Fitur</h3>
                                             </div>
-                                            <fieldset class="form-group">
-                                                <label for="">Keterangan Gambar</label>
-                                                <input type="text" name="caption-img" class="form-control">
-                                            </fieldset>
                                             <div class="widget-sidebar-content">
                                                 <cropit-preview name="featured"></cropit-preview>
                                                 <cropit-result name="featured"></cropit-result>
+                                                <fieldset class="form-group">
+                                                    <label for="">Keterangan Gambar</label>
+                                                    <input type="text" name="caption-img" class="form-control">
+                                                </fieldset>
                                             </div>
                                         </div>
                                     </div>

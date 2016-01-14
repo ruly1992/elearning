@@ -222,14 +222,15 @@ class Media extends Admin
 
     }
 
-    public function edit($media)
+    public function edit($mediaID)
     {
         try {
             if ($this->session->flashdata('success')) {
                 $data   = $this->session->flashdata('success');
             }
+            $data       = array();
             $user       = sentinel()->getUser();
-            $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($media);
+            $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($mediaID);
             $category   = $media->category;
             $data['media']      = $media;
             $data['category']   = $category;
@@ -269,7 +270,7 @@ class Media extends Admin
         
         $this->session->set_flashdata('success', 'Metadata berhasil diperbarui.');
         
-        redirect('media/edit/' . $media->id, 'refresh');
+        redirect('media/edit/'.$mediaID, 'refresh');
     }
 
     public function delete($media_id)

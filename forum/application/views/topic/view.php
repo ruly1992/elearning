@@ -32,7 +32,8 @@
                             <div class="forum-main">
                                 <div class="card">
                                     <div class="card-block">
-                                       <table class="table table-bordered table-responsive">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
                                             <thead>
                                                 <tr>
                                                   <th>#</th>
@@ -93,7 +94,8 @@
                                                 } 
                                             ?>
                                             </tbody>
-                                        </table>
+                                            </table>
+                                        </div>
 
                                         <?php foreach($topics as $top): ?>
                                             <!-- Start:modal preview -->
