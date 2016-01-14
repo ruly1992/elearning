@@ -39,6 +39,8 @@ class Article
 
         if ($custom_avatar)
             $this->setCustomAvatar($custom_avatar);
+
+        return $this;
     }
 
     public function set($article, $categories = [], $tags = [])
@@ -59,11 +61,14 @@ class Article
         return $this;
     }
 
-    public function setFeaturedImage($imageData)
+    public function setFeaturedImage($imageData, $description = '')
     {
         $filename = $this->setImage($imageData, 'featured');
 
-        $this->model->update(['featured_image' => $filename]);
+        $this->model->update([
+            'featured_image'        => $filename,
+            'featured_description'  => $description,
+        ]);
 
         return $this;
     }
@@ -121,7 +126,10 @@ class Article
 
         $this->removeImage($filename, 'featured');
 
-        $this->model->update(['featured_image' => '']);
+        $this->model->update([
+            'featured_image'        => '',
+            'featured_description'  => '',
+        ]);
 
         return $this;
     }

@@ -103,8 +103,11 @@ class Dashboard extends Admin {
             $articleLib = new Library\Article\Article;
             $articleLib->set($id);
 
-            if ($featured_image = set_value('featured[src]'))
-                $articleLib->setFeaturedImage($featured_image);
+            if ($featured_image = set_value('featured[src]')) {
+                $description = set_value('featured[description]');
+
+                $articleLib->setFeaturedImage($featured_image, $description);
+            }
 
             set_message_success('Artikel berhasil dibuat.');
 
@@ -150,7 +153,9 @@ class Dashboard extends Admin {
             switch ($featured_action) {
                 case 'upload':
                     $featured_image = $this->input->post('featured[src]');
-                    $articleLib->setFeaturedImage($featured_image);
+                    $desciption     = $this->input->post('featured[description]');
+
+                    $articleLib->setFeaturedImage($featured_image, $description);
                     break;
 
                 case 'remove':
