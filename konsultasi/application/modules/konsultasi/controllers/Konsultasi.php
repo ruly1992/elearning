@@ -195,7 +195,7 @@ class Konsultasi extends CI_Controller {
                 );
             }
 
-            $categories     = set_value('id_konsultasi_kategori');
+            $categories         = set_value('id_konsultasi_kategori');
 
             $update             = $this->M_konsultasi->update($id, $data, $categories);
             $updateRelation     = $this->M_konsultasi->updateRelation($id, $categories);
@@ -222,6 +222,18 @@ class Konsultasi extends CI_Controller {
         }
     }
 
+    public function deleteAttachmentReply($id, $path, $id_konsultasi)
+    {
+        $attachment;
+        $update  = $this->M_konsultasi->deleteAttachmentReply($id, $attachment);
+        unlink(PATH_KONSULTASI_ATTACHMENT.'/'.$path);
+        if($update) {
+            redirect('/konsultasi/detail/'. $id_konsultasi);
+        } else {
+            redirect('/konsultasi/detail/'. $id_konsultasi);
+        }
+    }
+
     public function check()
     {
         $id       = $this->input->get('id');
@@ -238,30 +250,28 @@ class Konsultasi extends CI_Controller {
             redirect('/konsultasi/detail/'. $id_konsultasi, 'refresh');
         } else {
             $config['upload_path']      = PATH_KONSULTASI_ATTACHMENT;
-            $config['overwrite']        = TRUE;
             $config['allowed_types']    = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt|ppt|pptx';
             $config['max_size']         = '10000';
 
             $this->load->library('upload', $config);
 
-            if (!$this->upload->do_upload('files')) {
+            if (! $this->upload->do_upload('reply')) {                
                 $data = array(
-                    'updated_at'  => date('Y-m-d H:i:s'),
-                    'isi'         => set_value('isi', '', FALSE),
-                    'id_user'     => sentinel()->getUser()->id,
-                ); 
+                    'isi'           => set_value('isi', '', FALSE),
+                    'updated_at'    => date('Y-m-d H:i:s'),
+                );
+
             } else {
                 $file_data = $this->upload->data();
 
                 $data = array(
-                        'attachment'  => $file_data['file_name'],
-                        'updated_at'  => date('Y-m-d H:i:s'),
-                        'isi'         => set_value('isi', '', FALSE),
-                        'id_user'     => sentinel()->getUser()->id,
+                    'attachment'    => $file_data['file_name'],
+                    'isi'           => set_value('isi', '', FALSE),
+                    'updated_at'    => date('Y-m-d H:i:s'),
                 );
-            }
+            }                       
 
-            $update             = $this->M_konsultasi->updateReply($idReply, $data);
+            $update = $this->M_konsultasi->updateReply($idReply, $data);
 
             if ($update == FALSE) {         
                 set_message_error('Reply berhasil diperbarui.');
