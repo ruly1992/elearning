@@ -16,10 +16,10 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-md-2">
-                            <img src="<?php echo $user->avatar ?>" class="img img-circle img-fluid">
+                            <img src="<?php echo $user->avatar ?>" class="img img-circle img-fluid center-block">
                         </div>
-                        <div class="col-md-5">
-                            <?php echo $user->full_name ?><br>
+                        <div class="col-md-6">
+                            <strong><?php echo $user->full_name ?></strong><br>
                             <small><?php echo $user->email ?></small><br>
                             <small>Joined at <?php echo date('d F Y H:i', strtotime($user->pivot->joined_at)) ?></small><br>
                             
@@ -29,13 +29,13 @@
                                 <span class="label label-warning">Pending</span>
                             <?php elseif ($user->pivot->status == 'finished'): ?>
                                 <span class="label label-success">Finished</span>
-                            <?php endif ?>
+                            <?php endif ?><br><br>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <?php if ($user->pivot->status == 'pending'): ?>
                                 <a href="<?php echo site_url('dashboard/course/approve-member/'.$course->id.'/'.$user->id) ?>" class="btn btn-primary">Approve</a>
                             <?php endif ?>
-                            <a href="<?php echo site_url('dashboard/course/kick-member/'.$course->id.'/'.$user->id) ?>" class="btn btn-delete btn-danger">Kick</a>
+                            <a href="<?php echo site_url('dashboard/course/kick-member/'.$course->id.'/'.$user->id) ?>" class="btn btn-delete-lg btn-danger btn-margin-btm">Kick</a>
                         </div>
                     </div>
                 </li>
