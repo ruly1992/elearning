@@ -21,7 +21,9 @@
                         <!-- end:content -->
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
                         <?php $this->load->view('template/sidebar_exam', compact('course', 'repository')); ?>
+                   
                     </div>
                 </div>
             </div>

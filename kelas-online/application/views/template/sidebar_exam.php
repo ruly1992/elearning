@@ -29,6 +29,7 @@
     </div>
 </div>
 
+
 <?php custom_script() ?>
     <script src="<?php echo asset('node_modules/countdown/dist/jquery.countdown.min.js') ?>"></script>
     <script>

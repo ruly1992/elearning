@@ -25,6 +25,7 @@ class Kelasonline extends Admin {
 
 	public function updateStatus($id)
 	{
+	
 		$course = Model\Kelas\Course::withDrafts()->where('id', $id)->update(['status' => 'publish']);
 		
 		set_message_success('Course berhasil dipublish.');

@@ -6,6 +6,7 @@ class ExamAnswer extends Model
 {
 	protected $table = 'member_exam_answers';
 	protected $guarded = [];
+	
 
 	public $timestamps = false;
 

@@ -587,6 +587,7 @@ class CourseRepository
 
     public function courseMemberStatus($slug)
     {
+        
         $course_id          = Course::where('code', $slug)->get();
 
         $member_course      = CourseMember::where('course_id', $course_id[0]->id)

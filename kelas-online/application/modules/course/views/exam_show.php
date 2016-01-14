@@ -7,7 +7,7 @@
     <?php echo form_open('course/submitexam/'.$course->slug, 'id="form-exam"'); ?>
     <div class="content-main">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <!-- Start: Quiz -->
+            <!-- Start: Exam -->
             <?php $numb = 1; foreach ($exam->questions as $question): ?>
                 <div class="card">
                     <div class="card-header">
@@ -35,7 +35,7 @@
                     </div>
                 </div>                
             <?php $numb++; endforeach ?>
-            <!-- End: Quiz -->
+            <!-- End: Exam -->
             <button type="submit" class="btn btn-block btn-exam btn-primary">FINISH</button>
         </div>
     </div>

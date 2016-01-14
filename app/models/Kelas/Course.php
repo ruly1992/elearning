@@ -44,7 +44,9 @@ class Course extends Model
 
     public function courseMember()
     {
+
         return $this->hasMany(CourseMember::class);
+    
     }
 
     public function members()

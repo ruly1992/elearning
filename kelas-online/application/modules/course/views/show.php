@@ -67,7 +67,7 @@
         <?php else: ?>
                 <p>Tidak ada exam</p>
         <?php endif ?>
-        
+
 
     </div>
     <!-- END EXAM -->
@@ -77,6 +77,7 @@
     <div class="content-setifikat">
         <h4>SERTIFIKAT</h4>
         <hr>
+
         <?php foreach ($course_member_status as $key => $value): ?>
 
             <?php if ($value->status == 'finished'): ?>
@@ -91,6 +92,7 @@
             
 
         <?php endforeach ?>
+    
     </div>
     <!-- END SERTIFIKAT -->
 

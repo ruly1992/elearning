@@ -6,6 +6,7 @@ class Exam extends Model
 {
 	protected $table = 'exams';
 	protected $guarded = [];
+	
 
 	public function course()
 	{

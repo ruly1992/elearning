@@ -9,6 +9,7 @@ class ExamMember extends Model
 	protected $table = 'member_exam';
 	protected $dates = ['started_at', 'finished_at'];
 	protected $guarded = [];
+	
 	public $timestamps = false;
 
 	public function exam()

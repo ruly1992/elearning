@@ -7,6 +7,7 @@
             </div>
            
             <div class="panel-body">
+            
             <?php if ($records): ?>
                 <h3>Data Empty!</h3>
             <?php else: ?>
