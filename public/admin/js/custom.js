@@ -42,14 +42,6 @@ $(document).ready(function () {
         })
     })
 
-    // $('.fileinput').on('clear.bs.fileinput', function () {
-    //     // $(this).find('input[type=hidden]').val('')
-    // })
-    
-    // $('.fileinput').on('change.bs.fileinput', function () {
-    //     // $(this).find($('[name="remove_featured_image"]')).remove()
-    // })
-
     $('.iframe-btn').fancybox({ 
         'width'     : 900,
         'height'    : 600,
@@ -77,7 +69,7 @@ $(document).ready(function () {
         toolbar2: " link unlink anchor | image media | forecolor backcolor  | print preview code ",
         image_advtab: true ,
     });
-    
+
     tinymce.init({
         selector:'.editor-portal',
         plugins: [
@@ -85,7 +77,7 @@ $(document).ready(function () {
                 "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
                 "table contextmenu directionality emoticons paste textcolor responsivefilemanager"
         ],
-        toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+        toolbar1: "undo redo | bold italic underline | alignleft alignright | bullist numlist outdent indent | styleselect",
         toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
         image_advtab: true ,
            
@@ -95,22 +87,6 @@ $(document).ready(function () {
         relative_urls: false,
         remove_script_host : false
     });
-
-    // $('.switch-input.ajax').on('change', function(){
-    //     var id      = $(this).val();
-    //     var status    = this.checked ? 'unapprove' : 'approve';
-
-    //     $.ajax({
-    //         url: siteurl + '/comment/comment_json/status',
-    //         data: {
-    //             id: id,
-    //             status: status,
-    //         },
-    //         success: function (response){
-
-    //         }
-    //     })
-    // })
 
     $('.open-schedule').on('click', function () {
         var input_schedule = $('.input-schedule');
@@ -126,120 +102,5 @@ $(document).ready(function () {
         input_schedule.hide('slow')
 
         return false;
-    })
-
-    var $cropit_featured;
-    var $cropit_featured_imagedata;
-    var $cropit_featured_action;
-
-    $cropit_featured_imagedata = $('input.cropit-featured-imagedata')
-    $cropit_featured_action = $('input#featured_action')
-    $cropit_featured = $('.cropit-featured').cropit({
-        exportZoom: 2,
-        onOffsetChange: function (offset) {
-            if ($cropit_featured_imagedata.val()) {
-                var imageData       = $('.cropit-featured').cropit('export')
-
-                $cropit_featured_imagedata.val(imageData)
-            }
-        },
-        onImageError: function (error, code, msg) {
-            console.log(error)
-        }
-    });
-
-    $cropit_featured.cropit('imageSrc', $cropit_featured.find('.cropit-image-preview').data('cropit-preload'))
-
-    if ($cropit_featured.hasClass('cropit-disabled')) {
-        $cropit_featured_imagedata.val('')
-        $cropit_featured.cropit('disable');
-    }
-
-    $('.md-trigger-featured').modalEffects({
-        afterClose: function (button, modal) {
-            if ($cropit_featured_imagedata.val()) {
-                var imageData = $cropit_featured.cropit('export')
-
-                $cropit_featured_imagedata.val(imageData)
-            }
-        }
-    });
-
-    $('.md-trigger-featured').on('click', function (ev) {
-       return false
-    });
-
-    $('#featured').on('change', function () {
-        var url = $(this).val()
-        $cropit_featured.cropit('imageSrc', url)
-        $cropit_featured.cropit('reenable');
-        $cropit_featured_action.val('change')
-    })
-
-    $('.btn-remove-featured').on('click', function () {
-        var url = homeurl + 'public/images/portal/img-carousel-default.jpg'
-
-        $cropit_featured.cropit('imageSrc', url);
-        $cropit_featured_action.val('remove')
-        $cropit_featured.cropit('disable');
-        $cropit_featured_action.val('remove')
-
-        return false
-    })
-
-    var $cropit_slider;
-    var $cropit_slider_imagedata;
-
-    $cropit_slider_imagedata = $('input.cropit-slider-imagedata')
-    $cropit_slider = $('.cropit-slider').cropit({
-        onOffsetChange: function (offset) {
-            // 
-        }
-    });
-
-    $cropit_slider.cropit('imageSrc', $cropit_slider.find('.cropit-image-preview').data('cropit-preload'))
-
-    $('.md-trigger-slider').modalEffects({
-        afterClose: function (button, modal) {
-            var val = $cropit_slider_imagedata.val()
-
-            if (val && val != 'remove') {
-                var imageData = $cropit_slider.cropit('export')
-
-                $cropit_slider_imagedata.val(imageData)
-            }
-        }
-    });
-    $('.md-trigger-slider').on('click', function () {
-        return false
-    });
-
-    if ($cropit_slider.hasClass('cropit-disabled')) {
-        $cropit_slider_imagedata.val('')
-        $cropit_slider.cropit('disable');
-    } else {
-        var imageData = $cropit_slider.cropit('export')
-
-        $cropit_slider_imagedata.val(imageData)
-    }
-
-    $('#slider').on('change', function () {
-        var url = $(this).val()
-        $cropit_slider.cropit('imageSrc', url)
-        $cropit_slider.cropit('reenable');
-    })
-
-    $('.btn-remove-slider').on('click', function () {
-        var url = homeurl + 'public/images/portal/img-carousel-default.jpg'
-
-        $cropit_slider.cropit('imageSrc', url);
-        $cropit_slider_imagedata.val('remove')
-        $cropit_slider.cropit('disable');
-
-        return false
-    })
-
-    $('#modal-1').on('hide.bs.modal', function (event) {
-        
     })
 })
