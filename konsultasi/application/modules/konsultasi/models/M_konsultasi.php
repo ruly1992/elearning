@@ -137,6 +137,13 @@ class M_konsultasi extends CI_Model {
         $this->db->update('konsultasi', $attachment);
     }
 
+    public function deleteAttachmentReply($id, $attachment)
+    {
+        $this->db->set('attachment', $attachment);
+        $this->db->where('id', $id);        
+        $this->db->update('reply', $attachment);
+    }
+
     public function getReply($id)
     {
         $data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment', 'rp.created_at', 'rp.id');
