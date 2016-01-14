@@ -1257,7 +1257,7 @@ header {
   .content-konsultasi .content-konsultasi-heading .content-konsultasi-heading-right {
     margin-bottom: -5px; }
 .content-konsultasi .content-konsultasi-table .konsultasi-content {
-  margin-bottom: 15px; }
+  margin-bottom: 25px; }
   .content-konsultasi .content-konsultasi-table .konsultasi-content .title {
     margin: 7px; }
     .content-konsultasi .content-konsultasi-table .konsultasi-content .title h3 {
@@ -1350,19 +1350,6 @@ header {
         font-family: "open_sansregular", sans-serif;
         font-size: 12px;
         font-weight: 600; }
-.content-konsultasi .content-konsultasi-table .custom-card {
-  margin-top: 40px; }
-.content-konsultasi .content-konsultasi-table .btn-reply-outline {
-  padding-left: 25px;
-  padding-right: 25px;
-  border: 2px solid #128a4a;
-  font-size: 12px;
-  font-weight: 600; }
-  .content-konsultasi .content-konsultasi-table .btn-reply-outline:hover {
-    color: #fff;
-    background-color: #128a4a; }
-  .content-konsultasi .content-konsultasi-table .btn-reply-outline:active {
-    color: #128a4a; }
 
 /* CONTENT ELIB */
 .content-elib .content-elib-main {
@@ -4181,6 +4168,21 @@ Create: Singgih Saputro */
 
 .btn-margin-btm {
   margin-bottom: 5px; }
+
+.btn-reply-outline {
+  padding-left: 25px;
+  padding-right: 25px;
+  border: 2px solid #128a4a;
+  font-size: 12px;
+  font-weight: 600; }
+  .btn-reply-outline:hover {
+    color: #fff;
+    background-color: #128a4a; }
+  .btn-reply-outline:active {
+    color: #128a4a; }
+
+.margin-card {
+  margin-top: 40px; }
 
 .sidebar-header {
   padding: 10px !important;

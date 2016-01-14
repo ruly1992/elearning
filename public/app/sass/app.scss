@@ -1513,7 +1513,7 @@ header {
 	}
 	.content-konsultasi-table {
 		.konsultasi-content {
-			margin-bottom: $margin-bottom + 10px;
+			margin-bottom: $margin-bottom + 20px;
 			.title {
 				margin: $margin + 2px;
 				h3 {
@@ -1618,23 +1618,6 @@ header {
 						font-weight: 600;
 					}
 				}	
-			}
-		}
-		.custom-card {
-			margin-top: $margin-top + 35px;
-		}
-		.btn-reply-outline {
-			padding-left: $padding-left + 20px;
-			padding-right: $padding-right + 20px;
-			border: 2px solid $green-black;
-			font-size: 12px;
-			font-weight: 600;
-			&:hover {
-				color: $white;
-				background-color: $green-black;
-			}
-			&:active {
-				color: $green-black;
 			}
 		}
 	}
@@ -4993,6 +4976,24 @@ Create: Singgih Saputro */
 
 .btn-margin-btm {
 	margin-bottom: $margin-bottom;
+}
+.btn-reply-outline {
+	padding-left: $padding-left + 20px;
+	padding-right: $padding-right + 20px;
+	border: 2px solid $green-black;
+	font-size: 12px;
+	font-weight: 600;
+	&:hover {
+		color: $white;
+		background-color: $green-black;
+	}
+	&:active {
+		color: $green-black;
+	}
+}
+
+.margin-card {
+	margin-top: $margin-top + 35px;
 }
 
 .sidebar-header {
