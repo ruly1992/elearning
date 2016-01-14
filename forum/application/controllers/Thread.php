@@ -33,8 +33,8 @@ class Thread extends CI_Controller
             $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['tenagaAhli'] = $user->id;
-            $data['threadSide']     = $this->model_thread->get_all_threads();
-            $threads            = collect($this->model_thread->get_all_threads());
+            $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
+            $threads            = collect($this->model_thread->get_all_threads($user->id));
         }else{
             $daerahUser         = $user->profile->desa_id;
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser);
@@ -69,9 +69,11 @@ class Thread extends CI_Controller
             $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['tenagaAhli'] = $user->id;
+            $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
             $threads            = collect($this->model_thread->get_threads_category($idCategory));
         }else{
             $daerahUser         = $user->profile->desa_id;
+            $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser);
             $threads            = collect($this->model_thread->get_threads_category_by_user($idCategory, $daerahUser));
         }
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
@@ -80,7 +82,6 @@ class Thread extends CI_Controller
         $data['categoriesHead'] = $getCategory;
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['topics']         = $this->model_topic->get_approved_topics();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
@@ -104,14 +105,16 @@ class Thread extends CI_Controller
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['categories'] = $this->model_thread->get_categories_by_ta($user->id);
+            $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
         }else{
+            $daerahUser         = $user->profile->desa_id;
+            $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser);
             $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         }
 
         $data['idUser']         = $user->id;
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $role                   = sentinel()->findRoleBySlug('lnr');
         $data['users']          = $role->users;
@@ -207,10 +210,13 @@ class Thread extends CI_Controller
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+            $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
+        }else{
+            $daerahUser         = $user->profile->desa_id;
+            $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser);
         }
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['reply']          = $this->model_thread->get_reply($id);
         $data['countReply']     = count($data['reply']);

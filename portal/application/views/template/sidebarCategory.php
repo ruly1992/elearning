@@ -90,8 +90,8 @@
             <h3>LATEST KOMENTAR</h3>
         </div>
         <div class="widget-content">
+            <?php foreach (Model\Portal\Comment::latest('date')->get() as $comment): ?>
             <div class="row">
-                <?php foreach (Model\Portal\Comment::latest('date')->get() as $comment): ?>
                 <div class="box-komentar-widget">
                     <div class="col-sm-3 col-xs-4">
                         <div class="box-komentar-widget-img">
@@ -107,8 +107,8 @@
                         </div>
                     </div>
                 </div>
-                <?php endforeach ?>
             </div>
+            <?php endforeach ?>
         </div>
     </div>
 </div>

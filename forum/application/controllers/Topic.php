@@ -53,7 +53,7 @@ class Topic extends CI_Controller
 
         $user                   = sentinel()->getUser();
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['tenagaAhli']     = $user->id;
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
@@ -83,7 +83,7 @@ class Topic extends CI_Controller
         $user                   = sentinel()->getUser();
         $data['sideTopics']     = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['categories']     = $this->model_topic->get_categories();
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
@@ -184,7 +184,7 @@ class Topic extends CI_Controller
         $user                   = sentinel()->getUser();
         $data['sideTopics']     = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
+        $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['categories']     = $this->model_topic->get_categories();
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
