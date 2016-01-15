@@ -142,6 +142,7 @@
                                             </p>
                                         </div>
                                         <div class="card-footer">
+                                            <!-- Edit Reply -->
                                             <?php 
                                                 $userId = sentinel()->getUser()->id;
                                                 if ($userId == $data->id_user): 
