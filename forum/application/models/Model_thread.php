@@ -92,17 +92,86 @@ class Model_thread extends CI_Model
         return $get->result();
     }
     
-    function get_all_threads()
+    function get_all_threads($id)
     {
-        $items = array('threads.*','categories.category_name');
-        $get   = $this->db->select($items)->from('threads')
-                ->join('categories','categories.id=threads.category')
-                ->join('topics', 'topics.id=threads.topic')
-                ->where(array('reply_to' => '0', 'threads.status' => '1', 'topics.status' => '1'))
-                ->order_by('threads.category', 'desc')
-                ->order_by('threads.id', 'desc')
-                ->get();
-        return $get->result();
+        $data = array('threads.*','categories.category_name');
+        $threadsByTACategory    = $this->getThreadsByTACategory($id, $data);
+        $threadsByTATopic       = $this->getThreadsByTATopic($id, $data);
+        $threadsByTAId          = $this->getThreadsByTAId($id, $data);
+
+        $allThreads             = array();
+        foreach($threadsByTACategory as $tbc){
+            if ( ! in_array($tbc, $allThreads)) {
+                $allThreads[] = $tbc;
+            }
+        }
+        foreach ($threadsByTATopic as $tbt) {
+            if ( ! in_array($tbt, $allThreads)) {
+                $allThreads[] = $tbt;
+            }
+        }
+        foreach ($threadsByTAId as $tbi) {
+            if ( ! in_array($tbi, $allThreads)) {
+                $allThreads[] = $tbi;
+            }
+        }
+        
+        return $allThreads;
+    }
+
+    private function getThreadsByTACategory($id, $data)
+    {
+        $result   = $this->db->select($data)->from('threads')
+                            ->join('categories', 'categories.id=threads.category')
+                            ->join('category_user', 'category_user.category_id=categories.id')
+                            ->join('topics', 'topics.id=threads.topic')
+                            ->where(array(
+                                'user_id'               => $id,
+                                'reply_to'              => '0', 
+                                'threads.status'        => '1', 
+                                'topics.status'         => '1'
+                            ))
+                            ->order_by('threads.category', 'desc')
+                            ->order_by('threads.id', 'desc')
+                            ->get()
+                            ->result();
+        return $result;
+    }
+
+    private function getThreadsByTATopic($id, $data)
+    {
+        $result     = $this->db->select($data)->from('threads')
+                            ->join('categories', 'categories.id=threads.category')
+                            ->join('topics', 'topics.id=threads.topic')
+                            ->where(array(
+                                'tenaga_ahli'           => $id,
+                                'reply_to'              => '0', 
+                                'threads.status'        => '1', 
+                                'topics.status'         => '1'
+                            ))
+                            ->order_by('threads.category', 'desc')
+                            ->order_by('threads.id', 'desc')
+                            ->get()
+                            ->result();
+        return $result;
+    }
+
+    private function getThreadsByTAId($id, $data)
+    {
+        $result     = $this->db->select($data)->from('threads')
+                            ->join('categories', 'categories.id=threads.category')
+                            ->join('topics', 'topics.id=threads.topic')
+                            ->where(array(
+                                'author'           => $id,
+                                'reply_to'         => '0', 
+                                'threads.status'   => '1', 
+                                'topics.status'    => '1'
+                            ))
+                            ->order_by('threads.category', 'desc')
+                            ->order_by('threads.id', 'desc')
+                            ->get()
+                            ->result();
+        return $result;
     }
 
     function get_threads_by_user($daerahUser)
@@ -127,8 +196,15 @@ class Model_thread extends CI_Model
     }
 
     function get_close_threads($id){
-        $get    = $this->db->get_where('thread_members', array('user_id' => $id));
-        return $get->result();
+        $get    = $this->db->select(array('threads.id', 'category'))
+                                    ->from('threads')
+                                    ->join('thread_members', 'thread_members.thread_id=threads.id')
+                                    ->where(array('author' => $id, 'type' => 'close', 'reply_to' => '0'))
+                                    ->or_where('thread_members.user_id', $id)
+                                    ->group_by('threads.id')
+                                    ->get()
+                                    ->result();
+        return $get;
     }
 
     function get_all_drafts($id)
@@ -180,18 +256,24 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_threads_category($idCategory)
+    function get_threads_category($idTA, $idCategory)
     {
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
-                ->join('categories','categories.id=threads.category')
-                ->where(array('reply_to' => '0', 'threads.status' => '1', 'threads.category' => $idCategory))
+                ->join('categories', 'categories.id=threads.category')
+                ->join('topics', 'topics.id=threads.topic')
+                ->where(array(
+                    'reply_to' => '0', 
+                    'threads.status' => '1', 
+                    'threads.category' => $idCategory,
+                    'topics.tenaga_ahli' => $idTA
+                ))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();
     }
 
-    function get_threads_category_by_user($idCategory, $daerah)
+    function get_threads_category_by_user($idCategory, $daerahUser)
     {
         $d          = explode('.', $daerahUser);
         $desa       = $daerahUser;

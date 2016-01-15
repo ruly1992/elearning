@@ -79,7 +79,7 @@
     </script>
 
     <script src="<?php echo asset('node_modules/jquery/dist/jquery.min.js') ?>"></script>   
-    <script src="<?php echo asset('node_modules/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+    <script src="<?php echo asset('plugins/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>
     <script src="<?php echo asset('node_modules/moment/moment.js') ?>"></script>
     <script src="<?php echo asset('node_modules/select2/dist/js/select2.min.js') ?>"></script>

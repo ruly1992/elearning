@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label for="">Kategori</label><br>
-                                <select class="c-select" name="id_konsultasi_kategori">
+                                <select class="form-control" name="id_konsultasi_kategori">
                                     <?php 
                                         foreach ($categories as $row) {
                                     ?>
@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <label for="">Prioritas</label><br>
-                                <select class="c-select" name="prioritas">
+                                <select class="form-control" name="prioritas">
                                     <option value="High" selected>High</option>
                                     <option value="Medium">Medium</option>
                                     <option value="Low">Low</option>

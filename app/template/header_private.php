@@ -8,7 +8,7 @@
 
         <!-- start:stylesheet -->
         <link rel="stylesheet" href="<?php echo asset('admin/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css') ?>">
-        <link rel="stylesheet" href="<?php echo asset('node_modules/bootstrap/dist/css/bootstrap.min.css') ?>">
+        <link rel="stylesheet" href="<?php echo asset('plugins/bootstrap/dist/css/bootstrap.min.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/font-awesome/css/font-awesome.min.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/select2/dist/css/select2.min.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/tether/dist/css/tether.min.css') ?>">
@@ -62,11 +62,11 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="header-top-right">
-                                <form action="<?php echo home_url('search') ?>" method="GET">
+                                <form action="<?php echo dashboard_url('search') ?>" method="GET">
                                     <div class="input-group">
-                                        <input name="term" class="form-control form-control-sm" placeholder="Search for..." type="text">
+                                        <input name="term" class="form-control form-control-sm" value="<?php echo isset($_GET['term']) ? $_GET['term'] : '' ?>" placeholder="Search for..." type="text">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-sm btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                                            <button class="btn btn-sm btn-secondary" type="submit"><i class="fa fa-search"></i></button>
                                         </span>
                                     </div>
                                 </form>

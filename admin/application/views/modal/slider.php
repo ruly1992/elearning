@@ -8,7 +8,7 @@
                 <h4 class="modal-title" id="myLargeModalLabel">Slider</h4>
             </div>
             <div class="modal-body">
-                <cropit-cropper name="slider" :width="632" :height="334"></cropit-cropper>
+                <cropit-cropper name="slider" :width="644" :height="336"></cropit-cropper>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" v-on:click="cancel('featured')">Cancel</button>

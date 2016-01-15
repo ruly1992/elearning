@@ -59,6 +59,7 @@ class Media
     public function getCategoryByUser($user_id, $perPage = 15, $orderBy = 'created_at', $orderMode = 'desc')
     {
         $categories = $this->category->orderBy($orderBy, $orderMode)
+                                    ->select('categories.*')
                                     ->join('category_user', 'categories.id', '=', 'category_user.category_id')
                                     ->where('category_user.user_id', $user_id);
 
@@ -356,7 +357,7 @@ class Media
 
     public function search($term, $by_category = 0)
     {
-        $results = $this->media->where('file_name', 'like', '%' . $term . '%');
+        $results = $this->media->where('title', 'like', '%' . $term . '%');
 
         // Search by Category
         if ($by_category) {

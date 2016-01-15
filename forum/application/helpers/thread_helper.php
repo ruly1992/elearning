@@ -69,7 +69,7 @@
 					$sum_threads += 1;
 				}else{
 					foreach($closeThreads as $cls){
-						if($t->id == $cls->thread_id AND $t->category == $idCategory){
+						if($t->id == $cls->id AND $t->category == $idCategory){
 							$sum_threads += 1;
 						}
 					}

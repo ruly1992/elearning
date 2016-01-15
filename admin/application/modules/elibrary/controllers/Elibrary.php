@@ -98,7 +98,7 @@ class Elibrary extends Admin
         }
     }
 
-    public function update($media_id)
+    public function update($media_id, $status = NULL)
     {
         $media      = $this->medialib->getMedia();
         $mediaLib   = new Library\Media\Media;
@@ -106,6 +106,8 @@ class Elibrary extends Admin
 
         $request    = Request::createFromGlobals();
         $metadata   = $request->request->get('meta');
+        $status     = 'publish';
+
 
         foreach ($metadata as $key => $value) {
             if ($key == 'title') {
@@ -118,13 +120,14 @@ class Elibrary extends Admin
 
         $data = array(
             'title'         => $title,
-            'description'   => $description
+            'description'   => $description,
+            'status'        => $status
         );
 
         $this->media_model->update($media->id, $data);
         $mediaLib->setMetadata($media->id, $metadata);
 
-        set_message_success('Metadata berhasil diperbarui.');
+        set_message_success('Metadata berhasil diperbarui dan media telah dipublish.');
         
         redirect('elibrary/edit/' . $media->id, 'refresh');
     }

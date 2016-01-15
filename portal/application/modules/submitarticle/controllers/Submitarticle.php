@@ -63,9 +63,12 @@ class Submitarticle extends CI_Controller {
                 set_value('email'),
                 set_value('desa'),
                 set_value('categories[]'),
-                $this->input->post('featured[src]'),
+                null,
                 $this->input->post('customavatar[src]')
             );
+
+            if ($this->input->post('featured[src]'))
+                $article->setFeaturedImage($this->input->post('featured[src]'), $this->input->post('featured[description]'));
             
             set_message_success('Artikel Anda sudah diterima dan akan dilakukan moderasi terlebih dahulu.');
 

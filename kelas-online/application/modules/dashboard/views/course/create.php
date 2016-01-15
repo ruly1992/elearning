@@ -39,11 +39,11 @@
                         <h2><label class="hidden-xs-down">Images</label></h2>
                         <section>
                             <div class="card">
-                                <div class="card-block">
+                                <div class="card-block text-xs-center">
                                     <h4>Featured Image</h4>
                                     <cropit-preview name="featured" width="auto" height="145px" image-empty="<?php echo asset('images/kelas_online/thumbnails-lg.jpg') ?>"></cropit-preview>
-                                </div>
-                                <div class="card-block">
+                                </div><hr>
+                                <div class="card-block text-xs-center">
                                     <h4>Thumbnail</h4>
                                     <cropit-preview name="thumbnail" width="auto" height="90px" image-empty="<?php echo asset('images/kelas_online/thumbnails-md.jpg') ?>"></cropit-preview>
                                 </div>
@@ -84,8 +84,9 @@
                                                          <p>Attachment : <button class="btn btn-exam" data-toggle="modal" data-target=".add-content" v-on:click="addChapterAttachment($index)"><i class="fa fa-paperclip fa-sw"></i> Add Content</button></p>
                                                     </div>
                                                     <div class="card-block">
-                                                        <!-- Start: Table Attachment -->                                                   
-                                                            <table class="table table-striped table-responsive">
+                                                        <!-- Start: Table Attachment -->
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>No</th>
@@ -106,10 +107,11 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr v-show="attachments[$index].contents.length == 0">
-                                                                        <td colspan="4">Tidak ada attachment</td>
+                                                                        <td colspan="5" class="text-xs-center">Tidak ada attachment</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
+                                                        </div>
                                                         <!-- End: Table Attachment -->
                                                     </div>
                                                 </div>
@@ -120,8 +122,9 @@
                                                          <p>Quiz : <button class="btn btn-exam" data-toggle="modal" data-target=".add-question" v-on:click="addChapterQuiz($index)"><i class="fa fa-paperclip fa-sw"></i> Add Question</button></p>
                                                     </div>
                                                     <div class="card-block">
-                                                        <!-- Start: Table Queations -->                                                   
-                                                            <table class="table table-striped table-responsive">
+                                                        <!-- Start: Table Queations -->
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped">
                                                                 <thead>
                                                                     <tr>
                                                                       <th>No</th>
@@ -134,15 +137,16 @@
                                                                         <th scope="row">{{ $index+1 }}</th>
                                                                         <td>{{{ quiz.question }}}</td>
                                                                         <td>
-                                                                            <a class="btn btn-konsul btn-info" data-toggle="modal" data-target=".add-question" v-on:click="editChapterQuiz($index, $parent.$index)"><i class="fa fa-pencil-square-o"></i></a>
-                                                                            <a class="btn btn-konsul btn-danger" v-on:click="removeChapterQuiz($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
+                                                                            <a class="btn btn-konsul btn-info btn-margin-btm" data-toggle="modal" data-target=".add-question" v-on:click="editChapterQuiz($index, $parent.$index)"><i class="fa fa-pencil-square-o"></i></a>
+                                                                            <a class="btn btn-konsul btn-danger btn-margin-btm" v-on:click="removeChapterQuiz($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
                                                                         </td>
                                                                     </tr>
                                                                     <tr v-show="chapter.quiz.questions.length == 0">
-                                                                        <td colspan="3">Tidak ada quiz</td>
+                                                                        <td colspan="3" class="text-xs-center">Tidak ada quiz</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
+                                                        </div>
                                                         <!-- End: Table Questions -->
                                                     </div>
                                                 </div>
@@ -177,8 +181,9 @@
                                             <div class="input-group-addon">Menit</div>
                                         </div>
                                     </div>
-                                    <!-- Start: Table Queations -->                                                   
-                                        <table class="table table-striped table-responsive">
+                                    <!-- Start: Table Queations -->
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
                                             <thead>
                                                 <tr>
                                                   <th>No</th>
@@ -191,12 +196,13 @@
                                                     <th scope="row">{{ $index+1 }}</th>
                                                     <td>{{{ question.question }}}</td>
                                                     <td>
-                                                        <a class="btn btn-konsul btn-info" data-toggle="modal" data-target=".add-exam" title="Edit" v-on:click="editExamQuestion($index)"><i class="fa fa-pencil-square-o"></i></a>
-                                                        <a class="btn btn-konsul btn-danger" title="Delete" v-on:click="removeExamQuestion($index)"><i class="fa fa-trash-o"></i></a>
+                                                        <a class="btn btn-konsul btn-info btn-margin-btm" data-toggle="modal" data-target=".add-exam" title="Edit" v-on:click="editExamQuestion($index)"><i class="fa fa-pencil-square-o"></i></a>
+                                                        <a class="btn btn-konsul btn-danger btn-margin-btm" title="Delete" v-on:click="removeExamQuestion($index)"><i class="fa fa-trash-o"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
                                     <!-- End: Table Questions -->
                                 </div>
                             </div>

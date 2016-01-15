@@ -15,7 +15,7 @@
             <div class="row">
                 <?php if ($count = $drafts->count()): ?>
                     <div class="alert alert-warning" role="alert">
-                        <strong><?php echo $count ?> kelas</strong> masih di moderasi. <a href="<?php echo site_url('dashboard?status=draft') ?>" class="btn btn-sm btn-warning">Lihat</a>
+                        <strong><?php echo $count ?> kelas</strong> masih di moderasi. <a href="<?php echo site_url('dashboard?status=draft') ?>" class="btn btn-sm btn-warning">Lihat <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 <?php endif ?>
                 <div class="card">
