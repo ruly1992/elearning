@@ -178,7 +178,6 @@ thead {
     color: $white;
 }
 /* End Custom table */ 
-
 /* HEADER */
 
 header {
@@ -1458,19 +1457,32 @@ header {
 
 .content-konsultasi {
 	.content-konsultasi-title {
-		border-bottom: 1px solid $grey;
-		padding-bottom: $padding-bottom + 10px;
+		border-bottom: 2px solid $green-black;
 		margin-top: $margin-top + 20px;
 		margin-bottom: $margin-bottom + 20px;
 		h2 {
 			color: $green;
 			font-size: 20px;
-			margin-bottom: $margin-bottom - 5px;
+			margin-bottom: $margin-bottom + 5px;
 			small {
 				color: $aspalt-light;
 				font-size: 14px;
 				margin-left: $margin-left;
 			}
+		}
+		h3 {
+			color: #FFF;
+		    font-size: 12px;
+		    font-weight: 200;
+		    text-transform: uppercase;
+		    font-family: "open_sansbold",sans-serif;
+		    padding: 10px 15px 8px;
+		    margin-bottom: 0px;
+		    display: inline-block;
+		    border-bottom: 3px solid #1C9C57;
+		    background-color: #1C9C57;
+		    border-top-left-radius: 6px;
+		    border-top-right-radius: 6px;
 		}
 		.btn-create {
 			@include fonts('open_sansbold');
@@ -1515,40 +1527,43 @@ header {
 		.konsultasi-content {
 			margin-bottom: $margin-bottom + 20px;
 			.title {
-				margin: $margin + 2px;
+				margin-bottom: $margin-bottom + 10px;
+				border-bottom: 1px solid $grey-black;
 				h3 {
-					font-size: 12px;
+					font-size: 14px;
 					font-weight: 600;
-					border-bottom: 1px solid $grey;
-					padding: $padding + 3px;
+					padding-bottom: $padding-bottom + 3px;
+					padding-top: $padding-top + 3px;
+				}
+				p {
+					font-size: 14px;
 				}
 			}
 			.description {
-				margin: $margin + 2px;
+				margin-bottom: $margin-bottom + 10px;
+				border-bottom: 1px solid $grey-black;
 				h3 {
-					font-size: 12px;
+					font-size: 14px;
 					font-weight: 600;
-					border-bottom: 1px solid $grey;
-					padding: $padding + 3px;
-					line-height: 1.5;
+					padding-bottom: $padding-bottom + 3px;
+					padding-top: $padding-top;
 				}
 				p {
 					margin-bottom: $margin-bottom - 5px;
+					font-size: 14px;
 				}
 			}
-			.image {
-				margin: $margin + 2px;
+			.attachment {
+				margin-bottom: $margin-bottom + 10px;
+				border-bottom: 1px solid $grey-black;
 				h3 {
-					font-size: 12px;
+					font-size: 14px;
 					font-weight: 600;
-					border-bottom: 1px solid $grey;
-					padding: $padding + 3px;
+					padding-bottom: $padding-bottom + 3px;
+					padding-top: $padding-top + 3px;
 				}
 				a {
-					font-size: 12px;
-					font-weight: 600;
-					border-bottom: 1px solid $grey;
-					padding: $padding + 3px;
+					font-size: 14px;
 				}
 			}
 		}
@@ -2051,7 +2066,7 @@ header {
 		}
 	}
 	.content-articles {
-		margin-top: $margin-top - 5px;
+		margin-top: $margin-top + 20px;
 		margin-bottom: $margin-bottom + 35px;
 		.content-articles-heading {
 			display: block;
