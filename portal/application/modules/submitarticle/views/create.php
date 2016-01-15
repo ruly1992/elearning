@@ -74,6 +74,10 @@
 <cropit-result name="featured"></cropit-result>
 <cropit-result name="customavatar"></cropit-result>
 
+<?php custom_stylesheet() ?>
+    <link rel="stylesheet" href="<?php echo asset('stylesheets/cropit.css') ?>">
+<?php endcustom_stylesheet() ?>
+
 <?php custom_script() ?>
     <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>
     <script src="<?php echo asset('javascript/editor.js') ?>"></script>

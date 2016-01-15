@@ -357,7 +357,7 @@ class Media
 
     public function search($term, $by_category = 0)
     {
-        $results = $this->media->where('file_name', 'like', '%' . $term . '%');
+        $results = $this->media->where('title', 'like', '%' . $term . '%');
 
         // Search by Category
         if ($by_category) {

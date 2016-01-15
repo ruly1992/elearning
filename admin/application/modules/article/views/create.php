@@ -83,7 +83,7 @@
                 <h4 class="panel-title">Featured Image</h4>
             </div>
             <div class="panel-body">
-                <cropit-preview name="featured" width="275px" height="140px"></cropit-preview>
+                <cropit-preview name="featured" width="275px" height="140px" :show-description="true"></cropit-preview>
             </div>
         </div>
     </div>
