@@ -256,12 +256,18 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_threads_category($idCategory)
+    function get_threads_category($idTA, $idCategory)
     {
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
-                ->join('categories','categories.id=threads.category')
-                ->where(array('reply_to' => '0', 'threads.status' => '1', 'threads.category' => $idCategory))
+                ->join('categories', 'categories.id=threads.category')
+                ->join('topics', 'topics.id=threads.topic')
+                ->where(array(
+                    'reply_to' => '0', 
+                    'threads.status' => '1', 
+                    'threads.category' => $idCategory,
+                    'topics.tenaga_ahli' => $idTA
+                ))
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();

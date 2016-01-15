@@ -110,8 +110,7 @@ class Media extends Model
                     'text/csv', 
                     'application/csv', 
                     'application/excel', 
-                    'application/vnd.msexcel', 
-                    'text/plain'
+                    'application/vnd.msexcel'
                 );
         return $types;
     }
@@ -173,6 +172,8 @@ class Media extends Model
             return 'DOC';
         } elseif (in_array($this->file_type, $this->compressedType())){
             return 'Compressed';
+        } elseif($this->file_type == 'text/plain'){
+            return 'Text File';
         } else {
             return 'Unknown';
         }
@@ -227,6 +228,10 @@ class Media extends Model
 
             case 'Compressed':
                 return 'file-zip-o';
+                break;
+
+            case 'Text File':
+                return 'file-text';
                 break;
 
             default:

@@ -144,6 +144,16 @@ class M_konsultasi extends CI_Model {
         $this->db->update('reply', $attachment);
     }
 
+    public function deleteReply($idReply)
+    {
+        $delete = $this->db->delete('reply', array('id'=>$idReply));
+        if ($this->db->affected_rows() == '1') {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
     public function getReply($id)
     {
         $data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment', 'rp.created_at', 'rp.id');
