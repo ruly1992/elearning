@@ -102,10 +102,10 @@
             <h3>Komentar Terkini</h3>
         </div>
         <div class="widget-content">
-            <div class="row">
-                <?php $comments = Model\Portal\Comment::latest('date')->get() ?>
-                <?php if ($comments->count()): ?>
-                    <?php foreach ($comments as $comment): ?>
+            <?php $comments = Model\Portal\Comment::latest('date')->get() ?>
+            <?php if ($comments->count()): ?>
+                <?php foreach ($comments as $comment): ?>
+                <div class="row">
                     <div class="box-komentar-widget">
                         <div class="col-sm-3 col-xs-4">
                             <div class="box-komentar-widget-img">
@@ -121,15 +121,17 @@
                             </div>
                         </div>
                     </div>
-                    <?php endforeach ?>
-                <?php else: ?>
+                </div>
+                <?php endforeach ?>
+            <?php else: ?>
+                <div class="row">
                     <div class="box-komentar-widget">
                         <div class="col-sm-12">
                             <p class="alert alert-warning">Tidak ada komentar yang ditampilkan.</p>
                         </div>
                     </div>
-                <?php endif ?>
-            </div>
+                </div>
+            <?php endif ?>
         </div>
     </div>
     
