@@ -37,20 +37,19 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Pilih Topic :</label>
-                                                <select class="c-select form-control" id="topic" required name="topic">
-                                                    <option value=""></option>
+                                                <select class="c-select form-control" id="selectTopic" required name="topic">
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Pilih Type Thread :</label>
                                                 <div>
                                                     <label class="c-input c-radio">
-                                                        <input id="radio1" name="type" value="close" type="radio" onclick="private()">
+                                                        <input id="radio1" class="close" name="type" value="close" type="radio" onclick="private()">
                                                         <span class="c-indicator"></span>
                                                         Close
                                                     </label>
                                                     <label class="c-input c-radio">
-                                                        <input id="radio1" name="type" value="public" checked type="radio" onclick="public()">
+                                                        <input id="radio1" class="private" name="type" value="public" checked type="radio" onclick="public()">
                                                         <span class="c-indicator"></span>
                                                         Public
                                                     </label>
@@ -59,7 +58,7 @@
                                             <div class="form-group collapse" id="addPrivate">
                                                 <label>Pilih anggota</label>
                                                 <select id="addMember" data-placeholder="Pilih anggota ..." class="form-control chosen-select" multiple name="member[]" tabindex="4">
-                                                    <?php usersOption($users) ?>
+ 
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -71,7 +70,7 @@
                                                 <textarea name="message" id="" cols="30" rows="10" required class="form-control" placeholder="type your message"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary" onclick="validate()">Create New Thread</button>
+                                                <button type="submit" class="btn btn-primary" >Create New Thread</button>
                                                 <?php echo anchor('thread/', 'Cancel', 'class="btn btn-secondary"') ?>
                                             </div>
                                         <?php echo form_close(); ?>
@@ -116,32 +115,77 @@
                         url: "<?php echo site_url('/thread/get_topics'); ?>",
                         data :"idCategory="+category_id,
                         success: function( data ) {
-                            $( '#topic' ).html(data);
+                            $( '#selectTopic' ).html(data);
+                            $('#addMember').empty();
+                            $('.search-choice').empty();
+                            $("#addMember").trigger("chosen:updated");
                         }
                     }); 
                 } else {
-                    $('#topic').empty();
+                    $('#selectTopic').empty();
+                    $('#addMember').empty();
+                    $("#addMember").trigger("chosen:updated");
                 }
             }); 
+
+            $('#selectTopic').change(function(){
+                var idTopic     = document.getElementById("selectTopic").value;
+                    if (idTopic != ""){
+                        $.ajax({
+                            type: "POST",
+                            url: "<?php echo site_url('/thread/getUserByTopic'); ?>",
+                            data :"idTopic="+idTopic,
+                            success: function( data ) {
+                                $('.search-choice').empty();
+                                $( '#addMember' ).html(data);
+                                $("#addMember").trigger("chosen:updated");
+                            }
+                        }); 
+                    }else{
+                        $('#addMember').empty();
+                        $("#addMember").trigger("chosen:updated");
+                    } 
+            });
         });
     </script>
     <script type="text/javascript">
         function private(){
-            $('#addPrivate').collapse('show');
-            $('.chosen-select').chosen();
-            $('#addMember').attr('required', true);
-            $('#addMember').on('change invalid', function() {
-                var select = $(this).get(0);
-                select.setCustomValidity('');
-                
-                if (!select.validity.valid) {
-                    select.setCustomValidity('Daftar anggota tidak boleh kosong');  
+            var idTopic     = document.getElementById("selectTopic").value;
+            var type        = document.getElementById("radio1").value;
+                if (idTopic != "" && type == 'close'){
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo site_url('/thread/getUserByTopic'); ?>",
+                        data :"idTopic="+idTopic,
+                        success: function( data ) {
+                            $('#addPrivate').collapse('show');
+                            $( '#addMember' ).html(data);
+                            $('.chosen-select').chosen();
+                            $("#addMember").trigger("chosen:updated");
+
+                            $('#addMember').attr('required', true);
+                            $('#addMember').on('change invalid', function() {
+                                var select = $(this).get(0);
+                                select.setCustomValidity('');
+                                
+                                if (!select.validity.valid) {
+                                    select.setCustomValidity('Daftar anggota tidak boleh kosong');  
+                                }
+                            });
+                        }
+                    }); 
+                } else {
+                    $('#addPrivate').collapse('hide');
+                    $('.close').removeProp('checked');
+                    $('.private').prop('checked', true);
+                    alert("Anda harus memilih topic terlebih dahulu!");
                 }
-            });
         }
 
         function public(){
             $('#addPrivate').collapse('hide');
+            $('#addMember').empty();
+            $("#addMember").trigger("chosen:updated");
             $('#addMember').removeAttr('required');
         }
     </script>
