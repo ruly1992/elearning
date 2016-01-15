@@ -33,7 +33,7 @@
             <section id="popular-course">
                 <div class="popular-course-title">
                     <div class="text-xs-center">
-                        <h3><span class="label label-info"><i class="fa fa-info-circle"></i> POPULAR KELAS</span></h3>
+                        <h3><span class="label label-info"><i class="fa fa-info-circle"></i> KELAS TERPOPULER</span></h3>
                     </div>
                 </div><br>
                 <div class="row">

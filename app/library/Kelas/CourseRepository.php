@@ -68,6 +68,41 @@ class CourseRepository
         return $category->courses;
     }
 
+    public function all()
+    {
+        return $this->getByStatus('all');
+    }
+
+    public function allExcept($id, $status = 'all')
+    {
+        $courses    = $this->getByStatus($status);
+        $courses    = $courses->reject(function ($course) use ($id) {
+            return $course->id == $id;
+        });
+
+        return $courses;
+    }
+
+    public function getOnlyPublish()
+    {
+        return $this->getByStatus('publish');
+    }
+
+    public function getOnlyDraft()
+    {
+        return $this->getByStatus('draft');
+    }
+
+    public function getByStatus($status = 'publish')
+    {
+        $course     = $this->model->newQueryWithoutScopes();
+
+        if ($status !== 'all')
+            $course->where('status', $status);
+
+        return $course->latest()->get();
+    }
+
     public function setUser($user)
     {
         if ($user instanceof User)

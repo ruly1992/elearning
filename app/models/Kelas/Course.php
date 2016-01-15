@@ -142,7 +142,7 @@ class Course extends Model
         $prefix         = 'COURSE';
 
         $user_id        = $this->instructor->id;
-        $category_id    = $this->category->id;
+        $category_id    = $this->category_id;
 
         $suffix         = str_pad($i, 3, '0', STR_PAD_LEFT);
         $generated      = $prefix.'.'.$user_id.'.'.$category_id.'.'.$suffix;
