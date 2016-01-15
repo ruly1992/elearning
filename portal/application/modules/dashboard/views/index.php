@@ -37,7 +37,7 @@
                                             <textarea name="content" class="editor"></textarea>
                                         </fieldset>
                                         <fieldset class="form-group hidden-sm-up">
-                                             <input type="file" name="filemedia[]" id="filer_input_img" multiple="multiple">
+                                             <input type="file" name="filemedia" id="filer_input_img">
                                         </fieldset>
                                         <fieldset class="form-group hidden-sm-up">
                                             <label for="">Keterangan gambar</label>
@@ -62,12 +62,8 @@
                                                 <h3>Gambar Fitur</h3>
                                             </div>
                                             <div class="widget-sidebar-content">
-                                                <cropit-preview name="featured"></cropit-preview>
+                                                <cropit-preview name="featured" :show-description="true"></cropit-preview>
                                                 <cropit-result name="featured"></cropit-result>
-                                                <fieldset class="form-group">
-                                                    <label for="">Keterangan Gambar</label>
-                                                    <input type="text" name="caption-img" class="form-control">
-                                                </fieldset>
                                             </div>
                                         </div>
                                     </div>
@@ -103,7 +99,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Kategori</label><br>
-                                            <select class="c-select form-control" name="id_konsultasi_kategori">
+                                            <select class="form-control" name="id_konsultasi_kategori">
                                                 <?php 
                                                     foreach ($konsultasiCat as $row) {
                                                 ?>
@@ -113,7 +109,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Prioritas</label><br>
-                                            <select class="c-select form-control" name="prioritas">
+                                            <select class="form-control" name="prioritas">
                                                 <option value="High" selected>High</option>
                                                 <option value="Medium">Medium</option>
                                                 <option value="Low">Low</option>

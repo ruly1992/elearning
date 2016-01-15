@@ -1,3 +1,26 @@
+.cropit-wrapper .image-preview {
+    margin-bottom: 10px;
+}
+
+.cropit-wrapper .center {
+    text-align: center;
+}
+
+.cropit-cropper .slider-wrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.cropit-cropper .cropit-image-preview {
+    margin: 0 auto;
+}
+
+.cropit-cropper input[type=range] {
+    margin: 0 auto;
+    width: 230px;
+}
+
 .cropit-image-preview.cropit-image-loading .spinner {
   opacity: 1;
 }

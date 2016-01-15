@@ -6,7 +6,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Portal - <?php echo config('site_title', 'Desa Membangun') ?></title>
         <!-- start:stylesheet -->
-        <link rel="stylesheet" href="<?php echo asset('node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>">
+        <link rel="stylesheet" href="<?php echo asset('plugins/bootstrap/dist/css/bootstrap.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/font-awesome/css/font-awesome.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/tether/dist/css/tether.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo asset('stylesheets/scrolling-nav.css'); ?>">

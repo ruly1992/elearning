@@ -8,7 +8,7 @@
 
         <!-- start:stylesheet -->
         <link rel="stylesheet" href="<?php echo asset('admin/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css') ?>">
-        <link rel="stylesheet" href="<?php echo asset('node_modules/bootstrap/dist/css/bootstrap.min.css') ?>">
+        <link rel="stylesheet" href="<?php echo asset('plugins/bootstrap/dist/css/bootstrap.min.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/font-awesome/css/font-awesome.min.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/select2/dist/css/select2.min.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/tether/dist/css/tether.min.css') ?>">
