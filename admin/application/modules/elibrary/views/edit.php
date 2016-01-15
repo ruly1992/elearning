@@ -14,14 +14,12 @@
 	</div>
 	<div class="panel-body">
 	   	<div class="row">
-	   		<div class="col-md-4">
+	   		<div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="description-meta-left">
-                    <div class="text-center">
-                        <div class="preview-media" style="width:100%; height:auto;">
+                    <div style="text-align:center;" class="img-thumbnail">
+                        <div class="preview-media" style="width:100%; height:auto; border-radius:10px;">
                             <?php echo $media->getPreview(200, 200) ?>
                         </div>
-                        <br>
-                        <br>
                         <span><?php echo $media->icon ?> <?php echo $media->type ?></span>
                     </div>
                     <div class="description-meta-button">
@@ -57,7 +55,7 @@
                         </tr>
                         <tr v-for="meta in metadata">
                             <td>{{ meta.key }}</td>
-                            <td><input type="text" name="meta[{{ meta.key }}]" value="{{ meta.value }}" class="form-control"></td>
+                            <td><input type="text" name="meta[{{ meta.key.split(' ').join('_')  }}]" value="{{ meta.value }}" class="form-control"></td>
                             <td><a href="#" onclick="return false" class="btn btn-danger btn-sm" v-on:click="removeMeta($index)"><i class="fa fa-trash-o"></i></a></td>
                         </tr>
                     </tbody>
@@ -120,5 +118,5 @@
         $('#myModal-1').on('hidden.bs.modal', function (e) {
             $('#modal-content video').get(0).pause();
         });
-    </script>
+    // </script>
 <?php endcustom_script() ?>
