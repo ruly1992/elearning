@@ -70,7 +70,7 @@ class Thread extends CI_Controller
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['tenagaAhli'] = $user->id;
             $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
-            $threads            = collect($this->model_thread->get_threads_category($idCategory));
+            $threads            = collect($this->model_thread->get_threads_category($user->id, $idCategory));
         }else{
             $daerahUser         = $user->profile->desa_id;
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser);
@@ -397,6 +397,7 @@ class Thread extends CI_Controller
         }
 
         $topics = null;
+        $topics = '<option value="">- Pilih Topic -</option>';
         if(!empty($getTopics)){
             foreach($allTopics as $top){
                 $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
@@ -405,6 +406,19 @@ class Thread extends CI_Controller
             $topics     = '<option value="">- Topic belum tersedia -</option>';
         }
         echo $topics;
+    }
+
+    public function getUserByTopic()
+    {
+        $idTopic    = $this->input->post('idTopic');
+        $getTopic   = $this->model_topic->selectTopic($idTopic);
+        foreach($getTopic as $t){
+            $daerah     = $t->daerah;
+        }
+        // $role       = sentinel()->findRoleByDesa_id($daerah);
+        // $users      = $role->users;
+        // usersOption($users);
+        echo '<option>'.$daerah.'</option>';
     }
 
     public function checkTA()
