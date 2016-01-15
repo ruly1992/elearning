@@ -123,9 +123,11 @@ body {
 	border: 1px solid #CCC;
 	border-radius: 0.25rem;
 	@include fonts('open_sansregular');
+	&:active, 
 	&:focus {
 		outline: 0px none;
-		border-color: $green-black;
+		border: 1px solid $green-black;
+		@include transition(0.3s);
 	}
 }
 /* Begin : CUstom table */ 
@@ -178,6 +180,7 @@ thead {
     color: $white;
 }
 /* End Custom table */ 
+
 /* HEADER */
 
 header {
@@ -4976,7 +4979,7 @@ Create: Singgih Saputro */
 
 .btn-editadmin,
 .btn-delete {
-	font-size: 10px;
+	font-size: 12px;
 	border: medium none;
 	padding: 3px 6px;
 	text-shadow: none;
