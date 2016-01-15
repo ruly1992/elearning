@@ -18,7 +18,7 @@
     <div class="single-article-meta">
         <?php if ($article->hasFeaturedImage()): ?>
             <div class="photo">
-                <em><?php echo $article->title ?></em>
+                <em><?php echo $article->featured_description ?></em>
             </div>
         <?php endif ?>
         <ul>
