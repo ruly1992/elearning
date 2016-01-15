@@ -152,7 +152,7 @@
                                                         Edit Reply
                                                     </div>
                                                     <div class="card-block">
-                                                        <form method="POST" action="<?php echo site_url('konsultasi/updateReply/'.$data->id . '/' . $konsultasi->id) ?>">
+                                                        <form method="POST" action="<?php echo site_url('konsultasi/updateReply/'.$data->id . '/' . $konsultasi->id) ?>" enctype="multipart/form-data">
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
@@ -165,17 +165,17 @@
                                                                 <div class="row">
                                                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                                                         <label for="">Attachments</label>
-                                                                        <?php if (!empty($konsultasi->attachment)): ?>
+                                                                        <?php if (!empty($data->attachment)): ?>
                                                                             <div class="alert alert-success" role="alert">
-                                                                                <?php echo $konsultasi->attachment ?>
-                                                                                <?php echo anchor('konsultasi/deleteAttachment/'. $konsultasi->id . '/' . $konsultasi->attachment, '<i class="fa fa-trash-o"></i>', 'class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
+                                                                                <?php echo $data->attachment ?>
+                                                                                <?php echo anchor('konsultasi/deleteAttachmentReply/'. $data->id . '/' . $data->attachment . '/' . $konsultasi->id, '<i class="fa fa-trash-o"></i>', 'class="btn btn-danger-outline btn-thread" data-toggle="tooltip" data-placement="top" title="Delete"'); ?>
                                                                             </div>
                                                                         <?php else: ?>
                                                                             <div class="alert alert-success" role="alert">
                                                                                 <?php echo "Tidak ada Attachments" ?>
                                                                             </div>
                                                                         <?php endif ?>
-                                                                        <input type="file" name="files" id="filer_konsultasi" idkonsultasi="<?php echo $konsultasi->id ?>">
+                                                                        <input type="file" name="reply" id="filer_konsultasi_reply">
                                                                         <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt | Max Size Upload : 10MB) </small>
                                                                     </div>
                                                                 </div>
