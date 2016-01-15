@@ -12,7 +12,8 @@ $(document).ready(function () {
                     window.location.replace(response.redirect)
                 },
                 error: function (response) {
-                    alert('Beberapa form mungkin belum diisi dengan benar.');
+                    alert('Terjadi kesalahan dalam memproses data.');
+                    document.write(response.responseText);
                 }
             });
         }

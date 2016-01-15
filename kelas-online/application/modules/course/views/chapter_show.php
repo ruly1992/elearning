@@ -19,13 +19,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($chapter->attachments as $attachment): ?>
+                                <?php $numb = 1; foreach ($chapter->attachments as $attachment): ?>
                                     <tr>
-                                        <th scope="row">001</th>
+                                        <th scope="row"><?php echo str_pad($numb, 3, STR_PAD_LEFT) ?></th>
                                         <td><?php echo $attachment->filename ?></td>
                                         <td><?php echo $attachment->filesize ?></td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary" title="Download"><i class="fa fa-download"></i></a>
+                                            <a href="<?php echo $attachment->link_download ?>" target="_blank" class="btn btn-sm btn-primary" title="Download"><i class="fa fa-download"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

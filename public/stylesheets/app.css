@@ -3951,6 +3951,18 @@ a {
 .content-forum .content-main .chosen-container-active .chosen-choices {
   border: 1px solid #128a4a;
   box-shadow: none !important; }
+.content-forum .content-main .card-block blockquote {
+  position: relative;
+  background: #FFF6C7 none repeat scroll 0% 0%;
+  margin: 0.25em 0px;
+  border: 1px solid #CCC;
+  padding: 0.25em;
+  font-size: 14px; }
+  .content-forum .content-main .card-block blockquote p {
+    margin-bottom: 5px; }
+    .content-forum .content-main .card-block blockquote p cite {
+      margin-right: 5px;
+      font-weight: 600; }
 
 /* STEPY KELAS ONLINE */
 .content-chapter {

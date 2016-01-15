@@ -39,11 +39,11 @@
                         <h2><label class="hidden-xs-down">Images</label></h2>
                         <section>
                             <div class="card">
-                                <div class="card-block">
+                                <div class="card-block text-xs-center">
                                     <h4>Featured Image</h4>
                                     <cropit-preview name="featured" width="auto" height="145px" image-empty="<?php echo asset('images/kelas_online/thumbnails-lg.jpg') ?>"></cropit-preview>
-                                </div>
-                                <div class="card-block">
+                                </div><hr>
+                                <div class="card-block text-xs-center">
                                     <h4>Thumbnail</h4>
                                     <cropit-preview name="thumbnail" width="auto" height="90px" image-empty="<?php echo asset('images/kelas_online/thumbnails-md.jpg') ?>"></cropit-preview>
                                 </div>
@@ -107,7 +107,7 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr v-show="attachments[$index].contents.length == 0">
-                                                                        <td colspan="4">Tidak ada attachment</td>
+                                                                        <td colspan="5" class="text-xs-center">Tidak ada attachment</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -142,7 +142,7 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr v-show="chapter.quiz.questions.length == 0">
-                                                                        <td colspan="3">Tidak ada quiz</td>
+                                                                        <td colspan="3" class="text-xs-center">Tidak ada quiz</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
