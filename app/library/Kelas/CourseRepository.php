@@ -429,9 +429,9 @@ class CourseRepository
         return $this->model->hasFeatured();
     }
 
-    public function memberHasFinishedChapter(Chapter $chapter)
+    public function memberHasFinishedChapter(Chapter $chapter, $attempt = 1)
     {
-        return $chapter->memberHasFinished($this->user);
+        return $chapter->memberHasFinished($this->user, $attempt);
     }
 
     public function memberAllowChapter(Chapter $chapter)
@@ -527,6 +527,7 @@ class CourseRepository
             });
 
             $member->answers()->saveMany($answers);
+            $member->update(['submited' => true]);
 
             return $member->answers;
         }
