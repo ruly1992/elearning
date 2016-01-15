@@ -70,7 +70,7 @@
                             </tr>
                             <tr v-for="meta in metadata">
                                 <td>{{ meta.key }}</td>
-                                <td><input type="text" name="meta[{{ meta.key }}]" value="{{ meta.value }}" class="form-control"></td>
+                                <td><input type="text" name="meta[{{ meta.key.split(' ').join('_') }}]" value="{{ meta.value }}" class="form-control"></td>
                                 <td><a href="#" onclick="return false" class="btn btn-danger btn-sm" v-on:click="removeMeta($index)"><i class="fa fa-trash-o"></i></a></td>
                             </tr>
                         </tbody>
