@@ -56,6 +56,11 @@
         </div>
     <?php endif ?>
     <div class="single-article-meta">
+        <?php if ($article->hasFeaturedImage()): ?>
+            <div class="photo">
+                <em><?php echo $article->featured_description ?></em>
+            </div>
+        <?php endif ?>
         <ul>
             <li><i class="fa fa-calendar-check-o"></i> <?php echo $article->date->format('d F Y') ?></li>
             <li><i class="fa fa-folder-open-o"></i> <?php echo $article->categories->implode('name', ', ') ?></li>
