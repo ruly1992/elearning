@@ -199,7 +199,7 @@ class Media extends Admin
                     $cek = $this->media_model->cekMeta($id, $key, $value);
                     if($cek == FALSE){
                         $dataMeta = array(
-                            'key'       => $key,
+                            'key'       => str_replace("_", " ", $key),
                             'value'     => $value,
                             'media_id'  => $id
                         );
