@@ -122,6 +122,66 @@ thead {
   color: #fff; }
 
 /* End Custom table */
+/* Begin : Custom c-indicator bootstrap 4 update */
+.c-checkbox .c-indicator {
+  border-radius: .25rem; }
+
+.c-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  font-size: 65%;
+  line-height: 1rem;
+  color: #eee;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: 50% 50%;
+  background-size: 50% 50%; }
+
+.c-input {
+  position: relative;
+  display: inline;
+  padding-left: 1.5rem;
+  color: #555;
+  cursor: pointer; }
+
+.c-input > input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0; }
+
+.c-checkbox input:checked ~ .c-indicator {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA4IDgiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDggOCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTYuNCwxTDUuNywxLjdMMi45LDQuNUwyLjEsMy43TDEuNCwzTDAsNC40bDAuNywwLjdsMS41LDEuNWwwLjcsMC43bDAuNy0wLjdsMy41LTMuNWwwLjctMC43TDYuNCwxTDYuNCwxeiIvPjwvc3ZnPg==); }
+
+.c-input > input:checked ~ .c-indicator {
+  color: #fff;
+  background-color: #0074d9; }
+
+.c-select {
+  display: inline-block;
+  max-width: 100%;
+  -webkit-appearance: none;
+  padding: .375rem 1.75rem .375rem .75rem;
+  padding-right: .75rem\9;
+  color: #55595c;
+  vertical-align: middle;
+  background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC);
+  background-image: none\9;
+  -webkit-background-size: 8px 10px;
+  background-size: 8px 10px;
+  border: 1px solid #ccc;
+  -moz-appearance: none; }
+
+/* End Custom c-indocator*/
 /* HEADER */
 header {
   background-color: #dddddd;
@@ -1712,7 +1772,7 @@ header {
       .content .rails-news .btn-group .btn i.fa {
         color: #1c9c57; }
   .content .content-articles {
-    margin-top: 0px;
+    margin-top: 25px;
     margin-bottom: 40px; }
     .content .content-articles .content-articles-heading {
       display: block;
