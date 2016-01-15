@@ -77,4 +77,23 @@ class User extends SentinelUser
 
         return (bool) $roled->count();
     }
+
+    public function scopeGetByWilayah($query, $wilayah)
+    {
+        list($provinsi, $kota, $kecamatan, $desa) = explode('.', $wilayah);
+
+        if ($kota == '00') {
+            $where = $provinsi . '.';
+        } elseif ($kecamatan == '00') {
+            $where = $provinsi . '.' . $kota . '.';
+        } elseif ($desa == '0000') {
+            $where = $provinsi . '.' . $kota . '.' . $kecamatan;
+        } else {
+            $where = $wilayah;
+        }
+
+        return $query->whereHas('profile', function ($query) use ($where) {
+            return $query->where('desa_id', 'like', $where . '%');
+        })->with('profile')->get();
+    }
 }
