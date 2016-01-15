@@ -50,23 +50,29 @@ class Chapter extends Model
     	return !$this->quiz->questions->isEmpty();
     }
 
-    public function hasQuizMember(User $user)
+    public function hasQuizMember(User $user, $attempt = 1)
     {
-    	$position = $this->quiz->members->search(function ($member) use ($user) {
-    		return $member->user_id === $user->id;
+    	$member = $this->quiz->members->filter(function ($member) use ($user, $attempt) {
+    		return $member->attempt == $attempt && $member->user_id == $user->id;
     	});
 
-    	if ($position !== false) {
-            return true;
-        } else {
-            return false;
-        }
+    	if ($member->count())
+            return $member->first();
+        else
+            return null;
     }
 
-    public function memberHasFinished(User $user)
+    public function memberHasFinished(User $user, $attempt = 1)
     {
     	if ($this->hasQuiz()) {
-    		return $this->hasQuizMember($user);
+    		if ($member = $this->hasQuizMember($user, $attempt)) {
+                $quiz       = $member->quiz;
+                $answers    = $member->answers;
+
+                return (bool) $member->submited;
+            } else {
+                return false;
+            }
     	}
 
     	return true;
