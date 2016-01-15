@@ -148,8 +148,10 @@ class Media extends Model
                 'application/x-zip-compressed',
                 'application/zip',
                 'multipart/x-zip',
+                'application/x-rar-compressed',
+                'application/x-rar',
+                'multipart/x-rar',
                 'application/octet-stream',
-                'application/x-rar-compressed'
                 );
         return $types;
     }
@@ -356,7 +358,7 @@ class Media extends Model
         }
 
         else{
-            return '<center><i class="fa fa-' . $this->icon_name . '" style="font-size:200px;"></i><center>';
+            return '<iframe src="http://docs.google.com/gview?url='.$fileurl.'&embedded=true" style="width:'.$width.'px; height:'.$height.'px;" frameborder="0"></iframe>';
         }
     }
 
