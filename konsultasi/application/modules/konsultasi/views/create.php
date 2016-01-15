@@ -7,7 +7,7 @@
             <div class="content-konsultasi-title">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>Mulai Konsultasi</h2>
+                        <h3>Mulai Konsultasi</h3>
                     </div>
                 </div>
             </div>
