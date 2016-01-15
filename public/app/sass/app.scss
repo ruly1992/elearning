@@ -4707,6 +4707,23 @@ a {
 				box-shadow: none !important;
 			}
 		}
+		.card-block {
+			blockquote {
+				position: relative;
+				background: #FFF6C7 none repeat scroll 0% 0%;
+				margin: 0.25em 0px;
+				border: 1px solid #CCC;
+				padding: 0.25em;
+				font-size: 14px;
+				p {
+					margin-bottom: $margin-bottom;
+					cite {
+						margin-right: $margin-right;
+						font-weight: 600;
+					}
+				}
+			}
+		}
 	}
 }
 /* STEPY KELAS ONLINE */ 
