@@ -416,7 +416,7 @@ class Thread extends CI_Controller
             $daerah     = $t->daerah;
         }
         if($daerah != '00.00.00.0000'){
-            $users  = Model\User::getByWilayah('34.71.00.0000');
+            $users  = Model\User::getByWilayah($daerah);
         }else{
             $users = Model\User::all();
         }
