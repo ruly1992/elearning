@@ -285,6 +285,24 @@ class Konsultasi extends CI_Controller {
         }
     }
 
+    public function deleteReply($idReply, $id_konsultasi, $path)
+    {
+        $delete = $this->M_konsultasi->deleteReply($idReply);
+
+        if ($delete) {
+            $attachment = $this->deleteAttachmentReply($idReply, $path, $id_konsultasi);
+            
+            set_message_success('Reply berhasil dihapus.');
+
+        } else {
+            
+            set_message_error('Reply gagal dihapus.');
+        }
+
+        redirect('/konsultasi/detail/'. $id_konsultasi);
+
+    }
+
     public function search()
     {
         $search_term        = $this->input->get('search');
