@@ -27,7 +27,7 @@ class Category extends Admin
 			redirect('kelasonline/category','refresh');
 		} else {
 			$name		= set_value('name');
-			$category	= $this->kelas->createCategory($name);
+			$category	= $this->repository->createCategory($name);
 
 			set_message_success('Kategori berhasil ditambahkan');
 
