@@ -77,10 +77,9 @@
                         <?php if ($reply->count()): ?>
                             <?php foreach ($reply as $data) { ?>
                             <div class="card">    
-                                <div class="card-block">
+                                <div class="card-header">
                                     <p><strong>From : <?php echo user($data->id_user)->full_name ?></strong> <span class="pull-right"><?php echo $data->created_at ?></span></p>
                                 </div>
-                                <hr>
                                 <div class="card-block">
                                     <p class="card-text">
                                        <?php echo $data->isi ?>
