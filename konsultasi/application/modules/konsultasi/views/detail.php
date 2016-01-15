@@ -24,22 +24,47 @@
             <div class="content-konsultasi-title">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>Lihat Konsultasi #<?php echo $konsultasi->id ?></h2>
+                        <h3>Lihat Konsultasi #<?php echo $konsultasi->id ?></h3>
                     </div>
                 </div>
             </div>           
             <div class="content-konsultasi-table">
-                <h5><?php echo $konsultasi->subjek ?></h5>
-                <hr>
-
-                <div class="content-konsultasi-table">
-                    <?php echo $konsultasi->pesan ?>
+                <!-- Start for content description -->
+                <!-- <div class="container"> -->
+                <div class="konsultasi-content">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h3>Title</h3>
+                            </div>
+                            <div class="col-md-10">
+                                <p><?php echo $konsultasi->subjek ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h3>Decription</h3>
+                            </div>
+                            <div class="col-md-10">
+                                <?php echo $konsultasi->pesan ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="attachment">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h3>Attachment</h3>
+                            </div>
+                            <div class="col-md-10">
+                                <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$konsultasi->attachment) ?>"><?php echo $konsultasi->attachment ?></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- End for content decription -->
 
-                <div class="content-konsultasi-table">
-                    <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$konsultasi->attachment) ?>"><?php echo $konsultasi->attachment ?></a>
-                </div>
-                <hr>
                 <div class="content-konsultasi-table-details">
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
@@ -171,6 +196,7 @@
                             <?php endif ?>
                         </div>
                     </div>
+                    <!-- End Content Balas -->
                 </div>
             </div>
         </div>

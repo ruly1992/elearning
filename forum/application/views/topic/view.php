@@ -30,107 +30,104 @@
                                 }
                             ?>
                             <div class="forum-main">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                  <th>#</th>
-                                                  <th>Topic</th>
-                                                  <th>Category</th>
-                                                  <th>Daerah</th>
-                                                  <th>Created</th>
-                                                  <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <?php 
-                                                $noPage = $topics->currentPage();
-                                                $i = $noPage + ($noPage - 1) * ($perPage - 1);
-                                                foreach($topics as $t){
-                                            ?>
-                                                    <tr>
-                                                        <th scope="row"><?php echo $i; ?></th>
-                                                        <td>
-                                                            <?php echo $t->topic ?>
-                                                            <?php
-                                                                if($t->status=='1'){
-                                                                    echo '<span class="label label-primary">Approved</span>';
-                                                                }else{
-                                                                    echo '<span class="label label-warning">Waiting</span>';
-                                                                }
-                                                            ?>
-                                                        </td>
-                                                        <td><?php echo $t->category_name; ?></td>
-                                                        <td>
-                                                            <?php 
-                                                                foreach($provinsi as $kode=>$nama){
-                                                                    $prov = explode('.', $kode);
-                                                                    $daerah   = explode('.', $t->daerah);
-                                                                    if($prov[0]==$daerah[0]){
-                                                                        echo $nama;
-                                                                    }
-                                                                }
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo user($t->tenaga_ahli)->full_name; ?>
-                                                        </td>
-                                                        <td align="center">
-                                                            <p>
-                                                                <?php 
-                                                                    if($t->tenaga_ahli!=$tenagaAhli AND $t->status=='0'){
-                                                                        echo anchor('topic/approve/'.$t->id, 'Approve', 'class="btn btn-primary btn-konsul" data-toggle="tooltip" data-placement="top" title="Approve"').'<br>';
-                                                                    }
-                                                                ?>
-                                                                <?php echo anchor('topic/edit/'.$t->id,'<i class="fa fa-pencil"></i>','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
-                                                                <a href="#" class="btn btn-danger btn-konsul"  data-toggle="modal" data-target=".confirm<?php echo $t->id ?>" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-                                                            </p>
-                                                        </td>
-                                                    </tr>
-                                            <?php 
-                                                    $i++;
-                                                } 
-                                            ?>
-                                            </tbody>
-                                            </table>
-                                        </div>
-
-                                        <?php foreach($topics as $top): ?>
-                                            <!-- Start:modal preview -->
-                                            <div class="modal fade confirm<?php echo $top->id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                              <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                          <span aria-hidden="true">×</span>
-                                                        </button>
-                                                        <h4 class="modal-title" id="myLargeModalLabel">Konfirmasi</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="text-xs-center">
-                                                            <p>Apakah anda akan menghapus topic <?php echo $top->topic ?> ?</p>
-                                                            <?php echo anchor('topic/delete/'.$top->id,'Ya','class="btn btn-danger btn-sm" title="Delete"'); ?>
-                                                            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Tidak</button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <!-- End:modal preview -->
-                                        <?php endforeach; ?>
-                                    </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th>Topic</th>
+                                          <th>Category</th>
+                                          <th>Daerah</th>
+                                          <th>Created</th>
+                                          <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php 
+                                        $noPage = $topics->currentPage();
+                                        $i = $noPage + ($noPage - 1) * ($perPage - 1);
+                                        foreach($topics as $t){
+                                    ?>
+                                            <tr>
+                                                <th scope="row"><?php echo $i; ?></th>
+                                                <td>
+                                                    <?php echo $t->topic ?>
+                                                    <?php
+                                                        if($t->status=='1'){
+                                                            echo '<span class="label label-primary">Approved</span>';
+                                                        }else{
+                                                            echo '<span class="label label-warning">Waiting</span>';
+                                                        }
+                                                    ?>
+                                                </td>
+                                                <td><?php echo $t->category_name; ?></td>
+                                                <td>
+                                                    <?php 
+                                                        foreach($provinsi as $kode=>$nama){
+                                                            $prov = explode('.', $kode);
+                                                            $daerah   = explode('.', $t->daerah);
+                                                            if($prov[0]==$daerah[0]){
+                                                                echo $nama;
+                                                            }
+                                                        }
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo user($t->tenaga_ahli)->full_name; ?>
+                                                </td>
+                                                <td align="center">
+                                                    <p>
+                                                        <?php 
+                                                            if($t->tenaga_ahli!=$tenagaAhli AND $t->status=='0'){
+                                                                echo anchor('topic/approve/'.$t->id, 'Approve', 'class="btn btn-primary btn-konsul" data-toggle="tooltip" data-placement="top" title="Approve"').'<br>';
+                                                            }
+                                                        ?>
+                                                        <?php echo anchor('topic/edit/'.$t->id,'<i class="fa fa-pencil"></i>','class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
+                                                        <a href="#" class="btn btn-danger btn-konsul"  data-toggle="modal" data-target=".confirm<?php echo $t->id ?>" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                    <?php 
+                                            $i++;
+                                        } 
+                                    ?>
+                                    </tbody>
+                                    </table>
                                 </div>
+
+                                <?php foreach($topics as $top): ?>
+                                    <!-- Start:modal preview -->
+                                    <div class="modal fade confirm<?php echo $top->id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">×</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myLargeModalLabel">Konfirmasi</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="text-xs-center">
+                                                    <p>Apakah anda akan menghapus topic <?php echo $top->topic ?> ?</p>
+                                                    <?php echo anchor('topic/delete/'.$top->id,'Ya','class="btn btn-danger btn-sm" title="Delete"'); ?>
+                                                    <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Tidak</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- End:modal preview -->
+                                <?php endforeach; ?>
                             </div>
-                            
+                            <center>
                                 <div class="forum-pagination">
                                     <nav>
                                         <?php echo $topics->render() ?>
                                     </nav>
                                 </div>
+                            </center>
                         </div>
                         <!-- end:content main -->
                     </div>
