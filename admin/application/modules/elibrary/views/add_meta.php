@@ -54,7 +54,7 @@
                                 <tr v-for="meta in metadata">
                                     <td>{{ meta.key }}</td>
                                     <td>
-                                        <input type="text" name="meta<?php echo $i; ?>[{{ meta.key }}]" required value="{{ meta.value }}" class="form-control" placeholder="Meta value">
+                                        <input type="text" name="meta<?php echo $i; ?>[{{ meta.key.split(' ').join('_') }}]" required value="{{ meta.value }}" class="form-control" placeholder="Meta value">
                                     </td>
                                     <td><a href="#" onclick="return false" class="btn btn-danger btn-sm" v-on:click="removeMeta($index)"><i class="fa fa-trash-o"></i></a></td>
                                 </tr>
