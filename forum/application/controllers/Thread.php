@@ -415,10 +415,13 @@ class Thread extends CI_Controller
         foreach($getTopic as $t){
             $daerah     = $t->daerah;
         }
-        // $role       = sentinel()->findRoleByDesa_id($daerah);
-        // $users      = $role->users;
-        // usersOption($users);
-        echo '<option>'.$daerah.'</option>';
+        if($daerah != '00.00.00.0000'){
+            $users  = Model\User::getByWilayah('34.71.00.0000');
+        }else{
+            $users = Model\User::all();
+        }
+
+        usersOption($users);
     }
 
     public function checkTA()
