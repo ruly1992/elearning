@@ -249,8 +249,15 @@ class Media extends Admin
         $user       = sentinel()->getUser();
         $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($mediaID);
 
-        $request    = Request::createFromGlobals();
-        $metadata   = $request->request->get('meta');
+        $request        = Request::createFromGlobals();
+        $getMetadata    = $request->request->get('meta');
+        $metadata       = array();
+        foreach ($getMetadata as $key => $value) {
+            $metaKey = str_replace("_", " ", $key);
+            if($value != ''){
+                $metadata[$metaKey] = $value; 
+            }
+        }
 
         foreach ($metadata as $key => $value) {
             if ($key == 'title') {
