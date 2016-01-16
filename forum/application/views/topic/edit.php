@@ -39,20 +39,37 @@
                                                 <input type="text" name="topic" class="form-control" value="<?php echo $topic; ?>" placeholder="type your title">
                                             </div>
                                             <div class="form-group">
-                                                <label for="provinsi">Provinsi</label>
-                                                <?php echo $this->wilayah->generateSelectProvinsi($provinsi) ?>
+                                                <label for="">Pilih Type Topic :</label>
+                                                <div>
+                                                    <label class="c-input c-radio">
+                                                        <input id="radio1" name="type" <?php if($type=='close'){echo 'checked';} ?> value="close" type="radio" onclick="private()">
+                                                        <span class="c-indicator"></span>
+                                                        Close
+                                                    </label>
+                                                    <label class="c-input c-radio">
+                                                        <input id="radio2" name="type" <?php if($type=='public'){echo 'checked';} ?> value="public" type="radio" onclick="public()">
+                                                        <span class="c-indicator"></span>
+                                                        Public
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="kota">City/Kota</label>
-                                                <?php echo $this->wilayah->generateSelectKota($provinsi, $kabkota) ?>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="kecamatan">Kecamatan</label>
-                                                <?php echo $this->wilayah->generateSelectKecamatan($provinsi, $kabkota, $kecamatan) ?>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="desa">Desa</label>
-                                                <?php echo $this->wilayah->generateSelectDesa($provinsi, $kabkota, $kecamatan, $desa) ?>
+                                            <div id="addPrivate" class="collapse">
+                                                <div class="form-group">
+                                                    <label for="provinsi">Provinsi</label>
+                                                    <?php echo $this->wilayah->generateSelectProvinsi($provinsi) ?>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="kota">City/Kota</label>
+                                                    <?php echo $this->wilayah->generateSelectKota($provinsi, $kabkota) ?>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="kecamatan">Kecamatan</label>
+                                                    <?php echo $this->wilayah->generateSelectKecamatan($provinsi, $kabkota, $kecamatan) ?>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="desa">Desa</label>
+                                                    <?php echo $this->wilayah->generateSelectDesa($provinsi, $kabkota, $kecamatan, $desa) ?>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">UPDATE TOPIC</button>
@@ -80,5 +97,22 @@
 <?php custom_script(); ?>
     <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js'); ?>"></script>
     <?php echo $this->wilayah->script(site_url('topic/wilayah')); ?>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var radio1  = $("#radio1").prop( "checked" );
+            if(radio1 == true){
+                private();
+            }
+        });
+
+        function private(){
+            $('#addPrivate').collapse('show');
+        }
+
+        function public(){
+            $('#addPrivate').collapse('hide');
+        }
+    </script>
 <?php endcustom_script() ?>
 <?php get_footer('private'); ?>

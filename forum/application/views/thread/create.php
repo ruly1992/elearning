@@ -1,6 +1,5 @@
 <?php custom_stylesheet(); ?>
 <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
-<link rel="stylesheet" href="<?php echo asset('plugins/customselect/css/jquery-customselect-1.9.1.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo asset('plugins/chosen_v1.4.2/chosen.css'); ?>" type="text/css" media="all" />
 <?php endcustom_stylesheet(); ?>
 <?php get_header('private', array('active' => 'forum')); ?>
@@ -49,7 +48,7 @@
                                                         Close
                                                     </label>
                                                     <label class="c-input c-radio">
-                                                        <input id="radio1" class="private" name="type" value="public" checked type="radio" onclick="public()">
+                                                        <input id="radio2" class="private" name="type" value="public" checked type="radio" onclick="public()">
                                                         <span class="c-indicator"></span>
                                                         Public
                                                     </label>
@@ -94,7 +93,6 @@
 
 <?php custom_script(); ?>
     <script src="<?php echo asset('plugins/sceditor/development/jquery.sceditor.bbcode.js'); ?>"></script>
-    <script src="<?php echo asset('plugins/customselect/js/jquery-customselect-1.9.1.js'); ?>"></script>
     <script src="<?php echo asset('plugins/chosen_v1.4.2/chosen.jquery.min.js'); ?>"></script>
     <script>
         $(function() {
@@ -151,8 +149,8 @@
     <script type="text/javascript">
         function private(){
             var idTopic     = document.getElementById("selectTopic").value;
-            var type        = document.getElementById("radio1").value;
-                if (idTopic != "" && type == 'close'){
+            var radio1      = $("#radio1").prop( "checked" );
+                if (idTopic != "" && radio1 == true){
                     $.ajax({
                         type: "POST",
                         url: "<?php echo site_url('/thread/getUserByTopic'); ?>",
