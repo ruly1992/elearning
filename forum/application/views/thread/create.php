@@ -48,7 +48,7 @@
                                                         Close
                                                     </label>
                                                     <label class="c-input c-radio">
-                                                        <input id="radio1" class="private" name="type" value="public" checked type="radio" onclick="public()">
+                                                        <input id="radio2" class="private" name="type" value="public" checked type="radio" onclick="public()">
                                                         <span class="c-indicator"></span>
                                                         Public
                                                     </label>
@@ -149,8 +149,8 @@
     <script type="text/javascript">
         function private(){
             var idTopic     = document.getElementById("selectTopic").value;
-            var type        = document.getElementById("radio1").value;
-                if (idTopic != "" && type == 'close'){
+            var radio1      = $("#radio1").prop( "checked" );
+                if (idTopic != "" && radio1 == true){
                     $.ajax({
                         type: "POST",
                         url: "<?php echo site_url('/thread/getUserByTopic'); ?>",
