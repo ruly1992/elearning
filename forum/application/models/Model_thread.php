@@ -400,7 +400,8 @@ class Model_thread extends CI_Model
         }
     }
 
-    function save_thread_member($member){
+    function save_thread_member($member)
+    {
         $save   = $this->db->insert('thread_members', $member);
         if($this->db->affected_rows() == 1){
             return TRUE;
@@ -409,9 +410,20 @@ class Model_thread extends CI_Model
         }
     }
 
-    function get_thread_members(){
-        $get = $this->db->get('thread_members');
-        if($this->db->affected_rows() >= 1){
+    function get_thread_members()
+    {
+        $get    = $this->db->get('thread_members');
+        if($this->db->affected_rows() > '0'){
+            return $get->result();
+        }else{
+            return array();
+        }
+    }
+
+    function get_thread_members_by_id($id)
+    {
+        $get = $this->db->get_where('thread_members', array('thread_id' => $id));
+        if($this->db->affected_rows() > '0'){
             return $get->result();
         }else{
             return array();
