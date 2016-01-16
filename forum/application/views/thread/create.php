@@ -1,6 +1,5 @@
 <?php custom_stylesheet(); ?>
 <link rel="stylesheet" href="<?php echo asset('plugins/sceditor/minified/themes/default.min.css'); ?>" type="text/css" media="all" />
-<link rel="stylesheet" href="<?php echo asset('plugins/customselect/css/jquery-customselect-1.9.1.css'); ?>" type="text/css" media="all" />
 <link rel="stylesheet" href="<?php echo asset('plugins/chosen_v1.4.2/chosen.css'); ?>" type="text/css" media="all" />
 <?php endcustom_stylesheet(); ?>
 <?php get_header('private', array('active' => 'forum')); ?>
@@ -94,7 +93,6 @@
 
 <?php custom_script(); ?>
     <script src="<?php echo asset('plugins/sceditor/development/jquery.sceditor.bbcode.js'); ?>"></script>
-    <script src="<?php echo asset('plugins/customselect/js/jquery-customselect-1.9.1.js'); ?>"></script>
     <script src="<?php echo asset('plugins/chosen_v1.4.2/chosen.jquery.min.js'); ?>"></script>
     <script>
         $(function() {
