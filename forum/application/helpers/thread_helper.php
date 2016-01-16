@@ -118,7 +118,8 @@
 	function usersOption($users)
 	{
         foreach($users as $user){
-            echo '<option value="'.$user->id.'">'.$user->full_name.'</option>';
+        	$role = 	$user->roles->pluck('name')->toArray();
+            echo '<option value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
         } 
 	}
 
