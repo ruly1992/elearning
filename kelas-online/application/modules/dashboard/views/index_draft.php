@@ -43,6 +43,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <?php echo $courses->render() ?>
                     </div>
                 </div>
             </div>

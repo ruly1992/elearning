@@ -118,7 +118,22 @@
 	function usersOption($users)
 	{
         foreach($users as $user){
-            echo '<option value="'.$user->id.'">'.$user->full_name.'</option>';
+        	$role = 	$user->roles->pluck('name')->toArray();
+            echo '<option value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
+        } 
+	}
+
+	function userSelectedOption($users, $threadMembers)
+	{
+		foreach($users as $user){
+			$selected 	= '';
+        	$role 		= $user->roles->pluck('name')->toArray();
+			foreach($threadMembers as $member){
+				if($member->user_id == $user->id){
+					$selected 	= 'selected';
+				}
+			}
+            echo '<option '.$selected.' value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
         } 
 	}
 
