@@ -422,10 +422,11 @@ class Thread extends CI_Controller
         echo $topics;
     }
 
-    public function getUserByTopic($idTopic)
+    public function getUserByTopic()
     {
-        // $idTopic    = $this->input->post('topic');
+        $idTopic    = $this->input->post('topic');
         $getTopic   = $this->model_topic->selectTopic($idTopic);
+        $user = sentinel()->getUser();
 
         foreach($getTopic as $t){
             $daerah     = $t->daerah;
@@ -436,7 +437,7 @@ class Thread extends CI_Controller
             $users = Model\User::all();
         }
 
-        usersOption($users);
+        usersOption($users, $user->id);
     }
 
     public function getSelectedMember()
@@ -445,6 +446,8 @@ class Thread extends CI_Controller
         $getTopic   = $this->model_topic->selectTopic($idTopic);
         $idThread   = $this->input->post('thread');
         $getMember  = $this->model_thread->get_thread_members_by_id($idThread);
+        $user = sentinel()->getUser();
+
         foreach($getTopic as $t){
             $daerah     = $t->daerah;
         }
@@ -454,9 +457,9 @@ class Thread extends CI_Controller
             $users = Model\User::all();
         }
         if(!empty($getMember)){
-            userSelectedOption($users, $getMember);
+            userSelectedOption($users, $getMember, $user->id);
         }else{
-            usersOption($users);
+            usersOption($users, $user->id);
         }
     }
 
