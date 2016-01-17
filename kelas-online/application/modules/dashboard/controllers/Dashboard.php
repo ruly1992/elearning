@@ -10,8 +10,8 @@ class Dashboard extends Admin
         if ($status == 'draft') {
             $this->indexDraft();
         } else {
-            $courses    = Model\Kelas\Course::onlyInstructor(sentinel()->getUser())->get();
-            $drafts     = Model\Kelas\Course::onlyInstructor(sentinel()->getUser())->onlyDrafts()->get();
+            $courses    = Model\Kelas\Course::onlyInstructor(sentinel()->getUser())->latest()->get();
+            $drafts     = Model\Kelas\Course::onlyInstructor(sentinel()->getUser())->onlyDrafts()->latest()->get();
 
             $courses    = pagination($courses, 15, 'dashboard');
             $drafts     = pagination($drafts, 15, 'dashboard')->appends(['status' => 'draft']);
