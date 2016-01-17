@@ -42,7 +42,7 @@
             <!-- start:footer logo -->
             <div class="footer-logo">
                 <div class="text-center">
-                    <a href="<?php echo home_url() ?>"><img src="<?php echo asset('images/logo-bottom.png') ?>" alt=""></a>
+                    <a href="<?php echo dashboard_url() ?>"><img src="<?php echo asset('images/logo-bottom.png') ?>" alt=""></a>
                 </div>
             </div>
             <!-- end:footer logo -->

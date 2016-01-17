@@ -77,19 +77,23 @@ class Course extends Admin
         $quiz           = $chapter->quiz;
         $nextchapter    = $chapter->getNext();
 
-        $repository->startQuiz($quiz);
+        if (!$repository->memberHasFinishedChapter($chapter)) {
+            $repository->startQuiz($quiz);
 
-        if ($repository->checkQuizTimeout($quiz)) {
-            if ($repository->memberAllowChapter($chapter)) {
-                $member     = $repository->getMemberSessionQuiz($quiz);
+            if ($repository->checkQuizTimeout($quiz)) {
+                if ($repository->memberAllowChapter($chapter)) {
+                    $member     = $repository->getMemberSessionQuiz($quiz);
 
-                $this->template->set_layout('chapter_quiz');
-                $this->template->build('quiz_show', compact('course', 'quiz', 'repository', 'chapter', 'nextchapter', 'member'));
+                    $this->template->set_layout('chapter_quiz');
+                    $this->template->build('quiz_show', compact('course', 'quiz', 'repository', 'chapter', 'nextchapter', 'member'));
+                } else {
+                    redirect('course/show/'.$course->slug, 'refresh');
+                }
             } else {
-                redirect('course/show/'.$course->slug, 'refresh');
+                $this->template->build('quiz_timeout', compact('course', 'quiz', 'repository', 'chapter', 'nextchapter', 'member'));
             }
         } else {
-            echo "timeout";
+            redirect('course/show/'.$course->slug.'/chapter-'.$chapter->order, 'refresh');
         }
     }
 
