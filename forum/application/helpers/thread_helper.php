@@ -115,25 +115,29 @@
 		}
 	}
 
-	function usersOption($users)
+	function usersOption($users, $idUser)
 	{
         foreach($users as $user){
-        	$role = 	$user->roles->pluck('name')->toArray();
-            echo '<option value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
+        	if($user->id != $idUser){
+	        	$role = 	$user->roles->pluck('name')->toArray();
+	            echo '<option value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
+        	}
         } 
 	}
 
-	function userSelectedOption($users, $threadMembers)
+	function userSelectedOption($users, $threadMembers, $idUser)
 	{
 		foreach($users as $user){
-			$selected 	= '';
-        	$role 		= $user->roles->pluck('name')->toArray();
-			foreach($threadMembers as $member){
-				if($member->user_id == $user->id){
-					$selected 	= 'selected';
+			if($user->id != $idUser){
+				$selected 	= '';
+	        	$role 		= $user->roles->pluck('name')->toArray();
+				foreach($threadMembers as $member){
+					if($member->user_id == $user->id){
+						$selected 	= 'selected';
+					}
 				}
+	            echo '<option '.$selected.' value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
 			}
-            echo '<option '.$selected.' value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
         } 
 	}
 
