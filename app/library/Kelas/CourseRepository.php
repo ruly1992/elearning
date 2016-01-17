@@ -172,11 +172,9 @@ class CourseRepository
         return $this->saveTo('draft');
     }
 
-    public function update($name, $description, $days, $category)
+    public function update($name, $description, $days = 0)
     {
-        $this->model = Course::update(compact('name', 'description', 'days'));
-
-        $this->attachCategory($category);
+        $this->model->update(compact('name', 'description', 'days'));
 
         return $this;
     }

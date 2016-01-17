@@ -1,29 +1,24 @@
-
 <div class="kelas-main" id="app-kelas-online">
-    <div class="card">
-        <div class="card-block">
+    <div class="panel panel-default">
+        <div class="panel-body">
            <!-- start: content -->
             <div id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default" v-for="chapter in course.chapters">
                     <div class="panel-heading" role="tab">
                         <h5 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $index }}" aria-expanded="true" aria-controls="collapseOne">
-                                <p class="font-weight-bold">Chapter {{ $index + 1 }} : {{ chapter.name }}</p>
+                                Chapter {{ $index + 1 }} : {{ chapter.name }}
                             </a>
-                            <div class="btn-kelas pull-right">
-                                <button class="btn btn-secondary btn-kelas" data-toggle="modal" title="Edit" data-target=".add_chapter" v-on:click="editChapter($index)"><i class="fa fa-pencil-square-o"></i></button>
-                                <button class="btn btn-danger btn-kelas" data-toggle="tooltip" data-placement="top" title="Delete" v-on:click="removeChapter(chapter)"><i class="fa fa-times"></i></button>
-                            </div>
                         </h5>
                     </div>
                     <div id="collapse{{ $index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="Chapter{{ $index }}">
-                        <div class="container">
+                        <div class="container-fluid">
                             <!-- Start: Deskripsi-->
-                                    <div class="card">
-                                        <div class="card-header">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
                                              <p>Deskripsi :</p>
                                         </div>
-                                        <div class="card-block">
+                                        <div class="panel-body">
                                             <div class="form-group row">
                                                 <p>{{ chapter.content }}</p>
                                             </div>
@@ -31,11 +26,11 @@
                                     </div>
                             <!-- End: Deskripsi -->
                             <!-- Start: Attachment -->
-                                <div class="card">
-                                    <div class="card-header">
-                                         <p>Attachment : <button class="btn btn-exam" data-toggle="modal" data-target=".add-content" v-on:click="addChapterAttachment($index)"><i class="fa fa-paperclip"></i> Add Content</button></p>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                         <p>Attachment :</p>
                                     </div>
-                                    <div class="card-block">
+                                    <div class="panel-body">
                                         <!-- Start: Table Attachment -->
                                         <div class="table-responsive">                                            
                                             <table class="table table-striped">
@@ -59,7 +54,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr v-show="attachments[$index].contents.length == 0">
-                                                        <td colspan="4">Tidak ada attachment</td>
+                                                        <td colspan="5">Tidak ada attachment</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -69,16 +64,15 @@
                                 </div>
                             <!-- End: Attachment -->
                             <!-- Start: Quiz -->
-                                <div class="card">
-                                    <div class="card-header">
-                                         <p>Quiz : <button class="btn btn-exam" data-toggle="modal" data-target=".add-question" v-on:click="addChapterQuiz($index)"><i class="fa fa-paperclip"></i> Add Question</button></p>
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                         <p>Quiz :</p>
                                     </div>
-                                    <div class="card-block">
+                                    <div class="panel-body">
                                         <div class="form-group row">
                                             <label for="waktu" class="col-sm-2 form-control-label">Waktu</label>
                                             <div class="input-group col-sm-4">
-                                                <input type="text" class="form-control" id="waktu" placeholder="Waktu" v-model="chapter.quiz.time">
-                                                <div class="input-group-addon">Menit</div>
+                                                <p class="form-static">{{ chapter.quiz.time }} menit</p>
                                             </div>
                                         </div>
                                         <!-- Start: Table Queations -->                                                   
@@ -121,69 +115,7 @@
             </div>
             <!-- end:content -->
         </div>
-        <div class="card-block">
-            <button type="submit" id="btn-submit" class="btn btn-primary btn-sm">Save</button>
-        </div>
     </div>
-
-    <?php echo form_open('kelasonline/course/edit/'.$course->id.'/chapter', ['id' => 'form-course-result']); ?>
-    <div id="course-result">
-        <div v-for="chapter in course.chapters">
-            <input type="hidden" name="course[chapters][{{ $index }}][id]" value="{{ chapter.id || 0 }}">
-            <input type="hidden" name="course[chapters][{{ $index }}][name]" value="{{ chapter.name }}">
-            <input type="hidden" name="course[chapters][{{ $index }}][order]" value="{{ $index+1 }}">
-            <input type="hidden" name="course[chapters][{{ $index }}][content]" value="{{ chapter.content }}">
-
-            <input type="hidden" name="course[chapters][{{ $index }}][quiz][id]" value="{{ chapter.quiz.id || 0 }}">
-            <input type="hidden" name="course[chapters][{{ $index }}][quiz][name]" value="{{ chapter.quiz.name }}">
-            <input type="hidden" name="course[chapters][{{ $index }}][quiz][time]" value="{{ chapter.quiz.time }}">
-            <div v-for="quiz in chapter.quiz.questions">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][quiz][questions][{{ $index }}][id]" value="{{ quiz.id || 0 }}">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][quiz][questions][{{ $index }}][question]" value="{{ quiz.question }}">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][quiz][questions][{{ $index }}][option_a]" value="{{ quiz.option_a }}">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][quiz][questions][{{ $index }}][option_b]" value="{{ quiz.option_b }}">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][quiz][questions][{{ $index }}][option_c]" value="{{ quiz.option_c }}">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][quiz][questions][{{ $index }}][option_d]" value="{{ quiz.option_d }}">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][quiz][questions][{{ $index }}][correct]" value="{{ quiz.correct }}">
-            </div>
-        </div>
-        <div v-for="attachment in attachments">
-            <div v-for="content in attachment.contents">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][attachments][{{ $index }}][id]" value="{{ content.id || 0 }}">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][attachments][{{ $index }}][filename]" value="{{ content.filename }}">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][attachments][{{ $index }}][filetype]" value="{{ content.filetype }}">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][attachments][{{ $index }}][filesize]" value="{{ content.filesize }}">
-                <input type="hidden" name="course[chapters][{{ $parent.$index }}][attachments][{{ $index }}][dataurl]" value="{{ content.dataurl }}">
-            </div>
-        </div>
-
-        <div class="chapter-remove" v-for="chapter in remove.chapters">
-            <input type="hidden" name="remove[chapters][{{ $index }}]" value="{{ chapter }}">
-        </div>
-        <div class="chapter-quiz-remove" v-for="quiz in remove.chapterQuiz">
-            <input type="hidden" name="remove[chapter_quiz][{{ $index }}]" value="{{ quiz }}">
-        </div>
-        <div class="chapter-attachment-remove" v-for="attachment in remove.chapterAttachment">
-            <input type="hidden" name="remove[chapter_attachment][{{ $index }}]" value="{{ attachment }}">
-        </div>
-    </div>
-    <?php echo form_close(); ?>
-
-    <!-- Begin: add chapter -->
-    <?php $this->load->view('modal/add_chapter'); ?>
-    <!-- End: add Chapter -->
-
-    <!-- Begin: Add Content -->
-    <?php $this->load->view('modal/add_content'); ?>
-    <!-- End: Add Content -->
-
-    <!-- Begin: Add Question -->
-    <?php $this->load->view('modal/add_question'); ?>
-    <!-- End: Add Question -->
-
-    <!-- Begin: Add Exam -->
-    <?php $this->load->view('modal/add_exam'); ?>
-    <!-- End: Add Exam -->
 </div>
 
 <?php custom_stylesheet() ?>
