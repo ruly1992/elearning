@@ -2,7 +2,7 @@
 <div class="kelas-main" id="app-kelas-online">
     <div class="panel">
         <div class="panel-heading">
-             <p>Exam <button class="btn btn-exam" data-toggle="modal" data-target=".add-exam"><i class="fa fa-paperclip"></i> Add Question</button></p>
+             <p>Exam</p>
         </div>
         <div class="panel-body">
             <div class="form-group row">
@@ -35,9 +35,6 @@
                 </table>
             </div>
             <!-- end:content -->
-        </div>
-        <div class="panel-footer">
-            <button type="submit" id="btn-submit" class="btn btn-primary btn-sm">Save</button>
         </div>
     </div>
 
