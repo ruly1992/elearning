@@ -25,7 +25,7 @@ class Topic extends CI_Controller
         $hostname = getenv('AUTH_DB_HOST') ?: 'localhost';
         $username = getenv('AUTH_DB_USERNAME') ?: 'root';
         $password = getenv('AUTH_DB_PASSWORD') ?: '';
-        $database = getenv('AUTH_DB_DATABASE') ?: 'portal_learning';
+        $database = getenv('AUTH_DB_DATABASE') ?: 'elearning_portal';
 
         $source = new AllWilayah($hostname, $username, $password, $database);
         $this->wilayah->setSource($source);
@@ -170,10 +170,16 @@ class Topic extends CI_Controller
         $getTopic = $this->model_topic->selectTopic($id);
         foreach($getTopic as $t){
             $daerah = explode('.', $t->daerah);
+            if($t->daerah == '00.00.00.0000'){
+                $type   = 'public';
+            }else{
+                $type   = 'close';
+            }
             $data = array(
                 'idTopic'  => $t->id,
                 'kategori' => $t->category,
                 'topic'    => $t->topic,
+                'type'     => $type,
                 'provinsi' => $daerah[0].'.00.00.0000',
                 'kabkota'  => $daerah[0].'.'.$daerah[1].'.00.0000',
                 'kecamatan'=> $daerah[0].'.'.$daerah[1].'.'.$daerah[2].'.0000',
@@ -202,25 +208,31 @@ class Topic extends CI_Controller
 
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
+        $this->form_validation->set_rules('type','Type','required');
 
         if($this->form_validation->run()==TRUE){
-            $user = sentinel()->getUser();
+            $user   = sentinel()->getUser();
+            $type   = set_value('type'); 
 
-            $provinsi           = $this->input->post('provinsi');
-            $kota               = $this->input->post('kota');
-            $kecamatan          = $this->input->post('kecamatan');
-            $desa               = $this->input->post('kecamatan');
+            if($type == 'close'){
+                $provinsi           = $this->input->post('provinsi');
+                $kota               = $this->input->post('kota');
+                $kecamatan          = $this->input->post('kecamatan');
+                $desa               = $this->input->post('kecamatan');
 
-            if($desa != ''){
-                $daerah     = $desa;
-            }elseif($kecamatan != ''){
-                $daerah     = $kecamatan;
-            }elseif($kota != ''){
-                $daerah     = $kota;
-            }elseif($provinsi != ''){
-                $daerah     = $provinsi;
+                if($desa != ''){
+                    $daerah     = $desa;
+                }elseif($kecamatan != ''){
+                    $daerah     = $kecamatan;
+                }elseif($kota != ''){
+                    $daerah     = $kota;
+                }elseif($provinsi != ''){
+                    $daerah     = $provinsi;
+                }else{
+                    $daerah     = '00.00.00.0000';
+                }
             }else{
-                $daerah     = '00.00.00.0000';
+                $daerah         = '00.00.00.0000';
             }
 
             $data = array(

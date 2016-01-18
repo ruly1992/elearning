@@ -68,9 +68,13 @@ body {
   border: 1px solid #CCC;
   border-radius: 0.25rem;
   font-family: "open_sansregular", sans-serif; }
-  .form-control:focus {
+  .form-control:active, .form-control:focus {
     outline: 0px none;
-    border-color: #128a4a; }
+    border: 1px solid #128a4a;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out; }
 
 /* Begin : CUstom table */
 .table {
@@ -442,6 +446,12 @@ header {
       header #navbar-main .header-top-right-login .btn-primary-outline:hover {
         color: #fff;
         background-color: #128a4a; }
+    header #navbar-main .header-top-right-login .btn-search {
+      padding-left: 7px;
+      padding-right: 7px;
+      margin-top: 10px;
+      background-color: #128a4a;
+      color: #fff; }
   header #header-main {
     padding-top: 25px;
     padding-bottom: 60px; }
@@ -1312,12 +1322,11 @@ header {
   .content-konsultasi .content-konsultasi-table .list-divisi .list-content {
     margin-bottom: 15px;
     width: 100%;
-    height: auto;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    border: 1px solid #939EA2;
+    border-top: 4px solid #128a4a;
+    border-right: 1px solid #f5f5f5;
+    border-left: 1px solid #f5f5f5;
+    border-bottom: 1px solid #f5f5f5;
+    box-shadow: #dddddd 2px 2px 2px;
     display: inline-block;
     text-align: center;
     position: relative; }
@@ -1325,7 +1334,7 @@ header {
       margin-top: 10px;
       width: 55px;
       height: 55px;
-      background-color: #37474f;
+      background-color: #128a4a;
       border-radius: 50px;
       -webkit-border-radius: 50px;
       -moz-border-radius: 50px;
@@ -1349,7 +1358,7 @@ header {
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         -o-border-radius: 3px;
-        background-color: #263238;
+        background-color: #128a4a;
         padding-left: 25px;
         padding-right: 25px;
         padding-top: 10px;
@@ -4156,6 +4165,10 @@ Create: Singgih Saputro */
     right: 25px;
     margin-top: 7px;
     margin-right: -6px; }
+.content-kelas-online .select2-container--default .select2-selection--single {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 34px; }
 
 /* Dashboard Administrator
 Create: Singgih Saputro */
@@ -4167,7 +4180,7 @@ Create: Singgih Saputro */
 
 .btn-editadmin,
 .btn-delete {
-  font-size: 10px;
+  font-size: 12px;
   border: medium none;
   padding: 3px 6px;
   text-shadow: none; }

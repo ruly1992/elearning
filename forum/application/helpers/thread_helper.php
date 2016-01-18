@@ -22,12 +22,12 @@
         return $sum_comments;
 	}
 
-	function checkTopicsCategory($topics, $threads, $idCategory)
+	function checkTopicsCategory($topics, $threads, $idCategory, $threadMembers, $userID)
 	{
 		$counter = 0;
 		foreach($topics as $top){
 			if($top->category == $idCategory){
-				$countThreadsTopic	=	checkThreadsTopic($threads, $top->id);
+				$countThreadsTopic	=	checkThreadsTopic($threads, $top->id, $threadMembers, $userID);
 				if($countThreadsTopic > 0){
 					$counter += 1;
 				}
@@ -36,7 +36,37 @@
 		return $counter;
 	}
 
-	function checkThreadsTopic($threads, $idTopic)
+	function checkThreadsTopic($threads, $idTopic, $threadMembers, $userID)
+	{
+		$counter = 0;
+		foreach($threads as $thr){
+			if($thr->topic == $idTopic){
+				if($thr->type == 'close'){
+					$close 	= sumCloseThread($threadMembers, $thr->id, $userID);
+					$counter += $close;
+				}else{
+					$counter += 1;
+				}
+			}
+		}
+		return $counter;
+	}
+
+	function checkTopicsCategoryAuthor($topics, $threads, $idCategory)
+	{
+		$counter = 0;
+		foreach($topics as $top){
+			if($top->category == $idCategory){
+				$countThreadsTopic	=	checkThreadsTopicAuthor($threads, $top->id);
+				if($countThreadsTopic > 0){
+					$counter += 1;
+				}
+			}
+		}
+		return $counter;
+	}
+
+	function checkThreadsTopicAuthor($threads, $idTopic)
 	{
 		$counter = 0;
 		foreach($threads as $thr){
@@ -115,10 +145,29 @@
 		}
 	}
 
-	function usersOption($users)
+	function usersOption($users, $idUser)
 	{
         foreach($users as $user){
-            echo '<option value="'.$user->id.'">'.$user->full_name.'</option>';
+        	if($user->id != $idUser){
+	        	$role = 	$user->roles->pluck('name')->toArray();
+	            echo '<option value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
+        	}
+        } 
+	}
+
+	function userSelectedOption($users, $threadMembers, $idUser)
+	{
+		foreach($users as $user){
+			if($user->id != $idUser){
+				$selected 	= '';
+	        	$role 		= $user->roles->pluck('name')->toArray();
+				foreach($threadMembers as $member){
+					if($member->user_id == $user->id){
+						$selected 	= 'selected';
+					}
+				}
+	            echo '<option '.$selected.' value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
+			}
         } 
 	}
 

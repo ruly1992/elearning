@@ -18,7 +18,7 @@
                                 <p class="font-weight-bold">Chapter {{ $index + 1 }} : {{ chapter.name }}</p>
                             </a>
                             <div class="btn-kelas pull-right">
-                                <button class="btn btn-secondary btn-kelas" data-toggle="modal" title="Edit" data-target=".add_chapter" v-on:click="editChapter($index)"><i class="fa fa-pencil-square-o"></i></button>
+                                <button class="btn btn-info btn-kelas" data-toggle="modal" title="Edit" data-target=".add_chapter" v-on:click="editChapter($index)"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-danger btn-kelas" data-toggle="tooltip" data-placement="top" title="Delete" v-on:click="removeChapter(chapter)"><i class="fa fa-times"></i></button>
                             </div>
                         </h5>
@@ -31,7 +31,7 @@
                                              <p>Deskripsi :</p>
                                         </div>
                                         <div class="card-block">
-                                            <div class="form-group row">
+                                            <div class="form-group">
                                                 <p>{{ chapter.content }}</p>
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@
                                                         <td>{{ content.filename }}</td>
                                                         <td>{{ content.filetype }}</td>
                                                         <td>{{ content.filesize }}</td>
-                                                        <td>
+                                                        <td class="text-xs-center">
                                                             <a class="btn btn-sm btn-danger" title="Delete" v-on:click="removeChapterContent($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
                                                         </td>
                                                     </tr>
@@ -101,9 +101,9 @@
                                                     <tr v-for="quiz in chapter.quiz.questions">
                                                         <th scope="row">{{ $index+1 }}</th>
                                                         <td>{{{ quiz.question }}}</td>
-                                                        <td>
-                                                            <a class="btn btn-sm btn-secondary" data-toggle="modal" data-target=".add-question" v-on:click="editChapterQuiz($index, $parent.$index)"><i class="fa fa-pencil-square-o"></i></a>
-                                                            <a class="btn btn-sm btn-danger" v-on:click="removeChapterQuiz($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
+                                                        <td class="text-xs-center">
+                                                            <a class="btn btn-sm btn-info btn-margin-btm" data-toggle="modal" data-target=".add-question" v-on:click="editChapterQuiz($index, $parent.$index)"><i class="fa fa-pencil"></i></a>
+                                                            <a class="btn btn-sm btn-danger btn-margin-btm" v-on:click="removeChapterQuiz($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
                                                         </td>
                                                     </tr>
                                                     <tr v-show="chapter.quiz.questions.length == 0">

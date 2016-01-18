@@ -8,7 +8,8 @@
             </div>
         </section>
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">             
+                <?php echo validation_errors(); ?>
                 <fieldset class="form-group">
                     <label for="title">Judul Artikel</label>
                     <input name="title" type="text" class="form-control" id="title">

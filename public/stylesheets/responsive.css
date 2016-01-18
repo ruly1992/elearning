@@ -319,6 +319,10 @@
   .dashboard-kelas-online h5 p {
     width: 185px; }
 
+  .content-kelas-online h5 p {
+    width: 175px;
+    line-height: 1.5; }
+
   footer .footer-top {
     display: none; }
   footer .footer-logo {
@@ -637,6 +641,10 @@
   .dashboard-kelas-online h5 p {
     width: 185px; }
 
+  .content-kelas-online h5 p {
+    width: 215px;
+    line-height: 1.5; }
+
   footer .footer-top {
     display: none; }
   footer .footer-logo {
@@ -872,6 +880,10 @@
   .dashboard-kelas-online h5 p {
     width: 570px; }
 
+  .content-kelas-online h5 p {
+    width: 422px;
+    line-height: 1.5; }
+
   footer .footer-top {
     display: none; }
   footer .footer-logo {
@@ -886,6 +898,10 @@
       display: none; } }
 @media (min-width: 992px) and (max-width: 1500px) {
   .dashboard-kelas-online h5 p {
-    width: 765px; } }
+    width: 765px; }
+
+  .content-kelas-online h5 p {
+    width: 500px;
+    line-height: 1.5; } }
 
 /*# sourceMappingURL=responsive.css.map */

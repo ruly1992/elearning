@@ -77,8 +77,8 @@ class Dashboard extends Admin {
 
     public function sendArticle()
     {
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('content', 'Content', 'required');
+        $this->form_validation->set_rules('title', 'Title', 'required', array('required' => '<div class="alert alert-danger">Judul Artikel Wajib diisi</div>'));
+        $this->form_validation->set_rules('content', 'Content', 'required', array('required' => '<div class="alert alert-danger">Content Artikel Wajib diisi</div>'));
 
         if ($this->form_validation->run() == FALSE) {
             $data['categories_checkbox']    =(new Model\Portal\Category)->generateCheckbox();
