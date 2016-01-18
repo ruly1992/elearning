@@ -149,14 +149,30 @@ class Author extends CI_Controller
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['categories'] = $this->model_thread->get_categories_by_ta($user->id);
+            $getTopics  = $this->model_topic->getTopics_by_ta($user->id, $idCategory);
         }else{
             $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
+            $getTopics  = $this->model_topic->getTopics_by_Category($idCategory, $daerahUser);
         }
+        $publicTopics   = $this->model_topic->get_public_topics($idCategory);
+
+        $allTopics      = array();
+        foreach($getTopics as $temp){
+            if ( ! in_array($temp, $allTopics)) {
+                $allTopics[] = $temp;
+            }
+        }
+        foreach($publicTopics as $temp){
+            if ( ! in_array($temp, $allTopics)) {
+                $allTopics[] = $temp;
+            }
+        }
+
         $data['controller']     = 'author';
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
-        $data['topics']         = $this->model_topic->getTopics_by_Category($idCategory, $daerahUser);
+        $data['topics']         = $allTopics;
         $data['id_thread']      = $id;
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $this->load->view('thread/edit_thread',$data);
