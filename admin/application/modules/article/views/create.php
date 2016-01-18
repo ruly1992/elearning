@@ -4,6 +4,7 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-body">
+                <?php echo validation_errors(); ?>
                 <div class="form-group">
                     <?php echo form_input('title', set_value('title'), array('class' => 'form-control input-lg', 'placeholder' => 'Title')); ?>
                 </div>
