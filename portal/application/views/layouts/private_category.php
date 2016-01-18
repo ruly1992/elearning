@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <!-- start:content sidebar -->
-                    <?php $this->load->view('template/sidebar') ?>
+                    <?php $this->load->view('template/sidebar_privatepage') ?>
                     <!-- end:content sidebar -->    
 
                 </div>
