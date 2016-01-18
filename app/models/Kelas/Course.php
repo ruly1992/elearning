@@ -212,9 +212,14 @@ class Course extends Model
 
         return $query->where('code', $code)->firstOrFail();
     }
-    
+
     public function hasExam()
     {
         return !$this->exam->questions->isEmpty();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(CourseComment::class);
     }
 }

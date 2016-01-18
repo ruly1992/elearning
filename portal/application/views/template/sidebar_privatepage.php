@@ -102,7 +102,9 @@
             <h3>Komentar Terkini</h3>
         </div>
         <div class="widget-content">
-            <?php $comments = Model\Portal\Comment::latest('date')->get() ?>
+            <?php $comments = Model\Portal\Comment::whereHas('article', function ($query) {
+                return $query->where('status', 'private');
+            })->latest('date')->get() ?>
             <?php if ($comments->count()): ?>
                 <?php foreach ($comments as $comment): ?>
                 <div class="row">

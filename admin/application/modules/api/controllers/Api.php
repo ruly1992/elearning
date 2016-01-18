@@ -5,29 +5,52 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Carbon\Carbon;
+use Model\Portal\Visitor;
+use Model\Portal\Article;
 
 class Api extends CI_Controller {
 
     public function visitor()
     {
-        $data = [
-            [$this->gd(2015, 11, 17), 30],
-            [$this->gd(2015, 11, 18), 40],
-            [$this->gd(2015, 11, 19), 70],
-            [$this->gd(2015, 11, 20), 40],
-            [$this->gd(2015, 11, 21), 45],
-            [$this->gd(2015, 11, 22), 45],
-            [$this->gd(2015, 11, 23), 45],
-        ];
+        $visitors       = Visitor::all();
+
+        $groupByDate    = $visitors->groupBy(function ($visitor) {
+            return $visitor->created_at->format('Y-m-d');
+        });
+
+        $countingByDate = $groupByDate->map(function ($visitor, $date) {
+            return [$this->gd($date), $visitor->sum('times')];
+        });
 
         $this->output
             ->set_content_type('application/json')
-            ->set_output(json_encode($data));
+            ->set_output(json_encode($countingByDate->values()));
     }
 
-    protected function gd($year, $month, $date)
+    public function post()
     {
-        $datetime = Carbon::createFromDate($year, $month, $date);
+        $articles       = Article::all();
+
+        $groupByDate    = $articles->groupBy(function ($article) {
+            return $article->date->format('Y-m-d');
+        });
+
+        $countingByDate = $groupByDate->map(function ($articles, $date) {
+            return [$this->gd($date), $articles->count()];
+        });
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($countingByDate->values()));
+    }
+
+    protected function gd($year, $month = 0, $date = 0)
+    {
+        if (is_string($year)) {
+            $datetime = Carbon::parse($year);
+        } else {
+            $datetime = Carbon::createFromDate($year, $month, $date);
+        }
 
         return $datetime->tz('UTC')->timestamp * 1000;
     }

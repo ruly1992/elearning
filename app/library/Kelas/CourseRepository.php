@@ -662,4 +662,12 @@ class CourseRepository
 
         return $member_course;
     }
+
+    public function relevance()
+    {
+        $course     = $this->model;
+        $relevances = $this->model->category->courses()->whereNotIn('id', [$this->model->id]);
+
+        return $relevances->get();
+    }
 }
