@@ -8,6 +8,7 @@
             </section>
             <div class="card">
                 <div class="card-block">
+                    <?php echo form_open('', 'id="wizard-create-form" onsubmit="return false;"'); ?>
                     <div id="wizard">
                         <h2><label class="hidden-xs-down">Overview</label></h2>
                         <section>
@@ -15,13 +16,13 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-2 form-control-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control required" id="name" placeholder="Judul" v-model="course.name">
+                                        <input type="text" class="form-control" id="name" placeholder="Judul" v-model="course.name" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="category" class="col-sm-2 form-control-label">Category</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control required" id="category" v-model="course.category_id">
+                                        <select class="form-control" id="category" v-model="course.category_id" required>
                                             <?php foreach ($category_lists as $value => $text): ?>
                                                 <option value="<?php echo $value ?>"><?php echo $text ?></option>
                                             <?php endforeach ?>
@@ -56,7 +57,7 @@
                                     <div class="panel-heading" role="tab" id="Chapter1">
                                         <h5 class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $index }}" aria-expanded="true" aria-controls="collapseOne">
-                                                <p class="font-weight-bold text-uppercase">Chapter {{ $index + 1 }} : {{ chapter.name }}</p>
+                                                <p class="font-weight-bold text-uppercase"><span class="text-danger" title="Belum ada quiz" v-show="chapter.quiz.questions.length == 0"><i class="fa fa-exclamation-triangle"></i></span> Chapter {{ $index + 1 }} : {{ chapter.name }}</p>
                                             </a>
                                             <div class="btn-kelas pull-right">
                                                 <button class="btn btn-info btn-kelas" data-toggle="modal" data-target=".add_chapter" v-on:click="editChapter($index)" title="Edit"><i class="fa fa-pencil-square-o"></i></button>
@@ -215,6 +216,7 @@
                             </div>
                         </section>
                     </div>
+                    <?php echo form_close(); ?>
                 </div>
             </div>
         </div>
@@ -303,6 +305,7 @@
     <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
     <script src="<?php echo asset('node_modules/jquery-form/jquery.form.js') ?>"></script>
+    <script src="<?php echo asset('plugins/jquery-validation-1.14.0/dist/jquery.validate.min.js') ?>"></script>
     <script src="<?php echo asset('javascript/kelas.wizard.js') ?>"></script>
     <script src="<?php echo asset('javascript/kelas.vue.js') ?>"></script>
     <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>

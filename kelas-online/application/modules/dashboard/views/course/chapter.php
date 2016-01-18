@@ -66,7 +66,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr v-show="attachments[$index].contents.length == 0">
-                                                        <td colspan="4">Tidak ada attachment</td>
+                                                        <td colspan="5">Tidak ada attachment</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

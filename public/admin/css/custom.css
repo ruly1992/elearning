@@ -26,3 +26,13 @@
 	opacity: .2;
 	cursor: auto;
 }
+
+/* Begin custom button admin */
+.label {
+	font-size: 12px;
+	padding: 4px 6px;
+	text-shadow: none;
+	border: medium none;
+}
+
+/* End custom button admin*/ 
