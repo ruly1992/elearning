@@ -10,7 +10,7 @@
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li><a href="#">Home</a></li>
+                                <li><a href="<?php echo site_url(); ?>">Home</a></li>
                                 <li class="active">
                                     <?php 
                                         if(isset($category)){
@@ -44,7 +44,7 @@
                             </div>
                             <?php 
                                 foreach($categoriesHead as $cat){
-                                    $countTopicsCategory = checkTopicsCategory($topics, $threads, $cat->id);
+                                    $countTopicsCategory = checkTopicsCategory($topics, $threads, $cat->id, $threadMembers, $userID);
                                     if($countTopicsCategory > 0){
                             ?>
                                         <div class="forum-heading">
@@ -55,7 +55,7 @@
                                                 <?php 
                                                     foreach($topics as $top){
                                                         if($top->category == $cat->id){
-                                                            $countThreadsTopic = checkThreadsTopic($threads, $top->id);
+                                                            $countThreadsTopic = checkThreadsTopic($threads, $top->id, $threadMembers, $userID);
                                                             if($countThreadsTopic > 0){
                                                 ?>
                                                                 <table class="table table-striped">
