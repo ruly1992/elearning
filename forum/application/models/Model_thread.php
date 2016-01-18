@@ -101,22 +101,22 @@ class Model_thread extends CI_Model
         $closeThreads           = $this->getThreadsByClose($id, $data);
 
         $allThreads             = array();
-        foreach($threadsByTACategory as $tbc){
-            if ( ! in_array($tbc, $allThreads)) {
-                $allThreads[] = $tbc;
-            }
-        }
         foreach ($threadsByTATopic as $tbt) {
             if ( ! in_array($tbt, $allThreads)) {
                 $allThreads[] = $tbt;
             }
         }
-        foreach ($threadsByTAId as $tbi) {
+        foreach($threadsByTACategory as $tbc){
+            if ( ! in_array($tbc, $allThreads)) {
+                $allThreads[] = $tbc;
+            }
+        }
+        foreach ($closeThreads as $tbi) {
             if ( ! in_array($tbi, $allThreads)) {
                 $allThreads[] = $tbi;
             }
         }
-        foreach ($closeThreads as $tbi) {
+        foreach ($threadsByTAId as $tbi) {
             if ( ! in_array($tbi, $allThreads)) {
                 $allThreads[] = $tbi;
             }
