@@ -13,6 +13,11 @@ $(document).ready(function () {
         transitionEffect: "slideLeft",
         onStepChanging: function (event, currentIndex, newIndex) {
             if (currentIndex === 0) {
+                if (window.app_kelas_online.course.category_id === 0) {
+                    alert('Anda harus memilih kategori');
+                    return false;
+                }
+
                 return form.valid();
             } else if (currentIndex === 2) {
                 var length = window.app_kelas_online.course.chapters.length;
@@ -22,15 +27,21 @@ $(document).ready(function () {
 
                     return false;
                 } else {
-                    return true;
+                    if (window.app_kelas_online.checkAllChapterHasQuiz()) {
+                        return true;
+                    }
+
+                    alert('Setiap chapter harus mempunyai quiz');
+
+                    return false;
                 }
             }
 
             return true;
         },
         onFinishing: function (event, currentIndex) {
-             if (currentIndex === 3) {
-                var length = window.app_kelas_online.course.exam.length;
+            if (currentIndex === 3) {
+                var length = window.app_kelas_online.course.exam.questions.length;
 
                 if (length === 0) {
                     alert('Anda belum memasukkan exam.')
@@ -40,6 +51,10 @@ $(document).ready(function () {
                     return true;
                 }
             }
+
+            alert(currentIndex)
+
+            return false;
         },
         onFinished: function (event, currentIndex) {
             var form = $('#form-course-result')
