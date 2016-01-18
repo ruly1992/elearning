@@ -3,6 +3,7 @@
 namespace Library\Kelas;
 
 use Model\Kelas\Course;
+use Model\Kelas\CourseMember;
 use Model\Kelas\Category;
 use Model\Kelas\Chapter;
 use Model\Kelas\Attachment;
@@ -531,5 +532,134 @@ class CourseRepository
         }
 
         return null;
+    }
+
+    public function getScoreQuizAnswer($chapter_id)
+    {
+        $quiz           = Quiz::where('chapter_id', $chapter_id)->get(); // get quiz id
+        
+        $quiz_id = '';
+        foreach ($quiz as $key => $value) 
+        {
+            
+            if ($value->id != '') 
+            {
+                $quiz_id = $value->id;
+            }
+
+        }
+        
+        $quizMember     = QuizMember::where('quiz_id', $quiz_id)->where('user_id', sentinel()->getUser()->id)->get();
+        // get quiz member id
+
+        $quiz_member_id = '';
+        foreach ($quizMember as $key => $value) 
+        {
+            
+            if ($value->id != '') 
+            {
+                $quiz_member_id = $value->id;
+            }
+
+        }
+
+        $quizAnswer     = QuizAnswer::where('member_quiz_id',$quiz_member_id)->get();
+        // get quiz answer
+
+
+        return $quizAnswer;
+
+    }
+
+    public function checkExamTimeout(Exam $exam, $attempt = 1)
+    {
+        $member = $exam->members()->where('user_id', $this->user->id)->first();
+
+        if ($member) {
+            if ($member->finished_at->diffInSeconds(Carbon::now(), false) < 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function getMemberSessionExam(Exam $exam)
+    {
+        if ($this->checkExamTimeout($exam)) {
+            $member = $exam->members()->where('user_id', $this->user->id)->first();
+
+            return $member;
+        } else {
+
+            return null;
+        }
+    }
+
+    public function getMemberExam(Exam $exam)
+    {
+        return $exam->members;
+    }
+
+    public function checkExamMember(Exam $exam, User $user = null)
+    {
+        if ($user) $this->setUser($user);
+
+        $search = $this->getMemberExam($exam)->search(function ($member) {
+            return $member->user_id === $this->user->id;
+        });
+
+        if ($search !== FALSE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function startExam(Exam $exam, $attempt = 1)
+    {
+        if (!$this->checkExamMember($exam)) {
+            $exam->members()->create([
+                'user_id'       => $this->user->id,
+                'attempt'       => $attempt,
+                'started_at'    => Carbon::now(),
+                'finished_at'   => Carbon::now()->addMinutes($exam->time),
+            ]);
+        }
+    }
+
+    public function submitExamMember(Exam $exam, $answers = [])
+    {
+        $member = $this->getMemberSessionExam($exam);
+
+        if ($member) {
+            
+            $answers = collect($answers)->map(function ($answer, $question_id) {
+                $question = ExamQuestion::find($question_id);
+
+                return new ExamAnswer([
+                    'question_id'   => $question_id,
+                    'answer'        => $answer,
+                    'is_correct'    => $question->correct == $answer,
+                ]);
+            });
+
+            $member->answers()->saveMany($answers);
+
+            return $member->answers;
+        }
+
+        return null;
+    }
+
+    public function courseMemberStatus($slug)
+    {
+        $course_id          = Course::findBySlug($slug);
+
+        $member_course      = CourseMember::where('course_id', $course_id->id)
+                                                ->where('user_id', sentinel()->getUser()->id)
+                                                ->get();
+
+        return $member_course;
     }
 }
