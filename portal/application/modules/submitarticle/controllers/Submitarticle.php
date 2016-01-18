@@ -41,10 +41,10 @@ class Submitarticle extends CI_Controller {
             'category_lists'    => (new Model\Portal\Category)->generateCheckbox(),
         );
 
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
-        $this->form_validation->set_rules('email', 'Alamat Email', 'required|valid_email');
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('content', 'Content', 'required');
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required', array('required' => '<div class="alert alert-danger">Nama Wajib diisi</div>'));
+        $this->form_validation->set_rules('email', 'Alamat Email', 'required|valid_email', array('required' => '<div class="alert alert-danger">Email Wajib diisi</div>'));
+        $this->form_validation->set_rules('title', 'Title', 'required', array('required' => '<div class="alert alert-danger">Judul Artikel Wajib diisi</div>'));
+        $this->form_validation->set_rules('content', 'Content', 'required', array('required' => '<div class="alert alert-danger">Content Artikel Wajib diisi</div>'));
 
         if ($this->form_validation->run() == FALSE) {
             keepValidationErrors();
