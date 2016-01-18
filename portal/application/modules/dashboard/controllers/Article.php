@@ -84,7 +84,7 @@ class Article extends Admin
 
             if ($article->categories->count()) {
                 $data['relevance_title']    = $article->categories->first()->name;
-                $data['relevance']          = Model\Portal\Article::categoryId($article->categories->first()->id)
+                $data['relevance']          = Model\Portal\Article::onlyRegistered()->categoryId($article->categories->first()->id)
                                                 ->where('id', '!=', $article->id)
                                                 ->take(6)
                                                 ->latest('date')
