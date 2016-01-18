@@ -40,7 +40,7 @@
         <div class="widget-content news4">
             <div class="tab-content" id="myTabSidebarContent">
                 <div role="tabpanel" class="tab-pane fade active in" id="popular-post" aria-labelledby="popular-post-tab" aria-expanded="true">
-                    <?php foreach (Model\Portal\Article::popular()->take(5)->get() as $article): ?>
+                    <?php foreach (Model\Portal\Article::onlyRegistered()->popular()->take(5)->get() as $article): ?>
                     <div class="box-articles-widget">
                         <div class="row">
                             <div class="col-sm-4 col-xs-6">
@@ -61,7 +61,7 @@
                     <?php endforeach; ?>
                 </div>
                 <div class="tab-pane fade" id="latest-post" role="tabpanel" aria-labelledby="latest-post-tab" aria-expanded="false">
-                    <?php foreach (Model\Portal\Article::latest('date')->limit(5)->get() as $article): ?>
+                    <?php foreach (Model\Portal\Article::onlyRegistered()->latest('date')->limit(5)->get() as $article): ?>
                     <div class="box-articles-widget">
                         <div class="row">
                             <div class="col-sm-4 col-xs-6">
