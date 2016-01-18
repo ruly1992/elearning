@@ -42,7 +42,7 @@
             <!-- start:footer logo -->
             <div class="footer-logo">
                 <div class="text-center">
-                    <a href="<?php echo home_url() ?>"><img src="<?php echo asset('images/logo-bottom.png') ?>" alt=""></a>
+                    <a href="<?php echo dashboard_url() ?>"><img src="<?php echo asset('images/logo-bottom.png') ?>" alt=""></a>
                 </div>
             </div>
             <!-- end:footer logo -->
@@ -79,7 +79,7 @@
     </script>
 
     <script src="<?php echo asset('node_modules/jquery/dist/jquery.min.js') ?>"></script>   
-    <script src="<?php echo asset('node_modules/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+    <script src="<?php echo asset('plugins/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>
     <script src="<?php echo asset('node_modules/moment/moment.js') ?>"></script>
     <script src="<?php echo asset('node_modules/select2/dist/js/select2.min.js') ?>"></script>

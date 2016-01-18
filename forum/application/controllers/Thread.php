@@ -70,7 +70,7 @@ class Thread extends CI_Controller
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['tenagaAhli'] = $user->id;
             $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
-            $threads            = collect($this->model_thread->get_threads_category($idCategory));
+            $threads            = collect($this->model_thread->get_threads_category($user->id, $idCategory));
         }else{
             $daerahUser         = $user->profile->desa_id;
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser);
@@ -265,6 +265,20 @@ class Thread extends CI_Controller
             );
             $data = $this->security->xss_clean($data); //xss clean
             $save = $this->model_thread->update_thread($id,$data);
+
+            $typeThread     = set_value('type');
+            if($typeThread == 'close'){
+                $member     = $this->input->post('member');
+                $this->model_thread->delete_thread_members($id);
+                foreach($member AS $key => $value){
+                    $threadMember = array(
+                        'thread_id' => $id,
+                        'user_id'   => $value
+                    );
+                    $this->model_thread->save_thread_member($threadMember);
+                }
+            }
+
             if($save==TRUE){
                 $this->session->set_flashdata('success','Thread berhasil diperbarui');
             }else{
@@ -397,6 +411,7 @@ class Thread extends CI_Controller
         }
 
         $topics = null;
+        $topics = '<option value="">- Pilih Topic -</option>';
         if(!empty($getTopics)){
             foreach($allTopics as $top){
                 $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
@@ -405,6 +420,47 @@ class Thread extends CI_Controller
             $topics     = '<option value="">- Topic belum tersedia -</option>';
         }
         echo $topics;
+    }
+
+    public function getUserByTopic()
+    {
+        $idTopic    = $this->input->post('topic');
+        $getTopic   = $this->model_topic->selectTopic($idTopic);
+        $user = sentinel()->getUser();
+
+        foreach($getTopic as $t){
+            $daerah     = $t->daerah;
+        }
+        if($daerah != '00.00.00.0000'){
+            $users  = Model\User::getByWilayah($daerah);
+        }else{
+            $users = Model\User::all();
+        }
+
+        usersOption($users, $user->id);
+    }
+
+    public function getSelectedMember()
+    {
+        $idTopic    = $this->input->post('topic');
+        $getTopic   = $this->model_topic->selectTopic($idTopic);
+        $idThread   = $this->input->post('thread');
+        $getMember  = $this->model_thread->get_thread_members_by_id($idThread);
+        $user = sentinel()->getUser();
+
+        foreach($getTopic as $t){
+            $daerah     = $t->daerah;
+        }
+        if($daerah != '00.00.00.0000'){
+            $users  = Model\User::getByWilayah($daerah);
+        }else{
+            $users = Model\User::all();
+        }
+        if(!empty($getMember)){
+            userSelectedOption($users, $getMember, $user->id);
+        }else{
+            usersOption($users, $user->id);
+        }
     }
 
     public function checkTA()

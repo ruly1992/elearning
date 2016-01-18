@@ -34,5 +34,14 @@ class Admin extends CI_Controller
     }
 }
 
+class Guest extends Admin {
+    public function check()
+    {
+        if (sentinel()->check()) {
+            redirect(dashboard_url(), 'refresh');
+        }
+    }
+}
+
 /* End of file MY_Controller.php */
 /* Location: ./application/core/MY_Controller.php */

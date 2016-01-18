@@ -79,8 +79,18 @@ $config['menus'] = [
         'name'  => 'Kelas Online',
         'icon'  => 'fa fa-upload',
         'link'  => site_url('kelasonline'),
-        'roles' => ['su', 'adm'],
+        'roles' => ['su', 'adm', 'pcp'],
         'child' => [
+            [
+                'name'  => 'Publish',
+                'icon'  => 'fa fa-upload',
+                'link'  => site_url('kelasonline/course?status=publish'),
+            ],
+            [
+                'name'  => 'Draft',
+                'icon'  => 'fa fa-upload',
+                'link'  => site_url('kelasonline/course?status=draft'),
+            ],
             [
                 'name'  => 'Category',
                 'icon'  => 'fa fa-upload',

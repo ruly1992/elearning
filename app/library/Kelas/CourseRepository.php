@@ -68,6 +68,41 @@ class CourseRepository
         return $category->courses;
     }
 
+    public function all()
+    {
+        return $this->getByStatus('all');
+    }
+
+    public function allExcept($id, $status = 'all')
+    {
+        $courses    = $this->getByStatus($status);
+        $courses    = $courses->reject(function ($course) use ($id) {
+            return $course->id == $id;
+        });
+
+        return $courses;
+    }
+
+    public function getOnlyPublish()
+    {
+        return $this->getByStatus('publish');
+    }
+
+    public function getOnlyDraft()
+    {
+        return $this->getByStatus('draft');
+    }
+
+    public function getByStatus($status = 'publish')
+    {
+        $course     = $this->model->newQueryWithoutScopes();
+
+        if ($status !== 'all')
+            $course->where('status', $status);
+
+        return $course->latest()->get();
+    }
+
     public function setUser($user)
     {
         if ($user instanceof User)
@@ -137,11 +172,9 @@ class CourseRepository
         return $this->saveTo('draft');
     }
 
-    public function update($name, $description, $days, $category)
+    public function update($name, $description, $days = 0)
     {
-        $this->model = Course::update(compact('name', 'description', 'days'));
-
-        $this->attachCategory($category);
+        $this->model->update(compact('name', 'description', 'days'));
 
         return $this;
     }
@@ -394,9 +427,9 @@ class CourseRepository
         return $this->model->hasFeatured();
     }
 
-    public function memberHasFinishedChapter(Chapter $chapter)
+    public function memberHasFinishedChapter(Chapter $chapter, $attempt = 1)
     {
-        return $chapter->memberHasFinished($this->user);
+        return $chapter->memberHasFinished($this->user, $attempt);
     }
 
     public function memberAllowChapter(Chapter $chapter)
@@ -492,6 +525,7 @@ class CourseRepository
             });
 
             $member->answers()->saveMany($answers);
+            $member->update(['submited' => true]);
 
             return $member->answers;
         }

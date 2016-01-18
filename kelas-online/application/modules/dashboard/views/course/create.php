@@ -15,13 +15,13 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-2 form-control-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" placeholder="Judul" v-model="course.name">
+                                        <input type="text" class="form-control required" id="name" placeholder="Judul" v-model="course.name">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="category" class="col-sm-2 form-control-label">Category</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" id="category" v-model="course.category_id">
+                                        <select class="form-control required" id="category" v-model="course.category_id">
                                             <?php foreach ($category_lists as $value => $text): ?>
                                                 <option value="<?php echo $value ?>"><?php echo $text ?></option>
                                             <?php endforeach ?>
@@ -31,7 +31,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 form-control-label">Description</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control editor-description" v-model="course.description"></textarea>
+                                        <textarea class="form-control editor-description required" v-model="course.description"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -39,11 +39,11 @@
                         <h2><label class="hidden-xs-down">Images</label></h2>
                         <section>
                             <div class="card">
-                                <div class="card-block">
+                                <div class="card-block text-xs-center">
                                     <h4>Featured Image</h4>
                                     <cropit-preview name="featured" width="auto" height="145px" image-empty="<?php echo asset('images/kelas_online/thumbnails-lg.jpg') ?>"></cropit-preview>
-                                </div>
-                                <div class="card-block">
+                                </div><hr>
+                                <div class="card-block text-xs-center">
                                     <h4>Thumbnail</h4>
                                     <cropit-preview name="thumbnail" width="auto" height="90px" image-empty="<?php echo asset('images/kelas_online/thumbnails-md.jpg') ?>"></cropit-preview>
                                 </div>
@@ -107,7 +107,7 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr v-show="attachments[$index].contents.length == 0">
-                                                                        <td colspan="4">Tidak ada attachment</td>
+                                                                        <td colspan="5" class="text-xs-center">Tidak ada attachment</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -122,6 +122,13 @@
                                                          <p>Quiz : <button class="btn btn-exam" data-toggle="modal" data-target=".add-question" v-on:click="addChapterQuiz($index)"><i class="fa fa-paperclip fa-sw"></i> Add Question</button></p>
                                                     </div>
                                                     <div class="card-block">
+                                                        <div class="form-group row">
+                                                            <label for="waktu" class="col-sm-2 form-control-label">Waktu</label>
+                                                            <div class="input-group col-sm-4">
+                                                                <input type="text" class="form-control" id="waktu" placeholder="Waktu" v-model="chapter.quiz.time">
+                                                                <div class="input-group-addon">Menit</div>
+                                                            </div>
+                                                        </div>
                                                         <!-- Start: Table Queations -->
                                                         <div class="table-responsive">
                                                             <table class="table table-striped">
@@ -142,7 +149,7 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr v-show="chapter.quiz.questions.length == 0">
-                                                                        <td colspan="3">Tidak ada quiz</td>
+                                                                        <td colspan="3" class="text-xs-center">Tidak ada quiz</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>

@@ -104,10 +104,17 @@ class Elibrary extends Admin
         $mediaLib   = new Library\Media\Media;
         $media      = $media->withDrafts()->findOrFail($media_id);
 
-        $request    = Request::createFromGlobals();
-        $metadata   = $request->request->get('meta');
-        $status     = 'publish';
-
+        $status         = 'publish';
+        $request        = Request::createFromGlobals();
+        $metadata       = $request->request->get('meta');
+        $getMetadata    = $request->request->get('meta');
+        $metadata       = array();
+        foreach ($getMetadata as $key => $value) {
+            $metaKey = str_replace("_", " ", $key);
+            if($value != ''){
+                $metadata[$metaKey] = $value; 
+            }
+        }
 
         foreach ($metadata as $key => $value) {
             if ($key == 'title') {
@@ -280,7 +287,7 @@ class Elibrary extends Admin
                     $cek = $this->media_model->cekMeta($id, $key, $value);
                     if($cek == FALSE){
                         $dataMeta = array(
-                            'key'       => $key,
+                            'key'       => str_replace("_", " ", $key),
                             'value'     => $value,
                             'media_id'  => $id
                         );
@@ -417,7 +424,7 @@ class Elibrary extends Admin
     }
 
     public function checkRole(){
-        if (sentinel()->inRole('adm') OR sentinel()->inRole('pus')) {
+        if (sentinel()->inRole('adm') OR sentinel()->inRole('pus') OR sentinel()->inRole('su')) {
             return TRUE;
         }else{
             return FALSE;

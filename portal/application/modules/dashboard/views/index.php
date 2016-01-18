@@ -37,7 +37,7 @@
                                             <textarea name="content" class="editor"></textarea>
                                         </fieldset>
                                         <fieldset class="form-group hidden-sm-up">
-                                             <input type="file" name="filemedia[]" id="filer_input_img" multiple="multiple">
+                                             <input type="file" name="filemedia" id="filer_input_img">
                                         </fieldset>
                                         <fieldset class="form-group hidden-sm-up">
                                             <label for="">Keterangan gambar</label>
@@ -64,10 +64,6 @@
                                             <div class="widget-sidebar-content">
                                                 <cropit-preview name="featured" :show-description="true"></cropit-preview>
                                                 <cropit-result name="featured"></cropit-result>
-                                                <fieldset class="form-group">
-                                                    <label for="">Keterangan Gambar</label>
-                                                    <input type="text" name="caption-img" class="form-control">
-                                                </fieldset>
                                             </div>
                                         </div>
                                     </div>
@@ -95,33 +91,45 @@
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="submit-konsultasi" aria-labelledby="" aria-expanded="false">
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">   
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">   
                                     <form method="POST" action="<?php echo site_url('konsultasi/konsultasi/create') ?>" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="">Subjek</label>
-                                            <?php echo form_input('subjek', set_value('subjek'), array('class' => 'form-control input-lg', 'placeholder' => 'Masukkan subjek Konsultasi')); ?>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <label for="">Subjek</label>
+                                                <?php echo form_input('subjek', set_value('subjek'), array('class' => 'form-control input-lg', 'placeholder' => 'Masukkan subjek Konsultasi')); ?>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Kategori</label><br>
-                                            <select class="form-control" name="id_konsultasi_kategori">
-                                                <?php 
-                                                    foreach ($konsultasiCat as $row) {
-                                                ?>
-                                                    <option value="<?php echo $row->id;?>"><?php echo $row->name;?></option>
-                                                <?php }?>
-                                            </select>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="">Kategori</label><br>
+                                                    <select class="form-control" name="id_konsultasi_kategori">
+                                                        <?php 
+                                                            foreach ($konsultasiCat as $row) {
+                                                        ?>
+                                                            <option value="<?php echo $row->id;?>"><?php echo $row->name;?></option>
+                                                        <?php }?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="">Prioritas</label><br>
+                                                    <select class="form-control" name="prioritas">
+                                                        <option value="High" selected>High</option>
+                                                        <option value="Medium">Medium</option>
+                                                        <option value="Low">Low</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Prioritas</label><br>
-                                            <select class="form-control" name="prioritas">
-                                                <option value="High" selected>High</option>
-                                                <option value="Medium">Medium</option>
-                                                <option value="Low">Low</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Pesan Anda</label>
-                                            <?php echo form_textarea('pesan', set_value('pesan', '', FALSE), array('class' => 'editor')); ?>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <label for="">Pesan Anda</label>
+                                                    <?php echo form_textarea('pesan', set_value('pesan', '', FALSE), array('class' => 'editor')); ?>
+                                                </div> 
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Attachments</label>
