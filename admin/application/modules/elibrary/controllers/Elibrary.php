@@ -110,7 +110,11 @@ class Elibrary extends Admin
         $getMetadata    = $request->request->get('meta');
         $metadata       = array();
         foreach ($getMetadata as $key => $value) {
-            $metaKey = str_replace("_", " ", $key);
+            if($key != 'full_description'){
+                $metaKey = str_replace("_", " ", $key);
+            }else{
+                $metaKey = $key;
+            }
             if($value != ''){
                 $metadata[$metaKey] = $value; 
             }
@@ -119,16 +123,23 @@ class Elibrary extends Admin
         foreach ($metadata as $key => $value) {
             if ($key == 'title') {
                 $title = $value;
+                unset($metadata[$key]);
             }
             if ($key == 'description') {
                 $description = $value;
+                unset($metadata[$key]);
+            }
+            if ($key == 'full_description'){
+                $full_description   = $value;
+                unset($metadata[$key]);
             }
         }
 
         $data = array(
-            'title'         => $title,
-            'description'   => $description,
-            'status'        => $status
+            'title'             => $title,
+            'description'       => $description,
+            'full_description'  => $full_description,
+            'status'            => $status
         );
 
         $this->media_model->update($media->id, $data);
