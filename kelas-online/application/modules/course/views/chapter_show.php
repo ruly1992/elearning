@@ -21,14 +21,14 @@
                             <tbody>
                                 <?php $numb = 1; foreach ($chapter->attachments as $attachment): ?>
                                     <tr>
-                                        <th scope="row"><?php echo str_pad($numb, 3, STR_PAD_LEFT) ?></th>
+                                        <th scope="row"><?php echo str_pad($numb, 3, '0', STR_PAD_LEFT) ?></th>
                                         <td><?php echo $attachment->filename ?></td>
                                         <td><?php echo $attachment->filesize ?></td>
                                         <td>
                                             <a href="<?php echo $attachment->link_download ?>" target="_blank" class="btn btn-sm btn-primary" title="Download"><i class="fa fa-download"></i></a>
                                         </td>
                                     </tr>
-                                <?php endforeach ?>
+                                <?php $numb++; endforeach ?>
                                 <?php if ($chapter->attachments->count() == 0): ?>
                                     <tr>
                                         <td colspan="4">Tidak ada attachment</td>

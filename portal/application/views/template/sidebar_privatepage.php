@@ -9,7 +9,7 @@
         <div class="widget-content">
             <ul class="article">
             <?php
-            $choices = Model\Portal\Article::editorChoice()->latest('date')->get();
+            $choices = Model\Portal\Article::editorChoice()->onlyRegistered()->latest('date')->get();
             $no = 1;
 
             foreach ($choices->slice(0, 10) as $article): ?>
@@ -40,7 +40,7 @@
         <div class="widget-content news4">
             <div class="tab-content" id="myTabSidebarContent">
                 <div role="tabpanel" class="tab-pane fade active in" id="popular-post" aria-labelledby="popular-post-tab" aria-expanded="true">
-                    <?php $popular = Model\Portal\Article::popular()->take(5)->get() ?>
+                    <?php $popular = Model\Portal\Article::onlyRegistered()->popular()->take(5)->get() ?>
                     <?php if ($popular->count()): ?>
                         <?php foreach ($popular as $article): ?>
                         <div class="box-articles-widget">
@@ -66,7 +66,7 @@
                     <?php endif ?>
                 </div>
                 <div class="tab-pane fade" id="latest-post" role="tabpanel" aria-labelledby="latest-post-tab" aria-expanded="false">
-                    <?php $latest = Model\Portal\Article::latest('date')->limit(4)->get() ?>
+                    <?php $latest = Model\Portal\Article::onlyRegistered()->latest('date')->limit(4)->get() ?>
                     <?php if ($latest->count()): ?>
                         <?php foreach ($latest as $article): ?>
                         <div class="box-articles-widget">

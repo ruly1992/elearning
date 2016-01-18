@@ -126,7 +126,7 @@
                                         <?php endif ?>
                                     <?php endforeach ?>
                                 </ul>
-                                <div class="header-top-right" style="display:none">
+                                <div class="header-top-right hidden-lg-down" style="display:none">
                                     <form action="<?php echo home_url('search') ?>" method="GET">
                                         <div class="input-group">
                                             <input class="form-control form-control-sm" placeholder="Search for..." type="text">

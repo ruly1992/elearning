@@ -99,7 +99,7 @@
                     <p><strong>Deskripsi selengkapnya :</strong></p>
                 </div>
                 <div class="form-group">
-                    <textarea name="meta[full_description]" class="form-control" rows="5"><?php echo set_value('meta[full_description]', $media->getMetadata('full_description')) ?></textarea>  
+                    <textarea name="meta[full_description]" class="form-control" rows="5"><?php echo $media->full_description ?></textarea>  
                 </div>              
             </div>
         </div>

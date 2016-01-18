@@ -147,7 +147,7 @@ class Course extends Model
         $suffix         = str_pad($i, 3, '0', STR_PAD_LEFT);
         $generated      = $prefix.'.'.$user_id.'.'.$category_id.'.'.$suffix;
 
-        if ($this->whereCode($generated)->count())
+        if ($this->withDrafts()->whereCode($generated)->count())
             return $this->generateCode($i+1);
             return $generated;
     }
@@ -211,5 +211,10 @@ class Course extends Model
         $code = str_replace('-', '.', $slug);
 
         return $query->where('code', $code)->firstOrFail();
+    }
+    
+    public function hasExam()
+    {
+        return !$this->exam->questions->isEmpty();
     }
 }

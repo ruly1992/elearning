@@ -128,44 +128,46 @@
                             
                             <?php if ($konsultasi->status == 'open'): ?>
                                 <div class="card-block">
-                                    <div id="accordion" role="tablist" aria-multiselectable="true">
-                                        <div class="card">
-                                            <div class="card-header" role="tab" id="headingOne">
-                                                <h4>
-                                                    <a class="btn btn-reply-outline" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        Balas
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                <div class="container">
-                                                    <form method="POST" action="<?php echo site_url('dashboard/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <input type="hidden" id="" name="id_konsultasi" value="<?php echo $konsultasi->id ?>">
+                                    <div class="row">
+                                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                                            <div class="card">
+                                                <div class="card-header" role="tab" id="headingOne">
+                                                    <h4>
+                                                        <a class="btn btn-reply-outline" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                            Balas
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                    <div class="container">
+                                                        <form method="POST" action="<?php echo site_url('dashboard/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <input type="hidden" id="" name="id_konsultasi" value="<?php echo $konsultasi->id ?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <label for="">Pesan Anda</label>
+                                                                        <textarea name="isi" id="" cols="30" rows="5" class="editor"></textarea>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <label for="">Pesan Anda</label>
-                                                                    <textarea name="isi" id="" cols="30" rows="5" class="editor"></textarea>
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                        <label for="">Attachments</label>
+                                                                        <input type="file" name="files" id="filer_konsultasi">
+                                                                        <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt | Max Size Upload : 10MB) </small>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                                                    <label for="">Attachments</label>
-                                                                    <input type="file" name="files" id="filer_konsultasi">
-                                                                    <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt | Max Size Upload : 10MB) </small>
-                                                                </div>
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-sm btn-kirim">Kirim</button>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button type="submit" class="btn btn-sm btn-kirim">Kirim</button>
-                                                        </div>
-                                                    </form>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

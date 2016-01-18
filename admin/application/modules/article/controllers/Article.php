@@ -74,9 +74,7 @@ class Article extends Admin {
         $this->form_validation->set_rules('title', 'Title', 'trim|required', array('required' => '<div class="alert alert-danger">Judul Artikel Wajib diisi</div>'));
         $this->form_validation->set_rules('content', 'Content', 'required', array('required' => '<div class="alert alert-danger">Content Artikel Wajib diisi</div>'));
 
-        if ($this->form_validation->run() == FALSE) {
-            keepValidationErrors();
-            
+        if ($this->form_validation->run() == FALSE) {            
             $data['categories_checkbox']    = $this->M_kategori->generateCheckbox();
             $data['status']                 = $this->status;
             
