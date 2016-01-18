@@ -21,7 +21,11 @@
                                                     for($cat; $cat<($limitCat*$page); $cat++){
                                                         if(!empty($c[$cat])){
                                                             if(isset($category) AND $category == $c[$cat]->category_name){$active='active';}else{$active='';}
-                                                            echo anchor('thread/category/'.$c[$cat]->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategory($threadSide, $c[$cat]->id, $closeThreads).'</span> '.$c[$cat]->category_name, 'class="list-group-item '.$active.'"');
+                                                            if(isset($tenagaAhli)){
+                                                                echo anchor('thread/category/'.$c[$cat]->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategoryTA($threadSide, $topics, $c[$cat]->id, $closeThreads, $userID).'</span> '.$c[$cat]->category_name, 'class="list-group-item '.$active.'"');
+                                                            }else{
+                                                                echo anchor('thread/category/'.$c[$cat]->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategory($threadSide, $c[$cat]->id, $closeThreads).'</span> '.$c[$cat]->category_name, 'class="list-group-item '.$active.'"');
+                                                            }
                                                         }
                                                     }
                                             ?>
