@@ -24,8 +24,13 @@ $(document).ready(function () {
                 } else {
                     return true;
                 }
-            } else if (currentIndex === 3) {
-                var length = window.app_kelas_online.course.exams.length;
+            }
+
+            return true;
+        },
+        onFinishing: function (event, currentIndex) {
+             if (currentIndex === 3) {
+                var length = window.app_kelas_online.course.exam.length;
 
                 if (length === 0) {
                     alert('Anda belum memasukkan exam.')
@@ -35,8 +40,6 @@ $(document).ready(function () {
                     return true;
                 }
             }
-
-            return true;
         },
         onFinished: function (event, currentIndex) {
             var form = $('#form-course-result')

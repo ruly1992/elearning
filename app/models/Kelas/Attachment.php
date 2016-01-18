@@ -23,6 +23,6 @@ class Attachment extends Model
 
     public function getLinkDownloadAttribute()
     {
-        return asset($this->chapter->course_id.'/chapter_'.$this->chapter_id.'/'.$this->filename);
+        return asset('kelas-content/'.$this->chapter->course_id.'/chapter_'.$this->chapter_id.'/'.$this->filename);
     }
 }
