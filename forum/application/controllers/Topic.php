@@ -25,7 +25,7 @@ class Topic extends CI_Controller
         $hostname = getenv('AUTH_DB_HOST') ?: 'localhost';
         $username = getenv('AUTH_DB_USERNAME') ?: 'root';
         $password = getenv('AUTH_DB_PASSWORD') ?: '';
-        $database = getenv('AUTH_DB_DATABASE') ?: 'portal_learning';
+        $database = getenv('AUTH_DB_DATABASE') ?: 'elearning_portal';
 
         $source = new AllWilayah($hostname, $username, $password, $database);
         $this->wilayah->setSource($source);

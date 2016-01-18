@@ -4968,6 +4968,14 @@ Create: Singgih Saputro */
 			margin-right: $margin-right - 11;
 		}
 	}
+	// Custom plugin select kelas online
+	.select2-container--default {
+		.select2-selection--single {
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
+			height: 34px;
+		}
+	}
 }
 
 /* Dashboard Administrator

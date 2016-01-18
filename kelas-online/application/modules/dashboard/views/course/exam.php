@@ -33,9 +33,9 @@
                         <tr v-for="question in course.exam.questions">
                             <th scope="row">{{ $index+1 }}</th>
                             <td>{{{ question.question }}}</td>
-                            <td>
-                                <a class="btn btn-sm btn-secondary" data-toggle="modal" data-target=".add-exam" title="Edit" v-on:click="editExamQuestion($index)"><i class="fa fa-pencil-square-o"></i></a>
-                                <a class="btn btn-sm btn-danger" title="Delete" v-on:click="removeExamQuestion($index)"><i class="fa fa-trash-o"></i></a>
+                            <td class="text-xs-center">
+                                <a class="btn btn-sm btn-info btn-margin-btm" data-toggle="modal" data-target=".add-exam" title="Edit" v-on:click="editExamQuestion($index)"><i class="fa fa-pencil"></i></a>
+                                <a class="btn btn-sm btn-danger btn-margin-btm" title="Delete" v-on:click="removeExamQuestion($index)"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                     </tbody>

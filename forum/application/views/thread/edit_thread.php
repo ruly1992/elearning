@@ -137,9 +137,9 @@
                         $.ajax({
                             type: "POST",
                             url: "<?php echo site_url('/thread/getUserByTopic'); ?>",
-                            data :"idTopic="+idTopic,
+                            data :"topic="+idTopic,
                             success: function( data ) {
-                                $('.search-choice').empty();
+                                $('#addMember').empty();
                                 $( '#addMember' ).html(data);
                                 $("#addMember").trigger("chosen:updated");
                             }
