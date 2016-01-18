@@ -310,8 +310,9 @@ class Model_thread extends CI_Model
         $items = array('threads.*', 'categories.category_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories', 'categories.id=threads.category')
-                ->where('author', $id)
-                ->order_by('created_at','desc')
+                ->where(array('author' => $id, 'reply_to' => '0'))
+                ->order_by('category','desc')
+                ->order_by('id', 'desc')
                 ->get();
         return $get->result();
     }

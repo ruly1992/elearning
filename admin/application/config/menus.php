@@ -95,6 +95,7 @@ $config['menus'] = [
                 'name'  => 'Category',
                 'icon'  => 'fa fa-upload',
                 'link'  => site_url('kelasonline/category'),
+                'roles' => ['su', 'adm'],
             ],
         ]
     ],

@@ -1,65 +1,167 @@
 $(document).ready(function() {
-	function gd(year, month, day) {
-	    return new Date(year, month, day).getTime();
-	}
+    function gd(year, month, day) {
+        return new Date(year, month, day).getTime();
+    }
 
-	if ($("#chart-visitor").length) {
-		var d1 = [
-			[gd(2014, 1, 0), 20],
-			[gd(2014, 2, 0), 30],
-			[gd(2014, 3, 0), 10],
-			[gd(2014, 4, 0), 145],
-			[gd(2014, 5, 0), 57],
-			[gd(2014, 6, 0), 34]
-		];
+    if ($("#chart-visitor").length) {
+        var dataVisitor = [];
 
-		var options = {
-			xaxis: {
-				mode: 'time',
-				tickColor: '#fff',
-				minTickSize: [1, "day"],
-				timeformat: "%a"
-			},
-	    }
+        function onDataReceivedVisitor(data) {
+            dataVisitor = data;
 
-		$.plot($("#chart-visitor"), [ d1 ], options);
-	}
+            function flotVisitorDate(start, end) {
+                var date    = start;
+                var dateMax = end;
 
-	if ($("#chart-post").length) {
-		var d1 = [
-			[gd(2014, 1, 0), 10],
-			[gd(2014, 2, 0), 70],
-			[gd(2014, 3, 0), 10],
-			[gd(2014, 4, 0), 10],
-			[gd(2014, 5, 0), 45],
-			[gd(2014, 6, 0), 10]
-		];
+                $.plot($("#chart-visitor"), [ dataVisitor ], {
+                    xaxis: {
+                        mode: "time",
+                        minTickSize: [1, "day"],
+                        timeformat: "%d/%m/%Y",
+                        min: date.valueOf(),
+                        max: dateMax.valueOf()
+                    }
+                });
+            }
 
-		var options = {
-			xaxis: {
-				mode: 'time',
-				tickColor: '#fff',
-				minTickSize: [1, "day"],
-				timeformat: "%a"
-			},
-	    }
+            function flotVisitorDay(y, m, d) {
+                var date    = moment([y, m-1, d]).hour(0);
+                var dateMax = date.clone().endOf('day');
 
-		$.plot($("#chart-post"), [ d1 ], options);
-	}
+                $.plot($("#chart-visitor"), [ dataVisitor ], {
+                    xaxis: {
+                        mode: "time",
+                        minTickSize: [1, "hour"],
+                        timeformat: "%H",
+                        min: date.valueOf(),
+                        max: dateMax.valueOf()
+                    }
+                });
+            }
 
-	$('.myflot .flot-daterange').daterangepicker({
-		ranges: {
-		    'Today': [moment(), moment()],
-		    'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-		    'Last 7 Days': [moment().subtract('days', 6), moment()],
-		    'Last 30 Days': [moment().subtract('days', 29), moment()],
-		    'This Month': [moment().startOf('month'), moment().endOf('month')],
-		    'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
-      	},
-		startDate: moment().subtract('days', 29),
-		endDate: moment()
-	}, 
-	function(start, end) {
-		$('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-	})
+            function flotVisitorWeekly(y, m, d) {
+                var date    = moment([y, m-1, d]);
+                var dateMax = date.clone().add(1, 'w');
+
+                $.plot($("#chart-visitor"), [ dataVisitor ], {
+                    xaxis: {
+                        mode: "time",
+                        minTickSize: [1, "day"],
+                        timeformat: "%d/%m/%Y",
+                        min: date.valueOf(),
+                        max: dateMax.valueOf()
+                    }
+                });
+            }
+
+            flotVisitorDate(moment().startOf('month'), moment().endOf('month'));            
+
+            $('.myflot .flot-daterange').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                    'Last 7 Days': [moment().subtract('days', 6), moment()],
+                    'Last 30 Days': [moment().subtract('days', 29), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+                },
+                startDate: moment().startOf('month'),
+                endDate: moment().endOf('month')
+            }, 
+            function(start, end) {
+                $('#daterange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                flotVisitorDate(start, end);
+            })
+        }
+        
+        function fetchDataVisitor() {
+            $.ajax({
+                url: siteurl + '/api/visitor',
+                success: onDataReceivedVisitor
+            })
+        }
+
+        fetchDataVisitor();
+    }
+
+    if ($("#chart-post").length) {
+        var dataPost = [];
+
+        function onDataReceivedPost(data) {
+            dataPost = data;
+
+            function flotPostDate(start, end) {
+                var date    = start;
+                var dateMax = end;
+
+                $.plot($("#chart-post"), [ dataPost ], {
+                    xaxis: {
+                        mode: "time",
+                        minTickSize: [1, "day"],
+                        timeformat: "%d/%m/%Y",
+                        min: date.valueOf(),
+                        max: dateMax.valueOf()
+                    }
+                });
+            }
+
+            function flotPostDay(y, m, d) {
+                var date    = moment([y, m-1, d]).hour(0);
+                var dateMax = date.clone().endOf('day');
+
+                $.plot($("#chart-Post"), [ dataPost ], {
+                    xaxis: {
+                        mode: "time",
+                        minTickSize: [1, "hour"],
+                        timeformat: "%H",
+                        min: date.valueOf(),
+                        max: dateMax.valueOf()
+                    }
+                });
+            }
+
+            function flotPostWeekly(y, m, d) {
+                var date    = moment([y, m-1, d]);
+                var dateMax = date.clone().add(1, 'w');
+
+                $.plot($("#chart-Post"), [ dataPost ], {
+                    xaxis: {
+                        mode: "time",
+                        minTickSize: [1, "day"],
+                        timeformat: "%d/%m/%Y",
+                        min: date.valueOf(),
+                        max: dateMax.valueOf()
+                    }
+                });
+            }
+
+            flotPostDate(moment().startOf('month'), moment().endOf('month'));            
+
+            $('.myflot .flot-daterange-post').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                    'Last 7 Days': [moment().subtract('days', 6), moment()],
+                    'Last 30 Days': [moment().subtract('days', 29), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+                },
+                startDate: moment().startOf('month'),
+                endDate: moment().endOf('month')
+            }, 
+            function(start, end) {
+                $('#daterange-post span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                flotPostDate(start, end);
+            })
+        }
+        
+        function fetchDataPost() {
+            $.ajax({
+                url: siteurl + '/api/post',
+                success: onDataReceivedPost
+            })
+        }
+
+        fetchDataPost();
+    }
 })

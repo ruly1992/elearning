@@ -56,62 +56,28 @@
             <h3>COURSE FORUM</h3>
         </div>
         <div class="content-course-forum-main">
-            <p>There are 3 reviews on this course</p>
+            <p>There are <?php echo $course->comments->count() ?> reviews on this course</p>
             <ul class="list-course-forum">
-                <li>
-                    <div class="row">
-                        <div class="col-sm-2 col-xs-12">
-                            <div class="text-center">
-                                <img src="<?php echo asset('images/portal/people-1.png') ?>" alt="">
+                <?php foreach ($course->comments as $comment): ?>
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-2 col-xs-12">
+                                <div class="text-center">
+                                    <img src="<?php echo $comment->avatar ?>" alt="">
+                                </div>
+                            </div>
+                            <div class="col-sm-10 col-xs-12">
+                                <div class="meta">
+                                    <p><strong><?php echo $comment->name ?></strong></p>
+                                    <p><i class="fa fa-calendar"></i> <em><?php echo $comment->created_at->format('d F Y') ?></em></p>
+                                </div>
+                                <div class="list-content-forum">
+                                    <p><?php echo $comment->content ?></p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-10 col-xs-12">
-                            <div class="meta">
-                                <p><strong>Chanchandrue</strong></p>
-                                <p><i class="fa fa-calendar"></i> <em>09 December 2015</em></p>
-                            </div>
-                            <div class="list-content-forum">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit labore, aspernatur nostrum amet, officia ipsa quos maiores dolores repudiandae modi perferendis</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-2 col-xs-12">
-                            <div class="text-center">
-                                <img src="<?php echo asset('images/portal/people-1.png') ?>" alt="">
-                            </div>
-                        </div>
-                        <div class="col-sm-10 col-xs-12">
-                            <div class="meta">
-                                <p><strong>Chanchandrue</strong></p>
-                                <p><i class="fa fa-calendar"></i> <em>09 December 2015</em></p>
-                            </div>
-                            <div class="list-content-forum">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit labore, aspernatur nostrum amet, officia ipsa quos maiores dolores repudiandae modi perferendis</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-2 col-xs-12">
-                            <div class="text-center">
-                                <img src="<?php echo asset('images/portal/people-1.png') ?>" alt="">
-                            </div>
-                        </div>
-                        <div class="col-sm-10 col-xs-12">
-                            <div class="meta">
-                                <p><strong>Chanchandrue</strong></p>
-                                <p><i class="fa fa-calendar"></i> <em>09 December 2015</em></p>
-                            </div>
-                            <div class="list-content-forum">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit labore, aspernatur nostrum amet, officia ipsa quos maiores dolores repudiandae modi perferendis</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                    </li>                    
+                <?php endforeach ?>
             </ul>
         </div>
     </div>
