@@ -9,7 +9,7 @@
         <div class="widget-content">
             <ul class="article">
             <?php
-            $choices = Model\Portal\Article::editorChoice()->latest('date')->get();
+            $choices = Model\Portal\Article::editorChoice()->onlyRegistered()->latest('date')->get();
             $no = 1;
 
             foreach ($choices->slice(0, 10) as $article): ?>
