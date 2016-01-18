@@ -3,8 +3,10 @@
         <h4 class="panel-title">Save or Publish</h4>
     </div>
     <div class="panel-body">
-        <button class="btn btn-primary">Save</button>
-        <button class="btn btn-primary">Save and Publish</button>
+        <?php echo form_open('kelasonline/course/edit/'.$course->id, 'id="form-basic"'); ?>
+            <button type="button" id="btn-submit" class="btn btn-primary">Save</button>
+            <button type="button" id="btn-submit-publish" class="btn btn-primary">Save and Publish</button>
+        <?php echo form_close(); ?>
     </div>
 </div>
 
@@ -38,3 +40,17 @@
         <a href="<?php echo site_url('kelasonline/course/delete/'.$course->id) ?>" class="btn btn-delete btn-danger"><i class="fa fa-trash-o"></i> Delete this course</a>
     </div>
 </div>
+
+<?php custom_script() ?>
+<script>
+    $(document).ready(function () {
+        $('#btn-submit').on('click', function () {
+            $('#form-basic').submit();
+        })
+        $('#btn-submit-publish').on('click', function () {
+            $('#form-basic').append('<input type="hidden" name="status" value="publish">');
+            $('#form-basic').submit();
+        })
+    })
+</script>
+<?php endcustom_script() ?>

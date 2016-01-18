@@ -45,7 +45,16 @@
             </div>
             <div class="card-block">
                 <?php if ($chapter->hasQuiz()): ?>
-                    <a href="<?php echo site_url('course/showquiz/'.$course->slug.'/chapter-'.$chapter->order) ?>" class="btn btn-block btn-exam btn-primary">START QUIZ</a>
+                    <?php if ($repository->memberHasFinishedChapter($chapter)): ?>
+                        <p class="alert alert-info">
+                            <i class="fa fa-check"></i> Anda telah menyelesaikan quiz ini
+                        </p>
+                    <?php else: ?>
+                        <p class="alert alert-info">
+                            <i class="fa fa-question-mark"></i> Anda mempunyai waktu <?php echo $chapter->quiz->time ?> menit
+                        </p>
+                        <a href="<?php echo site_url('course/showquiz/'.$course->slug.'/chapter-'.$chapter->order) ?>" class="btn btn-block btn-exam btn-primary">START QUIZ</a>
+                    <?php endif ?>                    
                 <?php else: ?>
                     <p>Tidak ada quiz</p>
                 <?php endif ?>

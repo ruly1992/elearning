@@ -1,7 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <?php echo show_message() ?>
-        <?php echo form_open('dashboard/course/edit/'.$course->id); ?>
             <div class="form-group">
                 <label for="">Code :</label>
                 <p class="form-static"><span class="label label-primary"><?php echo $course->code ?></span></p>
@@ -18,9 +17,6 @@
                 <label>Deskripsi :</label>
                 <?php echo form_textarea('description', set_value('description', $course->description, FALSE), ['class' => 'form-control editor']); ?>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-sm">Save</button>
-            </div>
-        <?php echo form_close(); ?>
     </div>
 </div>
+

@@ -132,7 +132,7 @@
                         $.ajax({
                             type: "POST",
                             url: "<?php echo site_url('/thread/getUserByTopic'); ?>",
-                            data :"idTopic="+idTopic,
+                            data :"topic="+idTopic,
                             success: function( data ) {
                                 $('.search-choice').empty();
                                 $( '#addMember' ).html(data);
@@ -154,7 +154,7 @@
                     $.ajax({
                         type: "POST",
                         url: "<?php echo site_url('/thread/getUserByTopic'); ?>",
-                        data :"idTopic="+idTopic,
+                        data :"topic="+idTopic,
                         success: function( data ) {
                             $('#addPrivate').collapse('show');
                             $( '#addMember' ).html(data);

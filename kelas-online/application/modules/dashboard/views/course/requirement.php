@@ -99,10 +99,18 @@
                     this.$http.get(siteurl + '/dashboard/api/course/' + requirement.val())
                         .then(function (response) {
                             var course = response.data;
+                            var already = false;
 
-                            console.log(course);
+                            $.each(this.course.requirements, function (key, value) {
+                                if (value.id === course.id)
+                                    already = true;
+                            });
 
-                            this.course.requirements.push(course);
+                            if (already === false) {
+                                this.course.requirements.push(course);
+                            } else {
+                                alert('Kelas sudah ada');
+                            }
                         }
                     )
                 },
