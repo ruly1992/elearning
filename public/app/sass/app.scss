@@ -545,6 +545,13 @@ header {
 					background-color: $green-black;
 				}
 			}
+			.btn-search {
+				padding-left: $padding-left + 2px;
+				padding-right: $padding-right + 2px;
+				margin-top: $margin-top + 5px;
+				background-color: $green-black;
+				color: $white;
+			}
 		}
 	}
 	#header-main {
@@ -1585,9 +1592,11 @@ header {
 			.list-content {
 				margin-bottom: $margin-bottom + 10px;
 				width: 100%;
-				height: auto;
-				@include border-radius(3px);
-				border: 1px solid #939EA2;
+				border-top: 4px solid $green-black;
+				border-right: 1px solid $grey;
+				border-left: 1px solid $grey;
+				border-bottom: 1px solid $grey;
+				box-shadow: $grey-black 2px 2px 2px;
 				display: inline-block;
 				text-align: center;
 				position: relative;
@@ -1595,7 +1604,7 @@ header {
 					margin-top: $margin-top + 5px;
 					width: 55px;
 					height: 55px;
-					background-color: $aspalt-light;
+					background-color: $green-black;
 					@include border-radius(50px);
 					position: absolute;
 					left: 40%;
@@ -1616,7 +1625,7 @@ header {
 							text-decoration: none;
 							text-transform: uppercase;
 							@include border-radius(3px);
-							background-color: $aspalt;
+							background-color: $green-black;
 							padding-left: $padding-left + 20px;
 							padding-right: $padding-right + 20px;
 							padding-top: $padding-top + 5px;
