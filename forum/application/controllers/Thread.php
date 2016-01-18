@@ -265,6 +265,20 @@ class Thread extends CI_Controller
             );
             $data = $this->security->xss_clean($data); //xss clean
             $save = $this->model_thread->update_thread($id,$data);
+
+            $typeThread     = set_value('type');
+            if($typeThread == 'close'){
+                $member     = $this->input->post('member');
+                $this->model_thread->delete_thread_members($id);
+                foreach($member AS $key => $value){
+                    $threadMember = array(
+                        'thread_id' => $id,
+                        'user_id'   => $value
+                    );
+                    $this->model_thread->save_thread_member($threadMember);
+                }
+            }
+
             if($save==TRUE){
                 $this->session->set_flashdata('success','Thread berhasil diperbarui');
             }else{
@@ -410,15 +424,43 @@ class Thread extends CI_Controller
 
     public function getUserByTopic()
     {
-        $idTopic    = $this->input->post('idTopic');
+        $idTopic    = $this->input->post('topic');
         $getTopic   = $this->model_topic->selectTopic($idTopic);
+        $user = sentinel()->getUser();
+
         foreach($getTopic as $t){
             $daerah     = $t->daerah;
         }
-        // $role       = sentinel()->findRoleByDesa_id($daerah);
-        // $users      = $role->users;
-        // usersOption($users);
-        echo '<option>'.$daerah.'</option>';
+        if($daerah != '00.00.00.0000'){
+            $users  = Model\User::getByWilayah($daerah);
+        }else{
+            $users = Model\User::all();
+        }
+
+        usersOption($users, $user->id);
+    }
+
+    public function getSelectedMember()
+    {
+        $idTopic    = $this->input->post('topic');
+        $getTopic   = $this->model_topic->selectTopic($idTopic);
+        $idThread   = $this->input->post('thread');
+        $getMember  = $this->model_thread->get_thread_members_by_id($idThread);
+        $user = sentinel()->getUser();
+
+        foreach($getTopic as $t){
+            $daerah     = $t->daerah;
+        }
+        if($daerah != '00.00.00.0000'){
+            $users  = Model\User::getByWilayah($daerah);
+        }else{
+            $users = Model\User::all();
+        }
+        if(!empty($getMember)){
+            userSelectedOption($users, $getMember, $user->id);
+        }else{
+            usersOption($users, $user->id);
+        }
     }
 
     public function checkTA()

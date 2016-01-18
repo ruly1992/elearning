@@ -40,7 +40,26 @@ class Course extends Admin
 
     public function editBasic($id)
     {
-        $this->template->build('course/edit');
+        if ($this->input->post()) {
+            $name           = set_value('name');
+            $description    = set_value('description', '', false);
+            $days           = set_value('days', 0);
+            $category       = set_value('category_id');
+            $status         = set_value('status', '');
+
+            $this->repository->update($name, $description, $days);
+            $this->repository->attachCategory($category);
+
+            if (!empty($status)) {
+                $this->repository->saveTo($status);
+            }
+
+            set_message_success('Kelas berhasil diperbarui');
+
+            redirect('kelasonline/course/edit/'.$id.'/basic', 'refresh');
+        } else {
+            $this->template->build('course/edit');
+        }
     }
 
     public function editRequirement($id)

@@ -250,7 +250,7 @@ class Dashboard extends Admin {
         $this->form_validation->set_rules('password_old', 'Old Password', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['user'] = auth()->findById($user_id);
+            $data['user'] = sentinel()->findById($user_id);
 
             keepValidationErrors();
             
@@ -259,16 +259,22 @@ class Dashboard extends Admin {
 
             $this->template->build('changePassword', $data);
         } else {
-            $password       = set_value('password');
-            $password_old   = set_value('password_old');
-            $changed        = $this->model->changePassword($user_id, $password, $password_old);
+            $hasher         = sentinel()->getHasher();
 
-            if ($changed) {
-                set_message_success('Password berhasil diperbarui.');
+            $password               = set_value('password');
+            $password_old           = set_value('password_old');
+            $password_confirmation  = set_value('password_confirmation');
+
+            $user = sentinel()->getUser($user_id);
+
+            if (!$hasher->check($password_old, $user->password) || $password != $password_confirmation) {
+                set_message_error('Password lama tidak sesuai.');
 
                 redirect('dashboard/profile/'.$user_id, 'refresh');
             } else {
-                set_message_error('Password lama tidak sesuai.');
+                sentinel()->update($user, array('password' => $password));
+
+                set_message_success('Password berhasil diperbarui.');
 
                 redirect('dashboard/profile/'.$user_id, 'refresh');
             }

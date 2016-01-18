@@ -34,50 +34,61 @@
                                     echo '</div>';
                                 }
                             ?>
-                        <table class="table table-bordered table-responsive">
-                            <thead>
-                                <tr>
-                                  <th>No</th>
-                                  <th>Title</th>
-                                  <th>Pertanyaan</th>
-                                  <th>Jawaban</th>
-                                  <th>Time Create</th>
-                                  <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    $noPage = $faq->currentPage();
-                                    $no = $noPage + ($noPage - 1) * ($perPage - 1);
-                                    foreach($faq as $f){
-                                ?>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
                                     <tr>
-                                        <th scope="row"><?php echo $no; ?></th>
-                                        <th><?php echo $f->title; ?></th>
-                                        <td><p><?php echo $f->question; ?></p></td>
-                                        <td><?php echo $f->answer; ?></td>
-                                        <td><p><?php echo $f->created_at; ?></p></td>
-                                        <td align="center">
-                                            <?php echo anchor('dashboard/edit/'.$f->id, 'Edit', 'class="btn btn-info btn-konsul" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
-                                            <?php echo anchor('dashboard/delete/'.$f->id, 'Delete', 'class="btn btn-danger btn-konsul" data-toggle="tooltip" data-placement="top" title="Hapus"'); ?>
-                                        </td>
+                                      <th>No</th>
+                                      <th>Title</th>
+                                      <th>Pertanyaan</th>
+                                      <th>Jawaban</th>
+                                      <th>Time Create</th>
+                                      <th>Action</th>
                                     </tr>
-                                <?php
-                                        $no+=1;
-                                    }
-                                ?>
-                                
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                        $noPage = $faq->currentPage();
+                                        $no = $noPage + ($noPage - 1) * ($perPage - 1);
+                                        foreach($faq as $f){
+                                    ?>
+                                        <tr>
+                                            <th scope="row"><?php echo $no; ?></th>
+                                            <th><?php echo $f->title; ?></th>
+                                            <td><p><?php echo $f->question; ?></p></td>
+                                            <td><?php echo $f->answer; ?></td>
+                                            <td><p><?php echo $f->created_at; ?></p></td>
+                                            <td align="center">
+                                                <?php echo anchor('dashboard/edit/'.$f->id, 'Edit', 'class="btn btn-info btn-konsul btn-margin-btm" data-toggle="tooltip" data-placement="top" title="Edit"'); ?>
+                                                <?php echo anchor('dashboard/delete/'.$f->id, 'Delete', 'class="btn btn-danger btn-konsul btn-margin-btm" data-toggle="tooltip" data-placement="top" title="Hapus"'); ?>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                            $no+=1;
+                                        }
+                                    ?>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        <center>
+                            <div class="forum-pagination">
+                                <nav>
+                                <div class="text-center">
+                                    <center> 
+                                    <?php echo $faq->render() ?>
+                                    </center>
+                                </div>
+                                </nav>
+                            </div>
+                        </center>
                         </div>
                         <!-- end:content main -->
                     </div>
                 </div>
                 <!-- end:content -->
-
-                <center>
-                    <?php echo $faq->render(); ?>
-                </center>
+                
+                
             </section>
         </div>
         <!-- end:main content -->

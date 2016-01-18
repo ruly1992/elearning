@@ -172,11 +172,9 @@ class CourseRepository
         return $this->saveTo('draft');
     }
 
-    public function update($name, $description, $days, $category)
+    public function update($name, $description, $days = 0)
     {
-        $this->model = Course::update(compact('name', 'description', 'days'));
-
-        $this->attachCategory($category);
+        $this->model->update(compact('name', 'description', 'days'));
 
         return $this;
     }
@@ -429,9 +427,9 @@ class CourseRepository
         return $this->model->hasFeatured();
     }
 
-    public function memberHasFinishedChapter(Chapter $chapter)
+    public function memberHasFinishedChapter(Chapter $chapter, $attempt = 1)
     {
-        return $chapter->memberHasFinished($this->user);
+        return $chapter->memberHasFinished($this->user, $attempt);
     }
 
     public function memberAllowChapter(Chapter $chapter)
@@ -527,6 +525,7 @@ class CourseRepository
             });
 
             $member->answers()->saveMany($answers);
+            $member->update(['submited' => true]);
 
             return $member->answers;
         }

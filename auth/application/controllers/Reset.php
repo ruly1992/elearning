@@ -36,16 +36,13 @@ class Reset extends CI_Controller {
 				$mail->isSMTP();                            // Set mailer to use SMTP
 				$mail->Host = 'smtp.gmail.com';  			// Specify main and backup SMTP servers
 				$mail->SMTPAuth = true;                     // Enable SMTP authentication
-				$mail->Username = 'sandroid.san@gmail.com'; // SMTP username
-				$mail->Password = 'santusakil19';           // SMTP password
+				$mail->Username = getenv('EMAIL_USERNAME'); // SMTP username
+				$mail->Password = getenv('EMAIL_PASSWORD'); // SMTP password
 				$mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
 				$mail->Port = 587;                          // TCP port to connect to
-				$mail->setFrom('admin@admin.com', 'Admin Desa Membangun');
+				$mail->setFrom('no_reply@desamembangun.com', 'Admin Desa Membangun');
 				$mail->addAddress($email);     				// Add a recipient
 				$mail->isHTML(true);
-
-				$url = '<a href = "http://localhost/elearning/auth/reset/check_user/'.$code->user_id.'/'.$code->code.'">Reset Password</a>';
-
 				$mail->Subject = 'Reset Password Aku Desa Membangun';
 				$mail->Body    = '<center>
 							        <table cellspacing="0" cellpadding="0" border="0" style="border-radius:4px;margin:0;padding:0;width:100%;max-width:664px;border:1px solid #dadedf">
@@ -69,7 +66,7 @@ class Reset extends CI_Controller {
 							                                        Anda menerima email ini karena ada permintaan untuk memperbarui kata sandi anda.
 							                                        Klik tautan dibawah.
 							                                        <br><br>
-							                                        '.$url.'
+							                                        <a href ='.site_url("reset/check_user/".$code->user_id."/".$code->code."").'>Reset Password</a>
 							                                        <br><br>
 							                                        Jika anda tidak meminta ini, abaikan.
 							                                        <br><br>
@@ -135,11 +132,9 @@ class Reset extends CI_Controller {
 	        $this->template->build('form_reset', $data);
 		} else {
 			
-			// $id 		 	= $user_id;
 			$user 			= sentinel()->findUserById($user_id);
 			$password 		= set_value('password');
 
-			// $user 			= sentinel()->update($id, $password);	
 			$completed		= (new Reminder)->complete($user, $code, $password);	
 
 			if ($completed) {

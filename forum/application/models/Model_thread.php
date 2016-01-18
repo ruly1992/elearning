@@ -98,6 +98,7 @@ class Model_thread extends CI_Model
         $threadsByTACategory    = $this->getThreadsByTACategory($id, $data);
         $threadsByTATopic       = $this->getThreadsByTATopic($id, $data);
         $threadsByTAId          = $this->getThreadsByTAId($id, $data);
+        $closeThreads           = $this->getThreadsByClose($id, $data);
 
         $allThreads             = array();
         foreach($threadsByTACategory as $tbc){
@@ -111,6 +112,11 @@ class Model_thread extends CI_Model
             }
         }
         foreach ($threadsByTAId as $tbi) {
+            if ( ! in_array($tbi, $allThreads)) {
+                $allThreads[] = $tbi;
+            }
+        }
+        foreach ($closeThreads as $tbi) {
             if ( ! in_array($tbi, $allThreads)) {
                 $allThreads[] = $tbi;
             }
@@ -163,6 +169,24 @@ class Model_thread extends CI_Model
                             ->join('topics', 'topics.id=threads.topic')
                             ->where(array(
                                 'author'           => $id,
+                                'reply_to'         => '0', 
+                                'threads.status'   => '1', 
+                                'topics.status'    => '1'
+                            ))
+                            ->order_by('threads.category', 'desc')
+                            ->order_by('threads.id', 'desc')
+                            ->get()
+                            ->result();
+        return $result;
+    }
+
+    function getThreadsByClose($id, $data){
+        $result     = $this->db->select($data)->from('threads')
+                            ->join('categories', 'categories.id=threads.category')
+                            ->join('topics', 'topics.id=threads.topic')
+                            ->join('thread_members', 'thread_members.thread_id=threads.id')
+                            ->where(array(
+                                'user_id'          => $id,
                                 'reply_to'         => '0', 
                                 'threads.status'   => '1', 
                                 'topics.status'    => '1'
@@ -376,7 +400,8 @@ class Model_thread extends CI_Model
         }
     }
 
-    function save_thread_member($member){
+    function save_thread_member($member)
+    {
         $save   = $this->db->insert('thread_members', $member);
         if($this->db->affected_rows() == 1){
             return TRUE;
@@ -385,9 +410,20 @@ class Model_thread extends CI_Model
         }
     }
 
-    function get_thread_members(){
-        $get = $this->db->get('thread_members');
-        if($this->db->affected_rows() >= 1){
+    function get_thread_members()
+    {
+        $get    = $this->db->get('thread_members');
+        if($this->db->affected_rows() > '0'){
+            return $get->result();
+        }else{
+            return array();
+        }
+    }
+
+    function get_thread_members_by_id($id)
+    {
+        $get = $this->db->get_where('thread_members', array('thread_id' => $id));
+        if($this->db->affected_rows() > '0'){
             return $get->result();
         }else{
             return array();
