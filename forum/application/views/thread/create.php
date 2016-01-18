@@ -48,7 +48,7 @@
                                                         Close
                                                     </label>
                                                     <label class="c-input c-radio">
-                                                        <input id="radio2" class="private" name="type" value="public" checked type="radio" onclick="public()">
+                                                        <input id="radio2" class="public" name="type" value="public" checked type="radio" onclick="public()">
                                                         <span class="c-indicator"></span>
                                                         Public
                                                     </label>
@@ -175,7 +175,7 @@
                 } else {
                     $('#addPrivate').collapse('hide');
                     $('.close').removeProp('checked');
-                    $('.private').prop('checked', true);
+                    $('.public').prop('checked', true);
                     alert("Anda harus memilih topic terlebih dahulu!");
                 }
         }
