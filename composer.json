@@ -23,7 +23,8 @@
         "illuminate/events": "~5.1.0",
         "plasticbrain/php-flash-messages": "^1.0",
         "hashids/hashids": "^1.0",
-        "phpmailer/phpmailer": "^5.2"
+        "phpmailer/phpmailer": "^5.2",
+        "barryvdh/laravel-dompdf": "^0.6.1"
     },
     "autoload": {
         "psr-4": {
