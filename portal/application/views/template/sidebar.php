@@ -103,7 +103,7 @@
         </div>
         <div class="widget-content">
             <?php $comments = Model\Portal\Comment::whereHas('article', function ($query) {
-                return $query->where('type', 'public');
+                return $query->where('type', '!=', 'private');
             })->latest('date')->get() ?>
             <?php if ($comments->count()): ?>
                 <?php foreach ($comments as $comment): ?>
