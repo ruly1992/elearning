@@ -85,7 +85,10 @@ class Author extends CI_Controller
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['reply']          = $this->model_thread->get_reply($id);
         $data['countReply']     = count($data['reply']);
+        $data['userID']         = $user->id;
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['id']             = $id;
+        $data['authorThreads']  = $this->model_thread->get_thread_from_author($user->id);
         
         if($this->session->flashdata('success')){
             $data['success'] = $this->session->flashdata('success');
@@ -120,6 +123,7 @@ class Author extends CI_Controller
         $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['authorThreads']  = $this->model_thread->get_thread_from_author($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
 
@@ -173,7 +177,9 @@ class Author extends CI_Controller
         $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['topics']         = $allTopics;
+        $data['userID']         = $user->id;
         $data['id_thread']      = $id;
+        $data['authorThreads']  = $this->model_thread->get_thread_from_author($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $this->load->view('thread/edit_thread',$data);
     }
