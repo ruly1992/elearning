@@ -40,10 +40,18 @@
 <div class="content-exam">
     <h4>EXAM</h4>
     <hr>
-    <?php if ($course->hasExam()): ?>
-            <a href="<?php echo site_url('course/showexam/'.$course->slug) ?>" class="btn btn-block btn-exam btn-primary">START EXAM</a>
+    <?php if ($repository->memberAllowExam($course)): ?>
+        <?php if ($course->hasExam()): ?>
+            <?php if ($course_member_status->first()->status !== 'finished'): ?>
+                <a href="<?php echo site_url('course/showexam/'.$course->slug) ?>" class="btn btn-block btn-exam btn-primary">START EXAM</a>
+            <?php else: ?>
+                <p class="alert alert-success">Anda sudah menyelesaikan ujian</p>
+            <?php endif ?>
+        <?php else: ?>
+            <p>Tidak ada ujian</p>
+        <?php endif ?>
     <?php else: ?>
-            <p>Tidak ada exam</p>
+        <p class="alert alert-warning">Anda harus menyelesaikan semua chapter terlebih dahulu untuk memulai ujian.</p>
     <?php endif ?>
 </div>
 <!-- END EXAM -->
@@ -58,7 +66,7 @@
 
         <?php if ($value->status == 'finished'): ?>
             
-                <a href="#" class="btn btn-block btn-sertifikat btn-info">CETAK SERTIFIKAT</a>
+            <a href="<?php echo site_url('course/printedcertificate/'.$course->slug) ?>" class="btn btn-block btn-sertifikat btn-info">CETAK SERTIFIKAT</a>
         
         <?php else: ?>
 
