@@ -5,12 +5,6 @@ $(document).ready(function() {
 
 	if ($("#chart-visitor").length) {
 		var d1 = [
-			[gd(2014, 1, 0), 20],
-			[gd(2014, 2, 0), 30],
-			[gd(2014, 3, 0), 10],
-			[gd(2014, 4, 0), 145],
-			[gd(2014, 5, 0), 57],
-			[gd(2014, 6, 0), 34]
 		];
 
 		var options = {

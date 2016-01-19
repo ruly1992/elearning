@@ -5,11 +5,11 @@
             <h3 class="panel-title">Visitor</h3>
             <div id="daterange" class="flot-daterange selectbox pull-right hidden-xs">
                 <i class="icon-calendar"></i>
-                <span><?php echo Carbon\Carbon::today()->format('F d, Y') ?> - <?php echo Carbon\Carbon::today()->format('F d, Y') ?></span> <b class="caret"></b>
+                <span><?php echo Carbon\Carbon::today()->startOfMonth()->format('F d, Y') ?> - <?php echo Carbon\Carbon::today()->endOfMonth()->format('F d, Y') ?></span> <b class="caret"></b>
             </div>
         </div>
         <div class="panel-body">
-            <div id="chart-visitor" class="flot-content center" style="height:300px;" data-json="<?php echo site_url('api/visitor') ?>"></div>
+            <div id="chart-visitor" class="flot-content center" style="height:300px;"></div>
         </div>
     </div>
 </div>
@@ -18,13 +18,13 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Post</h3>
-            <div id="daterange" class="flot-daterange selectbox pull-right hidden-xs">
+            <div id="daterange-post" class="flot-daterange-post selectbox pull-right hidden-xs">
                 <i class="icon-calendar"></i>
-                <span><?php echo Carbon\Carbon::today()->format('F d, Y') ?> - <?php echo Carbon\Carbon::today()->format('F d, Y') ?></span> <b class="caret"></b>
+                <span><?php echo Carbon\Carbon::today()->startOfMonth()->format('F d, Y') ?> - <?php echo Carbon\Carbon::today()->endOfMonth()->format('F d, Y') ?></span> <b class="caret"></b>
             </div>
         </div>
         <div class="panel-body">
-            <div id="chart-post" class="flot-content center" style="height:300px;" data-json="<?php echo site_url('api/post') ?>"></div>
+            <div id="chart-post" class="flot-content center" style="height:300px;"></div>
         </div>
     </div>
 </div>
@@ -34,31 +34,16 @@
         <i class="icon-users"></i>
         <div class="number"><?php echo $visitor_today ?></div>
         <div class="title">Visitors Today</div>
-        <div class="progress thin">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                <span class="sr-only">73% Complete (success)</span>
-            </div>
-        </div>
     </li>
     <li>
         <i class="icon-user-follow"></i>
         <div class="number"><?php echo $new_visitor_unique ?></div>
         <div class="title">New Visitor Unique</div>
-        <div class="progress thin">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                <span class="sr-only">73% Complete (success)</span>
-            </div>
-        </div>
     </li>
     <li>
         <i class="icon-speech"></i>
-        <div class="number">972</div>
+        <div class="number"><?php echo Model\Portal\Comment::all()->count() ?></div>
         <div class="title">New comments</div>
-        <div class="progress thin">
-            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                <span class="sr-only">73% Complete (success)</span>
-            </div>
-        </div>
     </li>
 </ul>
 

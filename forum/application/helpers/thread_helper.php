@@ -41,7 +41,7 @@
 		$counter = 0;
 		foreach($threads as $thr){
 			if($thr->topic == $idTopic){
-				if($thr->type == 'close'){
+				if($thr->type == 'close' AND $thr->author != $userID){
 					$close 	= sumCloseThread($threadMembers, $thr->id, $userID);
 					$counter += $close;
 				}else{
@@ -87,6 +87,30 @@
 			}
 			foreach($closeThreads as $cls){
 				$sum_threads += 1;
+			}
+		return $sum_threads;
+	}
+
+	function countThreadsCategoryTA($threads, $topics, $idCategory, $closeThreads, $userID)
+	{
+		$sum_threads = 0;
+			foreach($threads as $t){
+				if($t->category == $idCategory AND $t->type == 'public'){
+					$sum_threads += 1;
+				}else{
+					$tempThread = 0;
+					foreach ($topics as $topic) {
+						if($topic->tenaga_ahli == $userID AND $t->topic == $topic->id AND $t->category == $idCategory){
+							$sum_threads += 1;
+							$tempThread   = $t->id;
+						}
+					}
+					foreach($closeThreads as $cls){
+						if($t->id == $cls->id AND $t->category == $idCategory AND $t->id != $tempThread){
+							$sum_threads += 1;
+						}
+					}
+				}
 			}
 		return $sum_threads;
 	}

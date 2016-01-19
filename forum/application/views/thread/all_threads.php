@@ -3,7 +3,7 @@
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
             <section id="content">
-
+                
                 <!-- start:content -->
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -70,7 +70,7 @@
                                                                             foreach($threads as $thr){
                                                                                 if($cat->id == $thr->category AND $top->id == $thr->topic){
                                                                                     $isThread = true;
-                                                                                    if($thr->type == 'close'){
+                                                                                    if($thr->type == 'close' AND $top->tenaga_ahli != $userID){
                                                                                         showThread($thr, $visitors, $comments, $threadMembers, $thr->id, $userID);
                                                                                     }else{
                                                                         ?>

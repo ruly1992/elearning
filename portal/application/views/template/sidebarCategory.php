@@ -90,7 +90,9 @@
             <h3>LATEST KOMENTAR</h3>
         </div>
         <div class="widget-content">
-            <?php foreach (Model\Portal\Comment::latest('date')->get() as $comment): ?>
+            <?php foreach (Model\Portal\Comment::whereHas('article', function ($query) {
+                return $query->where('status', 'private');
+            })->latest('date')->get() as $comment): ?>
             <div class="row">
                 <div class="box-komentar-widget">
                     <div class="col-sm-3 col-xs-4">
