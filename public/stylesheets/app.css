@@ -2180,7 +2180,8 @@ header {
         -o-border-radius: 4px; }
         .content-dashboard .content-dashboard-articles .content-dashboard-articles-main .box-dashboard-articles .box-dashboard-articles-img img {
           width: 100%;
-          height: 100%; }
+          height: 100%;
+          object-fit: cover; }
       .content-dashboard .content-dashboard-articles .content-dashboard-articles-main .box-dashboard-articles .box-dashboard-articles-meta ul {
         list-style: none;
         padding-left: 0px;
