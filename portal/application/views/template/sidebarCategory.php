@@ -87,11 +87,11 @@
 
     <div class="widget">
         <div class="widget-heading">
-            <h3>LATEST KOMENTAR</h3>
+            <h3>KOMENTAR TERKINI</h3>
         </div>
         <div class="widget-content">
             <?php foreach (Model\Portal\Comment::whereHas('article', function ($query) {
-                return $query->where('status', 'private');
+                return $query->where('type', 'private');
             })->latest('date')->get() as $comment): ?>
             <div class="row">
                 <div class="box-komentar-widget">

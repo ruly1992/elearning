@@ -26,7 +26,7 @@
                         <td><?php echo $row->date->format('d M Y H:i') ?></td>
                         <td>
                             <?php if ($row->status == 'draft'): ?>
-                                <a href="<?php echo site_url('comment/edit/' . $row->id) ?>" class="label label-info"><i class="fa fa-edit"></i> Moderasi</a>
+                                <a href="<?php echo site_url('comment/edit/' . $row->id) ?>" class="btn btn-editadmin btn-info"><i class="fa fa-edit"></i> Moderasi</a>
                                 <?php echo button_delete('comment/delete/' . $row->id) ?>
                             <?php else: ?>
                                 <?php echo button_edit('comment/edit/' . $row->id, 'sm') ?>
@@ -45,7 +45,7 @@
     $(document).ready(function() {
         $('#article').DataTable({
             responsive: true,
-            "sDom": '<"row"<"col-lg-6"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+            "sDom": '<"row"<"col-lg-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
         });
     } );
 </script>

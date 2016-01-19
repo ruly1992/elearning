@@ -104,11 +104,12 @@ class Elibrary extends Admin
         $mediaLib   = new Library\Media\Media;
         $media      = $media->withDrafts()->findOrFail($media_id);
 
-        $status         = 'publish';
-        $request        = Request::createFromGlobals();
-        $metadata       = $request->request->get('meta');
-        $getMetadata    = $request->request->get('meta');
-        $metadata       = array();
+        $status             = 'publish';
+        $full_description   = NULL;
+        $request            = Request::createFromGlobals();
+        $metadata           = $request->request->get('meta');
+        $getMetadata        = $request->request->get('meta');
+        $metadata           = array();
         foreach ($getMetadata as $key => $value) {
             if($key != 'full_description'){
                 $metaKey = str_replace("_", " ", $key);
