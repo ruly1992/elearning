@@ -1,4 +1,26 @@
 <?php 
+	function sortThreads($threads, $categories){
+		$tempThreads 	= array();
+		$tempCategory 	= array();
+		$counter 		= 0;
+		foreach($categories as $category){
+			foreach($threads as $thread){
+				if($thread->category == $category->id){
+					$counter 	= $counter+1;
+				}
+			}
+			$tempCategory[$category->id] = $counter;
+		}
+		// arsort($tempCategory);
+		foreach($tempCategory as $key => $value){
+			foreach($threads as $thread){
+				if($thread->category == $key){
+					$tempThreads[] 	= $thread;
+				}
+			}
+		}
+		return $tempThreads;
+	}
 
 	function countViewer($visitors, $idThread)
 	{

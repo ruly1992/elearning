@@ -121,8 +121,9 @@ class Model_thread extends CI_Model
                 $allThreads[] = $tbi;
             }
         }
-        
-        return $allThreads;
+        $categories     = $this->get_categories();
+        $result         = sortThreads($allThreads, $categories);
+        return $result;
     }
 
     private function getThreadsByTACategory($id, $data)
