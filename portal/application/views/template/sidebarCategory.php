@@ -91,7 +91,7 @@
         </div>
         <div class="widget-content">
             <?php foreach (Model\Portal\Comment::whereHas('article', function ($query) {
-                return $query->where('status', 'private');
+                return $query->where('type', 'private');
             })->latest('date')->get() as $comment): ?>
             <div class="row">
                 <div class="box-komentar-widget">
