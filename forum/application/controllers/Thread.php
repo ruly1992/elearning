@@ -112,7 +112,8 @@ class Thread extends CI_Controller
             $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         }
 
-        $data['idUser']         = $user->id;
+        $data['userID']         = $user->id;
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
@@ -220,6 +221,8 @@ class Thread extends CI_Controller
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['reply']          = $this->model_thread->get_reply($id);
         $data['countReply']     = count($data['reply']);
+        $data['userID']         = $user->id;
+        $data['topics']         = $this->model_topic->get_approved_topics();
         $data['id']             = $id;
         
         if($this->session->flashdata('success')){
