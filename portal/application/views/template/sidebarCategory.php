@@ -87,7 +87,7 @@
 
     <div class="widget">
         <div class="widget-heading">
-            <h3>KOMENTAR TERAKHIR</h3>
+            <h3>KOMENTAR TERKINI</h3>
         </div>
         <div class="widget-content">
             <?php foreach (Model\Portal\Comment::whereHas('article', function ($query) {
