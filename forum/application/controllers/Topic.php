@@ -59,6 +59,7 @@ class Topic extends CI_Controller
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['provinsi']       = $this->getWilayah();
+        $data['userID']         = $user->id;
 
         $topics             = collect($this->model_topic->get_topics_from_id($user->id));
         $perPage            = 5;
@@ -89,6 +90,8 @@ class Topic extends CI_Controller
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['tenagaAhli']     = $user->id;
+        $data['topics']         = $this->model_topic->get_approved_topics();
+        $data['userID']         = $user->id;
 
     	$this->load->view('topic/create', $data);
     }
@@ -196,6 +199,8 @@ class Topic extends CI_Controller
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['tenagaAhli']     = $user->id;
+        $data['topics']         = $this->model_topic->get_approved_topics();
+        $data['userID']         = $user->id;
 
         $this->load->view('topic/edit',$data);
     }

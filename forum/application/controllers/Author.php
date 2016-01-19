@@ -35,6 +35,7 @@ class Author extends CI_Controller
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
         }
 
+        $data['author']         = user($user->id)->full_name;
         $data['authorThreads']  = $this->model_thread->get_thread_from_author($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
         $data['visitors']       = $this->model_visitor->get_visitors();
@@ -113,6 +114,7 @@ class Author extends CI_Controller
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
         }
+        $data['author']         = user($user->id)->full_name;
         $data['addTopic']       = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
         $data['authorThreads']  = $this->model_thread->get_thread_from_author($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
@@ -128,7 +130,7 @@ class Author extends CI_Controller
         $data['userID']         = $user->id;
 
         $threads           = collect($this->model_thread->get_thread_from_author($user->id));
-        $data['threads']   = pagination($threads, 10, 'author', 'bootstrap_md');
+        $data['threads']   = pagination($threads, 10, 'author/category/'.$idCategory, 'bootstrap_md');
 
         $this->load->view('thread/author_threads',$data);
     }
