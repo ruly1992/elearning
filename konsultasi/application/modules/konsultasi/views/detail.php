@@ -21,6 +21,7 @@
         ?>
         <!-- start:content -->
         <div class="content-konsultasi-main">
+            <?php echo validation_errors(); ?>
             <div class="content-konsultasi-title">
                 <div class="row">
                     <div class="col-lg-12">

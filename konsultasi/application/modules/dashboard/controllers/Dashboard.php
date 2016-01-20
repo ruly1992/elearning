@@ -34,7 +34,7 @@ class Dashboard extends CI_Controller
 
     public function detail($id)
     {
-        $this->form_validation->set_rules('isi', 'Isi', 'required');
+        $this->form_validation->set_rules('isi', 'Isi', 'required',  array('required' => '<div class="alert alert-danger">Pesan Konsultasi Wajib diisi</div>'));
 
         if ($this->form_validation->run() == FALSE) {            
             $detail['konsultasi']       = $this->M_konsultasi->getByIdKonsultasi($id);
