@@ -102,10 +102,12 @@
             <h3>Komentar Terkini</h3>
         </div>
         <div class="widget-content">
-            <div class="row">
-                <?php $comments = Model\Portal\Comment::latest('date')->get() ?>
-                <?php if ($comments->count()): ?>
-                    <?php foreach ($comments as $comment): ?>
+            <?php $comments = Model\Portal\Comment::whereHas('article', function ($query) {
+                return $query->where('type', '!=', 'private');
+            })->latest('date')->get() ?>
+            <?php if ($comments->count()): ?>
+                <?php foreach ($comments as $comment): ?>
+                <div class="row">
                     <div class="box-komentar-widget">
                         <div class="col-sm-3 col-xs-4">
                             <div class="box-komentar-widget-img">
@@ -117,19 +119,30 @@
                                 <p><strong><a href="#"><?php echo $comment->nama ?></a></strong></p>
                             </div>
                             <div class="box-komentar-widget-content">
-                                <p><?php echo $comment->content ?> <strong>ON</strong> <a href="<?php echo $comment->article->link ?>"><?php echo $comment->article->title ?></a></p>
+                                <?php
+                                    $length = 50;
+                                    if (strlen($comment->content) < $length) :
+                                ?>
+                                    <?php $rest = substr($comment->content, 0, $length);?>
+                                    <p><?php echo $rest ?> <strong>ON</strong> <a href="<?php echo $comment->article->link ?>"><?php echo $comment->article->title ?></a></p>
+                                <?php else: ?>
+                                    <?php $rest = substr($comment->content, 0, $length);?>
+                                    <p><?php echo $rest.'...' ?> <strong>ON</strong> <a href="<?php echo $comment->article->link ?>"><?php echo $comment->article->title ?></a></p>   
+                                <?php endif ?>
                             </div>
                         </div>
                     </div>
-                    <?php endforeach ?>
-                <?php else: ?>
+                </div>
+                <?php endforeach ?>
+            <?php else: ?>
+                <div class="row">
                     <div class="box-komentar-widget">
                         <div class="col-sm-12">
                             <p class="alert alert-warning">Tidak ada komentar yang ditampilkan.</p>
                         </div>
                     </div>
-                <?php endif ?>
-            </div>
+                </div>
+            <?php endif ?>
         </div>
     </div>
     
