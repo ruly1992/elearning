@@ -49,7 +49,7 @@
 		$counter = 0;
 		foreach($topics as $top){
 			if($top->category == $idCategory){
-				$countThreadsTopic	=	checkThreadsTopic($threads, $top->id, $threadMembers, $userID);
+				$countThreadsTopic	=	checkThreadsTopic($threads, $top->id, $threadMembers, $top->tenaga_ahli, $userID);
 				if($countThreadsTopic > 0){
 					$counter += 1;
 				}
@@ -58,17 +58,19 @@
 		return $counter;
 	}
 
-	function checkThreadsTopic($threads, $idTopic, $threadMembers, $userID)
+	function checkThreadsTopic($threads, $idTopic, $threadMembers, $topicTenagaAhli, $userID)
 	{
 		$counter = 0;
 		foreach($threads as $thr){
-			if($thr->topic == $idTopic){
+			if($thr->topic == $idTopic AND $topicTenagaAhli != $userID){
 				if($thr->type == 'close' AND $thr->author != $userID){
 					$close 	= sumCloseThread($threadMembers, $thr->id, $userID);
 					$counter += $close;
 				}else{
 					$counter += 1;
 				}
+			}elseif($thr->topic == $idTopic AND $topicTenagaAhli == $userID){
+				$counter += 1;
 			}
 		}
 		return $counter;
