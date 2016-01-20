@@ -13,7 +13,7 @@
                                 <div class="forum-main">
                                     <div class="card">
                                         <div class="card-block">                                           
-                                            <?php echo form_open('/dashboard/update/'.$id); ?>
+                                            <?php echo form_open('/dashboard/update/'.$id, 'id="formFAQ"'); ?>
                                                 <div class="form-group">
                                                     <label for="">Title :</label>
                                                     <input type="text" required value="<?php echo $title; ?>" name="title" class="form-control" placeholder="type your title">
@@ -24,10 +24,10 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Jawaban :</label>
-                                                    <textarea type="text" required name="jawaban" class="jawaban" rows="5" placeholder="Jawaban"><?php echo $jawaban; ?></textarea>
+                                                    <textarea type="text" id="jawaban" name="jawaban" class="jawaban" rows="5" placeholder="Jawaban"><?php echo $jawaban; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                    <button type="button" onclick="submitFAQ()" class="btn btn-primary">Update</button>
                                                     <?php echo anchor('dashboard/','Cancel','class="btn btn-default"'); ?>
                                                 </div>
                                             <?php echo form_close(); ?>
@@ -62,6 +62,20 @@
                     relative_urls: false,
                     remove_script_host : false
                 });
+        </script>
+        <script type="text/javascript">
+            function submitFAQ(){
+                // Get content of a specific editor:
+                var content = tinyMCE.get('jawaban').getContent();
+                if(content == '')
+                {
+                    alert("Jawaban harus diisi!");
+                }
+                else
+                {
+                    $("#formFAQ").submit();
+                }
+            }
         </script>
 <?php endcustom_script(); ?>
 <?php get_footer('private'); ?>
