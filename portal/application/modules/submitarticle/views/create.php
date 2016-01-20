@@ -12,7 +12,7 @@
             <div class="col-md-4">
                 <label>Foto Pengirim</label>
                 <cropit-preview name="customavatar" :width="192" :height="192" image-empty="<?php echo asset('images/default_avatar_male.jpg') ?>">
-                    <button type="button" class="btn btn-danger" v-on:click="remove('customavatar')" slot="button-remove"><i class="fa fa-trash-o"></i></button>
+                    <button type="button" class="btn btn-danger btn-margin-btm" v-on:click="remove('customavatar')" slot="button-remove"><i class="fa fa-trash-o"></i></button>
                 </cropit-preview>
             </div>
             <div class="col-md-6">
@@ -73,6 +73,10 @@
 
 <cropit-result name="featured"></cropit-result>
 <cropit-result name="customavatar"></cropit-result>
+
+<?php custom_stylesheet() ?>
+    <link rel="stylesheet" href="<?php echo asset('stylesheets/cropit.css') ?>">
+<?php endcustom_stylesheet() ?>
 
 <?php custom_script() ?>
     <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>

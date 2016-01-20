@@ -81,6 +81,16 @@ body {
 	margin-bottom: $margin-bottom + 5px;
 	margin-top: $margin-top;
 }
+.btn-kirim {
+	@include border-radius(3px);
+	padding-left: $padding-left + 30px;
+	padding-right: $padding-right + 30px;
+	font-size: 14px;
+	font-weight: 600;
+	@include fonts('open_sansregular');
+	color: $white;
+	background-color: $green-black;
+}
 .btn-update-custom {
 	color: $black;
 	background-color: $white;
@@ -113,9 +123,11 @@ body {
 	border: 1px solid #CCC;
 	border-radius: 0.25rem;
 	@include fonts('open_sansregular');
+	&:active, 
 	&:focus {
 		outline: 0px none;
-		border-color: $green-black;
+		border: 1px solid $green-black;
+		@include transition(0.3s);
 	}
 }
 /* Begin : CUstom table */ 
@@ -168,6 +180,31 @@ thead {
     color: $white;
 }
 /* End Custom table */ 
+
+/* Start search navbar after scroll */ 
+// enable absolute positioning
+.inner-addon {
+	position: relative;
+}
+// style icon
+.inner-addon .fa {
+	position: absolute;
+	padding: $padding;
+	pointer-events: none;
+}
+/* align icon */
+.left-addon .fa  { left:  0px;}
+.right-addon .fa { 
+	right: 0px;
+	z-index: 3;
+	padding-left: $padding-left + 7px;
+	padding-right: $padding-right + 12px;
+}
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+/* End search navbar after scroll*/ 
+
 
 /* HEADER */
 
@@ -485,17 +522,24 @@ header {
 			}
 		}
 		.header-top-right {
+			margin-top: $margin-top + 9px;
 			.form-control {
-				margin-top: $margin-top + 10px;
+				margin-right: $margin-right;
 				height: 30px;
-				font-size: 10px;
-				width: 150px;
+				font-size: 12px;
+				width: 35px;
+				right: 0;
+				position: absolute;
 				float: right;
 				border: 1px solid $white;
 				@include transition(0.3s);
 				&:focus {
-					width: 100%;
+					width: 300px;
 					@include transition(0.3s);
+				}
+				&:first-child {
+					@include border-radius(8px);
+					border: 1px solid $green-black;
 				}
 			}
 			.btn {
@@ -512,12 +556,9 @@ header {
 			}
 		}
 		.header-top-right-login {
+			margin-top: $margin-top + 9px;
 			.btn {
-				margin-top: $margin-top + 8px;
-				border-radius: 50px;
-				@include fonts('open_sansregular');
-				font-size: 12px;
-				font-weight: 600;
+				@include border-radius(8px);
 				padding-top: $padding-top - 1px;
 				padding-bottom: $padding-bottom - 1px;
 				padding-left: $padding-left + 20px;
@@ -528,7 +569,27 @@ header {
 				background-color: transparent;
 				background-image: none;
 				border-color: $green-black;
-				&:hover {
+				@include fonts('open_sansregular');
+				font-size: 12px;
+				font-weight: 600;
+				padding-top: $padding-top;
+				padding-bottom: $padding-bottom;
+				&:hover
+				&:focus {
+					color: $white;
+					background-color: $green-black;
+				}
+			}
+			.btn-search {
+				padding-left: $padding-left + 2px;
+				padding-right: $padding-right + 2px;
+				background-color: $green-black;
+				color: $white;
+				@include fonts('open_sansregular');
+				font-size: 12px;
+				font-weight: 600;
+				&:hover,
+				&:focus {
 					color: $white;
 					background-color: $green-black;
 				}
@@ -1448,19 +1509,32 @@ header {
 
 .content-konsultasi {
 	.content-konsultasi-title {
-		border-bottom: 1px solid $grey;
-		padding-bottom: $padding-bottom + 10px;
+		border-bottom: 2px solid $green-black;
 		margin-top: $margin-top + 20px;
 		margin-bottom: $margin-bottom + 20px;
 		h2 {
 			color: $green;
 			font-size: 20px;
-			margin-bottom: $margin-bottom - 5px;
+			margin-bottom: $margin-bottom + 5px;
 			small {
 				color: $aspalt-light;
 				font-size: 14px;
 				margin-left: $margin-left;
 			}
+		}
+		h3 {
+			color: #FFF;
+		    font-size: 12px;
+		    font-weight: 200;
+		    text-transform: uppercase;
+		    font-family: "open_sansbold",sans-serif;
+		    padding: 10px 15px 8px;
+		    margin-bottom: 0px;
+		    display: inline-block;
+		    border-bottom: 3px solid #1C9C57;
+		    background-color: #1C9C57;
+		    border-top-left-radius: 6px;
+		    border-top-right-radius: 6px;
 		}
 		.btn-create {
 			@include fonts('open_sansbold');
@@ -1502,12 +1576,54 @@ header {
 		}
 	}
 	.content-konsultasi-table {
-		a {
-			color: $green;
+		.konsultasi-content {
+			margin-bottom: $margin-bottom + 20px;
+			.title {
+				margin-bottom: $margin-bottom + 10px;
+				border-bottom: 1px solid $grey-black;
+				h3 {
+					font-size: 14px;
+					font-weight: 600;
+					padding-bottom: $padding-bottom + 3px;
+					padding-top: $padding-top + 3px;
+				}
+				p {
+					font-size: 14px;
+				}
+			}
+			.description {
+				margin-bottom: $margin-bottom + 10px;
+				border-bottom: 1px solid $grey-black;
+				h3 {
+					font-size: 14px;
+					font-weight: 600;
+					padding-bottom: $padding-bottom + 3px;
+					padding-top: $padding-top;
+				}
+				p {
+					margin-bottom: $margin-bottom - 5px;
+					font-size: 14px;
+				}
+			}
+			.attachment {
+				margin-bottom: $margin-bottom + 10px;
+				border-bottom: 1px solid $grey-black;
+				h3 {
+					font-size: 14px;
+					font-weight: 600;
+					padding-bottom: $padding-bottom + 3px;
+					padding-top: $padding-top + 3px;
+				}
+				a {
+					font-size: 14px;
+				}
+			}
 		}
-		p {
-			margin-bottom: $margin-bottom - 5px;
+		.konsultasi-detail {
+			margin-top: $margin-top + 20px;
 		}
+		// Begin dashboard tenaga ahli
+		
 		.label-primary {
 			background-color: $green;
 		}
@@ -1515,41 +1631,62 @@ header {
 			margin-top: $margin-top + 20px;
 			list-style: none;
 			padding-left: $padding-left + 15px;
-			li {
-				margin-bottom: $margin-bottom + 20px;
+			.list-content {
+				margin-bottom: $margin-bottom + 10px;
+				width: 100%;
+				border-top: 4px solid $green-black;
+				border-right: 1px solid $grey;
+				border-left: 1px solid $grey;
 				border-bottom: 1px solid $grey;
-				padding-bottom: $padding-bottom + 10px;
-				h4 {
-					font-size: 20px;
-					@include fonts('open_sansbold');
-					a {
-						text-decoration: none;
-						color: $aspalt-light;
-						@include transition(0.3s);
-						&:hover,
-						&:focus {
-							color: $black;
-							@include transition(0.3s);
-						}
-						i.fa {
-							margin-right: $margin-right;
-						}
-					}
-				}
-			}
-
-		}
-		.btn-kirim {
-			background-color: $green-black;
-			color: $white;
-		}
-		.content-konsultasi-table-details {
-			.card {
-				.card-block {
+				box-shadow: $grey-black 2px 2px 2px;
+				display: inline-block;
+				text-align: center;
+				position: relative;
+				.list-content-icon {
+					margin-top: $margin-top + 5px;
+					width: 55px;
+					height: 55px;
+					background-color: $green-black;
+					@include border-radius(50px);
+					position: absolute;
+					left: 40%;
 					p {
-						margin-bottom: $margin-bottom - 5px;
+						line-height: 3;
+						color: $white;
 					}
 				}
+				.list-content-title {
+					h4 {
+						font-size: 16px;
+						@include fonts('open_sansregular');
+						a {
+							line-height: 3;
+							font-size: 12px;
+							font-weight: 600;
+							color: $white;
+							text-decoration: none;
+							text-transform: uppercase;
+							@include border-radius(3px);
+							background-color: $green-black;
+							padding-left: $padding-left + 20px;
+							padding-right: $padding-right + 20px;
+							padding-top: $padding-top + 5px;
+							padding-bottom: $padding-bottom + 5px;
+						}
+					}
+				}
+				.list-content-description {
+					width: 100%;
+					height: 80px;
+					overflow: hidden;
+					margin-top: $margin-top + 65px;
+					p {
+						line-height: 2;
+						@include fonts('open_sansregular');
+						font-size: 12px;
+						font-weight: 600;
+					}
+				}	
 			}
 		}
 	}
@@ -1623,7 +1760,7 @@ header {
 			}
 		}
 		.elib-content {
-			margin-top: $margin-top + 20px;
+			margin-top: $margin-top - 5px;
 			.elib-content-left,
 			.elib-content-right {
 				margin-bottom: $margin-bottom + 40px;
@@ -1983,7 +2120,7 @@ header {
 		}
 	}
 	.content-articles {
-		margin-top: $margin-top - 5px;
+		margin-top: $margin-top + 20px;
 		margin-bottom: $margin-bottom + 35px;
 		.content-articles-heading {
 			display: block;
@@ -2090,6 +2227,7 @@ header {
 				img {
 					width: 100%;
 					height: 100%;
+					object-fit: cover;
 				}
 			}
 			.box-articles-sm-meta {
@@ -2306,8 +2444,10 @@ header {
 					}
 				}
 				.box-komentar-widget {
+					margin-bottom: $margin-bottom + 10px;
 					.col-sm-3.col-xs-4 {
 						padding-right: 5px;
+						margin-bottom: $margin-bottom + 5px;
 						.box-komentar-widget-img {
 							text-align: center;
 							width: 55px;
@@ -2322,6 +2462,9 @@ header {
 					}
 					.col-sm-9.col-xs-8 {
 						padding-left: 5px;
+						margin-bottom: 10px;
+						max-height: 76px;
+						overflow: hidden;
 						.box-komentar-widget-title {
 							p {
 								margin-bottom: $margin-bottom - 5px;
@@ -2437,6 +2580,7 @@ header {
 					img {
 						width: 100%;
 						height: 100%;
+						object-fit: cover;
 					}
 				}
 				.box-dashboard-articles-meta {
@@ -4305,7 +4449,7 @@ a {
 				margin-bottom: $margin-bottom + 5px;
 				@include border-radius(3px);
 				width: 100%;
-				height: 300px;
+				max-height: 310px;
 				overflow: auto;
 				.list-group-item {
 					font-size: 13px;
@@ -4383,13 +4527,12 @@ a {
 	    padding-right: $padding-right;
 	    padding-bottom: $padding-bottom - 4;
 	    padding-left: $padding-left;
-	    margin-top: $margin-top - 30;
+	    margin-top: $margin-top - 26;
 	    font-size: 10px;
 	    line-height: 1.5;
 	    @include border-radius(3px);
 	}
 }
-
 
 /* Landing FAQ
    Fajar Eko Susilo
@@ -4609,6 +4752,48 @@ a {
 			    @include border-radius(5px);
 			}
 		}
+		.chosen-container {
+			.chosen-results {
+				li {
+					font-size: 14px;
+				}
+			}
+		}
+		.chosen-container-multi {
+			background-image: none !important;
+			.chosen-choices {
+				border: 1px solid #CCC;
+				background-image: none !important;
+				font-size: 14px !important;
+				li.search-field input[type="text"] {
+					height: 30px !important;
+					margin-left: $margin-left + 3;
+				}
+			}
+		}
+		.chosen-container-active {
+			.chosen-choices {
+				border: 1px solid $green-black;
+				box-shadow: none !important;
+			}
+		}
+		.card-block {
+			blockquote {
+				position: relative;
+				background: #FFF6C7 none repeat scroll 0% 0%;
+				margin: 0.25em 0px;
+				border: 1px solid #CCC;
+				padding: 0.25em;
+				font-size: 14px;
+				p {
+					margin-bottom: $margin-bottom;
+					cite {
+						margin-right: $margin-right;
+						font-weight: 600;
+					}
+				}
+			}
+		}
 	}
 }
 /* STEPY KELAS ONLINE */ 
@@ -4826,6 +5011,14 @@ Create: Singgih Saputro */
 			margin-right: $margin-right - 11;
 		}
 	}
+	// Custom plugin select kelas online
+	.select2-container--default {
+		.select2-selection--single {
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
+			height: 34px;
+		}
+	}
 }
 
 /* Dashboard Administrator
@@ -4846,7 +5039,7 @@ Create: Singgih Saputro */
 
 .btn-editadmin,
 .btn-delete {
-	font-size: 10px;
+	font-size: 12px;
 	border: medium none;
 	padding: 3px 6px;
 	text-shadow: none;
@@ -4877,8 +5070,30 @@ Create: Singgih Saputro */
 	font-weight: 600;
 }
 
+.btn-md {
+	padding: 2px 12px;
+}
+
 .btn-margin-btm {
 	margin-bottom: $margin-bottom;
+}
+.btn-reply-outline {
+	padding-left: $padding-left + 20px;
+	padding-right: $padding-right + 20px;
+	border: 2px solid $green-black;
+	font-size: 12px;
+	font-weight: 600;
+	&:hover {
+		color: $white;
+		background-color: $green-black;
+	}
+	&:active {
+		color: $green-black;
+	}
+}
+
+.margin-card {
+	margin-top: $margin-top + 35px;
 }
 
 .sidebar-header {

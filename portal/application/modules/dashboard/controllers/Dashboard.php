@@ -77,8 +77,8 @@ class Dashboard extends Admin {
 
     public function sendArticle()
     {
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('content', 'Content', 'required');
+        $this->form_validation->set_rules('title', 'Title', 'required', array('required' => '<div class="alert alert-danger">Judul Artikel Wajib diisi</div>'));
+        $this->form_validation->set_rules('content', 'Content', 'required', array('required' => '<div class="alert alert-danger">Content Artikel Wajib diisi</div>'));
 
         if ($this->form_validation->run() == FALSE) {
             $data['categories_checkbox']    =(new Model\Portal\Category)->generateCheckbox();
@@ -103,8 +103,11 @@ class Dashboard extends Admin {
             $articleLib = new Library\Article\Article;
             $articleLib->set($id);
 
-            if ($featured_image = set_value('featured[src]'))
-                $articleLib->setFeaturedImage($featured_image);
+            if ($featured_image = set_value('featured[src]')) {
+                $description = set_value('featured[description]');
+
+                $articleLib->setFeaturedImage($featured_image, $description);
+            }
 
             set_message_success('Artikel berhasil dibuat.');
 
@@ -150,7 +153,9 @@ class Dashboard extends Admin {
             switch ($featured_action) {
                 case 'upload':
                     $featured_image = $this->input->post('featured[src]');
-                    $articleLib->setFeaturedImage($featured_image);
+                    $desciption     = $this->input->post('featured[description]');
+
+                    $articleLib->setFeaturedImage($featured_image, $description);
                     break;
 
                 case 'remove':
@@ -245,7 +250,7 @@ class Dashboard extends Admin {
         $this->form_validation->set_rules('password_old', 'Old Password', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['user'] = auth()->findById($user_id);
+            $data['user'] = sentinel()->findById($user_id);
 
             keepValidationErrors();
             
@@ -254,16 +259,22 @@ class Dashboard extends Admin {
 
             $this->template->build('changePassword', $data);
         } else {
-            $password       = set_value('password');
-            $password_old   = set_value('password_old');
-            $changed        = $this->model->changePassword($user_id, $password, $password_old);
+            $hasher         = sentinel()->getHasher();
 
-            if ($changed) {
-                set_message_success('Password berhasil diperbarui.');
+            $password               = set_value('password');
+            $password_old           = set_value('password_old');
+            $password_confirmation  = set_value('password_confirmation');
+
+            $user = sentinel()->getUser($user_id);
+
+            if (!$hasher->check($password_old, $user->password) || $password != $password_confirmation) {
+                set_message_error('Password lama tidak sesuai.');
 
                 redirect('dashboard/profile/'.$user_id, 'refresh');
             } else {
-                set_message_error('Password lama tidak sesuai.');
+                sentinel()->update($user, array('password' => $password));
+
+                set_message_success('Password berhasil diperbarui.');
 
                 redirect('dashboard/profile/'.$user_id, 'refresh');
             }

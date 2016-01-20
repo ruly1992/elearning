@@ -19,8 +19,9 @@ class Course extends Admin
     {
         $course     = $this->repository->getBySlug($slug);
         $repository = $this->repository;
+        $course_member_status   = $repository->courseMemberStatus($slug); //get status member course
 
-        $this->template->build('show', compact('course', 'repository'));
+        $this->template->build('show', compact('course', 'repository','course_member_status'));
     }
 
     public function join($slug)
@@ -46,8 +47,9 @@ class Course extends Admin
         $course     = $this->repository->getBySlug($slug);
         $repository = $this->repository;
 
-        if ($this->repository->isMember('active')) {
-            $this->template->build('chapter', compact('course', 'repository'));
+        if ($this->repository->isMember()) {
+            $course_member_status   = $repository->courseMemberStatus($slug); //get status member course
+            $this->template->build('chapter', compact('course', 'repository', 'course_member_status'));
         } else {
             redirect('course/show/' . $course->slug, 'refresh');
         }
@@ -77,19 +79,23 @@ class Course extends Admin
         $quiz           = $chapter->quiz;
         $nextchapter    = $chapter->getNext();
 
-        $repository->startQuiz($quiz);
+        if (!$repository->memberHasFinishedChapter($chapter)) {
+            $repository->startQuiz($quiz);
 
-        if ($repository->checkQuizTimeout($quiz)) {
-            if ($repository->memberAllowChapter($chapter)) {
-                $member     = $repository->getMemberSessionQuiz($quiz);
+            if ($repository->checkQuizTimeout($quiz)) {
+                if ($repository->memberAllowChapter($chapter)) {
+                    $member     = $repository->getMemberSessionQuiz($quiz);
 
-                $this->template->set_layout('chapter_quiz');
-                $this->template->build('quiz_show', compact('course', 'quiz', 'repository', 'chapter', 'nextchapter', 'member'));
+                    $this->template->set_layout('chapter_quiz');
+                    $this->template->build('quiz_show', compact('course', 'quiz', 'repository', 'chapter', 'nextchapter', 'member'));
+                } else {
+                    redirect('course/show/'.$course->slug, 'refresh');
+                }
             } else {
-                redirect('course/show/'.$course->slug, 'refresh');
+                $this->template->build('quiz_timeout', compact('course', 'quiz', 'repository', 'chapter', 'nextchapter', 'member'));
             }
         } else {
-            echo "timeout";
+            redirect('course/show/'.$course->slug.'/chapter-'.$chapter->order, 'refresh');
         }
     }
 
@@ -108,6 +114,59 @@ class Course extends Admin
         } else {
             redirect('course/showchapter/'.$course->slug.'/chapter-'.$chapter->order, 'refresh');
         }
+    }
+
+    public function showexam($slug)
+    {
+        $course         = $this->repository->getBySlug($slug);
+        $repository     = $this->repository;
+        $exam           = $course->exam;
+        
+        $check = $repository->startExam($exam);
+
+        if ($repository->checkExamTimeout($exam)) {
+            $member     = $repository->getMemberSessionExam($exam);
+
+            $this->template->set_layout('exam_layout');
+            $this->template->build('exam_show', compact('course', 'exam', 'repository', 'member'));
+        } else {
+            $this->template->build('quiz_timeout', compact('course', 'exam', 'repository'));
+        }
+    }
+
+    public function submitexam($slug)
+    {
+        $course         = $this->repository->getBySlug($slug);
+        $repository     = $this->repository;
+        $exam           = $course->exam;
+
+        $submit         = $this->repository->submitExamMember($exam, $this->input->post('answers'));
+
+        if ($submit) {
+            redirect('course/chapter/'.$course->slug, 'refresh');
+        } else {
+            redirect('course/chapter/'.$course->slug, 'refresh');
+        }
+    }
+
+    public function printedcertificate($slug)
+    {
+        $this->load->helper('dompdf');
+
+        $course         = $this->repository->getBySlug($slug);
+        $exam           = $course->exam;
+        $member         = $this->repository->getMemberExam($exam)->filter(function ($member) {
+            return $member->user_id == sentinel()->getUser()->id;
+        })->first();
+        
+        // create pdf using dompdf
+        $html           = $this->load->view('certificate', compact('course', 'member'), true);        
+        $filename       = 'Sertifikat ' . $course->code;
+        $paper          = 'A4';
+        $orientation    = 'landscape';
+        $stream         = FALSE;
+
+        pdf_create($html, $filename, $paper, $orientation, $stream);
     }
 }
 

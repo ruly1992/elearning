@@ -8,7 +8,7 @@
                 <h4 class="modal-title" id="myLargeModalLabel">Gambar Fitur</h4>
             </div>
             <div class="modal-body">
-                <cropit-cropper name="featured"></cropit-cropper>
+                <cropit-cropper name="featured" :width="623" :height="290"></cropit-cropper>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" v-on:click="cancel('featured')">Cancel</button>

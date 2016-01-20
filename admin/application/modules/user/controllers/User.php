@@ -152,18 +152,25 @@ class User extends Admin
 
             $this->template->build('formChangePass', $data);
         } else {
-            $password       = set_value('password');
-            $password_old   = set_value('password_old');
-            $changed        = $this->model->changePassword($user_id, $password, $password_old);
+            $hasher         = sentinel()->getHasher();
 
-            if ($changed) {
-                set_message_success('Password berhasil diperbarui.');
+            $password               = set_value('password');
+            $password_old           = set_value('password_old');
+            $password_confirmation  = set_value('password_confirmation');
 
-                redirect('user/updateProfile/'.$user_id, 'refresh');
-            } else {
+            $user = sentinel()->getUser($user_id);
+
+            if (!$hasher->check($password_old, $user->password) || $password != $password_confirmation) {
                 set_message_error('Password lama tidak sesuai.');
 
                 redirect('user/changepassword/'.$user_id, 'refresh');
+            } else {
+                sentinel()->update($user, array('password' => $password));
+
+                set_message_success('Password berhasil diperbarui.');
+
+                redirect('user/updateProfile/'.$user_id, 'refresh');
+
             }
         }
     }

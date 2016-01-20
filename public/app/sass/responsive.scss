@@ -531,6 +531,14 @@ $padding-left: 5px;
       }
     }
   }
+  .content-kelas-online {
+    h5 {
+      p {
+        width: 175px;
+        line-height: 1.5;
+      }
+    }
+  }
   footer {
     .footer-top {
       display: none;
@@ -551,6 +559,36 @@ $padding-left: 5px;
   }
   .content-sidebar {
     display: none;
+  }
+  .content-forum {
+    .content-main {
+      .chosen-container {
+        .chosen-results {
+          li {
+            font-size: 14px;
+          }
+        }
+      }
+      .chosen-container-multi {
+        background-image: none !important;
+        width: 250px;
+        .chosen-choices {
+          border: 1px solid #CCC;
+          background-image: none !important;
+          font-size: 14px !important;
+          li.search-field input[type="text"] {
+            height: 30px !important;
+            margin-left: $margin-left + 3;
+          }
+        }
+      }
+      .chosen-container-active {
+        .chosen-choices {
+          border: 1px solid $green-black;
+          box-shadow: none !important;
+        }
+      }
+    }
   }
 }
 //END 360
@@ -966,6 +1004,14 @@ $padding-left: 5px;
       }
     }
   }
+  .content-kelas-online {
+    h5 {
+      p {
+        width: 215px;
+        line-height: 1.5;
+      }
+    }
+  }
   
   footer {
     .footer-top {
@@ -1353,6 +1399,14 @@ $padding-left: 5px;
       }
     }
   }
+  .content-kelas-online {
+    h5 {
+      p {
+        width: 422px;
+        line-height: 1.5;
+      }
+    }
+  }
   // END CONTENT DASHBOARD
 
   //BEGIN FOOTER
@@ -1382,6 +1436,14 @@ $padding-left: 5px;
     h5 {
       p {
         width: 765px;
+      }
+    }
+  }
+  .content-kelas-online {
+    h5 {
+      p {
+        width: 500px;
+        line-height: 1.5;
       }
     }
   }

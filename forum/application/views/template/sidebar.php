@@ -7,7 +7,8 @@
                                     <div class="widget-categories-content">
                                         <div class="list-group">
                                             <?php if(isset($category)){$activeSide='';}else{ $activeSide='active';} ?>
-                                            <?php echo anchor('thread/', '<span class="label label-default label-pill pull-right"> '.countThreads($threadSide, $closeThreads).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
+                                            <?php if(isset($author)){ $link = 'author/'; }else{ $link = 'thread/'; } ?>
+                                            <?php echo anchor($link, '<span class="label label-default label-pill pull-right"> '.count($categoriesSide).'</span> All Categories', 'class="list-group-item '.$activeSide.'"'); ?>
                                             <?php 
                                                 $c              = $categoriesSide;
                                                 $limitCat       = 3; //Jumlah yang ditampilkan
@@ -21,7 +22,11 @@
                                                     for($cat; $cat<($limitCat*$page); $cat++){
                                                         if(!empty($c[$cat])){
                                                             if(isset($category) AND $category == $c[$cat]->category_name){$active='active';}else{$active='';}
-                                                            echo anchor('thread/category/'.$c[$cat]->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategory($threadSide, $c[$cat]->id, $closeThreads).'</span> '.$c[$cat]->category_name, 'class="list-group-item '.$active.'"');
+                                                            if(isset($tenagaAhli)){
+                                                                echo anchor($link.'category/'.$c[$cat]->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategoryTA($threadSide, $topics, $c[$cat]->id, $closeThreads, $userID).'</span> '.$c[$cat]->category_name, 'class="list-group-item '.$active.'"');
+                                                            }else{
+                                                                echo anchor($link.'category/'.$c[$cat]->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategory($threadSide, $c[$cat]->id, $closeThreads).'</span> '.$c[$cat]->category_name, 'class="list-group-item '.$active.'"');
+                                                            }
                                                         }
                                                     }
                                             ?>
@@ -83,7 +88,7 @@
                                                     for($top; $top<($limitTop*$page); $top++){
                                                         if(!empty($t[$top])){
                                                             if(isset($idTopic) AND $t[$top]->id == $idTopic){ $a='active'; }else{ $a=''; }
-                                                            echo anchor('#', $t[$top]->topic, 'class="list-group-item '.$a.'"');
+                                                            echo '<a href="#" class="list-group-item '.$a.'">'.$t[$top]->topic.'</a>';
                                                         }
                                                     }
                                                 ?>

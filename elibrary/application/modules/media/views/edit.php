@@ -70,7 +70,7 @@
                             </tr>
                             <tr v-for="meta in metadata">
                                 <td>{{ meta.key }}</td>
-                                <td><input type="text" name="meta[{{ meta.key }}]" value="{{ meta.value }}" class="form-control"></td>
+                                <td><input type="text" name="meta[{{ meta.key.split(' ').join('_') }}]" value="{{ meta.value }}" class="form-control"></td>
                                 <td><a href="#" onclick="return false" class="btn btn-danger btn-sm" v-on:click="removeMeta($index)"><i class="fa fa-trash-o"></i></a></td>
                             </tr>
                         </tbody>
@@ -99,7 +99,7 @@
                     <p><strong>Deskripsi selengkapnya :</strong></p>
                 </div>
                 <div class="form-group">
-                    <textarea name="meta[full_description]" class="form-control" rows="5"><?php echo set_value('meta[full_description]', $media->getMetadata('full_description')) ?></textarea>  
+                    <textarea name="meta[full_description]" class="form-control" rows="5"><?php echo $media->full_description ?></textarea>  
                 </div>              
             </div>
         </div>
@@ -147,10 +147,8 @@
 
 <?php custom_script() ?>
     <!--jQuery-->
-    <!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>-->
     <script type="text/javascript" src="<?php echo asset('node_modules/vue/dist/vue.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo asset('node_modules/vue-validator/dist/vue-validator.min.js'); ?>"></script>
-    <!--<script type="text/javascript" src="<?php echo asset('node_modules/awesomplete/awesomplete.min.js');?>"></script>-->
     <script type="text/javascript" src="<?php echo asset('javascript/elib.vue.js'); ?>"></script>
 
     <script type="text/javascript">

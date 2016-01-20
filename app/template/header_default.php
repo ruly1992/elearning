@@ -7,7 +7,7 @@
         <title>Portal - <?php echo config('site_title', 'Desa Membangun') ?></title>
 
         <!-- start:stylesheet -->
-        <link rel="stylesheet" href="<?php echo asset('node_modules/bootstrap/dist/css/bootstrap.min.css') ?>">
+        <link rel="stylesheet" href="<?php echo asset('plugins/bootstrap/dist/css/bootstrap.min.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/font-awesome/css/font-awesome.min.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/select2/dist/css/select2.min.css') ?>">
         <link rel="stylesheet" href="<?php echo asset('node_modules/tether/dist/css/tether.min.css') ?>">
@@ -126,40 +126,39 @@
                                         <?php endif ?>
                                     <?php endforeach ?>
                                 </ul>
-                                <div class="header-top-right" style="display:none">
+                                <!-- Begin : Login or Profile button if login -->
+                                <?php if (!sentinel()->check()): ?>
+                                    <?php if ($active != 'home' && !empty($active)): ?>
+                                        <div class="header-top-right-login hidden-md-down pull-right">
+                                            <a href="<?php echo login_url() ?>" class="btn btn-primary-outline">Login </a>
+                                        </div>
+                                    <?php endif ?>
+                                <?php else: ?>
+                                    <ul class="nav navbar-nav hidden-md-down pull-right">
+                                        <div class="dropdown dropdown-people">
+                                            <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="<?php echo auth()->getUser()->avatar ?>" alt="">
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right custom-float" aria-labelledby="dropdownMenu2">
+                                                <a href="<?php echo dashboard_url('profile') ?>" class="dropdown-item">Profile</a>
+                                                <a href="<?php echo dashboard_url('sendArticle') ?>" class="dropdown-item">Submit Artikel</a>
+                                                <a href="<?php echo logout_url() ?>" class="dropdown-item">Log Out</a>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                <?php endif ?>
+                                <!-- End : Login or Profile button if login -->
+                                <div class="header-top-right hidden-lg-down pull-right" style="display:none">
                                     <form action="<?php echo home_url('search') ?>" method="GET">
-                                        <div class="input-group">
+                                        <div class="input-group inner-addon right-addon">
                                             <input class="form-control form-control-sm" placeholder="Search for..." type="text">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-sm btn-secondary" type="button"><i class="fa fa-search"></i></button>
-                                            </span>
+                                            <i class="fa fa-search"></i>
                                         </div>
                                     </form>
                                 </div>
                             </div> 
                             <!-- End : Content navbarCollapse -->
-                            <!-- Begin : Login or Profile button if login -->
-                            <?php if (!sentinel()->check()): ?>
-                                <?php if ($active != 'home' && !empty($active)): ?>
-                                    <div class="header-top-right-login pull-right">
-                                        <a href="<?php echo login_url() ?>" class="btn btn-primary-outline">Login </a>
-                                    </div>
-                                <?php endif ?>
-                            <?php else: ?>
-                                <ul class="nav navbar-nav hidden-md-down pull-right">
-                                    <div class="dropdown dropdown-people">
-                                        <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src="<?php echo auth()->getUser()->avatar ?>" alt="">
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right custom-float" aria-labelledby="dropdownMenu2">
-                                            <a href="<?php echo dashboard_url('profile') ?>" class="dropdown-item">Profile</a>
-                                            <a href="<?php echo dashboard_url('sendArticle') ?>" class="dropdown-item">Submit Artikel</a>
-                                            <a href="<?php echo logout_url() ?>" class="dropdown-item">Log Out</a>
-                                        </div>
-                                    </div>
-                                </ul>
-                            <?php endif ?>
-                            <!-- End : Login or Profile button if login -->
+                            
                             <!-- Begin : Content navbarCollapselogin -->
                             <div class="collapse navbar-toggleable-md" id="navbarCollapselogin">
                                 <ul class="nav navbar-nav custom-login-mobile">

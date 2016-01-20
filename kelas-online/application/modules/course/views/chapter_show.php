@@ -19,16 +19,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($chapter->attachments as $attachment): ?>
+                                <?php $numb = 1; foreach ($chapter->attachments as $attachment): ?>
                                     <tr>
-                                        <th scope="row">001</th>
+                                        <th scope="row"><?php echo str_pad($numb, 3, '0', STR_PAD_LEFT) ?></th>
                                         <td><?php echo $attachment->filename ?></td>
                                         <td><?php echo $attachment->filesize ?></td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary" title="Download"><i class="fa fa-download"></i></a>
+                                            <a href="<?php echo $attachment->link_download ?>" target="_blank" class="btn btn-sm btn-primary" title="Download"><i class="fa fa-download"></i></a>
                                         </td>
                                     </tr>
-                                <?php endforeach ?>
+                                <?php $numb++; endforeach ?>
                                 <?php if ($chapter->attachments->count() == 0): ?>
                                     <tr>
                                         <td colspan="4">Tidak ada attachment</td>
@@ -45,7 +45,16 @@
             </div>
             <div class="card-block">
                 <?php if ($chapter->hasQuiz()): ?>
-                    <a href="<?php echo site_url('course/showquiz/'.$course->slug.'/chapter-'.$chapter->order) ?>" class="btn btn-block btn-exam btn-primary">START QUIZ</a>
+                    <?php if ($repository->memberHasFinishedChapter($chapter)): ?>
+                        <p class="alert alert-info">
+                            <i class="fa fa-check"></i> Anda telah menyelesaikan quiz ini
+                        </p>
+                    <?php else: ?>
+                        <p class="alert alert-info">
+                            <i class="fa fa-question-mark"></i> Anda mempunyai waktu <?php echo $chapter->quiz->time ?> menit
+                        </p>
+                        <a href="<?php echo site_url('course/showquiz/'.$course->slug.'/chapter-'.$chapter->order) ?>" class="btn btn-block btn-exam btn-primary">START QUIZ</a>
+                    <?php endif ?>                    
                 <?php else: ?>
                     <p>Tidak ada quiz</p>
                 <?php endif ?>

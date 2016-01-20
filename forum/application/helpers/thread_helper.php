@@ -1,4 +1,26 @@
 <?php 
+	function sortThreads($threads, $categories){
+		$tempThreads 	= array();
+		$tempCategory 	= array();
+		$counter 		= 0;
+		foreach($categories as $category){
+			foreach($threads as $thread){
+				if($thread->category == $category->id){
+					$counter 	= $counter+1;
+				}
+			}
+			$tempCategory[$category->id] = $counter;
+		}
+		// arsort($tempCategory);
+		foreach($tempCategory as $key => $value){
+			foreach($threads as $thread){
+				if($thread->category == $key){
+					$tempThreads[] 	= $thread;
+				}
+			}
+		}
+		return $tempThreads;
+	}
 
 	function countViewer($visitors, $idThread)
 	{
@@ -22,12 +44,12 @@
         return $sum_comments;
 	}
 
-	function checkTopicsCategory($topics, $threads, $idCategory)
+	function checkTopicsCategory($topics, $threads, $idCategory, $threadMembers, $userID)
 	{
 		$counter = 0;
 		foreach($topics as $top){
 			if($top->category == $idCategory){
-				$countThreadsTopic	=	checkThreadsTopic($threads, $top->id);
+				$countThreadsTopic	=	checkThreadsTopic($threads, $top->id, $threadMembers, $userID);
 				if($countThreadsTopic > 0){
 					$counter += 1;
 				}
@@ -36,7 +58,37 @@
 		return $counter;
 	}
 
-	function checkThreadsTopic($threads, $idTopic)
+	function checkThreadsTopic($threads, $idTopic, $threadMembers, $userID)
+	{
+		$counter = 0;
+		foreach($threads as $thr){
+			if($thr->topic == $idTopic){
+				if($thr->type == 'close' AND $thr->author != $userID){
+					$close 	= sumCloseThread($threadMembers, $thr->id, $userID);
+					$counter += $close;
+				}else{
+					$counter += 1;
+				}
+			}
+		}
+		return $counter;
+	}
+
+	function checkTopicsCategoryAuthor($topics, $threads, $idCategory)
+	{
+		$counter = 0;
+		foreach($topics as $top){
+			if($top->category == $idCategory){
+				$countThreadsTopic	=	checkThreadsTopicAuthor($threads, $top->id);
+				if($countThreadsTopic > 0){
+					$counter += 1;
+				}
+			}
+		}
+		return $counter;
+	}
+
+	function checkThreadsTopicAuthor($threads, $idTopic)
 	{
 		$counter = 0;
 		foreach($threads as $thr){
@@ -61,6 +113,30 @@
 		return $sum_threads;
 	}
 
+	function countThreadsCategoryTA($threads, $topics, $idCategory, $closeThreads, $userID)
+	{
+		$sum_threads = 0;
+			foreach($threads as $t){
+				if($t->category == $idCategory AND $t->type == 'public'){
+					$sum_threads += 1;
+				}else{
+					$tempThread = 0;
+					foreach ($topics as $topic) {
+						if($topic->tenaga_ahli == $userID AND $t->topic == $topic->id AND $t->category == $idCategory){
+							$sum_threads += 1;
+							$tempThread   = $t->id;
+						}
+					}
+					foreach($closeThreads as $cls){
+						if($t->id == $cls->id AND $t->category == $idCategory AND $t->id != $tempThread){
+							$sum_threads += 1;
+						}
+					}
+				}
+			}
+		return $sum_threads;
+	}
+
 	function countThreadsCategory($threads, $idCategory, $closeThreads)
 	{
 		$sum_threads = 0;
@@ -69,7 +145,7 @@
 					$sum_threads += 1;
 				}else{
 					foreach($closeThreads as $cls){
-						if($t->id == $cls->thread_id AND $t->category == $idCategory){
+						if($t->id == $cls->id AND $t->category == $idCategory){
 							$sum_threads += 1;
 						}
 					}
@@ -115,10 +191,29 @@
 		}
 	}
 
-	function usersOption($users)
+	function usersOption($users, $idUser)
 	{
         foreach($users as $user){
-            echo '<option value="'.$user->id.'">'.$user->full_name.'</option>';
+        	if($user->id != $idUser){
+	        	$role = 	$user->roles->pluck('name')->toArray();
+	            echo '<option value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
+        	}
+        } 
+	}
+
+	function userSelectedOption($users, $threadMembers, $idUser)
+	{
+		foreach($users as $user){
+			if($user->id != $idUser){
+				$selected 	= '';
+	        	$role 		= $user->roles->pluck('name')->toArray();
+				foreach($threadMembers as $member){
+					if($member->user_id == $user->id){
+						$selected 	= 'selected';
+					}
+				}
+	            echo '<option '.$selected.' value="'.$user->id.'">'.$user->full_name.' ('.$role[0].')</option>';
+			}
         } 
 	}
 

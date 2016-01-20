@@ -8,7 +8,8 @@
             </div>
         </section>
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">             
+                <?php echo validation_errors(); ?>
                 <fieldset class="form-group">
                     <label for="title">Judul Artikel</label>
                     <input name="title" type="text" class="form-control" id="title">
@@ -36,7 +37,7 @@
                         <h3>Gambar Fitur</h3>
                     </div>
                     <div class="widget-sidebar-content">
-                        <cropit-preview name="featured"></cropit-preview>
+                        <cropit-preview name="featured" :show-description="true"></cropit-preview>
                         <cropit-result name="featured"></cropit-result>
                     </div>
                 </div>

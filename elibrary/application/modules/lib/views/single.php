@@ -77,7 +77,7 @@
                 <div class="description-full-title">
                     <p><strong>Full Description :</strong></p>
                 </div>
-                <p><?php echo $media->getMetadata('full_description') ?></p>                
+                <p><?php echo $media->full_description ?></p>                
             </div>
         </div>
     </div>

@@ -13,21 +13,21 @@
                                 <div class="forum-main">
                                     <div class="card">
                                         <div class="card-block">                                           
-                                            <?php echo form_open('/dashboard/save'); ?>
+                                            <?php echo form_open('/dashboard/save', 'id="formFAQ"'); ?>
                                                 <div class="form-group">
                                                     <label for="">Title :</label>
-                                                    <input type="text" required name="title" class="form-control" placeholder="type your title">
+                                                    <input type="text" id="title" name="title" class="form-control" placeholder="type your title">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Pertanyaan :</label>
-                                                    <input type="text" required name="pertanyaan" class="form-control" placeholder="Pertanyaan">
+                                                    <input type="text" id="pertanyaan" name="pertanyaan" class="form-control" placeholder="Pertanyaan">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Jawaban :</label>
-                                                    <textarea type="text" class="jawaban" name="jawaban" rows="5" placeholder="Jawaban"></textarea>
+                                                    <textarea type="text" id="jawaban" class="jawaban" name="jawaban" rows="5" placeholder="Jawaban"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary">Create</button>
+                                                    <button type="button" onclick="submitFAQ()" class="btn btn-primary">Create</button>
                                                     <?php echo anchor('dashboard/','Cancel','class="btn btn-secondary"'); ?>
                                                 </div>
                                             <?php echo form_close(); ?>
@@ -50,7 +50,7 @@
         <script src="<?php echo asset('plugins/tinymce/tinymce.min.js'); ?>"></script>
         <script>
                 tinymce.init({
-                    selector:'.jawaban',
+                    selector:'#jawaban',
                     plugins: [
                             "advlist autolink link image lists charmap print preview hr anchor pagebreak",
                             "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
@@ -62,6 +62,30 @@
                     relative_urls: false,
                     remove_script_host : false
                 });
+        </script>
+        <script type="text/javascript">
+            function submitFAQ(){
+                // Get content of a specific editor:
+                var jawaban     = tinyMCE.get('jawaban').getContent();
+                var title       = $("#title").val();
+                var pertanyaan  = $("#pertanyaan").val();
+                if(title == '')
+                {
+                    alert("Title harus diisi terlebih dahulu!");
+                }
+                else if(pertanyaan == '')
+                {
+                    alert("Pertanyaan harus diisi terlebih dahulu!");
+                }
+                else if(jawaban == '')
+                {
+                    alert("Jawaban harus diisi terlebih dahulu!");
+                }
+                else
+                {
+                    $("#formFAQ").submit();
+                }
+            }
         </script>
 <?php endcustom_script(); ?>
 <?php get_footer('private'); ?>

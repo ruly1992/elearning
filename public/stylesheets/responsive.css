@@ -319,6 +319,10 @@
   .dashboard-kelas-online h5 p {
     width: 185px; }
 
+  .content-kelas-online h5 p {
+    width: 175px;
+    line-height: 1.5; }
+
   footer .footer-top {
     display: none; }
   footer .footer-logo {
@@ -333,7 +337,23 @@
       display: none; }
 
   .content-sidebar {
-    display: none; } }
+    display: none; }
+
+  .content-forum .content-main .chosen-container .chosen-results li {
+    font-size: 14px; }
+  .content-forum .content-main .chosen-container-multi {
+    background-image: none !important;
+    width: 250px; }
+    .content-forum .content-main .chosen-container-multi .chosen-choices {
+      border: 1px solid #CCC;
+      background-image: none !important;
+      font-size: 14px !important; }
+      .content-forum .content-main .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+        height: 30px !important;
+        margin-left: 8px; }
+  .content-forum .content-main .chosen-container-active .chosen-choices {
+    border: 1px solid #128a4a;
+    box-shadow: none !important; } }
 @media (min-width: 360px) and (max-width: 640px) {
   header #header-content {
     padding-top: 0;
@@ -621,6 +641,10 @@
   .dashboard-kelas-online h5 p {
     width: 185px; }
 
+  .content-kelas-online h5 p {
+    width: 215px;
+    line-height: 1.5; }
+
   footer .footer-top {
     display: none; }
   footer .footer-logo {
@@ -856,6 +880,10 @@
   .dashboard-kelas-online h5 p {
     width: 570px; }
 
+  .content-kelas-online h5 p {
+    width: 422px;
+    line-height: 1.5; }
+
   footer .footer-top {
     display: none; }
   footer .footer-logo {
@@ -870,6 +898,10 @@
       display: none; } }
 @media (min-width: 992px) and (max-width: 1500px) {
   .dashboard-kelas-online h5 p {
-    width: 765px; } }
+    width: 765px; }
+
+  .content-kelas-online h5 p {
+    width: 500px;
+    line-height: 1.5; } }
 
 /*# sourceMappingURL=responsive.css.map */

@@ -3,14 +3,14 @@
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
             <section id="content">
-
+                
                 <!-- start:content -->
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                         <!-- start:content main -->
                         <div class="content-main">
                             <ol class="breadcrumb">
-                                <li><a href="#">Home</a></li>
+                                <li><a href="<?php echo site_url(); ?>">Home</a></li>
                                 <li class="active">
                                     <?php 
                                         if(isset($category)){
@@ -44,7 +44,7 @@
                             </div>
                             <?php 
                                 foreach($categoriesHead as $cat){
-                                    $countTopicsCategory = checkTopicsCategory($topics, $threads, $cat->id);
+                                    $countTopicsCategory = checkTopicsCategory($topics, $threads, $cat->id, $threadMembers, $userID);
                                     if($countTopicsCategory > 0){
                             ?>
                                         <div class="forum-heading">
@@ -55,7 +55,7 @@
                                                 <?php 
                                                     foreach($topics as $top){
                                                         if($top->category == $cat->id){
-                                                            $countThreadsTopic = checkThreadsTopic($threads, $top->id);
+                                                            $countThreadsTopic = checkThreadsTopic($threads, $top->id, $threadMembers, $userID);
                                                             if($countThreadsTopic > 0){
                                                 ?>
                                                                 <table class="table table-striped">
@@ -70,7 +70,7 @@
                                                                             foreach($threads as $thr){
                                                                                 if($cat->id == $thr->category AND $top->id == $thr->topic){
                                                                                     $isThread = true;
-                                                                                    if($thr->type == 'close'){
+                                                                                    if($thr->type == 'close' AND $top->tenaga_ahli != $userID){
                                                                                         showThread($thr, $visitors, $comments, $threadMembers, $thr->id, $userID);
                                                                                     }else{
                                                                         ?>

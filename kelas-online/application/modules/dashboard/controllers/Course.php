@@ -256,11 +256,11 @@ class Course extends Admin
         $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
 
         if (!$this->input->post()) {
-            $course_lists = Model\Kelas\Course::all()->pluck('name', 'id');
+            $course_lists = $this->repository->allExcept($id, 'publish')->pluck('name', 'id');
             
             $this->template->build('course/requirement', compact('courses', 'course_lists'));
         } else {
-            $requirements = $this->input->post('course[requirements]');
+            $requirements = $this->input->post('course[requirements]') ?: [];
 
             $course->requirements()->sync($requirements);
 

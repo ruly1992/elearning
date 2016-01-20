@@ -68,7 +68,7 @@ $(document).ready(function () {
                 chapter: new ObjChapter(),
                 chapterQuiz: new ObjQuestion(),
                 chapterAttachment: new ObjAttachment(),
-                exams: new ObjQuestion()
+                exam: new ObjQuestion()
             },
             remove: {
                 chapters: [],
@@ -331,6 +331,16 @@ $(document).ready(function () {
             reset: function () {
                 store.destroy();
                 this.course = new ObjCourse();
+            },
+            checkAllChapterHasQuiz: function () {
+                var has = 0;
+
+                $.each(this.course.chapters, function (index, chapter) {
+                    if (chapter.quiz.questions.length > 0)
+                        has++;
+                })
+
+                return has === this.course.chapters.length
             }
         },
         ready: function () {
@@ -349,6 +359,16 @@ $(document).ready(function () {
             });
 
             // tinyMCE exam question
+            tinyMCE.init({
+                setup: function (editor) {
+                    editor.on('keyup', function(e) {
+                        that.setExamQuestion(editor.getContent());
+                    });
+                },
+                selector: '#'+that.tinymceExam
+            });
+
+            // tinyMCE description
             tinyMCE.init({
                 setup: function (editor) {
                     editor.on('keyup', function(e) {

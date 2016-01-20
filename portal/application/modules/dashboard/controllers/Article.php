@@ -3,7 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class Article extends CI_Controller {
+class Article extends Admin
+{
+    protected $roles = [];
 
     public function index()
     {
@@ -65,7 +67,7 @@ class Article extends CI_Controller {
         
         $this->template->set('active', 'artikel');
         $this->template->set('sidebar', FALSE);
-        $this->template->set_layout('article');    
+        $this->template->set_layout('article');
         $this->template->build('articlePrivate', $data);
     }
 
@@ -82,7 +84,7 @@ class Article extends CI_Controller {
 
             if ($article->categories->count()) {
                 $data['relevance_title']    = $article->categories->first()->name;
-                $data['relevance']          = Model\Portal\Article::categoryId($article->categories->first()->id)
+                $data['relevance']          = Model\Portal\Article::onlyRegistered()->categoryId($article->categories->first()->id)
                                                 ->where('id', '!=', $article->id)
                                                 ->take(6)
                                                 ->latest('date')

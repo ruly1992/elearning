@@ -199,7 +199,7 @@ class Media extends Admin
                     $cek = $this->media_model->cekMeta($id, $key, $value);
                     if($cek == FALSE){
                         $dataMeta = array(
-                            'key'       => $key,
+                            'key'       => str_replace("_", " ", $key),
                             'value'     => $value,
                             'media_id'  => $id
                         );
@@ -222,14 +222,15 @@ class Media extends Admin
 
     }
 
-    public function edit($media)
+    public function edit($mediaID)
     {
         try {
             if ($this->session->flashdata('success')) {
                 $data   = $this->session->flashdata('success');
             }
+            $data       = array();
             $user       = sentinel()->getUser();
-            $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($media);
+            $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($mediaID);
             $category   = $media->category;
             $data['media']      = $media;
             $data['category']   = $category;
@@ -248,28 +249,47 @@ class Media extends Admin
         $user       = sentinel()->getUser();
         $media      = Library\Media\Model\Media::withDrafts()->userId($user->id)->findOrFail($mediaID);
 
-        $request    = Request::createFromGlobals();
-        $metadata   = $request->request->get('meta');
+        $request        = Request::createFromGlobals();
+        $getMetadata    = $request->request->get('meta');
+        $metadata       = array();
+        foreach ($getMetadata as $key => $value) {
+            if($key != 'full_description'){
+                $metaKey = str_replace("_", " ", $key);
+            }else{
+                $metaKey = $key;
+            }
+            if($value != ''){
+                $metadata[$metaKey] = $value; 
+            }
+        }
 
         foreach ($metadata as $key => $value) {
             if ($key == 'title') {
                 $title = $value;
+                unset($metadata[$key]);
             }
             if ($key == 'description') {
                 $description = $value;
+                unset($metadata[$key]);
+            }
+            if ($key == 'full_description'){
+                $full_description   = $value;
+                unset($metadata[$key]);
             }
         }
         $dataMedia  =  array(
-            'title'         => $title,
-            'description'   => $description
+            'title'             => $title,
+            'description'       => $description,
+            'full_description'  => $full_description
         );
+        
         $this->media_model->update($media->id, $dataMedia);
 
         $mediaLib->setMetadata($media->id, $metadata);
         
         $this->session->set_flashdata('success', 'Metadata berhasil diperbarui.');
         
-        redirect('media/edit/' . $media->id, 'refresh');
+        redirect('media/edit/'.$mediaID, 'refresh');
     }
 
     public function delete($media_id)

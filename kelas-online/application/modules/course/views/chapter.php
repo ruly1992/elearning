@@ -35,3 +35,47 @@
         <?php endforeach ?>
     </div>
 </div>
+
+<!-- START EXAM -->
+<div class="content-exam">
+    <h4>EXAM</h4>
+    <hr>
+    <?php if ($repository->memberAllowExam($course)): ?>
+        <?php if ($course->hasExam()): ?>
+            <?php if ($course_member_status->first()->status !== 'finished'): ?>
+                <a href="<?php echo site_url('course/showexam/'.$course->slug) ?>" class="btn btn-block btn-exam btn-primary">START EXAM</a>
+            <?php else: ?>
+                <p class="alert alert-success">Anda sudah menyelesaikan ujian</p>
+            <?php endif ?>
+        <?php else: ?>
+            <p>Tidak ada ujian</p>
+        <?php endif ?>
+    <?php else: ?>
+        <p class="alert alert-warning">Anda harus menyelesaikan semua chapter terlebih dahulu untuk memulai ujian.</p>
+    <?php endif ?>
+</div>
+<!-- END EXAM -->
+
+<br><br>
+<!-- SERTIFIKAT -->
+<div class="content-setifikat">
+    <h4>SERTIFIKAT</h4>
+    <hr>
+
+    <?php foreach ($course_member_status as $key => $value): ?>
+
+        <?php if ($value->status == 'finished'): ?>
+            
+            <a href="<?php echo site_url('course/printedcertificate/'.$course->slug) ?>" class="btn btn-block btn-sertifikat btn-info">CETAK SERTIFIKAT</a>
+        
+        <?php else: ?>
+
+                <div class="alert alert-warning">Anda belum menyelesaikan exam.</div>
+
+        <?php endif ?> 
+        
+
+    <?php endforeach ?>
+
+</div>
+<!-- END SERTIFIKAT -->

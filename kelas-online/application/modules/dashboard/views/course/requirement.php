@@ -58,6 +58,9 @@
         <div v-for="requirement in course.requirements">
             <input type="hidden" name="course[requirements][{{ $index }}]" value="{{ requirement.id || 0 }}">
         </div>
+        <div class="requirement-remove" v-for="requirement in remove.requirements">
+            <input type="hidden" name="remove[requirements][{{ $index }}]" value="{{ requirement.id }}">
+        </div>
     </div>
     <?php echo form_close(); ?>
 </div>
@@ -87,6 +90,9 @@
                 },
                 input: {
                     requirement: 0
+                },
+                remove: {
+                    requirements: []
                 }
             },
             methods: {
@@ -99,14 +105,31 @@
                     this.$http.get(siteurl + '/dashboard/api/course/' + requirement.val())
                         .then(function (response) {
                             var course = response.data;
+                            var already = false;
 
-                            console.log(course);
+                            $.each(this.course.requirements, function (key, value) {
+                                if (value.id === course.id)
+                                    already = true;
+                            });
 
-                            this.course.requirements.push(course);
+                            if (already === false) {
+                                $.each(this.remove.requirements, function (index, requirement) {
+                                    if (course.id === requirement.id)
+                                        this.remove.requirements.splice(index, 1);
+                                })
+
+                                this.course.requirements.push(course);
+                            } else {
+                                alert('Kelas sudah ada');
+                            }
                         }
                     )
                 },
                 removeRequirement: function ($index) {
+                    var requirement = this.course.requirements[$index];
+
+                    this.remove.requirements.push(requirement);
+
                     this.course.requirements.splice($index, 1);
                 }
             },

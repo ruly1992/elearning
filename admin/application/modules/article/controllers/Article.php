@@ -71,10 +71,10 @@ class Article extends Admin {
     {
         $user = auth()->getUser();
 
-        $this->form_validation->set_rules('title', 'Title', 'trim|required');
-        $this->form_validation->set_rules('content', 'Content', 'required');
+        $this->form_validation->set_rules('title', 'Title', 'trim|required', array('required' => '<div class="alert alert-danger">Judul Artikel Wajib diisi</div>'));
+        $this->form_validation->set_rules('content', 'Content', 'required', array('required' => '<div class="alert alert-danger">Content Artikel Wajib diisi</div>'));
 
-        if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == FALSE) {            
             $data['categories_checkbox']    = $this->M_kategori->generateCheckbox();
             $data['status']                 = $this->status;
             
@@ -111,7 +111,7 @@ class Article extends Admin {
             $repo_library->set($id);
 
             if ($this->input->post('featured[src]'))
-                $repo_library->setFeaturedImage($this->input->post('featured[src]'));
+                $repo_library->setFeaturedImage($this->input->post('featured[src]'), $this->input->post('featured[description]'));
 
             if ($this->input->post('slider[src]'))
                 $repo_library->setSliderImage($this->input->post('slider[src]'));
@@ -175,7 +175,7 @@ class Article extends Admin {
 
 
             if ($this->input->post('featured[src]') && $this->input->post('featured[action]') == 'upload')
-                $repo_library->setFeaturedImage($this->input->post('featured[src]'));
+                $repo_library->setFeaturedImage($this->input->post('featured[src]'), $this->input->post('featured[description]'));
             elseif ($this->input->post('featured[action]') == 'remove')
                 $repo_library->removeFeaturedImage();
 

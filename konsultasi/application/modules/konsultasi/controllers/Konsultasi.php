@@ -53,7 +53,7 @@ class Konsultasi extends CI_Controller {
 
         } else {
             $config['upload_path']      = PATH_KONSULTASI_ATTACHMENT;
-            $config['allowed_types']    = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt';
+            $config['allowed_types']    = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt|ppt|pptx|rar';
             $config['max_size']         = '10000';
 
             $this->load->library('upload', $config);
@@ -114,7 +114,7 @@ class Konsultasi extends CI_Controller {
 
         } else {
             $config['upload_path']      = PATH_KONSULTASI_ATTACHMENT;
-            $config['allowed_types']    = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt|ppt|pptx';
+            $config['allowed_types']    = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt|ppt|pptx|rar';
             $config['max_size']         = '10000';
 
             $this->load->library('upload', $config);
@@ -195,7 +195,7 @@ class Konsultasi extends CI_Controller {
                 );
             }
 
-            $categories     = set_value('id_konsultasi_kategori');
+            $categories         = set_value('id_konsultasi_kategori');
 
             $update             = $this->M_konsultasi->update($id, $data, $categories);
             $updateRelation     = $this->M_konsultasi->updateRelation($id, $categories);
@@ -222,12 +222,85 @@ class Konsultasi extends CI_Controller {
         }
     }
 
+    public function deleteAttachmentReply($id, $path, $id_konsultasi)
+    {
+        $attachment;
+        $update  = $this->M_konsultasi->deleteAttachmentReply($id, $attachment);
+        unlink(PATH_KONSULTASI_ATTACHMENT.'/'.$path);
+        if($update) {
+            redirect('/konsultasi/detail/'. $id_konsultasi);
+        } else {
+            redirect('/konsultasi/detail/'. $id_konsultasi);
+        }
+    }
+
     public function check()
     {
         $id       = $this->input->get('id');
         $status   = $this->input->get('status');
 
         $this->M_konsultasi->setStatus($id, $status);
+    }
+
+    public function updateReply($idReply, $id_konsultasi)
+    {
+        $this->form_validation->set_rules('isi', 'Isi', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            redirect('/konsultasi/detail/'. $id_konsultasi, 'refresh');
+        } else {
+            $config['upload_path']      = PATH_KONSULTASI_ATTACHMENT;
+            $config['allowed_types']    = 'gif|jpg|jpeg|png|pdf|doc|xls|xlsx|docx|zip|txt|ppt|pptx';
+            $config['max_size']         = '10000';
+
+            $this->load->library('upload', $config);
+
+            if (! $this->upload->do_upload('reply')) {                
+                $data = array(
+                    'isi'           => set_value('isi', '', FALSE),
+                    'updated_at'    => date('Y-m-d H:i:s'),
+                );
+
+            } else {
+                $file_data = $this->upload->data();
+
+                $data = array(
+                    'attachment'    => $file_data['file_name'],
+                    'isi'           => set_value('isi', '', FALSE),
+                    'updated_at'    => date('Y-m-d H:i:s'),
+                );
+            }                       
+
+            $update = $this->M_konsultasi->updateReply($idReply, $data);
+
+            if ($update == FALSE) {         
+                set_message_error('Reply berhasil diperbarui.');
+                
+                redirect('/konsultasi/detail/'. $id_konsultasi, 'refresh');
+            } else {
+                set_message_error('Reply gagal diperbarui.');
+                
+                redirect('/konsultasi/detail/'. $id_konsultasi, 'refresh');
+            }
+        }
+    }
+
+    public function deleteReply($idReply, $id_konsultasi, $path)
+    {
+        $delete = $this->M_konsultasi->deleteReply($idReply);
+
+        if ($delete) {
+            $attachment = $this->deleteAttachmentReply($idReply, $path, $id_konsultasi);
+            
+            set_message_success('Reply berhasil dihapus.');
+
+        } else {
+            
+            set_message_error('Reply gagal dihapus.');
+        }
+
+        redirect('/konsultasi/detail/'. $id_konsultasi);
+
     }
 
     public function search()

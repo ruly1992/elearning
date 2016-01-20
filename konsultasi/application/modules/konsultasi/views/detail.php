@@ -24,25 +24,50 @@
             <div class="content-konsultasi-title">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>Lihat Konsultasi #<?php echo $konsultasi->id ?></h2>
+                        <h3>Lihat Konsultasi #<?php echo $konsultasi->id ?></h3>
                     </div>
                 </div>
-            </div>
+            </div>           
             <div class="content-konsultasi-table">
-                <h5><?php echo $konsultasi->subjek ?></h5>
-                <hr>
-                <div class="content-konsultasi-table">
-                   <?php echo $konsultasi->pesan ?>
+                <!-- Start for content description -->
+                <!-- <div class="container"> -->
+                <div class="konsultasi-content">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h3>Title</h3>
+                            </div>
+                            <div class="col-md-10">
+                                <p><?php echo $konsultasi->subjek ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h3>Decription</h3>
+                            </div>
+                            <div class="col-md-10">
+                                <?php echo $konsultasi->pesan ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="attachment">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h3>Attachment</h3>
+                            </div>
+                            <div class="col-md-10">
+                                <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$konsultasi->attachment) ?>"><?php echo $konsultasi->attachment ?></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <hr>
-                <div class="content-konsultasi-table">
-                    <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$konsultasi->attachment) ?>"><?php echo $konsultasi->attachment ?></a>
-                </div>
-                <hr>
+                <!-- End for content decription -->
 
                 <div class="content-konsultasi-table-details">
                     <div class="row">
-                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
                             <div class="card card-inverse card-info text-center">
                                 <div class="card-block">
                                     <blockquote class="card-blockquote">
@@ -53,7 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
                             <div class="card card-inverse card-info text-center">
                                 <div class="card-block">
                                     <blockquote class="card-blockquote">
@@ -65,7 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
                             <div class="card card-inverse card-info text-center">
                                 <div class="card-block">
                                     <blockquote class="card-blockquote">
@@ -76,7 +101,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
                             <div class="card card-inverse card-info text-center">
                                 <div class="card-block">
                                     <blockquote class="card-blockquote">
@@ -90,13 +115,12 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <?php if ($reply->count()): ?>
+                            <?php if ($reply->count()): ?>
                             <?php foreach ($reply as $data) { ?>
                             <div class="card">    
-                                <div class="card-block">
+                                <div class="card-header">
                                     <p><strong>From : <?php echo user($data->id_user)->full_name ?></strong> <span class="pull-right"><?php echo $data->created_at ?></span></p>
                                 </div>
-                                <hr>
                                 <div class="card-block">
                                     <p class="card-text">
                                        <?php echo $data->isi ?>
@@ -106,6 +130,10 @@
                                     <p class="card-text">
                                        <a href="<?php echo home_url('app/files/konsultasi-attachment/'.$data->attachment) ?>"><?php echo $data->attachment ?></a>
                                     </p>
+                                </div>
+                                <div class="card-footer">
+                                    <!-- Edit Reply -->
+                                    <!-- end Edit Reply -->
                                 </div>
                             </div>
                             <?php } ?>
@@ -121,42 +149,44 @@
                             <?php if ($konsultasi->status == 'open'): ?>
                                 <div class="card-block">
                                     <div id="accordion" role="tablist" aria-multiselectable="true">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading" role="tab" id="headingOne">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="headingOne">
+                                                <h4>
+                                                    <a class="btn btn-reply-outline" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                                         Balas
                                                     </a>
                                                 </h4>
                                             </div>
                                             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                                <form method="POST" action="<?php echo site_url('konsultasi/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-8">
-                                                                <input type="hidden" id="" name="id_konsultasi" value="<?php echo $konsultasi->id ?>">
+                                                <div class="container">
+                                                    <form method="POST" action="<?php echo site_url('konsultasi/detail/'.$konsultasi->id) ?>" enctype="multipart/form-data">
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <input type="hidden" id="" name="id_konsultasi" value="<?php echo $konsultasi->id ?>">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <label for="">Pesan Anda</label>
+                                                                    <textarea name="isi" id="" cols="30" rows="5" class="editor"></textarea>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-8">
-                                                                <label for="">Pesan Anda</label>
-                                                                <textarea name="isi" id="" cols="30" rows="5" class="editor"></textarea>
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                    <label for="">Attachments</label>
+                                                                    <input type="file" name="files" id="filer_konsultasi">
+                                                                    <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt | Max Size Upload : 10MB) </small>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                                <label for="">Attachments</label>
-                                                                <input type="file" name="files" id="filer_konsultasi">
-                                                                <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt | Max Size Upload : 10MB) </small>
-                                                            </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-sm btn-kirim">Kirim</button>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-sm btn-kirim">Kirim</button>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -166,6 +196,7 @@
                             <?php endif ?>
                         </div>
                     </div>
+                    <!-- End Content Balas -->
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@
     <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-body">
+                <?php echo validation_errors(); ?>
                 <div class="form-group">
                     <?php echo form_input('title', set_value('title'), array('class' => 'form-control input-lg', 'placeholder' => 'Title')); ?>
                 </div>
@@ -83,7 +84,7 @@
                 <h4 class="panel-title">Featured Image</h4>
             </div>
             <div class="panel-body">
-                <cropit-preview name="featured" width="275px" height="140px"></cropit-preview>
+                <cropit-preview name="featured" width="275px" height="140px" :show-description="true"></cropit-preview>
             </div>
         </div>
     </div>

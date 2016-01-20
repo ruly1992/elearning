@@ -39,7 +39,7 @@
                             </div>
                             <?php 
                                 foreach($categoriesHead as $cat){
-                                    $countTopicsCategory = checkTopicsCategory($topics, $threads, $cat->id);
+                                    $countTopicsCategory = checkTopicsCategoryAuthor($topics, $threads, $cat->id);
                                     if($countTopicsCategory > 0){
                             ?>
                                         <div class="forum-heading">
@@ -50,7 +50,7 @@
                                                 <?php 
                                                     foreach($topics as $top){
                                                         if($top->category == $cat->id){
-                                                            $countThreadsTopic = checkThreadsTopic($threads, $top->id);
+                                                            $countThreadsTopic = checkThreadsTopicAuthor($threads, $top->id);
                                                             if($countThreadsTopic > 0){
                                                 ?>
                                                                 <table class="table table-striped">
@@ -63,7 +63,7 @@
                                                                         <?php 
                                                                             $isThread = false;
                                                                             foreach($threads as $thr){
-                                                                                if($cat->id == $thr->category AND $top->id == $thr->topic){
+                                                                                if($cat->id == $thr->category AND $top->id == $thr->topic AND $thr->reply_to == 0){
                                                                                     $isThread = true;
                                                                         ?>
                                                                                         <tr>

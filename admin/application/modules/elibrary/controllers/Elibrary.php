@@ -98,33 +98,55 @@ class Elibrary extends Admin
         }
     }
 
-    public function update($media_id)
+    public function update($media_id, $status = NULL)
     {
         $media      = $this->medialib->getMedia();
         $mediaLib   = new Library\Media\Media;
         $media      = $media->withDrafts()->findOrFail($media_id);
 
-        $request    = Request::createFromGlobals();
-        $metadata   = $request->request->get('meta');
+        $status             = 'publish';
+        $full_description   = NULL;
+        $request            = Request::createFromGlobals();
+        $metadata           = $request->request->get('meta');
+        $getMetadata        = $request->request->get('meta');
+        $metadata           = array();
+        foreach ($getMetadata as $key => $value) {
+            if($key != 'full_description'){
+                $metaKey = str_replace("_", " ", $key);
+            }else{
+                $metaKey = $key;
+            }
+            if($value != ''){
+                $metadata[$metaKey] = $value; 
+            }
+        }
 
         foreach ($metadata as $key => $value) {
             if ($key == 'title') {
                 $title = $value;
+                unset($metadata[$key]);
             }
             if ($key == 'description') {
                 $description = $value;
+                unset($metadata[$key]);
+            }
+            if ($key == 'full_description'){
+                $full_description   = $value;
+                unset($metadata[$key]);
             }
         }
 
         $data = array(
-            'title'         => $title,
-            'description'   => $description
+            'title'             => $title,
+            'description'       => $description,
+            'full_description'  => $full_description,
+            'status'            => $status
         );
 
         $this->media_model->update($media->id, $data);
         $mediaLib->setMetadata($media->id, $metadata);
 
-        set_message_success('Metadata berhasil diperbarui.');
+        set_message_success('Metadata berhasil diperbarui dan media telah dipublish.');
         
         redirect('elibrary/edit/' . $media->id, 'refresh');
     }
@@ -277,7 +299,7 @@ class Elibrary extends Admin
                     $cek = $this->media_model->cekMeta($id, $key, $value);
                     if($cek == FALSE){
                         $dataMeta = array(
-                            'key'       => $key,
+                            'key'       => str_replace("_", " ", $key),
                             'value'     => $value,
                             'media_id'  => $id
                         );
@@ -414,7 +436,7 @@ class Elibrary extends Admin
     }
 
     public function checkRole(){
-        if (sentinel()->inRole('adm') OR sentinel()->inRole('pus')) {
+        if (sentinel()->inRole('adm') OR sentinel()->inRole('pus') OR sentinel()->inRole('su')) {
             return TRUE;
         }else{
             return FALSE;

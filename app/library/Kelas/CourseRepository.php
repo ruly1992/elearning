@@ -3,6 +3,7 @@
 namespace Library\Kelas;
 
 use Model\Kelas\Course;
+use Model\Kelas\CourseMember;
 use Model\Kelas\Category;
 use Model\Kelas\Chapter;
 use Model\Kelas\Attachment;
@@ -24,10 +25,11 @@ class CourseRepository
     protected $model;
     protected $user;
 
-    public function __construct($course = null, $user = null)
+    public function __construct($course = null, $user = null, $category = null)
     {
         $this->set($course);
         $this->setUser($user);
+        $this->setCategory($category);
     }
 
     public function set($course)
@@ -54,6 +56,52 @@ class CourseRepository
         $this->model = $this->model->findBySlug($slug);
 
         return $this->get();
+    }
+
+    public function getByCategory($slug)
+    {
+        if (is_string($slug)) {
+            $category   = $this->getCategory()->findBySlug($slug);
+        } else {
+            $category   = $this->getCategory()->find($slug);
+        }
+
+        return $category->courses;
+    }
+
+    public function all()
+    {
+        return $this->getByStatus('all');
+    }
+
+    public function allExcept($id, $status = 'all')
+    {
+        $courses    = $this->getByStatus($status);
+        $courses    = $courses->reject(function ($course) use ($id) {
+            return $course->id == $id;
+        });
+
+        return $courses;
+    }
+
+    public function getOnlyPublish()
+    {
+        return $this->getByStatus('publish');
+    }
+
+    public function getOnlyDraft()
+    {
+        return $this->getByStatus('draft');
+    }
+
+    public function getByStatus($status = 'publish')
+    {
+        $course     = $this->model->newQueryWithoutScopes();
+
+        if ($status !== 'all')
+            $course->where('status', $status);
+
+        return $course->latest()->get();
     }
 
     public function setUser($user)
@@ -125,11 +173,9 @@ class CourseRepository
         return $this->saveTo('draft');
     }
 
-    public function update($name, $description, $days, $category)
+    public function update($name, $description, $days = 0)
     {
-        $this->model = Course::update(compact('name', 'description', 'days'));
-
-        $this->attachCategory($category);
+        $this->model->update(compact('name', 'description', 'days'));
 
         return $this;
     }
@@ -354,14 +400,37 @@ class CourseRepository
         return $courses->get();
     }
 
+    public function search($term)
+    {
+        $course     = $this->model->newQuery();
+        $result     = $course->search($term);
+
+        return $result;
+    }
+
+    public function searchWithCategory($term, $category)
+    {
+        $this->setCategory($category);
+
+        $course     = $this->model->newQuery();
+
+        $course->whereHas('category', function ($query) {
+            return $query->where('id', $this->category->id);
+        });
+
+        $result     = $course->search($term);
+
+        return $result;
+    }
+
     public function hasFeaturedImage()
     {
         return $this->model->hasFeatured();
     }
 
-    public function memberHasFinishedChapter(Chapter $chapter)
+    public function memberHasFinishedChapter(Chapter $chapter, $attempt = 1)
     {
-        return $chapter->memberHasFinished($this->user);
+        return $chapter->memberHasFinished($this->user, $attempt);
     }
 
     public function memberAllowChapter(Chapter $chapter)
@@ -395,6 +464,13 @@ class CourseRepository
                 'finished_at'   => Carbon::now()->addMinutes($quiz->time),
             ]);
         }
+    }
+
+    public function getMemberSessionCourse(Course $course)
+    {
+        $member = $course->members()->where('user_id', $this->user->id)->first();
+
+        return $member;
     }
 
     public function getMemberSessionQuiz(Quiz $quiz)
@@ -457,10 +533,160 @@ class CourseRepository
             });
 
             $member->answers()->saveMany($answers);
+            $member->update(['submited' => true]);
 
             return $member->answers;
         }
 
         return null;
+    }
+
+    public function getScoreQuizAnswer($chapter_id)
+    {
+        $quiz           = Quiz::where('chapter_id', $chapter_id)->get(); // get quiz id
+        
+        $quiz_id = '';
+        foreach ($quiz as $key => $value) 
+        {
+            
+            if ($value->id != '') 
+            {
+                $quiz_id = $value->id;
+            }
+
+        }
+        
+        $quizMember     = QuizMember::where('quiz_id', $quiz_id)->where('user_id', sentinel()->getUser()->id)->get();
+        // get quiz member id
+
+        $quiz_member_id = '';
+        foreach ($quizMember as $key => $value) 
+        {
+            
+            if ($value->id != '') 
+            {
+                $quiz_member_id = $value->id;
+            }
+
+        }
+
+        $quizAnswer     = QuizAnswer::where('member_quiz_id',$quiz_member_id)->get();
+        // get quiz answer
+
+
+        return $quizAnswer;
+
+    }
+
+    public function checkExamTimeout(Exam $exam, $attempt = 1)
+    {
+        $member = $exam->members()->where('user_id', $this->user->id)->first();
+
+        if ($member) {
+            if ($member->finished_at->diffInSeconds(Carbon::now(), false) < 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function getMemberSessionExam(Exam $exam)
+    {
+        if ($this->checkExamTimeout($exam)) {
+            $member = $exam->members()->where('user_id', $this->user->id)->first();
+
+            return $member;
+        } else {
+            return null;
+        }
+    }
+
+    public function getMemberExam(Exam $exam)
+    {
+        return $exam->members;
+    }
+
+    public function checkExamMember(Exam $exam, User $user = null)
+    {
+        if ($user) $this->setUser($user);
+
+        $search = $this->getMemberExam($exam)->search(function ($member) {
+            return $member->user_id === $this->user->id;
+        });
+
+        if ($search !== FALSE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function startExam(Exam $exam, $attempt = 1)
+    {
+        if (!$this->checkExamMember($exam)) {
+            $exam->members()->create([
+                'user_id'       => $this->user->id,
+                'attempt'       => $attempt,
+                'started_at'    => Carbon::now(),
+                'finished_at'   => Carbon::now()->addMinutes($exam->time),
+            ]);
+        }
+    }
+
+    public function submitExamMember(Exam $exam, $answers = [])
+    {
+        $memberExam     = $this->getMemberSessionExam($exam);
+        $course         = $exam->course;
+
+        if ($memberExam) {
+            $answers = collect($answers)->map(function ($answer, $question_id) {
+                $question = ExamQuestion::find($question_id);
+
+                return new ExamAnswer([
+                    'question_id'   => $question_id,
+                    'answer'        => $answer,
+                    'is_correct'    => $question->correct == $answer,
+                ]);
+            });
+
+            $memberExam->answers()->saveMany($answers);
+
+            $course->updateStatus($memberExam->user, 'finished');
+
+            return $memberExam->answers;
+        }
+
+        return null;
+    }
+
+    public function courseMemberStatus($slug)
+    {
+        $course_id          = Course::findBySlug($slug);
+
+        $member_course      = CourseMember::with('user')->where('course_id', $course_id->id)
+                                                ->where('user_id', $this->user->id)
+                                                ->get();
+
+        return $member_course;
+    }
+
+    public function memberAllowExam(Course $course)
+    {
+        $chapters   = $course->chapters;
+
+        $finished   = $chapters->filter(function ($chapter) {
+            return $this->memberHasFinishedChapter($chapter);
+        });
+
+        return $chapters->count() === $finished->count();
+    }
+
+    public function relevance()
+    {
+        $course     = $this->model;
+        $relevances = $this->model->category->courses()->whereNotIn('id', [$this->model->id]);
+
+        return $relevances->get();
     }
 }

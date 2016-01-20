@@ -166,7 +166,6 @@
         <script src="<?php echo asset('node_modules/bootstrap-dialog/dist/js/bootstrap-dialog.min.js') ?>"></script>
         <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
         <!-- end: JavaScript-->
-        <script src="<?php echo asset('javascript/analytic.js') ?>"></script>
         <script src="<?php echo asset('admin/js/custom.js') ?>"></script>
         <?php echo isset($template['partials']['script']) ? $template['partials']['script'] : ''; ?>
         <?php echo $custom_script ?>

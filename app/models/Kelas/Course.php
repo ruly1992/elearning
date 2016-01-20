@@ -4,13 +4,23 @@ namespace Model\Kelas;
 
 use Model\User;
 use Model\Scopes\Published;
+use Model\SearchableTrait;
 
 class Course extends Model
 {
     use Published;
+    use SearchableTrait;
 
     protected $guarded = [];
     protected $content_path = PATH_KELASONLINE_CONTENT;
+    protected $searchable = [
+        'columns' => [
+            'name'          => 15,
+            'description'   => 5,
+        ],
+        'joins' => [
+        ],
+    ];
 
     public static function boot()
     {
@@ -48,6 +58,11 @@ class Course extends Model
         return $this->belongsToMany(User::class, $database . '.course_member', 'course_id', 'user_id')->withPivot('status', 'joined_at');
     }
 
+    public function updateStatus(User $user, $status)
+    {
+        $this->members()->updateExistingPivot($user->id, compact('status'));
+    }
+
     public function memberFinished()
     {
         return $this->members()->wherePivot('status', 'finished');
@@ -76,6 +91,13 @@ class Course extends Model
     public function required()
     {
         return $this->belongsToMany(Course::class, 'course_requirements', 'requirement_course_id', 'course_id');
+    }
+
+    public function getExcerpt($max = 100, $trailing = '...')
+    {
+        $content = strip_tags($this->description);
+
+        return truncate($content, $max, $trailing);
     }
 
     public function scopeWhereMember($query, User $member)
@@ -125,12 +147,12 @@ class Course extends Model
         $prefix         = 'COURSE';
 
         $user_id        = $this->instructor->id;
-        $category_id    = $this->category->id;
+        $category_id    = $this->category_id;
 
         $suffix         = str_pad($i, 3, '0', STR_PAD_LEFT);
         $generated      = $prefix.'.'.$user_id.'.'.$category_id.'.'.$suffix;
 
-        if ($this->whereCode($generated)->count())
+        if ($this->withDrafts()->whereCode($generated)->count())
             return $this->generateCode($i+1);
             return $generated;
     }
@@ -194,5 +216,15 @@ class Course extends Model
         $code = str_replace('-', '.', $slug);
 
         return $query->where('code', $code)->firstOrFail();
+    }
+
+    public function hasExam()
+    {
+        return !$this->exam->questions->isEmpty();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(CourseComment::class);
     }
 }

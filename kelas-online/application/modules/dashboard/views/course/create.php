@@ -8,6 +8,7 @@
             </section>
             <div class="card">
                 <div class="card-block">
+                    <?php echo form_open('', 'id="wizard-create-form" onsubmit="return false;"'); ?>
                     <div id="wizard">
                         <h2><label class="hidden-xs-down">Overview</label></h2>
                         <section>
@@ -15,13 +16,13 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-2 form-control-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" placeholder="Judul" v-model="course.name">
+                                        <input type="text" class="form-control" id="name" placeholder="Judul" v-model="course.name" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="category" class="col-sm-2 form-control-label">Category</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" id="category" v-model="course.category_id">
+                                        <select class="form-control" id="category" v-model="course.category_id" required>
                                             <?php foreach ($category_lists as $value => $text): ?>
                                                 <option value="<?php echo $value ?>"><?php echo $text ?></option>
                                             <?php endforeach ?>
@@ -31,7 +32,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 form-control-label">Description</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control editor-description" v-model="course.description"></textarea>
+                                        <textarea class="form-control editor-description required" v-model="course.description"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -39,11 +40,11 @@
                         <h2><label class="hidden-xs-down">Images</label></h2>
                         <section>
                             <div class="card">
-                                <div class="card-block">
+                                <div class="card-block text-xs-center">
                                     <h4>Featured Image</h4>
                                     <cropit-preview name="featured" width="auto" height="145px" image-empty="<?php echo asset('images/kelas_online/thumbnails-lg.jpg') ?>"></cropit-preview>
-                                </div>
-                                <div class="card-block">
+                                </div><hr>
+                                <div class="card-block text-xs-center">
                                     <h4>Thumbnail</h4>
                                     <cropit-preview name="thumbnail" width="auto" height="90px" image-empty="<?php echo asset('images/kelas_online/thumbnails-md.jpg') ?>"></cropit-preview>
                                 </div>
@@ -56,7 +57,7 @@
                                     <div class="panel-heading" role="tab" id="Chapter1">
                                         <h5 class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $index }}" aria-expanded="true" aria-controls="collapseOne">
-                                                <p class="font-weight-bold text-uppercase">Chapter {{ $index + 1 }} : {{ chapter.name }}</p>
+                                                <p class="font-weight-bold text-uppercase"><span class="text-danger" title="Belum ada quiz" v-show="chapter.quiz.questions.length == 0"><i class="fa fa-exclamation-triangle"></i></span> Chapter {{ $index + 1 }} : {{ chapter.name }}</p>
                                             </a>
                                             <div class="btn-kelas pull-right">
                                                 <button class="btn btn-info btn-kelas" data-toggle="modal" data-target=".add_chapter" v-on:click="editChapter($index)" title="Edit"><i class="fa fa-pencil-square-o"></i></button>
@@ -84,8 +85,9 @@
                                                          <p>Attachment : <button class="btn btn-exam" data-toggle="modal" data-target=".add-content" v-on:click="addChapterAttachment($index)"><i class="fa fa-paperclip fa-sw"></i> Add Content</button></p>
                                                     </div>
                                                     <div class="card-block">
-                                                        <!-- Start: Table Attachment -->                                                   
-                                                            <table class="table table-striped table-responsive">
+                                                        <!-- Start: Table Attachment -->
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>No</th>
@@ -106,10 +108,11 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr v-show="attachments[$index].contents.length == 0">
-                                                                        <td colspan="4">Tidak ada attachment</td>
+                                                                        <td colspan="5" class="text-xs-center">Tidak ada attachment</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
+                                                        </div>
                                                         <!-- End: Table Attachment -->
                                                     </div>
                                                 </div>
@@ -120,8 +123,16 @@
                                                          <p>Quiz : <button class="btn btn-exam" data-toggle="modal" data-target=".add-question" v-on:click="addChapterQuiz($index)"><i class="fa fa-paperclip fa-sw"></i> Add Question</button></p>
                                                     </div>
                                                     <div class="card-block">
-                                                        <!-- Start: Table Queations -->                                                   
-                                                            <table class="table table-striped table-responsive">
+                                                        <div class="form-group row">
+                                                            <label for="waktu" class="col-sm-2 form-control-label">Waktu</label>
+                                                            <div class="input-group col-sm-4">
+                                                                <input type="text" class="form-control" id="waktu" placeholder="Waktu" v-model="chapter.quiz.time">
+                                                                <div class="input-group-addon">Menit</div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Start: Table Queations -->
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped">
                                                                 <thead>
                                                                     <tr>
                                                                       <th>No</th>
@@ -134,15 +145,16 @@
                                                                         <th scope="row">{{ $index+1 }}</th>
                                                                         <td>{{{ quiz.question }}}</td>
                                                                         <td>
-                                                                            <a class="btn btn-konsul btn-info" data-toggle="modal" data-target=".add-question" v-on:click="editChapterQuiz($index, $parent.$index)"><i class="fa fa-pencil-square-o"></i></a>
-                                                                            <a class="btn btn-konsul btn-danger" v-on:click="removeChapterQuiz($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
+                                                                            <a class="btn btn-konsul btn-info btn-margin-btm" data-toggle="modal" data-target=".add-question" v-on:click="editChapterQuiz($index, $parent.$index)"><i class="fa fa-pencil-square-o"></i></a>
+                                                                            <a class="btn btn-konsul btn-danger btn-margin-btm" v-on:click="removeChapterQuiz($index, $parent.$index)"><i class="fa fa-trash-o"></i></a>
                                                                         </td>
                                                                     </tr>
                                                                     <tr v-show="chapter.quiz.questions.length == 0">
-                                                                        <td colspan="3">Tidak ada quiz</td>
+                                                                        <td colspan="3" class="text-xs-center">Tidak ada quiz</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
+                                                        </div>
                                                         <!-- End: Table Questions -->
                                                     </div>
                                                 </div>
@@ -177,8 +189,9 @@
                                             <div class="input-group-addon">Menit</div>
                                         </div>
                                     </div>
-                                    <!-- Start: Table Queations -->                                                   
-                                        <table class="table table-striped table-responsive">
+                                    <!-- Start: Table Queations -->
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
                                             <thead>
                                                 <tr>
                                                   <th>No</th>
@@ -191,17 +204,19 @@
                                                     <th scope="row">{{ $index+1 }}</th>
                                                     <td>{{{ question.question }}}</td>
                                                     <td>
-                                                        <a class="btn btn-konsul btn-info" data-toggle="modal" data-target=".add-exam" title="Edit" v-on:click="editExamQuestion($index)"><i class="fa fa-pencil-square-o"></i></a>
-                                                        <a class="btn btn-konsul btn-danger" title="Delete" v-on:click="removeExamQuestion($index)"><i class="fa fa-trash-o"></i></a>
+                                                        <a class="btn btn-konsul btn-info btn-margin-btm" data-toggle="modal" data-target=".add-exam" title="Edit" v-on:click="editExamQuestion($index)"><i class="fa fa-pencil-square-o"></i></a>
+                                                        <a class="btn btn-konsul btn-danger btn-margin-btm" title="Delete" v-on:click="removeExamQuestion($index)"><i class="fa fa-trash-o"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
                                     <!-- End: Table Questions -->
                                 </div>
                             </div>
                         </section>
                     </div>
+                    <?php echo form_close(); ?>
                 </div>
             </div>
         </div>
@@ -290,6 +305,7 @@
     <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
     <script src="<?php echo asset('node_modules/jquery-form/jquery.form.js') ?>"></script>
+    <script src="<?php echo asset('plugins/jquery-validation-1.14.0/dist/jquery.validate.min.js') ?>"></script>
     <script src="<?php echo asset('javascript/kelas.wizard.js') ?>"></script>
     <script src="<?php echo asset('javascript/kelas.vue.js') ?>"></script>
     <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>

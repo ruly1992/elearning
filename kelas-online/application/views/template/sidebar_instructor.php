@@ -18,7 +18,7 @@
             </div>
             <div class="widget-instructor-profile">
                 <div class="text-xs-center">
-                    <img src="<?php echo $course->instructor->avatar ?>" alt="">
+                    <img src="<?php echo $course->instructor->avatar ?>" class="img-fluid center-block">
                     <p><strong><a href="#"><?php echo $course->instructor->full_name ?></a></strong></p>
                 </div>
             </div>
