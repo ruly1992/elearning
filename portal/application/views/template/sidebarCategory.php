@@ -105,7 +105,16 @@
                             <p><strong><a href="#"><?php echo $comment->nama ?></a></strong></p>
                         </div>
                         <div class="box-komentar-widget-content">
-                            <p><?php echo $comment->content ?> <strong>ON</strong> <a href="<?php echo $comment->article->link ?>"><?php echo $comment->article->title ?></a></p>
+                            <?php
+                                $length = 50;
+                                if (strlen($comment->content) < $length) :
+                            ?>
+                                <?php $rest = substr($comment->content, 0, $length);?>
+                                <p><?php echo $rest ?> <strong>ON</strong> <a href="<?php echo $comment->article->link ?>"><?php echo $comment->article->title ?></a></p>
+                            <?php else: ?>
+                                <?php $rest = substr($comment->content, 0, $length);?>
+                                <p><?php echo $rest.'...' ?> <strong>ON</strong> <a href="<?php echo $comment->article->link ?>"><?php echo $comment->article->title ?></a></p>   
+                            <?php endif ?>
                         </div>
                     </div>
                 </div>
