@@ -58,6 +58,11 @@ class Course extends Model
         return $this->belongsToMany(User::class, $database . '.course_member', 'course_id', 'user_id')->withPivot('status', 'joined_at');
     }
 
+    public function updateStatus(User $user, $status)
+    {
+        $this->members()->updateExistingPivot($user->id, compact('status'));
+    }
+
     public function memberFinished()
     {
         return $this->members()->wherePivot('status', 'finished');

@@ -8,8 +8,6 @@ class CourseMember extends Model
 {
 	protected $table = 'course_member';
 	protected $guarded = [];
-	
-
 	public $timestamps = false;
 
 	public function course()
