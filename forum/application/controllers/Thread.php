@@ -74,7 +74,7 @@ class Thread extends CI_Controller
         }else{
             $daerahUser         = $user->profile->desa_id;
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
-            $threads            = collect($this->model_thread->get_threads_category_by_user($idCategory, $daerahUser));
+            $threads            = collect($this->model_thread->get_threads_category_by_user($idCategory, $user->id, $daerahUser));
         }
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 

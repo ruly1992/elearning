@@ -55,7 +55,7 @@
                                                 <?php 
                                                     foreach($topics as $top){
                                                         if($top->category == $cat->id){
-                                                            $countThreadsTopic = checkThreadsTopic($threads, $top->id, $threadMembers, $userID);
+                                                            $countThreadsTopic = checkThreadsTopic($threads, $top->id, $threadMembers, $top->tenaga_ahli, $userID);
                                                             if($countThreadsTopic > 0){
                                                 ?>
                                                                 <table class="table table-striped">
