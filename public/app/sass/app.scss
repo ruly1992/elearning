@@ -181,6 +181,31 @@ thead {
 }
 /* End Custom table */ 
 
+/* Start search navbar after scroll */ 
+// enable absolute positioning
+.inner-addon {
+	position: relative;
+}
+// style icon
+.inner-addon .fa {
+	position: absolute;
+	padding: $padding;
+	pointer-events: none;
+}
+/* align icon */
+.left-addon .fa  { left:  0px;}
+.right-addon .fa { 
+	right: 0px;
+	z-index: 3;
+	padding-left: $padding-left + 7px;
+	padding-right: $padding-right + 12px;
+}
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+/* End search navbar after scroll*/ 
+
+
 /* HEADER */
 
 header {
@@ -497,17 +522,24 @@ header {
 			}
 		}
 		.header-top-right {
+			margin-top: $margin-top + 9px;
 			.form-control {
-				margin-top: $margin-top + 10px;
+				margin-right: $margin-right;
 				height: 30px;
-				font-size: 10px;
-				width: 150px;
+				font-size: 12px;
+				width: 35px;
+				right: 0;
+				position: absolute;
 				float: right;
 				border: 1px solid $white;
 				@include transition(0.3s);
 				&:focus {
-					width: 100%;
+					width: 300px;
 					@include transition(0.3s);
+				}
+				&:first-child {
+					@include border-radius(8px);
+					border: 1px solid $green-black;
 				}
 			}
 			.btn {
@@ -524,12 +556,9 @@ header {
 			}
 		}
 		.header-top-right-login {
+			margin-top: $margin-top + 9px;
 			.btn {
-				margin-top: $margin-top + 8px;
-				border-radius: 50px;
-				@include fonts('open_sansregular');
-				font-size: 12px;
-				font-weight: 600;
+				@include border-radius(8px);
 				padding-top: $padding-top - 1px;
 				padding-bottom: $padding-bottom - 1px;
 				padding-left: $padding-left + 20px;
@@ -540,7 +569,13 @@ header {
 				background-color: transparent;
 				background-image: none;
 				border-color: $green-black;
-				&:hover {
+				@include fonts('open_sansregular');
+				font-size: 12px;
+				font-weight: 600;
+				padding-top: $padding-top;
+				padding-bottom: $padding-bottom;
+				&:hover
+				&:focus {
 					color: $white;
 					background-color: $green-black;
 				}
@@ -548,9 +583,16 @@ header {
 			.btn-search {
 				padding-left: $padding-left + 2px;
 				padding-right: $padding-right + 2px;
-				margin-top: $margin-top + 5px;
 				background-color: $green-black;
 				color: $white;
+				@include fonts('open_sansregular');
+				font-size: 12px;
+				font-weight: 600;
+				&:hover,
+				&:focus {
+					color: $white;
+					background-color: $green-black;
+				}
 			}
 		}
 	}
@@ -2538,6 +2580,7 @@ header {
 					img {
 						width: 100%;
 						height: 100%;
+						object-fit: cover;
 					}
 				}
 				.box-dashboard-articles-meta {

@@ -126,6 +126,33 @@ thead {
   color: #fff; }
 
 /* End Custom table */
+/* Start search navbar after scroll */
+.inner-addon {
+  position: relative; }
+
+.inner-addon .fa {
+  position: absolute;
+  padding: 5px;
+  pointer-events: none; }
+
+/* align icon */
+.left-addon .fa {
+  left: 0px; }
+
+.right-addon .fa {
+  right: 0px;
+  z-index: 3;
+  padding-left: 12px;
+  padding-right: 17px; }
+
+/* add padding  */
+.left-addon input {
+  padding-left: 30px; }
+
+.right-addon input {
+  padding-right: 30px; }
+
+/* End search navbar after scroll*/
 /* HEADER */
 header {
   background-color: #dddddd;
@@ -403,55 +430,77 @@ header {
         float: right; }
       header #navbar-main .navbar-dashboard .navbar-nav .dropdown a.nav-link {
         padding-top: 14px; }
-    header #navbar-main .header-top-right .form-control {
-      margin-top: 15px;
-      height: 30px;
-      font-size: 10px;
-      width: 150px;
-      float: right;
-      border: 1px solid #fff;
-      transition: all 0.3s ease-in-out;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out; }
-      header #navbar-main .header-top-right .form-control:focus {
-        width: 100%;
+    header #navbar-main .header-top-right {
+      margin-top: 14px; }
+      header #navbar-main .header-top-right .form-control {
+        margin-right: 5px;
+        height: 30px;
+        font-size: 12px;
+        width: 35px;
+        right: 0;
+        position: absolute;
+        float: right;
+        border: 1px solid #fff;
         transition: all 0.3s ease-in-out;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out; }
-    header #navbar-main .header-top-right .btn {
-      margin-top: 15px;
-      height: 30px;
-      font-size: 10px;
-      padding-top: 3px;
-      border: 1px solid #fff; }
-      header #navbar-main .header-top-right .btn:hover, header #navbar-main .header-top-right .btn:focus, header #navbar-main .header-top-right .btn:active {
-        background-color: #fff; }
-    header #navbar-main .header-top-right-login .btn {
-      margin-top: 13px;
-      border-radius: 50px;
-      font-family: "open_sansregular", sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      padding-top: 4px;
-      padding-bottom: 4px;
-      padding-left: 25px;
-      padding-right: 25px; }
-    header #navbar-main .header-top-right-login .btn-primary-outline {
-      color: #128a4a;
-      background-color: transparent;
-      background-image: none;
-      border-color: #128a4a; }
-      header #navbar-main .header-top-right-login .btn-primary-outline:hover {
+        header #navbar-main .header-top-right .form-control:focus {
+          width: 300px;
+          transition: all 0.3s ease-in-out;
+          -webkit-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+          -o-transition: all 0.3s ease-in-out; }
+        header #navbar-main .header-top-right .form-control:first-child {
+          border-radius: 8px;
+          -webkit-border-radius: 8px;
+          -moz-border-radius: 8px;
+          -o-border-radius: 8px;
+          border: 1px solid #128a4a; }
+      header #navbar-main .header-top-right .btn {
+        margin-top: 15px;
+        height: 30px;
+        font-size: 10px;
+        padding-top: 3px;
+        border: 1px solid #fff; }
+        header #navbar-main .header-top-right .btn:hover, header #navbar-main .header-top-right .btn:focus, header #navbar-main .header-top-right .btn:active {
+          background-color: #fff; }
+    header #navbar-main .header-top-right-login {
+      margin-top: 14px; }
+      header #navbar-main .header-top-right-login .btn {
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -o-border-radius: 8px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-left: 25px;
+        padding-right: 25px; }
+      header #navbar-main .header-top-right-login .btn-primary-outline {
+        color: #128a4a;
+        background-color: transparent;
+        background-image: none;
+        border-color: #128a4a;
+        font-family: "open_sansregular", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        padding-top: 5px;
+        padding-bottom: 5px; }
+        header #navbar-main .header-top-right-login .btn-primary-outline:hover
+        header #navbar-main .header-top-right-login .btn-primary-outline:focus {
+          color: #fff;
+          background-color: #128a4a; }
+      header #navbar-main .header-top-right-login .btn-search {
+        padding-left: 7px;
+        padding-right: 7px;
+        background-color: #128a4a;
         color: #fff;
-        background-color: #128a4a; }
-    header #navbar-main .header-top-right-login .btn-search {
-      padding-left: 7px;
-      padding-right: 7px;
-      margin-top: 10px;
-      background-color: #128a4a;
-      color: #fff; }
+        font-family: "open_sansregular", sans-serif;
+        font-size: 12px;
+        font-weight: 600; }
+        header #navbar-main .header-top-right-login .btn-search:hover, header #navbar-main .header-top-right-login .btn-search:focus {
+          color: #fff;
+          background-color: #128a4a; }
   header #header-main {
     padding-top: 25px;
     padding-bottom: 60px; }
@@ -2131,7 +2180,8 @@ header {
         -o-border-radius: 4px; }
         .content-dashboard .content-dashboard-articles .content-dashboard-articles-main .box-dashboard-articles .box-dashboard-articles-img img {
           width: 100%;
-          height: 100%; }
+          height: 100%;
+          object-fit: cover; }
       .content-dashboard .content-dashboard-articles .content-dashboard-articles-main .box-dashboard-articles .box-dashboard-articles-meta ul {
         list-style: none;
         padding-left: 0px;

@@ -15,18 +15,20 @@
 	<div class="panel-body">
 	   	<div class="row">
 	   		<div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="description-meta-left">
-                    <div style="text-align:center;" class="img-thumbnail">
-                        <div class="preview-media" style="width:100%; height:auto; border-radius:10px;">
-                            <?php echo $media->getPreview(200, 200) ?>
+                <center>
+                    <div class="description-meta-left">
+                        <div style="text-align:center;" class="img-thumbnail">
+                            <div class="preview-media" style="width:100%; height:auto; border-radius:10px;">
+                                <?php echo $media->getPreview(200, 200) ?>
+                            </div>
+                            <span><?php echo $media->icon ?> <?php echo $media->type ?></span>
+                        </div><br><br>
+                        <div class="description-meta-button">
+                            <a href="<?php echo $media->getLinkDownload() ?>" class="btn btn-sm btn-block btn-primary"><i class="fa fa-download"></i> Download</a>
+                            <a class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#myModal-1"><i class="fa fa-eye"></i> Preview</a>
                         </div>
-                        <span><?php echo $media->icon ?> <?php echo $media->type ?></span>
-                    </div>
-                    <div class="description-meta-button">
-                        <a href="<?php echo $media->getLinkDownload() ?>" class="btn btn-sm btn-block btn-primary"><i class="fa fa-download"></i> Download</a>
-                        <a class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#myModal-1"><i class="fa fa-eye"></i> Preview</a>
-                    </div>
-                </div>
+                    </div><br>
+                </center>
 	   		</div>
 	   		<div class="col-md-8">
    				<table class="table table-bordered table-striped table-sm" id="list-meta">
@@ -82,7 +84,7 @@
                     <p><strong>Deskripsi selengkapnya :</strong></p>
                 </div>
                 <div class="form-group">
-                    <textarea name="meta[full_description]" class="form-control" rows="5"><?php echo set_value('meta[full_description]', $media->getMetadata('full_description')) ?></textarea>  
+                    <textarea name="meta[full_description]" class="form-control" rows="5"><?php echo $media->full_description ?></textarea>  
                 </div>   
                 <!-- <a href="<?php echo site_url('elibrary/approve/' . $media->id . '/draft') ?>" v-on:click="saveToDraft(<?php echo $media->id ?>, $event)" class="btn btn-sm btn-warning btn-margin-btm"><i class="fa fa-check"></i> Set to DRAFT</a> -->
                 <button class="btn btn-sm btn-success btn-margin-btm"><i class="fa fa-check"></i>Save to Publish</button>           

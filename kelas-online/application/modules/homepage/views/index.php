@@ -10,7 +10,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-xs-12">
-                        <?php echo form_dropdown('category_id', $category_lists, null, 'class="c-select form-control"'); ?><br>
+                        <?php echo form_dropdown('category_id', $category_lists, null, 'class="form-control"'); ?><br>
                     </div>
                     <div class="col-md-6 col-xs-12">
                         <input name="term" type="text" class="form-control" placeholder="Search Text"><br>

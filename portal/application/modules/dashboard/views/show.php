@@ -74,7 +74,7 @@
                 </div>
                 <div class="media-body">
                     <div class="media-body-bg">
-                        <h4 class="media-heading"><?php echo $comment->nama ?> <a href="#comments" class="pull-right btn btn-sm btn-reply" data-parent="<?php echo $comment->id ?>" v-on:click="reply('<?php echo $comment->nama ?>')">Reply</a></h4>
+                        <h4 class="media-heading"><?php echo $comment->nama ?> <a href="#comments" class="pull-right btn btn-sm btn-reply" v-on:click="reply('<?php echo $comment->id ?>', '<?php echo $comment->nama ?>')">Reply</a></h4>
                         <p><?php echo $comment->content ?></p>
                     </div>
 

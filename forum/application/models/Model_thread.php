@@ -121,8 +121,9 @@ class Model_thread extends CI_Model
                 $allThreads[] = $tbi;
             }
         }
-        
-        return $allThreads;
+        $categories     = $this->get_categories();
+        $result         = sortThreads($allThreads, $categories);
+        return $result;
     }
 
     private function getThreadsByTACategory($id, $data)
@@ -317,7 +318,7 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_threads_category($idTA, $idCategory)
+    function get_threads_category($idCategory)
     {
         $items = array('threads.*','categories.category_name');
         $get   = $this->db->select($items)->from('threads')
@@ -326,8 +327,7 @@ class Model_thread extends CI_Model
                 ->where(array(
                     'reply_to' => '0', 
                     'threads.status' => '1', 
-                    'threads.category' => $idCategory,
-                    'topics.tenaga_ahli' => $idTA
+                    'threads.category' => $idCategory
                 ))
                 ->order_by('created_at','desc')
                 ->get();

@@ -466,6 +466,13 @@ class CourseRepository
         }
     }
 
+    public function getMemberSessionCourse(Course $course)
+    {
+        $member = $course->members()->where('user_id', $this->user->id)->first();
+
+        return $member;
+    }
+
     public function getMemberSessionQuiz(Quiz $quiz)
     {
         if ($this->checkQuizTimeout($quiz)) {
@@ -591,7 +598,6 @@ class CourseRepository
 
             return $member;
         } else {
-
             return null;
         }
     }
@@ -630,10 +636,10 @@ class CourseRepository
 
     public function submitExamMember(Exam $exam, $answers = [])
     {
-        $member = $this->getMemberSessionExam($exam);
+        $memberExam     = $this->getMemberSessionExam($exam);
+        $course         = $exam->course;
 
-        if ($member) {
-            
+        if ($memberExam) {
             $answers = collect($answers)->map(function ($answer, $question_id) {
                 $question = ExamQuestion::find($question_id);
 
@@ -644,9 +650,11 @@ class CourseRepository
                 ]);
             });
 
-            $member->answers()->saveMany($answers);
+            $memberExam->answers()->saveMany($answers);
 
-            return $member->answers;
+            $course->updateStatus($memberExam->user, 'finished');
+
+            return $memberExam->answers;
         }
 
         return null;
@@ -656,11 +664,22 @@ class CourseRepository
     {
         $course_id          = Course::findBySlug($slug);
 
-        $member_course      = CourseMember::where('course_id', $course_id->id)
-                                                ->where('user_id', sentinel()->getUser()->id)
+        $member_course      = CourseMember::with('user')->where('course_id', $course_id->id)
+                                                ->where('user_id', $this->user->id)
                                                 ->get();
 
         return $member_course;
+    }
+
+    public function memberAllowExam(Course $course)
+    {
+        $chapters   = $course->chapters;
+
+        $finished   = $chapters->filter(function ($chapter) {
+            return $this->memberHasFinishedChapter($chapter);
+        });
+
+        return $chapters->count() === $finished->count();
     }
 
     public function relevance()

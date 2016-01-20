@@ -260,7 +260,7 @@ class Course extends Admin
             
             $this->template->build('course/requirement', compact('courses', 'course_lists'));
         } else {
-            $requirements = $this->input->post('course[requirements]');
+            $requirements = $this->input->post('course[requirements]') ?: [];
 
             $course->requirements()->sync($requirements);
 

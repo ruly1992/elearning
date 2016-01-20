@@ -17,7 +17,7 @@
                         <?php echo form_dropdown('category', $categories, 0, ['class' => 'c-select', 'required' => 'required']); ?>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-search">SEARCH</a>
+                        <button type="submit" class="btn btn-search btn-block"><i class="fa fa-search"></i> SEARCH</a>
                     </div>
                 </form>
             </div>
