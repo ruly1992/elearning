@@ -25,7 +25,7 @@
                     <div class="bookmark-button">
                         <?php if ($repository->isMember('pending')): ?>
                             <a href="#" class="btn btn-sm btn-bookmark">WAITING APPROVE INSTRUCTOR</a>
-                        <?php elseif ($repository->isMember('active')): ?>
+                        <?php elseif ($repository->isMember()): ?>
                             <a href="<?php echo site_url('course/chapter/'.$course->slug) ?>" class="btn btn-sm btn-bookmark">START COURSE</a>
                         <?php else: ?>
                             <a href="<?php echo site_url('course/join/'.$course->slug) ?>" class="btn btn-sm btn-bookmark">JOIN THIS COURSE</a>
