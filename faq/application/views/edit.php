@@ -16,11 +16,11 @@
                                             <?php echo form_open('/dashboard/update/'.$id, 'id="formFAQ"'); ?>
                                                 <div class="form-group">
                                                     <label for="">Title :</label>
-                                                    <input type="text" required value="<?php echo $title; ?>" name="title" class="form-control" placeholder="type your title">
+                                                    <input type="text" id="title" value="<?php echo $title; ?>" name="title" class="form-control" placeholder="type your title">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Pertanyaan :</label>
-                                                    <input type="text" required value="<?php echo $pertanyaan; ?>" name="pertanyaan" class="form-control" placeholder="Pertanyaan">
+                                                    <input type="text" id="pertanyaan" value="<?php echo $pertanyaan; ?>" name="pertanyaan" class="form-control" placeholder="Pertanyaan">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Jawaban :</label>
@@ -66,10 +66,20 @@
         <script type="text/javascript">
             function submitFAQ(){
                 // Get content of a specific editor:
-                var content = tinyMCE.get('jawaban').getContent();
-                if(content == '')
+                var jawaban     = tinyMCE.get('jawaban').getContent();
+                var title       = $("#title").val();
+                var pertanyaan  = $("#pertanyaan").val();
+                if(title == '')
                 {
-                    alert("Jawaban harus diisi!");
+                    alert("Title harus diisi terlebih dahulu!");
+                }
+                else if(pertanyaan == '')
+                {
+                    alert("Pertanyaan harus diisi terlebih dahulu!");
+                }
+                else if(jawaban == '')
+                {
+                    alert("Jawaban harus diisi terlebih dahulu!");
                 }
                 else
                 {
