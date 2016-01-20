@@ -318,17 +318,108 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
-    function get_threads_category($idCategory)
+    function get_thread_from_author_category($id, $category)
     {
-        $items = array('threads.*','categories.category_name');
+        $items = array('threads.*', 'categories.category_name');
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories', 'categories.id=threads.category')
-                ->join('topics', 'topics.id=threads.topic')
                 ->where(array(
-                    'reply_to' => '0', 
-                    'threads.status' => '1', 
-                    'threads.category' => $idCategory
+                    'author' => $id, 
+                    'reply_to' => '0',
+                    'category'  => $category
                 ))
+                ->order_by('category','desc')
+                ->order_by('id', 'desc')
+                ->get();
+        return $get->result();
+    }
+
+    function get_threads_category($idCategory, $userID)
+    {
+        $check  = $this->checkCategoryTA($userID, $idCategory);
+        $items  = array('threads.*','categories.category_name');
+        if($check == TRUE){
+            $result   = $this->db->select($items)->from('threads')
+                                ->join('categories', 'categories.id=threads.category')
+                                ->join('category_user', 'category_user.category_id=categories.id')
+                                ->join('topics', 'topics.id=threads.topic')
+                                ->where(array(
+                                    'user_id'               => $userID,
+                                    'reply_to'              => '0', 
+                                    'threads.status'        => '1', 
+                                    'topics.status'         => '1',
+                                    'threads.category'      => $idCategory
+                                ))
+                                ->order_by('threads.category', 'desc')
+                                ->order_by('threads.id', 'desc')
+                                ->get()
+                                ->result();
+            return $result;
+        }else{
+            $public     = $this->getThreadsCategoryPublic($idCategory, $items);
+            $close      = $this->getThreadsCategoryClose($idCategory, $userID, $items);
+
+            $allThreads = array();
+            foreach ($public as $thr) {
+                if(!in_array($thr, $allThreads)){
+                    $allThreads[]   = $thr;
+                }
+            }
+            foreach ($close as $thr) {
+                if(!in_array($thr, $allThreads)){
+                    $allThreads[]   = $thr;
+                }
+            }
+
+            return $allThreads;
+        }
+    }
+
+    function checkCategoryTA($userID, $idCategory)
+    {
+        $result     = $this->db->get_where('category_user', array('category_id' => $idCategory, 'user_id' => $userID))->result();
+        if($this->db->affected_rows() >= 1){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    function getThreadsCategoryPublic($idCategory, $items)
+    {
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories', 'categories.id=threads.category')
+                ->where(array(
+                    'reply_to'          => '0', 
+                    'threads.status'    => '1', 
+                    'threads.type'      => 'public', 
+                    'threads.category'  => $idCategory
+                ))
+                ->order_by('created_at','desc')
+                ->get();
+        return $get->result();
+    }
+
+    function getThreadsCategoryClose($idCategory, $userID, $items)
+    {
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories', 'categories.id=threads.category')
+                ->join('thread_members', 'thread_members.thread_id=threads.id')
+                ->where(array(
+                    'reply_to'          => '0', 
+                    'threads.status'    => '1', 
+                    'threads.type'      => 'close', 
+                    'threads.author'    => $userID,
+                    'threads.category'  => $idCategory
+                ))
+                ->or_where(array(
+                    'reply_to'          => '0', 
+                    'threads.status'    => '1', 
+                    'threads.type'      => 'close', 
+                    'user_id'           => $userID,
+                    'threads.category'  => $idCategory
+                ))
+                ->or_where('user_id', $userID)
                 ->order_by('created_at','desc')
                 ->get();
         return $get->result();

@@ -70,7 +70,7 @@ class Thread extends CI_Controller
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['tenagaAhli'] = $user->id;
             $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
-            $threads            = collect($this->model_thread->get_threads_category($idCategory));
+            $threads            = collect($this->model_thread->get_threads_category($idCategory, $user->id));
         }else{
             $daerahUser         = $user->profile->desa_id;
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
@@ -108,7 +108,7 @@ class Thread extends CI_Controller
             $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
         }else{
             $daerahUser         = $user->profile->desa_id;
-            $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser);
+            $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
             $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         }
 
@@ -214,7 +214,7 @@ class Thread extends CI_Controller
             $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
         }else{
             $daerahUser         = $user->profile->desa_id;
-            $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser);
+            $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
         }
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();

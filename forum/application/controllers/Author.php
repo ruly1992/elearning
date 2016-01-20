@@ -129,7 +129,7 @@ class Author extends CI_Controller
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
 
-        $threads           = collect($this->model_thread->get_thread_from_author($user->id));
+        $threads           = collect($this->model_thread->get_thread_from_author_category($user->id, $idCategory));
         $data['threads']   = pagination($threads, 10, 'author/category/'.$idCategory, 'bootstrap_md');
 
         $this->load->view('thread/author_threads',$data);
