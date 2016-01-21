@@ -44,7 +44,12 @@
                             </div>
                             <?php 
                                 foreach($categoriesHead as $cat){
-                                    $countTopicsCategory = checkTopicsCategory($topics, $threads, $cat->id, $threadMembers, $userID);
+                                    if(isset($categoryUser)){
+                                        $countTopicsCategory = checkTopicsCategory($topics, $threads, $cat->id, $categoryUser, $threadMembers, $userID);
+                                    }else{
+                                        $categoryUser       = array();
+                                        $countTopicsCategory = checkTopicsCategory($topics, $threads, $cat->id, $categoryUser, $threadMembers, $userID);
+                                    }
                                     if($countTopicsCategory > 0){
                             ?>
                                         <div class="forum-heading">
@@ -55,7 +60,12 @@
                                                 <?php 
                                                     foreach($topics as $top){
                                                         if($top->category == $cat->id){
-                                                            $countThreadsTopic = checkThreadsTopic($threads, $top->id, $threadMembers, $top->tenaga_ahli, $userID);
+                                                            if(isset($categoryUser)){
+                                                                $countThreadsTopic  = checkThreadsTopic($threads, $top->id, $threadMembers, $cat->id, $categoryUser, $top->tenaga_ahli, $userID);
+                                                            }else{
+                                                                $categoryUser       = array();
+                                                                $countThreadsTopic  = checkThreadsTopic($threads, $top->id, $threadMembers, $cat->id, $categoryUser, $top->tenaga_ahli, $userID);
+                                                            }
                                                             if($countThreadsTopic > 0){
                                                 ?>
                                                                 <table class="table table-striped">
@@ -71,7 +81,7 @@
                                                                                 if($cat->id == $thr->category AND $top->id == $thr->topic){
                                                                                     $isThread = true;
                                                                                     if($thr->type == 'close' AND $top->tenaga_ahli != $userID){
-                                                                                        showThread($thr, $visitors, $comments, $threadMembers, $thr->id, $userID);
+                                                                                        showThread($thr, $visitors, $comments, $cat->id, $categoryUser, $threadMembers, $thr->id, $userID);
                                                                                     }else{
                                                                         ?>
                                                                                         <tr>
