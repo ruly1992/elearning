@@ -29,18 +29,19 @@ class Thread extends CI_Controller
 
         $user = sentinel()->getUser();
         if ($this->checkTA()==TRUE){
-            $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
-            $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
-            $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
-            $data['tenagaAhli'] = $user->id;
-            $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
-            $threads            = collect($this->model_thread->get_all_threads($user->id));
+            $data['addTopic']       = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
+            $data['dashTopic']      = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
+            $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
+            $data['tenagaAhli']     = $user->id;
+            $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
+            $threads                = collect($this->model_thread->get_all_threads($user->id));
         }else{
             $daerahUser         = $user->profile->desa_id;
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
             $threads            = collect($this->model_thread->get_threads_by_user($daerahUser, $user->id));
         }
         
+        $data['categoryUser']   = $this->model_thread->get_all_category_user();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
         $data['visitors']       = $this->model_visitor->get_visitors();
@@ -76,6 +77,7 @@ class Thread extends CI_Controller
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
             $threads            = collect($this->model_thread->get_threads_category_by_user($idCategory, $user->id, $daerahUser));
         }
+        $data['categoryUser']   = $this->model_thread->get_all_category_user();
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['comments']       = $this->model_thread->get_count_reply(); 
         $data['visitors']       = $this->model_visitor->get_visitors();
