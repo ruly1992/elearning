@@ -15,6 +15,7 @@
                 <form method="POST" action="<?php echo site_url('konsultasi/create') ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="row">
+                            <?php echo validation_errors(); ?>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <label for="">Subjek</label>
                                 <?php echo form_input('subjek', set_value('subjek'), array('class' => 'form-control input-lg', 'placeholder' => 'Masukkan subjek Konsultasi')); ?>
