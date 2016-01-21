@@ -523,6 +523,10 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
+    function get_all_category_user(){
+        return $this->db->get('category_user')->result();
+    }
+    
     function get_category_users($id){
         $get = $this->db->get_where('category_user', array('user_id'=>$id));
         return $get->result();
