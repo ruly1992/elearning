@@ -73,6 +73,15 @@ class Article
         return $this;
     }
 
+    public function updateFeaturedDescription($description)
+    {
+        $this->model->update([
+            'featured_description'  => $description,
+        ]);
+
+        return $this;
+    }
+
     public function setSliderImage($imageData)
     {
         $filename = $this->setImage($imageData, 'slider');

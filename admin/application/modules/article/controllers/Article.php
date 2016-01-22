@@ -179,6 +179,10 @@ class Article extends Admin {
             elseif ($this->input->post('featured[action]') == 'remove')
                 $repo_library->removeFeaturedImage();
 
+            $description     = $this->input->post('featured[description]');
+
+            $repo_library->updateFeaturedDescription($description);
+
             if ($this->input->post('slider[src]') && $this->input->post('slider[action]') == 'upload')
                 $repo_library->setSliderImage($this->input->post('slider[src]'));
             elseif ($this->input->post('slider[action]') == 'remove')
