@@ -133,14 +133,13 @@ class Topic extends CI_Controller
                 $daerah         = '00.00.00.0000';
             }
             
+            $status     = '0';
             foreach($getUsersCategory AS $u){
                 if($u->user_id == $user->id){
                     $status = '1';
-                }else{
-                    $status = '0';
                 }
             }
-
+            
             $data = array(
                 'tenaga_ahli' => $user->id, 
                 'category'    => $category,
