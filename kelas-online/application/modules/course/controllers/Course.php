@@ -149,6 +149,16 @@ class Course extends Admin
         }
     }
 
+    public function download($filename)
+    {
+        $this->load->helper('download');
+
+        $attachment     = Model\Kelas\Attachment::findByHashids($filename);
+        $content        = file_get_contents($attachment->filepath);
+
+        force_download($attachment->filename, $content);
+    }
+
     public function printedcertificate($slug)
     {
         $this->load->helper('dompdf');

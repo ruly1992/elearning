@@ -135,7 +135,12 @@
     ?>
         <script type="text/javascript">
             $('#myModal-1<?php echo $a; ?>').on('hidden.bs.modal', function (e) {
-                $('#modal-content<?php echo $a; ?> video').get(0).pause();
+                if ( $('#modal-content<?php echo $a; ?> video').length ) {
+                    $('#modal-content<?php echo $a; ?> video').get(0).pause();
+                }
+                if ( $('#modal-content<?php echo $a; ?> audio').length ) {
+                    $('#modal-content<?php echo $a; ?> audio').get(0).pause();
+                }
             });
         </script>
 

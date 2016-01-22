@@ -108,7 +108,12 @@
 <?php custom_script(); ?>
     <script type="text/javascript">
         $('#preview').on('hidden.bs.modal', function (e) {
-            $('#modal-content video').get(0).pause();
+            if ( $('#modal-content video').length ) {
+                $('#modal-content video').get(0).pause();
+            }
+            if ( $('#modal-content audio').length ) {
+                $('#modal-content audio').get(0).pause();
+            }
         });
     </script>
 <?php endcustom_script(); ?>
