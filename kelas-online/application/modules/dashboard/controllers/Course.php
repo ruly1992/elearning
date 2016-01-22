@@ -567,6 +567,28 @@ class Course extends Admin
         redirect('dashboard', 'refresh');
     }
 
+    public function editComment($id)
+    {
+        $status = $this->input->get('status', 'publish');
+
+        $repository = new CourseRepository($id);
+        $course     = $repository->get();
+        $comments   = collect([]);
+
+        foreach ($course->chapters as $chapter) {
+            $chapter_comments = $status == 'publish' ? $chapter->comments : $chapter->comments()->onlyDrafts()->get();
+
+            foreach ($chapter_comments as $comment) {
+                $comments->push($comment);
+            }
+        }
+
+        $comments   = pagination($comments, 15, 'course/edit/'.$course->id.'/comment');
+        $comments->appends(compact('status'));
+
+        $this->template->build('course/comment_list_chapter', compact('comments'));
+    }
+
     public function _remap($method, $params = array())
     {
         switch ($method) {

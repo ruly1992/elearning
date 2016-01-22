@@ -97,76 +97,51 @@
         <div class="content-course-forum-title">
             <h3>COURSE FORUM</h3>
         </div>
-        <div class="content-course-forum-main">
-            <p>There are 3 reviews on this course</p>
+        <div class="content-course-forum-main" id="comments">
+            <p>There are <?php echo $chapter->comments->count() ?> reviews on this course</p>
             <ul class="list-course-forum">
+                <?php if ($chapter->comments->count()): foreach ($chapter->comments()->parentOnly()->get() as $comment): ?>
                 <li>
-                    <div class="row">
+                    <div class="row" id="comment-<?php echo $comment->id ?>">
                         <div class="col-sm-2 col-xs-12">
                             <div class="text-center">
-                                <img src="<?php echo asset('images/portal/people-1.png') ?>" alt="">
+                                <img src="<?php echo $comment->avatar ?>" alt="">
                             </div>
                         </div>
                         <div class="col-sm-10 col-xs-12">
                             <div class="meta">
-                                <p><strong>Chanchandrue</strong></p>
-                                <p><i class="fa fa-calendar"></i> <em>09 December 2015</em></p>
+                                <p><strong><?php echo $comment->name ?></strong></p>
+                                <p><i class="fa fa-calendar"></i> <em><?php echo $comment->created_at->format('d F Y') ?></em></p>
                             </div>
                             <div class="list-content-forum">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit labore, aspernatur nostrum amet, officia ipsa quos maiores dolores repudiandae modi perferendis</p>
+                                <h4 class="media-heading"><?php echo $comment->nama ?> <a href="#comment-reply" class="pull-right btn btn-sm btn-reply" v-on:click="reply('<?php echo $comment->id ?>', '<?php echo $comment->name ?>')">Reply</a></h4>
+                                <p><?php echo $comment->content ?></p>
+
+                                <?php foreach ($comment->replies as $reply): ?>
+                                <div class="media" id="comment-<?php echo $reply->id ?>">
+                                    <a class="media-left" href="#">
+                                        <img class="media-object" src="<?php echo $reply->avatar ?>">
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="media-body-bg">
+                                            <h4 class="media-heading"><?php echo $reply->nama ?></h4>
+                                            <p><?php echo $reply->content ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php endforeach ?>
                             </div>
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-2 col-xs-12">
-                            <div class="text-center">
-                                <img src="<?php echo asset('images/portal/people-1.png') ?>" alt="">
-                            </div>
-                        </div>
-                        <div class="col-sm-10 col-xs-12">
-                            <div class="meta">
-                                <p><strong>Chanchandrue</strong></p>
-                                <p><i class="fa fa-calendar"></i> <em>09 December 2015</em></p>
-                            </div>
-                            <div class="list-content-forum">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit labore, aspernatur nostrum amet, officia ipsa quos maiores dolores repudiandae modi perferendis</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-sm-2 col-xs-12">
-                            <div class="text-center">
-                                <img src="<?php echo asset('images/portal/people-1.png') ?>" alt="">
-                            </div>
-                        </div>
-                        <div class="col-sm-10 col-xs-12">
-                            <div class="meta">
-                                <p><strong>Chanchandrue</strong></p>
-                                <p><i class="fa fa-calendar"></i> <em>09 December 2015</em></p>
-                            </div>
-                            <div class="list-content-forum">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit labore, aspernatur nostrum amet, officia ipsa quos maiores dolores repudiandae modi perferendis</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                <?php endforeach; else: ?>
+                <li><p class="alert alert-info">Belum ada komentar.</p></li>
+            <?php endif ?>
             </ul>
 
-            <p>Add your reviews</p>
+            <p id="comment-reply">Add your reviews</p>
             <div class="form-review">
-                <form action="">
-                    <div class="form-group">
-                        <label for="">Your review messages :</label>
-                        <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <a href="#" class="btn btn-submit">SUBMIT</a>
-                    </div>
-                </form>
+                <?php $this->load->view('course/chapter_comment', compact('chapter')); ?>                
             </div>
         </div>
     </div>
