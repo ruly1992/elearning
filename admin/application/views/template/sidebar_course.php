@@ -3,10 +3,11 @@
         <h4 class="panel-title">Save or Publish</h4>
     </div>
     <div class="panel-body">
-        <?php echo form_open('kelasonline/course/edit/'.$course->id, 'id="form-basic"'); ?>
-            <button type="button" id="btn-submit" class="btn btn-primary">Save</button>
-            <button type="button" id="btn-submit-publish" class="btn btn-primary">Save and Publish</button>
-        <?php echo form_close(); ?>
+        <?php if ($course->status == 'draft'): ?>
+            <a href="<?php echo site_url('kelasonline/course/saveto/'.$course->id.'?status=publish') ?>" class="btn btn-primary">Save to Publish</a>
+        <?php else: ?>
+            <a href="<?php echo site_url('kelasonline/course/saveto/'.$course->id.'?status=draft') ?>" class="btn btn-default">Save to Draft</a>
+        <?php endif ?>
     </div>
 </div>
 

@@ -25,6 +25,25 @@
             </div>
         </div>
     </div>
+    <div class="widget">
+        <div class="widget-categories">
+            <div class="widget-categories-heading">
+                <h4>COMMENT</h4>
+            </div>
+            <div class="widget-categories-content">
+                <div class="list-group">
+                    <a href="<?php echo site_url('dashboard/course/edit/'.$course->id.'/comment?status=draft') ?>" class="list-group-item <?php echo $sidebar_active == 'comment_draft' ? 'active' : '' ?>">
+                        <span class="label label-default label-pill pull-xs-right"><?php echo $repository->countRequirements() ?></span>
+                        New Comment
+                    </a>
+                    <a href="<?php echo site_url('dashboard/course/edit/'.$course->id.'/comment') ?>" class="list-group-item <?php echo $sidebar_active == 'comment' ? 'active' : '' ?>">
+                        <span class="label label-default label-pill pull-xs-right"><?php echo $repository->countRequirements() ?></span>
+                        All Comment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php if ($course->status == 'draft'): ?>
         <div class="widget">
             <div class="widget-categories">
