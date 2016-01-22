@@ -19,13 +19,19 @@
                     </div>
                 <?php endif ?>
                 <div class="card">
+                    <div class="card-block">
+                        <a href="<?php echo site_url('dashboard/course/scores') ?>" class="btn btn-primary btn-sm"><i class="fa fa-fw fa-list"></i> Lihat skor learner</a>   
+                    </div>
+                </div>
+                <div class="card">
                     <div class="card-header">
                         <h3>Materi</h3>
                     </div>
                     <div class="card-block">
                         <div class="button-add">
-                            <a href="<?php echo site_url('dashboard/course/create') ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus fa-fw"></i>Tambah kelas baru</a>   
+                            <a href="<?php echo site_url('dashboard/course/create') ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus fa-fw"></i>Tambah kelas baru</a>
                         </div>
+                        
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
