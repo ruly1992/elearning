@@ -42,17 +42,23 @@ $(document).ready(function () {
         onFinishing: function (event, currentIndex) {
             if (currentIndex === 3) {
                 var length = window.app_kelas_online.course.exam.questions.length;
+                var wizard = $(event.target);
+                var btnFinish = wizard.find('a[href=#finish]')
+                
+                btnFinish.attr('href', '');
+                btnFinish.prepend('<i class="fa fa-spinner fa-spin"></i> ');
 
                 if (length === 0) {
                     alert('Anda belum memasukkan exam.')
+
+                    btnFinish.attr('href', '#finish');
+                    btnFinish.find('.fa').remove();
 
                     return false;
                 } else {
                     return true;
                 }
             }
-
-            alert(currentIndex)
 
             return false;
         },
