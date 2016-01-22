@@ -92,13 +92,14 @@ class Model_thread extends CI_Model
         return $get->result();
     }
     
-    function get_all_threads($id)
+    function get_all_threads($daerahUser, $id)
     {
         $data = array('threads.*','categories.category_name');
         $threadsByTACategory    = $this->getThreadsByTACategory($id, $data);
         $threadsByTATopic       = $this->getThreadsByTATopic($id, $data);
         $threadsByTAId          = $this->getThreadsByTAId($id, $data);
         $closeThreads           = $this->getThreadsByClose($id, $data);
+        $userThreads            = $this->get_threads_by_user($daerahUser, $id);
 
         $allThreads             = array();
         foreach ($threadsByTATopic as $tbt) {
@@ -119,6 +120,11 @@ class Model_thread extends CI_Model
         foreach ($threadsByTAId as $tbi) {
             if ( ! in_array($tbi, $allThreads)) {
                 $allThreads[] = $tbi;
+            }
+        }
+        foreach ($userThreads as $tbt) {
+            if ( ! in_array($tbt, $allThreads)) {
+                $allThreads[] = $tbt;
             }
         }
         $categories     = $this->get_categories();
