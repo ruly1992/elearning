@@ -22,6 +22,11 @@ class Chapter extends Model
 		return $this->hasMany(Attachment::class);
 	}
 
+    public function comments()
+    {
+        return $this->hasMany(ChapterComment::class);
+    }
+
     public function getBefore()
     {
         if ($this->order > 1) {
