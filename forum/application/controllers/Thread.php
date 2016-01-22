@@ -28,15 +28,15 @@ class Thread extends CI_Controller
         }
 
         $user = sentinel()->getUser();
+        $daerahUser         = $user->profile->desa_id;
         if ($this->checkTA()==TRUE){
             $data['addTopic']       = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
             $data['dashTopic']      = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
             $data['tenagaAhli']     = $user->id;
-            $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
-            $threads                = collect($this->model_thread->get_all_threads($user->id));
+            $data['threadSide']     = $this->model_thread->get_all_threads($daerahUser, $user->id);
+            $threads                = collect($this->model_thread->get_all_threads($daerahUser, $user->id));
         }else{
-            $daerahUser         = $user->profile->desa_id;
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
             $threads            = collect($this->model_thread->get_threads_by_user($daerahUser, $user->id));
         }
@@ -64,16 +64,16 @@ class Thread extends CI_Controller
             $data['category']   = $cat->category_name;
         }
 
-        $user = sentinel()->getUser();
+        $user           = sentinel()->getUser();
+        $daerahUser     = $user->profile->desa_id;
         if ($this->checkTA()==TRUE){
             $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
             $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['tenagaAhli'] = $user->id;
-            $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
+            $data['threadSide'] = $this->model_thread->get_all_threads($daerahUser, $user->id);
             $threads            = collect($this->model_thread->get_threads_category($idCategory, $user->id));
         }else{
-            $daerahUser         = $user->profile->desa_id;
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
             $threads            = collect($this->model_thread->get_threads_category_by_user($idCategory, $user->id, $daerahUser));
         }
@@ -107,9 +107,8 @@ class Thread extends CI_Controller
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
             $data['categories'] = $this->model_thread->get_categories_by_ta($user->id);
-            $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
+            $data['threadSide'] = $this->model_thread->get_all_threads($daerahUser, $user->id);
         }else{
-            $daerahUser         = $user->profile->desa_id;
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
             $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
         }
@@ -210,12 +209,12 @@ class Thread extends CI_Controller
         $visitorIdentity        = visitorIdentity($user->id,$id);
         $this->model_visitor->saveVisitor($visitorIdentity);
 
+        $daerahUser         = $user->profile->desa_id;
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
-            $data['threadSide'] = $this->model_thread->get_all_threads($user->id);
+            $data['threadSide'] = $this->model_thread->get_all_threads($daerahUser, $user->id);
         }else{
-            $daerahUser         = $user->profile->desa_id;
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
         }
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
@@ -336,24 +335,6 @@ class Thread extends CI_Controller
         }
     }
 
-    public function editReply($idThread,$idReply)
-    {
-        $thread=$this->model_thread->get_thread($idReply);
-        foreach($thread as $t){
-            $data=array(
-                'idThread'=> $idThread,
-                'idReply' => $idReply,
-                'title'   => $t->title,
-                'message' => $t->message,
-            );
-        }
-        
-        $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads();
-        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
-        $this->load->view('thread/edit_reply',$data);
-    }
-
     public function updateReply($idThread,$idReply)
     {
         $this->form_validation->set_rules('message','Message','required');
@@ -417,7 +398,7 @@ class Thread extends CI_Controller
 
         $topics = null;
         $topics = '<option value="">- Pilih Topic -</option>';
-        if(!empty($getTopics)){
+        if(!empty($allTopics)){
             foreach($allTopics as $top){
                 $topics .= '<option value="'.$top->id.'" >'.$top->topic.'</option>';
             }
@@ -425,6 +406,7 @@ class Thread extends CI_Controller
             $topics     = '<option value="">- Topic belum tersedia -</option>';
         }
         echo $topics;
+
     }
 
     public function getUserByTopic()
