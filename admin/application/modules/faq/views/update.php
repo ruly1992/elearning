@@ -21,6 +21,7 @@
             </div>
             <div class="panel-footer">
                     <button type="button" onclick="submitFAQ()" class="btn btn-success btn-md"><i class="fa fa-save"></i> Update FAQ</button>
+                    <a href="<?php echo base_url('/faq'); ?>" class="btn btn-warning btn-md">Cancel</a>
             </div>
         </div>
     </div>
