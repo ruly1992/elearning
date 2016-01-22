@@ -23,7 +23,8 @@
                                                         if(!empty($c[$cat])){
                                                             if(isset($category) AND $category == $c[$cat]->category_name){$active='active';}else{$active='';}
                                                             if(isset($tenagaAhli)){
-                                                                echo anchor($link.'category/'.$c[$cat]->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategoryTA($threadSide, $topics, $c[$cat]->id, $closeThreads, $userID).'</span> '.$c[$cat]->category_name, 'class="list-group-item '.$active.'"');
+                                                                if(isset($categoryUser)){ $catUser = $categoryUser; }else{ $catUser = array(); }
+                                                                echo anchor($link.'category/'.$c[$cat]->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategoryTA($threadSide, $topics, $c[$cat]->id, $catUser, $closeThreads, $userID).'</span> '.$c[$cat]->category_name, 'class="list-group-item '.$active.'"');
                                                             }else{
                                                                 echo anchor($link.'category/'.$c[$cat]->id, '<span class="label label-default label-pill pull-right">'.countThreadsCategory($threadSide, $c[$cat]->id, $closeThreads).'</span> '.$c[$cat]->category_name, 'class="list-group-item '.$active.'"');
                                                             }

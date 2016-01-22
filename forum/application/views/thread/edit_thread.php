@@ -102,10 +102,15 @@
     <script src="<?php echo asset('plugins/chosen_v1.4.2/chosen.jquery.min.js'); ?>"></script>
     <script>
         $(function() {
+           var cardWidth    = $("div .card-block").width();
+           var bbcodeWidth  = cardWidth - 40;
+           var bbcodeHeight = bbcodeWidth / 2;
             $("textarea").sceditor({
                 plugins: "bbcode",
                 style: "<?php echo asset('plugins/sceditor/development/jquery.sceditor.default.css'); ?>" ,
-                emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>"
+                emoticonsRoot : "<?php echo asset('plugins/sceditor/'); ?>",
+                width:bbcodeWidth,
+                height:bbcodeHeight
             });
         });
     </script>
