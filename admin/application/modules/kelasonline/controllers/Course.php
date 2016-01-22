@@ -24,6 +24,19 @@ class Course extends Admin
         $this->template->build('course/index', compact('courses', 'status'));
     }
 
+    public function saveto($course)
+    {
+        $this->repository->set($course);
+
+        $status = $this->input->get('status', 'publish');
+        $course = $this->repository->get();
+        $course->update(compact('status'));
+
+        set_message_success('Status Kelas berhasil diperbarui menjadi ' . $status);
+
+        redirect('kelasonline/course/edit/'.$course->id.'/basic', 'refresh');
+    }
+
     public function edit($id, $page = 'basic')
     {
         $this->repository->set($id);

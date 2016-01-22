@@ -179,7 +179,7 @@ class Article extends Admin {
             elseif ($this->input->post('featured[action]') == 'remove')
                 $repo_library->removeFeaturedImage();
 
-            $desciption     = $this->input->post('featured[description]');
+            $description     = $this->input->post('featured[description]');
 
             $repo_library->updateFeaturedDescription($description);
 
