@@ -3,7 +3,19 @@ $(document).ready(function () {
 
     form.validate({
         errorPlacement: function errorPlacement(error, element) {
-            element.before(error);
+            var before = element.parent();
+
+            if (before.attr('class') == 'input-group')
+                before.before(error);
+            else
+                element.before(error);
+        },
+        rules: {
+            days: {
+                required: true,
+                number: true,
+                min: 1
+            }
         }
     })
 

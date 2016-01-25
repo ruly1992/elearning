@@ -30,6 +30,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="days" class="form-control-label col-sm-2">Long Course</label>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <input type="text" name="days" class="form-control" v-model="course.days">
+                                            <span class="input-group-addon">
+                                                days
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-sm-2 form-control-label">Description</label>
                                     <div class="col-sm-10">
                                         <textarea class="form-control editor-description required" v-model="course.description"></textarea>

@@ -17,6 +17,7 @@ $(document).ready(function () {
     function ObjCourse() {
         this.id = 0;
         this.name = '';
+        this.days = 30;
         this.description = '';
         this.category_id = 0;
         this.chapters = [];

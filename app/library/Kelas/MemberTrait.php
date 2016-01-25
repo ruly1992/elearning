@@ -3,6 +3,9 @@
 namespace Library\Kelas;
 
 use Carbon\Carbon;
+use Model\User;
+use Model\Kelas\ExamMember;
+use Model\Kelas\QuizMember;
 
 trait MemberTrait
 {
@@ -38,6 +41,12 @@ trait MemberTrait
 
     public function deleteMember($user)
     {
+        if (!($user instanceof User))
+            $user = User::find($user);
+        
+        ExamMember::where('user_id', $user->id)->first()->delete();
+        QuizMember::where('user_id', $user->id)->first()->delete();
+
         $this->model->members()->detach($user);
 
         return $this;
