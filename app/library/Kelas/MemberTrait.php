@@ -44,8 +44,11 @@ trait MemberTrait
         if (!($user instanceof User))
             $user = User::find($user);
         
-        ExamMember::where('user_id', $user->id)->first()->delete();
-        QuizMember::where('user_id', $user->id)->first()->delete();
+        if ($member = ExamMember::where('user_id', $user->id)->first())
+            $member->delete();
+
+        if ($member = QuizMember::where('user_id', $user->id)->first())
+            $member->delete();
 
         $this->model->members()->detach($user);
 
