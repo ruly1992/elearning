@@ -5,21 +5,21 @@ namespace Model\Kelas;
 use Model\User;
 use Model\Scopes\Published;
 
-class CourseComment extends Model
+class ChapterComment extends Model
 {
     use Published;
     
-	protected $table = 'course_comments';
+	protected $table = 'chapter_comments';
     protected $guarded = [];
 
-	public function course()
+	public function chapter()
 	{
-		return $this->belongsTo(Course::class);
+		return $this->belongsTo(Chapter::class);
 	}
 
     public function replies()
     {
-        return $this->hasMany(CourseComment::class, 'parent')->orderBy('created_at', 'asc')->with('replies');
+        return $this->hasMany(ChapterComment::class, 'parent')->orderBy('created_at', 'asc')->with('replies');
     }
 
     public function user()
@@ -29,7 +29,7 @@ class CourseComment extends Model
 
     public function parent()
     {
-        return $this->belongsTo(CourseComment::class, 'parent');
+        return $this->belongsTo(ChapterComment::class, 'parent');
     }
 
     public function scopeParentOnly($query, $parent_id = 0)

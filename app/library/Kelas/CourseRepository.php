@@ -13,6 +13,7 @@ use Model\Kelas\QuizAnswer;
 use Model\Kelas\Exam;
 use Model\Kelas\ExamQuestion;
 use Model\Kelas\ExamAnswer;
+use Model\Kelas\ExamMember;
 use Model\User;
 use Carbon\Carbon;
 
@@ -688,5 +689,42 @@ class CourseRepository
         $relevances = $this->model->category->courses()->whereNotIn('id', [$this->model->id]);
 
         return $relevances->get();
+    }
+
+    public function getCourseMember($value='')
+    {
+        $coursemember = CourseMember::with('user')->groupBy('user_id')->get();
+       
+        return $coursemember;
+    }
+
+    public function getExamMember($userid)
+    {
+        $exammember = ExamMember::with('exam')->where('user_id',$userid)->get();
+
+        return $exammember;
+    }
+
+    public function courseById($courseid)
+    {
+        $course = Course::with('exam')->where('id', $courseid)->get();
+
+        return $course;
+    }
+
+    public function questionList($examid)
+    {
+        $question = ExamQuestion::where('exam_id', $examid)->get();
+
+        return $question;
+    }
+
+    public function learnerAnswer($examMemberId, $questionId)
+    {
+        $answer = ExamAnswer::where('member_exam_id', $examMemberId)
+                            ->where('question_id', $questionId)
+                            ->get();
+
+        return $answer;
     }
 }
