@@ -376,10 +376,10 @@ class Thread extends CI_Controller
     public function get_topics(){
         $idCategory     = $this->input->post('idCategory');
         $user           = sentinel()->getUser();
+        $daerahUser = $user->profile->desa_id;
         if($this->checkTA() == TRUE){
-            $getTopics  = $this->model_topic->getTopics_by_ta($user->id, $idCategory);
+            $getTopics  = $this->model_topic->getTopics_by_ta($user->id, $idCategory, $daerahUser);
         }else{
-            $daerahUser = $user->profile->desa_id;
             $getTopics  = $this->model_topic->getTopics_by_Category($idCategory, $daerahUser);
         }
         $publicTopics   = $this->model_topic->get_public_topics($idCategory);
