@@ -253,7 +253,7 @@ class Model_thread extends CI_Model
         $threadsByDaerah    = $this->getUserThreads($daerahUser);
         $memberThreads      = $this->getUserMemberThreads($userID);
 
-        $allThreads             = array();
+        $allThreads         = array();
         foreach ($threadsByDaerah as $tbt) {
             if ( ! in_array($tbt, $allThreads)) {
                 $allThreads[] = $tbt;

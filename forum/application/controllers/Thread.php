@@ -139,6 +139,12 @@ class Thread extends CI_Controller
             $user       = sentinel()->getUser();
             $idTopic    = set_value('topic');
             $status     = '1';
+            $typeThread = set_value('type');
+            if($typeThread == ''){
+                $type='public';
+            }else{
+                $type='close';
+            }
             
             // START : check status apabila nantinya thread perlu di approve
             // if ($this->checkTA()==TRUE){ 
@@ -155,7 +161,7 @@ class Thread extends CI_Controller
 
             $data=array(
                 'category'  => set_value('kategori'),
-                'type'      => set_value('type'),
+                'type'      => $type,
                 'topic'     => set_value('topic'),
                 'title'     => set_value('title'),
                 'message'   => set_value('message'),
@@ -167,7 +173,6 @@ class Thread extends CI_Controller
             $data = $this->security->xss_clean($data); //xss clean
             $save = $this->model_thread->save_thread($data);
 
-            $typeThread     = set_value('type');
             if($typeThread == 'close'){
                 $idThread   = $save;
                 $member     = $this->input->post('member');

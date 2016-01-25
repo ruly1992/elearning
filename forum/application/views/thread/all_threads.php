@@ -107,7 +107,7 @@
                                                                                                             Started by <a href="#"><?php echo user($thr->author)->full_name; ?></a>
                                                                                                         </li>
                                                                                                         <li>
-                                                                                                            <?php echo $thr->created_at; ?>
+                                                                                                            <?php echo Carbon\Carbon::parse($thr->created_at)->format('d F Y H:i'); ?>
                                                                                                         </li>
                                                                                                         <li>
                                                                                                             in <a href="#"><?php echo $thr->category_name; ?></a>
