@@ -321,15 +321,16 @@ class Thread extends CI_Controller
 
             $user = sentinel()->getUser();
             $data=array(
-                'category'  => $category,
-                'topic'     => $topic,
-                'type'      => $type,
-                'title'     => 'Thread Reply',
-                'message'   => set_value('message'),
-                'reply_to'  => $id,
-                'author'    => $user->id,
-                'status'    => '1',
-                'created_at'=> date('Y-m-d H:i:s')
+                'category'      => $category,
+                'topic'         => $topic,
+                'type'          => $type,
+                'title'         => 'Thread Reply',
+                'message'       => set_value('message'),
+                'reply_to'      => $id,
+                'author'        => $user->id,
+                'status'        => '1',
+                'created_at'    => date('Y-m-d H:i:s'),
+                'notif_status'  => '1'
             );
             $post_reply = $this->model_thread->save_thread($data);
 
