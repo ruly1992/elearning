@@ -12,7 +12,8 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <?php echo form_input('description', '', array('class' => 'form-control')); ?>
+                    <?php //echo form_input('description', '', array('class' => 'form-control')); ?>
+                    <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
                 </div>
             </div>
             <div class="panel-footer">
