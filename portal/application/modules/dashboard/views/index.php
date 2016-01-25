@@ -188,7 +188,7 @@
                                                     ?>
                                                 </ul>
                                                 <div class="latest-comment">
-                                                    <h4><i class="fa fa-wechat"></i> Komentar terakhir :</h4>
+                                                    <h4><i class="fa fa-wechat"></i> Komentar terakhir anda :</h4>
                                                     <ul>
                                                         <li>
                                                             <?php 
@@ -198,12 +198,34 @@
                                                                     }
                                                                     foreach ($forumLatestComment as $comment) {
                                                                         echo '<div class="comment">
-                                                                                <p><b>comment: </b>'.$comment->message.'</p>
+                                                                                <p><b>comment: </b>'.BBCodeParser($comment->message).'</p>
                                                                             </div>';
                                                                     }
+                                                                }else{
+                                                                    echo '<div class="alert alert-warning">Belum ada komentar dari anda.</div>';
                                                                 }
                                                             ?>
                                                         </li>
+                                                    </ul>
+                                                    <h4><i class="fa fa-wechat"></i> Komentar baru :</h4>
+                                                    <ul>
+                                                        <?php  
+                                                            if(!empty($newThreadComments)){
+                                                                foreach($allThreads as $thr){
+                                                                    $no     = 0;
+                                                                    foreach ($newThreadComments as $newComments) {
+                                                                        if($newComments->reply_to == $thr->id){
+                                                                            $no = $no + 1;
+                                                                        }
+                                                                    }
+                                                                    if($no > 0){
+                                                                        echo '<li>'.anchor('dashboard/viewThreadCommentar/'.$thr->id, $thr->title.' <div class="label label-success">'.$no.'</div>').'</li>';
+                                                                    }
+                                                                }
+                                                            }else{
+                                                                echo '<li><div class="alert alert-warning">Belum ada komentar baru.</div></li>';
+                                                            }
+                                                        ?>
                                                     </ul>
                                                 </div>
                                             </div>
