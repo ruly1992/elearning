@@ -90,6 +90,31 @@
                     </div>
                 <?php endif ?>
             </div>
+        <?php else: ?>
+            <div class="card content-lesson">
+                <div class="card-header">
+                    <p>Next Exam</p>
+                </div>
+                <?php if ($repository->memberAllowExam($course)): ?>
+                    <a href="<?php echo site_url('course/showexam/'.$course->slug) ?>" class="btn btn-block text-xs-left">
+                        <div class="card card-success">
+                            <div class="card-block">
+                                <span>START EXAM</span>
+                                <h4><?php echo $chapter->name ?></h4>
+                            </div>
+                        </div>
+                    </a>
+                <?php else: ?>
+                    <a href="#" class="btn btn-block disabled text-xs-left">
+                        <div class="card card-success">
+                            <div class="card-gray">
+                                <span>START EXAM</span>
+                                <h4><?php echo $chapter->name ?></h4>
+                            </div>
+                        </div>
+                    </a>                    
+                <?php endif ?>
+            </div>
         <?php endif ?>
     </div>
     <br><br>
