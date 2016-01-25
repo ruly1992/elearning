@@ -154,7 +154,7 @@ class Author extends CI_Controller
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
-            $data['categories'] = $this->model_thread->get_categories_by_ta($user->id);
+            $data['categories'] = $this->model_thread->get_categories_by_ta($daerahUser, $user->id);
             $getTopics  = $this->model_topic->getTopics_by_ta($user->id, $idCategory);
         }else{
             $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
