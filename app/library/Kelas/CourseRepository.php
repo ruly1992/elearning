@@ -673,6 +673,47 @@ class CourseRepository
         return $member_course;
     }
 
+    public function getMemberExpired()
+    {
+        $course = $this->model;
+        $member = $this->findMemberCourse($this->user, $course);
+
+        if (!empty($member)) {
+            $joined_at  = Carbon::parse($member->pivot->joined_at);
+            $expired    = $joined_at->copy()->addDays($course->days);
+
+            return $expired->endOfDay();
+        }
+
+        return null;
+    }
+
+    public function memberAllowCourse(Course $course)
+    {
+        $member = $this->findMemberCourse($this->user, $course);
+
+        if (!empty($member)) {
+            if ($member->status === 'finished')
+                return true;
+
+            $joined_at  = Carbon::parse($member->pivot->joined_at);
+            $expired    = $joined_at->copy()->addDays($course->days);
+            $diff       = Carbon::today()->endOfDay()->diffInDays($expired, false);
+
+            if ($diff >= 0)
+                return true;
+        }
+        
+        return false;
+    }
+
+    public function findMemberCourse(User $user, Course $course)
+    {
+        $member = $course->members()->find($user->id);
+
+        return $member;
+    }
+
     public function memberAllowExam(Course $course)
     {
         $chapters   = $course->chapters;
@@ -692,7 +733,6 @@ class CourseRepository
         return $relevances->get();
     }
 
-   
     public function examByCourse($courseid)
     {
         $exam = Exam::with('members')->where('course_id',$courseid)->get();

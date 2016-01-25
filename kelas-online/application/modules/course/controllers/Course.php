@@ -17,11 +17,17 @@ class Course extends Admin
 
     public function show($slug)
     {
-        $course     = $this->repository->getBySlug($slug);
-        $repository = $this->repository;
+        $course                 = $this->repository->getBySlug($slug);
+        $repository             = $this->repository;
         $course_member_status   = $repository->courseMemberStatus($slug); //get status member course
+        $expired                = $repository->getMemberExpired();
+        $relevance              = $repository->relevance();
 
-        $this->template->build('show', compact('course', 'repository','course_member_status'));
+        if ($repository->memberAllowCourse($course)) {
+            $this->template->build('show', compact('course', 'repository', 'course_member_status', 'expired', 'relevance'));
+        } else {
+            $this->template->build('course_expired', compact('course', 'repository', 'course_member_status'));
+        }
     }
 
     public function join($slug)
@@ -42,14 +48,35 @@ class Course extends Admin
         }
     }
 
+    public function rejoin($slug)
+    {
+        $this->repository->set($slug);
+        
+        $course         = $this->repository->get();
+        $requirements   = $this->repository->checkRequirements();
+        $repository     = $this->repository;
+
+        if ($repository->memberAllowCourse($course)) {
+            redirect('course/show/'.$course->slug, 'refresh');
+        } elseif ($repository->isMember()) {
+            $repository->deleteMember(sentinel()->getUser());
+
+            redirect('course/join/'.$course->slug, 'refresh');
+        } else {
+            redirect('course/show/'.$course->slug, 'refresh');
+        }
+    }
+
     public function chapter($slug)
     {
         $course     = $this->repository->getBySlug($slug);
         $repository = $this->repository;
+        $expired    = $repository->getMemberExpired();
 
         if ($this->repository->isMember()) {
             $course_member_status   = $repository->courseMemberStatus($slug); //get status member course
-            $this->template->build('chapter', compact('course', 'repository', 'course_member_status'));
+
+            $this->template->build('chapter', compact('course', 'repository', 'course_member_status', 'expired'));
         } else {
             redirect('course/show/' . $course->slug, 'refresh');
         }
@@ -62,9 +89,10 @@ class Course extends Admin
         $repository     = $this->repository;
         $chapter        = $course->chapters()->whereOrder($chapter)->firstOrFail();
         $nextchapter    = $chapter->getNext();
+        $expired        = $repository->getMemberExpired();
 
         if ($repository->memberAllowChapter($chapter)) {
-            $this->template->build('chapter_show', compact('course', 'repository', 'chapter', 'nextchapter'));
+            $this->template->build('chapter_show', compact('course', 'repository', 'chapter', 'nextchapter', 'expired'));
         } else {
             redirect('course/show/'.$course->slug, 'refresh');
         }

@@ -126,9 +126,10 @@ class Model_topic extends CI_Model
         return $get->result();
     }
 
-    function getTopics_by_ta($idUser, $idCategory)
+    function getTopics_by_ta($idUser, $idCategory, $daerahUser)
     {
             $data = array('categories.category_name','topics.*');
+            $byDaerah   = $this->getTopics_by_Category($idCategory, $daerahUser);
             $getByTopic = $this->db->select($data)
                         ->from('topics')
                         ->join('categories','categories.id=topics.category')
@@ -155,6 +156,11 @@ class Model_topic extends CI_Model
                         ->result();
 
             $allTopics      = array();
+            foreach($byDaerah as $temp){
+                if ( ! in_array($temp, $allTopics)) {
+                    $allTopics[] = $temp;
+                }
+            }
             foreach($getByTopic as $temp){
                 if ( ! in_array($temp, $allTopics)) {
                     $allTopics[] = $temp;

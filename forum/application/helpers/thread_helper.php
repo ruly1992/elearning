@@ -33,6 +33,15 @@
 	    return $views;
 	}
 
+	function parentComments($threads, $perentID, $commentID)
+	{
+		foreach($threads as $t){
+			if($t->id == $perentID){
+				echo anchor('thread/view/'.$t->id.'#'.$commentID, $t->title);
+			}
+		}
+	}
+
 	function countComments($comments, $idThread)
 	{
 		$sum_comments = 0;

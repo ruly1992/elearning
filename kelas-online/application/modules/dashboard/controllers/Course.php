@@ -34,7 +34,7 @@ class Course extends Admin
         $course                 = new Model\Kelas\Course;
         $course->name           = $input->get('name');
         $course->description    = $input->get('description', '', FALSE);
-        $course->days           = $input->get('days');
+        $course->days           = $input->get('days', 30);
         $course->status         = 'draft';
 
         $course->category()->associate($input->get('category_id'));
@@ -233,6 +233,7 @@ class Course extends Admin
     public function editIndex($id)
     {
         $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('days', 'Long Days', 'required|numeric|greater_than[1]');
         $this->form_validation->set_rules('category_id', 'Category', 'required');
 
         if ($this->form_validation->run() == FALSE) {
@@ -243,6 +244,7 @@ class Course extends Admin
             $course                 = Model\Kelas\Course::withDrafts()->findOrFail($id);
             $course->name           = set_value('name');
             $course->description    = set_value('description', '', FALSE);
+            $course->days           = set_value('days', 30);
             $course->category_id    = set_value('category_id');
             $course->save();
 

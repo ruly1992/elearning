@@ -148,6 +148,10 @@
                                                 if(isset($authorThreads)){ $active = 'active'; }else{ $active=''; }
                                                 echo anchor('author/', '<span class="label label-default label-pill pull-right">'.count($authorSide).'</span> Your Threads', 'class="list-group-item '.$active.'"');
                                             ?>
+                                            <?php 
+                                                if(isset($authorComments)){ $active = 'active'; }else{ $active=''; }
+                                                echo anchor('author/comments', '<span class="label label-default label-pill pull-right">'.count($commentsSide).'</span> Your Comments', 'class="list-group-item '.$active.'"');
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
