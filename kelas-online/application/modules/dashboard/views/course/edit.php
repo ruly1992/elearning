@@ -19,11 +19,24 @@
                     <?php echo form_input('name', set_value('name', $course->name), ['class' => 'form-control']); ?>
                 </div>
                 <div class="form-group">
-                    <label for="">Kategori :</label>
+                    <label for="">Category :</label>
                     <?php echo form_dropdown('category_id', $category_lists, set_value('category_id', $course->category_id), ['class' => 'c-select form-control']); ?>
                 </div>
                 <div class="form-group">
-                    <label>Deskripsi :</label>
+                    <label>Long Days :</label>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <?php echo form_input('days', set_value('days', $course->days), ['class' => 'form-control']); ?>
+                                <span class="input-group-addon">
+                                    days
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description :</label>
                     <?php echo form_textarea('description', set_value('description', $course->description, FALSE), ['class' => 'form-control editor']); ?>
                 </div>
                 <div class="form-group">
