@@ -83,7 +83,7 @@
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal-1<?php echo $i ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -91,7 +91,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-xs-center" id="modal-content<?php echo $i; ?>">
-                        <?php echo $media[$i]->getPreview(500, 'auto') ?>
+                        <center>                            
+                            <?php echo $media[$i]->getPreview(700, 500) ?>
+                        </center>
                     </div>
                 </div>
             </div>
