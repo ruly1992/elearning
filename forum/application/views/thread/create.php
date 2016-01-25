@@ -42,7 +42,7 @@
                                             <div class="form-group">
                                                 <label for="">Pilih Type Thread :</label>
                                                 <div>
-                                                    <label class="c-input c-radio">
+                                                    <label class="c-input c-checkbox">
                                                         <input id="selected" class="close" name="type" value="close" type="checkbox" onclick="private()">
                                                         <span class="c-indicator"></span>
                                                         Selected
