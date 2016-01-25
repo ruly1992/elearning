@@ -49,7 +49,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="card-header-meta pull-right">
-                                                    <p><?php echo $tanggal; ?> <i class="fa fa-calendar"></i></p>
+                                                    <p><?php echo Carbon\Carbon::parse($tanggal)->format('d F Y H:i'); ?> <i class="fa fa-calendar"></i></p>
                                                     <p><?php echo $countReply; ?> <i class="fa fa-comments"></i></p>
                                                 </div>
                                             </div>
@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="card-header-meta pull-right">
-                                                    <p><?php echo $r->created_at; ?> <i class="fa fa-calendar"></i></p>
+                                                    <p><?php echo Carbon\Carbon::parse($r->created_at)->format('d F Y H:i'); ?> <i class="fa fa-calendar"></i></p>
                                                     <?php 
                                                         if($r->updated_at > 0){
                                                             echo '<span class="label label-primary pull-right">Edited</span>';
