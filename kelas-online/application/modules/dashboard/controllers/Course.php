@@ -206,6 +206,7 @@ class Course extends Admin
 
     public function edit($id, $page = 'index')
     {
+
         $data = [
             'category_lists'    => $this->kelas->getCategoryLists(),
             'course'            => $this->kelas->getCourse($id),
@@ -613,43 +614,31 @@ class Course extends Admin
         $this->template->build('scores', compact('coursemember'));
     }
 
-    public function getexamscores($userid)
+    public function examscores($courseid)
     {
 
 
-        $exammember = $this->repository->getExamMember($userid);// get exam member
+        $exam = $this->repository->examByCourse($courseid);// get exam member
+
         
         $correct    = 0;
         $uncorrect  = 0;
         $scores     = 0;
 
-        echo '
-        <table class="table">
-            
-        ';
+        echo '<table class="table">';
 
-        // Start Exam Member Foreach 
-        foreach ($exammember as $key => $value) {
+        // Start Exam Foreach 
+        foreach ($exam as $key => $value) {
+           
 
-            $coursebyid = $this->repository->courseById($value->exam->course_id); //get course by id
-            // Start Course Foreach 
-            foreach ($coursebyid as $key => $val) {
-
-                echo '
-                <tr>
-                    <td>
-                        '.$val->code.'<br><br>
-                        
-                ';
-
-                
-                $quistion = $this->repository->questionList($value->exam_id); //get questioin
+            $quistion = $this->repository->questionList($value->id); //get questioin
                 // Start Question Foreach 
                 $no=1;
                 foreach ($quistion as $key => $vq) {
 
                     
-                    $learneranswer = $this->repository->learnerAnswer($value->id, $vq->id);
+                    
+                    $learneranswer = $this->repository->learnerAnswer($value->members[0]->id, $vq->id);
                     // Start Learner Answer Foreach 
                     foreach ($learneranswer as $key => $vAns) {
 
@@ -665,7 +654,7 @@ class Course extends Admin
                             $jawabanlearner = "<span style='color:red'>Jawaban Learner: ".$vAns->answer."</span>";
                         }
                         
-                        echo $no.". Pertanyaan nomor ".$no." <b>(<span style='color:green'>Kunci jawaban: ".$vq->correct."</span>)</b> - <b>(".$jawabanlearner.") - ".$hasil."</b><br>";                
+                        echo $no.". ".strip_tags($vq->question)."  <br>&nbsp;&nbsp;&nbsp;<b>(<span style='color:green'>Kunci jawaban: ".$vq->correct."</span>)</b> - <b>(".$jawabanlearner.") - ".$hasil."</b><br><br>";                
                         
                         
                     }
@@ -679,36 +668,99 @@ class Course extends Admin
                 // End Question Foreach
 
 
-                    echo "<br>";
-                    echo "<b>Total Benar : </b>".$correct."<br>";
-                    echo "<b>Total Sala : </b>".$uncorrect."<br>";
-                    echo "<b>Scores : </b>".$scores."<br>";
+           
 
-                    $correct    = 0;
-                    $uncorrect  = 0;
-                    $scores     = 0;
 
-                    
+                echo "<br>";
+                echo "<b>Total Benar : </b>".$correct."<br>";
+                echo "<b>Total Salah : </b>".$uncorrect."<br>";
+                echo "<b>Scores : </b>".$scores."<br>";
 
-                echo '
-                    </td>
-                </tr>
-                ';
-            }
-            // End Course Foreach 
-
+                $correct    = 0;
+                $uncorrect  = 0;
+                $scores     = 0;
 
 
             
         }
-        // End Exam Member Foreach 
+        // End Exam Foreach 
 
-        echo '
-        </table>
-        ';
+        echo '</table>';
 
         
         
+        exit();
+    }
+
+    public function quizscores($courseid)
+    {
+        $chapter = $this->repository->chapterByCourseId($courseid);
+
+        $correct    = 0;
+        $uncorrect  = 0;
+        $scores     = 0;
+        
+        echo '<table clas="table">';
+            
+     
+        foreach ($chapter as $key => $value) {
+
+         
+            echo $value->name."<br>";
+            
+            $quiz = $this->repository->quizByChapterId($value->id);             
+            foreach ($quiz as $key => $vquiz) {
+                
+                
+                $question = $this->repository->quizQuestionList($vquiz->id);
+                $no = 1;
+                foreach ($question as $key => $vques) {
+                   
+
+                    $learneranswer = $this->repository->learnerQuizAnswer($vquiz->members[0]->id, $vques->id);
+                    foreach ($learneranswer as $key => $vAns) {
+                        
+                        if ($vAns->is_correct == '1') {
+                            $correct   = $correct + 1;
+                            $scores    = $scores + 10;
+                            $hasil     = "<span style='color:green'>Benar</span>";
+                            $jawabanlearner = "<span style='color:green'>Jawaban Learner: ".$vAns->answer."</span>";
+                        } else {
+                            $uncorrect = $uncorrect + 1;
+                            $scores    = $scores;
+                            $hasil     = "<span style='color:red'>Salah</span>";
+                            $jawabanlearner = "<span style='color:red'>Jawaban Learner: ".$vAns->answer."</span>";
+                        }
+                        
+                        echo $no.". ".strip_tags($vques->question)."  <br>&nbsp;&nbsp;&nbsp;<b>(<span style='color:green'>Kunci jawaban: ".$vques->correct."</span>)</b> - <b>(".$jawabanlearner.") - ".$hasil."</b><br><br>";                
+                        
+                    }
+
+
+                $no++;
+                }
+
+
+                echo "<br>";
+                echo "<b>Total Benar : </b>".$correct."<br>";
+                echo "<b>Total Salah : </b>".$uncorrect."<br>";
+                echo "<b>Scores : </b>".$scores."<br>";
+
+                $correct    = 0;
+                $uncorrect  = 0;
+                $scores     = 0;
+                    
+                
+                
+                
+            }
+
+         
+
+        }
+
+        echo "</table>";
+
         exit();
     }
 
