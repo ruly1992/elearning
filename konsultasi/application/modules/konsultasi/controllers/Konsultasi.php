@@ -8,6 +8,7 @@ class Konsultasi extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->model('M_konsultasi');
+        $this->load->helper('fungsidate');
 
 		$this->status = array(
 			'open'	=> 'Open',
