@@ -11,6 +11,7 @@
                 </div>
             </div>
             <div class="content-konsultasi-table">
+                <?php echo validation_errors(); ?>
                 <form method="POST" action="<?php echo site_url('konsultasi/update/'. $konsultasi->id) ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="row">

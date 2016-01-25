@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+//HAE
 class Course extends Admin
 {
     protected $repository;
@@ -147,6 +147,16 @@ class Course extends Admin
         } else {
             redirect('course/chapter/'.$course->slug, 'refresh');
         }
+    }
+
+    public function download($filename)
+    {
+        $this->load->helper('download');
+
+        $attachment     = Model\Kelas\Attachment::findByHashids($filename);
+        $content        = file_get_contents($attachment->filepath);
+
+        force_download($attachment->filename, $content);
     }
 
     public function printedcertificate($slug)

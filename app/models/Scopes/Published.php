@@ -8,4 +8,11 @@ trait Published
 	{
 		static::addGlobalScope(new PublishedScope);
 	}
+
+    public function scopePublished($query)
+    {
+        $query = $query->where('status', 'publish');
+
+        return $query;
+    }
 }

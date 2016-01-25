@@ -44,12 +44,12 @@
         return $sum_comments;
 	}
 
-	function checkTopicsCategory($topics, $threads, $idCategory, $threadMembers, $userID)
+	function checkTopicsCategory($topics, $threads, $idCategory, $categoryUser, $threadMembers, $userID)
 	{
 		$counter = 0;
 		foreach($topics as $top){
 			if($top->category == $idCategory){
-				$countThreadsTopic	=	checkThreadsTopic($threads, $top->id, $threadMembers, $userID);
+				$countThreadsTopic	=	checkThreadsTopic($threads, $top->id, $threadMembers, $idCategory, $categoryUser, $top->tenaga_ahli, $userID);
 				if($countThreadsTopic > 0){
 					$counter += 1;
 				}
@@ -58,17 +58,25 @@
 		return $counter;
 	}
 
-	function checkThreadsTopic($threads, $idTopic, $threadMembers, $userID)
+	function checkThreadsTopic($threads, $idTopic, $threadMembers, $categoryID, $categoryUser, $topicTenagaAhli, $userID)
 	{
 		$counter = 0;
 		foreach($threads as $thr){
-			if($thr->topic == $idTopic){
+			if($thr->topic == $idTopic AND $topicTenagaAhli != $userID){
 				if($thr->type == 'close' AND $thr->author != $userID){
-					$close 	= sumCloseThread($threadMembers, $thr->id, $userID);
-					$counter += $close;
+					foreach ($categoryUser as $catUS) {
+						if($catUS->user_id == $userID AND $catUS->category_id == $categoryID){
+							$counter += 1;
+						}else{
+							$close 	= sumCloseThread($threadMembers, $thr->id, $userID);
+							$counter += $close;
+						}
+					}
 				}else{
 					$counter += 1;
 				}
+			}elseif($thr->topic == $idTopic AND $topicTenagaAhli == $userID){
+				$counter += 1;
 			}
 		}
 		return $counter;
@@ -113,9 +121,23 @@
 		return $sum_threads;
 	}
 
-	function countThreadsCategoryTA($threads, $topics, $idCategory, $closeThreads, $userID)
+	function countThreadsCategoryTA($threads, $topics, $idCategory, $categoryUser, $closeThreads, $userID)
 	{
-		$sum_threads = 0;
+		$sum_threads 	= 0;
+		$categoryTA 	= FALSE;
+		foreach ($categoryUser as $catUser) {
+			if($catUser->user_id == $userID AND $catUser->category_id == $idCategory){
+				$categoryTA 	= TRUE;
+			}
+		}
+		
+		if($categoryTA == TRUE){
+			foreach($threads as $t){
+				if($t->category == $idCategory){
+					$sum_threads += 1;
+				}
+			}
+		}else{
 			foreach($threads as $t){
 				if($t->category == $idCategory AND $t->type == 'public'){
 					$sum_threads += 1;
@@ -134,6 +156,7 @@
 					}
 				}
 			}
+		}
 		return $sum_threads;
 	}
 
@@ -228,13 +251,19 @@
 		return $counter;
 	}
 
-	function showThread($thr, $visitors, $comments, $threadMembers, $threadID, $userID)
+	function showThread($thr, $visitors, $comments, $categoryID, $categoryUser, $threadMembers, $threadID, $userID)
 	{
 		$counter = 0;
 		foreach($threadMembers as $tm){
 			$author 	= $thr->author;
 			if(($tm->thread_id == $threadID AND $tm->user_id == $userID) OR $author == $userID){
 				$counter = $counter+1;
+			}else{
+				foreach($categoryUser as $catUS){
+					if($catUS->category_id == $categoryID AND $catUS->user_id == $userID){
+						$counter = $counter+1; 
+					}
+				}
 			}
 		}
 		if($counter > 0){

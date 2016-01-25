@@ -76,6 +76,7 @@ class Model_topic extends CI_Model
                         ->join('categories', 'categories.id = category_user.category_id')
                         ->where('category_user.user_id', $id)
                         ->or_where('tenaga_ahli', $id)
+                        ->group_by(array('topics.topic', 'topics.category'))
                         ->order_by('topics.id', 'desc')
                         ->get();
         return $get->result();

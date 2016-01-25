@@ -567,6 +567,28 @@ class Course extends Admin
         redirect('dashboard', 'refresh');
     }
 
+    public function editComment($id)
+    {
+        $status = $this->input->get('status', 'publish');
+
+        $repository = new CourseRepository($id);
+        $course     = $repository->get();
+        $comments   = collect([]);
+
+        foreach ($course->chapters as $chapter) {
+            $chapter_comments = $status == 'publish' ? $chapter->comments : $chapter->comments()->onlyDrafts()->get();
+
+            foreach ($chapter_comments as $comment) {
+                $comments->push($comment);
+            }
+        }
+
+        $comments   = pagination($comments, 15, 'course/edit/'.$course->id.'/comment');
+        $comments->appends(compact('status'));
+
+        $this->template->build('course/comment_list_chapter', compact('comments'));
+    }
+
     public function _remap($method, $params = array())
     {
         switch ($method) {
@@ -583,6 +605,114 @@ class Course extends Admin
                 break;
         }
     }
+
+    public function scores()
+    {
+        $coursemember = $this->repository->getCourseMember();
+        
+        $this->template->build('scores', compact('coursemember'));
+    }
+
+    public function getexamscores($userid)
+    {
+
+
+        $exammember = $this->repository->getExamMember($userid);// get exam member
+        
+        $correct    = 0;
+        $uncorrect  = 0;
+        $scores     = 0;
+
+        echo '
+        <table class="table">
+            
+        ';
+
+        // Start Exam Member Foreach 
+        foreach ($exammember as $key => $value) {
+
+            $coursebyid = $this->repository->courseById($value->exam->course_id); //get course by id
+            // Start Course Foreach 
+            foreach ($coursebyid as $key => $val) {
+
+                echo '
+                <tr>
+                    <td>
+                        '.$val->code.'<br><br>
+                        
+                ';
+
+                
+                $quistion = $this->repository->questionList($value->exam_id); //get questioin
+                // Start Question Foreach 
+                $no=1;
+                foreach ($quistion as $key => $vq) {
+
+                    
+                    $learneranswer = $this->repository->learnerAnswer($value->id, $vq->id);
+                    // Start Learner Answer Foreach 
+                    foreach ($learneranswer as $key => $vAns) {
+
+                        if ($vAns->is_correct == '1') {
+                            $correct   = $correct + 1;
+                            $scores    = $scores + 10;
+                            $hasil     = "<span style='color:green'>Benar</span>";
+                            $jawabanlearner = "<span style='color:green'>Jawaban Learner: ".$vAns->answer."</span>";
+                        } else {
+                            $uncorrect = $uncorrect + 1;
+                            $scores    = $scores;
+                            $hasil     = "<span style='color:red'>Salah</span>";
+                            $jawabanlearner = "<span style='color:red'>Jawaban Learner: ".$vAns->answer."</span>";
+                        }
+                        
+                        echo $no.". Pertanyaan nomor ".$no." <b>(<span style='color:green'>Kunci jawaban: ".$vq->correct."</span>)</b> - <b>(".$jawabanlearner.") - ".$hasil."</b><br>";                
+                        
+                        
+                    }
+                    // End Learner Answer Foreach
+
+
+
+                    
+                $no++;
+                }
+                // End Question Foreach
+
+
+                    echo "<br>";
+                    echo "<b>Total Benar : </b>".$correct."<br>";
+                    echo "<b>Total Sala : </b>".$uncorrect."<br>";
+                    echo "<b>Scores : </b>".$scores."<br>";
+
+                    $correct    = 0;
+                    $uncorrect  = 0;
+                    $scores     = 0;
+
+                    
+
+                echo '
+                    </td>
+                </tr>
+                ';
+            }
+            // End Course Foreach 
+
+
+
+            
+        }
+        // End Exam Member Foreach 
+
+        echo '
+        </table>
+        ';
+
+        
+        
+        exit();
+    }
+
+
 }
 
 /* End of file Course.php */

@@ -52,8 +52,9 @@ class Topic extends CI_Controller
         }
 
         $user                   = sentinel()->getUser();
+        $daerahUser             = $user->profile->desa_id;
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
+        $data['threadSide']     = $this->model_thread->get_all_threads($daerahUser, $user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['tenagaAhli']     = $user->id;
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
@@ -82,11 +83,12 @@ class Topic extends CI_Controller
         }
 
         $user                   = sentinel()->getUser();
+        $daerahUser             = $user->profile->desa_id;
         $data['sideTopics']     = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
+        $data['threadSide']     = $this->model_thread->get_all_threads($daerahUser, $user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
-        $data['categories']     = $this->model_topic->get_categories();
+        $data['categories']     = $this->model_topic->get_categories_by_ta($user->id);
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['tenagaAhli']     = $user->id;
@@ -133,14 +135,13 @@ class Topic extends CI_Controller
                 $daerah         = '00.00.00.0000';
             }
             
+            $status     = '0';
             foreach($getUsersCategory AS $u){
                 if($u->user_id == $user->id){
                     $status = '1';
-                }else{
-                    $status = '0';
                 }
             }
-
+            
             $data = array(
                 'tenaga_ahli' => $user->id, 
                 'category'    => $category,
@@ -191,11 +192,12 @@ class Topic extends CI_Controller
         }
 
         $user                   = sentinel()->getUser();
+        $daerahUser             = $user->profile->desa_id;
         $data['sideTopics']     = $this->model_topic->get_topics_from_id($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
-        $data['threadSide']     = $this->model_thread->get_all_threads($user->id);
+        $data['threadSide']     = $this->model_thread->get_all_threads($daerahUser, $user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
-        $data['categories']     = $this->model_topic->get_categories();
+        $data['categories']     = $this->model_topic->get_categories_by_ta($user->id);
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['tenagaAhli']     = $user->id;

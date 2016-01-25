@@ -8,6 +8,7 @@ class Konsultasi extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->model('M_konsultasi');
+        $this->load->helper('fungsidate');
 
 		$this->status = array(
 			'open'	=> 'Open',
@@ -42,8 +43,8 @@ class Konsultasi extends CI_Controller {
 
 	public function create()
     {
-        $this->form_validation->set_rules('subjek', 'Subjek', 'required');
-        $this->form_validation->set_rules('pesan', 'Pesan', 'required');
+        $this->form_validation->set_rules('subjek', 'Subjek', 'required', array('required' => '<div class="alert alert-danger">Subyek Konsultasi Wajib diisi</div>'));
+        $this->form_validation->set_rules('pesan', 'Pesan', 'required', array('required' => '<div class="alert alert-danger">pesan konsultasi wajib diisi</div>'));
 
         if ($this->form_validation->run() == FALSE) {
             $data['status']         = $this->status;
@@ -102,7 +103,7 @@ class Konsultasi extends CI_Controller {
             $data['failed'] = $this->session->flashdata('failed');
         }
 
-        $this->form_validation->set_rules('isi', 'Isi', 'required');
+        $this->form_validation->set_rules('isi', 'Isi', 'required',  array('required' => '<div class="alert alert-danger">Pesan Konsultasi Wajib diisi</div>'));
 
         if ($this->form_validation->run() == FALSE) {            
             $detail['konsultasi']       = $this->M_konsultasi->getByIdKonsultasi($id);
@@ -157,8 +158,8 @@ class Konsultasi extends CI_Controller {
 
     public function update($id)
     {
-        $this->form_validation->set_rules('subjek', 'Subjek', 'required');
-        $this->form_validation->set_rules('pesan', 'Pesan', 'required');
+        $this->form_validation->set_rules('subjek', 'Subjek', 'required', array('required' => '<div class="alert alert-danger">Subyek Konsultasi Wajib diisi</div>'));
+        $this->form_validation->set_rules('pesan', 'Pesan', 'required', array('required' => '<div class="alert alert-danger">pesan konsultasi wajib diisi</div>'));
 
         if ($this->form_validation->run() == FALSE) {
             $konsultasi             = $this->M_konsultasi->getByIdKonsultasi($id);
