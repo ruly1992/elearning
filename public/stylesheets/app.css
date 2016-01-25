@@ -3947,6 +3947,30 @@ a {
     .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content {
       border-bottom-right-radius: 3px;
       border-bottom-left-radius: 3px; }
+      .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-terbaru {
+        background-color: #FCF8E3;
+        margin-left: 10px;
+        margin-right: 5px;
+        padding: 1px; }
+        .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-terbaru h4 {
+          font-size: 12px;
+          font-weight: 600;
+          padding: 10px; }
+        .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-terbaru ul {
+          list-style: none;
+          padding-left: 10px; }
+          .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-terbaru ul li {
+            font-size: 14px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            padding: 8px;
+            border-radius: 3px;
+            border: 1px solid #dddddd; }
+            .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-terbaru ul li a {
+              text-decoration: none;
+              color: #000; }
+              .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-terbaru ul li a:hover, .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-terbaru ul li a:focus {
+                color: #1c9c57; }
       .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-content h4 {
         font-size: 12px;
         font-weight: 600;
