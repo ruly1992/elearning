@@ -49,6 +49,11 @@
                         <p class="alert alert-info">
                             <i class="fa fa-check"></i> Anda telah menyelesaikan quiz ini
                         </p>
+                        
+                        <!-- Start Button Trigger Modal-->
+                        <button type="button" course-id="<?php echo $course->id ?>" class="btn btn-primary btn-quiz-score-learner" data-toggle="modal" data-target="#quiz-scores-learner"><i class="fa fa-list"></i> Lihat Skor</button>
+                        <!-- End Button Trigger Modal -->
+                    
                     <?php else: ?>
                         <p class="alert alert-info">
                             <i class="fa fa-question-mark"></i> Anda mempunyai waktu <?php echo $chapter->quiz->time ?> menit
@@ -146,3 +151,65 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="quiz-scores-learner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Skor Quiz</h4>
+      </div>
+      <div class="modal-body">
+            <div class="response-data"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     </div>
+    </div>
+  </div>
+</div>
+
+
+
+<?php custom_script() ?>
+<script type="text/javascript">
+    var scores=function(){
+
+        var url     = "<?php echo site_url('course/') ?>";
+         
+        return{
+            init:function(){
+                scores.setData();
+                
+            },
+            setData:function(){
+                
+               
+                $('.btn-quiz-score-learner').click(function(){
+                   
+                    var courseid = $(this).attr('course-id');
+                  
+                    $.ajax({
+                        type: "GET",
+                        url: url+'/quizscores/'+courseid,
+                        success: function(response){
+                            
+                            $('.response-data').html(response);
+
+                        }
+                    });
+                });
+               
+            },
+
+        } 
+        }();
+        scores.init();
+
+
+ </script>
+
+ <?php endcustom_script() ?>
