@@ -178,8 +178,9 @@ class Thread extends CI_Controller
                 $member     = $this->input->post('member');
                 foreach($member AS $key => $value){
                     $threadMember = array(
-                        'thread_id' => $idThread,
-                        'user_id'   => $value
+                        'thread_id'     => $idThread,
+                        'user_id'       => $value,
+                        'notif_status'  => '1'
                     );
                     $this->model_thread->save_thread_member($threadMember);
                 }
