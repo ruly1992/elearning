@@ -1,3 +1,283 @@
+<!-- start:content atas-->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <section class="content-articles">
+                        <div class="content-articles-heading">
+                            <h3>Dashboard Post Articles</h3>
+                        </div>
+                    </section> 
+                    <div class="container content-submit">
+                        <div class="alert alert-warning" role="alert">
+                            <strong>2 Artikel</strong> masih di review. <a href="#" class="btn btn-sm btn-warning">Lihat</a>
+                        </div>
+                        <div class="widget">
+                            <div class="widget-content">
+                                <div class="tab-content" id="myTabTableContent">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="article-submit" aria-expanded="true">
+                                        <form class="pull-left">
+                                            <div class="form-group row">
+                                                <label for="inputKeyword" class="col-sm-3 form-control-label">Search</label>
+                                                <div class="col-sm-9">
+                                                  <input type="text" class="form-control" id="keyword">
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Judul</th>
+                                                    <th>Status</th>
+                                                    <th>Waktu Terbit</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Kembangkan Teknologi Perdesaan, Kementerian Desa Minta Bantuan Dewan Riset Nasional</td>
+                                                    <td><div class="label label-success">Publish</div></td>
+                                                    <td>2015-11-27 09:47:07</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary btn-konsul">Update</a>
+                                                        <a href="#" class="btn btn-danger btn-konsul">Delete</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Karut Marut Proses Perekrutan Pendamping UU No. 6 Tahun 2014 Tentang Desa</td>
+                                                    <td><div class="label label-success">Publish</div></td>
+                                                    <td>2015-11-27 09:47:07</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary btn-konsul">Update</a>
+                                                        <a href="#" class="btn btn-danger btn-konsul">Delete</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Warga Serbu Stand Kemendesa PDTT di Sail Tomini</td>
+                                                    <td><div class="label label-success">Publish</div></td>
+                                                    <td>2015-11-27 09:47:07</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary btn-konsul">Update</a>
+                                                        <a href="#" class="btn btn-danger btn-konsul">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <nav class="pull-right">
+                                          <ul class="pagination">
+                                            <li class="page-item">
+                                              <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                              </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                            <li class="page-item">
+                                              <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                              </a>
+                                            </li>
+                                          </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end:content atas-->
+
+            <!-- Begin Recent Activity -->
+            <!-- start:content atas-->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <section class="content-articles">
+                        <div class="content-articles-heading">
+                            <h3>Recent Activity</h3>
+                        </div>
+                    </section>
+                    <div class="recent-activity">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="recent-portal">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="recent-portal-heading">
+                                            <h3>Recent activity portal</h3>
+                                        </div>
+                                        <div class="recent-portal-content">
+                                            <div class="portal-comment">
+                                                <h4>Artikel yang anda comment :</h4>
+                                                <ul>
+                                                    <li><a href="#">Satu Satu lala lal lala</a></li>
+                                                    <li><a href="#">Yang sangat di kagumi</a></li>
+                                                    <li><a href="#">Pemerintah desa rancang UU desa baru</a></li>
+                                                    <li><a href="#">Transparansi dana pembangunan desa</a></li>
+                                                    <li><a href="#">Pembangunan desa tertinggal dengan metode terbaru</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="recent-elibrary">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="recent-elibrary-heading">
+                                            <h3>Recent activity Elibrary</h3>
+                                        </div>
+                                        <div class="recent-elibrary-content">
+                                            <div class="elibrary-comment">
+                                                <h4>Your Media Files</h4>
+                                                <ul>
+                                                    <li><a href="#">Your Media Files</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="recent-konsultasi">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="recent-konsultasi-heading">
+                                            <h3>Recent activity konsultasi</h3>
+                                        </div>
+                                        <div class="recent-konsultasi-content">
+                                            <div class="konsultasi-comment">
+                                                <h4>Kategori konsultasi anda:</h4>
+                                                <ul>
+                                                    <li><a href="#">Kader Desa</a></li>
+                                                    <li><a href="#">Hukum dan Pengetahuan</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="recent-forum">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="recent-forum-heading">
+                                            <h3>Recent activity forum</h3>
+                                        </div>
+                                        <div class="recent-forum-content">
+                                            <div class="forum-tread">
+                                                <div class="notification">
+                                                    <?php 
+                                                        foreach ( $forumNotif as $notif ) {
+                                                            echo '<h4><i class="fa fa-info"></i> Anda diundang kedalam forum thread <b> '.anchor('dashboard/viewThread/'.$notif->thread_id, '"'.$notif->title.'"').'</b></h4>';
+                                                        }
+                                                    ?>
+                                                </div>
+                                                <h4>Forum yang diikuti: </h4>
+                                                <ul>
+                                                    <?php 
+                                                        foreach($forumCategories as $cat){
+                                                            echo '<li>'.anchor('forum/thread/category/'.$cat->id, $cat->category_name).'</li>';
+                                                        }
+                                                    ?>
+                                                </ul>
+                                                <div class="latest-comment">
+                                                    <h4><i class="fa fa-wechat"></i> Komentar terakhir anda :</h4>
+                                                    <ul>
+                                                        <li>
+                                                            <?php 
+                                                                if(!empty($forumLatestComment)){
+                                                                    foreach ($threadLatestComment as $thr) {
+                                                                        echo anchor('forum/thread/view/'.$thr->id, $thr->title);
+                                                                    }
+                                                                    foreach ($forumLatestComment as $comment) {
+                                                                        echo '<div class="comment">
+                                                                                <p><b>comment: </b>'.BBCodeParser($comment->message).'</p>
+                                                                            </div>';
+                                                                    }
+                                                                }else{
+                                                                    echo '<div class="alert alert-warning">Belum ada komentar dari anda.</div>';
+                                                                }
+                                                            ?>
+                                                        </li>
+                                                    </ul>
+                                                    <h4><i class="fa fa-wechat"></i> Komentar baru :</h4>
+                                                    <ul>
+                                                        <?php  
+                                                            if(!empty($newThreadComments)){
+                                                                foreach($allThreads as $thr){
+                                                                    $no     = 0;
+                                                                    foreach ($newThreadComments as $newComments) {
+                                                                        if($newComments->reply_to == $thr->id){
+                                                                            $no = $no + 1;
+                                                                        }
+                                                                    }
+                                                                    if($no > 0){
+                                                                        echo '<li>'.anchor('dashboard/viewThreadCommentar/'.$thr->id, $thr->title.' <div class="label label-success">'.$no.'</div>').'</li>';
+                                                                    }
+                                                                }
+                                                            }else{
+                                                                echo '<li><div class="alert alert-warning">Belum ada komentar baru.</div></li>';
+                                                            }
+                                                        ?>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="lastest-comment">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="recent-kelas">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="recent-kelas-heading">
+                                            <h3>Recent activity kelas online</h3>
+                                        </div>
+                                        <div class="recent-kelas-content">
+                                            <div class="kelas-terbaru">
+                                                <h4><i class="fa fa-info"></i> Kelas Terbaru:</h4>
+                                                <ul>
+                                                    <li><a href="#">Pengetahuan Dasar</a></li>
+                                                    <li><a href="#">Dasar Dasar kepeminpinan</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="kelas-content">
+                                                <h4>Kelas yang anda Ikuti:</h4>
+                                                <ul>
+                                                    <li><a href="#">Pengetahuan Dasar</a></li>
+                                                    <li><a href="#">Dasar Dasar kepeminpinan</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="latest-comment">
+                                                <h4><i class="fa fa-wechat"></i> Kelas yang ada comment:</h4>
+                                                <ul>
+                                                    <li><a href="">Pengetahuan dasar</a>
+                                                        <div class="comment">
+                                                            <p><b>comment: </b>test test test</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end:content atas-->
+            <!-- End Recent Activity -->
+
 
 <!-- start: content atas -->
 <div class="row" id="app-cropit">
