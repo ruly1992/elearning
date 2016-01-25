@@ -45,6 +45,7 @@ class Author extends CI_Controller
         $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['breadcrumb']		= 'Your Threads';
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
@@ -84,6 +85,7 @@ class Author extends CI_Controller
         $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['reply']          = $this->model_thread->get_reply($id);
         $data['countReply']     = count($data['reply']);
         $data['userID']         = $user->id;
@@ -126,6 +128,7 @@ class Author extends CI_Controller
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['authorThreads']  = $this->model_thread->get_thread_from_author($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
         $data['userID']         = $user->id;
 
@@ -182,8 +185,46 @@ class Author extends CI_Controller
         $data['userID']         = $user->id;
         $data['id_thread']      = $id;
         $data['authorThreads']  = $this->model_thread->get_thread_from_author($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $this->load->view('thread/edit_thread',$data);
+    }
+
+    public function comments()
+    {
+        if($this->session->flashdata('success')){
+            $data['success'] = $this->session->flashdata('success');
+        }elseif($this->session->flashdata('failed')){
+            $data['failed'] = $this->session->flashdata('failed');
+        }
+
+        $user = sentinel()->getUser();
+        if ($this->checkTA()==TRUE){
+            $data['addTopic']   = anchor('topic/create', '<i class="fa fa-plus"></i> Topic Baru', 'class="btn btn-primary btn-sm"');
+            $data['dashTopic']  = anchor('topic/', 'Your Topics', 'class="btn btn-primary btn-sm"');
+            $data['tenagaAhli'] = $user->id;
+            $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
+        }
+
+        $data['author']         = user($user->id)->full_name;
+        $data['comments']       = $this->model_thread->get_count_reply(); 
+        $data['visitors']       = $this->model_visitor->get_visitors();
+        $data['categoriesHead'] = $this->model_thread->get_categories();
+        $data['categoriesSide'] = $this->model_thread->get_categories();
+        $data['topics']         = $this->model_topic->get_approved_topics();
+        $data['threadSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
+        $data['allThreads']     = $this->model_thread->getCommentsThreads();
+        $data['authorComments'] = 'Your Threads';
+        $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['userID']         = $user->id;
+
+        $threads                = collect($this->model_thread->get_comments_from_author($user->id));
+        $data['threads']        = pagination($threads, 10, 'author', 'bootstrap_md');
+
+        $this->load->view('thread/author_comments',$data);
     }
 
     public function delete($id)

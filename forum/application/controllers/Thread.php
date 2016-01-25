@@ -50,6 +50,7 @@ class Thread extends CI_Controller
         $data['topics']         = $this->model_topic->get_approved_topics();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['userID']         = $user->id;
 
         $data['threads']        = pagination($threads, 10, 'thread', 'bootstrap_md');
@@ -86,6 +87,7 @@ class Thread extends CI_Controller
         $data['topics']         = $this->model_topic->get_approved_topics();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['userID']         = $user->id;
 
         $data['threads']        = pagination($threads, 10, 'thread/category/'.$idCategory, 'bootstrap_md');
@@ -118,6 +120,7 @@ class Thread extends CI_Controller
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $role                   = sentinel()->findRoleBySlug('lnr');
         $data['users']          = $role->users;
 
@@ -220,6 +223,7 @@ class Thread extends CI_Controller
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['reply']          = $this->model_thread->get_reply($id);
         $data['countReply']     = count($data['reply']);
         $data['userID']         = $user->id;
