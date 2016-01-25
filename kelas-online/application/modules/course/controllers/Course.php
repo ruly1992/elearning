@@ -21,9 +21,10 @@ class Course extends Admin
         $repository             = $this->repository;
         $course_member_status   = $repository->courseMemberStatus($slug); //get status member course
         $expired                = $repository->getMemberExpired();
+        $relevance              = $repository->relevance();
 
         if ($repository->memberAllowCourse($course)) {
-            $this->template->build('show', compact('course', 'repository', 'course_member_status', 'expired'));
+            $this->template->build('show', compact('course', 'repository', 'course_member_status', 'expired', 'relevance'));
         } else {
             $this->template->build('course_expired', compact('course', 'repository', 'course_member_status'));
         }
