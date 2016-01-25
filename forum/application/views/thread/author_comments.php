@@ -3,7 +3,7 @@
         <!-- start:content -->
         <div class="container content content-single content-dashboard content-forum">
             <section id="content">
-                <?php foreach($allThreads as $t){ echo $t->title.'<br>'; } ?>
+                
                 <!-- start:content -->
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
