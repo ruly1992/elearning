@@ -171,7 +171,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-8">
                                                                     <label for="">Pesan Anda</label>
-                                                                    <textarea name="isi" id="" cols="30" rows="5" class="editor"></textarea>
+                                                                    <textarea name="isi" class="editor-simple"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -216,6 +216,7 @@
 
 <?php custom_script() ?>
     <!--jQuery-->
+    <script src="<?php echo asset('javascript/editor.js') ?>"></script>    
     <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('/javascript/jquery.filer.custom.js') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('/plugins/tinymce/tinymce.min.js') ?>"></script>
