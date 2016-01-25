@@ -128,7 +128,7 @@ class Thread extends CI_Controller
     {
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
-        $this->form_validation->set_rules('type','Type','required');
+        $this->form_validation->set_rules('type','Type', '');
         $this->form_validation->set_rules('title','Title','required');
         $this->form_validation->set_rules('message','Message','required');
         
