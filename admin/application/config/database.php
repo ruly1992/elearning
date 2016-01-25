@@ -182,3 +182,25 @@ $db['elibrary'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$db['forum'] = array(
+	'dsn'	=> '',
+	'hostname' => getenv('FORUM_DB_HOST') ?: 'localhost',
+	'username' => getenv('FORUM_DB_USERNAME') ?: 'root',
+	'password' => getenv('FORUM_DB_PASSWORD') ?: '',
+	'database' => getenv('FORUM_DB_DATABASE') ?: 'elibrary_forum',
+	'dbdriver' => getenv('FORUM_DB_DRIVER') ?: 'mysqli',
+	'dbprefix' => getenv('FORUM_DB_PREFIX') ?: '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);

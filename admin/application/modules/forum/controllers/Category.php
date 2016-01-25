@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Category extends Admin {
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Mod_forum');
+    }
+
     public function index()
     {
         $data['users']      = sentinel()->findRoleBySlug('ta')->users->pluck('email', 'id')->toArray();
@@ -73,7 +79,8 @@ class Category extends Admin {
     {
         $category = Model\Forum\Category::findOrFail($id);
         $category->users()->detach();
-        // $category->topics()->delete();
+        $this->Mod_forum->deleteTopics($id);
+        $this->Mod_forum->deleteThreads($id);
         $category->delete();
 
         set_message_success('Kategori forum berhasil dihapus.');
