@@ -106,11 +106,11 @@ class Thread extends CI_Controller
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
-            $data['categories'] = $this->model_thread->get_categories_by_ta($user->id);
+            $data['categories'] = $this->model_thread->get_categories_by_ta($daerahUser, $user->id);
             $data['threadSide'] = $this->model_thread->get_all_threads($daerahUser, $user->id);
         }else{
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
-            $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
+            $data['categories'] = $this->model_thread->getCategory_by_Wilayah($daerahUser);
         }
 
         $data['userID']         = $user->id;
