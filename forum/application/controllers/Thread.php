@@ -50,6 +50,7 @@ class Thread extends CI_Controller
         $data['topics']         = $this->model_topic->get_approved_topics();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['userID']         = $user->id;
 
         $data['threads']        = pagination($threads, 10, 'thread', 'bootstrap_md');
@@ -86,6 +87,7 @@ class Thread extends CI_Controller
         $data['topics']         = $this->model_topic->get_approved_topics();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
         $data['threadMembers']  = $this->model_thread->get_thread_members();
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['userID']         = $user->id;
 
         $data['threads']        = pagination($threads, 10, 'thread/category/'.$idCategory, 'bootstrap_md');
@@ -106,11 +108,11 @@ class Thread extends CI_Controller
         if ($this->checkTA()==TRUE){
             $data['tenagaAhli'] = $user->id;
             $data['draftSide']  = $this->model_thread->get_all_drafts($user->id);
-            $data['categories'] = $this->model_thread->get_categories_by_ta($user->id);
+            $data['categories'] = $this->model_thread->get_categories_by_ta($daerahUser, $user->id);
             $data['threadSide'] = $this->model_thread->get_all_threads($daerahUser, $user->id);
         }else{
             $data['threadSide'] = $this->model_thread->get_threads_by_user($daerahUser, $user->id);
-            $data['categories'] = $this->model_topic->getCategory_by_Wilayah($daerahUser);
+            $data['categories'] = $this->model_thread->getCategory_by_Wilayah($daerahUser);
         }
 
         $data['userID']         = $user->id;
@@ -118,6 +120,7 @@ class Thread extends CI_Controller
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $role                   = sentinel()->findRoleBySlug('lnr');
         $data['users']          = $role->users;
 
@@ -220,6 +223,7 @@ class Thread extends CI_Controller
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['reply']          = $this->model_thread->get_reply($id);
         $data['countReply']     = count($data['reply']);
         $data['userID']         = $user->id;
@@ -376,10 +380,10 @@ class Thread extends CI_Controller
     public function get_topics(){
         $idCategory     = $this->input->post('idCategory');
         $user           = sentinel()->getUser();
+        $daerahUser = $user->profile->desa_id;
         if($this->checkTA() == TRUE){
-            $getTopics  = $this->model_topic->getTopics_by_ta($user->id, $idCategory);
+            $getTopics  = $this->model_topic->getTopics_by_ta($user->id, $idCategory, $daerahUser);
         }else{
-            $daerahUser = $user->profile->desa_id;
             $getTopics  = $this->model_topic->getTopics_by_Category($idCategory, $daerahUser);
         }
         $publicTopics   = $this->model_topic->get_public_topics($idCategory);
