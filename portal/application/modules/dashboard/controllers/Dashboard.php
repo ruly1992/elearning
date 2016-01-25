@@ -10,7 +10,8 @@ class Dashboard extends Admin {
     {
         parent::__construct();
         
-        $this->load->helper('article');
+        $this->load->library('SBBCodeParser');
+        $this->load->helper(array('article', 'bbcodeparser'));
         $this->load->model('Mod_user', 'model');
         $this->load->model('Mod_sendarticle');
         $this->load->model('category/Mod_category');
@@ -80,6 +81,12 @@ class Dashboard extends Admin {
                 $data['threadLatestComment']    = $this->Mod_forum->threadLatestComment($latest->reply_to);
             }
         }
+        $data['allThreads']             = $this->Mod_forum->allThreads($user->id);
+        $listNewThreadComments          = array();
+        foreach ($data['allThreads']  as $thr) {
+            $listNewThreadComments[]    = $thr->id;
+        }
+        $data['newThreadComments']      = $this->Mod_forum->newComments($listNewThreadComments);
         
         $this->template->set('sidebar');
         $this->template->set_layout('privatepage');              
@@ -303,6 +310,19 @@ class Dashboard extends Admin {
             'user_id'   => $user->id
         );
         $this->Mod_forum->confirm($where, $data);
+        redirect('forum/thread/view/'.$id);
+    }
+
+    public function viewThreadCommentar($id)
+    {
+        $user   = auth()->getUser();
+        $data   = array(
+            'notif_status'  => '0'
+        );
+        $where  = array(
+            'reply_to'      => $id
+        );
+        $this->Mod_forum->newCommentChecked($where, $data);
         redirect('forum/thread/view/'.$id);
     }
 }
