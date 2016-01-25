@@ -78,6 +78,12 @@ class Model_thread extends CI_Model
         return $get->result();
     }
 
+    function getCommentsThreads()
+    {
+        $threads    = $this->db->get_where("threads", array('reply_to' => '0'))->result();
+        return $threads;
+    }
+
     function get_categories_by_ta($daerah, $id)
     {
         $catWilayah     = $this->getCategory_by_Wilayah($daerah);
@@ -355,6 +361,18 @@ class Model_thread extends CI_Model
         $get   = $this->db->select($items)->from('threads')
                 ->join('categories', 'categories.id=threads.category')
                 ->where(array('author' => $id, 'reply_to' => '0'))
+                ->order_by('category','desc')
+                ->order_by('id', 'desc')
+                ->get();
+        return $get->result();
+    }
+
+    function get_comments_from_author($id)
+    {
+        $items = array('threads.*', 'categories.category_name');
+        $get   = $this->db->select($items)->from('threads')
+                ->join('categories', 'categories.id=threads.category')
+                ->where(array('author' => $id, 'reply_to !=' => '0'))
                 ->order_by('category','desc')
                 ->order_by('id', 'desc')
                 ->get();
