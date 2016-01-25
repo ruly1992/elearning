@@ -733,6 +733,7 @@ class CourseRepository
         return $quiz;
     }
 
+
     public function quizQuestionList($quizid)
     {
         $quizQuestion = QuizQuestion::where('quiz_id', $quizid)->get();
@@ -747,6 +748,18 @@ class CourseRepository
                             ->get();
 
         return $answer;
+    }
+
+    
+    public function quizLearnerByChapterId($chapterid)
+    {
+        $quiz = Quiz::with('members')
+                    ->whereHas('members', function ($member) {
+                        return $member->where('user_id', $this->user->id);
+                    })
+                    ->where('chapter_id', $chapterid)->get();
+
+        return $quiz;
     }
 
 }
