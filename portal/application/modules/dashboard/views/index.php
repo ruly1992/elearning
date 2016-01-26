@@ -167,20 +167,23 @@
                                         <div class="recent-konsultasi-content">
                                             <div class="list-konsultasi">
                                                 <h4>Konsultasi terakhir anda: </h4>
-                                                <div class="row">
-                                                    <div class="list-timeline">
-                                                        <div class="col-xs-3 date">
-                                                            <i class="fa fa-file-text"></i>
-                                                            <small class="text-green">26-01-2016</small>
-                                                        </div>
-                                                        <div class="col-xs-6 content">
-                                                            <div class="title">
-                                                                <p>Bagaimana pengelolaan dana anggaran dalam pembangunan desa yang telah di wacanakan oleh pemerintah sejak 2008?</p>
-                                                                <button class="btn btn-sm btn-primary">show detail</button>
+                                                <?php foreach ($latestKonsultasi as $row): ?>                                                    
+                                                    <div class="row">
+                                                        <div class="list-timeline">
+                                                            <div class="col-xs-3 date">
+                                                                <i class="fa fa-file-text"></i>
+                                                                <small class="text-green"><?php echo Carbon\Carbon::parse($row->created_at)->format('d F Y H:i'); ?></small>
+                                                            </div>
+                                                            <div class="col-xs-6 content">
+                                                                <div class="title">
+                                                                    <p><b><?php echo $row->subjek ?></b></p>
+                                                                    <p><?php echo $row->pesan ?></p>
+                                                                    <button class="btn btn-sm btn-primary">show detail</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                <?php endforeach ?>
                                             </div>
                                             <div class="latest-comment">
                                                 <h4>Komentar terakhir Anda: </h4>
