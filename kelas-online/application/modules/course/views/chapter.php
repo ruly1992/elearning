@@ -46,6 +46,11 @@
                 <a href="<?php echo site_url('course/showexam/'.$course->slug) ?>" class="btn btn-block btn-exam btn-primary">START EXAM</a>
             <?php else: ?>
                 <p class="alert alert-success">Anda sudah menyelesaikan ujian</p>
+                
+                <!-- Start Button Trigger Modal-->
+                <button type="button" course-id="<?php echo $course->id ?>" class="btn btn-primary btn-exam-score-learner" data-toggle="modal" data-target="#exam-scores-learner"><i class="fa fa-list"></i> Lihat Skor</button>
+                <!-- End Button Trigger Modal -->
+            
             <?php endif ?>
         <?php else: ?>
             <p>Tidak ada ujian</p>
@@ -79,3 +84,64 @@
 
 </div>
 <!-- END SERTIFIKAT -->
+
+
+<!-- MODAL EXAM SCORES -->
+<div class="modal fade" id="exam-scores-learner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Skor Quiz</h4>
+      </div>
+      <div class="modal-body">
+            <div class="response-data"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     </div>
+    </div>
+  </div>
+</div>
+<!-- END EXAM SCORES MODAL -->
+
+
+<?php custom_script() ?>
+<script type="text/javascript">
+    var scores=function(){
+
+        var url     = "<?php echo site_url('course/') ?>";
+         
+        return{
+            init:function(){
+                scores.setData();
+                
+            },
+            setData:function(){
+                
+               
+                $('.btn-exam-score-learner').click(function(){
+                   
+                    var courseid = $(this).attr('course-id');
+                  
+                    $.ajax({
+                        type: "GET",
+                        url: url+'/examscores/'+courseid,
+                        success: function(response){
+                            
+                            $('.response-data').html(response);
+
+                        }
+                    });
+                });
+               
+            },
+
+        } 
+        }();
+        scores.init();
+
+
+ </script>
+
+ <?php endcustom_script() ?>
