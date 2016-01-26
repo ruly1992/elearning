@@ -115,7 +115,7 @@
         </div>
     </div>
 
-    <cropit-result name="featured"></cropit-result>
+    <cropit-result name="featured" description="<?php echo $artikel->featured_description ?>"></cropit-result>
     <cropit-result name="slider"></cropit-result>
 
     <?php $this->load->view('modal/featured'); ?>
