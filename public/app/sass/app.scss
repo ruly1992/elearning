@@ -4577,8 +4577,8 @@ a {
 						padding-left: $padding-left + 5px;
 						li {
 							font-size: 14px;
-							margin-right: 5px;
-							margin-bottom: 5px;
+							margin-right: $margin-right;
+							margin-bottom: $margin-bottom;
 							padding: 8px;
 							border-radius: 3px;
 							background-color: #F5F5F5;
@@ -4698,8 +4698,8 @@ a {
 						padding-left: $padding-left + 5px;
 						li {
 							font-size: 14px;
-							margin-right: 5px;
-							margin-bottom: 5px;
+							margin-right: $margin-right;
+							margin-bottom: $margin-bottom;
 							padding: 8px;
 							border-radius: 3px;
 							background-color: #F5F5F5;
