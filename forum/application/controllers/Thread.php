@@ -286,8 +286,9 @@ class Thread extends CI_Controller
                 $this->model_thread->delete_thread_members($id);
                 foreach($member AS $key => $value){
                     $threadMember = array(
-                        'thread_id' => $id,
-                        'user_id'   => $value
+                        'thread_id'     => $id,
+                        'user_id'       => $value,
+                        'notif_status'  => '1'
                     );
                     $this->model_thread->save_thread_member($threadMember);
                 }

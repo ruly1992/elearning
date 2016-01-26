@@ -48,17 +48,7 @@
                                             <div class="form-group">
                                                 <label for="">Pilih Type Thread :</label>
                                                 <div>
-                                                    <!-- <label class="c-input c-radio">
-                                                        <input id="radio1" name="type" value="close" <?php if($type=='close'){echo 'checked';} ?> type="radio" onclick="private()">
-                                                        <span class="c-indicator"></span>
-                                                        Close
-                                                    </label>
-                                                    <label class="c-input c-radio">
-                                                        <input id="radio2" name="type" value="public" <?php if($type=='public'){echo 'checked';} ?> type="radio" onclick="public()">
-                                                        <span class="c-indicator"></span>
-                                                        Public
-                                                    </label> -->
-                                                    <label class="c-input c-radio">
+                                                    <label class="c-input c-checkbox">
                                                         <input id="selected" name="type" value="close" <?php if($type=='close'){echo 'checked';} ?> type="checkbox" onclick="private()">
                                                         <span class="c-indicator"></span>
                                                         Close
