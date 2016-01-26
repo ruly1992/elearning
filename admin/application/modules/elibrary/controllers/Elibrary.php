@@ -194,6 +194,7 @@ class Elibrary extends Admin
                 $idFileName = $i;
             }
             $fileName = $this->input->post('fileName'.$idFileName);
+            $nameFile = str_replace(".", " ", $fileName);
 
             $_FILES['filemedia']['name']    = $files['filemedia']['name'][$i];
             $_FILES['filemedia']['type']    = $files['filemedia']['type'][$i];
@@ -201,7 +202,7 @@ class Elibrary extends Admin
             $_FILES['filemedia']['error']   = $files['filemedia']['error'][$i];
             $_FILES['filemedia']['size']    = $files['filemedia']['size'][$i];
 
-            $this->upload->initialize($this->set_upload_options($category, $fileName));
+            $this->upload->initialize($this->set_upload_options($category, $nameFile));
 
             if(!empty($_FILES['filemedia']['name'])) {
                 $upload     = $this->upload->do_upload('filemedia');
@@ -243,14 +244,14 @@ class Elibrary extends Admin
         }
     }
 
-    private function set_upload_options($category, $fileName)
+    private function set_upload_options($category, $nameFile)
     {   
         //upload an image options
         $config = array();
         $config['upload_path']   = PATH_ELIBRARY_UPLOAD.'/media/'.$category->name;
         $config['allowed_types'] = '*';
         $config['max_size']      = '20000';
-        $config['file_name']     = $fileName;
+        $config['file_name']     = $nameFile;
         $config['overwrite']     = TRUE;
         return $config;
     }
