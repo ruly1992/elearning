@@ -140,10 +140,28 @@
                                             <h3>Recent activity Elibrary</h3>
                                         </div>
                                         <div class="recent-elibrary-content">
+                                            <div class="list-elibrary">
+                                                <h4>Recent Library</h4>
+                                                <ul>
+                                                    <?php  
+                                                        if(!empty($recentMedia)){
+                                                            foreach($recentMedia as $media){
+                                                                if($media->status == 'publish'){
+                                                                    echo '<li>'.anchor($media->link, $media->title).'</li>';
+                                                                }else{
+                                                                    echo '<li>'.anchor('elibrary/media/edit/'.$media->id, $media->title).'</li>';
+                                                                }
+                                                            }
+                                                        }else{
+                                                            echo '<li class="bg-warning">Anda belum mengunggah library</li>';
+                                                        }
+                                                    ?>
+                                                </ul>
+                                            </div>
                                             <div class="elibrary-comment">
                                                 <h4>Your Media Files</h4>
                                                 <ul>
-                                                    <li><a href="#">Your Media Files</a></li>
+                                                    <li><?php echo anchor('elibrary/media', 'Your Media Files'); ?></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -157,7 +175,35 @@
                                             <h3>Recent activity konsultasi</h3>
                                         </div>
                                         <div class="recent-konsultasi-content">
-                                            <div class="konsultasi-comment">
+                                            <div class="list-konsultasi">
+                                                <h4>Konsultasi terakhir anda: </h4>
+                                                <div class="row">
+                                                    <div class="list-timeline">
+                                                        <div class="col-xs-3 date">
+                                                            <i class="fa fa-file-text"></i>
+                                                            <small class="text-green">26-01-2016</small>
+                                                        </div>
+                                                        <div class="col-xs-6 content">
+                                                            <div class="title">
+                                                                <p>Bagaimana pengelolaan dana anggaran dalam pembangunan desa yang telah di wacanakan oleh pemerintah sejak 2008?</p>
+                                                                <button class="btn btn-sm btn-primary">show detail</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="latest-comment">
+                                                <h4>Komentar terakhir Anda: </h4>
+                                                <ul>
+                                                    <li><a href="">Title Konsultasi</a>
+                                                        <div class="comment">
+                                                            <b>Comment :</b>
+                                                            <p>Disini ada comment loh </p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="category-konsultasi">
                                                 <h4>Kategori konsultasi anda:</h4>
                                                 <ul>
                                                     <li><a href="#">Kader Desa</a></li>
@@ -216,7 +262,7 @@
                                                     <h4><i class="fa fa-wechat"></i> Komentar baru :</h4>
                                                     <ul>
                                                         <?php  
-                                                            if(!empty($newThreadComments)){
+                                                            if(isset($newThreadComments)){
                                                                 foreach($allThreads as $thr){
                                                                     $no     = 0;
                                                                     foreach ($newThreadComments as $newComments) {
@@ -246,14 +292,24 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="recent-kelas-heading">
-                                            <h3>Recent activity kelas online</h3>
+                                            <h3>Recent Activity Kelas Online</h3>
                                         </div>
                                         <div class="recent-kelas-content">
                                             <div class="kelas-terbaru">
                                                 <h4><i class="fa fa-info"></i> Kelas Terbaru:</h4>
                                                 <ul>
-                                                    <li><a href="#">Pengetahuan Dasar</a></li>
-                                                    <li><a href="#">Dasar Dasar kepeminpinan</a></li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <p>Pengetahuan Dasar</p>
+                                                        </a>
+                                                        <button class="btn btn-start btn-md btn-block">Mulai Kelas</button>
+                                                    </li>                                                
+                                                    <li>
+                                                        <a href="#">
+                                                            <p>Dasar Dasar Kepemimpinan</p>
+                                                        </a>
+                                                        <button class="btn btn-start btn-md btn-block">Mulai Kelas</button>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="kelas-content">
@@ -290,25 +346,13 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <section class="content-articles">
             <div class="content-articles-heading">
-                <h3>Dashboard Submit</h3>
+                <h3>Submite Artikel</h3>
             </div>
         </section>
         <div class="container content-submit">
             <div class="widget">
-                <div class="widget-heading">
-                    <ul class="nav nav-tabs" id="myTabSubmit" role="tablist">
-                        <li class="nav-item">
-                             <a class="nav-link active" data-toggle="tab" href="#submit-article" role="tab" aria-controls="article-post" aria-expanded="true"><label for="" class="title">Artikel</label></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#submit-elibrary" role="tab" aria-controls="library-post" aria-expanded="false"><label for="" class="title">Elibrary</label></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#submit-konsultasi" role="tab" aria-controls="konsultasis-post" aria-expanded="false"><label for="" class="title">Konsultasi</label></a>
-                        </li>
-                    </ul>
-                </div>
                 <div class="row">
+                
                     <div class="widget-content">
                         <div class="tab-content" id="myTabSubmitContent">
                             <div role="tabpanel" class="tab-pane fade active in" id="submit-article" aria-labelledby="article-post" aria-expanded="true">
@@ -379,62 +423,22 @@
                                         </fieldset>
                                         <button type="submit" onclick="checkInput(); return false;" class="btn btn-primary">Submit</button>
                                     <?php echo form_close(); ?>
+
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade" id="submit-konsultasi" aria-labelledby="" aria-expanded="false">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">   
-                                    <form method="POST" action="<?php echo site_url('konsultasi/konsultasi/create') ?>" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <label for="">Subjek</label>
-                                                <?php echo form_input('subjek', set_value('subjek'), array('class' => 'form-control input-lg', 'placeholder' => 'Masukkan subjek Konsultasi')); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <label for="">Kategori</label><br>
-                                                    <select class="form-control" name="id_konsultasi_kategori">
-                                                        <?php 
-                                                            foreach ($konsultasiCat as $row) {
-                                                        ?>
-                                                            <option value="<?php echo $row->id;?>"><?php echo $row->name;?></option>
-                                                        <?php }?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <label for="">Prioritas</label><br>
-                                                    <select class="form-control" name="prioritas">
-                                                        <option value="High" selected>High</option>
-                                                        <option value="Medium">Medium</option>
-                                                        <option value="Low">Low</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <label for="">Pesan Anda</label>
-                                                    <?php echo form_textarea('pesan', set_value('pesan', '', FALSE), array('class' => 'editor')); ?>
-                                                </div> 
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Attachments</label>
-                                            <input type="file" name="files" id="filer_konsultasi">
-                                            <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt) </small>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                            <!-- end: category -->
+                            <!-- begin: image preview -->
+                            <div class="widget hidden-lg-down">
+                                <div class="widget-sidebar-heading">
+                                    <h3>Gambar Fitur</h3>
+                                </div>
+                                <div class="widget-sidebar-content">
+                                    <cropit-preview name="featured" :show-description="true"></cropit-preview>
+                                    <cropit-result name="featured"></cropit-result>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php echo form_close(); ?>
                 </div>
             </div>
         </div>

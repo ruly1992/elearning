@@ -80,6 +80,7 @@ class Dashboard extends Admin {
         $data['draftcount']             = $draftcount;
         $data['links']                  = $this->Mod_link->read();
 
+        // START: Recent activity from modul forum
         $data['forumNotif']             = $this->Mod_forum->getMemberNotif($user->id);
         $data['forumCategories']        = $this->Mod_forum->getCategoryMember($user->id);
         $latestComment                  = $this->Mod_forum->getLatestComment($user->id);
@@ -91,10 +92,17 @@ class Dashboard extends Admin {
         }
         $data['allThreads']             = $this->Mod_forum->allThreads($user->id);
         $listNewThreadComments          = array();
-        foreach ($data['allThreads']  as $thr) {
-            $listNewThreadComments[]    = $thr->id;
+        if(!empty($listNewThreadComments)){
+            foreach ($data['allThreads']  as $thr) {
+                $listNewThreadComments[]    = $thr->id;
+            }
+            $data['newThreadComments']      = $this->Mod_forum->newComments($listNewThreadComments);
         }
-        $data['newThreadComments']      = $this->Mod_forum->newComments($listNewThreadComments);
+        // END: Recent activity form modul forum
+
+        // START: Recent activity elibrary
+        $data['recentMedia']    = $this->medialib->onlyUserId($user->id)->latestById()->slice(0, 5);
+        // END: Recent activity elibrary
         
         
 

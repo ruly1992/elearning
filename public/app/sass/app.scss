@@ -4400,6 +4400,7 @@ a {
 		margin-top: $margin-top + 20px;
 		margin-bottom: $margin-bottom + 20px;
 		.widget {
+			margin-top: $margin-top + 25px;
 			.widget-heading {
 				display: block;
 				margin-bottom: $margin-bottom + 10px;
@@ -4532,6 +4533,7 @@ a {
 							padding: 8px;
 							border-radius: 3px;
 							background-color: #F5F5F5;
+							border-left: 3px solid $green-black;
 							a {
 								text-decoration: none;
 								color: $black;
@@ -4576,10 +4578,11 @@ a {
 						li {
 							font-size: 14px;
 							margin-right: $margin-right;
-							margin-bottom: 5px;
+							margin-bottom: $margin-bottom;
 							padding: 8px;
 							border-radius: 3px;
 							background-color: #F5F5F5;
+							border-left: 3px solid #128A4A;
 							a {
 								text-decoration: none;
 								color: $black;
@@ -4592,7 +4595,7 @@ a {
 					}
 					.latest-comment {
 						h4 {
-							font-size: 12px;
+							font-size: 14px;
 							font-weight: 600;
 							padding: $padding + 5px;
 						}
@@ -4600,7 +4603,7 @@ a {
 							list-style: none;
 							padding-left: $padding-left + 5px;
 							li {
-								font-size: 12px;
+								font-size: 14px;
 								margin-right: $margin-right;
 								margin-bottom: 5px;
 								padding: 8px;
@@ -4616,6 +4619,11 @@ a {
 								}
 								.comment {
 									background-color: $white;
+									position: relative;
+									margin: 0.25em 0px;
+									border: 1px solid #CCC;
+									padding: 0.25em;
+									font-size: 14px;
 									p {
 										font-size: 12px;
 										font-weight: 300;
@@ -4623,6 +4631,21 @@ a {
 										width: 100%;
 										max-height: 45px;
 										overflow: hidden;
+									}
+									blockquote {
+										position: relative;
+										background: #FFF6C7 none repeat scroll 0% 0%;
+										margin: 0.25em 0px;
+										border: 1px solid #CCC;
+										padding: 0.25em;
+										font-size: 14px;
+										p {
+											margin-bottom: $margin-bottom;
+											cite {
+												margin-right: $margin-right;
+												font-weight: 600;
+											}
+										}
 									}
 								}
 							}
@@ -4664,6 +4687,37 @@ a {
 			.recent-elibrary-content {
 				border-bottom-right-radius: 3px;
 				border-bottom-left-radius: 3px;
+				.list-elibrary {
+					h4 {
+						font-size: 12px;
+						font-weight: 600;
+						padding: $padding + 5px;
+					}
+					ul {
+						list-style: none;
+						padding-left: $padding-left + 5px;
+						li {
+							font-size: 14px;
+							margin-right: $margin-right;
+							margin-bottom: $margin-bottom;
+							padding: 8px;
+							border-radius: 3px;
+							background-color: #F5F5F5;
+							border-left: 3px solid #128A4A;
+							a {
+								text-decoration: none;
+								font-size: 14px;
+								color: $black;
+								display: block;
+								&:hover,
+								&:focus {
+									color: $green-black;
+									@include transition(0.3s);
+								}
+							}
+						}
+					}
+				}
 				.elibrary-comment {
 					h4 {
 						font-size: 12px;
@@ -4713,8 +4767,6 @@ a {
 				border-bottom-right-radius: 3px;
 				border-bottom-left-radius: 3px;
 				.kelas-terbaru {
-					background-color: #FCF8E3;
-					margin-left: $margin-left + 5px;
 					margin-right: $margin-right;
 					padding: $padding - 4px;
 					h4 {
@@ -4729,15 +4781,15 @@ a {
 							font-size: 14px;
 							margin-right: $margin-right;
 							margin-bottom: 5px;
-							padding: 8px;
+							padding: 10px;
 							border-radius: 3px;
-							border: 1px solid $grey-black;
+							background-color: #78B6D8;
 							a {
 								text-decoration: none;
-								color: $black;
+								color: $white;
 								&:hover,
 								&:focus {
-									color: $green;
+									color: $aspalt-light;
 								}
 							}
 						}
@@ -4780,7 +4832,7 @@ a {
 							list-style: none;
 							padding-left: $padding-left + 5px;
 							li {
-								font-size: 12px;
+								font-size: 14px;
 								margin-right: $margin-right;
 								margin-bottom: 5px;
 								padding: 8px;
@@ -4829,7 +4881,86 @@ a {
 			.recent-konsultasi-content {
 				border-bottom-right-radius: 3px;
 				border-bottom-left-radius: 3px;
-				.konsultasi-comment {
+				.list-konsultasi {
+					h4 {
+						font-size: 12px;
+						font-weight: 600;
+						padding: $padding + 5px;
+					}
+					.row {
+						margin-left: $margin-left - 5px;
+						.list-timeline {
+							.date {
+								position: relative;
+								text-align: right;
+								width: 110px;
+								padding-top: $padding-top + 25px;
+								i {
+									position: absolute;
+									right: 0;
+									top: 0;
+									padding: $padding;
+									width: 30px;
+									text-align: center;
+									border-left: 1px solid $grey-black;
+									border-bottom: 1px solid $grey-black;
+									border-top: 1px solid $grey-black;
+									background-color: #f8f8f8;
+								}
+								.text-green {
+									color: $green-black;
+									font-size: 12px;
+								}
+							}
+							.content {
+								border-left: 1px solid $grey-black;
+								min-height: 80px;
+								padding-top: $padding-top + 5px;
+								margin-top: 0;
+								@include border-radius(0);
+								padding-bottom: $padding-bottom;
+								.title {
+									font-size: 12px;
+									font-weight: 400;
+								}
+							}
+						}
+					}	
+				}
+				.latest-comment {
+					margin-top: $margin-top + 5px;
+					h4 {
+					font-size: 12px;
+					font-weight: 600;
+					padding: $padding + 5px;
+					}
+					ul {
+						list-style: none;
+						padding-left: $padding-left + 5px;
+						li {
+							font-size: 14px;
+							margin-right: $margin-right;
+							margin-bottom: 5px;
+							padding: 8px;
+							border-radius: 3px;
+							a {
+								text-decoration: none;
+								color: $black;
+								&:hover,
+								&:focus {
+									color: $green;
+								}
+							}
+							.comment {
+								border: 1px solid $green-black;
+								background-color: $white;
+								@include border-radius(3px);
+								padding: $padding + 3px;
+							}
+						}
+					}
+				}
+				.category-konsultasi {
 					h4 {
 						font-size: 12px;
 						font-weight: 600;
@@ -5376,6 +5507,13 @@ Create: Singgih Saputro */
 			margin-right: $margin-right - 11;
 		}
 	}
+	.question {
+		margin-top: -24px;
+		margin-left: 24px;
+		font-size: 14px;
+		font-weight: 600;
+	}
+
 	// Custom plugin select kelas online
 	.select2-container--default {
 		.select2-selection--single {
@@ -5437,6 +5575,20 @@ Create: Singgih Saputro */
 
 .btn-md {
 	padding: 2px 12px;
+}
+
+.btn-start {
+	background-color: $grey;
+	color: $aspalt-light;
+	@include transition(0.3s);
+	@include border-radius(6px);
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: $green;
+		color: $white;
+		@include transition(0.3s);
+	}
 }
 
 .btn-margin-btm {

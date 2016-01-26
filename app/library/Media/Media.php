@@ -210,6 +210,11 @@ class Media
         return $this->media->latest()->get();
     }
 
+    public function latestById()
+    {
+        return $this->media->orderBy('id', 'desc')->get();
+    }
+
     public function popular()
     {
         return $this->media->popular()->get();
