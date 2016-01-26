@@ -72,6 +72,7 @@ class Dashboard extends Admin {
         $data['drafts']                 = pagination($drafts, 4, 'dashboard');
         $data['links']                  = $this->Mod_link->read();
 
+        // START: Recent activity from modul forum
         $data['forumNotif']             = $this->Mod_forum->getMemberNotif($user->id);
         $data['forumCategories']        = $this->Mod_forum->getCategoryMember($user->id);
         $latestComment                  = $this->Mod_forum->getLatestComment($user->id);
@@ -89,6 +90,18 @@ class Dashboard extends Admin {
             }
             $data['newThreadComments']      = $this->Mod_forum->newComments($listNewThreadComments);
         }
+        // END: Recent activity form modul forum
+
+        // START: Recent activity elibrary
+        $getRecentMedia     = $this->medialib->onlyUserId($user->id)->latest()->slice(0, 5);
+        $recentMedia        = array();
+        if(count($getRecentMedia) > 0){
+            foreach($getRecentMedia as $media){
+                $recentMedia[]   = $media;
+            }
+        }
+        $data['recentMedia']    = $recentMedia;
+        // END: Recent activity elibrary
         
         $this->template->set('sidebar');
         $this->template->set_layout('privatepage');              

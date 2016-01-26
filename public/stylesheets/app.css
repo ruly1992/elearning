@@ -4076,20 +4076,86 @@ a {
     .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content {
       border-bottom-right-radius: 3px;
       border-bottom-left-radius: 3px; }
-      .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .konsultasi-comment h4 {
+      .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .list-konsultasi h4 {
         font-size: 12px;
         font-weight: 600;
         padding: 10px; }
-      .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .konsultasi-comment ul {
+      .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .list-konsultasi .row {
+        margin-left: 0px; }
+        .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .list-konsultasi .row .list-timeline .date {
+          position: relative;
+          text-align: right;
+          width: 110px;
+          padding-top: 30px; }
+          .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .list-konsultasi .row .list-timeline .date i {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 5px;
+            width: 30px;
+            text-align: center;
+            border-left: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+            background-color: #f8f8f8; }
+          .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .list-konsultasi .row .list-timeline .date .text-green {
+            color: #128a4a;
+            font-size: 12px; }
+        .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .list-konsultasi .row .list-timeline .content {
+          border-left: 1px solid #dddddd;
+          min-height: 80px;
+          padding-top: 10px;
+          margin-top: 0;
+          border-radius: 0;
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          -o-border-radius: 0;
+          padding-bottom: 5px; }
+          .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .list-konsultasi .row .list-timeline .content .title {
+            font-size: 12px;
+            font-weight: 400; }
+      .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .latest-comment {
+        margin-top: 10px; }
+        .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .latest-comment h4 {
+          font-size: 12px;
+          font-weight: 600;
+          padding: 10px; }
+        .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .latest-comment ul {
+          list-style: none;
+          padding-left: 10px; }
+          .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .latest-comment ul li {
+            font-size: 14px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            padding: 8px;
+            border-radius: 3px; }
+            .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .latest-comment ul li a {
+              text-decoration: none;
+              color: #000; }
+              .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .latest-comment ul li a:hover, .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .latest-comment ul li a:focus {
+                color: #1c9c57; }
+            .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .latest-comment ul li .comment {
+              border: 1px solid #128a4a;
+              background-color: #fff;
+              border-radius: 3px;
+              -webkit-border-radius: 3px;
+              -moz-border-radius: 3px;
+              -o-border-radius: 3px;
+              padding: 8px; }
+      .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .category-konsultasi h4 {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 10px; }
+      .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .category-konsultasi ul {
         list-style: none;
         padding-left: 10px; }
-        .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .konsultasi-comment ul li {
+        .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .category-konsultasi ul li {
           font-size: 14px;
           margin-right: 5px;
           margin-bottom: 5px;
           padding: 8px;
           border-radius: 3px; }
-          .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .konsultasi-comment ul li a {
+          .content-dashboard-user .recent-activity .recent-konsultasi .recent-konsultasi-content .category-konsultasi ul li a {
             text-decoration: none;
             color: #fff;
             border-radius: 3px;
