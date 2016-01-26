@@ -26,8 +26,10 @@
                                                     <label class="c-input c-radio">
                                                         <input name="answers[<?php echo $question->id ?>]" value="<?php echo $choice ?>" type="radio">
                                                         <span class="c-indicator"></span>
-                                                        <?php echo strtoupper($choice) ?>. <?php echo $question->{'option_'.$choice} ?>
-                                                    </label>
+                                                        <div class="question">
+                                                            <?php echo strtoupper($choice) ?>. <?php echo $question->{'option_'.$choice} ?>
+                                                        </div>
+                                                    </label><hr>
                                                 <?php endforeach ?>
                                             </div>
                                         </div>               

@@ -33,17 +33,38 @@ class Mod_forum extends CI_Model
 
 	public function getCategoryMember($id)
 	{
-		$get 	= $this->db->select('categories.*')
+		$getByAuthor 	= $this->db->select('categories.*')
 						->from('categories')
 						->join('threads', 'threads.category=categories.id')
-						->join('thread_members', 'thread_members.thread_id=threads.id')
 						->where('threads.author', $id)
-						->or_where('thread_members.user_id', $id)
 						->group_by('categories.category_name')
 						->order_by('categories.id', 'desc')
 						->get()
 						->result();
-		return $get;
+
+		$getByMember 	= $this->db->select('categories.*')
+						->from('categories')
+						->join('threads', 'threads.category=categories.id')
+						->join('thread_members', 'thread_members.thread_id=threads.id')
+						->where('user_id', $id)
+						->group_by('categories.category_name')
+						->order_by('categories.id', 'desc')
+						->get()
+						->result();
+
+		$allCategory 	= array();
+		foreach ($getByAuthor as $cat) {
+			if(!in_array($cat, $allCategory)){
+				$allCategory[] 	= $cat;
+			}
+		}
+		foreach ($getByMember as $cat) {
+			if(!in_array($cat, $allCategory)){
+				$allCategory[] 	= $cat;
+			}
+		}
+
+		return $allCategory;
 	}
 
 	public function getLatestComment($id)
