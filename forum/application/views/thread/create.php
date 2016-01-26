@@ -42,15 +42,10 @@
                                             <div class="form-group">
                                                 <label for="">Pilih Type Thread :</label>
                                                 <div>
-                                                    <label class="c-input c-radio">
-                                                        <input id="radio1" class="close" name="type" value="close" type="radio" onclick="private()">
+                                                    <label class="c-input c-checkbox">
+                                                        <input id="selected" class="close" name="type" value="close" type="checkbox" onclick="private()">
                                                         <span class="c-indicator"></span>
-                                                        Close
-                                                    </label>
-                                                    <label class="c-input c-radio">
-                                                        <input id="radio2" class="public" name="type" value="public" checked type="radio" onclick="public()">
-                                                        <span class="c-indicator"></span>
-                                                        Public
+                                                        Selected
                                                     </label>
                                                 </div>
                                             </div>
@@ -154,8 +149,9 @@
     <script type="text/javascript">
         function private(){
             var idTopic     = document.getElementById("selectTopic").value;
-            var radio1      = $("#radio1").prop( "checked" );
-                if (idTopic != "" && radio1 == true){
+            var selected    = $("#selected").prop("checked");
+            if(selected == true){
+                if (idTopic != ""){
                     $.ajax({
                         type: "POST",
                         url: "<?php echo site_url('/thread/getUserByTopic'); ?>",
@@ -179,18 +175,17 @@
                     }); 
                 } else {
                     $('#addPrivate').collapse('hide');
-                    $('.close').removeProp('checked');
-                    $('.public').prop('checked', true);
+                    $("#selected").prop("checked", false);
                     alert("Anda harus memilih topic terlebih dahulu!");
                 }
+            }else{
+                $('#addPrivate').collapse('hide');
+                $('#addMember').empty();
+                $("#addMember").trigger("chosen:updated");
+                $('#addMember').removeAttr('required');
+            }
         }
 
-        function public(){
-            $('#addPrivate').collapse('hide');
-            $('#addMember').empty();
-            $("#addMember").trigger("chosen:updated");
-            $('#addMember').removeAttr('required');
-        }
     </script>
 <?php endcustom_script() ?>
 <?php get_footer('private') ?>

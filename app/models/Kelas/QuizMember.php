@@ -11,6 +11,15 @@ class QuizMember extends Model
 	protected $guarded = [];
 	public $timestamps = false;
 
+	public static function boot()
+	{
+		parent::boot();
+
+		QuizMember::deleting(function ($quiz_member) {
+			$quiz_member->answers()->delete();
+		});
+	}
+
 	public function quiz()
 	{
 		return $this->belongsTo(Quiz::class);

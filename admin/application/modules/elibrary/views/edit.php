@@ -7,7 +7,7 @@
     }
 </style>
 
-<?php echo form_open('elibrary/update/' . $media->id); ?>
+<?php echo form_open('elibrary/update/' . $media->id, 'name = elibEdit'); ?>
 <div class="panel panel-default" id="app-meta" data-media-id="<?php echo $media->id ?>">
 	<div class="panel-heading">
 		<h3 class="panel-title"><?php echo $media->name ?> <?php echo $media->status_format ?></h3>
@@ -86,14 +86,14 @@
                 <div class="form-group">
                     <textarea name="meta[full_description]" class="form-control" rows="5"><?php echo $media->full_description ?></textarea>  
                 </div>   
-                <!-- <a href="<?php echo site_url('elibrary/approve/' . $media->id . '/draft') ?>" v-on:click="saveToDraft(<?php echo $media->id ?>, $event)" class="btn btn-sm btn-warning btn-margin-btm"><i class="fa fa-check"></i> Set to DRAFT</a> -->
-                <button class="btn btn-sm btn-success btn-margin-btm"><i class="fa fa-check"></i>Save to Publish</button>           
+                <a href="<?php echo site_url('elibrary/approve/' . $media->id . '/draft') ?>" v-on:click="saveToDraft(<?php echo $media->id ?>, $event)"  onClick="document.forms['elibEdit'].submit(); return true;" class="btn btn-sm btn-warning btn-margin-btm"><i class="fa fa-check"></i> Set to DRAFT</a>
+                <a href="<?php echo site_url('elibrary/approve/' . $media->id . '/publish') ?>" v-on:click="saveToDraft(<?php echo $media->id ?>, $event)"  onClick="document.forms['elibEdit'].submit(); return true;" class="btn btn-sm btn-success btn-margin-btm"><i class="fa fa-check"></i> Save to Publish</a>
             </div>
         </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal-1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -101,7 +101,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-xs-center" id="modal-content">
-                        <?php echo $media->getPreview(500, 'auto') ?>
+                        <center>                            
+                            <?php echo $media->getPreview(700, 500) ?>
+                        </center>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -48,7 +48,7 @@
                                             <div class="form-group">
                                                 <label for="">Pilih Type Thread :</label>
                                                 <div>
-                                                    <label class="c-input c-radio">
+                                                    <!-- <label class="c-input c-radio">
                                                         <input id="radio1" name="type" value="close" <?php if($type=='close'){echo 'checked';} ?> type="radio" onclick="private()">
                                                         <span class="c-indicator"></span>
                                                         Close
@@ -57,6 +57,11 @@
                                                         <input id="radio2" name="type" value="public" <?php if($type=='public'){echo 'checked';} ?> type="radio" onclick="public()">
                                                         <span class="c-indicator"></span>
                                                         Public
+                                                    </label> -->
+                                                    <label class="c-input c-radio">
+                                                        <input id="selected" name="type" value="close" <?php if($type=='close'){echo 'checked';} ?> type="checkbox" onclick="private()">
+                                                        <span class="c-indicator"></span>
+                                                        Close
                                                     </label>
                                                 </div>
                                             </div>
@@ -116,8 +121,8 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            var radio1  = $("#radio1").prop( "checked" );
-            if(radio1 == true){
+            var selected  = $("#selected").prop( "checked");
+            if(selected == true){
                 private();
             }
             $('#category').change(function(){
@@ -161,8 +166,10 @@
         function private(){
             var idThread    = "<?php echo $id_thread; ?>";
             var idTopic     = document.getElementById("selectTopic").value;
-            var radio1      = $("#radio1").prop( "checked" );
-                if (idTopic != "" && radio1 == true){
+            var selected    = $("#selected").prop( "checked" );
+
+            if(selected == true){
+                if (idTopic != ""){
                     $.ajax({
                         type: "POST",
                         url: "<?php echo site_url('/thread/getSelectedMember'); ?>",
@@ -189,17 +196,15 @@
                     }); 
                 } else {
                     $('#addPrivate').collapse('hide');
-                    $('.close').removeProp('checked');
-                    $('.private').prop('checked', true);
+                    $('#selected').prop('checked', false);
                     alert("Anda harus memilih topic terlebih dahulu!");
                 }
-        }
-
-        function public(){
-            $('#addPrivate').collapse('hide');
-            $('#addMember').empty();
-            $("#addMember").trigger("chosen:updated");
-            $('#addMember').removeAttr('required');
+            }else{
+                $('#addPrivate').collapse('hide');
+                $('#addMember').empty();
+                $("#addMember").trigger("chosen:updated");
+                $('#addMember').removeAttr('required');
+            }
         }
     </script>
 <?php endcustom_script() ?>

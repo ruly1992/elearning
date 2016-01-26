@@ -28,8 +28,8 @@
                         <td><?php echo $row->title ?></td>
                         <td><?php echo $row->author_name ?><br><small><?php echo $row->author_email ?></small></td>
                         <td><?php echo $row->date ?></td>
-                        <td>
-                            <a href="<?php echo site_url('article/edit/' . $row->id) ?>" class="btn btn-info btn-editadmin"><i class="fa fa-edit"></i> Moderasi</a>
+                        <td align="center">
+                            <a href="<?php echo site_url('article/edit/' . $row->id) ?>" class="btn btn-info btn-editadmin">Review</a>
                         </td>
                     </tr>
                 <?php endforeach ?>

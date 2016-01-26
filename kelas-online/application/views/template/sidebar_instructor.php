@@ -3,7 +3,11 @@
         <div class="widget-course">
             <div class="list-details">
                 <ul>
-                    <li><i class="fa fa-clock-o"></i> <?php echo $course->days ?> Hours</li>
+                    <?php if (isset($expired)): ?>
+                        <li><i class="fa fa-clock-o"></i> Expired: <?php echo $expired->format('d F Y H:i') ?></li>
+                    <?php else: ?>
+                        <li><i class="fa fa-clock-o"></i> <?php echo $course->days ?> Days</li>
+                    <?php endif ?>
                     <li><i class="fa fa-file-text"></i> <?php echo $course->chapters->count() ?> Lessons</li>
                     <li><i class="fa fa-tag"></i> <?php echo $course->category->name ?></li
                 </ul>

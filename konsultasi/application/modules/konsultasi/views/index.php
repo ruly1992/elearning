@@ -55,6 +55,7 @@
                           <th>Konsultasi Title</th>
                           <th>Tanggal Konsultasi</th>
                           <th>Terakhir Dibalas</th>
+                          <th>Prioritas</th>
                           <th>Status</th>   
                           <th></th>
                         </tr>
@@ -65,12 +66,24 @@
                             $no = $noPage + ($noPage - 1) * ($perPage - 1);  
                             foreach ($konsultasi as $row) : 
                         ?>
-                        <tr>
+                        <?php if ($row->prioritas == "High") {
+                                $class="table-danger"; 
+                                $label="label label-danger";
+                            }  elseif ($row->prioritas == "Medium") { 
+                                $class="table-warning"; 
+                                $label="label label-warning";
+                            }  elseif ($row->prioritas == "Low") { 
+                                $class="table-success"; 
+                                $label="label label-success";
+                            } 
+                        ?>
+                        <tr class="<?php echo $class ?>">
                             <th scope="row"><?php echo $no ?></th>
                             <td><?php echo $row->name ?></td>
                             <td><?php echo $row->subjek ?></td>
-                            <td><?php echo $row->created_at ?></td>
-                            <td><?php echo $row->updated_at ?></td>
+                            <td><?php echo tgl_indo_timestamp(strtotime($row->created_at)) ?></td>
+                            <td><?php echo tgl_indo_timestamp(strtotime($row->updated_at)) ?></td>
+                            <td><span class="<?php echo $label ; ?>"><?php echo $row->prioritas ?></span></td>
                             <td>
                             	<?php  $checked = ($row->status == "open") ? 'checked' : ''; ?>
 		                        <p><input id="switch-size" type="checkbox" <?php echo $checked?> data-size="mini" data-taskid="<?php echo $row->id; ?>" name="my-checkbox" class="switch-status"></p>                         

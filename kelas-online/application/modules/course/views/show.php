@@ -87,39 +87,19 @@
         </div>
         <div class="related-course-content">
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="box-course">
-                        <div class="box-course-img">
-                            <img src="../images/kelas_online/thumbnails-sm.jpg" alt="">
-                        </div>
-                        <div class="box-course-title">
-                            <h4><a href="#">Basic Nature Of Photography</a></h4>
-                            <a href="#" class="btn btn-start btn-sm btn-block">Mulai Kelas</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="box-course">
-                        <div class="box-course-img">
-                            <img src="../images/kelas_online/thumbnails-sm.jpg" alt="">
-                        </div>
-                        <div class="box-course-title">
-                            <h4><a href="#">Basic Nature Of Photography</a></h4>
-                            <a href="#" class="btn btn-start btn-sm btn-block">Mulai Kelas</a>
+                <?php foreach ($relevance->take(3) as $rel): ?>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="box-course">
+                            <div class="box-course-img">
+                                <img src="<?php echo $rel->thumbnail_image ?>" alt="">
+                            </div>
+                            <div class="box-course-title">
+                                <h4><a href="<?php echo site_url('course/show/'.$rel->slug) ?>"><?php echo $rel->name ?></a></h4>
+                                <a href="<?php echo site_url('course/join/'.$rel->slug) ?>" class="btn btn-start btn-sm btn-block">Mulai Kelas</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="box-course">
-                        <div class="box-course-img">
-                            <img src="../images/kelas_online/thumbnails-sm.jpg" alt="">
-                        </div>
-                        <div class="box-course-title">
-                            <h4><a href="#">Basic Nature Of Photography</a></h4>
-                            <a href="#" class="btn btn-start btn-sm btn-block">Mulai Kelas</a>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach ?>
             </div>
         </div>
     </div>

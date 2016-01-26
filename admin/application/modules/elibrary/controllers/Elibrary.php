@@ -104,7 +104,6 @@ class Elibrary extends Admin
         $mediaLib   = new Library\Media\Media;
         $media      = $media->withDrafts()->findOrFail($media_id);
 
-        $status             = 'publish';
         $full_description   = NULL;
         $request            = Request::createFromGlobals();
         $metadata           = $request->request->get('meta');
@@ -140,13 +139,10 @@ class Elibrary extends Admin
             'title'             => $title,
             'description'       => $description,
             'full_description'  => $full_description,
-            'status'            => $status
         );
 
         $this->media_model->update($media->id, $data);
         $mediaLib->setMetadata($media->id, $metadata);
-
-        set_message_success('Metadata berhasil diperbarui dan media telah dipublish.');
         
         redirect('elibrary/edit/' . $media->id, 'refresh');
     }

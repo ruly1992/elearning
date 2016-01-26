@@ -85,7 +85,7 @@
                                                                                                             Started by <a href="#"><?php echo user($thr->author)->full_name; ?></a>
                                                                                                         </li>
                                                                                                         <li>
-                                                                                                            <?php echo $thr->created_at; ?>
+                                                                                                            <?php echo Carbon\Carbon::parse($thr->created_at)->format('d F Y H:i'); ?>
                                                                                                         </li>
                                                                                                         <li>
                                                                                                             in <a href="#"><?php echo $thr->category_name; ?></a>
@@ -112,7 +112,7 @@
                                                                                                         </div>
                                                                                                         <div class="modal-body">
                                                                                                             <div class="text-xs-center">
-                                                                                                                <p>Apakah anda akan menghapus topic <?php echo $thr->title ?> ?</p>
+                                                                                                                <p>Apakah anda akan menghapus threads <?php echo $thr->title ?> ?</p>
                                                                                                                 <?php echo anchor('author/delete/'.$thr->id,'Ya','class="btn btn-danger btn-sm" title="Delete"'); ?>
                                                                                                                 <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Tidak</button>
                                                                                                             </div>

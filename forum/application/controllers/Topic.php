@@ -59,6 +59,7 @@ class Topic extends CI_Controller
         $data['tenagaAhli']     = $user->id;
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['provinsi']       = $this->getWilayah();
         $data['userID']         = $user->id;
 
@@ -88,9 +89,10 @@ class Topic extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads($daerahUser, $user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
-        $data['categories']     = $this->model_topic->get_categories();
+        $data['categories']     = $this->model_topic->get_categories_by_ta($user->id);
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['tenagaAhli']     = $user->id;
         $data['topics']         = $this->model_topic->get_approved_topics();
         $data['userID']         = $user->id;
@@ -197,9 +199,10 @@ class Topic extends CI_Controller
         $data['categoriesSide'] = $this->model_thread->get_categories();
         $data['threadSide']     = $this->model_thread->get_all_threads($daerahUser, $user->id);
         $data['closeThreads']   = $this->model_thread->get_close_threads($user->id);
-        $data['categories']     = $this->model_topic->get_categories();
+        $data['categories']     = $this->model_topic->get_categories_by_ta($user->id);
         $data['draftSide']      = $this->model_thread->get_all_drafts($user->id);
         $data['authorSide']     = $this->model_thread->get_thread_from_author($user->id);
+        $data['commentsSide']   = $this->model_thread->get_comments_from_author($user->id);
         $data['tenagaAhli']     = $user->id;
         $data['topics']         = $this->model_topic->get_approved_topics();
         $data['userID']         = $user->id;

@@ -10,11 +10,13 @@ class Dashboard extends Admin {
     {
         parent::__construct();
         
-        $this->load->helper('article');
+        $this->load->library('SBBCodeParser');
+        $this->load->helper(array('article', 'bbcodeparser'));
         $this->load->model('Mod_user', 'model');
         $this->load->model('Mod_sendarticle');
         $this->load->model('category/Mod_category');
         $this->load->model('Mod_konsultasi');
+        $this->load->model('Mod_forum');
 
 
         $this->medialib = new Library\Media\Media;
@@ -69,6 +71,22 @@ class Dashboard extends Admin {
         $data['artikel']                = pagination($articles, 4, 'dashboard');
         $data['drafts']                 = pagination($drafts, 4, 'dashboard');
         $data['links']                  = $this->Mod_link->read();
+
+        $data['forumNotif']             = $this->Mod_forum->getMemberNotif($user->id);
+        $data['forumCategories']        = $this->Mod_forum->getCategoryMember($user->id);
+        $latestComment                  = $this->Mod_forum->getLatestComment($user->id);
+        $data['forumLatestComment']     = $latestComment;
+        if(!empty($latestComment)){
+            foreach($latestComment as $latest){
+                $data['threadLatestComment']    = $this->Mod_forum->threadLatestComment($latest->reply_to);
+            }
+        }
+        $data['allThreads']             = $this->Mod_forum->allThreads($user->id);
+        $listNewThreadComments          = array();
+        foreach ($data['allThreads']  as $thr) {
+            $listNewThreadComments[]    = $thr->id;
+        }
+        $data['newThreadComments']      = $this->Mod_forum->newComments($listNewThreadComments);
         
         $this->template->set('sidebar');
         $this->template->set_layout('privatepage');              
@@ -279,6 +297,33 @@ class Dashboard extends Admin {
                 redirect('dashboard/profile/'.$user_id, 'refresh');
             }
         }
+    }
+
+    public function viewThread($id)
+    {
+        $user   = auth()->getUser();
+        $data   = array(
+            'notif_status' => '0'
+        );
+        $where  = array(
+            'thread_id' => $id,
+            'user_id'   => $user->id
+        );
+        $this->Mod_forum->confirm($where, $data);
+        redirect('forum/thread/view/'.$id);
+    }
+
+    public function viewThreadCommentar($id)
+    {
+        $user   = auth()->getUser();
+        $data   = array(
+            'notif_status'  => '0'
+        );
+        $where  = array(
+            'reply_to'      => $id
+        );
+        $this->Mod_forum->newCommentChecked($where, $data);
+        redirect('forum/thread/view/'.$id);
     }
 }
 

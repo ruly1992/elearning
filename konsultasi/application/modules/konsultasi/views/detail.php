@@ -30,13 +30,61 @@
                 </div>
             </div>           
             <div class="content-konsultasi-table">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
+                        <div class="card card-inverse card-info text-center">
+                            <div class="card-block">
+                                <blockquote class="card-blockquote">
+                                    <p><strong>Tanggal Posting</strong></p>
+                                    <hr>
+                                    <p><?php echo tgl_indo_timestamp(strtotime($konsultasi->created_at)) ?></p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
+                        <div class="card card-inverse card-info text-center">
+                            <div class="card-block">
+                                <blockquote class="card-blockquote">
+                                    <p><strong>Kategori</strong></p>
+                                    <hr>
+                                    <p><?php foreach ($kategori as $kat) {echo $kat->name;}
+                                    ?></p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
+                        <div class="card card-inverse card-info text-center">
+                            <div class="card-block">
+                                <blockquote class="card-blockquote">
+                                    <p><strong>Prioritas</strong></p>
+                                    <hr>
+                                    <p><?php echo $konsultasi->prioritas ?></p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
+                        <div class="card card-inverse card-info text-center">
+                            <div class="card-block">
+                                <blockquote class="card-blockquote">
+                                    <p><strong>Status</strong></p>
+                                    <hr>
+                                    <p><?php echo $konsultasi->status ?></p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
                 <!-- Start for content description -->
                 <!-- <div class="container"> -->
                 <div class="konsultasi-content">
                     <div class="title">
                         <div class="row">
                             <div class="col-md-2">
-                                <h3>Title</h3>
+                                <h3>Subyek</h3>
                             </div>
                             <div class="col-md-10">
                                 <p><?php echo $konsultasi->subjek ?></p>
@@ -46,7 +94,7 @@
                     <div class="description">
                         <div class="row">
                             <div class="col-md-2">
-                                <h3>Decription</h3>
+                                <h3>Isi Konsultasi</h3>
                             </div>
                             <div class="col-md-10">
                                 <?php echo $konsultasi->pesan ?>
@@ -68,59 +116,12 @@
 
                 <div class="content-konsultasi-table-details">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
-                            <div class="card card-inverse card-info text-center">
-                                <div class="card-block">
-                                    <blockquote class="card-blockquote">
-                                        <p><strong>Tanggal Posting</strong></p>
-                                        <hr>
-                                        <p><?php echo $konsultasi->created_at ?></p>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
-                            <div class="card card-inverse card-info text-center">
-                                <div class="card-block">
-                                    <blockquote class="card-blockquote">
-                                        <p><strong>Kategori</strong></p>
-                                        <hr>
-                                        <p><?php foreach ($kategori as $kat) {echo $kat->name;}
-                                        ?></p>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
-                            <div class="card card-inverse card-info text-center">
-                                <div class="card-block">
-                                    <blockquote class="card-blockquote">
-                                        <p><strong>Prioritas</strong></p>
-                                        <hr>
-                                        <p><?php echo $konsultasi->prioritas ?></p>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-12">
-                            <div class="card card-inverse card-info text-center">
-                                <div class="card-block">
-                                    <blockquote class="card-blockquote">
-                                        <p><strong>Status</strong></p>
-                                        <hr>
-                                        <p><?php echo $konsultasi->status ?></p>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <?php if ($reply->count()): ?>
                             <?php foreach ($reply as $data) { ?>
                             <div class="card">    
                                 <div class="card-header">
-                                    <p><strong>From : <?php echo user($data->id_user)->full_name ?></strong> <span class="pull-right"><?php echo $data->created_at ?></span></p>
+                                    <p><strong>From : <?php echo user($data->id_user)->full_name ?></strong> <span class="pull-right"><?php echo tgl_indo_timestamp(strtotime($data->created_at)) ?></span></p>
                                 </div>
                                 <div class="card-block">
                                     <p class="card-text">
@@ -170,7 +171,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-8">
                                                                     <label for="">Pesan Anda</label>
-                                                                    <textarea name="isi" id="" cols="30" rows="5" class="editor"></textarea>
+                                                                    <textarea name="isi" class="editor-simple"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -215,6 +216,7 @@
 
 <?php custom_script() ?>
     <!--jQuery-->
+    <script src="<?php echo asset('javascript/editor.js') ?>"></script>    
     <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('/javascript/jquery.filer.custom.js') ?>"></script>
     <script type="text/javascript" src="<?php echo asset('/plugins/tinymce/tinymce.min.js') ?>"></script>

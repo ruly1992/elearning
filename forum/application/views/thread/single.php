@@ -49,7 +49,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="card-header-meta pull-right">
-                                                    <p><?php echo $tanggal; ?> <i class="fa fa-calendar"></i></p>
+                                                    <p><?php echo Carbon\Carbon::parse($tanggal)->format('d F Y H:i'); ?> <i class="fa fa-calendar"></i></p>
                                                     <p><?php echo $countReply; ?> <i class="fa fa-comments"></i></p>
                                                 </div>
                                             </div>
@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <?php if($status=='1'){ ?>
-                                            <a href="#replyThread" class="btn btn-sm btn-reply" data-toggle="collapse" >Reply Post</a>
+                                            <a href="#replyThread" class="btn btn-sm btn-reply" data-toggle="collapse" >Reply</a>
                                             <p></p>
                                             <div class="card collapse" id="replyThread">
                                                 <div class="card-header">
@@ -79,7 +79,7 @@
                                                             <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn btn-post">POST REPLY</button>
+                                                            <button type="submit" class="btn btn-post">Send</button>
                                                         </div>
                                                     <?php echo form_close(); ?>
 
@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="card-header-meta pull-right">
-                                                    <p><?php echo $r->created_at; ?> <i class="fa fa-calendar"></i></p>
+                                                    <p><?php echo Carbon\Carbon::parse($r->created_at)->format('d F Y H:i'); ?> <i class="fa fa-calendar"></i></p>
                                                     <?php 
                                                         if($r->updated_at > 0){
                                                             echo '<span class="label label-primary pull-right">Edited</span>';
@@ -116,7 +116,7 @@
                                         <p><?php echo BBCodeParser($r->message); ?></p>
                                     </div>
                                     <div class="card-footer">
-                                        <a href="#reply<?php echo $r->id; ?>" class="btn btn-sm btn-reply" data-toggle="collapse">Quote Reply</a>
+                                        <a href="#reply<?php echo $r->id; ?>" class="btn btn-sm btn-reply" data-toggle="collapse">Reply</a>
                                         <?php 
                                             $userID     = auth()->getUser()->id;
                                             if( $userID == $r->author){
@@ -139,7 +139,7 @@
                                                             <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"><?php echo $r->message; ?></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn btn-post">UPDATE REPLY</button>
+                                                            <button type="submit" class="btn btn-post">Update</button>
                                                         </div>
                                                     <?php echo form_close(); ?>
                                                 </div>
@@ -160,7 +160,7 @@
                                                             <textarea name="message" required id="" cols="30" rows="10" class="form-control" placeholder="type your message"><?php echo '[quote=Quote Reply]'.$r->message.'[/quote]'; ?></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn btn-post">POST REPLY</button>
+                                                            <button type="submit" class="btn btn-post">Send</button>
                                                         </div>
                                                     <?php echo form_close(); ?>
                                                 </div>
