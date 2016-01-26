@@ -126,6 +126,7 @@
                                             <img src="<?php echo auth()->getUser()->avatar ?>" alt="">
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right custom-float" aria-labelledby="dropdownMenu2">
+                                            <a href="#" class="dropdown-item">Tenagaahli@desamembangun.go.id</a>
                                             <a href="<?php echo dashboard_url('profile') ?>" class="dropdown-item">Profile</a>
                                             <a href="<?php echo dashboard_url('sendArticle') ?>" class="dropdown-item">Submit Artikel</a>
                                             <a href="<?php echo logout_url() ?>" class="dropdown-item">Log Out</a>
