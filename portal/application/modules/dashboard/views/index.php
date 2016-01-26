@@ -210,7 +210,7 @@
                                                     <h4><i class="fa fa-wechat"></i> Komentar baru :</h4>
                                                     <ul>
                                                         <?php  
-                                                            if(!empty($newThreadComments)){
+                                                            if(isset($newThreadComments)){
                                                                 foreach($allThreads as $thr){
                                                                     $no     = 0;
                                                                     foreach ($newThreadComments as $newComments) {
