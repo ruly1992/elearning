@@ -4884,6 +4884,7 @@ a {
 								border: 1px solid $green-black;
 								background-color: $white;
 								@include border-radius(3px);
+								padding: $padding + 3px;
 							}
 						}
 					}
