@@ -93,14 +93,7 @@ class Dashboard extends Admin {
         // END: Recent activity form modul forum
 
         // START: Recent activity elibrary
-        $getRecentMedia     = $this->medialib->onlyUserId($user->id)->latest()->slice(0, 5);
-        $recentMedia        = array();
-        if(count($getRecentMedia) > 0){
-            foreach($getRecentMedia as $media){
-                $recentMedia[]   = $media;
-            }
-        }
-        $data['recentMedia']    = $recentMedia;
+        $data['recentMedia']    = $this->medialib->onlyUserId($user->id)->latestById()->slice(0, 5);
         // END: Recent activity elibrary
         
         $this->template->set('sidebar');
