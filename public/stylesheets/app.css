@@ -4502,6 +4502,11 @@ Create: Singgih Saputro */
     right: 25px;
     margin-top: 7px;
     margin-right: -6px; }
+.content-kelas-online .question {
+  margin-top: -25px;
+  margin-left: 25px;
+  font-size: 14px;
+  font-weight: 600; }
 .content-kelas-online .select2-container--default .select2-selection--single {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
