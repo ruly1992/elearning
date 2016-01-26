@@ -53,12 +53,12 @@
     <br><br>
     <div class="content-course-forum">
         <div class="content-course-forum-title">
-            <h3>COURSE FORUM</h3>
+            <h3>COURSE REVIEW</h3>
         </div>
-        <div class="content-course-forum-main">
+        <div class="content-course-forum-main" id="comments">
             <p>There are <?php echo $course->comments->count() ?> reviews on this course</p>
             <ul class="list-course-forum">
-                <?php foreach ($course->comments as $comment): ?>
+                <?php if ($course->comments->count()): foreach ($course->comments()->parentOnly()->get() as $comment): ?>
                     <li>
                         <div class="row">
                             <div class="col-sm-2 col-xs-12">
@@ -72,13 +72,35 @@
                                     <p><i class="fa fa-calendar"></i> <em><?php echo $comment->created_at->format('d F Y') ?></em></p>
                                 </div>
                                 <div class="list-content-forum">
+                                    <h4 class="media-heading"><?php echo $comment->nama ?> <a href="#comment-reply" class="pull-right btn btn-sm btn-reply" v-on:click="reply('<?php echo $comment->id ?>', '<?php echo $comment->name ?>')">Reply</a></h4>
                                     <p><?php echo $comment->content ?></p>
+
+                                    <?php foreach ($comment->replies as $reply): ?>
+                                    <div class="media" id="comment-<?php echo $reply->id ?>">
+                                        <a class="media-left" href="#">
+                                            <img class="media-object" src="<?php echo $reply->avatar ?>">
+                                        </a>
+                                        <div class="media-body">
+                                            <div class="media-body-bg">
+                                                <h4 class="media-heading"><?php echo $reply->name ?></h4>
+                                                <p><?php echo $reply->content ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                         </div>
-                    </li>                    
-                <?php endforeach ?>
+                    </li>
+                <?php endforeach; else: ?>
+                <li><p class="alert alert-info">Belum ada review.</p></li>
+            <?php endif ?>
             </ul>
+
+            <p id="comment-reply">Add your reviews</p>
+            <div class="form-review">
+                <?php $this->load->view('course/course_comment', compact('course')); ?>                
+            </div>
         </div>
     </div>
     <div class="related-course">
