@@ -30,6 +30,7 @@
                                                 <th>#</th>
                                                 <th>Judul</th>
                                                 <th>Status</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -38,6 +39,7 @@
                                                 <td><?php echo $no ?></td>
                                                 <td><?php echo $value->title ?></td>
                                                 <td><div class="label label-warning"><?php echo $value->status ?></div></td>
+                                                <td><a href="<?php echo site_url('dashboard/editArticle/'.$value->id) ?>" class="btn btn-success">Edit</a></td>
                                             </tr>
                                             <?php $no++; endforeach ?>
                                                 
@@ -352,7 +354,7 @@
         <div class="container content-submit">
             <div class="widget">
                 <div class="row">
-                
+
                     <div class="widget-content">
                         <div class="tab-content" id="myTabSubmitContent">
                             <div role="tabpanel" class="tab-pane fade active in" id="submit-article" aria-labelledby="article-post" aria-expanded="true">
