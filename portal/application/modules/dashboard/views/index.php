@@ -1,4 +1,4 @@
-<!-- start:content atas-->
+            <!-- start:content atas-->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    <section class="content-articles">
@@ -96,7 +96,6 @@
             <!-- end:content atas-->
 
             <!-- Begin Recent Activity -->
-            <!-- start:content atas-->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    <section class="content-articles">
@@ -327,7 +326,6 @@
                     </div>
                 </div>
             </div>
-            <!-- end:content atas-->
             <!-- End Recent Activity -->
 
 
