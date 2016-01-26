@@ -10,6 +10,7 @@ use Model\Kelas\Attachment;
 use Model\Kelas\Quiz;
 use Model\Kelas\QuizQuestion;
 use Model\Kelas\QuizAnswer;
+use Model\Kelas\QuizMember;
 use Model\Kelas\Exam;
 use Model\Kelas\ExamQuestion;
 use Model\Kelas\ExamAnswer;
@@ -732,26 +733,13 @@ class CourseRepository
         return $relevances->get();
     }
 
-    public function getCourseMember($value = '')
+    public function examByCourse($courseid)
     {
-        $coursemember = CourseMember::with('user')->groupBy('user_id')->get();
-       
-        return $coursemember;
+        $exam = Exam::with('members')->where('course_id',$courseid)->get();
+
+        return $exam;
     }
 
-    public function getExamMember($userid)
-    {
-        $exammember = ExamMember::with('exam')->where('user_id',$userid)->get();
-
-        return $exammember;
-    }
-
-    public function courseById($courseid)
-    {
-        $course = Course::with('exam')->where('id', $courseid)->get();
-
-        return $course;
-    }
 
     public function questionList($examid)
     {
@@ -768,4 +756,50 @@ class CourseRepository
 
         return $answer;
     }
+
+    
+   
+    public function chapterByCourseId($id)
+    {
+        $chapter = Chapter::where('course_id', $id)->get();
+
+        return $chapter;
+    }
+
+    public function quizByChapterId($chapterid)
+    {
+        $quiz = Quiz::with('members')->where('chapter_id', $chapterid)->get();
+
+        return $quiz;
+    }
+
+
+    public function quizQuestionList($quizid)
+    {
+        $quizQuestion = QuizQuestion::where('quiz_id', $quizid)->get();
+
+        return $quizQuestion;
+    }
+
+    public function learnerQuizAnswer($quizMemberId, $quesId)
+    {
+        $answer = QuizAnswer::where('member_quiz_id', $quizMemberId)
+                            ->where('question_id', $quesId)
+                            ->get();
+
+        return $answer;
+    }
+
+    
+    public function quizLearnerByChapterId($chapterid)
+    {
+        $quiz = Quiz::with('members')
+                    ->whereHas('members', function ($member) {
+                        return $member->where('user_id', $this->user->id);
+                    })
+                    ->where('chapter_id', $chapterid)->get();
+
+        return $quiz;
+    }
+
 }

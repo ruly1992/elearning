@@ -18,11 +18,7 @@
                         <strong><?php echo $count ?> kelas</strong> masih di moderasi. <a href="<?php echo site_url('dashboard?status=draft') ?>" class="btn btn-sm btn-warning">Lihat <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 <?php endif ?>
-                <div class="card">
-                    <div class="card-block">
-                        <a href="<?php echo site_url('dashboard/course/scores') ?>" class="btn btn-primary btn-sm"><i class="fa fa-fw fa-list"></i> Lihat skor learner</a>   
-                    </div>
-                </div>
+                
                 <div class="card">
                     <div class="card-header">
                         <h3>Materi</h3>
