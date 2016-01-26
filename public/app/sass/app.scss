@@ -4577,11 +4577,12 @@ a {
 						padding-left: $padding-left + 5px;
 						li {
 							font-size: 14px;
-							margin-right: $margin-right;
+							margin-right: 5px;
 							margin-bottom: 5px;
 							padding: 8px;
 							border-radius: 3px;
 							background-color: #F5F5F5;
+							border-left: 3px solid #128A4A;
 							a {
 								text-decoration: none;
 								color: $black;
@@ -4697,9 +4698,12 @@ a {
 						padding-left: $padding-left + 5px;
 						li {
 							font-size: 14px;
-							margin-right: $margin-right;
-							margin-bottom: $margin-bottom;
+							margin-right: 5px;
+							margin-bottom: 5px;
 							padding: 8px;
+							border-radius: 3px;
+							background-color: #F5F5F5;
+							border-left: 3px solid #128A4A;
 							a {
 								text-decoration: none;
 								font-size: 14px;
