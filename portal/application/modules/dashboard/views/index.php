@@ -163,14 +163,23 @@
                                         </div>
                                         <div class="recent-konsultasi-content">
                                             <div class="list-konsultasi">
-                                                <h4>Konsultasi anda: </h4>
-                                                <ul>
-                                                    <li><a href="">Konsultasi Dana</a></li>
-                                                    <li><a href="">Konsultasi UU Desa</a></li>
-                                                </ul>
+                                                <h4>Konsultasi terakhir anda: </h4>
+                                                <div class="row">
+                                                    <div class="list-timeline">
+                                                        <div class="col-xs-3 date">
+                                                            <i class="fa fa-file-text"></i>
+                                                            <small class="text-green">26-01-2016</small>
+                                                        </div>
+                                                        <div class="col-xs-6 content">
+                                                            <div class="title">
+                                                                <p>Bagaimana pengelolaan dana anggaran dalam pembangunan desa yang telah di wacanakan oleh pemerintah sejak 2008?</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="latest-comment">
-                                                <h4>Komentar terakhir : </h4>
+                                                <h4>Komentar terakhir Anda: </h4>
                                                 <ul>
                                                     <li><a href="">Title Konsultasi</a>
                                                         <div class="comment">
