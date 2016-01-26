@@ -30,6 +30,14 @@
                             <?php elseif ($user->pivot->status == 'finished'): ?>
                                 <span class="label label-success">Finished</span>
                             <?php endif ?><br><br>
+
+                            <?php if ($user->pivot->status == 'finished'): ?>
+                            <!-- Button Trigger Modal -->
+                            <button type="button" class="btn btn-primary btn-small btn-view-quiz" course-id="<?php echo $course->id ?>" user-name="<?php echo $user->full_name ?>" user-id="<?php echo $user->id ?>" data-toggle="modal" data-target="#myModal">Lihat Score Quiz</button>
+                            <button type="button" class="btn btn-primary btn-small btn-view-exam" course-id="<?php echo $course->id ?>" user-name="<?php echo $user->full_name ?>" data-toggle="modal" data-target="#myModal">Lihat Score Exam</button>
+                            <!-- End Button Trigger Modal -->
+                            <?php endif ?>
+
                         </div>
                         <div class="col-md-4">
                             <?php if ($user->pivot->status == 'pending'): ?>
@@ -46,3 +54,87 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Skor <span class="title-name-user"></span></h4>
+      </div>
+      <div class="modal-body">
+            <div class="response-data"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     </div>
+    </div>
+  </div>
+</div>
+
+
+
+<?php custom_script() ?>
+<script type="text/javascript">
+    var scores=function(){
+
+        var url     = "<?php echo site_url('dashboard/course/') ?>";
+         
+        return{
+            init:function(){
+                scores.setData();
+                
+            },
+            setData:function(){
+                
+               
+                $('.btn-view-quiz').click(function(){
+                   
+                    var courseid = $(this).attr('course-id');
+                    var username = $(this).attr("user-name");
+
+                    
+                    $('.title-name-user').html(" Quiz " + username);
+
+                    $.ajax({
+                        type: "GET",
+                        url: url+'/quizscores/'+courseid,
+                        success: function(response){
+                            
+                            $('.response-data').html(response);
+
+                        }
+                    });
+                });
+
+                $('.btn-view-exam').click(function(){
+                   
+                    var courseid = $(this).attr('course-id');
+                    var username = $(this).attr("user-name");
+
+                    $('.title-name-user').html(" Exam " + username);
+
+                    $.ajax({
+                        type: "GET",
+                        url: url+'/examscores/'+courseid,
+                        success: function(response){
+                            
+                            $('.response-data').html(response);
+
+                        }
+                    });
+                });
+               
+            },
+
+        } 
+        }();
+        scores.init();
+
+
+ </script>
+
+ <?php endcustom_script() ?>
