@@ -3869,7 +3869,12 @@ a {
             .content-dashboard-user .recent-activity .recent-forum .recent-forum-content .forum-tread .latest-comment ul li a:hover, .content-dashboard-user .recent-activity .recent-forum .recent-forum-content .forum-tread .latest-comment ul li a:focus {
               color: #1c9c57; }
           .content-dashboard-user .recent-activity .recent-forum .recent-forum-content .forum-tread .latest-comment ul li .comment {
-            background-color: #fff; }
+            background-color: #fff;
+            position: relative;
+            margin: 0.25em 0px;
+            border: 1px solid #CCC;
+            padding: 0.25em;
+            font-size: 14px; }
             .content-dashboard-user .recent-activity .recent-forum .recent-forum-content .forum-tread .latest-comment ul li .comment p {
               font-size: 12px;
               font-weight: 300;
@@ -3877,6 +3882,18 @@ a {
               width: 100%;
               max-height: 45px;
               overflow: hidden; }
+            .content-dashboard-user .recent-activity .recent-forum .recent-forum-content .forum-tread .latest-comment ul li .comment blockquote {
+              position: relative;
+              background: #FFF6C7 none repeat scroll 0% 0%;
+              margin: 0.25em 0px;
+              border: 1px solid #CCC;
+              padding: 0.25em;
+              font-size: 14px; }
+              .content-dashboard-user .recent-activity .recent-forum .recent-forum-content .forum-tread .latest-comment ul li .comment blockquote p {
+                margin-bottom: 5px; }
+                .content-dashboard-user .recent-activity .recent-forum .recent-forum-content .forum-tread .latest-comment ul li .comment blockquote p cite {
+                  margin-right: 5px;
+                  font-weight: 600; }
       .content-dashboard-user .recent-activity .recent-forum .recent-forum-content .forum-tread .notification {
         width: 100%;
         height: auto;
@@ -3987,14 +4004,14 @@ a {
             font-size: 14px;
             margin-right: 5px;
             margin-bottom: 5px;
-            padding: 8px;
+            padding: 10px;
             border-radius: 3px;
-            border: 1px solid #128a4a; }
+            background-color: #78B6D8; }
             .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-terbaru ul li a {
               text-decoration: none;
-              color: #000; }
+              color: #fff; }
               .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-terbaru ul li a:hover, .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-terbaru ul li a:focus {
-                color: #1c9c57; }
+                color: #37474f; }
       .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .kelas-content h4 {
         font-size: 12px;
         font-weight: 600;
@@ -4642,6 +4659,25 @@ Create: Singgih Saputro */
 
 .btn-md {
   padding: 2px 12px; }
+
+.btn-start {
+  background-color: #f5f5f5;
+  color: #37474f;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -o-border-radius: 6px; }
+  .btn-start:hover, .btn-start:focus, .btn-start:active {
+    background-color: #1c9c57;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out; }
 
 .btn-margin-btm {
   margin-bottom: 5px; }
