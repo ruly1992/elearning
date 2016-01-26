@@ -162,17 +162,22 @@
                                             <h3>Recent activity konsultasi</h3>
                                         </div>
                                         <div class="recent-konsultasi-content">
-                                            <div class="latest-comment">
-                                                <h4>Komentar terakhir : </h4>
-                                                <ul>
-                                                    <li><a href="">Testing testing</a></li>
-                                                </ul>
-                                            </div>
                                             <div class="list-konsultasi">
                                                 <h4>Konsultasi anda: </h4>
                                                 <ul>
                                                     <li><a href="">Konsultasi Dana</a></li>
                                                     <li><a href="">Konsultasi UU Desa</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="latest-comment">
+                                                <h4>Komentar terakhir : </h4>
+                                                <ul>
+                                                    <li><a href="">Title Konsultasi</a>
+                                                        <div class="comment">
+                                                            <b>Comment :</b>
+                                                            <p>Disini ada comment loh </p>
+                                                        </div>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="category-konsultasi">
