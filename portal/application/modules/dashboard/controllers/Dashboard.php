@@ -58,9 +58,12 @@ class Dashboard extends Admin {
                         ->latest('date')
                         ->get();
 
+        /* Start Activity Konsultasi */
         $data['konsultasiCat']          = $this->Mod_konsultasi->getKonsultasiKategori();
-        $data['latestReply']            = $this->Mod_konsultasi->getLatestReply($user->id);        
-        $data['latestKonsultasi']       = $this->Mod_konsultasi->getKonsultasi($user->id);        
+        $data['latestReply']            = $this->Mod_konsultasi->getLatestReply($user->id);
+        $konsultasi                     = collect($this->Mod_konsultasi->getKonsultasi($user->id));        
+        $data['latestKonsultasi']       = $konsultasi;        
+        /* End Activity Konsultasi */
 
         $category   = $this->medialib->getCategory();
         $categories = $category->with(['media' => function ($query) {
