@@ -173,6 +173,7 @@
                                                         <div class="col-xs-6 content">
                                                             <div class="title">
                                                                 <p>Bagaimana pengelolaan dana anggaran dalam pembangunan desa yang telah di wacanakan oleh pemerintah sejak 2008?</p>
+                                                                <button class="btn btn-sm btn-primary">show detail</button>
                                                             </div>
                                                         </div>
                                                     </div>
