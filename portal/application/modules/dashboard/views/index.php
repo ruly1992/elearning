@@ -135,20 +135,23 @@
                                         </div>
                                         <div class="recent-elibrary-content">
                                             <div class="list-elibrary">
-                                                <h4>Library terpopuler</h4>
+                                                <h4>Recent Library</h4>
                                                 <ul>
-                                                    <li><a href="#">Hijab Treveler</a>
-                                                        <small><i class="fa fa-calender"></i> 26/01/2016 - <i class="fa fa-file-video-o"></i> video</small>
-                                                    </li>
-                                                    <li><a href="#">Hijab Treveler</a>
-                                                        <small><i class="fa fa-calender"></i> 26/01/2016 - <i class="fa fa-file-video-o"></i> video</small>
-                                                    </li>
+                                                    <?php  
+                                                        if(!empty($recentMedia)){
+                                                            foreach(array_reverse($recentMedia) as $media){
+                                                                echo '<li class="bg-success">'.anchor($media->link, $media->title).'</li>';
+                                                            }
+                                                        }else{
+                                                            echo '<li class="bg-warning">Anda belum mengunggah library</li>';
+                                                        }
+                                                    ?>
                                                 </ul>
                                             </div>
                                             <div class="elibrary-comment">
                                                 <h4>Your Media Files</h4>
                                                 <ul>
-                                                    <li><a href="#">Your Media Files</a></li>
+                                                    <li><?php echo anchor('elibrary/media', 'Your Media Files'); ?></li>
                                                 </ul>
                                             </div>
                                         </div>

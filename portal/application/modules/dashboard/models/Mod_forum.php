@@ -118,5 +118,5 @@ class Mod_forum extends CI_Model
 	}
 }
 
-/* End of file Mod_konsultasi.php */
-/* Location: ./application/modules/dashboard/models/Mod_konsultasi.php */
+/* End of file Mod_forum.php */
+/* Location: ./application/modules/dashboard/models/Mod_forum.php */
