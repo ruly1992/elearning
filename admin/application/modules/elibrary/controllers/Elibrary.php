@@ -33,11 +33,11 @@ class Elibrary extends Admin
         $category           = $this->medialib->getCategoryById($category_id);
 
         if ($status == 'all')
-            $filemedia      = $category->media()->withDrafts()->get();
+            $filemedia      = $category->media()->withDrafts()->latest()->get();
         elseif ($status == 'draft')
-            $filemedia      = $category->media()->onlyDrafts()->get();
+            $filemedia      = $category->media()->onlyDrafts()->latest()->get();
         elseif ($status == 'publish')
-            $filemedia      = $category->media()->get();
+            $filemedia      = $category->media()->latest()->get();
         else
             $filemedia      = [];
         
