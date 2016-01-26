@@ -220,7 +220,7 @@ class Course extends Model
 
     public function hasExam()
     {
-        return !$this->exam->questions->isEmpty();
+        return !empty($this->exam->questions);
     }
 
     public function comments()

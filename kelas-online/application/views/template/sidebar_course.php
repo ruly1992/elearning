@@ -28,16 +28,35 @@
     <div class="widget">
         <div class="widget-categories">
             <div class="widget-categories-heading">
+                <h4>REVIEWS</h4>
+            </div>
+            <div class="widget-categories-content">
+                <div class="list-group">
+                    <a href="<?php echo site_url('dashboard/course/edit/'.$course->id.'/review?status=draft') ?>" class="list-group-item <?php echo $sidebar_active == 'review_draft' ? 'active' : '' ?>">
+                        <span class="label label-default label-pill pull-xs-right"><?php echo $repository->countNewReviews() ?></span>
+                        New Review
+                    </a>
+                    <a href="<?php echo site_url('dashboard/course/edit/'.$course->id.'/review') ?>" class="list-group-item <?php echo $sidebar_active == 'review' ? 'active' : '' ?>">
+                        <span class="label label-default label-pill pull-xs-right"><?php echo $repository->countReviews() ?></span>
+                        All Review
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="widget">
+        <div class="widget-categories">
+            <div class="widget-categories-heading">
                 <h4>COMMENT</h4>
             </div>
             <div class="widget-categories-content">
                 <div class="list-group">
                     <a href="<?php echo site_url('dashboard/course/edit/'.$course->id.'/comment?status=draft') ?>" class="list-group-item <?php echo $sidebar_active == 'comment_draft' ? 'active' : '' ?>">
-                        <span class="label label-default label-pill pull-xs-right"><?php echo $repository->countRequirements() ?></span>
+                        <span class="label label-default label-pill pull-xs-right"><?php echo $repository->countNewChapterComment() ?></span>
                         New Comment
                     </a>
                     <a href="<?php echo site_url('dashboard/course/edit/'.$course->id.'/comment') ?>" class="list-group-item <?php echo $sidebar_active == 'comment' ? 'active' : '' ?>">
-                        <span class="label label-default label-pill pull-xs-right"><?php echo $repository->countRequirements() ?></span>
+                        <span class="label label-default label-pill pull-xs-right"><?php echo $repository->countChapterComment() ?></span>
                         All Comment
                     </a>
                 </div>
