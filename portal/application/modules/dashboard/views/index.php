@@ -139,7 +139,7 @@
                                                 <ul>
                                                     <?php  
                                                         if(!empty($recentMedia)){
-                                                            foreach(array_reverse($recentMedia) as $media){
+                                                            foreach($recentMedia as $media){
                                                                 echo '<li class="bg-success">'.anchor($media->link, $media->title).'</li>';
                                                             }
                                                         }else{
@@ -285,14 +285,24 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="recent-kelas-heading">
-                                            <h3>Recent activity kelas online</h3>
+                                            <h3>Recent Activity Kelas Online</h3>
                                         </div>
                                         <div class="recent-kelas-content">
                                             <div class="kelas-terbaru">
                                                 <h4><i class="fa fa-info"></i> Kelas Terbaru:</h4>
                                                 <ul>
-                                                    <li><a href="#">Pengetahuan Dasar</a></li>
-                                                    <li><a href="#">Dasar Dasar kepeminpinan</a></li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <p>Pengetahuan Dasar</p>
+                                                        </a>
+                                                        <button class="btn btn-start btn-md btn-block">Mulai Kelas</button>
+                                                    </li>                                                
+                                                    <li>
+                                                        <a href="#">
+                                                            <p>Dasar Dasar Kepemimpinan</p>
+                                                        </a>
+                                                        <button class="btn btn-start btn-md btn-block">Mulai Kelas</button>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="kelas-content">
