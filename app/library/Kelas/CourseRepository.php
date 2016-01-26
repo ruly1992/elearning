@@ -6,6 +6,7 @@ use Model\Kelas\Course;
 use Model\Kelas\CourseMember;
 use Model\Kelas\Category;
 use Model\Kelas\Chapter;
+use Model\Kelas\ChapterComment;
 use Model\Kelas\Attachment;
 use Model\Kelas\Quiz;
 use Model\Kelas\QuizQuestion;
@@ -813,4 +814,44 @@ class CourseRepository
         return $exam;
     }
 
+    public function approveReview($course, $review)
+    {
+        $course = $this->model->find($course);
+        $review = $course->comments()->withDrafts()->get()->first(function ($key, $comment) use ($review) {
+            return $comment->id == $review;
+        });
+
+        $review->update(['status' => 'publish']);
+
+        return $this;
+    }
+
+    public function deleteReview($course, $review)
+    {
+        $course = $this->model->find($course);
+        $review = $course->comments()->withDrafts()->get()->first(function ($key, $comment) use ($review) {
+            return $comment->id == $review;
+        });
+
+        $review->replies()->delete();
+        $review->delete();
+
+        return $this;
+    }
+
+    public function approveChapterComment($id)
+    {
+        $comment = ChapterComment::withDrafts()->find($id);
+        $comment->update(['status' => 'publish']);
+
+        return $this;
+    }
+
+    public function deleteChapterComment($id)
+    {
+        $comment = ChapterComment::withDrafts()->find($id);
+        $comment->delete();
+
+        return $this;
+    }
 }
