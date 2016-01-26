@@ -17,7 +17,7 @@ class Dashboard extends Admin {
         $this->load->model('category/Mod_category');
         $this->load->model('Mod_konsultasi');
         $this->load->model('Mod_forum');
-
+        
 
         $this->medialib = new Library\Media\Media;
 
@@ -46,6 +46,8 @@ class Dashboard extends Admin {
 
     public function index()
     {
+
+
         $user       = auth()->getUser();
         $request    = Request::createFromGlobals();
         $articles   = Model\Portal\Article::published()
@@ -57,6 +59,11 @@ class Dashboard extends Admin {
                         ->contributor($user->id)
                         ->latest('date')
                         ->get();
+        $draftcount = Model\Portal\Article::onlyDrafts()
+                        ->contributor($user->id)
+                        ->latest('date')
+                        ->count();
+
 
         $data['konsultasiCat']          = $this->Mod_konsultasi->getKonsultasiKategori();        
 
@@ -70,6 +77,7 @@ class Dashboard extends Admin {
         $data['categories_checkbox']    = (new Model\Portal\Category)->generateCheckbox();
         $data['artikel']                = pagination($articles, 4, 'dashboard');
         $data['drafts']                 = pagination($drafts, 4, 'dashboard');
+        $data['draftcount']             = $draftcount;
         $data['links']                  = $this->Mod_link->read();
 
         $data['forumNotif']             = $this->Mod_forum->getMemberNotif($user->id);
@@ -88,6 +96,8 @@ class Dashboard extends Admin {
         }
         $data['newThreadComments']      = $this->Mod_forum->newComments($listNewThreadComments);
         
+        
+
         $this->template->set('sidebar');
         $this->template->set_layout('privatepage');              
         $this->template->build('index', $data);
@@ -108,6 +118,7 @@ class Dashboard extends Admin {
         } else {
             $data   = array(
                 'title'             => set_value('title'),
+                'description'       => set_value('description'),
                 'content'           => $this->input->post('content'),
                 'contributor_id'    => auth()->getUser()->id,
             );
@@ -155,6 +166,7 @@ class Dashboard extends Admin {
         } else {
             $artikel    = array(
                 'title'     => set_value('title'),
+                'description'       => set_value('description'),
                 'content'   => set_value('content', '', FALSE)
             );
 
