@@ -139,7 +139,7 @@
                                                 <ul>
                                                     <?php  
                                                         if(!empty($recentMedia)){
-                                                            foreach(array_reverse($recentMedia) as $media){
+                                                            foreach($recentMedia as $media){
                                                                 echo '<li class="bg-success">'.anchor($media->link, $media->title).'</li>';
                                                             }
                                                         }else{
