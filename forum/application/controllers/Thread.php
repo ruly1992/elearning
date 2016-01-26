@@ -280,17 +280,25 @@ class Thread extends CI_Controller
             $data = $this->security->xss_clean($data); //xss clean
             $save = $this->model_thread->update_thread($id,$data);
 
-            $typeThread     = set_value('type');
+            $typeThread         = set_value('type');
             if($typeThread == 'close'){
-                $member     = $this->input->post('member');
-                $this->model_thread->delete_thread_members($id);
+                $member         = $this->input->post('member');
+                $threadMembers  = array();
                 foreach($member AS $key => $value){
-                    $threadMember = array(
-                        'thread_id'     => $id,
-                        'user_id'       => $value,
-                        'notif_status'  => '1'
-                    );
-                    $this->model_thread->save_thread_member($threadMember);
+                    $threadMembers[]    = $value;
+                }
+                $this->model_thread->deleteThreadMemberUpdate($id, $threadMembers);
+
+                foreach($member AS $key => $value){
+                    $checkMember  = $this->model_thread->checkThreadMember($id, $value); 
+                    if($checkMember == FALSE){
+                        $threadMember = array(
+                            'thread_id'     => $id,
+                            'user_id'       => $value,
+                            'notif_status'  => '1'
+                        );
+                        $this->model_thread->save_thread_member($threadMember);
+                    }
                 }
             }
 
