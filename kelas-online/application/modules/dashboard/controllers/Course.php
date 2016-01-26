@@ -206,7 +206,6 @@ class Course extends Admin
 
     public function edit($id, $page = 'index')
     {
-
         $data = [
             'category_lists'    => $this->kelas->getCategoryLists(),
             'course'            => $this->kelas->getCourse($id),
@@ -570,9 +569,33 @@ class Course extends Admin
         redirect('dashboard', 'refresh');
     }
 
+    public function editReview($id)
+    {
+        $status = $this->input->get('status', 'publish');
+
+        $repository = new CourseRepository($id);
+        $course     = $repository->get();
+
+        if ($status == 'draft') {
+            $this->template->set('sidebar_active', 'review_draft');
+            $comments   = $course->comments()->withDrafts()->where('status', $status)->latest()->get();
+        } else {
+            $comments   = $course->comments()->latest()->get();
+        }
+
+        $comments   = pagination($comments, 15, 'dashboard/course/edit/'.$course->id.'/review');
+
+        $comments->appends(compact('status'));
+
+        $this->template->build('course/comment_list_review', compact('comments'));
+    }
+
     public function editComment($id)
     {
         $status = $this->input->get('status', 'publish');
+
+        if ($status == 'draft')
+            $this->template->set('sidebar_active', 'comment_draft');
 
         $repository = new CourseRepository($id);
         $course     = $repository->get();
@@ -592,6 +615,46 @@ class Course extends Admin
         $this->template->build('course/comment_list_chapter', compact('comments'));
     }
 
+    public function approveReview($course_id, $review_id)
+    {
+        $repository = new CourseRepository($course_id);
+        $repository->approveReview($course_id, $review_id);
+
+        set_message_success('Review berhasil dipublikasikan');
+
+        redirect('dashboard/course/edit/'.$course_id.'/review?status=publish', 'refresh');
+    }
+
+    public function deleteReview($course_id, $review_id)
+    {
+        $repository = new CourseRepository($course_id);
+        $repository->deleteReview($course_id, $review_id);
+
+        set_message_success('Review berhasil dihapus');
+
+        redirect('dashboard/course/edit/'.$course_id.'/review?status=publish', 'refresh');
+    }
+
+    public function approveComment($course_id, $chapter_id, $comment_id)
+    {
+        $repository = new CourseRepository($course_id);
+        $repository->approveChapterComment($comment_id);
+
+        set_message_success('Komentar berhasil diperbarui');
+
+        redirect('dashboard/course/edit/'.$course_id.'/comment?status=publish', 'refresh');
+    }
+
+    public function deleteComment($course_id, $chapter_id, $comment_id)
+    {
+        $repository = new CourseRepository($course_id);
+        $repository->deleteChapterComment($comment_id);
+
+        set_message_success('Komentar berhasil dihapus');
+
+        redirect('dashboard/course/edit/'.$course_id.'/comment?status=publish', 'refresh');
+    }
+
     public function _remap($method, $params = array())
     {
         switch ($method) {
@@ -601,6 +664,22 @@ class Course extends Admin
 
             case 'kick-member':
                 return $this->kickMember($params[0], $params[1]);
+                break;
+
+            case 'approve-review':
+                return $this->approveReview($params[0], $params[1]);
+                break;
+
+            case 'delete-review':
+                return $this->deleteReview($params[0], $params[1]);
+                break;
+
+            case 'approve-comment':
+                return $this->approveComment($params[0], $params[1], $params[2]);
+                break;
+
+            case 'delete-comment':
+                return $this->deleteComment($params[0], $params[1], $params[2]);
                 break;
             
             default:

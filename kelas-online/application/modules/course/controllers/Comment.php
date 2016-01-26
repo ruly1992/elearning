@@ -14,7 +14,7 @@ class Comment extends CI_Controller
 
     public function store()
     {
-        $course = Model\Kelas\Course::withPrivate()->findOrFail(set_value('course_id'));
+        $course = Model\Kelas\Course::findOrFail(set_value('course_id'));
 
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -68,11 +68,11 @@ class Comment extends CI_Controller
                 if ($comment->status == 'publish') {
                     set_message_success('Komentar Anda sudah ditampilkan.');
 
-                    redirect($course->link . '#comment-' . $comment->id, 'refresh');
+                    redirect('course/show/'.$course->slug.'#comment-' . $comment->id, 'refresh');
                 } else {
                     set_message_success('Komentar Anda akan tampil setelah dimoderasi.');
 
-                    redirect($article->link . '#comments', 'refresh');
+                    redirect('course/show/'.$course->slug.'#form-comment', 'refresh');
                 }
             }
         }
@@ -138,7 +138,7 @@ class Comment extends CI_Controller
                 } else {
                     set_message_success('Komentar Anda akan tampil setelah dimoderasi.');
 
-                    redirect('course/showchapter/'.$chapter->course->slug . '/chapter-'.$chapter->order.'#comment-' . $comment->id, 'refresh');
+                    redirect('course/showchapter/'.$chapter->course->slug . '/chapter-'.$chapter->order.'#form-comment', 'refresh');
                 }
             }
         }
