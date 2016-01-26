@@ -116,11 +116,15 @@
                                             <div class="portal-comment">
                                                 <h4>Artikel yang anda comment :</h4>
                                                 <ul>
-                                                    <li><a href="#">Satu Satu lala lal lala</a></li>
-                                                    <li><a href="#">Yang sangat di kagumi</a></li>
-                                                    <li><a href="#">Pemerintah desa rancang UU desa baru</a></li>
-                                                    <li><a href="#">Transparansi dana pembangunan desa</a></li>
-                                                    <li><a href="#">Pembangunan desa tertinggal dengan metode terbaru</a></li>
+                                                    <?php  
+                                                        if(!empty($recentArticleComment)){
+                                                            foreach($recentArticleComment as $article){
+                                                                echo '<li>'.anchor('dashboard/article/show/'.$article->slug, $article->title).'</li>';
+                                                            }
+                                                        }else{
+                                                            echo '<il>Belum ada artikel yang anda komentari.</li>';
+                                                        }
+                                                    ?>
                                                 </ul>
                                             </div>
                                         </div>
