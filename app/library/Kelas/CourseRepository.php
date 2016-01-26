@@ -760,9 +760,9 @@ class CourseRepository
 
     
    
-    public function chapterByCourseId($id)
+    public function chapterById($id)
     {
-        $chapter = Chapter::where('course_id', $id)->get();
+        $chapter = Chapter::where('id', $id)->first();
 
         return $chapter;
     }
