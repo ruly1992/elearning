@@ -51,7 +51,7 @@
                         </p>
                         
                         <!-- Start Button Trigger Modal-->
-                        <button type="button" course-id="<?php echo $course->id ?>" class="btn btn-primary btn-quiz-score-learner" data-toggle="modal" data-target="#quiz-scores-learner"><i class="fa fa-list"></i> Lihat Skor</button>
+                        <button type="button" chapter-id="<?php echo $chapter->id ?>" class="btn btn-primary btn-quiz-score-learner" data-toggle="modal" data-target="#quiz-scores-learner"><i class="fa fa-list"></i> Lihat Skor</button>
                         <!-- End Button Trigger Modal -->
                     
                     <?php else: ?>
@@ -97,19 +97,26 @@
             </div>
         <?php else: ?>
             <div class="card content-lesson">
-                <div class="card-header">
-                    <p>Next Exam</p>
-                </div>
+                
                 <?php if ($repository->memberAllowExam($course)): ?>
-                    <a href="<?php echo site_url('course/showexam/'.$course->slug) ?>" class="btn btn-block text-xs-left">
-                        <div class="card card-success">
-                            <div class="card-block">
-                                <span>START EXAM</span>
-                                <h4><?php echo $chapter->name ?></h4>
+                        <?php if ($course_member_status->first()->status !== 'finished'): ?>
+                            <div class="card-header">
+                                <p>Next Exam</p>
                             </div>
-                        </div>
-                    </a>
+                            <a href="<?php echo site_url('course/showexam/'.$course->slug) ?>" class="btn btn-block text-xs-left">
+                                <div class="card card-success">
+                                    <div class="card-block">
+                                        <span>START EXAM</span>
+                                        <h4><?php echo $chapter->name ?></h4>
+                                    </div>
+                                </div>
+                            </a>
+                        <?php endif ?>
+                    
                 <?php else: ?>
+                    <div class="card-header">
+                        <p>Next Exam</p>
+                    </div>
                     <a href="#" class="btn btn-block disabled text-xs-left">
                         <div class="card card-success">
                             <div class="card-gray">
@@ -215,11 +222,11 @@
                
                 $('.btn-quiz-score-learner').click(function(){
                    
-                    var courseid = $(this).attr('course-id');
+                    var chapterid = $(this).attr('chapter-id');
                   
                     $.ajax({
                         type: "GET",
-                        url: url+'/quizscores/'+courseid,
+                        url: url+'/quizscores/'+chapterid,
                         success: function(response){
                             
                             $('.response-data').html(response);
