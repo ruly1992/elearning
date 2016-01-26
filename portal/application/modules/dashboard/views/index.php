@@ -138,8 +138,12 @@
                                                 <ul>
                                                     <?php  
                                                         if(!empty($recentMedia)){
-                                                            foreach(array_reverse($recentMedia) as $media){
-                                                                echo '<li class="bg-success">'.anchor($media->link, $media->title).'</li>';
+                                                            foreach($recentMedia as $media){
+                                                                if($media->status == 'publish'){
+                                                                    echo '<li>'.anchor($media->link, $media->title).'</li>';
+                                                                }else{
+                                                                    echo '<li>'.anchor('elibrary/media/edit/'.$media->id, $media->title).'</li>';
+                                                                }
                                                             }
                                                         }else{
                                                             echo '<li class="bg-warning">Anda belum mengunggah library</li>';

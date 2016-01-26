@@ -3839,7 +3839,8 @@ a {
           margin-bottom: 5px;
           padding: 8px;
           border-radius: 3px;
-          background-color: #F5F5F5; }
+          background-color: #F5F5F5;
+          border-left: 3px solid #128A4A; }
           .content-dashboard-user .recent-activity .recent-forum .recent-forum-content .forum-tread ul li a {
             text-decoration: none;
             color: #000; }
@@ -3853,7 +3854,7 @@ a {
         list-style: none;
         padding-left: 10px; }
         .content-dashboard-user .recent-activity .recent-forum .recent-forum-content .forum-tread .latest-comment ul li {
-          font-size: 12px;
+          font-size: 14px;
           margin-right: 5px;
           margin-bottom: 5px;
           padding: 8px;
@@ -3933,7 +3934,10 @@ a {
           font-size: 14px;
           margin-right: 5px;
           margin-bottom: 5px;
-          padding: 8px; }
+          padding: 8px;
+          border-radius: 3px;
+          background-color: #F5F5F5;
+          border-left: 3px solid #128A4A; }
           .content-dashboard-user .recent-activity .recent-elibrary .recent-elibrary-content .list-elibrary ul li a {
             text-decoration: none;
             font-size: 14px;
@@ -4035,7 +4039,7 @@ a {
         list-style: none;
         padding-left: 10px; }
         .content-dashboard-user .recent-activity .recent-kelas .recent-kelas-content .latest-comment ul li {
-          font-size: 12px;
+          font-size: 14px;
           margin-right: 5px;
           margin-bottom: 5px;
           padding: 8px;
