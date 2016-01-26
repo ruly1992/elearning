@@ -15,6 +15,24 @@ class Mod_konsultasi extends CI_Model
 
         return $query->result();
     }
+
+    public function getKonsultasi($user_id)
+    {
+    	$data = array('konsultasi.*','konsultasi_kategori.name');
+        $get  = $this->db->select($data)->from('konsultasi')
+                ->join('konsultasi_kategori','konsultasi_kategori.id=konsultasi.id_kategori')
+                ->where('konsultasi.user_id', $user_id)
+                ->order_by('konsultasi.created_at', 'DESC')
+                ->limit(3)->get();
+        return $get->result();
+    }
+
+    public function getLatestReply($user_id)
+    {
+    	$data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment', 'rp.created_at', 'rp.id');
+        $get   = $this->db->select($data)->from('konsultasi')->join('reply AS rp','rp.id_konsultasi=konsultasi.id')->where('rp.id_user',$user_id)->order_by('rp.created_at', 'ASC')->limit(3)->get();
+        return $get->result();
+    }
 }
 
 /* End of file Mod_konsultasi.php */
