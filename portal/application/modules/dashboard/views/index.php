@@ -209,7 +209,12 @@
                                                 <h4>Balasan terakhir Anda: </h4>
                                                 <?php foreach ($latestReply as $reply): ?>                                                    
                                                     <ul>
-                                                        <li><a href="<?php echo site_url('konsultasi/konsultasi/detail/'.$reply->id) ?>"><?php echo $reply->subjek ?></a>
+                                                        <li>
+                                                            <?php if (sentinel()->inRole(array('ta'))): ?>     
+                                                                <a href="<?php echo site_url('konsultasi/dashboard/detail/'.$reply->id) ?>"><?php echo $reply->subjek ?></a>                                                                
+                                                            <?php else: ?>                                                           
+                                                                <a href="<?php echo site_url('konsultasi/konsultasi/detail/'.$reply->id) ?>"><?php echo $reply->subjek ?></a>
+                                                            <?php endif ?>
                                                             <div class="comment">
                                                                 <b>Balasan :</b>
                                                                 <p><?php echo $reply->isi ?></p>
