@@ -17,6 +17,7 @@ class Dashboard extends Admin {
         $this->load->model('category/Mod_category');
         $this->load->model('Mod_konsultasi');
         $this->load->model('Mod_forum');
+        $this->load->model('Mod_artikel');
 
 
         $this->medialib = new Library\Media\Media;
@@ -77,7 +78,6 @@ class Dashboard extends Admin {
         $data['drafts']                 = pagination($drafts, 4, 'dashboard');
         $data['links']                  = $this->Mod_link->read();
 
-        // START: Recent activity from modul forum
         $data['forumNotif']             = $this->Mod_forum->getMemberNotif($user->id);
         $data['forumCategories']        = $this->Mod_forum->getCategoryMember($user->id);
         $latestComment                  = $this->Mod_forum->getLatestComment($user->id);
@@ -95,12 +95,11 @@ class Dashboard extends Admin {
             }
             $data['newThreadComments']      = $this->Mod_forum->newComments($listNewThreadComments);
         }
-        // END: Recent activity form modul forum
 
-        // START: Recent activity elibrary
-        $data['recentMedia']    = $this->medialib->onlyUserId($user->id)->latestById()->slice(0, 5);
-        // END: Recent activity elibrary
-        
+        $data['recentMedia']            = $this->medialib->onlyUserId($user->id)->latestById()->slice(0, 5);
+
+        $data['recentArticleComment']   = $this->Mod_artikel->getRecentComment($user->id);
+            
         $this->template->set('sidebar');
         $this->template->set_layout('privatepage');              
         $this->template->build('index', $data);
