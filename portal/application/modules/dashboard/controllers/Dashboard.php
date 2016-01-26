@@ -83,10 +83,12 @@ class Dashboard extends Admin {
         }
         $data['allThreads']             = $this->Mod_forum->allThreads($user->id);
         $listNewThreadComments          = array();
-        foreach ($data['allThreads']  as $thr) {
-            $listNewThreadComments[]    = $thr->id;
+        if(!empty($listNewThreadComments)){
+            foreach ($data['allThreads']  as $thr) {
+                $listNewThreadComments[]    = $thr->id;
+            }
+            $data['newThreadComments']      = $this->Mod_forum->newComments($listNewThreadComments);
         }
-        $data['newThreadComments']      = $this->Mod_forum->newComments($listNewThreadComments);
         
         $this->template->set('sidebar');
         $this->template->set_layout('privatepage');              
