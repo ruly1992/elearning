@@ -279,6 +279,84 @@ class Course extends Admin
 
         exit();
     }
+
+    public function examscores($courseid)
+    {
+
+
+        $exam = $this->repository->examLearnerByCourse($courseid);// get exam member
+
+        
+        $correct    = 0;
+        $uncorrect  = 0;
+        $scores     = 0;
+
+        echo '<table class="table">';
+
+        // Start Exam Foreach 
+        foreach ($exam as $key => $value) {
+           
+
+            $quistion = $this->repository->questionList($value->id); //get questioin
+                // Start Question Foreach 
+                $no=1;
+                foreach ($quistion as $key => $vq) {
+
+                    
+                    
+                    $learneranswer = $this->repository->learnerAnswer($value->members[0]->id, $vq->id);
+                    // Start Learner Answer Foreach 
+                    foreach ($learneranswer as $key => $vAns) {
+
+                        if ($vAns->is_correct == '1') {
+                            $correct   = $correct + 1;
+                            $scores    = $scores + 10;
+                            $hasil     = "<span style='color:green'>Benar</span>";
+                            $jawabanlearner = "<span style='color:green'>Jawaban Learner: ".$vAns->answer."</span>";
+                        } else {
+                            $uncorrect = $uncorrect + 1;
+                            $scores    = $scores;
+                            $hasil     = "<span style='color:red'>Salah</span>";
+                            $jawabanlearner = "<span style='color:red'>Jawaban Learner: ".$vAns->answer."</span>";
+                        }
+                        
+                        echo $no.". ".strip_tags($vq->question)."  <br>&nbsp;&nbsp;&nbsp;<b>(".$jawabanlearner.") - ".$hasil."</b><br><br>";                
+                        
+                        
+                    }
+                    // End Learner Answer Foreach
+
+
+
+                    
+                $no++;
+                }
+                // End Question Foreach
+
+
+           
+
+
+                echo "<br>";
+                echo "<b>Total Benar : </b>".$correct."<br>";
+                echo "<b>Total Salah : </b>".$uncorrect."<br>";
+                echo "<b>Scores : </b>".$scores."<br>";
+
+                $correct    = 0;
+                $uncorrect  = 0;
+                $scores     = 0;
+
+
+            
+        }
+        // End Exam Foreach 
+
+        echo '</table>';
+
+        
+        
+        exit();
+    }
 }
 
 /* End of file Course.php */

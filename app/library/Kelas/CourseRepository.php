@@ -802,4 +802,15 @@ class CourseRepository
         return $quiz;
     }
 
+    public function examLearnerByCourse($courseid)
+    {
+        $exam = Exam::with('members')
+                    ->whereHas('members', function ($member) {
+                        return $member->where('user_id', $this->user->id);
+                    })
+                    ->where('course_id',$courseid)->get();
+
+        return $exam;
+    }
+
 }
