@@ -10,6 +10,10 @@
                 </div>
 
                 <div class="form-group">
+                    <?php echo form_textarea('description', set_value('description', '', FALSE), array('class' => 'form-control description-text','rows' => '4' ,'placeholder' => 'Description (Maksimal 250 karakter)')); ?>
+                </div>
+
+                <div class="form-group">
                     <?php echo form_textarea('content', set_value('content', '', FALSE), array('class' => 'form-control editor-portal')); ?>
                 </div>
             </div>
@@ -107,4 +111,23 @@
     <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
     <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
     <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
+
+    <script type="text/javascript">
+        $('.description-text').on('keyup', function() {
+            limitText(this, 250)
+        });
+
+        function limitText(field, maxChar){
+            var ref = $(field),
+                val = ref.val();
+            if ( val.length >= maxChar ){
+                ref.val(function() {
+                    console.log(val.substr(0, maxChar))
+                    return val.substr(0, maxChar);       
+                });
+            }
+        }
+
+    </script>
+
 <?php endcustom_script() ?>

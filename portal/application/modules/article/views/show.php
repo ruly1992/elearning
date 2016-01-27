@@ -68,6 +68,7 @@
         </ul>
     </div>
     <div class="single-article-content">
+        <p><b>"<?php echo $article->description ?>"</b></p>
         <?php echo $article->content ?>
     </div>
     <div class="single-article-author">
