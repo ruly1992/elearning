@@ -212,8 +212,8 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <nav class="pull-right">
-                                          <ul class="pagination">
+                                        <nav>
+                                          <ul class="pagination pull-right">
                                             <li class="page-item">
                                               <a class="page-link" href="#" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
@@ -241,6 +241,26 @@
                 </div>
             </div>
             <!-- end:content atas-->
+
+            <!-- start: chart -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <section class="content-articles">
+                        <div class="content-articles-heading">
+                            <h3>Statistik Top 10</h3>
+                        </div>
+                    </section>
+                    <!-- start:chart-submit-terbanyak -->
+                    <div class="top-submit-artikel" style="width:100%; height:400px;"></div><br><br>
+                    <!-- end:chart-submit-terbanyak -->
+
+                    <!-- start:chart-aktif-kelas -->
+                    <div class="top-aktif-kelas" style="width:100%; height:400px;"></div>
+                    <!-- end:chart-aktif-kelas -->
+                </div>
+            </div>
+            <!-- end: chart -->
+
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    <section class="content-articles">
@@ -711,55 +731,6 @@
             <!-- end: content tengah -->
 
             <!-- start:content bawah-->
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <section class="content-articles">
-                        <div class="content-articles-heading">
-                            <h3>Dashboard Statictic</h3>
-                        </div>
-                    </section>
-                    <div class="container content-submit">
-                        <div class="submit">
-                            <div class="submit-heading">
-                                <ul class="nav nav-tabs" id="myTabStatistic" role="tablist">
-                                    <li class="nav-item">
-                                         <a class="nav-link active" data-toggle="tab" href="#statistic-article" role="tab" aria-controls="article-statistic" aria-expanded="true">Statistik User</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#statistic-elibrary" role="tab" aria-controls="library-statistic" aria-expanded="false">Statistik Elibrary</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#statistic-konsultasi" role="tab" aria-controls="konsultasis-statistic" aria-expanded="false">Konsultasi</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="container">
-                            <div class="row">
-                                <div class="submit-content">
-                                    <div class="tab-content" id="myTabStatisticContent">
-                                        <div role="tabpanel" class="tab-pane fade active in" id="statistic-article" aria-labelledby="article-post" aria-expanded="true">
-                                            <div id="visitors-chart">
-                                                        <div id="visitors-container" style="width: 100%;height:300px; text-align: center; margin:0 auto;">
-                                                        </div>
-                                            </div>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="statistic-elibrary" aria-labelledby="article-post" aria-expanded="false">
-                                            <div id="elib-chart">
-                                                 <div id="elib-container" style="width: 100%;height:300px; text-align: cmargin:0 auto;">
-                                                 </div>
-                                             </div>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="statistic-konsultasi" aria-labelledby="article-post" aria-expanded="false">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>  
-                 </div>  
-            </div>
             <!-- end:content bawah-->
         </div>
         <!-- end:main content -->
@@ -883,16 +854,11 @@
         <script src="../javascript/app.js"></script>   
         <script src="../plugins/tinymce/tinymce.min.js"></script>
         <script src="../javascript/custom-tiny.js"></script>
-        <!-- jQuery Flot Chart-->
-        <script src="../plugins/flot-chart/jquery.flot.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.tooltip.min.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.resize.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.pie.resize.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.selection.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.stack.js"></script>
-        <script src="../plugins/flot-chart/jquery.flot.time.js"></script>
-        <script src="../javascript/flot.chart.init.js"></script>
-
+        <!-- hight chart -->
+        <script src="../plugins/highcharts/js/highcharts.js"></script>
+        <script src="../javascript/custom-hightcharts.js"></script>
+        <script src="../javascript/exporting-hightchart.js"></script>
+        <!-- jquery-filer -->
         <script src="../plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js"></script>
         <script src="../plugins/jQuery.filer-1.0.5/js/custom.js"></script>
         <script src="../plugins/jquery.steps-1.1.0/js/jquery.steps.js"></script>

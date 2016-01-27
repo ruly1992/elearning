@@ -103,6 +103,25 @@
             </div>
             <!-- end:content atas-->
 
+            <!-- start: chart -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <section class="content-articles">
+                        <div class="content-articles-heading">
+                            <h3>Statistik Top 10</h3>
+                        </div>
+                    </section>
+                    <!-- start:chart-submit-terbanyak -->
+                    <div class="top-submit-artikel" style="width:100%; height:400px;"></div><br><br>
+                    <!-- end:chart-submit-terbanyak -->
+
+                    <!-- start:chart-aktif-kelas -->
+                    <div class="top-aktif-kelas" style="width:100%; height:400px;"></div>
+                    <!-- end:chart-aktif-kelas -->
+                </div>
+            </div>
+            <!-- end: chart -->
+
             <!-- Begin Recent Activity -->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -462,11 +481,14 @@
 <?php custom_script() ?>
 <?php $this->load->view('template/vue_cropit'); ?>
  <!--jQuery-->
-
-    <script src="<?php echo asset('javascript/editor.js') ?>"></script>
+<script src="<?php echo asset('javascript/editor.js') ?>"></script>
 <script src="<?php echo asset('plugins/tinymce/tinymce.min.js') ?>"></script>
 <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
 <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
+<!-- hight chart -->
+<script src="<?php echo asset('plugins/highcharts/js/highcharts.js') ?>"></script>
+<script src="<?php echo asset('javascript/custom-hightcharts.js') ?>"></script>
+<script src="<?php echo asset('javascript/exporting-hightchart.js') ?>"></script>
 
 <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
 <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
