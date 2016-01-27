@@ -92,7 +92,7 @@
                             </a>
                             <!-- Begin : Trigger navbarCollapselogin -->
                             <button class="navbar-toggler hidden-lg-up pull-right" type="button" data-toggle="collapse" data-target="#navbarCollapselogin">
-                                <i class="fa fa-sign-in"></i>
+                                <img src="<?php echo config('site_logo', asset('images/login.png')) ?>" alt="" class="login-button">
                             </button>
                             <!-- End : Trigger navbarCollapselogin -->
                             <!-- Begin : Content navbarCollapse -->

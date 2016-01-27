@@ -203,7 +203,7 @@ $(document).ready(function() {
                     'gif', 'pdf', 'rar', 'zip', 
                     'xlsx', 'docx', 'doc', 'xls', 
                     'ppt', 'pptx', '3gp', 'mp4', 'mpeg', 
-                    'mkv', 'flv', 'mp3', 'txt'],
+                    'mkv', 'flv', 'avi', 'wmv',  'mp3', 'txt'],
         addMore: true,
         showThumbs: true,
         templates: {

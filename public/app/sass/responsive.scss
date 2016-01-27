@@ -226,30 +226,6 @@ $padding-left: 5px;
     }
     //end : header dropdown
   }
-  .nav{
-    padding-top: $padding-top + 5px;
-    padding-right: $padding-right + 9px;
-    cursor: pointer;
-  } 
-  .title {
-    margin-bottom: $margin-bottom;
-    font-size: 10px;
-  }
-  .widget {
-    margin-top: $margin-top + 5px;
-  }
-  .dropdown-people{
-    width: 60px;
-    margin-top: $margin-top - 10px;
-    a {
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 100%;
-      }
-    }
-  } 
-  
   #header {
     .header-top-left {
       display: none;
@@ -275,33 +251,34 @@ $padding-left: 5px;
         }
       }
     }
-    // .dropdown:hover {
-    //   .dropdown-navbar {
-    //     display: table !important;
-    //     width: 100%;
-    //     height: auto;
-    //     background-color: $grey;
-    //     margin-top: 0px;
-    //     padding: 0;
-    //     border: medium none;
-    //     @include border-radius(0);
-    //     li {
-    //       font-size: 12px;
-    //       color: $aspalt-light;
-    //       padding: $padding + 10px;
-    //       @include transition(0.3s);
-    //       @include fonts('open_sansregular');
-    //       &:hover,
-    //       &:focus,
-    //       &:active {
-    //         background-color: $green;
-    //         color: $white;
-    //         @include transition(0.3s);
-    //       }
-    //     }
-    //   }
-    // }
   }
+  .nav{
+    padding-top: $padding-top + 5px;
+    padding-right: $padding-right + 9px;
+    cursor: pointer;
+  } 
+  .title {
+    margin-bottom: $margin-bottom;
+    font-size: 10px;
+  }
+  .login-button {
+    width: 30px;
+    height: 30px;
+  }
+  .widget {
+    margin-top: $margin-top + 5px;
+  }
+  .dropdown-people{
+    width: 60px;
+    margin-top: $margin-top - 10px;
+    a {
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+      }
+    }
+  } 
   .content {
     .rails-news {
       display: none;
@@ -646,6 +623,38 @@ $padding-left: 5px;
         }
       }
     }
+    #header-main {
+      #carousel-slider-top {
+        display: none;
+      }
+      .header-main-box {
+        display: none;
+        .header-main-box-content {
+          p {
+            font-size: 18px !important;
+            line-height: 25px !important;
+          }
+          form {
+            .form-control {
+              height: 45px !important;
+            }
+            .form-control[placeholder] {
+              font-size: 14px !important;
+            }
+            .c-input {
+              font-size: 14px !important;
+            }
+            .btn {
+              padding-top: 10px !important;
+              padding-bottom: 10px !important;
+            }
+            a {
+              font-size: 14px !important;
+            }
+          }
+        }
+      }
+    }
     .dropdown {
       .dropdown-navbar {
         width: 331px;
@@ -653,13 +662,31 @@ $padding-left: 5px;
       }
     }
   }
-  .navbar-logo-mobile {
-    margin-top: 7px;
-    margin-left: 10%;
-    img {
-      width: 175px;
+  // Header
+  #header {
+    .header-top-left {
+      display: none;
+    }
+    .header-top-right {
+      margin-bottom: $margin-bottom;
+      .form-control {
+        width: 100% !important;
+        height: 45px !important;
+      }
+      .form-control[placeholder] {
+        font-size: 12px;
+        height: 35px !important;
+      }
+      .btn {
+        height: 35px !important;
+        i.fa {
+          font-size: 16px;
+          color: #909090;
+        }
+      }
     }
   }
+  // end header
   .dropdown-people{
     width: 60px;
     margin-top: $margin-top - 10px;
@@ -679,6 +706,10 @@ $padding-left: 5px;
   .title {
     margin-bottom: $margin-bottom;
     font-size: 10px;
+  }
+  .login-button {
+    width: 30px;
+    height: 30px;
   }
   //BEGIN CUSTOM LOGIN MOBILE
   .custom-login-mobile {
@@ -761,31 +792,15 @@ $padding-left: 5px;
       }
     }
   }
-  // END CUTOM LOGIN MOBILE
-
-  #header {
-    .header-top-left {
-      display: none;
-    }
-    .header-top-right {
-      margin-bottom: $margin-bottom;
-      .form-control {
-        width: 100% !important;
-        height: 45px !important;
-      }
-      .form-control[placeholder] {
-        font-size: 12px;
-        height: 35px !important;
-      }
-      .btn {
-        height: 35px !important;
-        i.fa {
-          font-size: 16px;
-          color: #909090;
-        }
-      }
+  .navbar-logo-mobile {
+    margin-top: 7px;
+    margin-left: 10%;
+    img {
+      width: 175px;
     }
   }
+  // END CUTOM LOGIN MOBILE
+  
   .content {
     .rails-news {
       display: none;
@@ -1012,7 +1027,9 @@ $padding-left: 5px;
       }
     }
   }
-  
+  .content-sidebar {
+    display: none;
+  }
   footer {
     .footer-top {
       display: none;
@@ -1030,9 +1047,6 @@ $padding-left: 5px;
         display: none;
       }
     }
-  }
-  .content-sidebar {
-    display: none;
   }
 }
 //END 640
@@ -1071,6 +1085,10 @@ $padding-left: 5px;
   .custom-float {
     right: 0;
     float: left;
+  }
+  .login-button {
+    width: 30px;
+    height: 30px;
   }
   // END GENERAL
   
