@@ -51,7 +51,7 @@
                                                     <label class="c-input c-checkbox">
                                                         <input id="selected" name="type" value="close" <?php if($type=='close'){echo 'checked';} ?> type="checkbox" onclick="private()">
                                                         <span class="c-indicator"></span>
-                                                        Close
+                                                        Selected
                                                     </label>
                                                 </div>
                                             </div>
