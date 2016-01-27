@@ -7,53 +7,11 @@
                         </div>
                     </section> 
                     <div class="container content-submit">
-                        <div class="alert alert-warning" role="alert">
-                            <strong><?php echo $draftcount ?> Artikel</strong> masih di review. <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#artikel-status-draft"> Lihat </button>
-                        </div>
-
-
-                        <!-- MODAL EXAM SCORES -->
-                        <div class="modal fade" id="artikel-status-draft" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Artikel Status Draft</h4>
-                              </div>
-                              <div class="modal-body">
-                                <?php if ($draftcount == 0): ?>
-                                    <?php echo "Data kosong." ?>
-                                <?php else: ?>
-                                    <table class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Judul</th>
-                                                <th>Status</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $no=1; foreach ($drafts as $key => $value): ?>
-                                            <tr>
-                                                <td><?php echo $no ?></td>
-                                                <td><?php echo $value->title ?></td>
-                                                <td><div class="label label-warning"><?php echo $value->status ?></div></td>
-                                                <td><a href="<?php echo site_url('dashboard/editArticle/'.$value->id) ?>" class="btn btn-success">Edit</a></td>
-                                            </tr>
-                                            <?php $no++; endforeach ?>
-                                                
-                                        </tbody>
-                                    </table>
-                                <?php endif ?>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                             </div>
+                        <?php if ($drafts->count()): ?>
+                            <div class="alert alert-warning" role="alert">
+                                <strong><?php echo $drafts->count() ?> artikel</strong> masih di review. <a href="<?php echo site_url('dashboard/my-article?status=draft') ?>" class="btn btn-warning btn-sm"> Lihat</a>
                             </div>
-                          </div>
-                        </div>
-                        <!-- END EXAM SCORES MODAL -->
+                        <?php endif ?>
 
                         <div class="widget">
                             <div class="widget-content">
@@ -62,7 +20,7 @@
                                         <form class="pull-left">
                                             <div class="form-group row">
                                                 <div class="col-sm-3">
-                                                  <button class="btn btn-primary"><i class="fa fa-plus"></i> Submit Artikel</button>
+                                                  <a class="btn btn-primary" href="<?php echo site_url('dashboard/sendArticle') ?>"><i class="fa fa-plus"></i> Submit Artikel</a>
                                                 </div>
                                             </div>
                                         </form>
@@ -80,26 +38,30 @@
                                                     <th>#</th>
                                                     <th>Judul</th>
                                                     <th>Status</th>
-                                                    <th>Waktu Terbit</th>
+                                                    <th>Waktu</th>
+                                                    <th>Link</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $no=1; foreach ($artikel as $key => $value): ?>
+                                                <?php foreach ($artikel as $article): ?>
                                                 <tr>
-                                                    <td><?php echo $no ?></td>
-                                                    <td><?php echo $value->title ?></td>
-                                                    <td><div class="label label-success"><?php echo $value->status ?></div></td>
-                                                    <td><?php echo date('d F Y h:i:s',strtotime($value->published)) ?></td>
-                                                    
+                                                    <td><?php echo $article->id ?></td>
+                                                    <td><?php echo $article->title ?></td>
+                                                    <td><div class="label label-success"><?php echo $article->getStatusLabel() ?></div></td>
+                                                    <td><?php echo $article->date->format('d F Y H:i') ?></td>
+                                                    <td><a href="<?php echo $article->link ?>" class="label label-info" target="_blank"><i class="fa fa-external-link"></i> View</a></td>
                                                 </tr>
-                                                <?php $no++; endforeach ?>
-                                                
+                                                <?php endforeach ?>
+                                                <?php if ($artikel->isEmpty()): ?>
+                                                    <tr class="warning">
+                                                        <td colspan="5">Belum ada artikel yang dipublikasikan</td>
+                                                    </tr>
+                                                <?php endif ?>
                                             </tbody>
                                         </table>
                                         <nav class="pull-right">
-                                        <?php echo $artikel->render() ?>
+                                            <a href="<?php echo site_url('dashboard/my-article') ?>" class="btn btn-primary">View all your post</a>
                                         </nav>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -375,104 +337,6 @@
                 </div>
             </div>
             <!-- End Recent Activity -->
-
-
-<!-- start: content atas -->
-<div class="row" id="app-cropit">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <section class="content-articles">
-            <div class="content-articles-heading">
-                <h3>Submite Artikel</h3>
-            </div>
-        </section>
-        <div class="container content-submit">
-            <div class="widget">
-                <div class="row">
-
-                    <div class="widget-content">
-                        <div class="tab-content" id="myTabSubmitContent">
-                            <div role="tabpanel" class="tab-pane fade active in" id="submit-article" aria-labelledby="article-post" aria-expanded="true">
-                                <?php echo form_open('dashboard/sendArticle'); ?>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <fieldset class="form-group">
-                                            <label for="title">Judul Artikel</label>
-                                            <input name="title" type="text" class="form-control" id="title" placeholder="">
-                                            <small class="text-muted">Masukkan judul artikel disini</small>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label>Deskripsi</label>
-                                            <textarea class="form-control description-text" name="description"></textarea>
-                                            <small class="text-muted">Maksimal 250 karakter</small>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <textarea name="content" class="editor-simple"></textarea>
-                                        </fieldset>
-                                        <fieldset class="form-group hidden-sm-up">
-                                             <input type="file" name="filemedia" id="filer_input_img">
-                                        </fieldset>
-                                        <fieldset class="form-group hidden-sm-up">
-                                            <label for="">Keterangan gambar</label>
-                                            <input type="text" class="form-control" name="caption-img">
-                                        </fieldset>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                        <!-- begin: category -->
-                                        <div class="widget">
-                                            <div class="widget-sidebar-heading">
-                                                <h3>Category</h3>
-                                            </div>
-                                            <div class="widget-sidebar-content">
-                                                <?php echo $categories_checkbox ?>
-                                            </div>
-                                        </div>
-                                        <!-- end: category -->
-                                        <!-- begin: image preview -->
-                                        <div class="widget hidden-lg-down">
-                                            <div class="widget-sidebar-heading">
-                                                <h3>Gambar Fitur</h3>
-                                            </div>
-                                            <div class="widget-sidebar-content">
-                                                <cropit-preview name="featured" :show-description="true"></cropit-preview>
-                                                <cropit-result name="featured"></cropit-result>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php echo form_close(); ?>
-
-                                <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <?php echo form_open_multipart('elibrary/media/submit', array('id'=>'formMedia')); ?>
-                                            <fieldset class="form-group">
-                                                <label>Kategori</label>
-                                                <select class="form-control" name="kategori">
-                                                    <?php 
-                                                        foreach($categories AS $cat){
-                                                            echo '<option value="'.$cat->id.'">'.$cat->name.'</option>';
-                                                        }
-                                                    ?>
-                                                </select>
-                                            </fieldset>
-                                            <fieldset class="form-group">
-                                               <p class="label label-info">Maximum Files 20MB</p>
-                                                <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
-                                            </fieldset>
-                                            <button type="submit" onclick="checkInput(); return false;" class="btn btn-primary">Submit</button>
-                                        <?php echo form_close(); ?>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php $this->load->view('modal/featured'); ?>
-</div>
-<!-- end: content atas -->
 
 <?php custom_stylesheet() ?>
 

@@ -23,6 +23,13 @@
                 <fieldset class="form-group">
                     <textarea name="content" class="editor-simple"></textarea>
                 </fieldset>
+                <fieldset class="form-group hidden-sm-up">
+                     <input type="file" name="filemedia" id="filer_input_img">
+                </fieldset>
+                <fieldset class="form-group hidden-sm-up">
+                    <label for="">Keterangan gambar</label>
+                    <input type="text" class="form-control" name="caption-img">
+                </fieldset>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -37,7 +44,7 @@
                 </div>
                 <!-- end: category -->
                 <!-- begin: image preview -->
-                <div class="widget">
+                <div class="widget hidden-lg-down">
                     <div class="widget-sidebar-heading">
                         <h3>Gambar Fitur</h3>
                     </div>
@@ -65,7 +72,7 @@
     <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
     <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
     <script src="<?php echo asset('javascript/editor.js') ?>"></script>
-
+    <script type="text/javascript" src="<?php echo asset('/javascript/jquery.filer.custom.js') ?>"></script>
 
     <script type="text/javascript">
         $('.description-text').on('keyup', function() {
