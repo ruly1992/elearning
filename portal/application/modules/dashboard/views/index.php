@@ -1,4 +1,4 @@
-<!-- start:content atas-->
+            <!-- start:content atas-->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    <section class="content-articles">
@@ -61,9 +61,16 @@
                                     <div role="tabpanel" class="tab-pane fade active in" id="article-submit" aria-expanded="true">
                                         <form class="pull-left">
                                             <div class="form-group row">
+                                                <div class="col-sm-3">
+                                                  <button class="btn btn-primary"><i class="fa fa-plus"></i> Submit Artikel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form class="pull-right">
+                                            <div class="form-group row">
                                                 <label for="inputKeyword" class="col-sm-3 form-control-label">Search</label>
                                                 <div class="col-sm-9">
-                                                  <input type="text" class="form-control" id="keyword">
+                                                  <input type="text" class="form-control" id="keyword" placeholder="Search...">
                                                 </div>
                                             </div>
                                         </form>
@@ -89,7 +96,6 @@
                                                 
                                             </tbody>
                                         </table>
-
                                         <nav class="pull-right">
                                         <?php echo $artikel->render() ?>
                                         </nav>
@@ -103,8 +109,26 @@
             </div>
             <!-- end:content atas-->
 
+            <!-- start: chart -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <section class="content-articles">
+                        <div class="content-articles-heading">
+                            <h3>Statistik Top 10</h3>
+                        </div>
+                    </section>
+                    <!-- start:chart-submit-terbanyak -->
+                    <div class="top-submit-artikel" style="width:100%; height:400px;"></div><br><br>
+                    <!-- end:chart-submit-terbanyak -->
+
+                    <!-- start:chart-aktif-kelas -->
+                    <div class="top-aktif-kelas" style="width:100%; height:400px;"></div>
+                    <!-- end:chart-aktif-kelas -->
+                </div>
+            </div>
+            <!-- end: chart -->
+
             <!-- Begin Recent Activity -->
-            <!-- start:content atas-->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    <section class="content-articles">
@@ -350,7 +374,6 @@
                     </div>
                 </div>
             </div>
-            <!-- end:content atas-->
             <!-- End Recent Activity -->
 
 
@@ -416,39 +439,39 @@
                                         </div>
                                     </div>
                                 <?php echo form_close(); ?>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <?php echo form_open_multipart('elibrary/media/submit', array('id'=>'formMedia')); ?>
-                                        <fieldset class="form-group">
-                                            <label>Kategori</label>
-                                            <select class="form-control" name="kategori">
-                                                <?php 
-                                                    foreach($categories AS $cat){
-                                                        echo '<option value="'.$cat->id.'">'.$cat->name.'</option>';
-                                                    }
-                                                ?>
-                                            </select>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                           <p class="label label-info">Maximum Files 20MB</p>
-                                            <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
-                                        </fieldset>
-                                        <button type="submit" onclick="checkInput(); return false;" class="btn btn-primary">Submit</button>
-                                    <?php echo form_close(); ?>
 
+                                <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <?php echo form_open_multipart('elibrary/media/submit', array('id'=>'formMedia')); ?>
+                                            <fieldset class="form-group">
+                                                <label>Kategori</label>
+                                                <select class="form-control" name="kategori">
+                                                    <?php 
+                                                        foreach($categories AS $cat){
+                                                            echo '<option value="'.$cat->id.'">'.$cat->name.'</option>';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </fieldset>
+                                            <fieldset class="form-group">
+                                               <p class="label label-info">Maximum Files 20MB</p>
+                                                <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
+                                            </fieldset>
+                                            <button type="submit" onclick="checkInput(); return false;" class="btn btn-primary">Submit</button>
+                                        <?php echo form_close(); ?>
+                                    </div>
                                 </div>
+
                             </div>
-                            
                         </div>
-                    <?php echo form_close(); ?>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-
     <?php $this->load->view('modal/featured'); ?>
-</div> 
+</div>
 <!-- end: content atas -->
 
 <?php custom_stylesheet() ?>
@@ -464,11 +487,14 @@
 <?php custom_script() ?>
 <?php $this->load->view('template/vue_cropit'); ?>
  <!--jQuery-->
-
-    <script src="<?php echo asset('javascript/editor.js') ?>"></script>
+<script src="<?php echo asset('javascript/editor.js') ?>"></script>
 <script src="<?php echo asset('plugins/tinymce/tinymce.min.js') ?>"></script>
 <script src="<?php echo asset('node_modules/cropit/dist/jquery.cropit.js') ?>"></script>
 <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
+<!-- hight chart -->
+<script src="<?php echo asset('plugins/highcharts/js/highcharts.js') ?>"></script>
+<script src="<?php echo asset('javascript/custom-hightcharts.js') ?>"></script>
+<script src="<?php echo asset('javascript/exporting-hightchart.js') ?>"></script>
 
 <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
 <script type="text/javascript" src="<?php echo asset('/plugins/jQuery.filer-1.0.5/js/jquery.filer.min.js?v=1.0.5') ?>"></script>
