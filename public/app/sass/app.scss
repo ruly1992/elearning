@@ -5776,6 +5776,11 @@ Create: Singgih Saputro */
 		color: $green-black;
 	}
 }
+.btn-konsultasi {
+	border: 1px solid $grey-black;
+	@include border-radius(5px);
+	margin-bottom: $margin-bottom;
+}
 
 .margin-card {
 	margin-top: $margin-top + 35px;
