@@ -393,6 +393,32 @@
       header #navbar-main .container .navbar-nav li {
         flex-direction: row;
         width: 100%; }
+  header #header-main .navbar {
+    height: 70px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+    background-color: #F5F5F5;
+    padding: 0px; }
+  header #header-main #carousel-slider-top {
+    display: none; }
+  header #header-main .header-main-box {
+    display: none; }
+    header #header-main .header-main-box .header-main-box-content p {
+      font-size: 18px !important;
+      line-height: 25px !important; }
+    header #header-main .header-main-box .header-main-box-content form .form-control {
+      height: 45px !important; }
+    header #header-main .header-main-box .header-main-box-content form .form-control[placeholder] {
+      font-size: 14px !important; }
+    header #header-main .header-main-box .header-main-box-content form .c-input {
+      font-size: 14px !important; }
+    header #header-main .header-main-box .header-main-box-content form .btn {
+      padding-top: 10px !important;
+      padding-bottom: 10px !important; }
+    header #header-main .header-main-box .header-main-box-content form a {
+      font-size: 14px !important; }
   header .dropdown .dropdown-navbar {
     width: 331px;
     height: auto; }

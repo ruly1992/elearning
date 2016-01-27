@@ -275,32 +275,6 @@ $padding-left: 5px;
         }
       }
     }
-    // .dropdown:hover {
-    //   .dropdown-navbar {
-    //     display: table !important;
-    //     width: 100%;
-    //     height: auto;
-    //     background-color: $grey;
-    //     margin-top: 0px;
-    //     padding: 0;
-    //     border: medium none;
-    //     @include border-radius(0);
-    //     li {
-    //       font-size: 12px;
-    //       color: $aspalt-light;
-    //       padding: $padding + 10px;
-    //       @include transition(0.3s);
-    //       @include fonts('open_sansregular');
-    //       &:hover,
-    //       &:focus,
-    //       &:active {
-    //         background-color: $green;
-    //         color: $white;
-    //         @include transition(0.3s);
-    //       }
-    //     }
-    //   }
-    // }
   }
   .content {
     .rails-news {
@@ -642,6 +616,44 @@ $padding-left: 5px;
           li {
             flex-direction: row;
             width: 100%;
+          }
+        }
+      }
+    }
+    #header-main {
+      .navbar {
+        height: 70px;
+        @include border-radius(0);
+        background-color: #F5F5F5;
+        padding: $padding - 5px;
+      }
+      #carousel-slider-top {
+        display: none;
+      }
+      .header-main-box {
+        display: none;
+        .header-main-box-content {
+          p {
+            font-size: 18px !important;
+            line-height: 25px !important;
+          }
+          form {
+            .form-control {
+              height: 45px !important;
+            }
+            .form-control[placeholder] {
+              font-size: 14px !important;
+            }
+            .c-input {
+              font-size: 14px !important;
+            }
+            .btn {
+              padding-top: 10px !important;
+              padding-bottom: 10px !important;
+            }
+            a {
+              font-size: 14px !important;
+            }
           }
         }
       }
