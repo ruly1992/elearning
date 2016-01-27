@@ -34,7 +34,7 @@ class Dashboard extends CI_Controller
             $categories         = collect($this->M_konsultasi->getListKat($kategori_id));
         }
         $perPage                = 10;    
-        $data['konsultasi']     = pagination($categories, $perPage, 'dashboard/kategori/'.$kategori_id, 'bootstrap_md');
+        $data['konsultasi']     = pagination($categories, $perPage, 'dashboard/kategori/'.$kategori_id . '/' . $prioritas, 'bootstrap_md');
         $data['perPage']        = $perPage;
         $data['prioritas']      = $prioritas;
 
