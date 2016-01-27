@@ -44,7 +44,7 @@
                 </div>
                 <!-- end: category -->
                 <!-- begin: image preview -->
-                <div class="widget">
+                <div class="widget hidden-lg-down">
                     <div class="widget-sidebar-heading">
                         <h3>Gambar Fitur</h3>
                     </div>
@@ -72,7 +72,7 @@
     <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
     <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
     <script src="<?php echo asset('javascript/editor.js') ?>"></script>
-
+    <script type="text/javascript" src="<?php echo asset('/javascript/jquery.filer.custom.js') ?>"></script>
 
     <script type="text/javascript">
         $('.description-text').on('keyup', function() {
