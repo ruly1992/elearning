@@ -6,6 +6,10 @@ class Dashboard extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        if(!sentinel()->check()) {
+            redirect(login_url());
+        }
         
         $this->load->model('konsultasi/M_konsultasi');
         $this->load->helper(array('fungsidate', 'konsultasi'));
@@ -18,16 +22,21 @@ class Dashboard extends CI_Controller
         $this->template->build('kategori', $data);
     }
 
-    public function kategori($kategori_id)
+    public function kategori($kategori_id, $prioritas = NULL)
     {
         $data['id_kategori']    = $kategori_id;
         $data['listKategori']   = $this->M_konsultasi->getKategori();   
         $data['kategoriById']   = $this->M_konsultasi->getKategoriById($kategori_id);   
         $data['allKonsultasi']  = $this->M_konsultasi->readKonsultasi();
-        $categories             = collect($this->M_konsultasi->getListKat($kategori_id));
+        if ($prioritas == TRUE) {
+            $categories         = collect($this->M_konsultasi->getKonsultasiByPrioritas($kategori_id, $prioritas));
+        } else {
+            $categories         = collect($this->M_konsultasi->getListKat($kategori_id));
+        }
         $perPage                = 10;    
         $data['konsultasi']     = pagination($categories, $perPage, 'dashboard/kategori/'.$kategori_id, 'bootstrap_md');
         $data['perPage']        = $perPage;
+        $data['prioritas']      = $prioritas;
 
         $this->template->build('listkonsultasi', $data);
     }
