@@ -88,7 +88,6 @@ class Elibrary extends Admin
 
             $this->template->add_script('node_modules/vue/dist/vue.min.js');        
             $this->template->add_script('node_modules/awesomplete/awesomplete.min.js');
-            $this->template->add_script('node_modules/video.js/dist/video.min.js');
             $this->template->add_script('javascript/elib.vue.js');
             $this->template->add_script('javascript/elib.js');
 
