@@ -219,6 +219,9 @@
                                                         <a class="btn btn-konsul btn-danger btn-margin-btm" title="Delete" v-on:click="removeExamQuestion($index)"><i class="fa fa-trash-o"></i></a>
                                                     </td>
                                                 </tr>
+                                                <tr v-show="course.exam.questions.length == 0" class="warning">
+                                                    <td colspan="3">Anda belum memasukkan ujian</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
