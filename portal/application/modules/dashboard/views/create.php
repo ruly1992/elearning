@@ -23,6 +23,13 @@
                 <fieldset class="form-group">
                     <textarea name="content" class="editor-simple"></textarea>
                 </fieldset>
+                <fieldset class="form-group hidden-sm-up">
+                     <input type="file" name="filemedia" id="filer_input_img">
+                </fieldset>
+                <fieldset class="form-group hidden-sm-up">
+                    <label for="">Keterangan gambar</label>
+                    <input type="text" class="form-control" name="caption-img">
+                </fieldset>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
