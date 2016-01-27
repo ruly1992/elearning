@@ -19,6 +19,7 @@ $(document).ready(function () {
         this.name = '';
         this.days = 30;
         this.description = '';
+        this.passing_standards = 0;
         this.category_id = 0;
         this.chapters = [];
         this.exam = new ObjQuiz();
