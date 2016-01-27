@@ -54,6 +54,11 @@
         <input type="text" name="title" class="form-control" id="title">
     </fieldset>
     <fieldset class="form-group">
+        <label>Deskripsi</label>
+        <textarea class="form-control description-text" rows="4" name="description"></textarea>
+        <small class="text-muted">Maksimal 250 karakter</small>
+    </fieldset>
+    <fieldset class="form-group">
         <textarea name="content" class="editor-simple"></textarea>
     </fieldset>
 </div>
@@ -82,4 +87,23 @@
     <script src="<?php echo asset('node_modules/jquery-chained/jquery.chained.remote.js') ?>"></script>
     <script src="<?php echo asset('javascript/editor.js') ?>"></script>
     <?php echo $this->wilayah->script('api/wilayah') ?>
+
+    <script type="text/javascript">
+        $('.description-text').on('keyup', function() {
+            limitText(this, 250)
+        });
+
+        function limitText(field, maxChar){
+            var ref = $(field),
+                val = ref.val();
+            if ( val.length >= maxChar ){
+                ref.val(function() {
+                    console.log(val.substr(0, maxChar))
+                    return val.substr(0, maxChar);       
+                });
+            }
+        }
+
+    </script>
+
 <?php endcustom_script() ?>

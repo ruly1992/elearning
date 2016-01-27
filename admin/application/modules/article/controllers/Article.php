@@ -82,6 +82,7 @@ class Article extends Admin {
         } else {
             $artikel    = array(
                 'title'             => set_value('title'),
+                'description'       => set_value('description'),
                 'content'           => set_value('content', '', FALSE),
                 'published'         => set_value('published', '0000-00-00 00:00:00'),
                 'type'              => set_value('type', 'public'),
@@ -152,6 +153,7 @@ class Article extends Admin {
         } else {
             $artikel    = array(
                 'title'             => set_value('title'),
+                'description'       => set_value('description'),
                 'content'           => set_value('content', '', FALSE),
                 'status'            => set_value('status'),
             );

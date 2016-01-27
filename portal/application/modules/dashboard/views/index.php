@@ -1,4 +1,4 @@
-<!-- start:content atas-->
+            <!-- start:content atas-->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    <section class="content-articles">
@@ -123,7 +123,6 @@
             <!-- end: chart -->
 
             <!-- Begin Recent Activity -->
-            <!-- start:content atas-->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    <section class="content-articles">
@@ -369,7 +368,6 @@
                     </div>
                 </div>
             </div>
-            <!-- end:content atas-->
             <!-- End Recent Activity -->
 
 
@@ -435,39 +433,39 @@
                                         </div>
                                     </div>
                                 <?php echo form_close(); ?>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <?php echo form_open_multipart('elibrary/media/submit', array('id'=>'formMedia')); ?>
-                                        <fieldset class="form-group">
-                                            <label>Kategori</label>
-                                            <select class="form-control" name="kategori">
-                                                <?php 
-                                                    foreach($categories AS $cat){
-                                                        echo '<option value="'.$cat->id.'">'.$cat->name.'</option>';
-                                                    }
-                                                ?>
-                                            </select>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                           <p class="label label-info">Maximum Files 20MB</p>
-                                            <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
-                                        </fieldset>
-                                        <button type="submit" onclick="checkInput(); return false;" class="btn btn-primary">Submit</button>
-                                    <?php echo form_close(); ?>
 
+                                <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <?php echo form_open_multipart('elibrary/media/submit', array('id'=>'formMedia')); ?>
+                                            <fieldset class="form-group">
+                                                <label>Kategori</label>
+                                                <select class="form-control" name="kategori">
+                                                    <?php 
+                                                        foreach($categories AS $cat){
+                                                            echo '<option value="'.$cat->id.'">'.$cat->name.'</option>';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </fieldset>
+                                            <fieldset class="form-group">
+                                               <p class="label label-info">Maximum Files 20MB</p>
+                                                <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
+                                            </fieldset>
+                                            <button type="submit" onclick="checkInput(); return false;" class="btn btn-primary">Submit</button>
+                                        <?php echo form_close(); ?>
+                                    </div>
                                 </div>
+
                             </div>
-                            
                         </div>
-                    <?php echo form_close(); ?>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-
     <?php $this->load->view('modal/featured'); ?>
-</div> 
+</div>
 <!-- end: content atas -->
 
 <?php custom_stylesheet() ?>

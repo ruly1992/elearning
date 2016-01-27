@@ -53,6 +53,7 @@ class Submitarticle extends CI_Controller {
         } else {
             $data = array(
                 'title'         => set_value('title'),
+                'description'         => set_value('description'),
                 'content'       => set_value('content', '', FALSE),
             );
 
