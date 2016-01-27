@@ -422,10 +422,6 @@ $(document).ready(function () {
 
             this.initData();
 
-            jQuery.validator.addMethod('questiontinymce', function (value, element) {
-                return this.optional(element) || value == '';
-            }, 'Question must be set');
-
             // tinyMCE question
             tinyMCE.init({
                 setup: function (editor) {
