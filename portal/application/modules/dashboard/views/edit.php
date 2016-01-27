@@ -41,7 +41,7 @@
             </div>
             <!-- end: category -->
             <!-- begin: image preview -->
-            <div class="widget">
+            <div class="widget hidden-lg-down">
                 <div class="widget-sidebar-heading">
                     <h3>Gambar Fitur</h3>
                 </div>
