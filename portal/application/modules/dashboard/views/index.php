@@ -61,9 +61,16 @@
                                     <div role="tabpanel" class="tab-pane fade active in" id="article-submit" aria-expanded="true">
                                         <form class="pull-left">
                                             <div class="form-group row">
+                                                <div class="col-sm-3">
+                                                  <a class="btn btn-primary" href="<?php echo site_url('dashboard/sendArticle') ?>"><i class="fa fa-plus"></i> Submit Artikel</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form class="pull-right">
+                                            <div class="form-group row">
                                                 <label for="inputKeyword" class="col-sm-3 form-control-label">Search</label>
                                                 <div class="col-sm-9">
-                                                  <input type="text" class="form-control" id="keyword">
+                                                  <input type="text" class="form-control" id="keyword" placeholder="Search...">
                                                 </div>
                                             </div>
                                         </form>
@@ -89,7 +96,6 @@
                                                 
                                             </tbody>
                                         </table>
-
                                         <nav class="pull-right">
                                         <?php echo $artikel->render() ?>
                                         </nav>
@@ -369,104 +375,6 @@
                 </div>
             </div>
             <!-- End Recent Activity -->
-
-
-<!-- start: content atas -->
-<div class="row" id="app-cropit">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <section class="content-articles">
-            <div class="content-articles-heading">
-                <h3>Submite Artikel</h3>
-            </div>
-        </section>
-        <div class="container content-submit">
-            <div class="widget">
-                <div class="row">
-
-                    <div class="widget-content">
-                        <div class="tab-content" id="myTabSubmitContent">
-                            <div role="tabpanel" class="tab-pane fade active in" id="submit-article" aria-labelledby="article-post" aria-expanded="true">
-                                <?php echo form_open('dashboard/sendArticle'); ?>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <fieldset class="form-group">
-                                            <label for="title">Judul Artikel</label>
-                                            <input name="title" type="text" class="form-control" id="title" placeholder="">
-                                            <small class="text-muted">Masukkan judul artikel disini</small>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label>Deskripsi</label>
-                                            <textarea class="form-control description-text" name="description"></textarea>
-                                            <small class="text-muted">Maksimal 250 karakter</small>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <textarea name="content" class="editor-simple"></textarea>
-                                        </fieldset>
-                                        <fieldset class="form-group hidden-sm-up">
-                                             <input type="file" name="filemedia" id="filer_input_img">
-                                        </fieldset>
-                                        <fieldset class="form-group hidden-sm-up">
-                                            <label for="">Keterangan gambar</label>
-                                            <input type="text" class="form-control" name="caption-img">
-                                        </fieldset>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                        <!-- begin: category -->
-                                        <div class="widget">
-                                            <div class="widget-sidebar-heading">
-                                                <h3>Category</h3>
-                                            </div>
-                                            <div class="widget-sidebar-content">
-                                                <?php echo $categories_checkbox ?>
-                                            </div>
-                                        </div>
-                                        <!-- end: category -->
-                                        <!-- begin: image preview -->
-                                        <div class="widget hidden-lg-down">
-                                            <div class="widget-sidebar-heading">
-                                                <h3>Gambar Fitur</h3>
-                                            </div>
-                                            <div class="widget-sidebar-content">
-                                                <cropit-preview name="featured" :show-description="true"></cropit-preview>
-                                                <cropit-result name="featured"></cropit-result>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php echo form_close(); ?>
-
-                                <div role="tabpanel" class="tab-pane fade" id="submit-elibrary" aria-labelledby="" aria-expanded="false">
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <?php echo form_open_multipart('elibrary/media/submit', array('id'=>'formMedia')); ?>
-                                            <fieldset class="form-group">
-                                                <label>Kategori</label>
-                                                <select class="form-control" name="kategori">
-                                                    <?php 
-                                                        foreach($categories AS $cat){
-                                                            echo '<option value="'.$cat->id.'">'.$cat->name.'</option>';
-                                                        }
-                                                    ?>
-                                                </select>
-                                            </fieldset>
-                                            <fieldset class="form-group">
-                                               <p class="label label-info">Maximum Files 20MB</p>
-                                                <input type="file" name="filemedia[]" id="filer_input_media" multiple="multiple">
-                                            </fieldset>
-                                            <button type="submit" onclick="checkInput(); return false;" class="btn btn-primary">Submit</button>
-                                        <?php echo form_close(); ?>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php $this->load->view('modal/featured'); ?>
-</div>
-<!-- end: content atas -->
 
 <?php custom_stylesheet() ?>
 
