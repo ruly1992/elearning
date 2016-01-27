@@ -96,7 +96,7 @@ class Dashboard extends Admin {
         }
         $data['allThreads']             = $this->Mod_forum->allThreads($user->id);
         $listNewThreadComments          = array();
-        if(!empty($listNewThreadComments)){
+        if(!empty($data['allThreads'])){
             foreach ($data['allThreads']  as $thr) {
                 $listNewThreadComments[]    = $thr->id;
             }
