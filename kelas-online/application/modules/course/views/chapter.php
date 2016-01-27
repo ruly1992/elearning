@@ -53,7 +53,16 @@
             
             <?php endif ?>
         <?php else: ?>
-            <p>Tidak ada ujian</p>
+            
+            <?php if ($course_member_status->first()->status == 'finished'): ?>
+                <p class="alert alert-success">Anda sudah menyelesaikan ujian</p>
+                
+                <!-- Start Button Trigger Modal-->
+                <button type="button" course-id="<?php echo $course->id ?>" class="btn btn-primary btn-exam-score-learner" data-toggle="modal" data-target="#exam-scores-learner"><i class="fa fa-list"></i> Lihat Skor</button>
+                <!-- End Button Trigger Modal -->
+            <?php else: ?>
+               <p>Tidak ada ujian</p>
+            <?php endif ?>
         <?php endif ?>
     <?php else: ?>
         <p class="alert alert-warning">Anda harus menyelesaikan semua chapter terlebih dahulu untuk memulai ujian.</p>
