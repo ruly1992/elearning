@@ -17,7 +17,7 @@ class Dashboard extends Admin {
         $this->load->model('category/Mod_category');
         $this->load->model('Mod_konsultasi');
         $this->load->model('Mod_forum');
-
+        $this->load->model('Mod_artikel');
 
         $this->medialib = new Library\Media\Media;
 
@@ -46,6 +46,8 @@ class Dashboard extends Admin {
 
     public function index()
     {
+
+
         $user       = auth()->getUser();
         $request    = Request::createFromGlobals();
         $articles   = Model\Portal\Article::published()
@@ -57,8 +59,18 @@ class Dashboard extends Admin {
                         ->contributor($user->id)
                         ->latest('date')
                         ->get();
+        $draftcount = Model\Portal\Article::onlyDrafts()
+                        ->contributor($user->id)
+                        ->latest('date')
+                        ->count();
 
-        $data['konsultasiCat']          = $this->Mod_konsultasi->getKonsultasiKategori();        
+
+        /* Start Activity Konsultasi */
+        $data['konsultasiCat']          = $this->Mod_konsultasi->getKonsultasiKategori();
+        $data['latestReply']            = $this->Mod_konsultasi->getLatestReply($user->id);
+        $konsultasi                     = collect($this->Mod_konsultasi->getKonsultasi($user->id));        
+        $data['latestKonsultasi']       = $konsultasi;        
+        /* End Activity Konsultasi */
 
         $category   = $this->medialib->getCategory();
         $categories = $category->with(['media' => function ($query) {
@@ -70,6 +82,7 @@ class Dashboard extends Admin {
         $data['categories_checkbox']    = (new Model\Portal\Category)->generateCheckbox();
         $data['artikel']                = pagination($articles, 4, 'dashboard');
         $data['drafts']                 = pagination($drafts, 4, 'dashboard');
+        $data['draftcount']             = $draftcount;
         $data['links']                  = $this->Mod_link->read();
 
         $data['forumNotif']             = $this->Mod_forum->getMemberNotif($user->id);
@@ -89,7 +102,16 @@ class Dashboard extends Admin {
             }
             $data['newThreadComments']      = $this->Mod_forum->newComments($listNewThreadComments);
         }
+
+        // START: Recent activity elibrary
+        $data['recentMedia']    = $this->medialib->onlyUserId($user->id)->latestById()->slice(0, 5);
+        // END: Recent activity elibrary
         
+        
+        $data['recentMedia']            = $this->medialib->onlyUserId($user->id)->latestById()->slice(0, 5);
+
+        $data['recentArticleComment']   = $this->Mod_artikel->getRecentComment($user->id);
+            
         $this->template->set('sidebar');
         $this->template->set_layout('privatepage');              
         $this->template->build('index', $data);
@@ -110,6 +132,7 @@ class Dashboard extends Admin {
         } else {
             $data   = array(
                 'title'             => set_value('title'),
+                'description'       => set_value('description'),
                 'content'           => $this->input->post('content'),
                 'contributor_id'    => auth()->getUser()->id,
             );
@@ -157,6 +180,7 @@ class Dashboard extends Admin {
         } else {
             $artikel    = array(
                 'title'     => set_value('title'),
+                'description'       => set_value('description'),
                 'content'   => set_value('content', '', FALSE)
             );
 

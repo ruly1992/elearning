@@ -14,6 +14,11 @@
 	</div>
 	<div class="panel-body">
 	   	<div class="row">
+            <?php if ($media->type == 'Audio'): ?>                
+                <div class="panel panel-default">
+                        <?php echo $media->getPreview(200, 200) ?> 
+                </div><!--/col-->
+            <?php endif ?>
 	   		<div class="col-md-4 col-sm-4 col-xs-12">
                 <center>
                     <div class="description-meta-left">

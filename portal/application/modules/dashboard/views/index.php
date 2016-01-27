@@ -8,8 +8,53 @@
                     </section> 
                     <div class="container content-submit">
                         <div class="alert alert-warning" role="alert">
-                            <strong>2 Artikel</strong> masih di review. <a href="#" class="btn btn-sm btn-warning">Lihat</a>
+                            <strong><?php echo $draftcount ?> Artikel</strong> masih di review. <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#artikel-status-draft"> Lihat </button>
                         </div>
+
+
+                        <!-- MODAL EXAM SCORES -->
+                        <div class="modal fade" id="artikel-status-draft" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Artikel Status Draft</h4>
+                              </div>
+                              <div class="modal-body">
+                                <?php if ($draftcount == 0): ?>
+                                    <?php echo "Data kosong." ?>
+                                <?php else: ?>
+                                    <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Judul</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $no=1; foreach ($drafts as $key => $value): ?>
+                                            <tr>
+                                                <td><?php echo $no ?></td>
+                                                <td><?php echo $value->title ?></td>
+                                                <td><div class="label label-warning"><?php echo $value->status ?></div></td>
+                                                <td><a href="<?php echo site_url('dashboard/editArticle/'.$value->id) ?>" class="btn btn-success">Edit</a></td>
+                                            </tr>
+                                            <?php $no++; endforeach ?>
+                                                
+                                        </tbody>
+                                    </table>
+                                <?php endif ?>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                             </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- END EXAM SCORES MODAL -->
+
                         <div class="widget">
                             <div class="widget-content">
                                 <div class="tab-content" id="myTabTableContent">
@@ -29,63 +74,26 @@
                                                     <th>Judul</th>
                                                     <th>Status</th>
                                                     <th>Waktu Terbit</th>
-                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php $no=1; foreach ($artikel as $key => $value): ?>
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Kembangkan Teknologi Perdesaan, Kementerian Desa Minta Bantuan Dewan Riset Nasional</td>
-                                                    <td><div class="label label-success">Publish</div></td>
-                                                    <td>2015-11-27 09:47:07</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-primary btn-konsul">Update</a>
-                                                        <a href="#" class="btn btn-danger btn-konsul">Delete</a>
-                                                    </td>
+                                                    <td><?php echo $no ?></td>
+                                                    <td><?php echo $value->title ?></td>
+                                                    <td><div class="label label-success"><?php echo $value->status ?></div></td>
+                                                    <td><?php echo date('d F Y h:i:s',strtotime($value->published)) ?></td>
+                                                    
                                                 </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Karut Marut Proses Perekrutan Pendamping UU No. 6 Tahun 2014 Tentang Desa</td>
-                                                    <td><div class="label label-success">Publish</div></td>
-                                                    <td>2015-11-27 09:47:07</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-primary btn-konsul">Update</a>
-                                                        <a href="#" class="btn btn-danger btn-konsul">Delete</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Warga Serbu Stand Kemendesa PDTT di Sail Tomini</td>
-                                                    <td><div class="label label-success">Publish</div></td>
-                                                    <td>2015-11-27 09:47:07</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-primary btn-konsul">Update</a>
-                                                        <a href="#" class="btn btn-danger btn-konsul">Delete</a>
-                                                    </td>
-                                                </tr>
+                                                <?php $no++; endforeach ?>
+                                                
                                             </tbody>
                                         </table>
+
                                         <nav class="pull-right">
-                                          <ul class="pagination">
-                                            <li class="page-item">
-                                              <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                              </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                            <li class="page-item">
-                                              <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                              </a>
-                                            </li>
-                                          </ul>
+                                        <?php echo $artikel->render() ?>
                                         </nav>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -116,11 +124,15 @@
                                             <div class="portal-comment">
                                                 <h4>Artikel yang anda comment :</h4>
                                                 <ul>
-                                                    <li><a href="#">Satu Satu lala lal lala</a></li>
-                                                    <li><a href="#">Yang sangat di kagumi</a></li>
-                                                    <li><a href="#">Pemerintah desa rancang UU desa baru</a></li>
-                                                    <li><a href="#">Transparansi dana pembangunan desa</a></li>
-                                                    <li><a href="#">Pembangunan desa tertinggal dengan metode terbaru</a></li>
+                                                    <?php  
+                                                        if(!empty($recentArticleComment)){
+                                                            foreach($recentArticleComment as $article){
+                                                                echo '<li>'.anchor('dashboard/article/show/'.$article->slug, $article->title).'</li>';
+                                                            }
+                                                        }else{
+                                                            echo '<il>Belum ada artikel yang anda komentari.</li>';
+                                                        }
+                                                    ?>
                                                 </ul>
                                             </div>
                                         </div>
@@ -134,10 +146,28 @@
                                             <h3>Recent activity Elibrary</h3>
                                         </div>
                                         <div class="recent-elibrary-content">
+                                            <div class="list-elibrary">
+                                                <h4>Recent Library</h4>
+                                                <ul>
+                                                    <?php  
+                                                        if(!empty($recentMedia)){
+                                                            foreach($recentMedia as $media){
+                                                                if($media->status == 'publish'){
+                                                                    echo '<li>'.anchor($media->link, $media->title).'</li>';
+                                                                }else{
+                                                                    echo '<li>'.anchor('elibrary/media/edit/'.$media->id, $media->title).'</li>';
+                                                                }
+                                                            }
+                                                        }else{
+                                                            echo '<li class="bg-warning">Anda belum mengunggah library</li>';
+                                                        }
+                                                    ?>
+                                                </ul>
+                                            </div>
                                             <div class="elibrary-comment">
                                                 <h4>Your Media Files</h4>
                                                 <ul>
-                                                    <li><a href="#">Your Media Files</a></li>
+                                                    <li><?php echo anchor('elibrary/media', 'Your Media Files'); ?></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -151,12 +181,47 @@
                                             <h3>Recent activity konsultasi</h3>
                                         </div>
                                         <div class="recent-konsultasi-content">
-                                            <div class="konsultasi-comment">
-                                                <h4>Kategori konsultasi anda:</h4>
-                                                <ul>
-                                                    <li><a href="#">Kader Desa</a></li>
-                                                    <li><a href="#">Hukum dan Pengetahuan</a></li>
-                                                </ul>
+                                            <div class="list-konsultasi">
+                                                <h4>Konsultasi terakhir anda: </h4>
+                                                <?php if ($latestKonsultasi->count()): ?>                                                
+                                                    <?php foreach ($latestKonsultasi as $row): ?>                                                    
+                                                        <div class="row">
+                                                            <div class="list-timeline">
+                                                                <div class="col-xs-3 date">
+                                                                    <i class="fa fa-file-text"></i>
+                                                                    <small class="text-green"><?php echo Carbon\Carbon::parse($row->created_at)->format('d F Y H:i'); ?></small>
+                                                                </div>
+                                                                <div class="col-xs-6 content">
+                                                                    <div class="title">
+                                                                        <p><b><?php echo $row->subjek ?></b></p>
+                                                                        <p><?php echo $row->pesan ?></p>
+                                                                        <a href="<?php echo site_url('konsultasi/konsultasi/detail/'.$row->id) ?>" class="btn btn-sm btn-primary">show detail</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php endforeach ?>
+                                                <?php else: ?>
+                                                    <div class="alert alert-warning">Tidak ada Konsultasi.</div>
+                                                <?php endif ?>
+                                            </div>
+                                            <div class="latest-comment">
+                                                <h4>Balasan terakhir Anda: </h4>
+                                                <?php foreach ($latestReply as $reply): ?>                                                    
+                                                    <ul>
+                                                        <li>
+                                                            <?php if (sentinel()->inRole(array('ta'))): ?>     
+                                                                <a href="<?php echo site_url('konsultasi/dashboard/detail/'.$reply->id) ?>"><?php echo $reply->subjek ?></a>                                                                
+                                                            <?php else: ?>                                                           
+                                                                <a href="<?php echo site_url('konsultasi/konsultasi/detail/'.$reply->id) ?>"><?php echo $reply->subjek ?></a>
+                                                            <?php endif ?>
+                                                            <div class="comment">
+                                                                <b>Balasan :</b>
+                                                                <p><?php echo $reply->isi ?></p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                <?php endforeach ?>
                                             </div>
                                         </div>
                                     </div>
@@ -240,14 +305,24 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="recent-kelas-heading">
-                                            <h3>Recent activity kelas online</h3>
+                                            <h3>Recent Activity Kelas Online</h3>
                                         </div>
                                         <div class="recent-kelas-content">
                                             <div class="kelas-terbaru">
                                                 <h4><i class="fa fa-info"></i> Kelas Terbaru:</h4>
                                                 <ul>
-                                                    <li><a href="#">Pengetahuan Dasar</a></li>
-                                                    <li><a href="#">Dasar Dasar kepeminpinan</a></li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <p>Pengetahuan Dasar</p>
+                                                        </a>
+                                                        <button class="btn btn-start btn-md btn-block">Mulai Kelas</button>
+                                                    </li>                                                
+                                                    <li>
+                                                        <a href="#">
+                                                            <p>Dasar Dasar Kepemimpinan</p>
+                                                        </a>
+                                                        <button class="btn btn-start btn-md btn-block">Mulai Kelas</button>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="kelas-content">
@@ -284,25 +359,13 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <section class="content-articles">
             <div class="content-articles-heading">
-                <h3>Dashboard Submit</h3>
+                <h3>Submite Artikel</h3>
             </div>
         </section>
         <div class="container content-submit">
             <div class="widget">
-                <div class="widget-heading">
-                    <ul class="nav nav-tabs" id="myTabSubmit" role="tablist">
-                        <li class="nav-item">
-                             <a class="nav-link active" data-toggle="tab" href="#submit-article" role="tab" aria-controls="article-post" aria-expanded="true"><label for="" class="title">Artikel</label></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#submit-elibrary" role="tab" aria-controls="library-post" aria-expanded="false"><label for="" class="title">Elibrary</label></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#submit-konsultasi" role="tab" aria-controls="konsultasis-post" aria-expanded="false"><label for="" class="title">Konsultasi</label></a>
-                        </li>
-                    </ul>
-                </div>
                 <div class="row">
+
                     <div class="widget-content">
                         <div class="tab-content" id="myTabSubmitContent">
                             <div role="tabpanel" class="tab-pane fade active in" id="submit-article" aria-labelledby="article-post" aria-expanded="true">
@@ -312,6 +375,11 @@
                                             <label for="title">Judul Artikel</label>
                                             <input name="title" type="text" class="form-control" id="title" placeholder="">
                                             <small class="text-muted">Masukkan judul artikel disini</small>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Deskripsi</label>
+                                            <textarea class="form-control description-text" name="description"></textarea>
+                                            <small class="text-muted">Maksimal 250 karakter</small>
                                         </fieldset>
                                         <fieldset class="form-group">
                                             <textarea name="content" class="editor-simple"></textarea>
@@ -368,62 +436,12 @@
                                         </fieldset>
                                         <button type="submit" onclick="checkInput(); return false;" class="btn btn-primary">Submit</button>
                                     <?php echo form_close(); ?>
+
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade" id="submit-konsultasi" aria-labelledby="" aria-expanded="false">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">   
-                                    <form method="POST" action="<?php echo site_url('konsultasi/konsultasi/create') ?>" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <label for="">Subjek</label>
-                                                <?php echo form_input('subjek', set_value('subjek'), array('class' => 'form-control input-lg', 'placeholder' => 'Masukkan subjek Konsultasi')); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <label for="">Kategori</label><br>
-                                                    <select class="form-control" name="id_konsultasi_kategori">
-                                                        <?php 
-                                                            foreach ($konsultasiCat as $row) {
-                                                        ?>
-                                                            <option value="<?php echo $row->id;?>"><?php echo $row->name;?></option>
-                                                        <?php }?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <label for="">Prioritas</label><br>
-                                                    <select class="form-control" name="prioritas">
-                                                        <option value="High" selected>High</option>
-                                                        <option value="Medium">Medium</option>
-                                                        <option value="Low">Low</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <label for="">Pesan Anda</label>
-                                                    <?php echo form_textarea('pesan', set_value('pesan', '', FALSE), array('class' => 'editor')); ?>
-                                                </div> 
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Attachments</label>
-                                            <input type="file" name="files" id="filer_konsultasi">
-                                            <small>(Allowed File Extensions: .jpg, .gif, .jpeg, .png, .pdf, .zip, .doc, .xls, .xlsx, .docx, .txt) </small>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                            
                         </div>
-                    </div>
+                    <?php echo form_close(); ?>
                 </div>
             </div>
         </div>
@@ -462,6 +480,24 @@
             selector: '.editor'
         })
     });
+</script>
+
+<script type="text/javascript">
+    $('.description-text').on('keyup', function() {
+        limitText(this, 250)
+    });
+
+    function limitText(field, maxChar){
+        var ref = $(field),
+            val = ref.val();
+        if ( val.length >= maxChar ){
+            ref.val(function() {
+                console.log(val.substr(0, maxChar))
+                return val.substr(0, maxChar);       
+            });
+        }
+    }
+
 </script>
 
 <script type="text/javascript">
