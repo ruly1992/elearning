@@ -29,8 +29,8 @@ class Mod_konsultasi extends CI_Model
 
     public function getLatestReply($user_id)
     {
-    	$data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment', 'rp.created_at', 'rp.id');
-        $get   = $this->db->select($data)->from('konsultasi')->join('reply AS rp','rp.id_konsultasi=konsultasi.id')->where('rp.id_user',$user_id)->order_by('rp.created_at', 'ASC')->limit(3)->get();
+    	$data = array('konsultasi.*','rp.isi', 'rp.id_user', 'rp.attachment', 'rp.created_at');
+        $get   = $this->db->select($data)->from('konsultasi')->join('reply AS rp','rp.id_konsultasi=konsultasi.id')->where('rp.id_user',$user_id)->order_by('rp.created_at', 'DESC')->limit(3)->get();
         return $get->result();
     }
 }

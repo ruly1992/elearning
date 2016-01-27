@@ -99,7 +99,7 @@ class Mod_forum extends CI_Model
 		$get 	= $this->db->select('*')
 						->from('threads')
 						->where('notif_status', '1')
-						->where_in('reply_to', $listNewThreadComments)
+						//->where_in('reply_to', $listNewThreadComments)
 						->order_by('id', 'desc')
 						->get()
 						->result();
