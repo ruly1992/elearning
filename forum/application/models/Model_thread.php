@@ -655,4 +655,25 @@ class Model_thread extends CI_Model
         }
     }
 
+    function deleteThreadMemberUpdate($threadId, $data)
+    {
+        $this->db->where('thread_id', $threadId)->where_not_in('user_id', $data);
+        $delete = $this->db->delete('thread_members');
+        if($this->db->affected_rows() >= 1){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    function checkThreadMember($threadId, $userId)
+    {
+        $check  = $this->db->get_where('thread_members', array('thread_id' => $threadId, 'user_id' => $userId))->result();
+        if($this->db->affected_rows() > 0){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
 }
