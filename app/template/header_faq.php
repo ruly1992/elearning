@@ -112,9 +112,10 @@
                                 <ul class="nav navbar-nav hidden-md-down pull-right">
                                     <div class="dropdown dropdown-people">
                                         <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src="<?php echo auth()->getUser()->avatar ?>" alt="">
+                                            <img src="<?php echo auth()->getUser()->avatar ?>" alt="" title="<?php echo auth()->getUser()->full_name; ?>">
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right custom-float" aria-labelledby="dropdownMenu2">
+                                            <center><h2 class="dropdown-header font-weight-bold bg-inverse"><?php echo auth()->getUser()->full_name; ?></h2></center>
                                             <a href="<?php echo dashboard_url('profile') ?>" class="dropdown-item">Profile</a>
                                             <a href="<?php echo dashboard_url('sendArticle') ?>" class="dropdown-item">Submit Artikel</a>
                                             <a href="<?php echo logout_url() ?>" class="dropdown-item">Log Out</a>

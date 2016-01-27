@@ -1,4 +1,3 @@
-
 <div class="content-left">
     <div class="content-title">
         <h1><?php echo $course->name ?></h1>
@@ -53,7 +52,16 @@
             
             <?php endif ?>
         <?php else: ?>
-            <p>Tidak ada ujian</p>
+            
+            <?php if ($course_member_status->first()->status == 'finished'): ?>
+                <p class="alert alert-success">Anda sudah menyelesaikan ujian</p>
+                
+                <!-- Start Button Trigger Modal-->
+                <button type="button" course-id="<?php echo $course->id ?>" class="btn btn-primary btn-exam-score-learner" data-toggle="modal" data-target="#exam-scores-learner"><i class="fa fa-list"></i> Lihat Skor</button>
+                <!-- End Button Trigger Modal -->
+            <?php else: ?>
+               <p>Tidak ada ujian</p>
+            <?php endif ?>
         <?php endif ?>
     <?php else: ?>
         <p class="alert alert-warning">Anda harus menyelesaikan semua chapter terlebih dahulu untuk memulai ujian.</p>
@@ -70,9 +78,17 @@
     <?php foreach ($course_member_status as $key => $value): ?>
 
         <?php if ($value->status == 'finished'): ?>
+            <?php if ($examscore >= $course->passing_standards ): ?>
+                <a href="<?php echo site_url('course/printedcertificate/'.$course->slug) ?>" class="btn btn-block btn-sertifikat btn-info">CETAK SERTIFIKAT</a>
+            <?php else: ?>
+                <div class="alert alert-warning">
+                    Maaf, Anda tidak lulus dalam ujian. Anda tidak bisa mencetak Sertifikat <br>
+                    <b>Standar Kelulusan : <?php echo $course->passing_standards ?><br>
+                    Skor Anda : <?php echo $examscore ?></b><br>
+
+                </div>
+            <?php endif ?>
             
-            <a href="<?php echo site_url('course/printedcertificate/'.$course->slug) ?>" class="btn btn-block btn-sertifikat btn-info">CETAK SERTIFIKAT</a>
-        
         <?php else: ?>
 
                 <div class="alert alert-warning">Anda belum menyelesaikan exam.</div>
@@ -92,7 +108,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Skor Quiz</h4>
+        <h4 class="modal-title" id="myModalLabel">Skor Exam</h4>
       </div>
       <div class="modal-body">
             <div class="response-data"></div>

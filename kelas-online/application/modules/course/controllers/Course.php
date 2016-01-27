@@ -69,11 +69,15 @@ class Course extends Admin
         $repository = $this->repository;
         $expired    = $repository->getMemberExpired();
 
+       
+        $examscore = $this->repository->examScore($course->id);// get exam score
+
+       
         if ($repository->memberAllowCourse($course)) {
             if ($this->repository->isMember()) {
                 $course_member_status   = $repository->courseMemberStatus($slug); //get status member course
-
-                $this->template->build('chapter', compact('course', 'repository', 'course_member_status', 'expired'));
+                
+                $this->template->build('chapter', compact('course', 'repository', 'course_member_status', 'expired','examscore'));
             } else {
                 redirect('course/show/' . $course->slug, 'refresh');
             }
@@ -90,9 +94,10 @@ class Course extends Admin
         $chapter        = $course->chapters()->whereOrder($chapter)->firstOrFail();
         $nextchapter    = $chapter->getNext();
         $expired        = $repository->getMemberExpired();
+        $course_member_status   = $repository->courseMemberStatus($slug); //get status member course
 
         if ($repository->memberAllowChapter($chapter)) {
-            $this->template->build('chapter_show', compact('course', 'repository', 'chapter', 'nextchapter', 'expired'));
+            $this->template->build('chapter_show', compact('course', 'repository', 'chapter', 'nextchapter', 'expired','course_member_status'));
         } else {
             redirect('course/show/'.$course->slug, 'refresh');
         }
@@ -207,9 +212,10 @@ class Course extends Admin
         pdf_create($html, $filename, $paper, $orientation, $stream);
     }
 
-    public function quizscores($courseid)
+    public function quizscores($chapterid)
     {
-        $chapter = $this->repository->chapterByCourseId($courseid);
+        $chapter = $this->repository->chapterById($chapterid);
+
         
         $correct    = 0;
         $uncorrect  = 0;
@@ -218,12 +224,10 @@ class Course extends Admin
         echo '<table clas="table">';
             
      
-        foreach ($chapter as $key => $value) {
-
-         
-            echo $value->name."<br>";
-            
-            $quiz = $this->repository->quizLearnerByChapterId($value->id);
+    
+            echo $chapter->name."<br><br>";
+          
+            $quiz = $this->repository->quizLearnerByChapterId($chapter->id);
                         
             foreach ($quiz as $key => $vquiz) {
                 
@@ -240,12 +244,12 @@ class Course extends Admin
                             $correct   = $correct + 1;
                             $scores    = $scores + 10;
                             $hasil     = "<span style='color:green'>Benar</span>";
-                            $jawabanlearner = "<span style='color:green'>Jawaban Learner: ".$vAns->answer."</span>";
+                            $jawabanlearner = "<span style='color:green'>Jawaban: ".$vAns->answer."</span>";
                         } else {
                             $uncorrect = $uncorrect + 1;
                             $scores    = $scores;
                             $hasil     = "<span style='color:red'>Salah</span>";
-                            $jawabanlearner = "<span style='color:red'>Jawaban Learner: ".$vAns->answer."</span>";
+                            $jawabanlearner = "<span style='color:red'>Jawaban: ".$vAns->answer."</span>";
                         }
                         
                         echo $no.". ".strip_tags($vques->question)."  <br>&nbsp;&nbsp;&nbsp; <b>(".$jawabanlearner.") - ".$hasil."</b><br><br>";                
@@ -256,12 +260,17 @@ class Course extends Admin
                 $no++;
                 }
 
+                $jumlahsoal = $no-1;
+                $soal = 100/$jumlahsoal;
+
+                $scores = $soal*$correct;
 
                 echo "<br>";
                 echo "<b>Total Benar : </b>".$correct."<br>";
                 echo "<b>Total Salah : </b>".$uncorrect."<br>";
                 echo "<b>Scores : </b>".$scores."<br>";
 
+               
                 $correct    = 0;
                 $uncorrect  = 0;
                 $scores     = 0;
@@ -271,9 +280,6 @@ class Course extends Admin
                 
             }
 
-         
-
-        }
 
         echo "</table>";
 
@@ -312,12 +318,12 @@ class Course extends Admin
                             $correct   = $correct + 1;
                             $scores    = $scores + 10;
                             $hasil     = "<span style='color:green'>Benar</span>";
-                            $jawabanlearner = "<span style='color:green'>Jawaban Learner: ".$vAns->answer."</span>";
+                            $jawabanlearner = "<span style='color:green'>Jawaban: ".$vAns->answer."</span>";
                         } else {
                             $uncorrect = $uncorrect + 1;
                             $scores    = $scores;
                             $hasil     = "<span style='color:red'>Salah</span>";
-                            $jawabanlearner = "<span style='color:red'>Jawaban Learner: ".$vAns->answer."</span>";
+                            $jawabanlearner = "<span style='color:red'>Jawaban: ".$vAns->answer."</span>";
                         }
                         
                         echo $no.". ".strip_tags($vq->question)."  <br>&nbsp;&nbsp;&nbsp;<b>(".$jawabanlearner.") - ".$hasil."</b><br><br>";                
@@ -334,7 +340,9 @@ class Course extends Admin
                 // End Question Foreach
 
 
-           
+                $jumlahsoal = $no-1;
+                $soal = 100/$jumlahsoal;
+                $scores = $soal*$correct;
 
 
                 echo "<br>";

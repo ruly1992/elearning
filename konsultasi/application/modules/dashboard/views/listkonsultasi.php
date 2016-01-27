@@ -16,6 +16,12 @@
                         <li>Konsultasi</li>
                         <li class="active"><?php echo $kategoriById->name ?></li>
                     </ol>
+                    <div class="btn-group btn-konsultasi">
+                        <a href="<?php echo site_url('dashboard/kategori/'.$id_kategori) ?>" class="btn btn-secondary btn-sm <?php echo $prioritas == '' ? 'active' : '' ?>">Semua</a>
+                        <a href="<?php echo site_url('dashboard/kategori/'.$id_kategori.'/High') ?>" class="btn btn-secondary btn-sm <?php echo $prioritas == 'High' ? 'active' : '' ?>">High</a>
+                        <a href="<?php echo site_url('dashboard/kategori/'.$id_kategori.'/Medium') ?>" class="btn btn-secondary btn-sm <?php echo $prioritas == 'Medium' ? 'active' : '' ?>">Medium</a>
+                        <a href="<?php echo site_url('dashboard/kategori/'.$id_kategori.'/Low') ?>" class="btn btn-secondary btn-sm <?php echo $prioritas == 'Low' ? 'active' : '' ?>">Low</a>
+                    </div>
                     <div class="table-responsive">
                     <?php if ($konsultasi->count()): ?>
                         <table class="table table-striped">
