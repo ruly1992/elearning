@@ -61,9 +61,16 @@
                                     <div role="tabpanel" class="tab-pane fade active in" id="article-submit" aria-expanded="true">
                                         <form class="pull-left">
                                             <div class="form-group row">
+                                                <div class="col-sm-3">
+                                                  <button class="btn btn-primary"><i class="fa fa-plus"></i> Submit Artikel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form class="pull-right">
+                                            <div class="form-group row">
                                                 <label for="inputKeyword" class="col-sm-3 form-control-label">Search</label>
                                                 <div class="col-sm-9">
-                                                  <input type="text" class="form-control" id="keyword">
+                                                  <input type="text" class="form-control" id="keyword" placeholder="Search...">
                                                 </div>
                                             </div>
                                         </form>
@@ -89,7 +96,6 @@
                                                 
                                             </tbody>
                                         </table>
-
                                         <nav class="pull-right">
                                         <?php echo $artikel->render() ?>
                                         </nav>
