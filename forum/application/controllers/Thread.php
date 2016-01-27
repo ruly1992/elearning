@@ -264,7 +264,7 @@ class Thread extends CI_Controller
     {
         $this->form_validation->set_rules('kategori','Kategori','required');
         $this->form_validation->set_rules('topic','Topic','required');
-        $this->form_validation->set_rules('type','type','required');
+        $this->form_validation->set_rules('type','type','');
         $this->form_validation->set_rules('title','Title','required');
         $this->form_validation->set_rules('message','Message','required');
         
@@ -300,6 +300,8 @@ class Thread extends CI_Controller
                         $this->model_thread->save_thread_member($threadMember);
                     }
                 }
+            }else{
+                $this->model_thread->delete_thread_members($id);
             }
 
             if($save==TRUE){
