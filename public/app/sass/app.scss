@@ -189,7 +189,7 @@ thead {
 // style icon
 .inner-addon .fa {
 	position: absolute;
-	padding: $padding;
+	padding: $padding + 1px;
 	pointer-events: none;
 }
 /* align icon */
