@@ -57,9 +57,22 @@ class Dashboard extends Admin {
                         ->contributor($user->id)
                         ->latest('date')
                         ->get();
+
+
+        $toptenarticles = Model\Portal\Article::select('nama', 'contributor_id')->groupBy('contributor_id')->orderBy('contributor_id','desc')->get();
         
+        $data['toptenarticlecount'] = Model\Portal\Article::selectRaw('count(`contributor_id`) as `occurences`')->groupBy('contributor_id')->orderBy('contributor_id','desc')->get();
+    
+
         $draftcount = $drafts->count();
 
+        $courses        = Model\Kelas\Course::latest()->get();
+        $myclasscourse  = Model\Kelas\CourseMember::where('user_id', $user->id)->get();
+        $coursecomments = Model\Kelas\CourseComment::where('parent', '0')->get();
+        
+        $toptenactiveclass  = Model\Kelas\CourseMember::groupBy('user_id')->orderBy('user_id','desc')->get();
+        $data['toptenactiveclasscount'] = Model\Kelas\CourseMember::selectRaw('count(`user_id`) as `counttotal`')->groupBy('user_id')->orderBy('user_id','desc')->get();
+    
         /* Start Activity Konsultasi */
         $data['konsultasiCat']          = $this->Mod_konsultasi->getKonsultasiKategori();
         $data['latestReply']            = $this->Mod_konsultasi->getLatestReply($user->id);
@@ -79,6 +92,13 @@ class Dashboard extends Admin {
         $data['drafts']                 = $drafts;
         $data['draftcount']             = $draftcount;
         $data['links']                  = $this->Mod_link->read();
+        $data['toptenarticles']         = $toptenarticles;
+
+        $data['toptenactiveclass']      = $toptenactiveclass;
+
+        $data['courses']                = $courses;
+        $data['myclasscourse']          = $myclasscourse;
+        $data['coursecomments']         = $coursecomments;
 
         $data['forumNotif']             = $this->Mod_forum->getMemberNotif($user->id);
         $data['forumCategories']        = $this->Mod_forum->getCategoryMember($user->id);
