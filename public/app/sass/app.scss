@@ -5747,14 +5747,14 @@ Create: Singgih Saputro */
 
 .btn-start {
 	background-color: $grey;
-	color: $aspalt-light;
+	color: $aspalt-light !important;
 	@include transition(0.3s);
 	@include border-radius(6px);
 	&:hover,
 	&:focus,
 	&:active {
 		background-color: $green;
-		color: $white;
+		color: $white !important;
 		@include transition(0.3s);
 	}
 }
