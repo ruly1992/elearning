@@ -32,33 +32,35 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <table class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Judul</th>
-                                                    <th>Status</th>
-                                                    <th>Waktu</th>
-                                                    <th>Link</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach ($artikel as $article): ?>
-                                                <tr>
-                                                    <td><?php echo $article->id ?></td>
-                                                    <td><?php echo $article->title ?></td>
-                                                    <td><div class="label label-success"><?php echo $article->getStatusLabel() ?></div></td>
-                                                    <td><?php echo $article->date->format('d F Y H:i') ?></td>
-                                                    <td><a href="<?php echo $article->link ?>" class="label label-info" target="_blank"><i class="fa fa-external-link"></i> View</a></td>
-                                                </tr>
-                                                <?php endforeach ?>
-                                                <?php if ($artikel->isEmpty()): ?>
-                                                    <tr class="warning">
-                                                        <td colspan="5">Belum ada artikel yang dipublikasikan</td>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Judul</th>
+                                                        <th>Status</th>
+                                                        <th>Waktu</th>
+                                                        <th>Link</th>
                                                     </tr>
-                                                <?php endif ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($artikel as $article): ?>
+                                                    <tr>
+                                                        <td><?php echo $article->id ?></td>
+                                                        <td><?php echo $article->title ?></td>
+                                                        <td><?php echo $article->getStatusLabel() ?></td>
+                                                        <td><?php echo $article->date->format('d F Y H:i') ?></td>
+                                                        <td><a href="<?php echo $article->link ?>" class="btn btn-info btn-konsul" target="_blank"><i class="fa fa-external-link"></i> View</a></td>
+                                                    </tr>
+                                                    <?php endforeach ?>
+                                                    <?php if ($artikel->isEmpty()): ?>
+                                                        <tr class="warning">
+                                                            <td colspan="5">Belum ada artikel yang dipublikasikan</td>
+                                                        </tr>
+                                                    <?php endif ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                         <nav class="pull-right">
                                             <a href="<?php echo site_url('dashboard/my-article') ?>" class="btn btn-primary">View all your post</a>
                                         </nav>
@@ -359,7 +361,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><br><br>
             <!-- End Recent Activity -->
             <?php
             $nama       = '';
