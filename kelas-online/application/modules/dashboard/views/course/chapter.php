@@ -129,12 +129,8 @@
             <!-- end:content -->
         </div>
         <div class="card-block">
-            <template v-if="course.chapters.length > 0">
-                <button type="submit" id="btn-submit" class="btn btn-primary btn-sm">Save</button>
-            </template>
-            <template v-else>
-                <button type="button" id="btn-submit-disable" class="btn btn-danger btn-sm" disabled>Anda belum menambahkan chapter</button>
-            </template>
+            <button type="button" id="btn-submit" class="btn btn-primary btn-sm" v-show="course.chapters.length > 0">Save</button>
+            <button type="button" id="btn-submit-disable" class="btn btn-danger btn-sm" disabled v-show="course.chapters.length == 0">Anda belum menambahkan chapter</button>
         </div>
     </div>
 

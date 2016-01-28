@@ -214,76 +214,63 @@ class Course extends Admin
 
     public function quizscores($chapterid)
     {
-        $chapter = $this->repository->chapterById($chapterid);
+        $chapter    = $this->repository->chapterById($chapterid);
+        $quiz       = $this->repository->quizLearnerByChapterId($chapter->id);
+        $answers    = $this->repository->learnerQuizAnswer($chapter->id);
+        $member     = $this->repository->learnerQuizMember($chapter->id);
 
-        
-        $correct    = 0;
-        $uncorrect  = 0;
-        $scores     = 0;
-        
-        echo '<table clas="table">';
-            
-     
-    
-            echo $chapter->name."<br><br>";
-          
-            $quiz = $this->repository->quizLearnerByChapterId($chapter->id);
+        $this->load->view('member_quiz_answer', compact('chapter', 'quiz', 'answers', 'member'));
                         
-            foreach ($quiz as $key => $vquiz) {
+            // foreach ($quiz as $key => $vquiz) {
                 
                 
-                $question = $this->repository->quizQuestionList($vquiz->id);
-                $no = 1;
-                foreach ($question as $key => $vques) {
+            //     $question = $this->repository->quizQuestionList($vquiz->id);
+            //     $no = 1;
+            //     foreach ($question as $key => $vques) {
                    
 
-                    $learneranswer = $this->repository->learnerQuizAnswer($vquiz->members[0]->id, $vques->id);
-                    foreach ($learneranswer as $key => $vAns) {
+            //         $learneranswer = $this->repository->learnerQuizAnswer($vquiz->members[0]->id, $vques->id);
+            //         foreach ($learneranswer as $key => $vAns) {
                         
-                        if ($vAns->is_correct == '1') {
-                            $correct   = $correct + 1;
-                            $scores    = $scores + 10;
-                            $hasil     = "<span style='color:green'>Benar</span>";
-                            $jawabanlearner = "<span style='color:green'>Jawaban: ".$vAns->answer."</span>";
-                        } else {
-                            $uncorrect = $uncorrect + 1;
-                            $scores    = $scores;
-                            $hasil     = "<span style='color:red'>Salah</span>";
-                            $jawabanlearner = "<span style='color:red'>Jawaban: ".$vAns->answer."</span>";
-                        }
+            //             if ($vAns->is_correct == '1') {
+            //                 $correct   = $correct + 1;
+            //                 $scores    = $scores + 10;
+            //                 $hasil     = "<span style='color:green'>Benar</span>";
+            //                 $jawabanlearner = "<span style='color:green'>Jawaban: ".$vAns->answer."</span>";
+            //             } else {
+            //                 $uncorrect = $uncorrect + 1;
+            //                 $scores    = $scores;
+            //                 $hasil     = "<span style='color:red'>Salah</span>";
+            //                 $jawabanlearner = "<span style='color:red'>Jawaban: ".$vAns->answer."</span>";
+            //             }
                         
-                        echo $no.". ".strip_tags($vques->question)."  <br>&nbsp;&nbsp;&nbsp; <b>(".$jawabanlearner.") - ".$hasil."</b><br><br>";                
+            //             echo $no.". ".strip_tags($vques->question)."  <br>&nbsp;&nbsp;&nbsp; <b>(".$jawabanlearner.") - ".$hasil."</b><br><br>";                
                         
-                    }
+            //         }
 
 
-                $no++;
-                }
+            //     $no++;
+            //     }
 
-                $jumlahsoal = $no-1;
-                $soal = 100/$jumlahsoal;
+            //     $jumlahsoal = $no-1;
+            //     $soal = 100/$jumlahsoal;
 
-                $scores = $soal*$correct;
+            //     $scores = $soal*$correct;
 
-                echo "<br>";
-                echo "<b>Total Benar : </b>".$correct."<br>";
-                echo "<b>Total Salah : </b>".$uncorrect."<br>";
-                echo "<b>Scores : </b>".$scores."<br>";
+            //     echo "<br>";
+            //     echo "<b>Total Benar : </b>".$correct."<br>";
+            //     echo "<b>Total Salah : </b>".$uncorrect."<br>";
+            //     echo "<b>Scores : </b>".$scores."<br>";
 
                
-                $correct    = 0;
-                $uncorrect  = 0;
-                $scores     = 0;
+            //     $correct    = 0;
+            //     $uncorrect  = 0;
+            //     $scores     = 0;
                     
                 
                 
                 
-            }
-
-
-        echo "</table>";
-
-        exit();
+            // }
     }
 
     public function examscores($courseid)
