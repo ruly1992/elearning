@@ -224,6 +224,7 @@ class Dashboard extends Admin {
             $articleLib->set($id);
 
             $featured_action = $this->input->post('featured[action]');
+            $description     = $this->input->post('featured[description]');
 
             switch ($featured_action) {
                 case 'upload':
@@ -237,6 +238,9 @@ class Dashboard extends Admin {
                     $articleLib->removeFeaturedImage();
                 
                 default:
+                    $desciption     = $this->input->post('featured[description]');
+                    
+                    $articleLib->updateFeaturedDescription($description);
                     break;
             }
 
