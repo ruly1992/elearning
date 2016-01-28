@@ -7,7 +7,7 @@
             </div>
         </section> 
         <div class="container content-submit">
-            <a class="btn btn-primary" href="<?php echo site_url('dashboard/sendArticle') ?>"><i class="fa fa-plus"></i> Submit Artikel</a>
+            <a class="btn btn-primary" href="<?php echo site_url('dashboard/sendArticle') ?>"><i class="fa fa-plus"></i> Submit Artikel</a><hr>
             <div class="table-responsive">
                 <table id="post-articles" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
@@ -51,7 +51,10 @@
 <script type="text/javascript" src="<?php echo asset('/plugins/datatables/js/jquery.dataTables.min.js') ?>"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#post-articles').dataTable();
+        $('#post-articles').dataTable({
+            responsive: true,
+            "sDom": '<"row"<"col-lg-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>'
+        });
     });
 </script>
 <?php endcustom_script() ?>
