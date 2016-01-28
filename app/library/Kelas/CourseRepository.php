@@ -544,41 +544,22 @@ class CourseRepository
         return null;
     }
 
-    public function getScoreQuizAnswer($chapter_id)
+    public function getScoreQuizAnswer($chapter_id, $user = null)
     {
-        $quiz           = Quiz::where('chapter_id', $chapter_id)->get(); // get quiz id
+        if ($user) $this->setUser($user);
+
+        $chapter        = Chapter::find($chapter_id);
+        $quiz           = $chapter->quiz;
+        $member         = null;
         
-        $quiz_id = '';
-        foreach ($quiz as $key => $value) 
-        {
-            
-            if ($value->id != '') 
-            {
-                $quiz_id = $value->id;
+        foreach ($quiz->members as $data) {
+            if ($data->user_id == $this->user->id) {
+                $member = $data;
+                break;
             }
-
-        }
-        
-        $quizMember     = QuizMember::where('quiz_id', $quiz_id)->where('user_id', sentinel()->getUser()->id)->get();
-        // get quiz member id
-
-        $quiz_member_id = '';
-        foreach ($quizMember as $key => $value) 
-        {
-            
-            if ($value->id != '') 
-            {
-                $quiz_member_id = $value->id;
-            }
-
         }
 
-        $quizAnswer     = QuizAnswer::where('member_quiz_id',$quiz_member_id)->get();
-        // get quiz answer
-
-
-        return $quizAnswer;
-
+        return $member->getScore();
     }
 
     public function checkExamTimeout(Exam $exam, $attempt = 1)
@@ -782,13 +763,27 @@ class CourseRepository
         return $quizQuestion;
     }
 
-    public function learnerQuizAnswer($quizMemberId, $quesId)
+    public function learnerQuizMember($chapter_id, $user = null)
     {
-        $answer = QuizAnswer::where('member_quiz_id', $quizMemberId)
-                            ->where('question_id', $quesId)
-                            ->get();
+        if ($user) $this->setUser($user);
 
-        return $answer;
+        $chapter    = Chapter::find($chapter_id);
+        $quiz       = $chapter->quiz;
+        $member     = null;
+        
+        foreach ($quiz->members as $data) {
+            if ($data->user_id == $this->user->id) {
+                $member = $data;
+                break;
+            }
+        }
+
+        return $member;
+    }
+
+    public function learnerQuizAnswer($chapter_id, $user = null)
+    {
+        return $this->learnerQuizMember($chapter_id, $user)->answers;
     }
 
     
