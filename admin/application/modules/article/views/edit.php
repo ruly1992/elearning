@@ -15,6 +15,10 @@
                 </div>
 
                 <div class="form-group">
+                    <?php echo form_textarea('description', set_value('description', $artikel->description), array('class' => 'form-control description-text','rows' => '4' ,'placeholder' => 'Description (Maksimal 250 karakter)')); ?>
+                </div>
+
+                <div class="form-group">
                     <?php echo form_textarea('content', set_value('content', $artikel->content, FALSE), array('class' => 'form-control editor-portal')); ?>
                 </div>
             </div>
@@ -115,7 +119,7 @@
         </div>
     </div>
 
-    <cropit-result name="featured"></cropit-result>
+    <cropit-result name="featured" description="<?php echo $artikel->featured_description ?>"></cropit-result>
     <cropit-result name="slider"></cropit-result>
 
     <?php $this->load->view('modal/featured'); ?>
@@ -154,5 +158,23 @@
             })
         })
     })
+    </script>
+    
+    <script type="text/javascript">
+        $('.description-text').on('keyup', function() {
+            limitText(this, 250)
+        });
+
+        function limitText(field, maxChar){
+            var ref = $(field),
+                val = ref.val();
+            if ( val.length >= maxChar ){
+                ref.val(function() {
+                    console.log(val.substr(0, maxChar))
+                    return val.substr(0, maxChar);       
+                });
+            }
+        }
+
     </script>
 <?php endcustom_script() ?>

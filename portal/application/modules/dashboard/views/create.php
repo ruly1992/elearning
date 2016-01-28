@@ -16,7 +16,19 @@
                     <small class="text-muted">Masukkan judul artikel disini</small>
                 </fieldset>
                 <fieldset class="form-group">
+                    <label>Deskripsi</label>
+                    <textarea class="form-control description-text" rows="4" name="description"></textarea>
+                    <small class="text-muted">Maksimal 250 karakter</small>
+                </fieldset>
+                <fieldset class="form-group">
                     <textarea name="content" class="editor-simple"></textarea>
+                </fieldset>
+                <fieldset class="form-group hidden-sm-up">
+                     <input type="file" name="filemedia" id="filer_input_img">
+                </fieldset>
+                <fieldset class="form-group hidden-sm-up">
+                    <label for="">Keterangan gambar</label>
+                    <input type="text" class="form-control" name="caption-img">
                 </fieldset>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -32,7 +44,7 @@
                 </div>
                 <!-- end: category -->
                 <!-- begin: image preview -->
-                <div class="widget">
+                <div class="widget hidden-lg-down">
                     <div class="widget-sidebar-heading">
                         <h3>Gambar Fitur</h3>
                     </div>
@@ -60,4 +72,24 @@
     <script src="<?php echo asset('node_modules/vue/dist/vue.min.js') ?>"></script>
     <script src="<?php echo asset('javascript/cropit.vue.js') ?>"></script>
     <script src="<?php echo asset('javascript/editor.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo asset('/javascript/jquery.filer.custom.js') ?>"></script>
+
+    <script type="text/javascript">
+        $('.description-text').on('keyup', function() {
+            limitText(this, 250)
+        });
+
+        function limitText(field, maxChar){
+            var ref = $(field),
+                val = ref.val();
+            if ( val.length >= maxChar ){
+                ref.val(function() {
+                    console.log(val.substr(0, maxChar))
+                    return val.substr(0, maxChar);       
+                });
+            }
+        }
+
+    </script>
+    
 <?php endcustom_script() ?>

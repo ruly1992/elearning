@@ -202,9 +202,14 @@ $(document).ready(function() {
         extensions: ['jpg', 'jpeg', 'png', 
                     'gif', 'pdf', 'rar', 'zip', 
                     'xlsx', 'docx', 'doc', 'xls', 
+<<<<<<< HEAD
                     'ppt', 'pptx', '3gp', 'mp4', 
                     'mpeg', 'mpg', 'webm', 'ogg',
                     'mkv', 'flv', 'mp3', 'txt'],
+=======
+                    'ppt', 'pptx', '3gp', 'mp4', 'mpeg', 
+                    'mkv', 'flv', 'avi', 'wmv',  'mp3', 'txt'],
+>>>>>>> 02fe7ce07df552bbbda6db9eb3446b8c898e77b1
         addMore: true,
         showThumbs: true,
         templates: {
