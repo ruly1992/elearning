@@ -335,35 +335,59 @@
                                             <div class="kelas-terbaru">
                                                 <h4><i class="fa fa-info"></i> Kelas Terbaru:</h4>
                                                 <ul>
-                                                    <li>
-                                                        <a href="#">
-                                                            <p>Pengetahuan Dasar</p>
-                                                        </a>
-                                                        <button class="btn btn-start btn-md btn-block">Mulai Kelas</button>
-                                                    </li>                                                
-                                                    <li>
-                                                        <a href="#">
-                                                            <p>Dasar Dasar Kepemimpinan</p>
-                                                        </a>
-                                                        <button class="btn btn-start btn-md btn-block">Mulai Kelas</button>
-                                                    </li>
+
+                                                    <?php if ($courses->count() == 0): ?>
+                                                        
+                                                        <li><a href="javascript:;" title="">Tidak ada kelas terbaru</a></li>   
+                                                    
+                                                    <?php else: ?>
+                                                    
+                                                        <?php foreach ($courses as $key => $course): ?>
+                                                        <li>
+                                                            <?php $coursecode = str_replace('.', '-', $course->code); ?>
+                                                            <a href="<?php echo site_url('kelas-online/course/join/'.$coursecode) ?>"><p><?php echo $course->name ?></p></a>
+                                                            <a href="<?php echo site_url('kelas-online/course/join/'.$coursecode) ?>" class="btn btn-start btn-md btn-block">Mulai Kelas</a>
+                                                        </li>
+                                                        <?php endforeach ?>
+                                                    
+                                                    <?php endif ?>
+                                                    
                                                 </ul>
                                             </div>
                                             <div class="kelas-content">
-                                                <h4>Kelas yang anda Ikuti:</h4>
+                                              <h4>Kelas yang anda Ikuti:</h4>
                                                 <ul>
-                                                    <li><a href="#">Pengetahuan Dasar</a></li>
-                                                    <li><a href="#">Dasar Dasar kepeminpinan</a></li>
+                                                    <?php if ($myclasscourse->count() == 0): ?>
+                                                        
+                                                        <li><a href="javascript:;" title="">Tidak ada kelas yang anda ikuti</a></li>   
+                                                    
+                                                    <?php else: ?>
+                                                        
+                                                        <?php foreach ($myclasscourse as $key => $mycourse): ?>
+                                                            <li>
+                                                                <?php $mycoursecode = str_replace('.', '-', $mycourse->course->code); ?>
+                                                                <a href="<?php echo site_url('kelas-online/course/join/'.$mycoursecode) ?>"><?php echo $mycourse->course->name ?></a>
+                                                            </li>
+                                                        <?php endforeach ?>
+
+                                                    <?php endif ?>  
                                                 </ul>
                                             </div>
                                             <div class="latest-comment">
                                                 <h4><i class="fa fa-wechat"></i> Kelas yang ada comment:</h4>
                                                 <ul>
-                                                    <li><a href="">Pengetahuan dasar</a>
-                                                        <div class="comment">
-                                                            <p><b>comment: </b>test test test</p>
-                                                        </div>
-                                                    </li>
+                                                    <?php if($coursecomments->count() != 0): ?>
+                                                        <?php foreach ($coursecomments as $comment): ?>
+                                                        <li><a href="javascript:;"><?php echo $comment->course->name ?></a>
+                                                            <div class="comment">
+                                                                <p><b>comment </b><br>
+                                                                <?php echo $comment->name." : ".$comment->content ?></p>
+                                                            </div>
+                                                        </li>
+                                                        <?php endforeach ?>
+                                                    <?php else: ?>
+                                                        <li><a href="javascript:;" title="">Tidak ada data</a></li>
+                                                    <?php endif ?>
                                                 </ul>
                                             </div>
                                         </div>
@@ -375,6 +399,25 @@
                 </div>
             </div>
             <!-- End Recent Activity -->
+            <?php
+            $nama       = '';
+            foreach ($toptenarticles as $key => $value) {
+                
+                $nama .= $value->nama.",";
+            }
+
+            
+            $hasil = ''; 
+            foreach ($toptenarticlecount as $key => $value) {
+                
+                $hasil .= $value->occurences.",";
+            }
+
+
+            ?>
+            <span id="hasil-skor-artikel"><?php echo $hasil ?></span>
+            <span id="hasil-nama-contributor"><?php echo $nama ?></span>  
+            
 
 <?php custom_stylesheet() ?>
 
@@ -451,4 +494,5 @@ function checkInput(){
     document.getElementById('formMedia').submit();
 }
 </script>
+
 <?php endcustom_script() ?>

@@ -64,7 +64,14 @@ class Dashboard extends Admin {
                         ->latest('date')
                         ->count();
 
+        $toptenarticles = Model\Portal\Article::select('nama', 'contributor_id')->groupBy('contributor_id')->orderBy('contributor_id','desc')->get();
+        
+        $data['toptenarticlecount'] = Model\Portal\Article::selectRaw('count(`contributor_id`) as `occurences`')->groupBy('contributor_id')->orderBy('contributor_id','desc')->get();
+    
 
+        $courses        = Model\Kelas\Course::latest()->get();
+        $myclasscourse  = Model\Kelas\CourseMember::where('user_id', $user->id)->get();
+        $coursecomments = Model\Kelas\CourseComment::where('parent', '0')->get();
         /* Start Activity Konsultasi */
         $data['konsultasiCat']          = $this->Mod_konsultasi->getKonsultasiKategori();
         $data['latestReply']            = $this->Mod_konsultasi->getLatestReply($user->id);
@@ -84,6 +91,11 @@ class Dashboard extends Admin {
         $data['drafts']                 = pagination($drafts, 4, 'dashboard');
         $data['draftcount']             = $draftcount;
         $data['links']                  = $this->Mod_link->read();
+        $data['toptenarticles']         = $toptenarticles;
+
+        $data['courses']                = $courses;
+        $data['myclasscourse']          = $myclasscourse;
+        $data['coursecomments']         = $coursecomments;
 
         $data['forumNotif']             = $this->Mod_forum->getMemberNotif($user->id);
         $data['forumCategories']        = $this->Mod_forum->getCategoryMember($user->id);
