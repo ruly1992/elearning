@@ -378,9 +378,29 @@
             }
 
 
+
+            /* Start chart online class data */
+            $membername       = '';
+            foreach ($toptenactiveclass as $key => $value) {
+                $membername .= $value->user->first_name." ".$value->user->last_name.", ";
+            }
+
+            $countmember = ''; 
+            foreach ($toptenactiveclasscount as $key => $value) {
+                
+                $countmember .= $value->counttotal.",";
+            }
+
+           /* End chart online class data */
+
+
             ?>
-            <span id="hasil-skor-artikel"><?php echo $hasil ?></span>
-            <span id="hasil-nama-contributor"><?php echo $nama ?></span>  
+            
+            <input type="hidden" id="hasil-skor-artikel" value="<?php echo $hasil ?>">
+            <input type="hidden" id="hasil-nama-contributor" value="<?php echo $nama ?>">  
+            
+            <input type="hidden" id="hasil-skor-kelas-online" value="<?php echo $countmember ?>">
+            <input type="hidden" id="hasil-nama-kelas-online" value="<?php echo $membername ?>">  
             
 
 <?php custom_stylesheet() ?>

@@ -1,11 +1,11 @@
 
 $(function () {
-    var names = $('#hasil-nama-contributor').text();
+    var names = $('#hasil-nama-contributor').val();
     var nameArray = new Array();
     nameArray = names.split(",");
     var removelastname = nameArray.slice(0, -1);
     
-    var skor = $('#hasil-skor-artikel').text();
+    var skor = $('#hasil-skor-artikel').val();
     var skorArray = new Array();
     skorArray = skor.split(",");
     var removelasttskor = skorArray.slice(0, -1);
@@ -52,6 +52,20 @@ $(function () {
 
         }]
     });
+    
+
+    var namakelasonline = $('#hasil-nama-kelas-online').val();
+    var nameKelasOnlineArray = new Array();
+    nameKelasOnlineArray = namakelasonline.split(",");
+    var removelastnamekelasonline = nameKelasOnlineArray.slice(0, -1);
+    
+    var skorkelasonline = $('#hasil-skor-kelas-online').val();
+    var skorKelasOnlineArray = new Array();
+    skorKelasOnlineArray = skorkelasonline.split(",");
+    var removelasttskorkelasonline = skorKelasOnlineArray.slice(0, -1);
+
+    var skorkelasonlinetointeger = removelasttskorkelasonline.map(parseFloat);
+
 
     $('.top-aktif-kelas').highcharts({
         chart: {
@@ -64,18 +78,7 @@ $(function () {
             text: 'Desa Membangun'
         },
         xAxis: {
-            categories: [
-                'Paijo',
-                'Tarjono',
-                'Yeyem',
-                'Ayuh',
-                'Septiana',
-                'Octa',
-                'Mayang',
-                'Parmin',
-                'Noviantina',
-                'Mawar'
-            ],
+            categories: removelastnamekelasonline,
             crosshair: true
         },
         yAxis: {
@@ -99,7 +102,7 @@ $(function () {
         },
         series: [{
             name: 'Jumlah Kelas Di Ikuti ',
-            data: [17, 20, 41, 50, 3, 9, 12, 10, 21, 30]
+            data: skorkelasonlinetointeger
 
         }]
     });

@@ -69,6 +69,10 @@ class Dashboard extends Admin {
         $courses        = Model\Kelas\Course::latest()->get();
         $myclasscourse  = Model\Kelas\CourseMember::where('user_id', $user->id)->get();
         $coursecomments = Model\Kelas\CourseComment::where('parent', '0')->get();
+        
+        $toptenactiveclass  = Model\Kelas\CourseMember::groupBy('user_id')->orderBy('user_id','desc')->get();
+        $data['toptenactiveclasscount'] = Model\Kelas\CourseMember::selectRaw('count(`user_id`) as `counttotal`')->groupBy('user_id')->orderBy('user_id','desc')->get();
+    
         /* Start Activity Konsultasi */
         $data['konsultasiCat']          = $this->Mod_konsultasi->getKonsultasiKategori();
         $data['latestReply']            = $this->Mod_konsultasi->getLatestReply($user->id);
@@ -89,6 +93,8 @@ class Dashboard extends Admin {
         $data['draftcount']             = $draftcount;
         $data['links']                  = $this->Mod_link->read();
         $data['toptenarticles']         = $toptenarticles;
+
+        $data['toptenactiveclass']      = $toptenactiveclass;
 
         $data['courses']                = $courses;
         $data['myclasscourse']          = $myclasscourse;
