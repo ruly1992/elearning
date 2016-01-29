@@ -120,8 +120,19 @@
             }
         })
 
+        $('#waktu').on('change', function () {
+            if ($(this).val() < 1) {
+                alert('Waktu exam minimal adalah 1 menit')
+                $(this).val(1)
+            }
+        })
+
         $('#btn-submit').on('click', function () {
-            $('#form-course-result').submit();
+            if (!window.app_kelas_online.checkExamHasTime()) {
+                alert('Minimal waktu exam adalah 1 menit');
+            } else {
+                $('#form-course-result').submit();
+            }
         })
     })
     </script>
