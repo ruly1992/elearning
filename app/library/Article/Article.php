@@ -210,9 +210,8 @@ class Article
         return $this->model;
     }
 
-    public function getByAllowEditor()
+    public function filterAllowEditor($articles)
     {
-        $articles   = Model\Portal\Article::withPrivate()->withDrafts()->status($status)->latest('date')->get();
         $user       = auth()->getUser();
         $allows     = $user->editorcategory;
 
