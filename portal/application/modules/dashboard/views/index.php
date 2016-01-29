@@ -40,7 +40,6 @@
                                                         <th>Judul</th>
                                                         <th>Type</th>
                                                         <th>Waktu</th>
-                                                        <th>Link</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -50,7 +49,6 @@
                                                         <td><?php echo $article->title ?></td>
                                                         <td><?php echo $article->getTypeLabel() ?></td>
                                                         <td><?php echo $article->date->format('d F Y H:i') ?></td>
-                                                        <td><a href="<?php echo $article->link ?>" class="btn btn-info btn-konsul" target="_blank"><i class="fa fa-external-link"></i> View</a></td>
                                                     </tr>
                                                     <?php endforeach ?>
                                                     <?php if ($artikel->isEmpty()): ?>
@@ -363,11 +361,14 @@
                 </div>
             </div><br><br>
             <!-- End Recent Activity -->
+
+            
             <?php
             $nama       = '';
             foreach ($toptenarticles as $key => $value) {
                 
-                $nama .= $value->nama.",";
+                $nama .= $value->author_name.",";
+
             }
 
             
@@ -382,7 +383,7 @@
             /* Start chart online class data */
             $membername       = '';
             foreach ($toptenactiveclass as $key => $value) {
-                $membername .= $value->user->first_name." ".$value->user->last_name.", ";
+                $membername .= $value->user->full_name.",";
             }
 
             $countmember = ''; 
@@ -393,7 +394,7 @@
 
            /* End chart online class data */
 
-
+          
             ?>
             
             <input type="hidden" id="hasil-skor-artikel" value="<?php echo $hasil ?>">
