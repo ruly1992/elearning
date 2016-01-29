@@ -284,7 +284,7 @@ class Course extends Admin
             $kelas_content  = PATH_KELASONLINE_CONTENT.'/'.$course->id;
             
             if ($action == 'remove') {
-                // remove
+                $course->deleteFeatured();
             } elseif ($action == 'upload') {
                 if (!empty($featured)) {
                     $image = $imageManager->make($featured);
@@ -314,7 +314,7 @@ class Course extends Admin
             $kelas_content  = PATH_KELASONLINE_CONTENT.'/'.$course->id;
             
             if ($action == 'remove') {
-                // remove
+                $course->deleteThumbnail();
             } elseif ($action == 'upload') {
                 if (!empty($thumbnail)) {
                     $image = $imageManager->make($thumbnail);
@@ -483,8 +483,11 @@ class Course extends Admin
             // 1. Prepare from input
             $input  = collect($this->input->post('course'));
             $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
-            $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
-
+            
+            // update standar kelulusan
+            $course->passing_standards = $input->get('passing_standards');
+            $course->save();
+            
             $this->repository->set($course);
 
             // 2. Remove data
