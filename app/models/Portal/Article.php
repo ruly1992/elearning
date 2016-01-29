@@ -218,21 +218,6 @@ class Article extends Model
         });
     }
 
-    public function scopeOnlyAllowEditor($query, $user_id = 0)
-    {
-        $user = $user_id ? Model\User::find($user_id) : sentinel()->getUser();
-
-        if ($this->editor_id != 0)
-            $query->where('editor_id', $user->id);
-
-        if ($this->categories->count())
-            return $query->whereHas('categories', function ($query) use ($user) {
-                return $query->whereIn($query->getModel()->getTable().'.id', $user->editorcategory->pluck('id')->toArray());
-            });
-        else
-            return $query;
-    }
-
     public function scopeCategoryId($query, $category_id)
     {
         return $query->whereHas('categories', function ($query) use ($category_id) {

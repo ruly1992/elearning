@@ -209,4 +209,24 @@ class Article
 
         return $this->model;
     }
+
+    public function getByAllowEditor()
+    {
+        $articles   = Model\Portal\Article::withPrivate()->withDrafts()->status($status)->latest('date')->get();
+        $user       = auth()->getUser();
+        $allows     = $user->editorcategory;
+
+        return $articles->filter(function ($article) use ($allows) {
+            if ($article->categories->isEmpty())
+                return true;
+            
+            foreach ($article->categories as $category) {
+                if (in_array($category->id, $allows->pluck('id')->toArray())) {
+                    return true;
+                }
+            }
+
+            return false;
+        });
+    }
 }
