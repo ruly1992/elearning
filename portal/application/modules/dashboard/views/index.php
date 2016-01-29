@@ -363,11 +363,14 @@
                 </div>
             </div><br><br>
             <!-- End Recent Activity -->
+
+            
             <?php
             $nama       = '';
             foreach ($toptenarticles as $key => $value) {
                 
-                $nama .= $value->nama.",";
+                $nama .= $value->author_name.",";
+
             }
 
             
@@ -382,7 +385,7 @@
             /* Start chart online class data */
             $membername       = '';
             foreach ($toptenactiveclass as $key => $value) {
-                $membername .= $value->user->first_name." ".$value->user->last_name.", ";
+                $membername .= $value->user->full_name.",";
             }
 
             $countmember = ''; 
@@ -393,7 +396,7 @@
 
            /* End chart online class data */
 
-
+          
             ?>
             
             <input type="hidden" id="hasil-skor-artikel" value="<?php echo $hasil ?>">

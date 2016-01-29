@@ -59,7 +59,7 @@ class Dashboard extends Admin {
                         ->get();
 
 
-        $toptenarticles = Model\Portal\Article::select('nama', 'contributor_id')->groupBy('contributor_id')->orderBy('contributor_id','desc')->get();
+        $toptenarticles = Model\Portal\Article::groupBy('contributor_id')->orderBy('contributor_id','desc')->get();
         
         $data['toptenarticlecount'] = Model\Portal\Article::selectRaw('count(`contributor_id`) as `occurences`')->groupBy('contributor_id')->orderBy('contributor_id','desc')->get();
     
