@@ -439,7 +439,7 @@
 
 <script type="text/javascript">
     $('.description-text').on('keyup', function() {
-        limitText(this, 250)
+        limitText(this, 100)
     });
 
     function limitText(field, maxChar){

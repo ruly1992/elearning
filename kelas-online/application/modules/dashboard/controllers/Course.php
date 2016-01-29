@@ -483,8 +483,11 @@ class Course extends Admin
             // 1. Prepare from input
             $input  = collect($this->input->post('course'));
             $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
-            $course = Model\Kelas\Course::withDrafts()->findOrFail($id);
-
+            
+            // update standar kelulusan
+            $course->passing_standards = $input->get('passing_standards');
+            $course->save();
+            
             $this->repository->set($course);
 
             // 2. Remove data
