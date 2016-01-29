@@ -284,7 +284,7 @@ class Course extends Admin
             $kelas_content  = PATH_KELASONLINE_CONTENT.'/'.$course->id;
             
             if ($action == 'remove') {
-                // remove
+                $course->deleteFeatured();
             } elseif ($action == 'upload') {
                 if (!empty($featured)) {
                     $image = $imageManager->make($featured);
@@ -314,7 +314,7 @@ class Course extends Admin
             $kelas_content  = PATH_KELASONLINE_CONTENT.'/'.$course->id;
             
             if ($action == 'remove') {
-                // remove
+                $course->deleteThumbnail();
             } elseif ($action == 'upload') {
                 if (!empty($thumbnail)) {
                     $image = $imageManager->make($thumbnail);

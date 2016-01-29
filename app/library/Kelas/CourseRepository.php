@@ -523,6 +523,7 @@ class CourseRepository
     public function submitQuizMember(Quiz $quiz, $answers = [])
     {
         $member = $this->getMemberSessionQuiz($quiz);
+        $member->answers()->delete();
 
         if ($member) {
             $answers = collect($answers)->map(function ($answer, $question_id) {

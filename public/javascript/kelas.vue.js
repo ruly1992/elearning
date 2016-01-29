@@ -370,6 +370,9 @@ $(document).ready(function () {
                 store.destroy();
                 this.course = new ObjCourse();
             },
+            checkExamHasTime: function () {
+                return this.course.exam.time > 0;
+            },
             checkAllChapterHasTime: function () {
                 var has = 0;
 
