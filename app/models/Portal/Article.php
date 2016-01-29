@@ -119,6 +119,18 @@ class Article extends Model
             return false;
     }
 
+    public function getTypeLabel()
+    {
+        if ($this->type == 'public')
+            $type = 'info';
+        else
+            $type = 'primary';
+
+        $html = '<div class="label label-'.$type.'">'.ucwords($this->type).'</div>';
+
+        return $html;
+    }
+
     public function getStatusLabel()
     {
         $status = ucwords($this->status);

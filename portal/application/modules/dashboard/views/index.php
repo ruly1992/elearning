@@ -38,7 +38,7 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Judul</th>
-                                                        <th>Status</th>
+                                                        <th>Type</th>
                                                         <th>Waktu</th>
                                                         <th>Link</th>
                                                     </tr>
@@ -48,7 +48,7 @@
                                                     <tr>
                                                         <td><?php echo $article->id ?></td>
                                                         <td><?php echo $article->title ?></td>
-                                                        <td><?php echo $article->getStatusLabel() ?></td>
+                                                        <td><?php echo $article->getTypeLabel() ?></td>
                                                         <td><?php echo $article->date->format('d F Y H:i') ?></td>
                                                         <td><a href="<?php echo $article->link ?>" class="btn btn-info btn-konsul" target="_blank"><i class="fa fa-external-link"></i> View</a></td>
                                                     </tr>

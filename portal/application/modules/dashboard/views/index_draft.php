@@ -15,6 +15,7 @@
                             <th>#</th>
                             <th>Judul</th>
                             <th>Status</th>
+                            <th>Type</th>
                             <th>Waktu</th>
                             <th>Aksi</th>
                         </tr>
@@ -25,6 +26,7 @@
                                 <td><?php echo $article->id ?></td>
                                 <td><?php echo $article->title ?></td>
                                 <td><?php echo $article->getStatusLabel() ?></td>
+                                <td><?php echo $article->getTypeLabel() ?></td>
                                 <td><?php echo $article->date->format('d F Y H:i') ?></td>
                                 <td>
                                     <a href="<?php echo site_url('dashboard/editArticle/'.$article->id) ?>" class="btn btn-primary btn-konsul">Update</a>
