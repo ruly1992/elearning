@@ -59,9 +59,9 @@ class Dashboard extends Admin {
                         ->get();
 
 
-        $toptenarticles = Model\Portal\Article::select('nama', 'contributor_id')->groupBy('contributor_id')->orderBy('contributor_id','desc')->get();
+        $toptenarticles = Model\Portal\Article::groupBy('contributor_id')->orderBy('contributor_id','desc')->take(10)->get();
         
-        $data['toptenarticlecount'] = Model\Portal\Article::selectRaw('count(`contributor_id`) as `occurences`')->groupBy('contributor_id')->orderBy('contributor_id','desc')->get();
+        $data['toptenarticlecount'] = Model\Portal\Article::selectRaw('count(`contributor_id`) as `occurences`')->groupBy('contributor_id')->orderBy('contributor_id','desc')->take(10)->get();
     
 
         $draftcount = $drafts->count();
@@ -70,8 +70,8 @@ class Dashboard extends Admin {
         $myclasscourse  = Model\Kelas\CourseMember::where('user_id', $user->id)->get();
         $coursecomments = Model\Kelas\CourseComment::where('parent', '0')->get();
         
-        $toptenactiveclass  = Model\Kelas\CourseMember::groupBy('user_id')->orderBy('user_id','desc')->get();
-        $data['toptenactiveclasscount'] = Model\Kelas\CourseMember::selectRaw('count(`user_id`) as `counttotal`')->groupBy('user_id')->orderBy('user_id','desc')->get();
+        $toptenactiveclass  = Model\Kelas\CourseMember::groupBy('user_id')->orderBy('user_id','desc')->take(10)->get();
+        $data['toptenactiveclasscount'] = Model\Kelas\CourseMember::selectRaw('count(`user_id`) as `counttotal`')->groupBy('user_id')->orderBy('user_id','desc')->take(10)->get();
     
         /* Start Activity Konsultasi */
         $data['konsultasiCat']          = $this->Mod_konsultasi->getKonsultasiKategori();
@@ -224,6 +224,7 @@ class Dashboard extends Admin {
             $articleLib->set($id);
 
             $featured_action = $this->input->post('featured[action]');
+            $description     = $this->input->post('featured[description]');
 
             switch ($featured_action) {
                 case 'upload':
@@ -237,6 +238,9 @@ class Dashboard extends Admin {
                     $articleLib->removeFeaturedImage();
                 
                 default:
+                    $desciption     = $this->input->post('featured[description]');
+                    
+                    $articleLib->updateFeaturedDescription($description);
                     break;
             }
 

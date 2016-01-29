@@ -51,12 +51,8 @@
             <!-- End: Add Exam -->
         </div>
         <div class="card-block">
-            <template v-if="course.exam.questions.length > 0">
-                <button type="submit" id="btn-submit" class="btn btn-primary btn-sm">Save</button>
-            </template>
-            <template v-else>
-                <button type="button" id="btn-submit-disable" class="btn btn-danger btn-sm" disabled>Anda belum menambahkan ujian</button>
-            </template>
+            <button type="submit" id="btn-submit" class="btn btn-primary btn-sm" v-show="course.exam.questions.length > 0">Save</button>
+            <button type="button" id="btn-submit-disable" class="btn btn-danger btn-sm" disabled v-show="course.exam.questions.length == 0">Anda belum menambahkan ujian</button>
         </div>
     </div>
 

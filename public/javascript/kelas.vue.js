@@ -370,6 +370,16 @@ $(document).ready(function () {
                 store.destroy();
                 this.course = new ObjCourse();
             },
+            checkAllChapterHasTime: function () {
+                var has = 0;
+
+                $.each(this.course.chapters, function (index, chapter) {
+                    if (chapter.quiz.time < 1)
+                        has++;
+                })
+
+                return has === 0;
+            },
             checkAllChapterHasQuiz: function () {
                 var has = 0;
 
@@ -378,7 +388,7 @@ $(document).ready(function () {
                         has++;
                 })
 
-                return has === this.course.chapters.length
+                return has === this.course.chapters.length;
             },
             validationForm: function (form_id, options) {
                 var form = $(form_id);
