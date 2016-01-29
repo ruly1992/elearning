@@ -43,10 +43,10 @@ class Article extends Admin {
         }
 
         if (sentinel()->inRole(['edt'])) {
-            $articles = $articles->onlyAllowEditor();
+            $articles = (new Model\Portal\Article)->filterOnlyAllowEditor($articles->get());
         }
 
-        $data['artikel']    = $articles->get();
+        $data['artikel']    = $articles;
         $data['status']     = $status;
 
         $this->template->build('index', $data);
@@ -58,10 +58,10 @@ class Article extends Admin {
         $articles   = Model\Portal\Article::withPrivate()->withDrafts()->status($status)->latest('date');
 
         if (sentinel()->inRole(['edt'])) {
-            $articles = $articles->onlyAllowEditor();
+            $articles = (new Model\Portal\Article)->filterOnlyAllowEditor($articles->get());
         }
 
-        $data['artikel']    = $articles->get();
+        $data['artikel']    = $articles;
         $data['status']     = $status;
 
        $this->template->build('index_draft', $data);
