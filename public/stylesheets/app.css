@@ -3388,7 +3388,7 @@ a {
 
 .pagination li a:hover {
   background-color: #1c9c57;
-  color: #fff;
+  color: #fff !important;
   border: 1px solid #1c9c57; }
 
 .pagination > li span,
@@ -3398,7 +3398,8 @@ a {
   .pagination > li span:hover, .pagination > li span:focus,
   .pagination > li a:hover,
   .pagination > li a:focus {
-    border: 1px solid #1c9c57; }
+    border: 1px solid #1c9c57;
+    color: #fff; }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:active {
   background-color: #fff !important; }
@@ -3416,7 +3417,7 @@ a {
 .pagination > .active > span:focus,
 .pagination > .active > span:hover {
   background-color: #1c9c57 !important;
-  color: #fff;
+  color: #fff !important;
   border: 1px solid #1c9c57;
   height: 35px; }
 
