@@ -19,6 +19,8 @@ class Article extends Admin {
             'draft'     => 'Draft',
         );
 
+        $this->repository   = new Library\Article\Article;
+
         $this->load->library('pagination');
     }
 
@@ -43,7 +45,9 @@ class Article extends Admin {
         }
 
         if (sentinel()->inRole(['edt'])) {
-            $articles = (new Model\Portal\Article)->filterOnlyAllowEditor($articles->get());
+            $articles = $this->repository->filterAllowEditor($articles->get());
+        } else {
+            $articles = $articles->get();
         }
 
         $data['artikel']    = $articles;
@@ -58,7 +62,9 @@ class Article extends Admin {
         $articles   = Model\Portal\Article::withPrivate()->withDrafts()->status($status)->latest('date');
 
         if (sentinel()->inRole(['edt'])) {
-            $articles = (new Model\Portal\Article)->filterOnlyAllowEditor($articles->get());
+            $articles = $this->repository->filterAllowEditor($articles->get());
+        } else {
+            $articles = $articles->get();
         }
 
         $data['artikel']    = $articles;
