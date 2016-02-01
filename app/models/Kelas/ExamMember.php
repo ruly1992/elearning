@@ -34,4 +34,16 @@ class ExamMember extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getScore($value='')
+    {
+        $exam       = $this->exam;
+        $answers    = $this->answers;
+        $correct    = $answers->sum('is_correct');
+
+        $point      = 100 / $exam->questions->count();
+        $score      = $point * $correct;
+
+        return $score;
+    }
 }

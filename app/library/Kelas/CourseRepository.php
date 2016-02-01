@@ -810,6 +810,36 @@ class CourseRepository
         return $exam;
     }
 
+    public function learnerExamMember($course_id, $user = null)
+    {
+        if ($user) $this->setUser($user);
+
+        $course    = Course::find($course_id);
+        $exam       = $course->exam;
+        $member     = null;
+        
+        foreach ($exam->members as $data) {
+            if ($data->user_id == $this->user->id) {
+                $member = $data;
+                break;
+            }
+        }
+
+        return $member;
+    }
+
+    public function learnerExamAnswer($course_id, $user = null)
+    {
+        return $this->learnerExamMember($course_id, $user)->answers;
+    }
+
+    public function courseById($course_id)
+    {
+       $course    = Course::find($course_id);
+
+       return $course;
+    }
+
     public function approveReview($course, $review)
     {
         $course = $this->model->find($course);
@@ -850,59 +880,5 @@ class CourseRepository
 
         return $this;
     }
-
-    public function examScore($courseid)
-    {
-        
-        $exam = $this->examLearnerByCourse($courseid);
-        
-        $correct    = 0;
-        $scores     = 0;
-
-        foreach ($exam as $key => $value) {
-            
-            $question = $this->questionList($value->id); //get questioin
-            $no=1;
-            foreach ($question as $key => $vq) {
-            
-                $learneranswer = $this->learnerAnswer($value->members[0]->id, $vq->id);
-                // Start Learner Answer Foreach 
-                foreach ($learneranswer as $key => $vAns) {
-
-                    if ($vAns->is_correct == '1') {
-                        $correct   = $correct + 1;
-                        $scores    = $scores + 10;
-                    } else {
-                        $scores    = $scores;
-                    }
-                                
-                                
-                                
-                }
-                // End Learner Answer Foreach
-
-
-
-                        
-            $no++;
-            }
-                    // End Question Foreach
-
-
-            $jumlahsoal = $no-1;
-            $soal = 100/$jumlahsoal;
-            $scores = $soal*$correct;
-
-
-        }
-
-
-        return $scores;
-        
-
-
-    }
-
-
 
 }

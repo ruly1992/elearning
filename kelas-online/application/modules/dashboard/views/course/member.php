@@ -33,8 +33,8 @@
 
                             <?php if ($user->pivot->status == 'finished'): ?>
                             <!-- Button Trigger Modal -->
-                            <button type="button" class="btn btn-primary btn-small btn-view-quiz" course-id="<?php echo $course->id ?>" user-name="<?php echo $user->full_name ?>" user-id="<?php echo $user->id ?>" data-toggle="modal" data-target="#myModal">Lihat Score Quiz</button>
-                            <button type="button" class="btn btn-primary btn-small btn-view-exam" course-id="<?php echo $course->id ?>" user-name="<?php echo $user->full_name ?>" data-toggle="modal" data-target="#myModal">Lihat Score Exam</button>
+                            <!-- <button type="button" class="btn btn-primary btn-small btn-view-quiz" course-id="<?php echo $course->id ?>" user-name="<?php echo $user->full_name ?>" user-id="<?php echo $user->id ?>" data-toggle="modal" data-target="#myModal">Lihat Score Quiz</button> -->
+                            <button type="button" class="btn btn-primary btn-small btn-view-exam" course-id="<?php echo $course->id ?>" user-name="<?php echo $user->full_name ?>" user-id="<?php echo $user->id ?>" data-toggle="modal" data-target="#myModal">Lihat Score Exam</button>
                             <!-- End Button Trigger Modal -->
                             <?php endif ?>
 
@@ -91,35 +91,36 @@
             setData:function(){
                 
                
-                $('.btn-view-quiz').click(function(){
+                // $('.btn-view-quiz').click(function(){
                    
-                    var courseid = $(this).attr('course-id');
-                    var username = $(this).attr("user-name");
+                //     var courseid = $(this).attr('course-id');
+                //     var username = $(this).attr("user-name");
 
                     
-                    $('.title-name-user').html(" Quiz " + username);
+                //     $('.title-name-user').html(" Quiz " + username);
 
-                    $.ajax({
-                        type: "GET",
-                        url: url+'/quizscores/'+courseid,
-                        success: function(response){
+                //     $.ajax({
+                //         type: "GET",
+                //         url: url+'/quizscores/'+courseid,
+                //         success: function(response){
                             
-                            $('.response-data').html(response);
+                //             $('.response-data').html(response);
 
-                        }
-                    });
-                });
+                //         }
+                //     });
+                // });
 
                 $('.btn-view-exam').click(function(){
                    
                     var courseid = $(this).attr('course-id');
                     var username = $(this).attr("user-name");
+                    var userid   = $(this).attr('user-id');
 
                     $('.title-name-user').html(" Exam " + username);
 
                     $.ajax({
                         type: "GET",
-                        url: url+'/examscores/'+courseid,
+                        url: url+'/examscores/'+courseid+'/'+userid,
                         success: function(response){
                             
                             $('.response-data').html(response);
