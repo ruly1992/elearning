@@ -39,15 +39,15 @@ trait MemberTrait
         return $this;
     }
 
-    public function deleteMember($user)
+    public function deleteMember($user = null)
     {
-        if (!($user instanceof User))
-            $user = User::find($user);
-        
-        if ($member = ExamMember::where('user_id', $user->id)->first())
+        if ($user)
+            $this->setUser($user);
+
+        if ($member = ExamMember::where('user_id', $this->user->id)->first())
             $member->delete();
 
-        if ($member = QuizMember::where('user_id', $user->id)->first())
+        if ($member = QuizMember::where('user_id', $this->user->id)->first())
             $member->delete();
 
         $this->model->members()->detach($user);
