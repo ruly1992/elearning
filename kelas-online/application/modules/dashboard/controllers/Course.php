@@ -212,6 +212,7 @@ class Course extends Admin
             'course'            => $this->kelas->getCourse($id),
             'repository'        => new CourseRepository($id),
             'sidebar_active'    => 'basic',
+            'chapters'          => Model\Kelas\Chapter::where('course_id', $id)->get()
         ];
 
         $this->template->set($data);
@@ -712,9 +713,14 @@ class Course extends Admin
          
     }
 
-    public function quizscores($courseid)
+    public function quizscores($chapterid, $userid)
     {
-        echo "empty!!";
+        $chapter    = $this->repository->chapterById($chapterid);
+        $quiz       = $this->repository->quizLearnerByChapterId($chapterid);
+        $answers    = $this->repository->learnerQuizAnswer($chapterid, $userid);
+        $member     = $this->repository->learnerQuizMember($chapterid);
+
+        $this->load->view('course/member_quiz_answer', compact('chapter', 'quiz', 'answers', 'member'));       
     }
 
 }
