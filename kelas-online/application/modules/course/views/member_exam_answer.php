@@ -9,7 +9,6 @@
         <h1><?php echo round($member->getScore(), 2) ?></h1>
     </div>
 </div>
-
 <?php $numb = 1; foreach ($answers as $answer): ?>
     <?php
     if ($answer->is_correct) {

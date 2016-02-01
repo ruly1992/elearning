@@ -220,19 +220,20 @@ class Course extends Admin
         $member     = $this->repository->learnerQuizMember($chapter->id);
 
         $this->load->view('member_quiz_answer', compact('chapter', 'quiz', 'answers', 'member'));
-        
     }
 
     public function examscores($courseid)
     {
-        $course     = $this->repository->courseById($courseid);
-        $exam       = $this->repository->examLearnerByCourse($courseid);// get exam member
-        $answers    = $this->repository->learnerExamAnswer($courseid);
-        $member     = $this->repository->learnerExamMember($courseid);
 
-        $this->load->view('member_exam_answer', compact('course','exam', 'answers', 'member'));
+        $this->repository->set($courseid);
         
-        
+        $course     = $this->repository->get();
+        $exam       = $course->exam;
+        $answers    = $this->repository->learnerExamAnswer($course->id);
+        $member     = $this->repository->learnerExamMember($course->id);
+
+        $this->load->view('member_exam_answer', compact('course', 'exam', 'answers', 'member'));
+
     }
 }
 

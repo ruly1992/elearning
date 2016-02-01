@@ -35,7 +35,7 @@ class ExamMember extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getScore($value='')
+    public function getScore()
     {
         $exam       = $this->exam;
         $answers    = $this->answers;
@@ -45,5 +45,13 @@ class ExamMember extends Model
         $score      = $point * $correct;
 
         return $score;
+    }
+    public function isPassing()
+    {
+        $course = $this->exam->course;
+
+        if ($this->getScore() < $course->passing_standards)
+            return false;
+            return true;
     }
 }
