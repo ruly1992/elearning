@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-block">
-        <h4 class="card-title"><?php echo $course->code ?> - <?php echo $course->name ?></h4>
-        <h6 class="card-subtitle text-muted">Terdiri dari <?php echo $course->exam->questions->count() ?> pertanyaan</h6>
+        <h4 class="card-title">Chapter <?php echo $chapter->order ?> - <?php echo $chapter->name ?></h4>
+        <h6 class="card-subtitle text-muted">Terdiri dari <?php echo $chapter->quiz->questions->count() ?> pertanyaan</h6>
     </div>
     <div class="card-block">
         

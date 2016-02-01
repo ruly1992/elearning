@@ -70,8 +70,8 @@ class Course extends Admin
         $expired    = $repository->getMemberExpired();
 
        
-        $examscore = $this->repository->examScore($course->id);// get exam score
-
+        //$examscore  = $this->repository->examScore($course->id);// get exam score
+        $examscore  = $this->repository->learnerExamMember($course->id);
        
         if ($repository->memberAllowCourse($course)) {
             if ($this->repository->isMember()) {
@@ -224,6 +224,7 @@ class Course extends Admin
 
     public function examscores($courseid)
     {
+
         $this->repository->set($courseid);
         
         $course     = $this->repository->get();
@@ -232,6 +233,7 @@ class Course extends Admin
         $member     = $this->repository->learnerExamMember($course->id);
 
         $this->load->view('member_exam_answer', compact('course', 'exam', 'answers', 'member'));
+
     }
 }
 
