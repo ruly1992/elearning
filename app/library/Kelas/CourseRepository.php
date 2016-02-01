@@ -832,6 +832,13 @@ class CourseRepository
         return $exam;
     }
 
+    public function courseById($course_id)
+    {
+       $course    = Course::find($course_id);
+
+       return $course;
+    }
+
     public function approveReview($course, $review)
     {
         $course = $this->model->find($course);
@@ -872,59 +879,5 @@ class CourseRepository
 
         return $this;
     }
-
-    public function examScore($courseid)
-    {
-        
-        $exam = $this->examLearnerByCourse($courseid);
-        
-        $correct    = 0;
-        $scores     = 0;
-
-        foreach ($exam as $key => $value) {
-            
-            $question = $this->questionList($value->id); //get questioin
-            $no=1;
-            foreach ($question as $key => $vq) {
-            
-                $learneranswer = $this->learnerAnswer($value->members[0]->id, $vq->id);
-                // Start Learner Answer Foreach 
-                foreach ($learneranswer as $key => $vAns) {
-
-                    if ($vAns->is_correct == '1') {
-                        $correct   = $correct + 1;
-                        $scores    = $scores + 10;
-                    } else {
-                        $scores    = $scores;
-                    }
-                                
-                                
-                                
-                }
-                // End Learner Answer Foreach
-
-
-
-                        
-            $no++;
-            }
-                    // End Question Foreach
-
-
-            $jumlahsoal = $no-1;
-            $soal = 100/$jumlahsoal;
-            $scores = $soal*$correct;
-
-
-        }
-
-
-        return $scores;
-        
-
-
-    }
-
-
 
 }

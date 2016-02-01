@@ -382,7 +382,7 @@
             /* Start chart online class data */
             $membername       = '';
             foreach ($toptenactiveclass as $key => $value) {
-                $membername .= $value->user->first_name." ".$value->user->last_name.", ";
+                $membername .= $value->user->full_name.", ";
             }
 
             $countmember = ''; 

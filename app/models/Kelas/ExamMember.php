@@ -46,7 +46,6 @@ class ExamMember extends Model
 
         return $score;
     }
-
     public function isPassing()
     {
         $course = $this->exam->course;
