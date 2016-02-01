@@ -191,6 +191,7 @@ class CourseRepository
             $this->deleteChapter($chapter);
         });
 
+        $this->model->comments()->delete();
         $this->model->delete();
 
         return $this;
