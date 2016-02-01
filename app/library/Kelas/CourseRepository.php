@@ -832,29 +832,6 @@ class CourseRepository
         return $exam;
     }
 
-    public function learnerExamMember($course_id, $user = null)
-    {
-        if ($user) $this->setUser($user);
-
-        $course    = Course::find($course_id);
-        $exam       = $course->exam;
-        $member     = null;
-        
-        foreach ($exam->members as $data) {
-            if ($data->user_id == $this->user->id) {
-                $member = $data;
-                break;
-            }
-        }
-
-        return $member;
-    }
-
-    public function learnerExamAnswer($course_id, $user = null)
-    {
-        return $this->learnerExamMember($course_id, $user)->answers;
-    }
-
     public function courseById($course_id)
     {
        $course    = Course::find($course_id);
