@@ -10,7 +10,13 @@
                 </div>
 
                 <div class="form-group">
-                    <?php echo form_textarea('description', set_value('description', '', FALSE), array('class' => 'form-control description-text','rows' => '2' ,'placeholder' => 'Description (Maksimal 100 karakter)')); ?>
+                    <?php echo form_textarea(array(
+                        'value'         => set_value('description', $artikel->description),
+                        'name'          => 'description',
+                        'class'         => 'form-control description-text',
+                        'rows'          => 2,
+                        'placeholder'   => 'Text intro (Maksimal 100 karakter)'
+                    )); ?>
                 </div>
 
                 <div class="form-group">
